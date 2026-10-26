@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types --no-warnings tests/run.mjs && node --experimental-strip-types --no-warnings tests/geometry.mjs",
+    "test": "node --experimental-strip-types --no-warnings tests/run.mjs && node --experimental-strip-types --no-warnings tests/geometry.mjs && node --experimental-strip-types --no-warnings tests/search.mjs && node --experimental-strip-types --no-warnings tests/search-tester.mjs && node --experimental-strip-types --no-warnings tests/intent.mjs && node --experimental-strip-types --no-warnings tests/draft.mjs && node --experimental-strip-types --no-warnings tests/draft-tester.mjs && node --experimental-strip-types --no-warnings tests/site.mjs && node --experimental-strip-types --no-warnings tests/site-tester.mjs && node --experimental-strip-types --no-warnings tests/polygon.mjs",
     "check": "node --experimental-strip-types --no-warnings tests/run.mjs"
   }
 }

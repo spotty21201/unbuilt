@@ -2,7 +2,7 @@
 // Every cost-driving quantity comes from measured geometry or a declared allowance.
 import { evaluateFinance } from "./finance.ts";
 import type { FinanceResult } from "./schema.ts";
-import { deriveQuantities, type Layout, type Quantities, type Site } from "./geometry.ts";
+import { deriveQuantities, type Layout, type LotEdits, type Quantities, type Site } from "./geometry.ts";
 
 export const RATES = {
   homeBuiltArea: 60, // m2/home
@@ -27,8 +27,14 @@ export interface LayoutEconomics {
   finance: FinanceResult;
 }
 
-export function evaluateLayout(site: Site, layout: Layout, pricePerHome: number): LayoutEconomics {
-  const quantities = deriveQuantities(site, layout);
+export function evaluateLayout(
+  site: Site,
+  layout: Layout,
+  pricePerHome: number,
+  overrides: { ownerExpectation?: number; targetFraction?: number } = {},
+  lotEdits: LotEdits = new Map(),
+): LayoutEconomics {
+  const quantities = deriveQuantities(site, layout, lotEdits);
   const homeCost = quantities.n * RATES.homeBuiltArea * RATES.constructionPerM2;
   const roadCost = quantities.roadArea * RATES.roadPerM2;
   const greenCost = quantities.greenArea * RATES.greenWorksPerM2;
@@ -41,8 +47,8 @@ export function evaluateLayout(site: Site, layout: Layout, pricePerHome: number)
     pricePerHome,
     costNonLand,
     sellFraction: RATES.sellFraction,
-    ownerExpectation: RATES.ownerExpectation,
-    targetFraction: RATES.targetFraction,
+    ownerExpectation: overrides.ownerExpectation ?? RATES.ownerExpectation,
+    targetFraction: overrides.targetFraction ?? RATES.targetFraction,
   });
   return { quantities, roadCost, homeCost, greenCost, costNonLand, finance };
 }

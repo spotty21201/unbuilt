@@ -19,6 +19,58 @@ export interface FinanceInputs {
   targetFraction: number; // t
 }
 
+export interface ProductProfile {
+  id: string;
+  name: string;
+  lotAreaMin: number;
+  lotAreaMax: number;
+  frontageMin: number;
+  priceLow: CurrencyRp;
+  priceBase: CurrencyRp;
+  priceHigh: CurrencyRp;
+  source: string; // fictional evidence description, labeled
+}
+
+export interface Locks {
+  green: Rect; // locked region: shape AND location
+  priceCeiling: CurrencyRp; // buyer-price ceiling; selected price must be at or below
+  ownerExpectation: CurrencyRp; // fixed L
+  targetFraction: number; // fixed t
+}
+
+export interface SearchRanges {
+  families: Array<"spine" | "loop">;
+  frontages: number[];
+}
+
+export interface Candidate {
+  id: string;
+  family: "spine" | "loop";
+  frontage: number;
+  quantities: { n: number; roadArea: number; greenArea: number; parcelArea: number; unallocatedArea: number };
+  validationErrors: string[];
+  greenHeld: boolean;
+  priceOk: boolean;
+  applicable: boolean;
+  failingLots: number[];
+  roadCost: number;
+  costNonLand: CurrencyRp;
+  finance: FinanceResult;
+  reason?: string;
+}
+
+export interface SearchRun {
+  snapshotHash: string;
+  seed: number;
+  tested: number;
+  valid: number;
+  qualified: number;
+  truncated: boolean;
+  elapsedMs: number;
+  blockers: string[];
+  candidates: Candidate[];
+}
+
 export interface FinanceResult {
   revenue: CurrencyRp;
   surplus: CurrencyRp;
