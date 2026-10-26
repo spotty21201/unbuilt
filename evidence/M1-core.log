@@ -6,3 +6,6 @@ M1 core slice — 2026-10-26
 - Herdr team: pane w7:p2 split; agent unbuilt-tester (muse) started idle, briefed T10 (append-only).
 - Tester state: blocked on per-command approvals; 1 read-only approval granted, next command re-prompted. Parked; see D09.
 - w1 Nalarupa untouched throughout.
+- Commit b8d9c8f on main (18 files, explicit user authorization).
+- Push to github.com/spotty21201/unbuilt failed: no credentials in this environment, no gh CLI. Remote 'origin' configured; push pending repo/auth.
+- Push succeeded after user authenticated GitHub: main -> origin/main.
