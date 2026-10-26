@@ -1,0 +1,8 @@
+M1 core slice — 2026-10-26
+- src/geometry.ts, src/economics.ts, tests/geometry.mjs added; package.json test runs both suites.
+- npm test: 19/19 finance PASS + 17/17 geometry PASS (36 total), exit 0.
+- Hand-checks: loop union 600+600+480+480+96-144-36=2076; spine N 24-4=20; loop N 5+8+2+1=16; all matched.
+- git init done, no commit (awaiting user authorization).
+- Herdr team: pane w7:p2 split; agent unbuilt-tester (muse) started idle, briefed T10 (append-only).
+- Tester state: blocked on per-command approvals; 1 read-only approval granted, next command re-prompted. Parked; see D09.
+- w1 Nalarupa untouched throughout.

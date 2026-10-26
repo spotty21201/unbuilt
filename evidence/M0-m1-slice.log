@@ -1,0 +1,11 @@
+M0/M1 slice — 2026-10-26 America/Chicago
+Commands (all exit 0 unless noted):
+- ls -la / git status / AGENTS.md check: only UNBUILT_PRD_v0.2.md present; not a git repo; no AGENTS.md
+- herdr workspace list / pane list / agent list: w7 Unbuilt single pane (this session); w1 Nalarupa untouched (4 idle pi agents)
+- herdr status: client 0.9.5 / server 0.9.1, running
+- herdr agent: kinds include muse; pane/agent prompt/read/wait available
+- env var names: no META/MUSE API credential vars present
+- web fetch dev.meta.ai/docs/models: muse-spark-1.3 latest/default, 1.2, 1.1 + contributor variants
+- web fetch dev.meta.ai/events/global-hackathon: begins Oct 26; submissions due Nov 4 9PM ET
+- npm test: 19/19 PASS (output in tool log)
+Blocked: app Model API credentials — no structured/tool smoke call made; CLI auth file existence noted only.
