@@ -1,0 +1,74 @@
+{
+  "asset": "/assets/index-BBpbEAfo.js",
+  "css": "/assets/index-CeDCwCFo.css",
+  "rootChecks": 379,
+  "browserChecks": 50,
+  "browserErrors": [],
+  "screenshots": {
+    "default-1440.png": [
+      1440,
+      900
+    ],
+    "default-1024.png": [
+      1024,
+      768
+    ],
+    "default-375.png": [
+      375,
+      812
+    ],
+    "polygon-1440.png": [
+      1440,
+      900
+    ],
+    "polygon-1024.png": [
+      1024,
+      768
+    ],
+    "polygon-375.png": [
+      375,
+      812
+    ],
+    "zoom-200-actual.png": [
+      1440,
+      901
+    ],
+    "zoom-200-editor.png": [
+      1440,
+      901
+    ]
+  },
+  "zoom": {
+    "before": {
+      "width": 1440,
+      "height": 901,
+      "dpr": 1,
+      "outerWidth": 1440
+    },
+    "after": {
+      "width": 720,
+      "height": 450,
+      "dpr": 2,
+      "outerWidth": 1440,
+      "overflow": 712
+    },
+    "browserZoom": 2,
+    "asset": "/assets/index-BBpbEAfo.js",
+    "checks": [
+      "actual browser zoom equals 2",
+      "same window, half CSS width, DPR 2",
+      "no horizontal overflow",
+      "keyboard coordinate creation, close and apply at 200%"
+    ]
+  },
+  "toolServerOnline": true,
+  "realModelConfigured": false,
+  "openGates": [
+    "real model round trip",
+    "physical touch device",
+    "screen-reader walkthrough",
+    "unrehearsed human planning",
+    "human aesthetic acceptance",
+    "milestone sign-off"
+  ]
+}

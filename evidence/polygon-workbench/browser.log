@@ -1,0 +1,51 @@
+PASS default 1440px has no horizontal overflow
+PASS default 1024px has no horizontal overflow
+PASS default 375px has no horizontal overflow
+PASS closed polygon area matches hand-calculated 11,000 m²
+PASS drawing leaves accepted rectangle untouched
+PASS polygon applies as 5 vertices
+PASS supported spine contains 18 homes and measures 720 m² road
+PASS Undo restores rectangle
+PASS Redo restores complete polygon
+PASS boundary handles retain screen size while zooming
+PASS drag updates actual coordinate
+PASS drag updates valid polygon area
+PASS draft Undo reverts a complete drag gesture
+PASS draft Redo restores the drag gesture
+PASS midpoint adds a sixth vertex
+PASS keyboard moves focused vertex by 1 m
+PASS Delete removes focused boundary vertex
+PASS Undo combines boundary edits into one step
+PASS crossed geometry explains invalidity
+PASS invalid boundary cannot apply
+PASS invalid draft never overwrites accepted geometry
+PASS corrected geometry enables Apply
+PASS Escape cancels edit
+PASS Cancel keeps accepted geometry
+PASS save/reload preserves polygon coordinates
+PASS lot editing persists a polygon
+PASS open space edit commits inside polygon
+PASS search produces distinct supported alternatives
+PASS preview labels unapplied changes
+PASS comparison draws two different polygon plans
+PASS explanation measured by live deterministic tool server
+PASS assistant measurements fit inspector width
+PASS input change clears measured answer
+PASS input change removes stale preview
+PASS in-flight response cannot overwrite changed scenario
+PASS candidate Apply preserves authoritative polygon
+PASS Pan works when starting on a lot
+PASS export contains polygon and correct currency units
+PASS record import retains geometry, owner units and target
+PASS entrance coordinate edit stays connected on polygon
+PASS entrance drag validates on polygon boundary
+PASS view zoom never changes measured outcomes
+PASS unsupported shape blocks layout and precise economics
+PASS unpriced assistant facts retain the real polygon remainder
+PASS polygon 1440px no horizontal overflow
+PASS polygon 1024px no horizontal overflow
+PASS polygon 375px no horizontal overflow
+PASS touch can draw and close an irregular boundary
+PASS touch drag reshapes vertex
+PASS no uncaught browser errors
+ALL 50 BROWSER CHECKS PASS

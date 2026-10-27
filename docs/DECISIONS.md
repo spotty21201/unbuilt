@@ -43,6 +43,27 @@ Date: 2026-10-26. New `src/polygon.ts`: simple-polygon predicates (area, edges, 
 Staged product rule: reshaped lots are manual locks — search, circulation, frontage, apply, open-space, and entrance edits stay blocked with the reason until the user explicitly discards the reshapes; new sites clear them (logged, kept for Undo). Homes never auto-relocate; max 12 corners; holes/multipolygons out.
 Findings in code: photo retained on dimension confirm + explicit remove (undo keeps it: never cleared implicitly); image bytes must decode as PNG/JPEG within 10 MB or the last valid photo stands with an inline error; export v2 (versioned accepted-plan snapshot + separate append-only events incl. undo/redo); field-level site errors; "assumed — review" badges + pricing disclaimer on custom sites; expandable plan; any-two compare with Fit both + expandable dock. All browser verification pending; no model/human/M3 gate claimed.
 
+## D29 — Audit repair increment (v0.35 supplement stands, contracts preserved)
+Date: 2026-10-26. Fixed before any expansion: coincident-overlap detection (inward-nudge), finite-only boundary, 2 m setback ring on edited shapes (3 m labeled unverified), string-held vertex fields, version-bound proposals, unambiguous unit grammar with clarification, stable lot IDs carried through search/regen with an explicit preserve-vs-discard choice, signature+MP image gates, versioned localStorage persistence + file import (v2 records importable), server seam (mock intent/search, Meta tool-call adapter returning honest 503/502 without a key). Protocol grounded in Meta chat-completions docs (api.meta.ai/v1, Bearer, muse-spark-1.3); no real model call attempted. Redesign spec written first per the audit's order; visual rework explicitly deferred. No gate claimed.
+
+## D34 — Canvas-led shell redesign from screenshot comparison
+Date: 2026-10-27. Compared `evidence/ui-reference/current-ui.png` against `target-stitch.png` side by side (plan in LAYOUT-PLAN.md) and rebuilt the workspace: dark shell grid (44px top bar, real-data context strip, 64px icon rail, dominant paper field, 320px dark inspector, persistent outcomes strip). Icon rail (Select/Pan + selection shortcuts, V/H/Escape, tooltips, 12px captions under full accessible names); floating dark canvas toolbar (Fit/zoom/expand, short hint; docks to the south edge ≤900px so it never covers worked geometry); object selector + contextual inspector + assistant + request composer all in the right column (site setup collapsed into a disclosure); dock details collapse upward and auto-open on search. Footprints restyled light dashed (visual only, geometry untouched). Verification looked at actual screenshots: 25/25 Playwright checks (composer in view 1440/1024, keyboard, touch incl. a caught toolbar-overlap veto fixed, meaningful compare, in-flight discard), true-geometry 200% zoom, 351 engine checks, zero console errors. Deliberate deviations from the target: readable type (no 9–12px labels), no zoning/solar/FAR/DXF/telemetry claims, no invented actions. Screenshots new-ui-*.png reviewed against the target by the implementer; independent visual and human gates still open. Bundle index-6-6nXSzb.js live; uncommitted.
+
+## D33 — Retest response: composer-first column, screen labels, mobile focus
+Date: 2026-10-27. Independent retest (4 issues) answered in code. (1) Column rebuilt composer-first: the canvas stage takes the flex leftover after toolbar/composer/verdicts (ResizeObserver refit), so the request textarea + Send fit at 1440×900 (bottoms 730/727) and 1024×768 (546/598) with no inner scroll; comparison canvases use width mode. (2) Labels hold screen size at any zoom (viewBox-units-per-pixel scaling + paper halo): lot numbers render 22px at 1440 and ≥13px at 1024/375; measured contrasts 14.08 (disclosure), 11.29 (lot numbers), 4.58 (tags); every lot carries a hover/screen-reader title with number + area. (3) Mobile: compact outcomes sit directly under the drawing (gap 0), side columns collapse behind Show/Hide controls (collapsed by default ≤900px), touch tap selects, no page overflow. (4) Stitch prominence without prototype claims: mono figures, slimmer chrome, 1760px cap, narrower rail, centered plan. Also fixed Escape in the tool rail (deselect path was unreachable from there). Playwright: 24/24 green incl. real keyboard (Enter/V/H/Escape), touch, meaningful compare (20→17 homes, Rp3.56bn→Rp2.41bn), delayed-response discard, emulated 200% zoom without page overflow. Suite 351; bundle index-VGmP2eqq.js live. Machine pixel inspection done (pngjs crops: inputs render white, Send 0.93 dark, canvases 37–52% drawn incl. both compare plans; evidence r3-pixel.json + r3-*.png). True 200% zoom verified with exact zoom geometry (720×450 CSS px at dpr 2: single-column reflow, no page overflow, Send works). Human aesthetic review still requested. Model/human/M2/M3 gates open; uncommitted.
+
+## D32 — Browser-findings response: CORS, versioned answers, bigger plan
+Date: 2026-10-27. Independent re-walk (3 failures) answered in code. (1) Tool server now carries a restricted CORS policy: allowlisted app origins echoed (+Vary), explicit OPTIONS 204, unlisted Origins 403, no-Origin direct calls untouched; origins configurable via UNBUILT_APP_ORIGIN. 8 protocol fixtures; live :5174 preflight verified. (2) Assistant answers bound to a scenario+comparison key (spec, geometry, lots, assumptions, selection, preview, run): any relevant edit clears the panel to Ready, in-flight fetches abort, and responses arriving after their version are discarded — completed answers and fallbacks alike. (3) Workspace: canvas fits measured column space (was height-capped 473×414, now ~617×540 at 1440×900), centered, request field visible at 1024×768, topbar disclosure contrast fixed (paper on slate), bolder 15px lot numbers, slimmer rail, 32vh dock. Playwright from the real browser origin: 14/14 green (server-measured Why, stale-clearing, sizes, overflow at 3 viewports, zero console errors). Suite 351 checks; bundle index-CCBUdKC_.js live. Model round trip, 200% zoom, keyboard/touch, and human validation still open; no gate claimed; uncommitted.
+
+## D31 — PRD v0.4 slice: canvas-first workspace + assistant via validated tools
+Date: 2026-10-27. Self-contained `docs/PRD_v0.4.md` (successor; v0.1–v0.35 retained) + `docs/DESIGN.md` adopting the Stitch light-field/slate direction with accessibility overrides (16px/14px/44px, visible scrollbars, 24px+ handle targets, focus rings) and explicit exclusion of mockup claims (solar, FAR, EPSG, DXF/IFC, 142 homes, R-3, telemetry badges). New `src/snapshot.ts`: versioned canonical hashed ScenarioSnapshot (cyrb53, key-order stable) with full untrusted-input validation; 23 fixtures. Server: snapshot-accepting `/api/search` (planHash echo) + read-only `/api/explain` (two-spec measured deltas, priced-at, per-side validity); 17 protocol fixtures, Cedar spine-10 vs loop-10 hand-verified (n 20→17, road 720→2076, allowance Rp3.56bn→Rp1.27bn, area reconciles 12000 both sides). UI: tool rail (Select V / Pan H) left, inspector right (300px), slate top bar with probed tool-server status, paper canvas, violet open-space accent, readable SVG labels. New `src/assistant.ts` + panel: three questions (true/why/try) with disclosed keyword routing, server-explain-first with local-engine fallback and hash-mismatch refusal, read-only questions need no proposal, hypotheses labeled until engine-tested; 24 eval fixtures incl. a no-invented-figures check. Suite: 343 checks green; web build current on :5173. Browser proof, model round trip, and human validation all outstanding; no gate claimed; tree uncommitted per instruction.
+
+## D30 — Planner-review response: credibility before polish
+Date: 2026-10-27. Independent planner review (F01–F12) answered in code, P0 first: disconnected gates can no longer commit (connectivity proven pre-commit); search counts split into geometry/profile/ceiling/target with the owner expectation demoted to a labeled benchmark everywhere (Options, Record, accepted summary); reshape-carry copy unified (the old blocked-language removed); drags starting on fixed objects explain instead of panning; validity pinned above metrics; allowance waterfall with the surplus/allowance distinction; fuller compare deltas with priced-at assumptions; save-scope contract; deterministic-scope disclosure with single-locked-green resolve; print meeting summary. Full canvas-first redesign stays spec'd (REDESIGN-SPEC), not attempted here. No gate claimed.
+
+## D28 — Reconciled against PRD v0.3 (matrix IDs, photo cap, open priority)
+Date: 2026-10-26. Adopted v0.3's AC-33–AC-40 IDs and priorities (AC-36 P0, AC-37/38/39 P1, rest unassigned); former local rows moved to AC-41–AC-43; AC-40 recorded as explicitly unsupported (rectangular sites only). Photo cap confirmed as a hard 10 MB maximum (already enforced pre-decode in `onPhotoFile`; megapixel limit not implemented — v0.3 lists 20 MP as recommended). Open for the owner: milestone placement of polygon lots + movable entrance (immediate MVP vs separate release) and the 20 MP question; no capability marked complete on that account.
+
 ## D24 — M3 slice 1: reference upload, confirmed boundary, compare, record
 Date: 2026-10-26. Photo is backdrop-only (fitted, labeled, never a number source); boundary/scale declared meters via siteSizeErrors; makeSite() generalizes generators to entrance height (Cedar-exact); compare view rebuilds both plans + run-data deltas; decision record exports JSON with UI state only. Designer T11e + Tester T10e dispatched.
 
@@ -100,3 +121,36 @@ Rationale: worktrees/branches for parallel roles come after first commit, which 
 ## D06 — Fictional data labeled; storyboard numbers are not targets
 Date: 2026-10-26. Cedar Market 120x100m, 36/40/44 homes, Rp0.62bn saving are illustrations.
 Decision: solver must derive its own counts; fixtures use PRD arithmetic values only as math checks, never as generator targets.
+
+## D35 — Authoritative irregular site boundary and contained generation
+
+Date: 2026-10-27. Owner explicitly prioritized polygon creation/editing. Adopted
+one simple 3–64 vertex local-metre boundary, shared polygon validation/containment
+and true area across the engine, persistence, hashes, server and comparisons.
+The existing rectangular sites remain compatible. Existing generators retain
+only whole contained lots and must fit their entire road network and green;
+otherwise the boundary saves with an unavailable layout, no qualifying search
+candidate and no displayed economics. No arbitrary road routing is claimed.
+Polygon project/snapshot versions are 2 and polygon record exports are 3, so
+older readers refuse them instead of treating them as rectangles. JSON import
+also fixes owner bn/million conversion and missing target; export fixes price
+million/base-unit conversion.
+
+Boundary drafts support drawing, closing, dragging, midpoint insertion, removal,
+coordinate editing, gesture Undo/Redo, Apply and Cancel. Plan Apply is one Undo
+step. Existing manual lot conflicts use the prior explicit discard review.
+Canvas sizing now subtracts padding to keep pointer transforms exact. Scale
+labels cannot intercept corner taps. Docked tools, screen-sized labels, restored
+panel contrast, adjacent mobile outcomes and a dedicated expanded comparison
+address findings from actual browser screenshots. Comparison hatches have unique
+SVG ids; preview labels no longer collide with lot numbers.
+
+Verification and remaining gates are recorded in `evidence/polygon-workbench/`.
+No real model call or human acceptance is claimed. Earlier 200% screenshot claims
+used viewport emulation; this revision separately exercises actual browser zoom
+through the browser's zoom API and checks getZoom, CSS dimensions and DPR.
+
+Follow-up verification repairs in this slice: imported frontage is bounded before
+subdivision; assistant version changes clear answers during render via instance
+identity and abort on unmount; unavailable economics still report engine-derived
+quantities; invalid green drafts retain committed manual-lot quantities.

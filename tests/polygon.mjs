@@ -17,7 +17,9 @@ import {
 import {
   cedarMarket,
   deriveQuantities,
+  editsForLayout,
   generateSpine,
+  lotKey,
   lotRoadFrontage,
   placeFootprint,
   validateLayout,
@@ -83,6 +85,21 @@ check("shared-none", sharedBoundaryLength(sq, { x: 20, y: 20, w: 6, h: 6 }), 0);
 const east = sq.map((p) => ({ x: p.x + 10, y: p.y }));
 check("adjacent-no-overlap", polysOverlap(sq, east), false);
 check("shifted-overlap", polysOverlap(sq, east.map((p) => ({ x: p.x - 1, y: p.y }))), true);
+// Coincident duplicates overlap (positive area); edge/corner touches do not.
+check("coincident-overlap", polysOverlap(sq, sq.map((p) => ({ ...p }))), true);
+check("coincident-ell", polysOverlap(ell, ell.map((p) => ({ ...p }))), true);
+// Offset (+9,-5): a genuine 1 x 5 overlapping strip, not an edge touch.
+const strip = sq.map((p) => ({ x: p.x + 9, y: p.y - 5 }));
+check("partial-coincident", polysOverlap(sq, strip), true);
+check("corner-touch", polysOverlap(sq, sq.map((p) => ({ x: p.x + 10, y: p.y + 10 }))), false);
+check("t-touch", polysOverlap(sq, [{ x: 10, y: 2 }, { x: 14, y: 2 }, { x: 14, y: 8 }, { x: 10, y: 8 }]), false);
+check("contain-either", polysOverlap(sq, [{ x: 2, y: 2 }, { x: 8, y: 2 }, { x: 8, y: 8 }, { x: 2, y: 8 }]), true);
+check("rect-coincident", polyOverlapsRect(sq, { x: 0, y: 0, w: 10, h: 10 }), true);
+check("rect-partial", polyOverlapsRect(sq, { x: 5, y: 5, w: 10, h: 10 }), true);
+// Non-finite coordinates are rejected at the boundary, never measured.
+check("nan-simple", isSimple([{ x: NaN, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }]), false);
+check("inf-simple", isSimple([{ x: 0, y: 0 }, { x: Infinity, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }]), false);
+check("neginf-area-finite", Number.isFinite(polyArea(sq)), true);
 check("rect-adjacent", polyOverlapsRect(sq, { x: 10, y: 0, w: 5, h: 10 }), false);
 check("rect-pushed", polyOverlapsRect(sq, { x: 9, y: 0, w: 5, h: 10 }), true);
 check("rect-inside", polyOverlapsRect([{ x: -5, y: -5 }, { x: 15, y: -5 }, { x: 15, y: 15 }, { x: -5, y: 15 }], { x: 0, y: 0, w: 10, h: 10 }), true);
@@ -108,28 +125,47 @@ check("front-edge-on-road", lotRoadFrontage(layout.roads, [
   { x: r0.x + r0.w, y: r0.y + r0.h },
   { x: r0.x, y: r0.y + r0.h },
 ]), r0.w);
+// Trim 1 m off the non-frontage bottom only: the placed home (with its 2 m
+// ring) still fits, so the edit is valid. Area 10 x 19 = 190 by hand.
 const inset = [
-  { x: r0.x + 1, y: r0.y + 1 },
-  { x: r0.x + r0.w - 1, y: r0.y + 1 },
-  { x: r0.x + r0.w - 1, y: r0.y + r0.h },
-  { x: r0.x + 1, y: r0.y + r0.h },
+  { x: r0.x, y: r0.y + 1 },
+  { x: r0.x + r0.w, y: r0.y + 1 },
+  { x: r0.x + r0.w, y: r0.y + r0.h },
+  { x: r0.x, y: r0.y + r0.h },
 ];
-// Area (10-2) x (20-1) = 152 by hand; the placed home and frontage survive.
-check("inset-area", polyArea(inset), (r0.w - 2) * (r0.h - 1));
+check("inset-area", polyArea(inset), r0.w * (r0.h - 1));
 check("inset-valid", validateLotPoly(site, layout, i0, inset), []);
 const edits = new Map([[i0, inset]]);
 check("joint-valid", validateLayout(site, layout, edits).length, 0);
-// Quantities use true area: parcelArea drops by exactly 200 - 152 = 48, and
+// Quantities use true area: parcelArea drops by exactly 200 - 190 = 10, and
 // the remainder absorbs it (reconciliation, not silent loss).
 const before = deriveQuantities(site, layout);
 const after = deriveQuantities(site, layout, edits);
-check("area-delta", Math.round(before.parcelArea - after.parcelArea), 48);
-check("remainder-absorbs", Math.round(after.unallocatedArea - before.unallocatedArea), 48);
+check("area-delta", Math.round(before.parcelArea - after.parcelArea), 10);
+check("remainder-absorbs", Math.round(after.unallocatedArea - before.unallocatedArea), 10);
 check("recon", Math.round(after.parcelArea + after.roadArea + after.greenArea + after.unallocatedArea), site.w * site.h);
-// True-area applicability: 152 m² falls below the 180 m² Family profile floor.
-check("inset-fails-profile", failingLots(layout.parcels, BASE_PROFILE, { lotEdits: edits, roads: layout.roads }).includes(i0), true);
-// Insetting the sides shortened the shared edge 10 -> 8: true-edge math.
-check("frontage-true", lotRoadFrontage(layout.roads, inset), r0.w - 2);
+// 190 m² stays inside the 180-300 Family window with 10 m frontage: applicable.
+check("inset-fits-profile", failingLots(layout.parcels, BASE_PROFILE, { lotEdits: edits, roads: layout.roads }).includes(i0), false);
+check("frontage-true", lotRoadFrontage(layout.roads, inset), r0.w);
+// The audit's setback case: pulling the sides in to 1 m clearance is now
+// rejected even though the footprint itself still fits inside.
+const pinch = [
+  { x: r0.x + 1, y: r0.y },
+  { x: r0.x + r0.w - 1, y: r0.y },
+  { x: r0.x + r0.w - 1, y: r0.y + r0.h },
+  { x: r0.x + 1, y: r0.y + r0.h },
+];
+check("setback-no", validateLotPoly(site, layout, i0, pinch), ["reshape leaves less than the 2 m side setback around the placed home"]);
+// Trimming 3 m off the back keeps the 2 m ring (bottom edge exactly on it)
+// and the frontage edge, but drops below the profile floor (170 < 180).
+const slim = [
+  { x: r0.x, y: r0.y + 3 },
+  { x: r0.x + r0.w, y: r0.y + 3 },
+  { x: r0.x + r0.w, y: r0.y + r0.h },
+  { x: r0.x, y: r0.y + r0.h },
+];
+check("slim-valid", validateLotPoly(site, layout, i0, slim), []);
+check("slim-fails-profile", failingLots(layout.parcels, BASE_PROFILE, { lotEdits: new Map([[i0, slim]]), roads: layout.roads }).includes(i0), true);
 
 // Rejections carry reasons; the last valid plan is never adjusted.
 check("bow-no", validateLotPoly(site, layout, i0, bow).length > 0, true);
@@ -170,6 +206,18 @@ const far = [
 ];
 check("access-no", validateLotPoly(site, layout, 1, far).length > 0, true);
 check("dangling-no", validateLotPoly(site, layout, 9999, inset).length > 0, true);
+// Stable identity: editsForLayout carries only edits whose base rect the
+// layout reproduces verbatim (spine-10 keeps lot 0; a loop layout may not).
+check("carry-hit", (() => { const m = editsForLayout(layout.parcels, { [lotKey(r0)]: inset }); return m.size === 1 && m.get(0) !== undefined; })(), true);
+check("carry-miss", editsForLayout(layout.parcels, { "1,1,5,5": inset }).size, 0);
+check("lotkey-format", lotKey(r0), `${r0.x},${r0.y},${r0.w},${r0.h}`);
+check("nan-lot-no", validateLotPoly(site, layout, 1, [{ x: NaN, y: 80 }, { x: 60, y: 80 }, { x: 60, y: 90 }, { x: 50, y: 90 }]), ["lot corners must be finite numbers"]);
+check("nan-failing", failingLots(layout.parcels, BASE_PROFILE, { lotEdits: new Map([[1, [{ x: 0, y: 0 }, { x: NaN, y: 0 }, { x: 0, y: 1 }]]]), roads: layout.roads }).includes(1), true);
+// Coincident edits on two lots are caught jointly (footprint reason aside,
+// the overlap reason fires for true duplicates sharing one home footprint).
+const dupe = layout.parcels[0];
+const dupePts = [{ x: dupe.x, y: dupe.y }, { x: dupe.x + dupe.w, y: dupe.y }, { x: dupe.x + dupe.w, y: dupe.y + dupe.h }, { x: dupe.x, y: dupe.y + dupe.h }];
+check("coincident-joint", validateLayout(site, layout, new Map([[0, dupePts], [1, dupePts]])).some((e) => e.includes("overlaps")), true);
 const many = Array.from({ length: MAX_LOT_VERTICES + 1 }, (_, k) => ({ x: 50 + k, y: 80 + (k % 2) }));
 check("vertex-cap", validateLotPoly(site, layout, 1, many).length > 0, true);
 

@@ -35,6 +35,27 @@ r = parseIntent("Cap the selling price at Rp 800m.", { selected: null, selectedP
 check("cap-kind", r.kind, "proposal");
 check("cap-value", r.operations.priceCeiling, 800000000);
 
+// Unit grammar (hand-derived): thousands groupings, decimals, magnitudes.
+r = parseIntent("Cap price at Rp1,000m.", { selected: null, selectedPrice: 850000000 });
+check("thousands-comma", r.operations.priceCeiling, 1000000000);
+r = parseIntent("Cap price at Rp1.000m.", { selected: null, selectedPrice: 850000000 });
+check("thousands-dot", r.operations.priceCeiling, 1000000000);
+r = parseIntent("Cap price at Rp850,5m.", { selected: null, selectedPrice: 850000000 });
+check("decimal-comma", r.operations.priceCeiling, 850500000);
+r = parseIntent("Cap price at Rp1.5bn.", { selected: null, selectedPrice: 850000000 });
+check("billion", r.operations.priceCeiling, 1500000000);
+r = parseIntent("Cap price at Rp2miliar.", { selected: null, selectedPrice: 850000000 });
+check("miliar", r.operations.priceCeiling, 2000000000);
+r = parseIntent("Cap price at Rp850jt.", { selected: null, selectedPrice: 850000000 });
+check("juta", r.operations.priceCeiling, 850000000);
+// Ambiguous punctuation or missing magnitude is refused, never guessed.
+r = parseIntent("Cap price at Rp1,00,0m.", { selected: null, selectedPrice: 850000000 });
+check("weird-groups", r.kind, "clarification");
+check("weird-no-ceiling", r.operations.priceCeiling, null);
+r = parseIntent("Cap the price at 800.", { selected: null, selectedPrice: 850000000 });
+check("bare-number", r.kind, "clarification");
+check("bare-no-ceiling", r.operations.priceCeiling, null);
+
 // Profile switch to compact.
 r = parseIntent("Try the starter homes profile.", { selected: null, selectedPrice: 680000000 });
 check("profile-kind", r.kind, "proposal");

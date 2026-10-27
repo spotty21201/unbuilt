@@ -1,13 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import type { Rect } from '../../../src/schema';
 import type { Entrance, Layout } from '../../../src/geometry';
 import { placeFootprint } from '../../../src/geometry';
 import type { Pt } from '../../../src/polygon';
-import { centroid } from '../../../src/polygon';
-import { parcelKey } from './ui';
+import { centroid, polyArea } from '../../../src/polygon';
+import { parcelKey, formatM2 } from './ui';
+import type { BoundaryDraft } from './BoundaryEditor';
+import { boundaryErrors, MAX_SITE_VERTICES } from '../../../src/boundary';
 
 interface Props {
   layout: Layout;
+  boundary?: Pt[];
+  boundaryDraft?: BoundaryDraft | null;
+  onBoundaryChange?: (draft: BoundaryDraft, record?: boolean) => void;
+  onBoundaryApply?: () => void;
+  onBoundaryGestureCommit?: (pts: Pt[]) => void;
+  onBoundaryCancel?: () => void;
   siteW: number;
   siteH: number;
   entrance: Entrance;
@@ -33,6 +41,8 @@ interface Props {
   vsNote: string | null; // measured deltas vs working plan, shown in preview
   onSelectGreen: () => void;
   onSelectLot: (index: number) => void;
+  // A drag that starts on a fixed home explains itself instead of panning.
+  onFixedHint: () => void;
   // Committed manual reshapes (parcel index -> polygon meters) and the open
   // reshape draft. Metrics never follow the draft; Apply commits it upstairs.
   lotEdits: Record<number, Pt[]>;
@@ -61,43 +71,66 @@ interface Props {
   cancelTick: number;
   // Escape with no active gesture: parent clears the draft or deselects.
   onEscapeIdle: () => void;
+  // Select/Pan tool mode from the parent rail. Pan makes every drag pan
+  // (object drags stay off); clicks still select. Default is select.
+  panTool?: boolean;
+  // Fill mode (workbench): the canvas takes the stage's leftover box after
+  // the toolbar — the composer below is never squeezed. Width mode
+  // (comparison dock): size from width only; the dock scrolls.
+  fitMode?: 'fill' | 'width';
 }
 
 const M = 28; // margin px
 const W = 640;
 const H = 560;
 
-type DragKind = 'none' | 'pan' | 'green-move' | 'green-resize' | 'entrance-move' | 'lot-vertex';
+type DragKind = 'none' | 'pan' | 'green-move' | 'green-resize' | 'entrance-move' | 'lot-vertex' | 'site-vertex';
 
 export default function PlanCanvas(props: Props) {
+  const hatchId = `green-hatch-${useId()}`;
   const s = Math.min((W - 2 * M) / props.siteW, (H - 2 * M) / props.siteH);
   const [vb, setVb] = useState({ x: 0, y: 0, w: W, h: H });
   const [panning, setPanning] = useState(false);
-  // Fit the drawing to the available column width AND workbench height so the
-  // plan never pushes essential controls below the fold. Explicit pixel size
-  // keeps pointer mapping exact (no letterboxing).
+  // Fill mode: the canvas takes exactly the stage's leftover box, so the
+  // composer and outcomes below are never squeezed out. The stage is a flex
+  // leftover, so any sibling change (preview bar, verdicts, resize) refits
+  // through the observer. Explicit pixel size keeps pointer mapping exact
+  // (no letterboxing). Stacked layouts (narrow page) size from width.
   const wrapRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const [px, setPx] = useState({ w: W, h: H });
   // True when the last gesture panned, so the trailing click selects nothing.
   const pannedBetween = useRef(false);
   useEffect(() => {
     const el = wrapRef.current;
-    if (!el) return;
+    const st = stageRef.current;
+    if (!el || !st) return;
+    const col = el.parentElement;
     const fit = () => {
-      const cw = Math.max(200, el.clientWidth);
-      const maxH = Math.max(300, window.innerHeight * (props.wide ? 0.62 : 0.46));
+      const style = getComputedStyle(st);
+      const cw = Math.max(200, st.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
+      if (props.fitMode === 'width') {
+        const capH = Math.max(280, window.innerHeight * 0.45);
+        const k = Math.min(cw / W, capH / H);
+        setPx({ w: Math.floor(W * k), h: Math.floor(H * k) });
+        return;
+      }
+      const stacked = col ? getComputedStyle(col).overflowY === 'visible' : false;
+      const maxH = stacked
+        ? Math.max(280, window.innerHeight * 0.62)
+        : Math.max(160, st.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom));
       const k = Math.min(cw / W, maxH / H);
       setPx({ w: Math.floor(W * k), h: Math.floor(H * k) });
     };
     fit();
     const ro = new ResizeObserver(fit);
-    ro.observe(el);
+    ro.observe(st);
     window.addEventListener('resize', fit);
     return () => {
       ro.disconnect();
       window.removeEventListener('resize', fit);
     };
-  }, [props.wide]);
+  }, [props.wide, props.fitMode]);
 
   // Parent-driven Fit Both: reset the viewBox to the whole drawing.
   useEffect(() => {
@@ -116,6 +149,8 @@ export default function PlanCanvas(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.cancelTick]);
   const svgRef = useRef<SVGSVGElement>(null);
+  // Start point of a gesture on a fixed home, for the F06 explain-instead-of-pan hint.
+  const fixedStart = useRef<{ x: number; y: number; hinted: boolean; index: number } | null>(null);
   const drag = useRef<{
     kind: DragKind;
     startCX: number;
@@ -191,6 +226,10 @@ export default function PlanCanvas(props: Props) {
   };
 
   const onGreenDown = (e: React.PointerEvent, handle: string | null) => {
+    if (props.panTool) {
+      onBackgroundDown(e);
+      return;
+    }
     e.stopPropagation();
     if (!props.editing) {
       props.onSelectGreen();
@@ -208,6 +247,10 @@ export default function PlanCanvas(props: Props) {
   // draft always exists here. Release needs no commit: the draft is ephemeral
   // until upstairs Apply records one undoable step.
   const onLotDown = (e: React.PointerEvent, vi: number) => {
+    if (props.panTool) {
+      onBackgroundDown(e);
+      return;
+    }
     e.stopPropagation();
     if (!props.lotDraft) return;
     (e.target as Element).setPointerCapture?.(e.pointerId);
@@ -219,6 +262,10 @@ export default function PlanCanvas(props: Props) {
   };
 
   const onEntranceDown = (e: React.PointerEvent) => {
+    if (props.panTool) {
+      onBackgroundDown(e);
+      return;
+    }
     e.stopPropagation();
     if (!props.entranceEditing) {
       props.onSelectEntrance();
@@ -251,6 +298,12 @@ export default function PlanCanvas(props: Props) {
       const m1 = toMetersRef(e.clientX, e.clientY, r);
       if (!m1) return;
       props.onEntranceDrag(snap1(m1.yUp));
+      return;
+    }
+    if (d.kind === 'site-vertex') {
+      const m1 = toMetersRef(e.clientX, e.clientY, r);
+      if (!m1 || d.lotVi == null || !props.boundaryDraft) return;
+      props.onBoundaryChange?.({ ...props.boundaryDraft, pts: props.boundaryDraft.pts.map((p, i) => i === d.lotVi ? { x: snap1(m1.x), y: snap1(m1.yUp) } : p) }, false);
       return;
     }
     if (d.kind === 'lot-vertex') {
@@ -338,6 +391,8 @@ export default function PlanCanvas(props: Props) {
         if (d.moved) props.onEntranceCommit(d.origEntrance);
         else props.onSelectEntrance();
       }
+    } else if (d.kind === 'site-vertex') {
+      if (d.moved && d.origLotPts) props.onBoundaryGestureCommit?.(d.origLotPts);
     } else if (d.kind === 'lot-vertex') {
       // Ephemeral draft: release keeps the live corners; Apply commits.
       // A click without movement changes nothing.
@@ -352,11 +407,19 @@ export default function PlanCanvas(props: Props) {
     if (d.kind === 'none') return;
     if (d.origGreen) props.onDraftChange({ ...d.origGreen });
     if (d.origEntrance) props.onEntranceCancel(d.origEntrance);
-    if (d.origLotPts) props.onLotVertexRevert(d.origLotPts);
+    if (d.origLotPts) {
+      if (d.kind === 'site-vertex' && props.boundaryDraft) props.onBoundaryChange?.({ ...props.boundaryDraft, pts: d.origLotPts }, false);
+      else props.onLotVertexRevert(d.origLotPts);
+    }
     resetDrag();
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
+    if (props.boundaryDraft) {
+      if (e.key === 'Enter' && props.boundaryDraft.pts.length >= 3) { e.preventDefault(); props.onBoundaryChange?.({ ...props.boundaryDraft, closed: true }); }
+      if (e.key === 'Escape') { e.stopPropagation(); onCancel(); props.onBoundaryCancel?.(); }
+      return;
+    }
     if (e.key !== 'Escape') return;
     const d = drag.current;
     if (d.kind === 'green-move' || d.kind === 'green-resize') {
@@ -382,12 +445,37 @@ export default function PlanCanvas(props: Props) {
     const x = props.entrance.edge === 'east' ? X(props.siteW) - 3 : X(0) - 3;
     return { x, y: Ytop(lo, props.entrance.width), h: Math.max(props.entrance.width * s, 2) };
   })();
+  // Visible handles are 12 units; each carries a 28-unit transparent hit
+  // area so pointer targets stay usable when the plan is fitted small.
   const handles = props.editing && props.greenSelected ? ([
-    { id: 'nw', x: gb.x - 5, y: gb.y - 5 },
-    { id: 'ne', x: gb.x + gb.width - 5, y: gb.y - 5 },
-    { id: 'sw', x: gb.x - 5, y: gb.y + gb.height - 5 },
-    { id: 'se', x: gb.x + gb.width - 5, y: gb.y + gb.height - 5 },
+    { id: 'nw', x: gb.x - 6, y: gb.y - 6 },
+    { id: 'ne', x: gb.x + gb.width - 6, y: gb.y - 6 },
+    { id: 'sw', x: gb.x - 6, y: gb.y + gb.height - 6 },
+    { id: 'se', x: gb.x + gb.width - 6, y: gb.y + gb.height - 6 },
   ] as const) : [];
+
+  // ViewBox units per screen pixel: labels divide by this to hold a
+  // constant screen size at any zoom or fit scale. Geometry never does.
+  const tscale = px.w > 0 ? vb.w / px.w : 1;
+  const fs = (screenPx: number) => screenPx * tscale;
+  // Light halo keeps labels legible over fills at any scale.
+  const halo = { paintOrder: 'stroke' as const, stroke: '#f4f2ec', strokeWidth: 3 * tscale, strokeLinejoin: 'round' as const };
+
+  const bd = props.boundaryDraft;
+  const bdValid = bd && bd.closed && boundaryErrors(bd.pts).length === 0;
+  const finitePoints = bd?.pts.filter((p) => Number.isFinite(p.x + p.y)) ?? [];
+  const changeVertex = (vi: number, p: Pt) => {
+    if (bd) props.onBoundaryChange?.({ ...bd, pts: bd.pts.map((q, i) => i === vi ? p : q) });
+  };
+  const removeVertex = (vi: number) => {
+    if (bd && bd.pts.length > (bd.closed ? 3 : 0)) props.onBoundaryChange?.({ ...bd, pts: bd.pts.filter((_, i) => i !== vi) });
+  };
+  const addAfter = (i: number) => {
+    if (!bd || bd.pts.length >= MAX_SITE_VERTICES) return;
+    const a = bd.pts[i], b = bd.pts[(i + 1) % bd.pts.length];
+    const pts = [...bd.pts]; pts.splice(i + 1, 0, { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 });
+    props.onBoundaryChange?.({ ...bd, pts });
+  };
 
   return (
     <div className="canvastools" ref={wrapRef}>
@@ -398,16 +486,19 @@ export default function PlanCanvas(props: Props) {
         <button type="button" onClick={props.onToggleWide} aria-pressed={props.wide}>
           {props.wide ? 'Dock plan' : 'Expand plan'}
         </button>
-        <span className="note">Drag background to pan · scroll to zoom · zoom never changes quantities</span>
+        <span className="note">{bd ? bd.closed ? 'Edit boundary · Apply or Cancel in inspector' : 'Place corners · click first to close' : 'Drag to pan · scroll to zoom'}</span>
       </div>
+      {bd && <div className="boundary-banner" role="status">{bdValid ? `${formatM2(polyArea(bd.pts))} · boundary draft` : bd.closed ? 'Invalid boundary · correct the highlighted outline' : `${bd.pts.length} corners · open outline`}<div className="boundary-banner-actions">{bd.closed && <button type="button" disabled={!bdValid} onClick={() => props.onBoundaryApply?.()}>Apply</button>}{!bd.closed && bd.pts.length >= 3 && <button type="button" onClick={() => props.onBoundaryChange?.({ ...bd, closed: true })}>Close outline</button>}<button type="button" onClick={() => props.onBoundaryCancel?.()}>Cancel</button></div></div>}
+      <div className="stage" ref={stageRef}>
       <svg
         ref={svgRef}
         width={px.w}
         height={px.h}
         viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
+        tabIndex={0}
         role="img"
         aria-label={`Site plan: ${props.layout.parcels.length} homes, ${props.layout.family} circulation`}
-        className={panning ? 'canvas panning' : 'canvas'}
+        className={panning ? 'canvas panning' : props.panTool ? 'canvas pantool' : 'canvas'}
         onPointerDown={onBackgroundDown}
         onPointerMove={onMove}
         onPointerUp={onUp}
@@ -415,9 +506,9 @@ export default function PlanCanvas(props: Props) {
         onKeyDown={onKeyDown}
       >
         <defs>
-          <pattern id="green-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
-            <rect width="8" height="8" fill="#dff0dd" />
-            <line x1="0" y1="0" x2="0" y2="8" stroke="#4a7c46" strokeWidth="2" />
+          <pattern id={hatchId} width="8" height="8" patternUnits="userSpaceOnUse">
+            <rect width="8" height="8" fill="#ede8f5" />
+            <line x1="0" y1="0" x2="0" y2="8" stroke="#b5a4d2" strokeWidth="2" />
           </pattern>
         </defs>
         <rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" data-bg="1" />
@@ -435,9 +526,10 @@ export default function PlanCanvas(props: Props) {
           />
         )}
         {/* site boundary */}
-        <rect
-          x={M} y={M} width={props.siteW * s} height={props.siteH * s}
+        <polygon
+          points={polyPoints(props.boundary ?? [{ x: 0, y: 0 }, { x: props.siteW, y: 0 }, { x: props.siteW, y: props.siteH }, { x: 0, y: props.siteH }])}
           className={props.siteSelected ? 'site selected' : 'site'}
+          opacity={bd ? 0.2 : 1}
           onClick={(e) => {
             e.stopPropagation();
             if (pannedBetween.current) {
@@ -447,6 +539,7 @@ export default function PlanCanvas(props: Props) {
             props.onSelectSite();
           }}
         />
+        <g className="plan-geometry" opacity={bd ? 0.18 : 1} pointerEvents={bd ? 'none' : undefined}>
         {/* removed parcels (ghost outlines, drawn first so nothing is covered) */}
         {props.workingKeys !== null &&
           [...props.workingKeys].map((k) => {
@@ -457,16 +550,17 @@ export default function PlanCanvas(props: Props) {
             return (
               <g key={`g${k}`}>
                 <rect {...b} className="parcel ghost" />
-                <text x={b.x + 3} y={b.y + 12} className="tag">removed</text>
+                <text x={b.x + 3 * tscale} y={b.y + 12 * tscale} className="tag" fontSize={fs(12)} style={halo}>removed</text>
               </g>
             );
           })}
-        {/* roads */}
+        {/* roads: gestures starting here never pan — click selects */}
         {props.layout.roads.map((r, i) => (
           <rect
             key={`r${i}`}
             {...box(r)}
             className={props.selectedKind === 'circulation' ? 'road selected' : 'road'}
+            onPointerDown={(e) => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }}
             onClick={(e) => {
               e.stopPropagation();
               if (pannedBetween.current) {
@@ -485,14 +579,34 @@ export default function PlanCanvas(props: Props) {
           const poly = isDraft ? props.lotDraft!.pts : (props.lotEdits[i] ?? null);
           const b = box(p);
           const label = poly ? centroid(poly) : { x: p.x + p.w / 2, y: p.y + p.h / 2 };
+          // One lot reads selected at a time; the whole-set highlight applies
+          // only when Homes is selected with no specific lot (F05).
           const cls = isDraft
             ? (props.lotDraftValid ? 'parcel draft' : 'parcel invalid')
             : added
               ? 'parcel added'
-              : (props.selectedKind === 'homes' || props.selectedLot === i ? 'parcel selected' : 'parcel');
+              : (props.selectedLot === i || (props.selectedLot == null && props.selectedKind === 'homes') ? 'parcel selected' : 'parcel');
           return (
             <g
               key={parcelKey(p)}
+              onPointerDown={(e) => {
+                if (props.panTool) { onBackgroundDown(e); return; }
+                // Gestures starting on a fixed home never pan (F06): track a
+                // real drag to explain instead; a click still selects.
+                e.stopPropagation();
+                fixedStart.current = { x: e.clientX, y: e.clientY, hinted: false, index: i };
+              }}
+              onPointerMove={(e) => {
+                const st = fixedStart.current;
+                if (!st || st.index !== i || st.hinted || e.buttons === 0) return;
+                if (Math.hypot(e.clientX - st.x, e.clientY - st.y) > 6) {
+                  st.hinted = true;
+                  props.onFixedHint();
+                }
+              }}
+              onPointerUp={() => {
+                fixedStart.current = null;
+              }}
               onClick={(e) => {
                 e.stopPropagation();
                 if (pannedBetween.current) {
@@ -522,31 +636,38 @@ export default function PlanCanvas(props: Props) {
                 <rect {...b} className={cls} />
               )}
               {f && <rect {...box(f)} className="footprint" />}
-              <text x={poly ? X(label.x) : b.x + b.width / 2} y={(poly ? Ypt(label.y) : b.y) + 13} textAnchor="middle" className="lotno">{i + 1}</text>
-              {added && (
-                <text x={b.x + 3} y={b.y + 12} className="tag">new</text>
-              )}
+              <title>{`Lot ${i + 1}: ${Math.round(poly ? polyArea(poly) : p.w * p.h)} m²${poly ? ', reshaped polygon' : ''}${added ? ', new in preview' : ''}`}</title>
+              <text x={poly ? X(label.x) : b.x + b.width / 2} y={(poly ? Ypt(label.y) : b.y) + 13 * tscale} textAnchor="middle" className="lotno" fontSize={fs(14)} style={halo}>{i + 1}</text>
+
             </g>
           );
         })}
         {/* reshape corner handles: drag to move, double-click to remove */}
         {props.lotDraft && props.lotDraft.pts.map((v, vi) => (
-          <rect
-            key={`lv${vi}`}
-            x={X(v.x) - 5}
-            y={Ypt(v.y) - 5}
-            width={10}
-            height={10}
-            className="handle"
-            onPointerDown={(e) => onLotDown(e, vi)}
-            onDoubleClick={(e) => {
-              e.stopPropagation();
-              props.onLotVertexRemove(vi);
-            }}
-          />
+          <g key={`lv${vi}`}>
+            <rect
+              x={X(v.x) - fs(14)}
+              y={Ypt(v.y) - fs(14)}
+              width={fs(28)}
+              height={fs(28)}
+              className="hithandle"
+              onPointerDown={(e) => onLotDown(e, vi)}
+              onDoubleClick={(e) => {
+                e.stopPropagation();
+                props.onLotVertexRemove(vi);
+              }}
+            />
+            <rect
+              x={X(v.x) - fs(6)}
+              y={Ypt(v.y) - fs(6)}
+              width={fs(12)}
+              height={fs(12)}
+              className="handle"
+            />
+          </g>
         ))}
         {/* green space: selectable, draggable/resizable when editing */}
-        <g
+        <g display={props.layout.supportError ? 'none' : undefined}
           onPointerDown={(e) => onGreenDown(e, null)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') props.onSelectGreen();
@@ -556,25 +677,33 @@ export default function PlanCanvas(props: Props) {
           aria-label={`Open space A green space${props.greenLocked ? ', locked' : ''}${props.greenSelected ? ', selected' : ''}${props.editing ? ', drag to move, corners to resize' : ''}`}
           className={props.greenSelected ? 'green selected' : 'green'}
         >
-          <rect {...gb} className={props.draftActive ? (props.draftValid ? 'greenfill draft' : 'greenfill invalid') : 'greenfill'} />
-          <text x={gb.x + 4} y={gb.y + 14} className="tag greentag">
-            Open space A{props.greenLocked ? ' · locked' : ''}
+          <rect {...gb} style={{ fill: `url(#${hatchId})` }} className={props.draftActive ? (props.draftValid ? 'greenfill draft' : 'greenfill invalid') : 'greenfill'} />
+          <text textAnchor="middle" x={gb.x + gb.width / 2} y={gb.y - 7 * tscale} className="tag greentag" fontSize={fs(13)} style={halo}>
+            Open space A
             {props.draftActive ? (props.draftValid ? ' · draft' : ' · invalid') : ''}
           </text>
         </g>
         {handles.map((hh) => (
-          <rect
-            key={hh.id}
-            x={hh.x}
-            y={hh.y}
-            width={10}
-            height={10}
-            className="handle"
-            onPointerDown={(e) => onGreenDown(e, hh.id)}
-          />
+          <g key={hh.id}>
+            <rect
+              x={hh.x - 8}
+              y={hh.y - 8}
+              width={fs(28)}
+              height={fs(28)}
+              className="hithandle"
+              onPointerDown={(e) => onGreenDown(e, hh.id)}
+            />
+            <rect
+              x={hh.x}
+              y={hh.y}
+              width={fs(12)}
+              height={fs(12)}
+              className="handle"
+            />
+          </g>
         ))}
         {/* entrance gate marker on its own edge: wide hit area, narrow visible bar */}
-        <g
+        <g display={!props.entranceValid ? 'none' : undefined}
           onPointerDown={onEntranceDown}
           tabIndex={0}
           role="button"
@@ -598,15 +727,57 @@ export default function PlanCanvas(props: Props) {
             height={egate.h}
             className={props.entranceValid ? 'entrance' : 'entrance invalid'}
           />
-          <text x={egate.x + 8} y={egate.y + 12} className="tag">
+          <text x={egate.x + 8 * tscale} y={egate.y + 12 * tscale} className="tag" fontSize={fs(12)} style={halo}>
             Entrance · {props.entrance.edge}
           </text>
         </g>
-        <text x={M} y={H - 8} className="caption">
-          {props.layout.family} · {props.layout.parcels.length} homes · Open space A{props.greenLocked ? ' (locked, retained)' : ''} · Entrance {props.entrance.edge}
+        </g>
+        {bd && <g className="boundary-overlay">
+          <rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" onPointerDown={(e) => {
+            if (props.panTool || bd.closed) { onBackgroundDown(e); return; }
+            e.stopPropagation();
+            const r = svgRef.current!.getBoundingClientRect();
+            const m = toMetersNow(e.clientX, e.clientY, r);
+            if (bd.pts.length < MAX_SITE_VERTICES) props.onBoundaryChange?.({ ...bd, pts: [...bd.pts, { x: snap1(m.x), y: snap1(m.yUp) }] });
+          }} />
+          {bd.closed ? <polygon points={polyPoints(finitePoints)} className={bdValid ? 'boundary-draft' : 'boundary-draft invalid'} pointerEvents="none" /> : <polyline points={polyPoints(finitePoints)} className="boundary-draft" pointerEvents="none" />}
+          {bd.closed && finitePoints.length === bd.pts.length && bd.pts.map((a, i) => {
+            const b = bd.pts[(i + 1) % bd.pts.length];
+            return <g key={`mid-${i}`} transform={`translate(${X((a.x + b.x) / 2)},${Ypt((a.y + b.y) / 2)}) scale(${tscale})`} role="button" tabIndex={0} aria-label={`Add boundary vertex after ${i + 1}`} onPointerDown={(e) => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); addAfter(i); }} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); addAfter(i); } }}>
+              <circle r={14} className="boundary-mid" /><text textAnchor="middle" y={5} fontSize={18} fill="#0b5fff" pointerEvents="none">+</text>
+            </g>;
+          })}
+          {bd.pts.map((v, vi) => Number.isFinite(v.x + v.y) && <g key={`site-v-${vi}`} transform={`translate(${X(v.x)},${Ypt(v.y)}) scale(${tscale})`} className="boundary-vertex" role="button" tabIndex={0} aria-label={`Boundary vertex ${vi + 1}, ${v.x}, ${v.y} meters`} onPointerDown={(e) => {
+            if (props.panTool) { onBackgroundDown(e); return; }
+            e.stopPropagation();
+            if (!bd.closed && vi === 0 && bd.pts.length >= 3) { props.onBoundaryChange?.({ ...bd, closed: true }); return; }
+            (e.currentTarget as Element).setPointerCapture(e.pointerId);
+            drag.current = { kind: 'site-vertex', startCX: e.clientX, startCY: e.clientY, origVb: { ...vb }, origGreen: null, origEntrance: null, origLotPts: bd.pts.map((p) => ({ ...p })), lotVi: vi, handle: null, moved: false };
+          }} onKeyDown={(e) => {
+            if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); e.stopPropagation(); removeVertex(vi); }
+            const delta: Record<string, [number, number]> = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
+            if (delta[e.key]) { e.preventDefault(); e.stopPropagation(); const [dx, dy] = delta[e.key]; changeVertex(vi, { x: v.x + dx * (e.shiftKey ? 10 : 1), y: v.y + dy * (e.shiftKey ? 10 : 1) }); }
+          }}>
+            <circle r={16} fill="transparent" /><circle r={6} className="boundary-point" /><text x={10} y={-9} fontSize={13} fill="#174184" style={halo} pointerEvents="none">{vi + 1}</text>
+          </g>)}
+        </g>}
+        {/* scale bar + orientation: screen-space, never geometry (F05) */}
+        <g aria-hidden="true" pointerEvents="none">
+          <line
+            x1={M} y1={H - 30} x2={M + (props.siteW >= 200 ? 50 : props.siteW >= 100 ? 20 : 10) * s} y2={H - 30}
+            className="scalebar"
+          />
+          <text x={M} y={H - 34} className="tag" fontSize={fs(11)} style={halo}>
+            {props.siteW >= 200 ? 50 : props.siteW >= 100 ? 20 : 10} m
+          </text>
+          <text x={W - M} y={H - 30} textAnchor="end" className="tag" fontSize={fs(11)} style={halo}>N ↑ (illustrative)</text>
+        </g>
+        <text pointerEvents="none" x={M} y={H - 8} className="caption" fontSize={fs(13)} style={halo}>
+          {props.layout.supportError ? 'Layout unavailable' : `${bd ? 'Accepted plan · ' : ''}${props.layout.family} · ${props.layout.parcels.length} homes`}{px.w >= 580 && !props.layout.supportError ? ` · Entrance ${props.entrance.edge} · local meters` : ''}
           {props.vsNote ? ` · vs working: ${props.vsNote}` : ''}
         </text>
       </svg>
+      </div>
     </div>
   );
 }

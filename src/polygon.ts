@@ -13,13 +13,36 @@ const TOL = 0.001; // 1 mm coordinate tolerance, matches geometry core
 export const MAX_LOT_VERTICES = 12; // staged bound, communicated in the UI
 
 export function polyArea(pts: Pt[]): number {
+  return Math.abs(signedArea(pts));
+}
+
+function signedArea(pts: Pt[]): number {
   let s = 0;
   for (let i = 0; i < pts.length; i++) {
     const a = pts[i];
     const b = pts[(i + 1) % pts.length];
     s += a.x * b.y - b.x * a.y;
   }
-  return Math.abs(s) / 2;
+  return s / 2;
+}
+
+export function allFinite(pts: Pt[]): boolean {
+  return pts.every((p) => Number.isFinite(p.x) && Number.isFinite(p.y));
+}
+
+// A point just inside the polygon off the middle of edge i (2 mm inward).
+// Catches coincident duplicates: every tested vertex can sit exactly on the
+// other boundary while positive area still overlaps.
+function inwardPoint(pts: Pt[], i: number): Pt {
+  const a = pts[i];
+  const b = pts[(i + 1) % pts.length];
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const len = Math.hypot(dx, dy) || 1;
+  const ccw = signedArea(pts) > 0;
+  const nx = ccw ? -dy / len : dy / len;
+  const ny = ccw ? dx / len : -dx / len;
+  return { x: (a.x + b.x) / 2 + nx * 2 * TOL, y: (a.y + b.y) / 2 + ny * 2 * TOL };
 }
 
 export function edgeLengths(pts: Pt[]): number[] {
@@ -98,11 +121,13 @@ function segmentsCross(p1: Pt, p2: Pt, p3: Pt, p4: Pt): boolean {
 // endpoint by construction.
 export function isSimple(pts: Pt[]): boolean {
   const n = pts.length;
-  if (n < 3) return false;
+  if (n < 3 || !allFinite(pts)) return false;
   for (let i = 0; i < n; i++) {
     const a = pts[i];
     const b = pts[(i + 1) % n];
     if (Math.hypot(b.x - a.x, b.y - a.y) <= TOL) return false;
+    const c = pts[(i + 2) % n];
+    if (Math.abs(orient(a, b, c)) <= TOL && (b.x - a.x) * (c.x - b.x) + (b.y - a.y) * (c.y - b.y) < -TOL) return false;
     for (let j = 0; j < n; j++) {
       if (j !== i && j !== (i + 1) % n && Math.hypot(pts[j].x - a.x, pts[j].y - a.y) <= TOL) return false;
     }
@@ -178,6 +203,15 @@ export function polyOverlapsRect(pts: Pt[], r: Rect): boolean {
     const m = edgeMid(c, d);
     if (pointInPoly(m, pts) && !onPolyBoundary(m, pts)) return true;
   }
+  // Coincident shapes: nudge inward off each boundary (2 mm) and retest.
+  const corners = rectCorners(r);
+  for (let i = 0; i < pts.length; i++) {
+    if (strictlyInsideRect(inwardPoint(pts, i), r)) return true;
+  }
+  for (let i = 0; i < corners.length; i++) {
+    const q = inwardPoint(corners, i);
+    if (pointInPoly(q, pts) && !onPolyBoundary(q, pts)) return true;
+  }
   for (let i = 0; i < pts.length; i++) {
     for (const [c, d] of rectEdges(r)) {
       if (properCross(pts[i], pts[(i + 1) % pts.length], c, d)) return true;
@@ -207,6 +241,15 @@ export function polysOverlap(a: Pt[], b: Pt[]): boolean {
     const m = edgeMid(b[i], b[(i + 1) % b.length]);
     if (pointInPoly(m, a) && !onPolyBoundary(m, a)) return true;
   }
+  // Coincident duplicates: vertices and midpoints all lie on the boundary.
+  for (let i = 0; i < a.length; i++) {
+    const q = inwardPoint(a, i);
+    if (pointInPoly(q, b) && !onPolyBoundary(q, b)) return true;
+  }
+  for (let i = 0; i < b.length; i++) {
+    const q = inwardPoint(b, i);
+    if (pointInPoly(q, a) && !onPolyBoundary(q, a)) return true;
+  }
   for (let i = 0; i < a.length; i++) {
     for (let j = 0; j < b.length; j++) {
       if (properCross(a[i], a[(i + 1) % a.length], b[j], b[(j + 1) % b.length])) return true;
@@ -218,13 +261,7 @@ export function polysOverlap(a: Pt[], b: Pt[]): boolean {
 // A rect sits inside a polygon when every corner is in-or-on and no rect
 // edge properly crosses a polygon edge.
 export function rectInsidePoly(r: Rect, pts: Pt[]): boolean {
-  if (!rectCorners(r).every((c) => pointInPoly(c, pts))) return false;
-  for (const [c, d] of rectEdges(r)) {
-    for (let i = 0; i < pts.length; i++) {
-      if (properCross(c, d, pts[i], pts[(i + 1) % pts.length])) return false;
-    }
-  }
-  return true;
+  return polyInsidePoly(rectCorners(r), pts);
 }
 
 // Length of lot boundary shared with a rect edge (driveway frontage basis).
@@ -245,4 +282,27 @@ export function sharedBoundaryLength(pts: Pt[], r: Rect): number {
     }
   }
   return total;
+}
+
+// Include boundary contact, but reject edges bridging a concavity even when
+// every corner is inside. Split collinear contacts before testing midpoints.
+export function polyInsidePoly(inner: Pt[], outer: Pt[]): boolean {
+  if (!inner.every((p) => pointInPoly(p, outer))) return false;
+  return inner.every((a, i) => {
+    const b = inner[(i + 1) % inner.length];
+    const dx = b.x - a.x, dy = b.y - a.y;
+    const len2 = dx * dx + dy * dy;
+    const cuts = [0, 1];
+    for (let j = 0; j < outer.length; j++) {
+      if (properCross(a, b, outer[j], outer[(j + 1) % outer.length])) return false;
+      if (len2 > 0 && pointOnEdge(outer[j], a, b)) {
+        cuts.push(((outer[j].x - a.x) * dx + (outer[j].y - a.y) * dy) / len2);
+      }
+    }
+    cuts.sort((x, y) => x - y);
+    return cuts.slice(1).every((t, k) => {
+      const m = (t + cuts[k]) / 2;
+      return pointInPoly({ x: a.x + dx * m, y: a.y + dy * m }, outer);
+    });
+  });
 }

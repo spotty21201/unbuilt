@@ -2,12 +2,14 @@
 // roads/parcels/green, meters. Exact rect-union math; no rounded intermediates.
 // Manually reshaped lots are simple polygons over generated rects (see
 // polygon.ts); quantities, validation, and frontage use true polygon math.
+import { siteArea, siteBoundary, siteFrameErrors } from "./boundary.ts";
 import type { Rect } from "./schema.ts";
 import {
   MAX_LOT_VERTICES,
+  allFinite,
   isSimple,
   polyArea,
-  polyInsideSite,
+  polyInsidePoly,
   polyOverlapsRect,
   polysOverlap,
   rectInsidePoly,
@@ -16,9 +18,30 @@ import {
 } from "./polygon.ts";
 
 // Manual lot reshapes: parcel index -> simple polygon vertices in meters.
-// Indices address the generated layout parcels; edits are discarded (only by
-// explicit user action) whenever the layout regenerates.
+// Indices address one generated layout; across regenerations use StableEdits
+// (below), keyed by the unedited base rectangle, so identical lots keep their
+// manual shape and only truly removed lots conflict.
 export type LotEdits = Map<number, Pt[]>;
+
+// Stable manual reshapes: base-rectangle key -> polygon meters. The key is
+// the generated lot's exact rect ("x,y,w,h"); any regenerated layout whose
+// parcels include that rect can carry the edit without reinterpretation.
+export type StableEdits = Record<string, Pt[]>;
+
+export function lotKey(r: Rect): string {
+  return `${r.x},${r.y},${r.w},${r.h}`;
+}
+
+// Index-addressed view of stable edits for one concrete layout: only edits
+// whose base rectangle exists verbatim in this layout apply.
+export function editsForLayout(parcels: Rect[], stable: StableEdits): LotEdits {
+  const out: LotEdits = new Map();
+  parcels.forEach((p, i) => {
+    const e = stable[lotKey(p)];
+    if (e) out.set(i, e.map((q) => ({ ...q })));
+  });
+  return out;
+}
 
 export type EntranceEdge = "west" | "east";
 
@@ -31,6 +54,7 @@ export interface Entrance {
 export interface Site {
   w: number;
   h: number;
+  boundary?: Pt[]; // absent on legacy rectangular projects
   entrance: Entrance;
   green: Rect; // reserved green region (locked shape+location candidate)
 }
@@ -41,6 +65,7 @@ export interface Layout {
   parcels: Rect[];
   green: Rect;
   unallocatedNote: string;
+  supportError?: string;
 }
 
 export interface Quantities {
@@ -83,6 +108,17 @@ export function entranceErrors(site: Site): string[] {
   const { lo, hi } = entranceSpan(site);
   if (lo < -TOL || hi > site.h + TOL) {
     errors.push("Entrance gate must sit on its site edge, clear of the corners.");
+  }
+  if (site.boundary && errors.length === 0) {
+    const x = e.edge === "east" ? site.w : 0;
+    const spans = siteBoundary(site).flatMap((a, i, pts) => {
+      const b = pts[(i + 1) % pts.length];
+      return Math.abs(a.x - x) <= TOL && Math.abs(b.x - x) <= TOL
+        ? [{ lo: Math.min(a.y, b.y), hi: Math.max(a.y, b.y) }] : [];
+    }).sort((a, b) => a.lo - b.lo);
+    let covered = lo;
+    for (const span of spans) if (span.lo <= covered + TOL && span.hi >= covered) covered = span.hi;
+    if (covered < hi - TOL) errors.push("Entrance needs a straight west/east boundary segment covering the full gate. Sloping edges are not supported by these road generators.");
   }
   return errors;
 }
@@ -132,11 +168,12 @@ export function validateLotPoly(
     return [`lot edit ${index} addresses no parcel in this layout`];
   }
   if (pts.length < 3) return ["a lot needs at least 3 corners"];
+  if (!allFinite(pts)) return ["lot corners must be finite numbers"];
   if (pts.length > MAX_LOT_VERTICES) {
     return [`a lot holds at most ${MAX_LOT_VERTICES} corners in this increment (has ${pts.length})`];
   }
   if (!isSimple(pts)) return ["lot edges cross or repeat — keep a simple outline"];
-  if (!polyInsideSite(pts, site.w, site.h)) return ["lot must sit inside the site"];
+  if (!polyInsidePoly(pts, siteBoundary(site))) return ["lot must sit inside the site"];
   if (polyArea(pts) < HOUSE.w * HOUSE.h - AREA_TOL) {
     return ["lot is smaller than one home footprint (60 m²)"];
   }
@@ -144,6 +181,14 @@ export function validateLotPoly(
   const fp = placeFootprint(orig);
   if (!fp) return ["this lot has no placed home to keep — reshaping is unsupported here"];
   if (!rectInsidePoly(fp, pts)) return ["reshape would swallow the placed home — homes never move in this increment"];
+  // Declared side setback (2 m) enforced on the actual edited shape: the
+  // placed home plus a uniform 2 m ring must sit inside the polygon. The
+  // deeper 3 m front/rear setbacks are NOT verified for reshaped lots (the UI
+  // labels them unverified) — 2 m is the minimum of every stated setback.
+  const ring: Rect = { x: fp.x - 2, y: fp.y - 2, w: fp.w + 4, h: fp.h + 4 };
+  if (!rectInsidePoly(ring, pts)) {
+    return ["reshape leaves less than the 2 m side setback around the placed home"];
+  }
   if (lotRoadFrontage(layout.roads, pts) <= TOL) return ["reshaped lot loses road access"];
   for (const road of layout.roads) {
     if (polyOverlapsRect(pts, road)) return ["reshaped lot overlaps a road"];
@@ -217,7 +262,7 @@ export function unionArea(rects: Rect[]): number {
 }
 
 function insideSite(r: Rect, site: Site): boolean {
-  return r.x >= -TOL && r.y >= -TOL && r.x + r.w <= site.w + TOL && r.y + r.h <= site.h + TOL;
+  return rectInsidePoly(r, siteBoundary(site));
 }
 
 // Subdivide band row into lots of fixed frontage; drop lots touching green.
@@ -230,26 +275,32 @@ function subdivide(band: Rect, frontage: number, green: Rect, lots: Rect[]): voi
   }
 }
 
+function unavailableLayout(family: Layout["family"], reason: string): Layout {
+  return { family, roads: [], parcels: [], green: { x: 0, y: 0, w: 0, h: 0 }, supportError: reason, unallocatedNote: "Layout unavailable; all site area remains unallocated." };
+}
+
 // Spine: one east-west road at entrance height to the east boundary;
 // 20 m lot rows front it north and south.
 export function generateSpine(site: Site, frontage = 10): Layout {
+  if (!Number.isFinite(frontage) || frontage < 1 || frontage > 500) return unavailableLayout("spine", "Lot frontage must be between 1 and 500 m.");
   const roadY = site.entrance.offset - ROAD_W / 2;
   const road: Rect = { x: 0, y: roadY, w: site.w, h: ROAD_W };
   const parcels: Rect[] = [];
   subdivide({ x: 0, y: roadY - 20, w: site.w, h: 20 }, frontage, site.green, parcels);
   subdivide({ x: 0, y: roadY + ROAD_W, w: site.w, h: 20 }, frontage, site.green, parcels);
-  return {
+  return fitToBoundary(site, {
     family: "spine",
     roads: [road],
     parcels,
     green: { ...site.green },
     unallocatedNote: "Land outside the two 20 m frontage rows is explicit future-phase remainder, not modeled parcels.",
-  };
+  });
 }
 
 // Loop: ring road scaled to the site + entrance connector at entrance
 // height; interior lots front the ring.
 export function generateLoop(site: Site, rowFrontage = 11): Layout {
+  if (!Number.isFinite(rowFrontage) || rowFrontage < 1 || rowFrontage > 500) return unavailableLayout("loop", "Lot frontage must be between 1 and 500 m.");
   const roadY = site.entrance.offset - ROAD_W / 2;
   const connX = site.entrance.edge === "east" ? site.w - 16 : 0;
   const roads: Rect[] = [
@@ -269,13 +320,25 @@ export function generateLoop(site: Site, rowFrontage = 11): Layout {
       parcels.push(lot);
     }
   }
-  return {
+  return fitToBoundary(site, {
     family: "loop",
     roads,
     parcels,
     green: { ...site.green },
     unallocatedNote: "Outer strips and the road-enclosed middle block without frontage stay explicit remainder.",
-  };
+  });
+}
+
+// shortcut: roads remain axis aligned; add polygon road routing before serving
+// shapes where the complete generated network or reserved green cannot fit.
+function fitToBoundary(site: Site, layout: Layout): Layout {
+  if (!site.boundary) return layout;
+  const error = siteFrameErrors(site)[0] ?? entranceErrors(site)[0]
+    ?? ([...layout.roads, layout.green].some((r) => !Number.isFinite(r.w + r.h + r.x + r.y) || r.w <= 0 || r.h <= 0) ? "This boundary is too small for the generated roads and open space." : undefined)
+    ?? (layout.roads.some((r) => !insideSite(r, site)) ? "The generated road network leaves this boundary. Try another circulation family or reshape the boundary; sloping road routing is not available." : undefined)
+    ?? (!insideSite(layout.green, site) ? "Open space A leaves this boundary. Move or resize the open space to enable layout generation." : undefined);
+  if (error) return unavailableLayout(layout.family, error);
+  return { ...layout, parcels: layout.parcels.filter((p) => insideSite(p, site)) };
 }
 
 export function deriveQuantities(site: Site, layout: Layout, lotEdits: LotEdits = new Map()): Quantities {
@@ -292,7 +355,7 @@ export function deriveQuantities(site: Site, layout: Layout, lotEdits: LotEdits 
     roadArea,
     greenArea,
     parcelArea,
-    unallocatedArea: site.w * site.h - parcelArea - roadArea - greenArea,
+    unallocatedArea: siteArea(site) - parcelArea - roadArea - greenArea,
   };
 }
 
@@ -300,7 +363,8 @@ export function deriveQuantities(site: Site, layout: Layout, lotEdits: LotEdits 
 // always run on the original parcels (they were valid at generation and stay
 // so); reshaped lots add joint polygon checks on top, never instead.
 export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = new Map()): string[] {
-  const errors: string[] = [];
+  const errors: string[] = [...siteFrameErrors(site), ...entranceErrors(site)];
+  if (layout.supportError) return [...errors, layout.supportError];
   for (const [i, pts] of lotEdits) {
     errors.push(...validateLotPolyJoint(site, layout, i, pts, lotEdits));
   }
@@ -365,7 +429,7 @@ export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = 
   // Area reconciliation.
   const q = deriveQuantities(site, layout, lotEdits);
   const recon = q.parcelArea + q.roadArea + q.greenArea + q.unallocatedArea;
-  if (Math.abs(recon - site.w * site.h) > AREA_TOL) errors.push(`area mismatch ${recon}`);
+  if (Math.abs(recon - siteArea(site)) > AREA_TOL) errors.push(`area mismatch ${recon}`);
   if (q.unallocatedArea < -AREA_TOL) errors.push("negative remainder");
   return errors;
 }

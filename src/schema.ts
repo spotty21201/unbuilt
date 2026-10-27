@@ -47,6 +47,9 @@ export interface Candidate {
   id: string;
   family: "spine" | "loop";
   frontage: number;
+  // Manual reshapes carried by this candidate, by parcel index at run time.
+  // Preview rebuilds overlay these; empty when no base lot matched.
+  lots: Record<number, { x: number; y: number }[]>;
   quantities: { n: number; roadArea: number; greenArea: number; parcelArea: number; unallocatedArea: number };
   validationErrors: string[];
   greenHeld: boolean;
@@ -65,6 +68,10 @@ export interface SearchRun {
   tested: number;
   valid: number;
   qualified: number;
+  // Per-condition counts over tested combos: geometry-valid, profile-fit,
+  // price-compliant, target-surplus-compliant. The owner expectation is a
+  // benchmark, never a counted constraint — see the UI verdict copy.
+  breakdown: { geometryValid: number; applicable: number; priceOk: number; targetOk: number };
   truncated: boolean;
   elapsedMs: number;
   blockers: string[];

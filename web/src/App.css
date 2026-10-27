@@ -2,17 +2,69 @@
   box-sizing: border-box;
 }
 
+/* Adopted tokens (docs/DESIGN.md): light drafting field, slate frame,
+   violet open-space accent. Primary UI 16px, secondary labels >=14px,
+   primary/touch targets 44px. Scrollbars always visible. */
+:root {
+  --paper: #f4f2ec;
+  --ink: #1d1d1f;
+  --slate-900: #202328;
+  --slate-700: #2e3238;
+  --accent-open: #6d5bd0;
+  --accent-road: #4a5560;
+  --accent-select: #0b5fff;
+  --accent-warn: #b3541e;
+  --accent-invalid: #8c1d18;
+  --accent-ok: #1e6f43;
+  /* Dark application shell (adopted target character). Only the drawing
+     field stays light. Muted light text holds ≥4.5:1 on panels. */
+  --shell: #14161a;
+  --panel: #24272f;
+  --panel-deep: #1d1f25;
+  --line: #383d47;
+  --field: #14161a;
+  --txt: #eef0f3;
+  --mut: #aab0ba;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-select);
+  outline-offset: 2px;
+}
+
 .bench {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  max-width: 1600px;
+  max-width: none;
   margin: 0 auto;
-  padding: 8px 16px;
+  padding: 6px 8px;
   font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: #1d1d1f;
+  font-size: 16px;
+  color: var(--txt);
+  background: var(--shell);
   line-height: 1.45;
   overflow: hidden;
+}
+
+/* Thin context strip: real scenario facts only (site, entrance, selection,
+   validity, save state). Never prototype telemetry. */
+.contextstrip {
+  display: flex;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 14px;
+  color: var(--mut);
+  padding: 4px 12px 6px;
+}
+
+.contextstrip .ok {
+  color: #7fd6a4;
+}
+
+.contextstrip .bad {
+  color: #ff9d97;
 }
 
 .topbar {
@@ -20,8 +72,35 @@
   align-items: center;
   gap: 8px 16px;
   flex-wrap: wrap;
-  border-bottom: 2px solid #1d1d1f;
-  padding-bottom: 6px;
+  background: var(--slate-900);
+  color: #f4f2ec;
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+.topbar .badge.modeloff {
+  background: var(--slate-700);
+  color: #f4f2ec;
+  border-color: #f4f2ec;
+}
+
+.topbar button {
+  background: #f4f2ec;
+  color: var(--slate-900);
+  border-color: #f4f2ec;
+}
+
+.topbar button:hover {
+  background: #fff;
+}
+
+.topbar button:disabled {
+  opacity: 0.45;
+}
+
+/* Secondary text inside slate chrome stays paper, never dim gray on slate. */
+.topbar .note {
+  color: #f4f2ec;
 }
 
 .topactions {
@@ -45,49 +124,268 @@
 }
 
 .srstatus {
-  margin: 4px 0;
+  margin: 2px 8px;
+  color: var(--mut);
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
 }
 
 .mid {
   flex: 1 1 auto;
   display: flex;
-  gap: 14px;
+  gap: 8px;
   min-height: 0;
-  padding: 8px 0;
+  padding: 6px 0;
 }
 
-.rail {
-  flex: 0 0 280px;
+/* Canvas-led shell: 64px icon rail, dominant drawing field, 320px dark
+   contextual inspector. Rail captions are short; full tool names live in
+   accessible names and tooltips. */
+.toolrail {
+  flex: 0 0 64px;
   overflow-y: auto;
-  border: 1px solid #888;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 5px;
+  background: var(--panel);
+  color: var(--txt);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+}
+
+button.tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-height: 56px;
+  padding: 7px 2px 5px;
+  font-size: 14px;
+  line-height: 1.2;
+  background: transparent;
+  color: var(--mut);
+  border: 1px solid transparent;
   border-radius: 6px;
+  cursor: pointer;
+}
+
+button.tool:hover {
+  background: var(--slate-700);
+  color: #fff;
+}
+
+button.tool.on {
+  background: var(--slate-700);
+  color: #fff;
+  border-color: var(--accent-select);
+}
+
+.inspector-col {
+  flex: 0 0 320px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   padding: 10px 12px;
-  background: #fbfbfa;
+  background: var(--panel);
+  color: var(--txt);
 }
 
-/* Expanded plan: the inspector stays visible but narrower; the dock summary
-   below is untouched. The canvas refits itself on the freed width. */
-.mid.wide .rail {
-  flex: 0 0 208px;
-}
-
-.dock.expanded {
-  max-height: 72vh;
-}
-
-.rail h2 {
+.inspector-col h2 {
   font-size: 16px;
   margin: 0 0 6px;
+  color: var(--txt);
 }
 
-.rail h3 {
-  font-size: 14.5px;
-  margin: 12px 0 6px;
+.inspector-col h3 {
+  font-size: 15px;
+  margin: 8px 0 5px;
+  color: var(--txt);
 }
 
-.rail ul {
+.inspector-col ul {
   padding-left: 18px;
-  font-size: 13.5px;
+  font-size: 14px;
+}
+
+.inspector-col .note {
+  color: var(--mut);
+}
+
+.inspector-col .sitesrc {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+}
+
+.inspector-col .sitesrc > summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.inspector-col .objlist {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inspector-col .objlist li {
+  flex: 1 1 44%;
+  min-width: 0;
+}
+
+.inspector-col .objlist button {
+  min-height: 44px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--panel-deep);
+  color: var(--txt);
+  border-color: #4a5058;
+}
+
+.inspector-col li[aria-selected="true"] > button {
+  border-color: var(--accent-select);
+  border-width: 2px;
+}
+
+.inspector-col input[type="number"],
+.inspector-col input[type="text"],
+.inspector-col select,
+.inspector-col textarea {
+  background: var(--field);
+  border-color: #4a5058;
+  color: var(--txt);
+}
+
+.inspector-col .formgrid fieldset {
+  border-color: #4a5058;
+}
+
+.inspector-col .formgrid legend {
+  color: var(--mut);
+}
+
+.inspector-col button:not(.seg):not(.tool) {
+  background: #30343d;
+  color: #eef0f3;
+  border-color: #525966;
+}
+
+.inspector-col button:not(.seg):not(.tool):hover {
+  background: #414752;
+}
+
+.inspector-col button.seg {
+  border-color: #eef0f3;
+}
+
+.inspector-col .verdict {
+  background: var(--panel-deep);
+  border-color: #4a5058;
+  color: var(--txt);
+}
+
+.inspector-col .verdict.done {
+  border-color: #3f7d5c;
+  background: #17251e;
+}
+
+.inspector-col .verdict.limitation,
+.inspector-col .verdict.stale {
+  border-color: #8a6d1b;
+  background: #241f12;
+}
+
+.inspector-col .error {
+  background: #33191d;
+  border-color: #b05750;
+  color: #ffc9c4;
+}
+
+.inspector-col .kv dt {
+  color: var(--mut);
+}
+
+.inspector-col .kv dd {
+  color: #fff;
+}
+
+.inspector-col .instr {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.inspector-col .instr textarea {
+  width: 100%;
+  /* Column layout: drop the row-mode 320px flex basis so rows=2 sizes it. */
+  flex: none;
+}
+
+/* Expanded plan: side columns stay visible but narrower; the dock summary
+   below is untouched. The canvas refits itself on the freed width. */
+.mid.wide .inspector-col {
+  flex: 0 0 240px;
+}
+
+.mid.wide .toolrail {
+  flex: 0 0 64px;
+}
+
+.dock.expanded .dockpanel {
+  max-height: 70vh;
+}
+
+/* Meeting print: plan, figures, and decisions on paper; editing chrome off. */
+@media print {
+  .toolrail,
+  .inspector-col,
+  .toolbar,
+  .contextstrip,
+  .topactions,
+  .objlist,
+  .cardrow,
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  .mid {
+    display: block;
+  }
+
+  .canvascol,
+  .canvaswrap {
+    max-width: 100%;
+  }
+
+  .dock {
+    max-height: none;
+    overflow: visible;
+  }
+
+  body {
+    font-size: 12px;
+  }
+}
+
+.inspector-col h2 {
+  font-size: 16px;
+  margin: 0 0 6px;
+  color: var(--txt);
+}
+
+.inspector-col ul {
+  padding-left: 18px;
+  font-size: 14px;
 }
 
 .objlist {
@@ -104,7 +402,7 @@
   text-align: left;
   background: #fff;
   color: #1d1d1f;
-  min-height: 40px;
+  min-height: 44px;
 }
 
 li[aria-selected="true"] > button {
@@ -129,16 +427,83 @@ li[aria-selected="true"] > button {
   font-size: 14px;
 }
 
+/* Composer-first column: the canvas stage takes the flex leftover, so
+   the toolbar, preview bar, composer, and verdicts below always fit. */
 .canvascol {
   flex: 1 1 auto;
   min-width: 0;
+  min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
 
 .canvastools {
+  flex: 1 1 auto;
+  min-height: 240px;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Dock tools above the drawing so controls never obscure site geometry. */
+.canvastools .toolbar {
+  flex: 0 0 auto;
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  z-index: 2;
+  background: var(--slate-900);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 2px 8px;
+  margin: 0;
+  gap: 4px;
+  align-items: center;
+}
+
+.toolbar button {
+  min-height: 44px;
+  padding: 6px 10px;
+  font-size: 14px;
+  background: transparent;
+  color: #eef0f3;
+  border-color: transparent;
+}
+
+.toolbar button:hover {
+  background: var(--slate-700);
+}
+
+.toolbar .note {
+  color: #cfd3d8;
+  font-size: 14px;
+}
+
+.stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Compact outcomes stay beside the drawing on narrow pages. */
+.minisummary {
+  display: none;
+}
+
+/* Mobile controls toggle. Desktop always shows both side columns. */
+.controlstoggle {
+  display: none;
 }
 
 .toolbar {
@@ -149,16 +514,29 @@ li[aria-selected="true"] > button {
   flex-wrap: wrap;
 }
 
-.toolbar button {
-  min-height: 40px;
-  padding: 6px 12px;
-}
-
 .canvas {
   max-width: 100%;
-  border: 1px solid #888;
-  background: #fbfbfa;
+  border: none;
+  background: var(--paper);
   touch-action: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Canvas-column alerts sit on the dark shell, outside the paper card. */
+.canvascol .note {
+  color: #c9ced6;
+}
+
+.canvascol .minisummary {
+  color: var(--txt);
+}
+
+.stage {
+  padding: 12px;
+  background-image: linear-gradient(#c9c7c030 1px, transparent 1px), linear-gradient(90deg, #c9c7c030 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 .canvas .site { fill: #f4f1ea; stroke: #333; stroke-width: 1.5; }
@@ -171,19 +549,22 @@ li[aria-selected="true"] > button {
 .canvas .parcel.draft { stroke: #0b5fff; stroke-width: 2; stroke-dasharray: 6 3; }
 .canvas .parcel.invalid { stroke: #8c1d18; stroke-width: 2; stroke-dasharray: 6 3; }
 .canvas .parcel.ghost { fill: none; stroke: #999; stroke-width: 1.5; stroke-dasharray: 5 3; }
-.canvas .footprint { fill: #3d3d3f; }
-.canvas .greenfill { fill: url(#green-hatch); stroke: #2e5b2a; stroke-width: 1.5; cursor: pointer; }
+.canvas .footprint { fill: #e3e0d6; stroke: #555; stroke-width: 1; stroke-dasharray: 3 2; }
+.canvas .greenfill { stroke: var(--accent-open); stroke-width: 2; cursor: pointer; }
 .canvas .green.selected .greenfill { stroke: #0b5fff; stroke-width: 2.5; }
 .canvas .greenfill.draft { stroke: #0b5fff; stroke-width: 2.5; stroke-dasharray: 6 3; }
 .canvas .greenfill.invalid { stroke: #8c1d18; stroke-width: 2.5; stroke-dasharray: 6 3; }
 .canvas .green:focus { outline: 2px solid #0b5fff; outline-offset: 2px; }
-.canvas .handle { fill: #0b5fff; stroke: #fff; stroke-width: 1.5; cursor: nwse-resize; }
+.canvas .handle { fill: #0b5fff; stroke: #fff; stroke-width: 1.5; cursor: nwse-resize; pointer-events: none; }
+.canvas .hithandle { fill: transparent; stroke: none; cursor: nwse-resize; pointer-events: all; }
+.canvas.pantool { cursor: grab; }
 .canvas .entrance { fill: #1d1d1f; }
 .canvas .entrance.invalid { fill: #8c1d18; }
-.canvas .lotno { font-size: 11px; fill: #333; }
-.canvas .tag { font-size: 10px; fill: #0b5fff; font-weight: bold; }
+.canvas .scalebar { stroke: #1d1d1f; stroke-width: 2; }
+.canvas .lotno { font-weight: 600; fill: #333; }
+.canvas .tag { fill: #0b5fff; font-weight: bold; }
 .canvas .greentag { font-weight: bold; }
-.canvas .caption { font-size: 13px; fill: #333; }
+.canvas .caption { fill: #333; }
 .canvas.panning { cursor: grabbing; }
 
 .previewbar {
@@ -200,21 +581,112 @@ li[aria-selected="true"] > button {
 
 .dock {
   flex: 0 0 auto;
-  max-height: 36vh;
   display: flex;
   flex-direction: column;
-  border: 1px solid #888;
-  border-radius: 6px;
-  background: #fbfbfa;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--txt);
 }
 
+/* Persistent outcomes strip: one compact line, always visible. */
 .docksummary {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  padding: 8px 14px;
-  font-size: 14.5px;
-  border-bottom: 1px solid #bbb;
+  align-items: center;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.strip_toggle {
+  margin-left: auto;
+  min-height: 40px;
+  padding: 6px 14px;
+  font-size: 13px;
+  background: transparent;
+  color: var(--txt);
+  border-color: #4a5058;
+}
+
+.strip_toggle:hover {
+  background: var(--slate-700);
+}
+
+.dockpanel[hidden],
+.docktabs[hidden] {
+  display: none;
+}
+
+.dockpanel {
+  max-height: 28vh;
+}
+
+.docktabs button.tab {
+  background: transparent;
+  color: var(--mut);
+  border-color: #4a5058;
+}
+
+.docktabs button.tab.on {
+  background: #eef0f3;
+  color: #1d1d1f;
+}
+
+.dockpanel .note {
+  color: var(--mut);
+}
+
+.dockpanel h3 {
+  color: var(--txt);
+}
+
+.dockpanel .optrow {
+  background: var(--panel-deep);
+  border-color: #4a5058;
+}
+
+.dockpanel .optpick {
+  color: var(--txt);
+}
+
+.dockpanel .optpick .note {
+  color: var(--mut);
+}
+
+.dockpanel .compare {
+  border-color: var(--line);
+}
+
+.dockpanel .noresult {
+  border-color: #8a6d1b;
+  background: #241f12;
+  color: var(--txt);
+}
+
+.dockpanel button:not(.seg):not(.tab):not(.optpick) {
+  background: #30343d;
+  color: #eef0f3;
+  border-color: #525966;
+}
+
+.dockpanel button:not(.seg):not(.tab):not(.optpick):hover {
+  background: #fff;
+}
+
+.dockpanel select,
+.dockpanel input {
+  background: var(--field);
+  border-color: #4a5058;
+  color: var(--txt);
+}
+
+/* Calibrated mono for figures (Stitch direction, readable sizes kept). */
+.docksummary strong,
+.minisummary strong,
+.kv dd {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
 }
 
 .docktabs {
@@ -318,7 +790,7 @@ button.tab.on {
 }
 
 .note {
-  font-size: 13px;
+  font-size: 14px;
   color: #3a3a3c;
 }
 
@@ -369,7 +841,7 @@ h3 {
 .formgrid label {
   display: flex;
   flex-direction: column;
-  font-size: 13px;
+  font-size: 14px;
   gap: 3px;
 }
 
@@ -378,7 +850,7 @@ h3 {
   max-width: 100%;
   border: 1px solid #bbb;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .formgrid legend {
@@ -518,6 +990,58 @@ button.seg.on {
   flex-wrap: wrap;
 }
 
+/* Assistant: selection-bound, beside the inspector, never over the plan. */
+.askrow {
+  margin: 6px 0 4px;
+}
+
+.askrow button {
+  width: 100%;
+}
+
+.assistant {
+  border: 1px solid #888;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 6px 0 10px;
+  background: #fff;
+}
+
+.assistant h3 {
+  font-size: 15px;
+  margin: 10px 0 4px;
+}
+
+.assistant ul {
+  padding-left: 18px;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.astate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 2px 0 6px;
+}
+
+.adot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #888;
+  flex: 0 0 auto;
+}
+
+.adot.ready { background: #555; }
+.adot.thinking { background: var(--accent-select); }
+.adot.clarifying { background: var(--accent-warn); }
+.adot.hypothesizing { background: var(--accent-open); }
+.adot.reporting { background: var(--accent-ok); }
+.adot.unavailable { background: var(--accent-invalid); }
+
 .skiplink {
   position: absolute;
   left: -999px;
@@ -552,12 +1076,138 @@ button.seg.on {
     order: -1;
     overflow: visible;
   }
-  .rail {
+  .toolrail,
+  .inspector-col {
     flex: 1 1 auto;
     width: 100%;
     overflow: visible;
+  }
+  .canvastools {
+    flex: none;
+  }
+  .stage {
+    flex: none;
+    display: block;
+  }
+  .minisummary {
+    display: none !important;
+    gap: 4px 12px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    padding: 8px 2px;
+    margin: 0;
+    border-top: 2px solid var(--ink);
+  }
+  .controlstoggle {
+    display: block;
+    margin: 2px 0 6px;
+  }
+  .controlstoggle button {
+    width: 100%;
+  }
+  /* The floating toolbar must not cover a small plan: actions only,
+     docked to the empty south edge instead of the worked center. */
+  .canvastools .toolbar .note {
+    display: none;
+  }
+  .canvastools .toolbar {
+    top: auto;
+    bottom: auto;
+    flex-wrap: nowrap;
+    padding: 2px;
+  }
+  .mid.controls-closed .inspector-col {
+    display: none;
+  }
+  .toolrail {
+    flex-direction: row;
+    order: -2;
+    width: 100%;
+    padding: 4px;
+    flex: none;
+  }
+  button.tool {
+    flex: 1 1 0;
+    min-height: 52px;
+  }
+  .contextstrip {
+    font-size: 13px;
   }
   .dock {
     max-height: none;
   }
 }
+
+.site-actions, .boundary-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.site-actions button { flex: 1; }
+.boundary-area { padding: 12px; margin: 12px 0; border: 1px solid #60567b; background: #302a40; display: flex; flex-direction: column; }
+.boundary-area strong { font-size: 24px; font-variant-numeric: tabular-nums; }
+.boundary-area span { color: #d6cfe4; font-size: 14px; }
+.boundary-coordinates fieldset { border: 1px solid var(--line); margin: 10px 0; min-width: 0; padding: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
+.boundary-coordinates label { flex: 1 1 90px; min-width: 0; font-size: 14px; }
+.boundary-coordinates input { width: 100%; }
+.boundary-coordinates .draftrow { width: 100%; margin: 0; }
+.boundary-coordinates button { font-size: 14px; padding: 6px 8px; }
+.boundary-banner { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 12px; color: #173f80; background: #e5edfc; font-size: 14px; border-bottom: 1px solid #9fb4dc; }
+.boundary-banner button { font-size: 14px; min-height: 44px; padding: 4px 10px; }
+.canvas .boundary-draft { fill: #0b5fff0a; stroke: #0b5fff; stroke-width: 2.5; stroke-dasharray: 7 4; vector-effect: non-scaling-stroke; }
+.canvas polyline.boundary-draft { fill: none; }
+.canvas .boundary-draft.invalid { stroke: #a52b23; fill: #a52b2310; }
+.canvas .boundary-mid { fill: #f5f8ff; stroke: #7794be; stroke-width: 1; cursor: copy; }
+.canvas .boundary-point { fill: #fff; stroke: #0b5fff; stroke-width: 2.5; cursor: move; }
+.canvas .boundary-vertex:hover .boundary-point, .canvas .boundary-vertex:focus .boundary-point { fill: #0b5fff; stroke: #fff; }
+.canvas .boundary-overlay g:focus-visible { outline: 2px solid #0b5fff; }
+.savestatus { margin-left: auto; }
+@media (max-width: 1100px) and (min-width: 901px) {
+  .inspector-col { flex-basis: 292px; }
+  .brand .note { display: none; }
+  .toolbar .note { display: none; }
+}
+@media (max-width: 900px) {
+  .bench { min-height: 100dvh; height: auto; padding: 4px; }
+  .topbar { gap: 4px 8px; padding: 4px 8px; }
+  .brand { font-size: 18px; }
+  .brand .note, .workstate { display: none; }
+  .topactions { gap: 4px; flex-wrap: nowrap; }
+  .topactions button { padding: 4px 10px; }
+  .topbar .badge.modeloff { display: none; }
+  .contextstrip { padding: 4px; gap: 2px 12px; font-size: 14px; }
+  .contextstrip > span:first-child { width: 100%; }
+  .contextstrip .savestatus { display: none; }
+  .mid { gap: 6px; }
+  .stage { padding: 8px; }
+  .docksummary { justify-content: flex-start; gap: 6px 12px; }
+  .toolbar button { padding: 6px 8px; }
+  .srstatus { max-width: 100%; }
+  .boundary-banner { flex-wrap: wrap; }
+}
+
+.inspector-col .instr button, .boundary-actions button:first-child { background: #a18ccf; color: #171321; border-color: #b8a5de; }
+
+.bench > .srstatus { color: var(--mut); }
+
+.boundary-banner-actions { display: flex; gap: 6px; }
+
+.inspector-col .assistant { background: var(--panel-deep); color: var(--txt); border-color: #525966; }
+.inspector-col .assistant label, .inspector-col .assistant .astate { color: var(--txt); }
+.bench.compare-focused .mid { display: none; }
+.bench.compare-focused .dock { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.bench.compare-focused .dockpanel { max-height: none; min-height: 0; flex: 1; overflow: auto; }
+.dock.expanded .options-content > :not(.compare) { display: none; }
+.dock.expanded .compare { margin-top: 0; border-top: 0; }
+.dock.expanded .compare h3 { margin-top: 0; }
+
+.dockpanel .kv dt { color: var(--mut); }
+.dockpanel button:not(.seg):not(.tab):not(.optpick):hover { background: #414752; }
+.topactions { flex-shrink: 0; }
+.topactions .badge { white-space: nowrap; min-width: max-content; }
+.dockpanel { overflow-anchor: none; }
+@media (max-width: 900px) {
+  .minisummary { display: flex !important; align-items: center; gap: 6px 12px; flex-wrap: wrap; padding: 6px 4px; color: var(--txt); }
+  .minisummary .strip_toggle { margin-left: 0; }
+  .bench:has(.minisummary) .docksummary { display: none; }
+  .bench:has(.minisummary) .dock:has(.dockpanel[hidden]) { display: none; }
+}
+
+.inspector-col .kv { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+.inspector-col .kv dd { text-align: left; margin-bottom: 8px; overflow-wrap: anywhere; }

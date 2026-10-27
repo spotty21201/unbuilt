@@ -35,12 +35,56 @@ const none: IntentOperations = {
   runSearch: false,
 };
 
-function parseMillions(text: string): number | null {
-  const m = text.match(/rp\.?\s?([\d][\d.,]*)\s?m/i);
-  if (!m) return null;
-  const n = Number(m[1].replace(/[.,]/g, (c, i, s) => (i === s.lastIndexOf(c) ? "." : "")));
-  if (!Number.isFinite(n) || n <= 0) return null;
-  return Math.round(n * 1_000_000);
+// Documented amount grammar (shown in clarification text on failure):
+// "Rp" prefix optional; digits with optionally grouped thousands separators;
+// mandatory magnitude suffix: m/jt/juta/million = million Rp,
+// bn/b/miliar/billion = billion Rp. A bare number is ambiguous (1 Rp? 1 m?)
+// and never accepted. Separator rules: both kinds present -> last is the
+// decimal mark; one kind present -> groups of exactly 3 mean thousands,
+// a single mark with 1-2 trailing digits means decimal; anything else is
+// ambiguous and refused rather than guessed.
+export type AmountParse =
+  | { ok: true; value: number }
+  | { ok: false; reason: "missing" | "ambiguous" };
+
+export function parseAmount(text: string): AmountParse {
+  const m = text.match(/rp\.?\s?([\d][\d.,]*)\s?(m|bn|b|jt|juta|miliar|million|billion)?\b/i);
+  if (!m) return { ok: false, reason: "missing" };
+  const digits = m[1];
+  const suffix = (m[2] ?? "").toLowerCase();
+  if (suffix === "") return { ok: false, reason: "ambiguous" };
+  const mult =
+    suffix === "m" || suffix === "jt" || suffix === "juta" || suffix === "million"
+      ? 1_000_000
+      : 1_000_000_000;
+  const dots = (digits.match(/\./g) ?? []).length;
+  const commas = (digits.match(/,/g) ?? []).length;
+  let canon: string;
+  if (dots > 0 && commas > 0) {
+    const lastDot = digits.lastIndexOf(".");
+    const lastComma = digits.lastIndexOf(",");
+    const dec = lastDot > lastComma ? "." : ",";
+    const thou = dec === "." ? "," : ".";
+    canon = digits
+      .split("")
+      .map((c) => (c === thou ? "" : c === dec ? "." : c))
+      .join("");
+  } else {
+    const sep = dots > 0 ? "." : ",";
+    const parts = digits.split(sep);
+    if (parts.length === 1) {
+      canon = digits;
+    } else if (parts.slice(1).every((g) => g.length === 3)) {
+      canon = parts.join("");
+    } else if (parts.length === 2 && parts[1].length <= 2) {
+      canon = `${parts[0]}.${parts[1]}`;
+    } else {
+      return { ok: false, reason: "ambiguous" };
+    }
+  }
+  const n = Number(canon);
+  if (!Number.isFinite(n) || n <= 0) return { ok: false, reason: "ambiguous" };
+  return { ok: true, value: Math.round(n * mult) };
 }
 
 export function parseIntent(raw: string, ctx: IntentContext): IntentResult {
@@ -70,10 +114,17 @@ export function parseIntent(raw: string, ctx: IntentContext): IntentResult {
     }
   }
 
-  const explicit = parseMillions(raw);
-  if (explicit !== null && /cap|ceiling|price|max/i.test(raw)) {
-    ops.priceCeiling = explicit;
-    notes.push(`cap the assumed selling price at Rp${explicit / 1_000_000}m`);
+  const amount = parseAmount(raw);
+  const capLanguage = /cap|ceiling|price|max/i.test(raw);
+  if (amount.ok && capLanguage) {
+    ops.priceCeiling = amount.value;
+    notes.push(`cap the assumed selling price at Rp${amount.value / 1_000_000}m`);
+  } else if (!amount.ok && amount.reason === "ambiguous" && capLanguage) {
+    return {
+      kind: "clarification",
+      text: "I could not read that ceiling unambiguously — a comma can group thousands or mark decimals depending on convention. Restate it with a magnitude, e.g. Rp850m (million), Rp1,000m (one thousand million) or Rp1.5bn (billion).",
+      operations: { ...none },
+    };
   } else if (/do not increase|don't increase|keep.*price|not.*raise|same price/i.test(raw)) {
     ops.priceCeiling = ctx.selectedPrice;
     notes.push(`hold the assumed selling price at Rp${ctx.selectedPrice / 1_000_000}m (no increase)`);

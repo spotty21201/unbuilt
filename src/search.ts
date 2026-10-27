@@ -4,6 +4,7 @@
 import {
   checkGreenLock,
   deriveQuantities,
+  editsForLayout,
   generateLoop,
   generateSpine,
   lotRoadFrontage,
@@ -12,6 +13,7 @@ import {
   type Layout,
   type LotEdits,
   type Site,
+  type StableEdits,
 } from "./geometry.ts";
 import { polyArea } from "./polygon.ts";
 import { evaluateLayout } from "./economics.ts";
@@ -52,6 +54,10 @@ export interface SearchRequest {
   ranges: SearchRanges;
   seed: number;
   budget: number; // max candidates tested (PRD starting budget: 250)
+  // Manual reshapes by stable base-rect key: each tested layout carries the
+  // edits whose base rectangle it reproduces verbatim. Search never invents
+  // or silently drops manual work; incompatible combos simply run clean.
+  lotEdits?: StableEdits;
 }
 
 function hashSnapshot(obj: unknown): string {
@@ -82,6 +88,11 @@ export function failingLots(
         ? lotRoadFrontage(opts.roads, edit)
         : 0
       : Math.min(p.w, p.h);
+    // Non-finite measurements never pass: unknown is not compliant.
+    if (!Number.isFinite(area) || !Number.isFinite(frontage)) {
+      out.push(i);
+      return;
+    }
     if (area < profile.lotAreaMin || area > profile.lotAreaMax) out.push(i);
     else if (frontage < profile.frontageMin) out.push(i);
   });
@@ -97,6 +108,7 @@ export function runSearch(req: SearchRequest): SearchRun {
     locks: req.locks,
     ranges: req.ranges,
     seed: req.seed,
+    lotEdits: req.lotEdits ?? {},
   });
   const combos: Array<{ family: "spine" | "loop"; frontage: number }> = [];
   for (const family of req.ranges.families) {
@@ -110,29 +122,37 @@ export function runSearch(req: SearchRequest): SearchRun {
   let profileVetoes = 0;
   let geometryVetoes = 0;
   let greenVetoes = 0;
+  let targetOkCount = 0;
   for (const { family, frontage } of tested) {
     const layout = buildLayout(req.site, family, frontage);
-    const validationErrors = validateLayout(req.site, layout);
+    const carried = editsForLayout(layout.parcels, req.lotEdits ?? {});
+    const validationErrors = validateLayout(req.site, layout, carried);
     const greenHeld = checkGreenLock(req.locks.green, layout.green).length === 0;
     const priceOk = req.selectedPrice <= req.locks.priceCeiling;
-    const failing = failingLots(layout.parcels, req.profile);
+    const failing = failingLots(layout.parcels, req.profile, { lotEdits: carried, roads: layout.roads });
     const applicable = failing.length === 0;
-    const quantities = deriveQuantities(req.site, layout);
+    const quantities = deriveQuantities(req.site, layout, carried);
     const econ = evaluateLayout(req.site, layout, req.selectedPrice, {
       ownerExpectation: req.locks.ownerExpectation,
       targetFraction: req.locks.targetFraction,
-    });
+    }, carried);
     if (validationErrors.length > 0) geometryVetoes++;
     if (!greenHeld) greenVetoes++;
     if (!priceOk) priceVetoes++;
     if (!applicable) profileVetoes++;
+    // Target-surplus compliance is counted but never a veto: a non-negative
+    // land allowance means the target is achievable at the assumed price.
+    if (econ.finance.landAllowance >= 0) targetOkCount++;
     const qualified =
       validationErrors.length === 0 && greenHeld && priceOk && applicable;
     if (qualified) {
+      const lots: Record<number, { x: number; y: number }[]> = {};
+      for (const [i, pts] of carried) lots[i] = pts.map((p) => ({ ...p }));
       candidates.push({
         id: `${family}-f${frontage}`,
         family,
         frontage,
+        lots,
         quantities,
         validationErrors,
         greenHeld,
@@ -167,6 +187,12 @@ export function runSearch(req: SearchRequest): SearchRun {
     tested: tested.length,
     valid: tested.length - geometryVetoes,
     qualified: candidates.length,
+    breakdown: {
+      geometryValid: tested.length - geometryVetoes,
+      applicable: tested.length - profileVetoes,
+      priceOk: tested.length - priceVetoes,
+      targetOk: targetOkCount,
+    },
     truncated,
     elapsedMs: Date.now() - t0,
     blockers,

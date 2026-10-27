@@ -28,6 +28,14 @@ check("off-edge-no", entranceErrors({ ...makeSite(140, 110), entrance: { edge: "
 check("zero-width-no", entranceErrors({ ...makeSite(140, 110), entrance: { edge: "west", offset: 55, width: 0 } }).length > 0, true);
 check("west-ok", entranceErrors(makeSite(140, 110)).length, 0);
 // Generated circulation validates on a larger accepted site.
+// F01: a gate the road network cannot reach never validates — the layout
+// generated for the centered gate fails against the 95 m gate position.
+const movedGate = { ...cedarMarket(), entrance: { edge: "west", offset: 95, width: 8 } };
+check(
+  "disconnected-gate",
+  validateLayout(movedGate, generateSpine(cedarMarket(), 10)).some((e) => e.includes("no road reaches entrance")),
+  true,
+);
 const big = makeSite(150, 120);
 check("big-spine-valid", validateLayout(big, generateSpine(big, 10)).length, 0);
 check("big-loop-valid", validateLayout(big, generateLoop(big, 11)).length, 0);

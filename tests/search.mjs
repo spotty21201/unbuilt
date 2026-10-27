@@ -36,6 +36,31 @@ check("ceiling-held-all", run.candidates.every((c) => c.priceOk), true);
 const spine10 = run.candidates.find((c) => c.family === "spine" && c.frontage === 10);
 check("spine10-n", spine10.quantities.n, 20);
 check("spine10-applicable", spine10.applicable, true);
+check("spine10-no-lots", JSON.stringify(spine10.lots), "{}");
+
+// Manual reshapes carry by stable identity: the bottom-trimmed lot 0 (area
+// 190, applicable) rides along on spine-10, whose geometry reproduces that
+// lot verbatim; other combos run clean. Quantities use the true area.
+import { lotKey } from "../src/geometry.ts";
+const trim = [
+  { x: 0, y: 28 }, { x: 10, y: 28 }, { x: 10, y: 47 }, { x: 0, y: 47 },
+];
+const stable = { [lotKey({ x: 0, y: 27, w: 10, h: 20 })]: trim };
+const carried = runSearch({ site, profile: BASE_PROFILE, selectedPrice: 850 * M, locks, ranges, seed: 7, budget: 250, lotEdits: stable });
+const cSpine10 = carried.candidates.find((c) => c.family === "spine" && c.frontage === 10);
+check("carry-present", cSpine10 !== undefined, true);
+check("carry-lots", JSON.stringify(cSpine10.lots["0"].map((p) => [p.x, p.y])), JSON.stringify([[0, 28], [10, 28], [10, 47], [0, 47]]));
+check("carry-area", cSpine10.quantities.parcelArea < spine10.quantities.parcelArea, true);
+check("carry-applicable", cSpine10.applicable, true);
+// An edit whose base lot no tested layout reproduces changes nothing.
+const ghost = runSearch({ site, profile: BASE_PROFILE, selectedPrice: 850 * M, locks, ranges, seed: 7, budget: 250, lotEdits: { "1,1,5,5": trim } });
+check("ghost-clean", ghost.candidates.every((c) => JSON.stringify(c.lots) === "{}"), true);
+check("ghost-same-n", ghost.qualified, run.qualified);
+// Breakdown counts: hand-checked Cedar grid — 6 geometrically valid of 8;
+// applicability/price/target counted per combo, owner expectation never one.
+check("break-geo", run.breakdown.geometryValid, 6);
+check("break-geo-eq-valid", run.breakdown.geometryValid, run.valid);
+check("break-bounded", run.breakdown.applicable <= run.tested && run.breakdown.priceOk <= run.tested && run.breakdown.targetOk <= run.tested, true);
 
 // Ceiling below selected price: honest no-result with blockers, no candidates hidden.
 const tight = runSearch({
