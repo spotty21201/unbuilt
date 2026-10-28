@@ -1,0 +1,261 @@
+{
+  "app": "UNBUILT decision record",
+  "exportVersion": 4,
+  "exportedAt": "2026-10-28T17:15:49.666Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in integer Rp.",
+  "state": {
+    "site": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true
+      },
+      "boundary": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 100
+        },
+        {
+          "x": 50,
+          "y": 100
+        },
+        {
+          "x": 0,
+          "y": 60
+        }
+      ],
+      "areaM2": 11000,
+      "provenance": "custom confirmed boundary; generated entrance/open space are assumed — review"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "openSpace": {
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 24,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 10,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 0,
+          "y": 47,
+          "w": 120,
+          "h": 6
+        }
+      ],
+      "parcels": [
+        {
+          "x": 0,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 70,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 80,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 90,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 100,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 18,
+      "roadArea": 720,
+      "greenArea": 480,
+      "parcelArea": 3600,
+      "unallocatedArea": 6200
+    },
+    "economics": {
+      "roadCost": 576000000,
+      "homeCost": 5400000000,
+      "greenCost": 72000000,
+      "costNonLand": 9750400000,
+      "finance": {
+        "revenue": 15300000000,
+        "surplus": -4909400000,
+        "margin": -0.32087581699346407,
+        "landAllowance": 2795600000,
+        "ownerGap": 7204400000,
+        "requiredPrice": 1338102981.0298104
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "events": [
+    {
+      "t": "2026-10-28T17:15:45.998Z",
+      "kind": "restore",
+      "detail": "Imported project file “initial-project.json”"
+    },
+    {
+      "t": "2026-10-28T17:15:46.408Z",
+      "kind": "boundary",
+      "detail": "Applied 5-vertex site, 11000 m². Contained layout regenerated; outside lots omitted."
+    },
+    {
+      "t": "2026-10-28T17:15:47.526Z",
+      "kind": "restore",
+      "detail": "Restored saved project from 2026-10-28T17:15:46.414Z"
+    },
+    {
+      "t": "2026-10-28T17:15:47.782Z",
+      "kind": "lots",
+      "detail": "Reshaped lot 1 to 5 corners, 200 m². The reshape travels with this lot across search and redesign; removing the lot asks first."
+    },
+    {
+      "t": "2026-10-28T17:15:47.832Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-28T17:15:48.124Z",
+      "kind": "search",
+      "detail": "Ran bounded search (family-200, price Rp850M, ceiling Rp850M): 8 tested, 4 geometrically valid, 3 fit profile, 8 within ceiling, 3 meet target surplus, 3 shown. Owner expectation Rp10bn is a benchmark, not a constraint."
+    },
+    {
+      "t": "2026-10-28T17:15:49.303Z",
+      "kind": "apply",
+      "detail": "Applied Spine · 11 m lots (15 homes, allowance Rp1.65bn)."
+    },
+    {
+      "t": "2026-10-28T17:15:49.367Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    }
+  ],
+  "history": {
+    "undoDepth": 1,
+    "redoDepth": 1,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

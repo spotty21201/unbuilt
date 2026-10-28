@@ -102,7 +102,7 @@ function properCross(p1: Pt, p2: Pt, p3: Pt, p4: Pt): boolean {
 
 // Proper crossing of segments p1-p2 and p3-p4 (touching at shared polygon
 // vertices is adjacency, not a crossing; the caller skips adjacent edges).
-function segmentsCross(p1: Pt, p2: Pt, p3: Pt, p4: Pt): boolean {
+export function segmentsCross(p1: Pt, p2: Pt, p3: Pt, p4: Pt): boolean {
   if (properCross(p1, p2, p3, p4)) return true;
   const d1 = orient(p3, p4, p1);
   const d2 = orient(p3, p4, p2);

@@ -1,0 +1,43 @@
+{
+  "productionAsset": "/assets/index-BkFG3c-c.js",
+  "productionStylesheet": "/assets/index-l_ZdQ3Zh.css",
+  "engineChecks": 438,
+  "newPlannerEngineChecks": 19,
+  "plannerFeedbackBrowserChecks": 41,
+  "planningRegressionBrowserChecks": 59,
+  "viewportBrowserChecks": 38,
+  "totalBrowserChecks": 138,
+  "browserErrors": [],
+  "build": "passed",
+  "lint": "passed without warnings",
+  "actualBrowserZoom": 2,
+  "viewports": [
+    [
+      1600,
+      1280
+    ],
+    [
+      1440,
+      900
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      375,
+      812
+    ]
+  ],
+  "projectVersionForNewFields": 4,
+  "recordVersionForNewFields": 5,
+  "toolServerOnline": true,
+  "adapter": "mock",
+  "modelConfigured": false,
+  "remainingGates": [
+    "real model round trip",
+    "physical touch device",
+    "follow-up independent planner task and visual acceptance"
+  ],
+  "worktree": "uncommitted"
+}

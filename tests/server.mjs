@@ -167,6 +167,37 @@ try {
   check("polygon-downgrade-refused", (await post("/api/search", { snapshot: { ...polygonSnapshot, version: 1 }, ranges: { families: ["spine"], frontages: [10] }, budget: 250 })).status, 400);
   check("polygon-legacy-malformed-refused", (await post("/api/search", { ...searchBody, site: { ...site, boundary: {} } })).status, 400);
 
+  const planning = { lotDepth: 20, greenBuffer: 0, homeWidth: 12, homeDepth: 6, streets: [], siteLocked: true, priceLocked: true };
+  const parametric = { ...snapshot, version: 3, site: { ...snapshot.site, planning } };
+  const px = await post("/api/explain", { snapshot: parametric, base: { family: "spine", frontage: 10 }, other: { family: "spine", frontage: 11 } });
+  const pm = await px.json();
+  check("parametric-explain-status", px.status, 200);
+  check("parametric-server-home-count", pm.base.quantities.n, 20);
+  check("parametric-server-template-cost-effect", pm.base.landAllowance, 2299600000);
+  check("parametric-downgrade-refused", (await post("/api/search", { snapshot: { ...parametric, version: 2 }, ranges: { families: ["spine"], frontages: [10] }, budget: 8 })).status, 400);
+  check("parametric-invalid-input-refused", (await post("/api/search", { snapshot: { ...parametric, site: { ...parametric.site, planning: { ...planning, homeWidth: 0 } } }, ranges: { families: ["spine"], frontages: [10] }, budget: 8 })).status, 400);
+  const triangle = { ...parametric, site: { ...parametric.site, boundary: [{ x: 0, y: 0 }, { x: 120, y: 50 }, { x: 0, y: 100 }] }, green: { x: 10, y: 20, w: 15, h: 10 } };
+  const tx = await post("/api/explain", { snapshot: triangle, base: { family: "spine", frontage: 10 }, other: { family: "spine", frontage: 11 } });
+  const tm = await tx.json();
+  check("parametric-triangle-explain", tx.status, 200);
+  check("parametric-triangle-road-area", tm.base.quantities.roadArea, 672);
+  const noCeiling = { ...parametric, site: { ...parametric.site, planning: { ...planning, priceLocked: false } }, assumptions: { ...parametric.assumptions, ceiling: 800000000 } };
+  const nc = await (await post("/api/search", { snapshot: noCeiling, ranges: { families: ["spine"], frontages: [10] }, budget: 8 })).json();
+  check("parametric-server-price-lock-off", nc.qualified, 1);
+  check("parametric-server-never-changes-price", nc.candidates[0].finance.revenue, 17000000000);
+
+  const edgeSnapshot = { ...parametric, version: 4, entrance: { ...snapshot.entrance, boundaryEdge: 3 }, site: { ...parametric.site, planning: { ...planning, minGreenArea: 480 } } };
+  const es = await post("/api/search", { snapshot: edgeSnapshot, ranges: { families: ["spine", "loop"], frontages: [10, 11] }, budget: 8 });
+  const em = await es.json();
+  check("boundary-edge-search-status", es.status, 200);
+  check("boundary-edge-server-measured-apron", em.candidates[0].quantities.roadArea, 723);
+  check("boundary-edge-only-supported-family", em.candidates.every(c => c.family === "spine"), true);
+  const ee = await post("/api/explain", { snapshot: edgeSnapshot, base: { family: "spine", frontage: 10 }, other: { family: "spine", frontage: 11 } });
+  const eem = await ee.json();
+  check("boundary-edge-explain-status", ee.status, 200);
+  check("boundary-edge-explain-same-geometry", eem.base.quantities.roadArea, 723);
+  check("boundary-edge-downgrade-refused", (await post("/api/search", { snapshot: { ...edgeSnapshot, version: 3 }, ranges: { families: ["spine"], frontages: [10] }, budget: 8 })).status, 400);
+
   // Meta adapter without a key: honest 503, never an attempted call.
   const meta = await fetch(`${base}/api/intent`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text: "hi", ctx: { selected: null, selectedPrice: 1 }, adapter: "meta" }) });
   check("meta-no-key", meta.status, 503);

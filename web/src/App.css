@@ -1211,3 +1211,47 @@ button.seg.on {
 
 .inspector-col .kv { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 .inspector-col .kv dd { text-align: left; margin-bottom: 8px; overflow-wrap: anywhere; }
+
+.canvas-workspace { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; min-width: 0; position: relative; }
+.optimization-status { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px; background: #393047; color: #f0e6ff; }
+.dynamic-inspector header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.inspector-col .dynamic-inspector h2 { margin: 0; font-size: 14px; letter-spacing: .05em; text-transform: uppercase; }
+.modebadge { font-size: 12px; padding: 3px 6px; border: 1px solid #645975; color: #d5c5ed; white-space: nowrap; }
+.selection-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; margin-bottom: 14px; }
+.inspector-col .selection-tabs button { font-size: 13px; padding: 5px 3px; min-height: 44px; line-height: 1.15; }
+.inspector-col .selection-tabs button[aria-pressed="true"] { border-color: #b7a1d9; background: #514460; color: #fff; }
+.selection-heading { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 10px; }
+.inspector-col .selection-heading h3 { margin: 0; font-size: 18px; }
+.metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; padding: 12px; margin: 0 0 16px; border: 1px solid #484d59; background: #1f2228; }
+.metric-grid dt { color: #b5b9c4; font-size: 12px; margin-bottom: 4px; }
+.metric-grid dd { margin: 0; font-size: 17px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.metric-grid div:nth-child(2) dd { color: #c3a9ee; }
+.inspector-col .parameter-section h3, .inspector-col .invariant-section h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; display: flex; justify-content: space-between; gap: 8px; margin: 0 0 12px; }
+.parameter-section h3 span { color: #c3a9ee; font-size: 12px; font-weight: 400; }
+.parameter { display: block; margin: 12px 0; }
+.parameter > span { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+.parameter output { font-weight: 650; white-space: nowrap; }
+.parameter input[type="range"] { display: block; width: 100%; margin: 0; height: 30px; accent-color: #b39bd6; cursor: ew-resize; }
+.parameter .range-limits { color: #a5aab6; font-size: 12px; margin-top: -2px; }
+.parameter-section, .invariant-section { border-bottom: 1px solid #464a55; padding-bottom: 12px; margin-bottom: 14px; }
+.invariant-section > label { display: flex; align-items: center; gap: 8px; border: 1px solid #474b57; background: #202329; padding: 8px; min-height: 44px; margin: 5px 0; font-size: 14px; }
+.invariant-section input { width: 18px; height: 18px; flex: none; accent-color: #aa8fd1; }
+.invariant-section label span { margin-left: auto; color: #c7b0e6; font-size: 12px; }
+.inspector-col .dynamic-inspector .note { font-size: 13px; line-height: 1.4; margin: 8px 0; }
+.template-editor > summary, .object-tools > summary { cursor: pointer; padding: 10px 0; font-size: 14px; }
+.template-editor svg { width: 100%; max-height: 220px; display: block; touch-action: none; }
+.template-ground { fill: #d9e7d1; stroke: #8c9e80; }
+.template-house { fill: #f2d97c; stroke: #544921; stroke-width: 2; }
+.template-editor text { fill: #25281f; font-size: 13px; pointer-events: none; }
+.template-handle { fill: #fff; stroke: #0b5fff; stroke-width: 3; cursor: nesw-resize; }
+.template-handle:focus { outline: 2px solid #fff; }
+.parameter-draft { border: 1px solid #a78bc9; background: #363040; padding: 10px; font-size: 14px; }
+.parameter-draft p { margin: 0 0 8px; }
+.object-tools { margin-bottom: 10px; border-bottom: 1px solid #464a55; }
+.optimization-action { margin: 14px 0; border: 1px solid #4b425a; padding: 12px; }
+.optimization-action > span { display: block; color: #bcb1cc; font-size: 12px; margin-bottom: 8px; }
+.inspector-col .optimization-action button { width: 100%; background: #a18ccf; color: #171321; font-weight: 650; }
+@media (max-width: 900px) { .canvas-workspace { flex: none; min-height: 300px; } }
+.docksummary .note { color: #bfc4cf; }
+.park-parameters h3 { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; }
+.park-parameters h3 span { color: #c3a9ee; font-size: 13px; font-weight: 400; }

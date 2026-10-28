@@ -64,7 +64,7 @@ if (imp.ok) {
 }
 
 // Refusals: every one carries a reason, nothing partially restores.
-check("refuse-version", parseProject({ ...saved, version: 3 }).ok, false);
+check("refuse-version", parseProject({ ...saved, version: 99 }).ok, false);
 check("refuse-format", parseProject({ ...saved, format: "nope" }).ok, false);
 check("refuse-string", parseProject("hello").ok, false);
 check("refuse-null", parseProject(null).ok, false);

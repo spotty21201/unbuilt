@@ -9,7 +9,7 @@ import type { Rect } from "./schema.ts";
 import type { Entrance } from "./geometry.ts";
 import type { StableEdits } from "./geometry.ts";
 
-export const SNAPSHOT_VERSION = 2;
+export const SNAPSHOT_VERSION = 4;
 
 // Staged capability envelope ids (v0.4 §8). Tools refuse what is absent.
 export const CAPABILITIES = [
@@ -19,13 +19,15 @@ export const CAPABILITIES = [
   "rect-lots",
   "poly-reshape-12",
   "entrance-west-east",
+  "entrance-boundary-edge",
   "open-space-lock",
+  "parametric-layout",
   "bounded-search",
   "explain-deltas",
 ] as const;
 
 export interface ScenarioSnapshot {
-  version: 1 | 2;
+  version: 1 | 2 | 3 | 4;
   site: SiteFrame;
   entrance: Entrance;
   green: Rect;
@@ -89,20 +91,23 @@ function rect(v: unknown): v is Rect {
 // against an envelope they do not implement).
 export function validateSnapshot(raw: unknown): { ok: true; snapshot: ScenarioSnapshot } | { ok: false; error: string } {
   if (!isRecord(raw)) return { ok: false, error: "snapshot must be an object" };
-  if (raw.version !== 1 && raw.version !== SNAPSHOT_VERSION) {
+  if (raw.version !== 1 && raw.version !== 2 && raw.version !== 3 && raw.version !== SNAPSHOT_VERSION) {
     return { ok: false, error: `unsupported snapshot version ${JSON.stringify(raw.version)}` };
   }
   if (!isRecord(raw.site) || !num(raw.site.w) || !num(raw.site.h) || raw.site.w <= 0 || raw.site.h <= 0) {
     return { ok: false, error: "site must be {positive w, h}" };
   }
   if (raw.site.boundary !== undefined && (!Array.isArray(raw.site.boundary) || !raw.site.boundary.every((p) => isRecord(p) && num(p.x) && num(p.y)))) return { ok: false, error: "boundary must contain finite coordinate pairs" };
-  if (raw.site.boundary !== undefined && raw.version !== 2) return { ok: false, error: "Polygon snapshots require version 2" };
+  if (raw.site.boundary !== undefined && raw.version === 1) return { ok: false, error: "Polygon snapshots require version 2 or later" };
+  if (raw.site.planning !== undefined && raw.version !== 3 && raw.version !== 4) return { ok: false, error: "Planning parameters require snapshot version 3" };
+  if ((raw.site.planning as Record<string, unknown> | undefined)?.minGreenArea !== undefined && raw.version !== 4) return { ok: false, error: "Minimum open space requires snapshot version 4" };
   const shapeErrors = siteFrameErrors(raw.site as unknown as SiteFrame);
   if (shapeErrors.length) return { ok: false, error: shapeErrors[0] };
   const e = raw.entrance;
   if (!isRecord(e) || (e.edge !== "west" && e.edge !== "east") || !num(e.offset) || !num(e.width) || e.width <= 0) {
     return { ok: false, error: "entrance must be {edge west|east, finite offset, positive width}" };
   }
+  if (e.boundaryEdge !== undefined && (raw.version !== 4 || !raw.site.planning || !Number.isInteger(e.boundaryEdge) || (e.boundaryEdge as number) < 0 || (e.boundaryEdge as number) >= (Array.isArray(raw.site.boundary) ? raw.site.boundary.length : 4))) return { ok: false, error: "entrance boundary edge is outside this live-planning site" };
   if (!rect(raw.green)) return { ok: false, error: "green must be a finite rect" };
   if (typeof raw.greenLocked !== "boolean") return { ok: false, error: "greenLocked must be a boolean" };
   if (!isRecord(raw.lots)) return { ok: false, error: "lots must be an object" };

@@ -4,7 +4,7 @@
 // fallback, and a labeled bounded hypothesis. The panel never invents
 // layouts, prices, or outcomes; every number names its source.
 import { useEffect, useRef, useState } from 'react';
-import { answerTrue, answerTry, clarifyText, routeQuestion } from '../../../src/assistant';
+import { answerTrue, answerTry, answerLimits, clarifyText, routeQuestion } from '../../../src/assistant';
 import type { AnswerSection, PlanFacts, TryContext } from '../../../src/assistant';
 import { snapshotHash } from '../../../src/snapshot';
 import type { ScenarioSnapshot } from '../../../src/snapshot';
@@ -104,6 +104,8 @@ export default function Assistant(props: Props) {
   const [sections, setSections] = useState<AnswerSection[] | null>(null);
   const [why, setWhy] = useState<WhyResult | null>(null);
   const [whyNote, setWhyNote] = useState<string | null>(null);
+  const [clientSummary, setClientSummary] = useState<string | null>(null);
+  const [investigationText, setInvestigationText] = useState(props.tryCtx.requestText);
   const [unready, setUnready] = useState<string | null>(null);
   // The parent keys each instance by scenario/comparison version, so answers
   // disappear in the same render as an input change. Unmount cancels requests.
@@ -114,7 +116,9 @@ export default function Assistant(props: Props) {
     inflight.current?.abort();
   }, []);
 
+  const cancelAnswer = () => { runId.current++; inflight.current?.abort(); };
   const showTrue = () => {
+    cancelAnswer();
     setSections(answerTrue(props.facts));
     setWhy(null);
     setWhyNote(null);
@@ -122,8 +126,10 @@ export default function Assistant(props: Props) {
     setState('reporting');
   };
 
-  const showTry = () => {
-    setSections(answerTry(props.tryCtx));
+  const showTry = (text = props.tryCtx.requestText) => {
+    cancelAnswer();
+    setInvestigationText(text);
+    setSections(answerTry({ ...props.tryCtx, requestText: text }));
     setWhy(null);
     setWhyNote(null);
     setUnready(null);
@@ -131,11 +137,12 @@ export default function Assistant(props: Props) {
   };
 
   const showWhy = async () => {
+    cancelAnswer(); setClientSummary(null);
     if (!props.previewSpec) {
       setSections(null);
       setWhy(null);
       setWhyNote(null);
-      setUnready('Nothing to compare yet — preview an option first, then ask why it changed.');
+      setUnready('No alternative is selected, so a measured comparison is not available. Choose “What could we try?” to prepare a search, then preview an option and ask why it changed.');
       setState('clarifying');
       return;
     }
@@ -228,12 +235,19 @@ export default function Assistant(props: Props) {
     }
   };
 
+  const showLimits = () => {
+    cancelAnswer(); setInvestigationText(props.tryCtx.requestText);
+    setSections(answerLimits(props.facts, props.tryCtx));
+    setWhy(null); setWhyNote(null); setUnready(null); setState('hypothesizing');
+  };
   const ask = () => {
     const r = routeQuestion(question);
-    if (r.route === 'true') showTrue();
-    else if (r.route === 'try') showTry();
+    if (r.route === 'limits') showLimits();
+    else if (r.route === 'true') showTrue();
+    else if (r.route === 'try') showTry(question);
     else if (r.route === 'why') void showWhy();
     else {
+      cancelAnswer();
       setSections(clarifyText());
       setWhy(null);
       setWhyNote(null);
@@ -251,7 +265,7 @@ export default function Assistant(props: Props) {
       <div className="askrow">
         <button type="button" onClick={showTrue}>What is true?</button>
         <button type="button" onClick={() => void showWhy()}>Why did it change?</button>
-        <button type="button" onClick={showTry}>What could we try?</button>
+        <button type="button" onClick={() => showTry()}>What could we try?</button>
       </div>
       <div className="instr">
         <label htmlFor="askq">Ask about {props.facts.label}</label>
@@ -277,7 +291,7 @@ export default function Assistant(props: Props) {
       ))}
       {state === 'hypothesizing' && (
         <div className="draftrow">
-          <button type="button" onClick={() => props.onSendRequest(props.tryCtx.requestText)}>
+          <button type="button" onClick={() => props.onSendRequest(investigationText)}>
             Send this investigation
           </button>
         </div>
@@ -294,6 +308,7 @@ export default function Assistant(props: Props) {
             <dt>Owner outcome</dt><dd>{formatGap(why.baseGap)} → {formatGap(why.otherGap)}</dd>
           </dl>
           <p className="note">{why.pricedAt}</p>
+          <label>Client explanation · editable measured summary<textarea className="client-explanation" aria-label="Client explanation · editable measured summary" rows={5} value={clientSummary ?? `${why.otherLabel} places ${why.otherN} homes, compared with ${why.baseN} in ${why.baseLabel}. ${why.otherN < why.baseN ? 'Fewer homes reduce modeled sales revenue at the same assumed selling price.' : why.otherN > why.baseN ? 'More homes increase modeled sales revenue at the same assumed selling price.' : 'The modeled home count is unchanged.'} Road area changes from ${formatM2(why.baseRoad)} to ${formatM2(why.otherRoad)}; equal area does not prove identical street geometry. After modeled costs and target surplus, land allowance changes from ${formatRp(why.baseAllow)} to ${formatRp(why.otherAllow)}. ${why.pricedAt} These are measured differences between two tested layouts. The specific binding spatial constraint and maximum site capacity have not been established.`} onChange={e => setClientSummary(e.target.value)} /></label>
           {(why.baseIssues.length > 0 || why.otherIssues.length > 0) && (
             <ul>
               {why.baseIssues.map((e, i) => <li key={`b${i}`}>{why.baseLabel}: {e}</li>)}

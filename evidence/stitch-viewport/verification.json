@@ -1,0 +1,40 @@
+{
+  "productionAsset": "/assets/index-DOmQ22Tu.js",
+  "productionStylesheet": "/assets/index-BWo_dAhx.css",
+  "engineChecks": 413,
+  "planningBrowserChecks": 59,
+  "viewportBrowserChecks": 38,
+  "totalBrowserChecks": 97,
+  "browserErrors": [],
+  "build": "passed",
+  "lint": "passed without warnings",
+  "actualBrowserZoom": 2,
+  "viewports": [
+    [
+      1600,
+      1280
+    ],
+    [
+      1440,
+      900
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      375,
+      812
+    ]
+  ],
+  "svgMatchesEntireViewport": true,
+  "scaleCalibratedAtAllViewports": true,
+  "modelConfigured": false,
+  "adapter": "mock",
+  "remainingGates": [
+    "physical touch device",
+    "independent human task/visual acceptance",
+    "real model round trip"
+  ],
+  "worktree": "uncommitted"
+}

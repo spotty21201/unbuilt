@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-28",
+  "productionAsset": "/assets/index-CoXDe_Rn.js",
+  "engineChecks": 413,
+  "planningChecks": 25,
+  "browserChecks": 59,
+  "browserErrors": [],
+  "build": "passed",
+  "lint": "passed without warnings",
+  "browserZoom": 2,
+  "modelConfigured": false,
+  "adapter": "mock",
+  "openGates": [
+    "real model round trip",
+    "physical touch hardware",
+    "independent human task validation",
+    "human visual acceptance and milestone sign-off"
+  ],
+  "worktree": "uncommitted"
+}

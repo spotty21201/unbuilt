@@ -128,9 +128,9 @@ export function runSearch(req: SearchRequest): SearchRun {
     const carried = editsForLayout(layout.parcels, req.lotEdits ?? {});
     const validationErrors = validateLayout(req.site, layout, carried);
     const greenHeld = checkGreenLock(req.locks.green, layout.green).length === 0;
-    const priceOk = req.selectedPrice <= req.locks.priceCeiling;
+    const priceOk = req.site.planning?.priceLocked === false || req.selectedPrice <= req.locks.priceCeiling;
     const failing = failingLots(layout.parcels, req.profile, { lotEdits: carried, roads: layout.roads });
-    const applicable = failing.length === 0;
+    const applicable = failing.length === 0 && layout.parcels.length > 0;
     const quantities = deriveQuantities(req.site, layout, carried);
     const econ = evaluateLayout(req.site, layout, req.selectedPrice, {
       ownerExpectation: req.locks.ownerExpectation,

@@ -1,0 +1,122 @@
+AssertionError [ERR_ASSERTION]: park release applies the last valid rerouted plan
+    at check (/home/spotty/projects/unbuilt/tests/dynamic-inspector-browser.cjs:8:35)
+    at /home/spotty/projects/unbuilt/tests/dynamic-inspector-browser.cjs:48:342
+Skip to plan
+UNBUILT
+Cedar Market · fictional prices
+Working plan
+Undo
+Redo
+Local tools · server online · no model
+12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Open space A
+Plan valid
+Saved in this browser
+
+Committed one change — Undo available.
+
+Select
+Pan
+Draw site
+Site
+Fit site
++
+−
+Expand plan
+Drag to pan · scroll to zoom
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+Open space A
+Entrance · west
+20 m
+N ↑ (illustrative)
+spine · 18 homes · Entrance west · local meters
+SPATIAL INSPECTOR
+Working plan
+Site
+Open space A
+Circulation
+Homes
+Open space A
+Editable
+Selected area
+480 m²
+Site share
+4.00%
+Modeled homes
+18
+Built area / home
+72.0 m²
+Park geometry
+Live preview
+Park width
+24 m
+Park depth
+20 m
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Lot frontage
+10 m
+8 m
+16 m
+Lot depth
+20 m
+12 m
+40 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+
+Clearance reserves land around the park. Whole lots must fit the boundary and modeled home setbacks.
+
+Housing template · 72 m² / home
+ACTIVE INVARIANT LOCKS
+Site boundary
+Editable
+Open space A
+Editable
+Price ceiling ≤ Rp850m
+Held
+
+Boundary and park stay fixed during search. Unlock them for direct edits. Price remains your assumption; the checkbox controls ceiling validation.
+
+Draw site
+Edit boundary
+Object tools & site source
+Ask about Open space A
+What should change?
+Send
+
+Accepted. Ran 8 layouts: 7 options meet the modeled constraints (valid geometry, profile fit and active locks; target surplus is reported separately). Owner expectation is a benchmark — see Options.
+
+Revise request
+Bounded local search · 8 layouts
+Run optimization ▷
+
+Produces reviewable alternatives. Preview and Apply keep you in control.
+
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+Details
+18 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp1.66bn
+Shortfall Rp8.34bn
+Last change vs previous: -2 homes · road +0 m² · allowance -Rp638m.

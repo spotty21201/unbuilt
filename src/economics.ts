@@ -1,5 +1,6 @@
 // UNBUILT layout economics (Coder-owned). Fictional labeled rates for Cedar Market.
 // Every cost-driving quantity comes from measured geometry or a declared allowance.
+import { homeArea } from "./planning.ts";
 import { evaluateFinance } from "./finance.ts";
 import type { FinanceResult } from "./schema.ts";
 import { deriveQuantities, type Layout, type LotEdits, type Quantities, type Site } from "./geometry.ts";
@@ -35,7 +36,7 @@ export function evaluateLayout(
   lotEdits: LotEdits = new Map(),
 ): LayoutEconomics {
   const quantities = deriveQuantities(site, layout, lotEdits);
-  const homeCost = quantities.n * RATES.homeBuiltArea * RATES.constructionPerM2;
+  const homeCost = quantities.n * homeArea(site.planning) * RATES.constructionPerM2;
   const roadCost = quantities.roadArea * RATES.roadPerM2;
   const greenCost = quantities.greenArea * RATES.greenWorksPerM2;
   const physical =

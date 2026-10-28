@@ -31,7 +31,7 @@ function cedarSnapshot() {
 }
 
 const good = cedarSnapshot();
-check("version-is-2", SNAPSHOT_VERSION, 2);
+check("version-is-4", SNAPSHOT_VERSION, 4);
 check("accepts-cedar", validateSnapshot(good).ok, true);
 
 // Key order in must not affect the hash: reversed top-level object hashes same.
@@ -52,7 +52,7 @@ check("hash-moves-on-selection", snapshotHash({ ...good, selected: null }) === s
 // bad lock flag, bad lots (>12 corners), bad spec, unknown profile,
 // non-finite assumption, bad provenance, unknown capability, bad selection.
 const bad = (mut) => validateSnapshot(mut(cedarSnapshot())).ok;
-check("rejects-version", bad((s) => ({ ...s, version: 3 })), false);
+check("rejects-version", bad((s) => ({ ...s, version: 99 })), false);
 check("rejects-nonobject", validateSnapshot(null).ok, false);
 check("rejects-site", bad((s) => ({ ...s, site: { w: -1, h: 100 } })), false);
 check("rejects-edge", bad((s) => ({ ...s, entrance: { edge: "north", offset: 1, width: 8 } })), false);

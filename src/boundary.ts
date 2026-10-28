@@ -1,7 +1,9 @@
 // Site outlines use local Cartesian meters; legacy rectangles remain valid.
-import { allFinite, isSimple, polyArea, rectCorners, type Pt } from "./polygon.ts";
+import { allFinite, isSimple, polyArea, rectCorners, segmentsCross, type Pt } from "./polygon.ts";
 
-export interface SiteFrame { w: number; h: number; boundary?: Pt[] }
+import { planningErrors, type PlanningParameters } from "./planning.ts";
+
+export interface SiteFrame { w: number; h: number; boundary?: Pt[]; planning?: PlanningParameters }
 export const MAX_SITE_VERTICES = 64;
 export function siteBoundary(site: SiteFrame): Pt[] {
   return site.boundary ?? rectCorners({ x: 0, y: 0, w: site.w, h: site.h });
@@ -17,6 +19,7 @@ export function boundaryErrors(pts: Pt[]): string[] {
 }
 export function siteFrameErrors(site: SiteFrame): string[] {
   if (!Number.isFinite(site.w) || !Number.isFinite(site.h) || site.w <= 0 || site.h <= 0 || site.w > 500 || site.h > 500) return ["Site extents must be positive and at most 500 m."];
+  if (site.planning !== undefined) { const errors = planningErrors(site.planning); if (errors.length) return errors; }
   if (!site.boundary) return [];
   const errors = boundaryErrors(site.boundary);
   if (errors.length) return errors;
@@ -25,4 +28,22 @@ export function siteFrameErrors(site: SiteFrame): string[] {
 }
 export function frameForBoundary(boundary: Pt[]): SiteFrame {
   return { w: Math.max(...boundary.map((p) => p.x)), h: Math.max(...boundary.map((p) => p.y)), boundary: boundary.map((p) => ({ ...p })) };
+}
+
+// Return edge indices for drawing and text feedback using the same predicate.
+export function boundaryConflictEdges(pts: Pt[]): number[] {
+  if (!allFinite(pts)) return [];
+  const conflicts = new Set<number>();
+  for (let i = 0; i < pts.length; i++) {
+    const a = pts[i], b = pts[(i + 1) % pts.length], c = pts[(i + 2) % pts.length];
+    if (Math.hypot(b.x - a.x, b.y - a.y) <= 0.001) conflicts.add(i);
+    const cross = (b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x);
+    const dot = (b.x - a.x) * (c.x - b.x) + (b.y - a.y) * (c.y - b.y);
+    if (Math.abs(cross) <= 0.001 && dot < -0.001) { conflicts.add(i); conflicts.add((i + 1) % pts.length); }
+    for (let j = i + 2; j < pts.length; j++) {
+      if (i === 0 && j === pts.length - 1) continue;
+      if (segmentsCross(a, b, pts[j], pts[(j + 1) % pts.length])) { conflicts.add(i); conflicts.add(j); }
+    }
+  }
+  return [...conflicts].sort((a, b) => a - b);
 }

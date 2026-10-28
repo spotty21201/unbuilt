@@ -1,0 +1,23 @@
+{
+  "before": {
+    "width": 1440,
+    "height": 901,
+    "dpr": 1,
+    "outerWidth": 1440
+  },
+  "after": {
+    "width": 720,
+    "height": 450,
+    "dpr": 2,
+    "outerWidth": 1440,
+    "overflow": 712
+  },
+  "browserZoom": 2,
+  "asset": "/assets/index-DOmQ22Tu.js",
+  "checks": [
+    "actual browser zoom equals 2",
+    "same window, half CSS width, DPR 2",
+    "no horizontal overflow",
+    "keyboard coordinate creation, close and apply at 200%"
+  ]
+}

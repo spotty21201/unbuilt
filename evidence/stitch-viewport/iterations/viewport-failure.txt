@@ -1,0 +1,126 @@
+locator.innerText: Error: Node is not an HTMLElement
+Call log:
+[2m  - waiting for locator('.park-callout')[22m
+
+    at /home/spotty/projects/unbuilt/tests/stitch-viewport-browser.cjs:19:156
+Skip to plan
+UNBUILT
+SITE WORKBENCH
+Cedar Market · fictional prices
+Working plan
+Plan
+Alternatives
+Parcels
+Undo
+Redo
+Local tools · server online · no model
+12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Open space A
+Plan valid
+Saved in this browser
+
+Ready. Working plan shows the current proposition.
+
+Select
+Pan
+Draw site
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A
+480 m²
+LOCKED GREEN
+Entrance · west
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Locked
+SELECTED AREA
+480 m²
+SITE SHARE
+4.00%
+MODELED HOMES
+20
+BUILT AREA / HOME
+60.0 m²
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Park width
+24 m
+Park depth
+20 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+Housing template · 60 m² / home
+ACTIVE INVARIANT LOCKS
+Site boundary
+Editable
+Open space A
+Locked
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Ask about Open space A
+WHAT SHOULD CHANGE?
+Send
+Bounded local search · 8 layouts
+Run optimization ▷
+
+Produces reviewable alternatives. Preview and Apply keep you in control.
+
+Draw site
+Edit boundary
+Object tools & site source
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn

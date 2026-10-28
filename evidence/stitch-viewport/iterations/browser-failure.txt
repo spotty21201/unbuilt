@@ -1,0 +1,108 @@
+AssertionError [ERR_ASSERTION]: irregular boundary area is hand-calculated 11000 m²
+    at check (/home/spotty/projects/unbuilt/tests/dynamic-inspector-browser.cjs:8:35)
+    at /home/spotty/projects/unbuilt/tests/dynamic-inspector-browser.cjs:57:260
+Skip to plan
+UNBUILT
+SITE WORKBENCH
+Cedar Market · fictional prices
+Working plan
+Plan
+Alternatives
+Parcels
+Undo
+Redo
+Local tools · server online · no model
+12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Site
+Plan valid
+Saved in this browser
+
+Draw a boundary: place vertices, then close the outline. Escape cancels.
+
+Select
+Pan
+Draw site
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+3,600 m² · boundary draft
+Apply
+Cancel
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A
+480 m²
+LOCKED GREEN
+Entrance · west
++
++
++
+1
+2
+3
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+X 0.3 m · Y 0.6 m
+SNAP 1 m
+Draw a site
+
+Drag corners or use coordinates below. Midpoint + handles add a corner. Delete a focused corner to remove it.
+
+3,600 m²
+Boundary area · 3 vertices
+Apply boundary
+Cancel boundary
+
+Local meters, x east / y north. Pointer edits snap to 1 m. Escape cancels. Undo/Redo steps through this draft; Apply creates one plan Undo step. Existing open space and manual lots are preserved when compatible; layout changes are checked on Apply.
+
+Vertex 1
+X (m)
+Y (m)
+Add after 1
+Remove 1
+Vertex 2
+X (m)
+Y (m)
+Add after 2
+Remove 2
+Vertex 3
+X (m)
+Y (m)
+Add after 3
+Remove 3
+EVALUATOR
+Details
+Boundary draft · accepted plan unchanged · Apply or Cancel to finish

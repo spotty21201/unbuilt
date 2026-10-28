@@ -5,7 +5,7 @@
 // dressed as understanding. Hypotheses stay labeled until the engine tests
 // them. No I/O, no model calls — the panel and (later) the server composer
 // share this module.
-export type AssistantQuestion = "true" | "why" | "try" | "clarify";
+export type AssistantQuestion = "true" | "why" | "try" | "limits" | "clarify";
 
 export interface PlanFacts {
   label: string;
@@ -46,10 +46,12 @@ export interface AnswerSection {
 export function routeQuestion(q: string): { route: AssistantQuestion; matched: string[] } {
   const t = q.toLowerCase();
   const has = (...words: string[]) => words.filter((w) => t.includes(w));
-  const why = has("why", "chang", "differ", "delta", "compar", "versus", "vs ");
-  if (why.length > 0) return { route: "why", matched: why };
   const tryQ = has("try", "suggest", "alternative", "option", "search", "run", "investigat", "what else", "what if", "could we");
   if (tryQ.length > 0) return { route: "try", matched: tryQ };
+  const limits = has("limiting", "bottleneck", "maximum", "capacity", "restrict");
+  if (limits.length > 0) return { route: "limits", matched: limits };
+  const why = has("why", "chang", "differ", "delta", "compar", "versus", "vs ");
+  if (why.length > 0) return { route: "why", matched: why };
   const tru = has("what is", "true", "tell me", "how many", "cost", "worth", "allowance", "shortfall", "show", "summar");
   if (tru.length > 0) return { route: "true", matched: tru };
   if (t.trim().length === 0) return { route: "clarify", matched: [] };
@@ -132,5 +134,23 @@ export function clarifyText(): AnswerSection[] {
         "I match keywords to these three, openly. I never invent layouts, prices, or outcomes.",
       ],
     },
+  ];
+}
+
+export function answerLimits(f: PlanFacts, c: TryContext): AnswerSection[] {
+  return [
+    { heading: 'What can be established about capacity', lines: [
+      `This layout places ${f.quantities.n} homes and leaves ${Math.round(f.quantities.unallocatedArea).toLocaleString('en-US')} m² unallocated. Unallocated land is not automatically accessible or buildable.`,
+      'I cannot identify the single limiting factor or maximum site capacity from this layout alone. No sensitivity study has been run for this question.',
+      'The generator keeps whole lots with fitting home footprints and street access inside the boundary, away from the park and its clearance. Its bounded orthogonal routing also limits the layouts explored.',
+      ...f.validity.errors.map(error => `Current blocker: ${error}`),
+      ...f.validity.warnings.map(warning => `Current caution: ${warning}`),
+      ...c.locksHeld.map(lock => `Held: ${lock}`),
+    ] },
+    { heading: 'Next supported investigation (not yet run)', lines: [
+      `Review a search of ${c.gridScope}. It tests frontage and circulation while keeping the current boundary, park, home template, lot depth and assumed selling price.`,
+      'Compare the measured home counts and land allowance. To investigate lot depth, park clearance or home size, preview one parameter at a time in the inspector and review the consequences before applying.',
+      'A poor result in this search does not prove the site cannot support a better scheme.',
+    ] },
   ];
 }

@@ -103,3 +103,79 @@ its preview the working area; Show options returns to the alternatives.
 Implementation evidence is not human design acceptance. The earlier paragraph
 saying there is intentionally no drawing tool is superseded by this revision;
 unsupported Split/Measure/Envelope/3D/export controls remain excluded.
+
+## Dynamic inspector and live planning — v0.6 (28 October 2026)
+
+The right panel now leads with Spatial inspector, object tabs and a four-cell
+measured summary. Geometric sliders, shared housing template, contextual park
+or cross-street tools and invariant checkboxes follow. The existing contextual
+object editors and site source remain under Object tools & site source; request
+review, the assistant and Run optimization remain accessible in the same panel.
+Readability and 44 px primary targets take priority over fitting every section
+into a short viewport; the panel scrolls while the drawing remains available.
+
+Violet controls signal planning parameters, blue marks selected/editable canvas
+geometry, and Live draft distinguishes previews from accepted work. Sliders and
+the template corner preview continuously; explicit Apply/Cancel controls define
+the transaction. Park handles remain screen-sized across zoom. Lots support
+Shift-click and Shift-Enter aggregation, plus existing single-lot editing.
+Responsive Spine may draw connected doglegs around a park and expose cross-street
+handles. No solar, legal FAR, map coordinates or decorative telemetry is added.
+The excluded-claims list above still applies.
+
+The implementation uses the existing React state/draft/history system and shared
+engine parameters, rather than introducing a separate event bus. A new project's
+geometry follows the responsive generator; legacy projects retain their original
+generator until the planner previews and applies conversion. See PRD v0.6 for the
+bounded routing and template capability envelope.
+
+## Current viewport and visual composition
+
+The supplied screen reference now governs the flush, square slate shell, pale
+blue-grey drawing field, narrow icon rail, floating tool palette, violet park
+cross-hatching, white area callout, technical boundary dimensions, cyan entrance
+tag and compact evaluator/status strips. This supersedes the earlier rounded
+shell, cream field and docked-toolbar layout. The accompanying design text's dark
+canvas and microscopic controls do not override the supplied image or readable
+interaction targets. Icons are local SVG linework; no prototype CDN scripts or
+external font dependencies are shipped.
+
+The SVG covers the entire available drawing viewport. Camera aspect and bounds
+come from its actual measured size and the real site outline. The old local
+projection is retained for coordinate/edit compatibility only; it no longer
+creates an inner screen rectangle or limits panning. Untouched views fit on
+resize; manually adjusted views preserve their centre and scale. Fit restores
+full-site framing with clearance for the floating toolbar, dimensions and scale.
+The metre grid, scale and cursor readouts use that same camera transform.
+
+The inspector uses a compact object picker and selection-specific controls.
+Selecting the park leads with its width/depth and park clearance; subdivision
+parameters and the shared housing template remain available in disclosures.
+Request review and bounded optimization precede advanced object/source tools.
+Every icon performs a supported action. Export JSON reuses the accepted-plan
+record export. Layer toggles affect grid, dimensions, footprints and labels only;
+these view changes never alter measured quantities. Boundary draft actions sit
+in the lower viewport clearance, so they cannot intercept top-corner placement.
+
+Short desktop panels scroll independently; mobile keeps a full-width drawing and
+places the inspector below it with an explicit controls toggle. The viewport and
+planning checks, source comparison and captures are in
+`evidence/stitch-viewport/README.md`. Human aesthetic acceptance remains open.
+
+## Planner-feedback interaction revision
+
+Boundary editing leads with a before/after decision review (homes, real street
+and park area, land allowance, owner outcome), then access placement and corner
+controls. Display unavailable outcomes explicitly before Apply. Highlight only
+the conflicting edges strongly in red, name their numbered endpoints and keep
+accepted geometry available for Cancel/Undo. Number draft edges for the entrance
+selector. Boundary gate markers follow the actual edge and keep screen-sized hit
+areas; road aprons use the existing circulation graphics.
+
+Site selection exposes access beside its measured summary. Park commitments say
+whether they preserve exact shape/location or minimum area. Successful search
+results show the bounded scope and whether allowance improves or worsens.
+Assistant capacity responses identify what remains unmeasured, and comparison
+text is editable and grounded in the two measured schemes. Save disclosure is
+available beside the saved state. On narrow screens a selected-object area and
+Inspect selection action open and focus the contextual inspector.

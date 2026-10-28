@@ -154,3 +154,90 @@ Follow-up verification repairs in this slice: imported frontage is bounded befor
 subdivision; assistant version changes clear answers during render via instance
 identity and abort on unmount; unavailable economics still report engine-derived
 quantities; invalid green drafts retain committed manual-lot quantities.
+
+## D36 — Shared planning parameters and responsive inspector
+
+Date: 2026-10-28. The owner requested the reference video's continuous geometric
+feedback and the supplied right-panel interaction specification. Shared planning
+parameters now travel on the site frame: lot depth, park clearance, one-floor
+home template dimensions, up to two cross streets and site/price lock states.
+Frontage remains in the plan spec and the existing park lock remains separate.
+This carries the inputs through history, search, canonical snapshots, server
+measurements, comparison and exports without a second source of truth.
+
+New projects opt into bounded park-aware orthogonal Spine routing. Whole lots
+are retained only if contained, accessible and able to fit the shared home.
+Loop retains its fixed-ring meaning and refuses incompatible cross streets or
+park crossings. This does not claim general road routing, turning geometry,
+ADU/roof/driveway modeling, solar exposure or zoning compliance. The green buffer
+control is explicitly named Park clearance: its reserved strip is unallocated,
+not silently counted as landscaped park or a site perimeter landscape.
+
+Parameter previews require explicit Apply/Cancel and commit as one history step.
+Valid park pointer release retains the existing one-gesture commit convention.
+Invalid previews keep accepted geometry/quantities. Site locking guards both
+polygon and rectangle entry points. Disabling the price lock removes that search
+veto without inventing a different selling price. An accepted explicit price cap
+re-enables enforcement. Search rejects zero-home options; target surplus remains
+a reported measure, not an undisclosed qualification requirement.
+
+Projects and snapshots with parameters use version 3; records use export version
+4. Earlier projects keep their original generators, are identified as legacy,
+and convert through a reviewable parameter draft. Old versions with new fields
+are refused. Changed inputs also permanently dismiss an old preview rather than
+reviving it when a field is restored. Current verification and remaining gates
+are recorded in `evidence/dynamic-inspector/README.md`.
+
+## D37 — Continuous drawing viewport and adopted visual composition
+
+The owner explicitly requested closer use of the supplied screen's composition,
+icons and colors, and removal of the invisible inner frame. The SVG now matches
+the entire measured drawing viewport. An aspect-correct camera fits the real site
+outline, supports edge-to-edge pan/zoom and preserves a manually chosen scale
+when the inspector width changes. The former projection coordinates remain only
+as a compatibility basis for edits; they are not a screen clipping rectangle.
+Metre grid, cursor positions, boundary lengths and scale bar share that transform.
+
+The shell uses sharp slate panels, a pale grid field, floating select/pan/view
+tools, local SVG icons, purple park cross-hatching and area callouts, a cyan gate
+tag, and compact evaluator/status strips. A contextual object picker and grouped
+parameters replace duplicate selection rows; proposal review and optimization
+come before advanced tools. View-layer switches are presentation only. The top
+export action calls the existing accepted-plan JSON export, without suggesting
+unsupported CAD formats. The user-supplied prototype is a design reference;
+its scripts, tiny controls and invented measurements are not application logic.
+
+Browser testing caught a draft-action banner intercepting upper boundary corners
+and a CSS-shrunk mobile scale bar. Draft actions now occupy the lower camera
+clearance, and the scale bar is checked against actual rendered site metres at
+all target widths. Current evidence is in `evidence/stitch-viewport/README.md`.
+
+## D38 — Boundary-edge access, consequence review and planner feedback
+
+The planner's feedback exposed a workflow failure: a valid irregular outline
+could be accepted before revealing the legacy west/east gate restriction. Live
+Spine now accepts an explicit boundary-edge index and distance from its first
+vertex. A short tapered polygon apron joins the sloping gate to the existing
+orthogonal visibility graph. The apron is contained, obstacle-free and disjoint
+from allocations; its polygon area feeds street costs and all derived results.
+This is bounded geometric access, not verified access to an external street.
+Fixed Loop remains restricted and explicitly directs these gates to Spine.
+
+Boundary drafts now use the same proposed site/access/park for preview and Apply,
+including newly drawn sites. The inspector leads with accepted/proposed measures
+and unavailable reasons; access checks and corner edits follow. Individual edge
+conflicts use the shared intersection predicate and numbered repair feedback.
+Mid-edge candidate checks run only on request and require the planner to choose.
+
+An optional minimum park area is distinct from fixing park shape/location.
+Search keeps the park and assumed price even when direct edits are unlocked.
+Successful search results disclose their fixed scope and measured allowance
+comparison. Local capacity answers admit the unmeasured binding constraint;
+measured comparisons offer editable client text without unsupported causes.
+Replacing an in-flight question aborts/invalidates its prior answer.
+
+New semantic fields require project/scenario version 4 and record version 5;
+older envelopes cannot carry fields they would silently ignore. Existing plans
+remain compatible. Saved-state disclosure and accepted-plan downloads describe
+the actual recovery contract; no saved-preview/history capability is implied.
+See `docs/PRD_v0.7.md` and `evidence/planner-improvements/README.md`.

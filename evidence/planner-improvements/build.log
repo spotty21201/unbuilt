@@ -1,0 +1,14 @@
+
+> web@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 39 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.48 kB │ gzip:   0.32 kB
+dist/assets/index-l_ZdQ3Zh.css   36.72 kB │ gzip:   8.48 kB
+dist/assets/index-BkFG3c-c.js   391.28 kB │ gzip: 121.47 kB
+
+✓ built in 200ms

@@ -77,3 +77,32 @@ The SPEC ONLY status above describes the original proposal. The implemented
 workspace and boundary interaction are now governed by `DESIGN.md` and
 `PRD_v0.5.md`; see `evidence/polygon-workbench/README.md` for current-build evidence.
 The original proposed layout and capability deferrals are retained as history.
+
+## Implemented visual viewport revision
+
+The latest supplied screen/HTML reference is implemented through the existing
+workbench rather than a separate static mockup. See the current viewport section
+in DESIGN.md for the adopted composition and `evidence/stitch-viewport/README.md`
+for screenshots and actual browser evidence. The light drafting field, square
+slate shell, floating tools, hatch/callout graphics, local stroke icons and
+measured annotations replace the earlier card-like presentation.
+
+The drawing fills its full DOM viewport with an aspect-correct camera; there is
+no inner fixed-size artboard. Viewport-edge pan, cursor-anchored zoom, fit,
+resize stability, touch, layer controls and scale calibration are checked in a
+separate browser suite. Existing planning generation, geometry, costs, accepted
+projects and draft/history contracts remain authoritative. No fabricated solar,
+zoning, CRS, saved scenario or DXF/IFC capabilities are introduced by the visual
+reference.
+
+### Planner-feedback extension
+
+Keep the continuous canvas composition. In boundary mode, lead the inspector
+with measured consequences before Apply; access placement follows. Use actual
+edge/corner numbers, highlight conflicting segments, and display the measured
+access apron as circulation. Site selection places access controls beside its
+summary. Minimum park area is separate from a fixed park shape/location.
+Successful options disclose what was explored and what stayed fixed. Mobile
+selection exposes its area and a direct inspector action. Saved-state disclosure
+must explain accepted-plan recovery and session-only work without implying that
+preview alternatives or undo history are saved. See PRD v0.7 for the scope.

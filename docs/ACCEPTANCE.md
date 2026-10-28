@@ -105,3 +105,48 @@ prove browser zoom; the new zoom test checks the actual browser zoom API.
 | AC-86 | P1 | Passed | Named desktop/mobile captures, actual 200% browser zoom, keyboard coordinate workflow, Chromium touch drawing/dragging |
 | AC-87 | P1 | Open | Physical touch device, human unrehearsed task, aesthetic acceptance and milestone sign-off |
 | AC-88 | P0 | Open | Real authorized model/tool/result round trip; live health says no model configured |
+
+## v0.6 dynamic inspector (28 October 2026)
+
+PRD v0.6 adds bounded park-aware routing and a shared housing template; it does
+not claim general arbitrary-site subdivision. Current evidence and exact test
+commands are in `evidence/dynamic-inspector/README.md`.
+
+| ID | Priority | Status | Evidence / limit |
+|---|---|---|---|
+| AC-89 | P0 | Passed | Live parameter/template previews, Apply/Cancel, one-step Undo/Redo and measured construction costs; planning/browser tests |
+| AC-90 | P0 | Passed | Park growth reroutes connected orthogonal Spine roads, removes impacted lots and reconciles true allocations; engine and pointer tests |
+| AC-91 | P0 | Passed | Triangle uses 6,000 m² true area, 672 m² contained road; impossible corridors/park crossings refuse generation; engine/server fixtures |
+| AC-92 | P1 | Passed | Up to two cross streets, inspector position and canvas handle share one draft; connected-network checks |
+| AC-93 | P0 | Passed | Versioned settings/lock persistence, record import/export, template-aware server explanation and scenario hashes; compatibility fixtures |
+| AC-94 | P1 | Passed | Site/park locks control edits, price lock controls qualification, explicit price cap re-locks; supported UI and engine paths |
+| AC-95 | P1 | Passed | Proposal/search/preview/apply, distinct comparison, cancelled optimization, stale/in-flight explanation rejection; browser evidence |
+| AC-96 | P1 | Passed | Readable desktop/laptop/mobile captures, actual 200% browser zoom, keyboard inputs and emulated touch template resize |
+| AC-97 | P1 | Open | Physical device and unrehearsed human task/aesthetic acceptance; no model configured, real model round trip remains open |
+
+## Current visual viewport verification
+
+| ID | Priority | Status | Evidence / limit |
+|---|---|---|---|
+| AC-98 | P0 | Passed | SVG fills the actual drawing viewport at 1600, 1440, 1024 and 375 px; no inner frame; viewport-edge mouse/touch pan and full-site fit |
+| AC-99 | P0 | Passed | Cursor-anchored zoom, manual scale preserved on inspector resize, measured scale calibration at all target sizes; viewport browser suite |
+| AC-100 | P1 | Passed | Supplied visual composition adopted: slate shell, pale grid, floating tools, local icons, park hatch/callout, dimensions, entrance tag and evaluator strip; screenshots inspected |
+| AC-101 | P1 | Passed | Layer toggles change graphics without changing quantities; toolbar/rail synchronize; real JSON export action |
+| AC-102 | P0 | Passed | All 59 planning browser checks retained with the contextual object picker; root engine/server checks, build and lint pass |
+| AC-103 | P1 | Passed | Actual browser 200% zoom and keyboard boundary workflow; touch edge pan and controls access |
+| AC-104 | P1 | Open | Physical device, independent human task/aesthetic acceptance and real model round trip remain open; see current evidence |
+
+## Residential planner feedback verification
+
+| ID | Priority | Status | Evidence / limit |
+|---|---|---|---|
+| AC-105 | P0 | Passed within scope | Select/drag entrances on sloping boundary edges; contained/disjoint apron, connected Spine roads, true street area/costs; Loop restriction explicit |
+| AC-106 | P0 | Passed | Newly drawn and edited outlines show accepted/proposed quantities and economics before Apply; unavailable layouts disclosed before approval |
+| AC-107 | P1 | Passed | Conflicting segments and numbered endpoints highlighted; coordinate repair, disabled invalid Apply and Cancel preserve accepted plan |
+| AC-108 | P1 | Passed | Minimum park area independent of exact shape/location; enforced in geometry, search, saved data and server scenarios |
+| AC-109 | P1 | Passed | Capacity questions state unmeasured limits; investigation phrasing routes to a reviewable proposal rather than requiring comparison |
+| AC-110 | P1 | Passed | Successful search discloses scope and measured allowance trade-offs; server comparison provides editable evidence-limited client explanation |
+| AC-111 | P1 | Passed | Version 4 projects/scenarios, record version 5, downgrade refusals; polygon access and applied alternative download/import/reload tested |
+| AC-112 | P1 | Passed | Selection reveals contextual summary; mobile lot area/action opens and focuses inspector; desktop/laptop/mobile and actual 200% zoom verified |
+| AC-113 | P0 | Passed | 438 root checks, 138 browser checks plus actual zoom checks, production build/lint, screenshots inspected; `evidence/planner-improvements/README.md` |
+| AC-114 | P1 | Open | Real model round trip, physical touch hardware and follow-up independent human acceptance remain open; no general route/capacity/access-compliance claim |

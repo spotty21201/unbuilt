@@ -14,7 +14,7 @@ export interface PersistedDecision {
 export interface PersistedState {
   spec: { family: string; frontage: number };
   green: { x: number; y: number; w: number; h: number };
-  entrance: { edge: string; offset: number; width: number };
+  entrance: { edge: string; offset: number; width: number; boundaryEdge?: number };
   lots: Record<string, { x: number; y: number }[]>;
   profileId: string;
   greenLocked: boolean;
@@ -27,7 +27,7 @@ export interface PersistedState {
 
 export interface PersistedProject {
   format: "unbuilt-project";
-  version: 1 | 2;
+  version: 1 | 2 | 3 | 4;
   savedAt: string;
   state: PersistedState;
   decisions: PersistedDecision[];
@@ -37,7 +37,7 @@ export interface PersistedProject {
 export function serializeProject(state: PersistedState, decisions: PersistedDecision[]): PersistedProject {
   return {
     format: "unbuilt-project",
-    version: state.baseSpec.boundary ? 2 : 1,
+    version: state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : state.baseSpec.planning ? 3 : state.baseSpec.boundary ? 2 : 1,
     savedAt: new Date().toISOString(),
     state: JSON.parse(JSON.stringify(state)) as PersistedState,
     decisions: decisions.map((d) => ({ ...d })),
@@ -78,11 +78,11 @@ function pts(v: unknown): v is { x: number; y: number }[] {
 // wrong shapes) refuses with a reason instead of a partial restore.
 export function parseProject(raw: unknown): { ok: true; project: PersistedProject } | Fail {
   if (!isRecord(raw)) return fail("not a project object");
-  if (raw.format === "UNBUILT decision record" || raw.exportVersion === 2 || raw.exportVersion === 3) {
+  if (raw.format === "UNBUILT decision record" || raw.exportVersion === 2 || raw.exportVersion === 3 || raw.exportVersion === 4 || raw.exportVersion === 5) {
     return fromDecisionRecord(raw);
   }
   if (raw.format !== "unbuilt-project") return fail(`unknown format ${JSON.stringify(raw.format)}`);
-  if (raw.version !== 1 && raw.version !== 2) return fail(`unsupported project version ${JSON.stringify(raw.version)}: created by a newer app`);
+  if (raw.version !== 1 && raw.version !== 2 && raw.version !== 3 && raw.version !== 4) return fail(`unsupported project version ${JSON.stringify(raw.version)}: created by a newer app`);
   if (!isRecord(raw.state)) return fail("missing state");
   const st = raw.state;
   if (!isRecord(st.spec) || (st.spec.family !== "spine" && st.spec.family !== "loop") || !num(st.spec.frontage) || st.spec.frontage < 1 || st.spec.frontage > 500) {
@@ -97,6 +97,7 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
   ) {
     return fail("state.entrance must be {edge west|east, numeric offset/width}");
   }
+  if (st.entrance.boundaryEdge !== undefined && (raw.version !== 4 || !(st.baseSpec as Record<string, unknown>)?.planning || !Number.isInteger(st.entrance.boundaryEdge) || (st.entrance.boundaryEdge as number) < 0 || (st.entrance.boundaryEdge as number) >= (Array.isArray((st.baseSpec as Record<string, unknown>)?.boundary) ? ((st.baseSpec as Record<string, unknown>).boundary as unknown[]).length : 4))) return fail("Entrance boundary edge must address a live-planning site edge.");
   if (!isRecord(st.lots)) return fail("state.lots must be an object");
   for (const [k, v] of Object.entries(st.lots)) {
     if (!pts(v)) return fail(`state.lots[${k}] must be 3-${MAX_LOT_VERTICES} finite corners`);
@@ -109,7 +110,9 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
     return fail("state.baseSpec must be {numeric w, h}");
   }
   if (st.baseSpec.boundary !== undefined && (!Array.isArray(st.baseSpec.boundary) || !st.baseSpec.boundary.every((p) => isRecord(p) && num(p.x) && num(p.y)))) return fail("boundary must contain finite coordinate pairs");
-  if (st.baseSpec.boundary !== undefined && raw.version !== 2) return fail("Polygon projects require project version 2.");
+  if (st.baseSpec.boundary !== undefined && raw.version === 1) return fail("Polygon projects require project version 2 or later.");
+  if (st.baseSpec.planning !== undefined && raw.version !== 3 && raw.version !== 4) return fail("Planning parameters require project version 3.");
+  if ((st.baseSpec.planning as Record<string, unknown> | undefined)?.minGreenArea !== undefined && raw.version !== 4) return fail("Minimum open space requires project version 4.");
   const shapeErrors = siteFrameErrors(st.baseSpec as unknown as SiteFrame);
   if (shapeErrors.length) return fail(shapeErrors[0]);
   if (!Array.isArray(raw.decisions) || !raw.decisions.every((d) => isRecord(d) && typeof d.t === "string" && typeof d.kind === "string" && typeof d.detail === "string")) {
@@ -145,12 +148,12 @@ function fromDecisionRecord(raw: Record<string, unknown>): { ok: true; project: 
     ceilingS: "",
     ownerS: "",
     targetS: "",
-    baseSpec: { w, h, ...(site.boundary !== undefined ? { boundary: site.boundary as SiteFrame["boundary"] } : {}) },
+    baseSpec: { w, h, ...(site.planning !== undefined ? { planning: site.planning as SiteFrame["planning"] } : {}), ...(site.boundary !== undefined ? { boundary: site.boundary as SiteFrame["boundary"] } : {}) },
   };
   if (!rect(state.green)) return fail("decision record has no usable open-space geometry");
   const ent = st.entrance;
   if (isRecord(ent) && (ent.edge === "west" || ent.edge === "east") && num(ent.offset) && num(ent.width)) {
-    state.entrance = { edge: ent.edge, offset: ent.offset, width: ent.width };
+    state.entrance = { edge: ent.edge, offset: ent.offset, width: ent.width, ...(ent.boundaryEdge !== undefined ? { boundaryEdge: ent.boundaryEdge as number } : {}) };
   }
   const rl = (plan as Record<string, unknown>).lotReshapes;
   if (isRecord(rl)) {
@@ -167,7 +170,7 @@ function fromDecisionRecord(raw: Record<string, unknown>): { ok: true; project: 
   const events = Array.isArray(raw.events) ? raw.events : [];
   return parseProject({
       format: "unbuilt-project",
-      version: site.boundary !== undefined ? 2 : 1,
+      version: state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : site.planning !== undefined ? 3 : site.boundary !== undefined ? 2 : 1,
       savedAt: new Date().toISOString(),
       state,
       decisions: events.filter((d) => isRecord(d)).map((d) => ({ t: String((d as Record<string, unknown>).t ?? ""), kind: String((d as Record<string, unknown>).kind ?? ""), detail: String((d as Record<string, unknown>).detail ?? "") })),

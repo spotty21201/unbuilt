@@ -1,8 +1,10 @@
-// UNBUILT geometry core (M1, Coder-owned). Flat rectangular site, axis-aligned
-// roads/parcels/green, meters. Exact rect-union math; no rounded intermediates.
+// UNBUILT geometry core. Local-metre site polygons with rectangular roads,
+// parcels and park; exact union math and no rounded intermediates.
 // Manually reshaped lots are simple polygons over generated rects (see
 // polygon.ts); quantities, validation, and frontage use true polygon math.
+import { accessConnector, gateSegment } from './access.ts';
 import { siteArea, siteBoundary, siteFrameErrors } from "./boundary.ts";
+import { homeArea, type PlanningParameters } from "./planning.ts";
 import type { Rect } from "./schema.ts";
 import {
   MAX_LOT_VERTICES,
@@ -46,7 +48,8 @@ export function editsForLayout(parcels: Rect[], stable: StableEdits): LotEdits {
 export type EntranceEdge = "west" | "east";
 
 export interface Entrance {
-  edge: EntranceEdge; // supported site edge carrying the gate
+  edge: EntranceEdge; // legacy cardinal edge, retained for saved rectangles
+  boundaryEdge?: number; // polygon edge index; offset is measured from its first vertex
   offset: number; // gate center along the edge, meters from the south corner
   width: number; // gate width along the edge, meters
 }
@@ -54,6 +57,7 @@ export interface Entrance {
 export interface Site {
   w: number;
   h: number;
+  planning?: PlanningParameters;
   boundary?: Pt[]; // absent on legacy rectangular projects
   entrance: Entrance;
   green: Rect; // reserved green region (locked shape+location candidate)
@@ -66,6 +70,7 @@ export interface Layout {
   green: Rect;
   unallocatedNote: string;
   supportError?: string;
+  accessConnector?: Pt[]; // measured entrance apron, disjoint from orthogonal roads
 }
 
 export interface Quantities {
@@ -97,6 +102,7 @@ export function entranceSpan(site: Site): { lo: number; hi: number } {
 export function entranceErrors(site: Site): string[] {
   const errors: string[] = [];
   const e = site.entrance;
+  if (e.boundaryEdge !== undefined && (!site.planning || !Number.isInteger(e.boundaryEdge) || e.boundaryEdge < 0 || e.boundaryEdge >= siteBoundary(site).length)) return ["Choose a boundary edge on a live-planning site."];
   if (e.edge !== "west" && e.edge !== "east") {
     errors.push(`Entrance edge "${e.edge}" is not supported in this increment (west and east only).`);
     return errors;
@@ -106,10 +112,10 @@ export function entranceErrors(site: Site): string[] {
     return errors;
   }
   const { lo, hi } = entranceSpan(site);
-  if (lo < -TOL || hi > site.h + TOL) {
+  if (lo < -TOL || hi > (gateSegment(site)?.length ?? 0) + TOL) {
     errors.push("Entrance gate must sit on its site edge, clear of the corners.");
   }
-  if (site.boundary && errors.length === 0) {
+  if (site.boundary && e.boundaryEdge === undefined && errors.length === 0) {
     const x = e.edge === "east" ? site.w : 0;
     const spans = siteBoundary(site).flatMap((a, i, pts) => {
       const b = pts[(i + 1) % pts.length];
@@ -134,14 +140,21 @@ export function rectArea(r: Rect): number {
 // Placed home footprint for a generated rect lot: 10x6 centered when it fits
 // side setbacks, else rotated, else none. The single placement rule shared by
 // validation and the plan canvas; reshaped lots must keep this footprint.
-export function placeFootprint(p: Rect): Rect | null {
-  const fw = p.w - 2 * SETBACK.side;
-  const fd = p.h - SETBACK.front - SETBACK.rear;
-  let hw = HOUSE.w;
-  let hd = HOUSE.h;
+export function placeFootprint(p: Rect, planning?: PlanningParameters, roads?: Rect[]): Rect | null {
+  const house = planning ? { w: planning.homeWidth, h: planning.homeDepth } : HOUSE;
+  const vertical = !!planning && !!roads?.some((r) =>
+    (Math.abs(p.x + p.w - r.x) <= TOL || Math.abs(r.x + r.w - p.x) <= TOL)
+    && Math.min(p.y + p.h, r.y + r.h) - Math.max(p.y, r.y) > TOL);
+  const horizontal = !!roads?.some((r) =>
+    (Math.abs(p.y + p.h - r.y) <= TOL || Math.abs(r.y + r.h - p.y) <= TOL)
+    && Math.min(p.x + p.w, r.x + r.w) - Math.max(p.x, r.x) > TOL);
+  const fw = p.w - (vertical ? SETBACK.front + SETBACK.rear : 2 * SETBACK.side);
+  const fd = p.h - (vertical && !horizontal ? 2 * SETBACK.side : SETBACK.front + SETBACK.rear);
+  let hw = house.w;
+  let hd = house.h;
   if (!(hw <= fw + TOL && hd <= fd + TOL)) {
-    hw = HOUSE.h;
-    hd = HOUSE.w;
+    hw = house.h;
+    hd = house.w;
     if (!(hw <= fw + TOL && hd <= fd + TOL)) return null;
   }
   return { x: p.x + (p.w - hw) / 2, y: p.y + (p.h - hd) / 2, w: hw, h: hd };
@@ -174,11 +187,11 @@ export function validateLotPoly(
   }
   if (!isSimple(pts)) return ["lot edges cross or repeat — keep a simple outline"];
   if (!polyInsidePoly(pts, siteBoundary(site))) return ["lot must sit inside the site"];
-  if (polyArea(pts) < HOUSE.w * HOUSE.h - AREA_TOL) {
-    return ["lot is smaller than one home footprint (60 m²)"];
+  if (polyArea(pts) < homeArea(site.planning) - AREA_TOL) {
+    return [`lot is smaller than one home footprint (${homeArea(site.planning)} m²)`];
   }
   const orig = layout.parcels[index];
-  const fp = placeFootprint(orig);
+  const fp = placeFootprint(orig, site.planning, layout.roads);
   if (!fp) return ["this lot has no placed home to keep — reshaping is unsupported here"];
   if (!rectInsidePoly(fp, pts)) return ["reshape would swallow the placed home — homes never move in this increment"];
   // Declared side setback (2 m) enforced on the actual edited shape: the
@@ -190,10 +203,12 @@ export function validateLotPoly(
     return ["reshape leaves less than the 2 m side setback around the placed home"];
   }
   if (lotRoadFrontage(layout.roads, pts) <= TOL) return ["reshaped lot loses road access"];
+  if (layout.accessConnector && polysOverlap(pts, layout.accessConnector)) return ["reshaped lot overlaps the entrance apron"];
   for (const road of layout.roads) {
     if (polyOverlapsRect(pts, road)) return ["reshaped lot overlaps a road"];
   }
   if (polyOverlapsRect(pts, layout.green)) return ["reshaped lot overlaps the open space"];
+  if (site.planning && polyOverlapsRect(pts, expandedGreen(site))) return ["reshaped lot enters the park clearance"];
   for (let j = 0; j < layout.parcels.length; j++) {
     if (j === index || skip?.has(j)) continue;
     const clash = layout.parcels[j];
@@ -279,10 +294,110 @@ function unavailableLayout(family: Layout["family"], reason: string): Layout {
   return { family, roads: [], parcels: [], green: { x: 0, y: 0, w: 0, h: 0 }, supportError: reason, unallocatedNote: "Layout unavailable; all site area remains unallocated." };
 }
 
+function expandedGreen(site: Site): Rect {
+  const b = site.planning?.greenBuffer ?? 0;
+  return { x: site.green.x - b, y: site.green.y - b, w: site.green.w + 2 * b, h: site.green.h + 2 * b };
+}
+
+// A bounded orthogonal visibility graph routes six-metre corridors around
+// one rectangular park. Whole lots are retained; sloping streets are unmodeled.
+function generateResponsiveSpine(site: Site, frontage: number): Layout {
+  const error = siteFrameErrors(site)[0] ?? entranceErrors(site)[0];
+  if (error) return unavailableLayout("spine", error);
+  if (!insideSite(site.green, site) || site.green.w <= 0 || site.green.h <= 0) return unavailableLayout("spine", "Move or resize Open space A inside the boundary.");
+  if (site.entrance.width < ROAD_W) return unavailableLayout("spine", "The entrance must be at least 6 m wide for the modeled street.");
+  const p = site.planning!;
+  const obstacle = expandedGreen(site);
+  const west = site.entrance.edge === "west";
+  const access = site.entrance.boundaryEdge === undefined ? null : accessConnector(site, obstacle);
+  if (site.entrance.boundaryEdge !== undefined && !access) return unavailableLayout("spine", "No contained entrance apron fits this edge and position. Move the gate farther from the corner, choose another edge, or move the park.");
+  const entry = access?.entry ?? { x: west ? 0 : site.w, y: site.entrance.offset };
+  const ys = [...new Set([entry.y, obstacle.y - 3, obstacle.y + obstacle.h + 3, 3, site.h - 3, ...p.streets])].filter((y) => y >= 3 && y <= site.h - 3);
+  const xs = [entry.x, 0, site.w, obstacle.x - 3, obstacle.x + obstacle.w + 3, Math.min(site.w - 3, frontage + 3), Math.max(3, site.w - frontage - 3)];
+  // Find corridor ends against the actual polygon, never its bounding box.
+  for (const y of ys) {
+    for (let d = 0; d <= site.w - 6; d++) {
+      const x = west ? site.w - d : d;
+      const cap = { x: west ? x - 6 : x, y: y - 3, w: 6, h: 6 };
+      if (insideSite(cap, site) && !intersect(cap, obstacle)) { xs.push(x); break; }
+    }
+  }
+  const xx = [...new Set(xs)].filter((x) => x >= 0 && x <= site.w).sort((a, b) => a - b);
+  const yy = ys.sort((a, b) => a - b);
+  const nodes = xx.flatMap((x) => yy.map((y) => ({ x, y })));
+  const start = nodes.findIndex((n) => n.x === entry.x && n.y === entry.y);
+  if (start < 0) return unavailableLayout("spine", "The entrance needs room for a 6 m road corridor.");
+  const corridor = (a: Pt, b: Pt): Rect => a.y === b.y
+    ? { x: Math.min(a.x, b.x), y: a.y - 3, w: Math.abs(a.x - b.x), h: 6 }
+    : { x: a.x - 3, y: Math.min(a.y, b.y), w: 6, h: Math.abs(a.y - b.y) };
+  const neighbors = nodes.map((a, i) => nodes.flatMap((b, j) => {
+    if (i === j || (a.x !== b.x && a.y !== b.y)) return [];
+    const r = corridor(a, b);
+    return insideSite(r, site) && !intersect(r, obstacle) && (!access || !polyOverlapsRect(access.polygon, r)) ? [{ j, length: r.w + r.h - 6 }] : [];
+  }));
+  const distances = nodes.map(() => Infinity);
+  const previous = nodes.map(() => -1);
+  distances[start] = 0;
+  const pending = new Set(nodes.map((_, i) => i));
+  while (pending.size) {
+    let next = -1;
+    for (const i of pending) if (next === -1 || distances[i] < distances[next]) next = i;
+    if (!Number.isFinite(distances[next])) break;
+    pending.delete(next);
+    for (const { j, length } of neighbors[next]) if (distances[next] + length < distances[j]) {
+      distances[j] = distances[next] + length; previous[j] = next;
+    }
+  }
+  const roads: Rect[] = [];
+  const addPath = (target: number) => {
+    let i = target;
+    while (previous[i] !== -1) {
+      const r = corridor(nodes[i], nodes[previous[i]]);
+      if (!roads.some((road) => lotKey(road) === lotKey(r))) roads.push(r);
+      i = previous[i];
+    }
+  };
+  const rank = (i: number) => access?.axis === "y" ? Math.abs(nodes[i].y - entry.y) : Math.abs(nodes[i].x - entry.x);
+  const reachable = nodes.map((_, i) => i).filter((i) => Number.isFinite(distances[i]) && rank(i) >= 6);
+  reachable.sort((a, b) => rank(b) - rank(a) || distances[a] - distances[b]);
+  if (!reachable.length) return unavailableLayout("spine", "No connected 6 m street fits between the entrance, park buffer and boundary. Move the park or entrance.");
+  addPath(reachable[0]);
+  for (const y of p.streets) {
+    const row = reachable.filter((i) => nodes[i].y === y).sort((a, b) => rank(b) - rank(a) || distances[a] - distances[b]);
+    if (!row.length) return unavailableLayout("spine", `No connected cross street fits at ${y} m. Move or remove that street.`);
+    addPath(row[0]);
+  }
+  const parcels: Rect[] = [];
+  const addLot = (lot: Rect) => {
+    if (insideSite(lot, site) && placeFootprint(lot, p, roads) && !intersect(lot, obstacle)
+      && (!access || !polyOverlapsRect(access.polygon, lot))
+      && !roads.some((r) => intersect(lot, r)) && !parcels.some((r) => intersect(lot, r))) parcels.push(lot);
+  };
+  for (const r of roads) {
+    if (r.h === 6) {
+      for (let x = r.x; x + frontage <= r.x + r.w + TOL; x += frontage) {
+        addLot({ x, y: r.y - p.lotDepth, w: frontage, h: p.lotDepth });
+        addLot({ x, y: r.y + 6, w: frontage, h: p.lotDepth });
+      }
+    } else {
+      for (let y = r.y; y + frontage <= r.y + r.h + TOL; y += frontage) {
+        addLot({ x: r.x - p.lotDepth, y, w: p.lotDepth, h: frontage });
+        addLot({ x: r.x + 6, y, w: p.lotDepth, h: frontage });
+      }
+    }
+  }
+  return { family: "spine", roads, parcels, green: { ...site.green }, ...(access ? { accessConnector: access.polygon } : {}),
+    unallocatedNote: "Park-aware orthogonal streets; only complete, accessible lots with fitting homes are modeled. Buffer strips and remaining land are unallocated. Turning geometry is unmodeled." };
+}
+
 // Spine: one east-west road at entrance height to the east boundary;
 // 20 m lot rows front it north and south.
 export function generateSpine(site: Site, frontage = 10): Layout {
   if (!Number.isFinite(frontage) || frontage < 1 || frontage > 500) return unavailableLayout("spine", "Lot frontage must be between 1 and 500 m.");
+  if (site.planning !== undefined) { const errors = siteFrameErrors(site); if (errors.length) return unavailableLayout("spine", errors[0]); }
+  if (site.green.w * site.green.h + AREA_TOL < (site.planning?.minGreenArea ?? 0)) return unavailableLayout("spine", `Open space must keep at least ${site.planning!.minGreenArea} m². Enlarge the park or explicitly change the minimum.`);
+  if (site.entrance.boundaryEdge !== undefined && !site.planning) return unavailableLayout("spine", "Enable live planning to use a boundary-edge entrance.");
+  if (site.planning !== undefined) return generateResponsiveSpine(site, frontage);
   const roadY = site.entrance.offset - ROAD_W / 2;
   const road: Rect = { x: 0, y: roadY, w: site.w, h: ROAD_W };
   const parcels: Rect[] = [];
@@ -300,6 +415,10 @@ export function generateSpine(site: Site, frontage = 10): Layout {
 // Loop: ring road scaled to the site + entrance connector at entrance
 // height; interior lots front the ring.
 export function generateLoop(site: Site, rowFrontage = 11): Layout {
+  if (site.planning !== undefined) { const errors = siteFrameErrors(site); if (errors.length) return unavailableLayout("loop", errors[0]); }
+  if (site.green.w * site.green.h + AREA_TOL < (site.planning?.minGreenArea ?? 0)) return unavailableLayout("loop", `Open space must keep at least ${site.planning!.minGreenArea} m². Enlarge the park or explicitly change the minimum.`);
+  if (site.entrance.boundaryEdge !== undefined) return unavailableLayout("loop", "Boundary-edge entrances use park-aware Spine routing. Choose Spine; the fixed Loop only connects legacy west/east gates.");
+  if (site.planning?.streets.length) return unavailableLayout("loop", "Additional cross streets are supported by Spine. Remove them before using the fixed loop.");
   if (!Number.isFinite(rowFrontage) || rowFrontage < 1 || rowFrontage > 500) return unavailableLayout("loop", "Lot frontage must be between 1 and 500 m.");
   const roadY = site.entrance.offset - ROAD_W / 2;
   const connX = site.entrance.edge === "east" ? site.w - 16 : 0;
@@ -320,10 +439,14 @@ export function generateLoop(site: Site, rowFrontage = 11): Layout {
       parcels.push(lot);
     }
   }
+  const reserved = site.planning ? expandedGreen(site) : site.green;
+  const depth = site.planning?.lotDepth ?? 20;
+  const adjusted = site.planning ? parcels.map((p) => p.h === 20 ? { ...p, h: depth, y: p.y > site.h / 2 ? p.y + 20 - depth : p.y } : p).filter((p) => !intersect(p, reserved) && placeFootprint(p, site.planning, roads)) : parcels;
+  if (site.planning && roads.some((r) => intersect(r, reserved))) return unavailableLayout("loop", "The fixed loop crosses the park buffer. Use Spine for park-aware routing, or move the park.");
   return fitToBoundary(site, {
     family: "loop",
     roads,
-    parcels,
+    parcels: adjusted,
     green: { ...site.green },
     unallocatedNote: "Outer strips and the road-enclosed middle block without frontage stay explicit remainder.",
   });
@@ -332,7 +455,7 @@ export function generateLoop(site: Site, rowFrontage = 11): Layout {
 // shortcut: roads remain axis aligned; add polygon road routing before serving
 // shapes where the complete generated network or reserved green cannot fit.
 function fitToBoundary(site: Site, layout: Layout): Layout {
-  if (!site.boundary) return layout;
+  if (!site.boundary && !site.planning) return layout;
   const error = siteFrameErrors(site)[0] ?? entranceErrors(site)[0]
     ?? ([...layout.roads, layout.green].some((r) => !Number.isFinite(r.w + r.h + r.x + r.y) || r.w <= 0 || r.h <= 0) ? "This boundary is too small for the generated roads and open space." : undefined)
     ?? (layout.roads.some((r) => !insideSite(r, site)) ? "The generated road network leaves this boundary. Try another circulation family or reshape the boundary; sloping road routing is not available." : undefined)
@@ -342,7 +465,7 @@ function fitToBoundary(site: Site, layout: Layout): Layout {
 }
 
 export function deriveQuantities(site: Site, layout: Layout, lotEdits: LotEdits = new Map()): Quantities {
-  const roadArea = unionArea(layout.roads);
+  const roadArea = unionArea(layout.roads) + (layout.accessConnector ? polyArea(layout.accessConnector) : 0);
   const greenArea = rectArea(layout.green);
   // Reshaped lots contribute true polygon area; reconciliation still holds
   // because the remainder absorbs the difference explicitly.
@@ -364,6 +487,7 @@ export function deriveQuantities(site: Site, layout: Layout, lotEdits: LotEdits 
 // so); reshaped lots add joint polygon checks on top, never instead.
 export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = new Map()): string[] {
   const errors: string[] = [...siteFrameErrors(site), ...entranceErrors(site)];
+  if (rectArea(site.green) + AREA_TOL < (site.planning?.minGreenArea ?? 0)) errors.push(`Open space must keep at least ${site.planning!.minGreenArea} m². Enlarge the park or explicitly change the minimum.`);
   if (layout.supportError) return [...errors, layout.supportError];
   for (const [i, pts] of lotEdits) {
     errors.push(...validateLotPolyJoint(site, layout, i, pts, lotEdits));
@@ -382,14 +506,11 @@ export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = 
     }
     if (intersect(layout.parcels[i], layout.green)) errors.push(`parcel ${i} overlaps green`);
   }
+  if (site.planning && [...layout.roads, ...layout.parcels].some((r) => intersect(r, expandedGreen(site)))) errors.push("Geometry enters the reserved park buffer.");
   // Footprints fit with setbacks (house rotatable).
   for (let i = 0; i < layout.parcels.length; i++) {
     const p = layout.parcels[i];
-    const fw = p.w - 2 * SETBACK.side;
-    const fd = p.h - SETBACK.front - SETBACK.rear;
-    const fits =
-      (HOUSE.w <= fw + TOL && HOUSE.h <= fd + TOL) ||
-      (HOUSE.h <= fw + TOL && HOUSE.w <= fd + TOL);
+    const fits = placeFootprint(p, site.planning, layout.roads) !== null;
     if (!fits) errors.push(`footprint misses parcel ${i}`);
   }
   // Access: each parcel edge-adjacent to a road; road graph connected to entrance.
@@ -405,7 +526,16 @@ export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = 
     if (!adj) errors.push(`parcel ${i} has no road access`);
   }
   const span = entranceSpan(site);
+  const connector = layout.accessConnector;
+  if (site.entrance.boundaryEdge !== undefined && !connector) errors.push("boundary entrance needs a measured access connector");
+  if (connector) {
+    const expected = accessConnector(site, expandedGreen(site));
+    if (!expected || JSON.stringify(expected.polygon) !== JSON.stringify(connector)) errors.push("entrance apron does not match the gate");
+    if (!isSimple(connector) || !polyInsidePoly(connector, siteBoundary(site))) errors.push("entrance apron leaves the site");
+    if ([...layout.roads, ...layout.parcels, expandedGreen(site)].some(r => polyOverlapsRect(connector, r))) errors.push("entrance apron overlaps another allocation");
+  }
   const entryIdx = layout.roads.findIndex((r) => {
+    if (connector) return sharedBoundaryLength(connector, r) >= ROAD_W - TOL;
     const onEdge =
       site.entrance.edge === "east" ? r.x + r.w >= site.w - TOL && r.x < site.w : r.x <= TOL && r.x + r.w > TOL;
     return onEdge && r.y < span.hi && r.y + r.h > span.lo;

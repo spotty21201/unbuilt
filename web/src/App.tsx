@@ -13,12 +13,17 @@ import type { IntentResult } from '../../src/intent';
 import type { Candidate, Locks, ProductProfile, SearchRun } from '../../src/schema';
 import type { Rect } from '../../src/schema';
 import PlanCanvas from './unbuilt/PlanCanvas';
+import DynamicInspector from './unbuilt/DynamicInspector';
+import EntranceEditor from './unbuilt/EntranceEditor';
+import { entranceLabel } from '../../src/access';
+import { DEFAULT_PLANNING, homeArea } from '../../src/planning';
+import type { PlanningParameters } from '../../src/planning';
 import BoundaryEditor from './unbuilt/BoundaryEditor';
 import type { BoundaryDraft } from './unbuilt/BoundaryEditor';
 import { boundaryErrors, frameForBoundary, siteArea, siteBoundary } from '../../src/boundary';
 import type { SiteFrame } from '../../src/boundary';
 import Assistant from './unbuilt/Assistant';
-import { CirculationIcon, HomesIcon, OpenSpaceIcon, PanIcon, SelectIcon, SiteIcon } from './unbuilt/icons';
+import { DrawSiteIcon, DownloadIcon, UndoIcon, RedoIcon, AssistantIcon, CirculationIcon, HomesIcon, OpenSpaceIcon, PanIcon, SelectIcon, SiteIcon } from './unbuilt/icons';
 import { copyLotEdits, formatGap, formatM2, formatRp, indexLotsRecord, parcelKey, serverBase, siteWithEntrance, siteWithGreen } from './unbuilt/ui';
 import { CAPABILITIES } from '../../src/snapshot';
 import type { ScenarioSnapshot } from '../../src/snapshot';
@@ -29,6 +34,7 @@ import { applyDraftEdit, commitDraft, pushUndo, redo, undo } from '../../src/dra
 import type { History } from '../../src/draft';
 import type { WorkingSpec } from './unbuilt/ui';
 import './App.css';
+import './drafting.css';
 
 const M = 1_000_000;
 const BN = 1_000_000_000;
@@ -65,7 +71,7 @@ function cardTitle(c: Candidate, snap: { n: number; road: number }): string {
   return `Same homes and road — lots avg ${Math.round(avgLot(c))} m²`;
 }
 
-function VerdictLine({ cards, run, profileName, ownerBn }: { cards: Candidate[]; run: SearchRun; profileName: string; ownerBn: number }) {
+function VerdictLine({ cards, run, profileName, ownerBn, priceLocked }: { cards: Candidate[]; run: SearchRun; profileName: string; ownerBn: number; priceLocked: boolean }) {
   const gaps = cards.map((c) => c.finance.ownerGap);
   const met = gaps.filter((g) => g <= 0).length;
   const best = cards.length > 0 ? Math.min(...gaps) : 0;
@@ -83,14 +89,18 @@ function VerdictLine({ cards, run, profileName, ownerBn }: { cards: Candidate[];
   return (
     <p className="note">
       {run.tested} tested: {run.breakdown.geometryValid} geometrically valid, {run.breakdown.applicable} fit the {profileName} profile,{' '}
-      {run.breakdown.priceOk} within ceiling, {run.breakdown.targetOk} meet target surplus — {run.qualified} shown below.
+      {run.breakdown.priceOk} {priceLocked ? 'within ceiling' : 'with ceiling disabled'}, {run.breakdown.targetOk} meet target surplus — {run.qualified} shown below.
       {commercial ? ` ${commercial}` : ''}
     </p>
   );
 }
 
 export default function App() {
-  const [baseSpec, setBaseSpec] = useState<SiteFrame>({ w: 120, h: 100 });
+  const inspectorRef = useRef<HTMLElement>(null);
+  const [baseSpec, setBaseSpec] = useState<SiteFrame>({ w: 120, h: 100, planning: { ...DEFAULT_PLANNING } });
+  const [parameterDraft, setParameterDraft] = useState<{ planning: PlanningParameters; frontage: number } | null>(null);
+  const [optimizing, setOptimizing] = useState(false);
+  const searchTicket = useRef(0);
   const [boundaryDraft, setBoundaryDraft] = useState<BoundaryDraft | null>(null);
   const [siteFit, setSiteFit] = useState(0);
   const [boundaryHistory, setBoundaryHistory] = useState<History<BoundaryDraft>>({ past: [], future: [] });
@@ -117,12 +127,13 @@ export default function App() {
   const lotLockActive = Object.keys(lotEdits).length > 0;
   // Lot reshape UI state: which generated lot is selected, and the active
   // vertex draft (explicit Apply/Cancel; metrics stay on committed geometry).
+  const [selectedLots, setSelectedLots] = useState<number[]>([]);
   const [selectedLot, setSelectedLot] = useState<number | null>(null);
   const [lotDraft, setLotDraft] = useState<{ index: number; pts: Pt[] } | null>(null);
   // An open reshape draft addresses parcel indices: regeneration waits until
   // it is applied or cancelled. Committed reshapes are never blocked this
   // way — they carry by stable identity (see askRegen).
-  const regenBlock = boundaryDraft ? 'Apply or Cancel the boundary edit first.' : lotDraft
+  const regenBlock = parameterDraft ? 'Apply or Cancel the parameter edit first.' : boundaryDraft ? 'Apply or Cancel the boundary edit first.' : lotDraft
     ? 'A lot reshape is in progress — Apply or Cancel it before regenerating the layout.'
     : null;
   const [greenDraftF, setGreenDraftF] = useState<DraftFields>({
@@ -134,7 +145,7 @@ export default function App() {
   const [ownerS, setOwnerS] = useState('10');
   const [targetS, setTargetS] = useState('15');
   const [spec, setSpec] = useState<WorkingSpec>({ family: 'spine', frontage: 10 });
-  const [selected, setSelected] = useState<Sel>(null);
+  const [selected, setSelected] = useState<Sel>('grove');
   const [greenLocked, setGreenLocked] = useState(true);
   const [request, setRequest] = useState('Keep this green space. Do not increase the home selling price. What else can change?');
   const [intent, setIntent] = useState<IntentResult | null>(null);
@@ -147,7 +158,7 @@ export default function App() {
   const [run, setRun] = useState<SearchRun | null>(null);
   const [runSnap, setRunSnap] = useState<{
     priceS: string; ceilingS: string; ownerS: string; targetS: string;
-    profileId: string; green: Rect; entrance: Entrance; spec: WorkingSpec; n: number; road: number;
+    profileId: string; green: Rect; entrance: Entrance; spec: WorkingSpec; n: number; road: number; allowance: number;
     lots: Record<number, Pt[]>; baseSpec: SiteFrame;
   } | null>(null);
   const [ordering, setOrdering] = useState<Ordering>('lowest-road');
@@ -201,13 +212,14 @@ export default function App() {
     const cedar = !isCustomSite;
     const payload = {
       app: 'UNBUILT decision record',
-      exportVersion: baseSpec.boundary ? 3 : 2,
+      exportVersion: entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
       exportedAt: new Date().toISOString(),
       units: 'Geometry in meters, local Cartesian, y-up from the south edge. Currency in integer Rp.',
       state: {
         site: {
           w: baseSpec.w,
           h: baseSpec.h,
+          ...(baseSpec.planning ? { planning: baseSpec.planning } : {}),
           ...(baseSpec.boundary ? { boundary: baseSpec.boundary } : {}),
           areaM2: siteArea(baseSpec),
           provenance: cedar
@@ -226,6 +238,7 @@ export default function App() {
           frontage: spec.frontage,
           profile: profileId,
           roads: committedLayout.roads,
+          ...(committedLayout.accessConnector ? { accessConnector: committedLayout.accessConnector } : {}),
           parcels: committedLayout.parcels,
           lotReshapes: copyLotEdits(lotEdits),
           draftPending: draftDirty ? { openSpace: { ...greenDraftF } } : null,
@@ -294,7 +307,7 @@ export default function App() {
     Number.isFinite(targetT) && targetT >= 0 && targetT < 100;
 
   // Draft machine: invalid edits stay visible but can never become the plan.
-  const draft = applyDraftEdit(green, greenDraftF, base);
+  const draft = useMemo(() => applyDraftEdit(green, greenDraftF, base), [green, greenDraftF, base]);
   // Dirty compares parsed values: retyping "078" for 78 is not a change,
   // while an unparsable field always counts as dirty (with an error shown).
   const draftDirty = (['x', 'y', 'w', 'h'] as const).some(
@@ -309,15 +322,23 @@ export default function App() {
       );
 
   // Displayed geometry follows the draft; metrics only follow valid drafts.
-  const site = useMemo(
-    () => siteWithEntrance(siteWithGreen(base, draft.draft), entrance),
-    [base, draft.draft, entrance],
-  );
+  const planning = parameterDraft?.planning ?? baseSpec.planning ?? DEFAULT_PLANNING;
+  const boundaryPreview = useMemo(() => boundaryDraft?.closed && boundaryErrors(boundaryDraft.pts).length === 0
+    ? { ...frameForBoundary(boundaryDraft.pts), ...(baseSpec.planning ? { planning: baseSpec.planning } : {}) } : null, [boundaryDraft, baseSpec.planning]);
+  const boundaryDefaults = useMemo(() => boundaryDraft?.newSite && boundaryPreview ? makeSite(boundaryPreview.w, boundaryPreview.h) : null, [boundaryDraft?.newSite, boundaryPreview]);
+  const boundaryGreen = boundaryDefaults?.green ?? draft.draft;
+  const boundaryEntrance = boundaryDraft?.entrance ?? boundaryDefaults?.entrance ?? entrance;
+  const site: Site = useMemo(() => ({
+    ...base, ...(boundaryPreview ?? {}),
+    ...(parameterDraft ? { planning: parameterDraft.planning } : {}),
+    green: boundaryPreview ? boundaryGreen : draft.draft, entrance: boundaryPreview ? boundaryEntrance : entrance,
+  }), [base, boundaryPreview, boundaryGreen, boundaryEntrance, parameterDraft, draft.draft, entrance]);
   const committedSite = useMemo(
     () => siteWithEntrance(siteWithGreen(base, green), entrance),
     [base, green, entrance],
   );
-  const workingLayout = useMemo(() => buildWorking(site, spec), [site, spec]);
+  const workingLayout = useMemo(() => buildWorking(site, parameterDraft ? { ...spec, frontage: parameterDraft.frontage } : spec), [site, spec, parameterDraft]);
+  useEffect(() => { setSelectedLots([]); }, [workingLayout, selected]);
   const editsMap: LotEdits = useMemo(
     () => editsForLayout(workingLayout.parcels, lotEdits),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -338,7 +359,7 @@ export default function App() {
           `${workingFailing.length} working lot(s) fall outside the ${profile.name} profile (area/frontage). ` +
             `Priced figures assume the profile applies — treat them as provisional.`,
         ]
-      : [];
+      : workingLayout.parcels.length === 0 && !workingLayout.supportError ? ['No home fits these lot dimensions and the shared housing template. Increase lot frontage/depth or reduce the template.'] : [];
   const committedLayout = useMemo(() => buildWorking(committedSite, spec), [committedSite, spec]);
   const financeArgs = {
     ownerExpectation: ownerL * BN,
@@ -367,14 +388,16 @@ export default function App() {
       JSON.stringify(runSnap.spec) !== JSON.stringify(spec) ||
       runSnap.baseSpec.w !== baseSpec.w ||
       runSnap.baseSpec.h !== baseSpec.h ||
-      JSON.stringify(runSnap.baseSpec.boundary) !== JSON.stringify(baseSpec.boundary));
+      JSON.stringify(runSnap.baseSpec) !== JSON.stringify(baseSpec) || !!parameterDraft || !!boundaryDraft || draftDirty);
+
+  useEffect(() => { if (stale) setPreviewId(null); }, [stale]);
 
   const effectiveCeiling =
     intent && intent.kind === 'proposal' && intent.operations.priceCeiling !== null
       ? intent.operations.priceCeiling / M
       : ceiling;
   const priceError =
-    Number.isFinite(price) && Number.isFinite(effectiveCeiling) && price > effectiveCeiling
+    planning.priceLocked && Number.isFinite(price) && Number.isFinite(effectiveCeiling) && price > effectiveCeiling
       ? `Selected price Rp${price}m exceeds the ceiling Rp${effectiveCeiling}m. Lower the price or raise the ceiling. Search is blocked; plan exploration stays open.`
       : null;
 
@@ -383,9 +406,15 @@ export default function App() {
     setLastDelta(null);
   };
 
-  const doRun = (prof: ProductProfile, locks: Locks) => {
+  const doRun = async (prof: ProductProfile, locks: Locks, enforcePrice?: boolean) => {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const ticket = ++searchTicket.current;
+    setOptimizing(true);
+    setStatus('Optimizing layout within the tested family and frontage ranges…');
+    await new Promise((resolve) => setTimeout(resolve, 120));
+    if (ticket !== searchTicket.current) return;
     const r = runSearch({
-      site: committedSite,
+      site: enforcePrice ? { ...committedSite, planning: { ...(committedSite.planning ?? DEFAULT_PLANNING), priceLocked: true } } : committedSite,
       profile: prof,
       selectedPrice: price * M,
       locks,
@@ -401,19 +430,21 @@ export default function App() {
         `${r.breakdown.priceOk} within ceiling, ${r.breakdown.targetOk} meet target surplus, ${r.qualified} shown. ` +
         `Owner expectation Rp${ownerL}bn is a benchmark, not a constraint.`,
     );
+    if (ticket !== searchTicket.current) return;
+    setOptimizing(false);
     setRun(r);
     setCmpA('working');
     setCmpB('');
     setRunSnap({
       priceS, ceilingS: String(locks.priceCeiling / M), ownerS, targetS, profileId: prof.id,
       green: { ...green }, entrance: { ...entrance }, lots: indexLotsRecord(editsMap), spec: { ...spec },
-      n: workingEcon?.quantities.n ?? 0, road: workingEcon?.quantities.roadArea ?? 0,
-      baseSpec: { ...baseSpec },
+      n: workingEcon?.quantities.n ?? 0, road: workingEcon?.quantities.roadArea ?? 0, allowance: workingEcon?.finance.landAllowance ?? 0,
+      baseSpec: enforcePrice ? { ...baseSpec, planning: { ...(baseSpec.planning ?? DEFAULT_PLANNING), priceLocked: true } } : { ...baseSpec },
     });
     setPreviewId(null);
     setAcceptedSummary(
       r.qualified > 0
-        ? `Accepted. Ran ${r.tested} layouts: ${r.qualified} options meet the modeled constraints (valid geometry, profile fit, ceiling, target surplus). Owner expectation is a benchmark — see Options.`
+        ? `Accepted. Ran ${r.tested} layouts: ${r.qualified} options meet the modeled constraints (valid geometry, profile fit and active locks; target surplus is reported separately). Owner expectation is a benchmark — see Options.`
         : `Accepted. Ran ${r.tested} layouts — no option meets the modeled constraints in the tested scope (see blockers below).`,
     );
     setStatus(
@@ -450,7 +481,7 @@ export default function App() {
   };
 
   const acceptProposal = () => {
-    if (!intent || intent.kind !== 'proposal') return;
+    if (!intent || intent.kind !== 'proposal' || regenBlock || optimizing) return;
     if (proposalStale) {
       setStatus('Proposal is stale — assumptions or geometry changed after review. Send the request again for a fresh proposal.');
       return;
@@ -470,17 +501,19 @@ export default function App() {
     setProfileId(nextProfileId);
     setCeilingS(nextCeilingS);
     if (ops.lockGreen) setGreenLocked(true);
+    if (ops.priceCeiling !== null && !planning.priceLocked) setBaseSpec({ ...baseSpec, planning: { ...planning, priceLocked: true } });
     const prof = nextProfileId === 'starter-150' ? COMPACT_PROFILE : BASE_PROFILE;
     doRun(prof, {
       green: { ...green },
       priceCeiling: ops.priceCeiling ?? num(nextCeilingS) * M,
       ownerExpectation: ownerL * BN,
       targetFraction: targetT / 100,
-    });
+    }, ops.priceCeiling !== null);
     setPropSnap(null);
   };
 
   const rerun = () => {
+    if (regenBlock || optimizing) { setStatus(regenBlock ?? 'Optimization is already running.'); return; }
     if (!workingOk) {
       setStatus('Search blocked: fix the flagged economics or geometry first.');
       return;
@@ -524,6 +557,7 @@ export default function App() {
     setTargetS(s.targetS);
     setBaseSpec(s.baseSpec);
     setBoundaryDraft(null);
+    setParameterDraft(null);
     setSiteW(String(s.baseSpec.w));
     setSiteH(String(s.baseSpec.h));
     setPreviewId(null);
@@ -559,11 +593,13 @@ export default function App() {
     const st = p.state;
     const knownProfile = st.profileId === 'starter-150' || st.profileId === BASE_PROFILE.id ? st.profileId : 'starter-150';
     setBaseSpec({ ...st.baseSpec });
+    setSiteFit((tick) => tick + 1);
+    setParameterDraft(null);
     setBoundaryDraft(null);
     setSpec({ family: st.spec.family === 'loop' ? 'loop' : 'spine', frontage: st.spec.frontage });
     setGreen({ ...st.green });
     setGreenDraftF(strFields(st.green));
-    setEntrance({ edge: st.entrance.edge === 'east' ? 'east' : 'west', offset: st.entrance.offset, width: st.entrance.width });
+    setEntrance({ ...st.entrance, edge: st.entrance.edge === 'east' ? 'east' : 'west' });
     setEntranceS(String(st.entrance.offset));
     setLotEdits(copyLotEdits(st.lots));
     setProfileId(knownProfile);
@@ -722,6 +758,7 @@ export default function App() {
   };
 
   const useSite = () => {
+    if (planning.siteLocked) { setStatus('Unlock the site boundary before replacing it.'); return; }
     if (regenBlock || draftDirty) { setStatus(regenBlock ?? 'Apply or Cancel the open-space draft first.'); return; }
     const w = siteW.trim() === '' ? NaN : Number(siteW);
     const h = siteH.trim() === '' ? NaN : Number(siteH);
@@ -734,7 +771,7 @@ export default function App() {
     // Confirming dimensions never drops the reference photo: it illustrates
     // the same source either way, and Undo restores the prior dimensions
     // with the photo still in place. Removal is an explicit separate action.
-    setBaseSpec({ w, h });
+    setBaseSpec({ w, h, ...(baseSpec.planning ? { planning: baseSpec.planning } : {}) });
     const s = makeSite(w, h);
     setGreen({ ...s.green });
     setEntrance({ ...s.entrance });
@@ -848,7 +885,8 @@ export default function App() {
     setStatus('Boundary edit cancelled. Accepted plan unchanged.');
   };
   const startBoundary = (newSite: boolean) => {
-    if (draftDirty || lotDraft || pendingOp) { setStatus('Apply or Cancel the current edit first.'); return; }
+    if (planning.siteLocked) { setStatus('Unlock the site boundary in Active invariant locks before editing.'); return; }
+    if (parameterDraft || draftDirty || lotDraft || pendingOp) { setStatus('Apply or Cancel the current edit first.'); return; }
     setPreviewId(null);
     setSelected('site');
     setTool('select');
@@ -860,9 +898,10 @@ export default function App() {
   };
   const applyBoundary = () => {
     if (!boundaryDraft || !boundaryDraft.closed || boundaryErrors(boundaryDraft.pts).length) return;
-    const next = frameForBoundary(boundaryDraft.pts);
+    if (planning.siteLocked) return;
+    const next = { ...frameForBoundary(boundaryDraft.pts), ...(baseSpec.planning ? { planning: baseSpec.planning } : {}) };
     const nextGreen = boundaryDraft.newSite ? makeSite(next.w, next.h).green : green;
-    const nextEntrance = boundaryDraft.newSite ? makeSite(next.w, next.h).entrance : entrance;
+    const nextEntrance = boundaryEntrance;
     const nextSite = { ...base, ...next, green: nextGreen, entrance: nextEntrance };
     const nextLayout = buildWorking(nextSite, spec);
     const carried = editsForLayout(nextLayout.parcels, lotEdits);
@@ -903,6 +942,7 @@ export default function App() {
   };
 
   const doUndo = () => {
+    if (parameterDraft) { setParameterDraft(null); setStatus('Parameter draft cancelled.'); return; }
     const r = undo(hist, snap());
     if (!r.snap) return;
     setHist(r.hist);
@@ -944,6 +984,7 @@ export default function App() {
   };
 
   const applyDraft = () => {
+    if (layoutErrors.length || parameterDraft || boundaryDraft || greenLocked) { setStatus(layoutErrors[0] ?? 'Finish the current edit or unlock the park first.'); return; }
     if (regenBlock) {
       setStatus(regenBlock);
       return;
@@ -990,6 +1031,7 @@ export default function App() {
       return;
     }
     const pro = buildWorking(site, next);
+    if (pro.supportError) { setStatus(pro.supportError); return; }
     askRegen(`Switching to ${next.family}, ${next.frontage} m frontage`, pro.parcels, () => {
       setHist((h) => pushUndo(h, snap()));
       setSpec(next);
@@ -1002,6 +1044,8 @@ export default function App() {
   // committed shape (reshaped polygon, else generated rect corners) and is
   // validated live; metrics stay on committed geometry until Apply.
   const startLotReshape = () => {
+    if (preview) { setStatus('Apply or Cancel the alternative preview before reshaping a lot.'); return; }
+    if (selectedLots.length > 1) { setStatus('Choose one lot in Object tools before reshaping it.'); return; }
     if (selectedLot == null || !workingLayout.parcels[selectedLot]) {
       setStatus('Select a lot first — click one on the plan or pick it in the list.');
       return;
@@ -1207,7 +1251,6 @@ export default function App() {
     );
   };
 
-  const entranceLabel = (e: Entrance) => `${e.edge} edge, ${e.offset} m from south, ${e.width} m wide`;
 
   const changeProfile = (id: string) => {
     setHist((h) => pushUndo(h, snap()));
@@ -1218,6 +1261,7 @@ export default function App() {
 
   const preview = !stale && previewId ? (run?.candidates.find((c) => c.id === previewId) ?? null) : null;
   const workingKeys = useMemo(() => new Set(workingLayout.parcels.map(parcelKey)), [workingLayout]);
+  useEffect(() => { setSelectedLot(null); setSelectedLots([]); }, [previewId]);
   const cards = run ? selectUpToThree(run.candidates, ordering) : [];
   const previewEcon = preview
     ? { q: preview.quantities, road: preview.roadCost, cnl: preview.costNonLand, fin: preview.finance }
@@ -1225,7 +1269,7 @@ export default function App() {
   const econShown = previewEcon ?? (workingEcon
     ? { q: workingEcon.quantities, road: workingEcon.roadCost, cnl: workingEcon.costNonLand, fin: workingEcon.finance }
     : null);
-  const metricsAreCommitted = !preview && draftDirty && !draftEcon && econShown !== null;
+  const metricsAreCommitted = !preview && (draftDirty || !!parameterDraft || !!boundaryDraft) && !draftEcon && econShown !== null;
   // Preview geometry rebuilds on the run's own snapshot green, never on a
   // later dirty draft: canvas and frozen preview economics cannot disagree.
   const previewSite = preview && runSnap
@@ -1235,10 +1279,10 @@ export default function App() {
     ? preview.family === 'spine'
       ? generateSpine(previewSite, preview.frontage)
       : generateLoop(previewSite, preview.frontage)
-    : workingLayout;
+    : workingErrors.length && (parameterDraft || boundaryDraft || draftDirty) ? committedLayout : workingLayout;
 
   const R = RATES;
-  const homeCost = econShown ? econShown.q.n * R.homeBuiltArea * R.constructionPerM2 : 0;
+  const homeCost = econShown ? econShown.q.n * homeArea(planning) * R.constructionPerM2 : 0;
   const greenCost = econShown ? econShown.q.greenArea * R.greenWorksPerM2 : 0;
   const revenue = econShown?.fin.revenue ?? 0;
   const sellCost = revenue * R.sellFraction;
@@ -1267,7 +1311,7 @@ export default function App() {
       price, ceiling, owner: ownerL, target: targetT,
     } : null;
     const q = econShown?.q ?? deriveQuantities(committedSite, committedLayout, editsForLayout(committedLayout.parcels, lotEdits));
-    const label =
+    let label =
       selected === 'grove' ? 'Open space A'
         : selected === 'site' ? 'Site'
           : selected === 'circulation' ? 'Circulation'
@@ -1298,11 +1342,18 @@ export default function App() {
       measurements.push(`${formatM2(siteArea(baseSpec))} site, ${spec.family}, ${spec.frontage} m frontage`);
     }
     if (preview) measurements.push(`Previewing ${dispName(preview)} — changes not applied.`);
+    if (selected === 'homes' && selectedLots.length > 1) {
+      label = `${selectedLots.length} home lots`;
+      const area = selectedLots.reduce((sum, i) => sum + (workingLayout.parcels[i] ? polyArea(editsMap.get(i) ?? rectCorners(workingLayout.parcels[i])) : 0), 0);
+      measurements.push(`Selected lot IDs: ${selectedLots.map((i) => i + 1).join(', ')}; aggregate area ${formatM2(area)}. Quantities below describe the whole plan.`);
+    }
     const commitments = [
+      ...(planning.siteLocked ? ['Site boundary fixed'] : []),
+      ...((planning.minGreenArea ?? 0) > 0 ? [`Open space minimum ${planning.minGreenArea} m²`] : []),
       greenLocked ? 'Open space A shape+location locked' : 'Open space A unlocked — direct edits allowed, held in place during search',
-      Number.isFinite(ceiling) && ceiling > 0
+      planning.priceLocked && Number.isFinite(ceiling) && ceiling > 0
         ? `Assumed price held at or below the Rp${ceiling}m/home ceiling`
-        : 'No buyer-price ceiling set',
+        : 'Buyer-price ceiling disabled; selling price remains the declared assumption',
     ];
     return {
       label,
@@ -1330,7 +1381,7 @@ export default function App() {
   };
 
   const assistantSnapshot = (): ScenarioSnapshot => ({
-    version: baseSpec.boundary ? 2 : 1,
+    version: entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 4 : baseSpec.planning ? 3 : baseSpec.boundary ? 2 : 1,
     site: { ...baseSpec },
     entrance: { ...entrance },
     green: { ...green },
@@ -1344,7 +1395,7 @@ export default function App() {
     selected: selected === 'grove' ? { kind: 'green', id: 'grove-a' }
       : selected === 'site' ? { kind: 'site', id: 'site' }
         : selected === 'circulation' ? { kind: 'circulation', id: 'circulation' }
-          : selected === 'homes' ? { kind: 'homes', id: selectedLot != null ? `lot-${selectedLot}` : 'homes' }
+          : selected === 'homes' ? { kind: 'homes', id: selectedLots.length > 1 ? `lots-${selectedLots.join('-')}` : selectedLot != null ? `lot-${selectedLot}` : 'homes' }
             : null,
   });
 
@@ -1353,17 +1404,64 @@ export default function App() {
   // relevant edit changes the key and the panel clears itself; delayed
   // responses against an older key are discarded, never shown.
   const assistantKey = JSON.stringify({
-    spec, green, greenDraftF, entrance, lots: lotEdits, boundaryDraft,
+    spec, green, greenDraftF, entrance, lots: lotEdits, boundaryDraft, parameterDraft,
     priceS, ceilingS, ownerS, targetS, profileId, baseSpec,
-    selected, selectedLot, preview: previewId,
+    selected, selectedLot, selectedLots, preview: previewId,
     run: run ? { tested: run.tested, hash: run.snapshotHash } : null,
   });
+
+  useEffect(() => {
+    searchTicket.current++;
+    setOptimizing(false);
+  }, [baseSpec, spec, green, entrance, lotEdits, profileId, priceS, ceilingS, ownerS, targetS, greenLocked, parameterDraft, boundaryDraft]);
+
+  const changeParameters = (next: PlanningParameters, frontage: number) => {
+    if (boundaryDraft || lotDraft || draftDirty || optimizing || pendingOp) { setStatus('Apply or Cancel the current edit first.'); return; }
+    setPreviewId(null);
+    setParameterDraft({ planning: next, frontage });
+    setLastDelta(null);
+  };
+  const applyParameters = () => {
+    if (!parameterDraft || workingErrors.length) return;
+    const next = parameterDraft;
+    askRegen('Applying planning parameters', workingLayout.parcels, () => {
+      setHist((h) => pushUndo(h, snap()));
+      setBaseSpec({ ...baseSpec, planning: next.planning });
+      setSpec({ ...spec, frontage: next.frontage });
+      setParameterDraft(null); setSelectedLot(null); setPreviewId(null);
+      logDecision('parameters', `Applied ${next.frontage} m frontage, ${next.planning.lotDepth} m depth, ${homeArea(next.planning)} m² home template, ${next.planning.greenBuffer} m park clearance.`);
+      setStatus('Planning parameters applied. Undo restores the previous geometry and costs.');
+    });
+  };
+  const cancelParameters = () => { setParameterDraft(null); setCancelTick((n) => n + 1); setStatus('Parameter edit cancelled. Accepted plan restored.'); };
+  const togglePlanningLock = (key: 'siteLocked' | 'priceLocked') => {
+    if (parameterDraft || boundaryDraft || lotDraft || draftDirty || optimizing) return;
+    setHist((h) => pushUndo(h, snap()));
+    setBaseSpec({ ...baseSpec, planning: { ...(baseSpec.planning ?? DEFAULT_PLANNING), [key]: !planning[key] } });
+    setStatus(`${key === 'siteLocked' ? 'Site boundary' : 'Price ceiling'} ${planning[key] ? 'unlocked' : 'locked'}.`);
+  };
+  const toggleGreenLock = () => {
+    if (parameterDraft || boundaryDraft || lotDraft || draftDirty || optimizing) return;
+    setHist((h) => pushUndo(h, snap())); setGreenLocked((v) => !v); setLastDelta(null);
+  };
+  const inspectorQuantities = econShown?.q;
+  const inspectorLots = preview ? preview.lots : lotsByIndex;
+  const selectedParcel = selectedLot === null ? null : planShown.parcels[selectedLot];
+  const inspectorArea = selected === 'grove' ? (workingErrors.length ? green.w * green.h : draft.draft.w * draft.draft.h)
+    : selected === 'circulation' ? inspectorQuantities?.roadArea ?? null
+      : selected === 'homes' && selectedLots.length > 1 ? selectedLots.reduce((area, i) => area + (planShown.parcels[i] ? polyArea(inspectorLots[i] ?? rectCorners(planShown.parcels[i])) : 0), 0)
+      : selected === 'homes' ? selectedParcel ? polyArea(inspectorLots[selectedLot!] ?? rectCorners(selectedParcel)) : inspectorQuantities?.parcelArea ?? null
+        : siteArea(boundaryPreview ?? baseSpec);
+
+  const boundaryEditing = boundaryDraft !== null;
+  useEffect(() => { inspectorRef.current?.scrollTo({ top: 0 }); }, [selected, selectedLot, boundaryEditing]);
 
   const selectFromCanvas = (kind: Exclude<Sel, null>) => setSelected(kind);
 
   return (
     <div className={cmpExpand ? "bench compare-focused" : "bench"} onKeyDown={(e) => {
       const tag = (e.target as HTMLElement).tagName;
+      if (e.key === 'Escape' && parameterDraft) { e.stopPropagation(); cancelParameters(); return; }
       if (e.key === 'Escape' && boundaryDraft) { e.stopPropagation(); cancelBoundary(); return; }
       if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag)) return;
       if ((e.ctrlKey || e.metaKey) && ['z', 'y'].includes(e.key.toLowerCase())) {
@@ -1378,15 +1476,17 @@ export default function App() {
       </a>
       <header className="topbar">
         <div className="brand">
-          <strong>UNBUILT</strong>
-          <span className="note">{isCustomSite ? 'Custom site · illustrative prices' : 'Cedar Market · fictional prices'}</span>
+          <strong>UNBUILT</strong><span className="project-tag">SITE WORKBENCH</span>
+          <span className="note project-name">{isCustomSite ? 'Custom site · illustrative prices' : 'Cedar Market · fictional prices'}</span>
         </div>
         <div className="workstate" aria-live="polite">
-          {preview ? `Previewing ${dispName(preview)}` : 'Working plan'}
+          {cmpExpand ? 'Comparing plans' : preview ? `Previewing ${dispName(preview)}` : 'Working plan'}
         </div>
+        <nav className="workspace-tabs" aria-label="Workspace"><button type="button" className={!dockOpen ? 'current' : ''} onClick={() => { setDockOpen(false); setCmpExpand(false); }}>Plan</button><button type="button" onClick={() => { setDockTab('options'); setDockOpen(true); }}>Alternatives</button><button type="button" onClick={() => { setSelected('homes'); setSelectedLot(null); setControlsOpen(true); }}>Parcels</button></nav>
         <div className="topactions" role="toolbar" aria-label="Edit history">
-          <button type="button" onClick={() => boundaryDraft ? undoBoundary() : doUndo()} disabled={boundaryDraft ? boundaryHistory.past.length === 0 : hist.past.length === 0}>Undo</button>
-          <button type="button" onClick={() => boundaryDraft ? undoBoundary(true) : doRedo()} disabled={boundaryDraft ? boundaryHistory.future.length === 0 : hist.future.length === 0}>Redo</button>
+          <button type="button" onClick={() => boundaryDraft ? undoBoundary() : doUndo()} disabled={boundaryDraft ? boundaryHistory.past.length === 0 : hist.past.length === 0} aria-label="Undo" title="Undo (Ctrl+Z)"><UndoIcon size={18} /><span className="sr-only">Undo</span></button>
+          <button type="button" onClick={() => boundaryDraft ? undoBoundary(true) : doRedo()} disabled={boundaryDraft ? boundaryHistory.future.length === 0 : hist.future.length === 0} aria-label="Redo" title="Redo (Ctrl+Shift+Z)"><RedoIcon size={18} /><span className="sr-only">Redo</span></button>
+          <button type="button" className="export-action" title="Export the accepted plan and decision record as JSON" onClick={exportRecord}><DownloadIcon size={16} /><span>Export JSON</span></button>
           <span className="badge modeloff" title="Typed requests are parsed in the browser by fixed rules (no model, no network). Search tests the fixed family × frontage grid only. Supported: keep open space, cap price, switch profile, run search. The tool server adds validated server-side search and measured explanations when reachable.">
             {serverOk === null
               ? 'Local tools · checking server…'
@@ -1397,12 +1497,12 @@ export default function App() {
         </div>
       </header>
       <div className="contextstrip" aria-live="polite">
-        <span>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices · Entrance {entrance.edge} · {spec.family} {spec.frontage} m</span>
+        <span>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices · Entrance {entrance.boundaryEdge === undefined ? entrance.edge : `edge ${entrance.boundaryEdge + 1}`} · {spec.family} {spec.frontage} m</span>
         <span>Selected: {assistantFacts.label}</span>
-        <span title={workingErrors[0]} className={workingErrors.length > 0 ? 'bad' : 'ok'}>{workingLayout.supportError ? 'Layout unavailable' : workingErrors.length > 0 ? 'Invalid plan · see issues' : 'Plan valid'}</span>
-        <span className="savestatus" title={saveStatus}>{saveStatus.startsWith('Project saved') ? 'Saved in this browser' : saveStatus}</span>
+        <span title={workingErrors[0]} className={workingErrors.length > 0 ? 'bad' : 'ok'}>{workingLayout.supportError ? 'Layout unavailable' : workingErrors.length > 0 ? 'Invalid plan · see issues' : workingWarnings.length ? 'Profile / template warning' : 'Plan valid'}</span>
+        <details className="save-summary"><summary>{saveStatus.startsWith('Project saved') ? 'Saved in this browser' : saveStatus}</summary><div><strong>Accepted plan saved on this device</strong><p>{saveStatus}</p><p>Boundary, entrance, open space, home template, constraints, assumptions, lot edits and decisions are saved. Drafts, undo history, searches, comparisons and photos are session-only.</p><button type="button" onClick={exportRecord}>Download accepted plan</button><p>To keep an alternative, apply it after review and download it. Import the file from Decision record to reopen it. A preview alone is not saved.</p></div></details>
       </div>
-      <p role="status" aria-live="polite" className="note srstatus">
+      <p role="status" aria-live="polite" className="note srstatus" title={status}>
         {status}
       </p>
       {pendingOp && (
@@ -1431,7 +1531,8 @@ export default function App() {
             else if (e.key === 'h' || e.key === 'H') setTool('pan');
             else if (e.key === 'Escape') {
               setCancelTick((t) => t + 1);
-              if (boundaryDraft) cancelBoundary();
+              if (parameterDraft) cancelParameters();
+              else if (boundaryDraft) cancelBoundary();
               else if (lotDraft) cancelLotEdit();
               else if (draftDirty) cancelDraft();
               else setSelected(null);
@@ -1460,8 +1561,14 @@ export default function App() {
             <PanIcon />
             <span>Pan</span>
           </button>
-          <button type="button" className="tool" title="Draw a new site boundary" onClick={() => startBoundary(true)}><SiteIcon /><span>Draw site</span></button>
+          <button type="button" className="tool" title="Draw a new site boundary" onClick={() => startBoundary(true)}><DrawSiteIcon /><span>Draw site</span></button>
           <button type="button" className="tool" title="Select the site" onClick={() => { setSelected('site'); setControlsOpen(true); }}><SiteIcon /><span>Site</span></button>
+          <div className="rail-divider" />
+          <button type="button" className={selected === 'circulation' ? 'tool selected-object' : 'tool'} aria-label="Inspect circulation" title="Circulation and cross streets" onClick={() => { setSelected('circulation'); setControlsOpen(true); }}><CirculationIcon /><span>Streets</span></button>
+          <button type="button" className={selected === 'homes' ? 'tool selected-object' : 'tool'} aria-label="Inspect homes" title="Lots and housing template" onClick={() => { setSelected('homes'); setSelectedLot(null); setControlsOpen(true); }}><HomesIcon /><span>Homes</span></button>
+          <button type="button" className={selected === 'grove' ? 'tool selected-object' : 'tool'} aria-label="Inspect open space" title="Open space A" onClick={() => { setSelected('grove'); setControlsOpen(true); }}><OpenSpaceIcon /><span>Green</span></button>
+          <button type="button" className="tool rail-assistant" aria-label="Open planning assistant" title="Ask about this plan" onClick={() => { setAskOpen(true); setControlsOpen(true); }}><AssistantIcon /><span>Ask</span></button>
+
         </nav>
 
         <main className="canvascol" id="canvascol">
@@ -1470,21 +1577,26 @@ export default function App() {
               {controlsOpen ? 'Hide controls' : 'Show controls'}
             </button>
           </div>
+          <div className="canvas-workspace" inert={optimizing || undefined}>
           <PlanCanvas
+            planning={workingErrors.length ? baseSpec.planning : planning}
+            streetOffsets={planning.streets}
+            onStreetDrag={!preview && !boundaryDraft && !lotDraft && !draftDirty && !optimizing ? (i, y) => changeParameters({ ...planning, streets: planning.streets.map((value, index) => i === index ? y : value) }, parameterDraft?.frontage ?? spec.frontage) : undefined}
             layout={planShown}
             boundary={siteBoundary(baseSpec)}
             boundaryDraft={boundaryDraft}
+            boundaryLayoutPreview={!!boundaryPreview && !workingErrors.length}
             onBoundaryChange={changeBoundary}
             onBoundaryApply={applyBoundary}
             onBoundaryGestureCommit={(pts) => { if (boundaryDraft) setBoundaryHistory((h) => pushUndo(h, { ...boundaryDraft, pts })); }}
             onBoundaryCancel={cancelBoundary}
-            siteW={site.w}
-            siteH={site.h}
+            siteW={baseSpec.w}
+            siteH={baseSpec.h}
             entrance={site.entrance}
             greenLocked={greenLocked}
             greenSelected={greenSelected}
-            editing={greenSelected && !greenLocked && lotDraft === null}
-            entranceEditing={selected === 'site'}
+            editing={greenSelected && !greenLocked && lotDraft === null && !parameterDraft && !optimizing && !preview}
+            entranceEditing={selected === 'site' && !boundaryDraft && !parameterDraft && !optimizing && !preview}
             entranceValid={entranceErrors(site).length === 0}
             onSelectEntrance={() => setSelected('site')}
             onEntranceDrag={(offset) => {
@@ -1509,7 +1621,13 @@ export default function App() {
             siteSelected={selected === 'site'}
             onSelectSite={() => setSelected('site')}
             onSelectGreen={() => setSelected('grove')}
-            onSelectLot={(i) => { setSelected('homes'); setSelectedLot(i); }}
+            onSelectLot={(i, append) => {
+              const previous = selectedLots.length ? selectedLots : selectedLot === null ? [] : [selectedLot];
+              const next = append && selected === 'homes' ? previous.includes(i) ? previous.filter((j) => j !== i) : [...previous, i] : [i];
+              setSelected(next.length ? 'homes' : null);
+              setSelectedLots(next); setSelectedLot(next.at(-1) ?? null);
+            }}
+            selectedLots={selectedLots}
             lotEdits={preview ? preview.lots : lotsByIndex}
             selectedLot={selectedLot}
             lotDraft={lotDraft}
@@ -1518,7 +1636,7 @@ export default function App() {
             onLotVertexRevert={lotVertexRevert}
             onLotVertexAdd={lotVertexAdd}
             onLotVertexRemove={lotRemoveVertex}
-            onFixedHint={() => setStatus('Homes are generated and fixed — they cannot be dragged. Drag the background to pan, reshape the lot to change its outline, or switch circulation for a new arrangement.')}
+            onFixedHint={() => setStatus('Homes use the shared housing template. Resize it in the inspector to update every placed home and its cost, or reshape this lot.')}
             onSelectKind={selectFromCanvas}
             onDeselect={() => {
               if (draftDirty) cancelDraft();
@@ -1535,18 +1653,23 @@ export default function App() {
             }}
             backdrop={refImage && showBackdrop ? refImage : null}
             panTool={tool === 'pan'}
+            onToolChange={setTool}
             wide={planWide}
             onToggleWide={() => setPlanWide((v) => !v)}
             fitTick={siteFit}
             cancelTick={cancelTick}
             onEscapeIdle={() => {
               setCancelTick((t) => t + 1);
-              if (boundaryDraft) cancelBoundary();
+              if (parameterDraft) cancelParameters();
+              else if (boundaryDraft) cancelBoundary();
               else if (lotDraft) cancelLotEdit();
               else if (draftDirty) cancelDraft();
               else setSelected(null);
             }}
           />
+          </div>
+          {selected && !boundaryDraft && <div className="mobile-selection"><span>{selected === 'homes' && selectedLot !== null ? `Lot ${selectedLot + 1}` : selected === 'grove' ? 'Open space A' : selected === 'circulation' ? 'Circulation' : 'Site boundary'} · {inspectorArea === null ? 'Area unavailable' : formatM2(inspectorArea)}</span><button type="button" onClick={() => { setControlsOpen(true); requestAnimationFrame(() => { document.querySelector<HTMLSelectElement>('.object-picker select')?.focus(); document.querySelector('.inspector-col')?.scrollIntoView({ behavior: 'auto', block: 'start' }); }); }}>Inspect selection</button></div>}
+          {optimizing && <div role="status" className="optimization-status">Optimizing layout… <button type="button" onClick={() => { searchTicket.current++; setOptimizing(false); setStatus('Optimization cancelled. Working plan unchanged.'); }}>Cancel optimization</button></div>}
           {preview && (
             <div className="previewbar">
               <span>Previewing {dispName(preview)} — changes not applied.</span>
@@ -1574,9 +1697,50 @@ export default function App() {
               )}
             </p>
           )}
-          {draftDirty && draft.draftable && layoutErrors.length === 0 && (
-            <p className="note draftbadge">Preview — changes not applied. Apply or Cancel in the Open space inspector.</p>
-          )}
+
+        </main>
+
+        <aside
+          ref={inspectorRef}
+          className="inspector-col"
+          aria-label="Objects and inspector"
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              setCancelTick((t) => t + 1);
+              if (parameterDraft) cancelParameters();
+              else if (boundaryDraft) cancelBoundary();
+              else if (lotDraft) cancelLotEdit();
+              else if (draftDirty) cancelDraft();
+              else setSelected(null);
+            }
+          }}
+        >
+          {boundaryDraft ? <BoundaryEditor draft={boundaryDraft} onChange={changeBoundary} onApply={applyBoundary} onCancel={cancelBoundary} review={boundaryPreview && <>
+              <section className="boundary-review" aria-label="Boundary consequences"><h3>Before you apply</h3>
+                <p className="note">Accepted plan → boundary draft. Nothing is replaced until Apply.</p>
+                <dl className="kv"><dt>Site area</dt><dd>{formatM2(siteArea(baseSpec))} → {formatM2(siteArea(boundaryPreview))}</dd>
+                  <dt>Homes</dt><dd>{committedLayout.parcels.length} → {workingErrors.length ? 'Unavailable' : workingLayout.parcels.length}</dd>
+                  <dt>Street area, including access</dt><dd>{formatM2(deriveQuantities(committedSite, committedLayout).roadArea)} → {workingErrors.length ? 'Unavailable' : formatM2(deriveQuantities(site, workingLayout).roadArea)}</dd>
+                  <dt>Open space</dt><dd>{formatM2(green.w * green.h)} → {formatM2(boundaryGreen.w * boundaryGreen.h)}</dd>
+                  <dt>Land allowance</dt><dd>{committedEcon ? formatRp(committedEcon.finance.landAllowance) : 'Unavailable'} → {draftEcon && !workingErrors.length ? formatRp(draftEcon.finance.landAllowance) : 'Unavailable'}</dd>
+                  <dt>Owner outcome</dt><dd>{committedEcon ? formatGap(committedEcon.finance.ownerGap) : 'Unavailable'} → {draftEcon && !workingErrors.length ? formatGap(draftEcon.finance.ownerGap) : 'Unavailable'}</dd>
+                </dl>
+                {workingErrors.length ? <p className="error" role="status">Layout unavailable: {workingErrors[0]} You may save the valid outline, but it will have no assessed layout until this is corrected.</p> : <p className="note">Whole lots and connected orthogonal streets are regenerated inside the outline. Roads and park clearance may leave land unallocated; this is a bounded layout, not the site's maximum capacity.</p>}
+              </section>
+              {baseSpec.planning && <EntranceEditor site={site} onChange={(next) => changeBoundary({ ...boundaryDraft, entrance: next })} error={entranceErrors(site)[0]} />}
+            </>} /> : <>
+          <DynamicInspector siteControls={selected === 'site' && baseSpec.planning ? <EntranceEditor site={site} disabled={!!parameterDraft || !!preview || optimizing || !!lotDraft || draftDirty} onChange={(next) => commitEntrance(next, entrance, `moved to ${entranceLabel(next)}`)} error={entranceErrors(site)[0] ?? workingLayout.supportError} /> : null} selection={selected} onSelect={(value) => { if (!optimizing) { setSelected(value); setSelectedLot(null); setSelectedLots([]); } }}
+            label={selected === 'grove' ? 'Open space A' : selected === 'circulation' ? 'Circulation' : selected === 'homes' ? selectedLots.length > 1 ? `${selectedLots.length} home lots` : selectedLot === null ? 'All home lots' : `Lot ${selectedLot + 1}` : 'Site boundary'}
+            area={inspectorArea} siteArea={siteArea(boundaryPreview ?? baseSpec)} homes={selected === 'homes' && selectedLots.length > 1 ? selectedLots.length : inspectorQuantities?.n ?? null}
+            preview={!!preview} legacy={!baseSpec.planning && !parameterDraft} family={spec.family} planning={planning} frontage={preview?.frontage ?? parameterDraft?.frontage ?? spec.frontage} greenLocked={greenLocked}
+            green={draft.draft} greenDirty={draftDirty}
+            onGreenChange={(g) => { if (!greenLocked && !parameterDraft && !lotDraft && !optimizing) touchDraft(strFields(g)); }}
+            onGreenApply={applyDraft} onGreenCancel={cancelDraft} greenError={workingErrors[0] ?? null}
+            greenDisabled={!!preview || greenLocked || !!parameterDraft || !!lotDraft || optimizing}
+            onGreenLock={toggleGreenLock} onLock={togglePlanningLock} onChange={changeParameters}
+            dirty={!!parameterDraft} error={parameterDraft ? workingErrors[0] ?? null : null}
+            onApply={applyParameters} onCancel={cancelParameters}
+            disabled={!!preview || !!lotDraft || draftDirty || optimizing || !!pendingOp} height={baseSpec.h} ceiling={ceilingS} />
           {workingErrors.length > 0 && (
             <div className="error" role="alert">
               <strong>Geometry needs attention before results can be trusted:</strong>
@@ -1597,23 +1761,66 @@ export default function App() {
             </div>
           )}
 
-        </main>
+          <div className="askrow">
+            <button type="button" onClick={() => setAskOpen((v) => !v)} aria-expanded={askOpen}>
+              {askOpen ? 'Close assistant' : `Ask about ${assistantFacts.label}`}
+            </button>
+          </div>
+          {askOpen && (
+            <Assistant
+              key={assistantKey}
+              facts={assistantFacts}
+              tryCtx={assistantTry}
+              getSnapshot={assistantSnapshot}
+              snapshotOk={inputsOk && !parameterDraft && !boundaryDraft && !draftDirty}
+              workingSpec={{ ...spec }}
+              previewSpec={preview ? { family: preview.family, frontage: preview.frontage } : null}
+              onSendRequest={(text) => submitRequest(text)}
+            />
+          )}
 
-        <aside
-          className="inspector-col"
-          aria-label="Objects and inspector"
-          onKeyDown={(e) => {
-            if (e.key === 'Escape') {
-              setCancelTick((t) => t + 1);
-              if (boundaryDraft) cancelBoundary();
-              else if (lotDraft) cancelLotEdit();
-              else if (draftDirty) cancelDraft();
-              else setSelected(null);
-            }
-          }}
-        >
-          {boundaryDraft ? <BoundaryEditor draft={boundaryDraft} onChange={changeBoundary} onApply={applyBoundary} onCancel={cancelBoundary} /> : <>
-          <div className="site-actions"><button type="button" onClick={() => startBoundary(true)}>Draw site</button><button type="button" onClick={() => startBoundary(false)}>Edit boundary</button></div>
+          <div className="instr">
+            <label htmlFor="request">What should change?</label>
+            <textarea id="request" rows={2} enterKeyHint="go" value={request} onChange={(e) => setRequest(e.target.value)} />
+            <button type="button" disabled={optimizing || !!parameterDraft} onClick={() => submitRequest()}>Send</button>
+          </div>
+          {intent && !acceptedSummary && (
+            <div className={`verdict ${intent.kind}`}>
+              <p>{intent.text}</p>
+              {intent.kind === 'proposal' && proposalStale && (
+                <p role="alert" className="error">
+                  This proposal was reviewed against earlier assumptions or geometry, which have since changed.
+                  Accept is blocked — send the request again for a fresh review.
+                </p>
+              )}
+              {intent.kind === 'proposal' && (
+                <div>
+                  <button type="button" onClick={acceptProposal} disabled={priceError !== null || !workingOk || draftDirty || proposalStale}>
+                    Accept and run
+                  </button>{' '}
+                  <button type="button" onClick={rejectProposal}>Reject</button>
+                </div>
+              )}
+            </div>
+          )}
+          {acceptedSummary && (
+            <div className="verdict done">
+              <p>{acceptedSummary}</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setAcceptedSummary(null);
+                  setIntent(null);
+                }}
+              >
+                Revise request
+              </button>
+            </div>
+          )}
+
+          <section className="optimization-action"><span>Bounded local search · 8 layouts</span><button type="button" disabled={optimizing || !workingOk || draftDirty || !!regenBlock || priceError !== null} onClick={rerun}> {optimizing ? 'Optimizing layout…' : 'Run optimization ▷'}</button><p className="note">Produces reviewable alternatives. Preview and Apply keep you in control.</p></section>
+          <div className="site-actions"><button type="button" disabled={planning.siteLocked || !!parameterDraft || optimizing} onClick={() => startBoundary(true)}>Draw site</button><button type="button" disabled={planning.siteLocked || !!parameterDraft || optimizing} onClick={() => startBoundary(false)}>Edit boundary</button></div>
+          <details className="object-tools"><summary>Object tools &amp; site source</summary>
           <details className="sitesrc">
             <summary>Site source: {!isCustomSite ? 'Cedar Market sample' : 'Custom site'} ({baseSpec.w} × {baseSpec.h} m)</summary>
           <p className="note">
@@ -1646,12 +1853,7 @@ export default function App() {
               <div className="draftrow">
                 <button
                   type="button"
-                  onClick={() => {
-                    URL.revokeObjectURL(refImage);
-                    setRefImage(null);
-                    logDecision('photo', 'Reference photo removed by the user. Removal is immediate and cannot be undone.');
-                    setStatus('Reference photo removed. Removal is immediate and cannot be undone.');
-                  }}
+                  onClick={toggleGreenLock}
                 >
                   Remove photo
                 </button>
@@ -1702,7 +1904,8 @@ export default function App() {
               } else if (e.key === 'Escape') {
                 e.stopPropagation();
                 setCancelTick((t) => t + 1);
-                if (boundaryDraft) cancelBoundary();
+                if (parameterDraft) cancelParameters();
+              else if (boundaryDraft) cancelBoundary();
               else if (lotDraft) cancelLotEdit();
                 else if (draftDirty) cancelDraft();
                 else setSelected(null);
@@ -1728,7 +1931,7 @@ export default function App() {
             {selected === null && (
               <>
                 <h3>Site summary</h3>
-                <p className="note">{baseSpec.w} × {baseSpec.h} m coordinate extents ({siteArea(baseSpec).toLocaleString('en-US')} m²), entrance {entrance.edge}.</p>
+                <p className="note">{baseSpec.w} × {baseSpec.h} m coordinate extents ({siteArea(baseSpec).toLocaleString('en-US')} m²), entrance {entranceLabel(entrance)}.</p>
               </>
             )}
             {selected === 'site' && (
@@ -1738,6 +1941,7 @@ export default function App() {
                   <li>Coordinate extents {baseSpec.w} × {baseSpec.h} m, area {siteArea(baseSpec).toLocaleString('en-US')} m² (closed boundary, {siteBoundary(baseSpec).length} vertices)</li>
                   <li>{!isCustomSite ? 'Sample provenance: fictional Cedar Market case' : 'Custom site from a confirmed boundary (fictional economics)'}</li>
                 </ul>
+                {!baseSpec.planning && <>
                 <h3>Compound entrance{isCustomSite ? ' (assumed — review)' : ''}</h3>
                 {isCustomSite && (
                   <p className="note">Generated for this custom boundary — not a confirmed observation. Review the edge and position before relying on access.</p>
@@ -1749,14 +1953,14 @@ export default function App() {
                       type="button"
                       aria-pressed={entrance.edge === edge}
                       className={entrance.edge === edge ? 'seg on' : 'seg'}
-                      onClick={() => commitEntrance({ ...entrance, edge }, entrance, `moved to ${entranceLabel({ ...entrance, edge })}`)}
+                      onClick={() => commitEntrance({ edge, offset: entrance.offset, width: entrance.width }, entrance, `moved to ${entranceLabel({ edge, offset: entrance.offset, width: entrance.width })}`)}
                     >
                       {edge === 'west' ? 'West' : 'East'}
                     </button>
                   ))}
                 </div>
                 <label>
-                  Distance from south (m)
+                  {entrance.boundaryEdge === undefined ? 'Distance from south (m)' : `Distance from corner ${entrance.boundaryEdge + 1} (m)`}
                   <input
                     type="number"
                     value={entranceS}
@@ -1781,6 +1985,7 @@ export default function App() {
                   <li>Gate width 8 m, fixed in this increment</li>
                   <li>Drag the gate marker on the plan to move it along its edge</li>
                 </ul>
+                </>}
               </>
             )}
             {selected === 'grove' && (
@@ -1812,7 +2017,7 @@ export default function App() {
                         <input
                           type="number"
                           value={greenDraftF[k]}
-                          disabled={greenLocked || lotDraft !== null}
+                          disabled={greenLocked || lotDraft !== null || !!parameterDraft || optimizing}
                           title={lotDraft ? (regenBlock ?? undefined) : undefined}
                           onChange={(e) => touchDraft({ ...greenDraftF, [k]: e.target.value })}
                         />
@@ -1892,7 +2097,7 @@ export default function App() {
                   <select
                     aria-label="Lot"
                     value={selectedLot ?? ''}
-                    onChange={(e) => setSelectedLot(e.target.value === '' ? null : Number(e.target.value))}
+                    onChange={(e) => { setSelectedLots([]); setSelectedLot(e.target.value === '' ? null : Number(e.target.value)); }}
                   >
                     <option value="">Choose…</option>
                     {workingLayout.parcels.map((p, i) => (
@@ -2001,63 +2206,7 @@ export default function App() {
             )}
           </div>
 
-          <div className="askrow">
-            <button type="button" onClick={() => setAskOpen((v) => !v)} aria-expanded={askOpen}>
-              {askOpen ? 'Close assistant' : `Ask about ${assistantFacts.label}`}
-            </button>
-          </div>
-          {askOpen && (
-            <Assistant
-              key={assistantKey}
-              facts={assistantFacts}
-              tryCtx={assistantTry}
-              getSnapshot={assistantSnapshot}
-              snapshotOk={inputsOk}
-              workingSpec={{ ...spec }}
-              previewSpec={preview ? { family: preview.family, frontage: preview.frontage } : null}
-              onSendRequest={(text) => submitRequest(text)}
-            />
-          )}
-
-          <div className="instr">
-            <label htmlFor="request">What should change?</label>
-            <textarea id="request" rows={2} enterKeyHint="go" value={request} onChange={(e) => setRequest(e.target.value)} />
-            <button type="button" onClick={() => submitRequest()}>Send</button>
-          </div>
-          {intent && !acceptedSummary && (
-            <div className={`verdict ${intent.kind}`}>
-              <p>{intent.text}</p>
-              {intent.kind === 'proposal' && proposalStale && (
-                <p role="alert" className="error">
-                  This proposal was reviewed against earlier assumptions or geometry, which have since changed.
-                  Accept is blocked — send the request again for a fresh review.
-                </p>
-              )}
-              {intent.kind === 'proposal' && (
-                <div>
-                  <button type="button" onClick={acceptProposal} disabled={priceError !== null || !workingOk || draftDirty || proposalStale}>
-                    Accept and run
-                  </button>{' '}
-                  <button type="button" onClick={rejectProposal}>Reject</button>
-                </div>
-              )}
-            </div>
-          )}
-          {acceptedSummary && (
-            <div className="verdict done">
-              <p>{acceptedSummary}</p>
-              <button
-                type="button"
-                onClick={() => {
-                  setAcceptedSummary(null);
-                  setIntent(null);
-                }}
-              >
-                Revise request
-              </button>
-            </div>
-          )}
-
+          </details>
           <details className="assump">
             <summary>
               <strong>Assumptions</strong>
@@ -2102,11 +2251,11 @@ export default function App() {
       </div>
 
       <footer className={cmpExpand ? 'dock expanded' : 'dock'}>
-        <div className="docksummary" aria-live="polite">
+        <div className="docksummary" aria-live="polite"><span className="evaluator-label">Evaluator</span>
           <button type="button" className="strip_toggle" onClick={() => { setDockOpen((v) => !v); setCmpExpand(false); }} aria-expanded={dockOpen}>
             {dockOpen ? 'Hide details' : 'Details'}
           </button>
-          {econShown && !boundaryDraft ? (
+          {cmpExpand ? <span>Comparing Plan A and Plan B · measured quantities and costs below</span> : econShown && !boundaryDraft ? (
             <>
               <span><strong>{econShown.q.n}</strong> homes</span>
               <span>Green <strong>{formatM2(econShown.q.greenArea)}</strong></span>
@@ -2159,7 +2308,7 @@ export default function App() {
           {dockTab === 'economics' && econShown && (
             <>
             <dl className="kv">
-              <dt>Homes × built area</dt><dd>{econShown.q.n} × {R.homeBuiltArea} m² × Rp{R.constructionPerM2 / M}m = {formatRp(homeCost)}</dd>
+              <dt>Homes × built area</dt><dd>{econShown.q.n} × {homeArea(planning)} m² × Rp{R.constructionPerM2 / M}m = {formatRp(homeCost)}</dd>
               <dt>Road area</dt><dd>{formatRp(econShown.road)}</dd>
               <dt>Green works</dt><dd>{formatRp(greenCost)}</dd>
               <dt>Setup + other + contingency + professional</dt><dd>{formatRp(econShown.cnl - homeCost - econShown.road - greenCost)}</dd>
@@ -2192,7 +2341,8 @@ export default function App() {
                 </div>
               ) : (
                 <>
-                  <VerdictLine cards={cards} run={run} profileName={profile.name} ownerBn={ownerL} />
+                  <p className="search-scope">Tested scope: {GRID.families.join(' / ')} × {GRID.frontages.join(', ')} m frontages; current home template, lot depth, park, entrance and selling price held. No boundary, park placement or price optimization. These results do not establish maximum site capacity.</p>
+                  <VerdictLine cards={cards} run={run} profileName={profile.name} ownerBn={ownerL} priceLocked={planning.priceLocked} />
                   <div className="cardrow">
                     <label>
                       Order by
@@ -2209,7 +2359,7 @@ export default function App() {
                       <p className="note">
                         Tested: {run.tested} combos (spine, loop × frontages {GRID.frontages.join(', ')} m),
                         profile {profile.name}, ceiling Rp{runSnap.ceilingS}m, seed {run.seed}: {run.breakdown.geometryValid} geometrically valid,{' '}
-                        {run.breakdown.applicable} fit profile, {run.breakdown.priceOk} within ceiling, {run.breakdown.targetOk} meet target surplus.{' '}
+                        {run.breakdown.applicable} fit profile, {run.breakdown.priceOk} {planning.priceLocked ? 'within ceiling' : 'with ceiling disabled'}, {run.breakdown.targetOk} meet target surplus.{' '}
                         Owner expectation is a benchmark, not a constraint.
                         Single-condition counterfactuals not run yet — no claim about what one changed condition would do.
                       </p>
@@ -2245,6 +2395,7 @@ export default function App() {
                             <strong>{isBaseline ? 'Working plan (baseline)' : cardTitle(c, runSnap)}</strong>
                             <span className="note">
                               {dispName(c)} · {c.quantities.n} homes · {formatGap(c.finance.ownerGap)}
+                              {!isBaseline && ` · ${c.finance.landAllowance > runSnap.allowance ? 'Higher' : c.finance.landAllowance < runSnap.allowance ? 'Lower' : 'Same'} land allowance than working plan`}
                               {twin ? ` · same economics as ${dispName(twin)}` : ''}
                             </span>
                           </button>
@@ -2322,7 +2473,7 @@ export default function App() {
                       <div key={key}>
                         <p className="note"><strong>{s.label}</strong> — {s.q.n} homes · {formatM2(s.q.roadArea)} road · {formatGap(s.fin.ownerGap)}</p>
                         <PlanCanvas
-                          layout={s.layout} boundary={siteBoundary(baseSpec)} siteW={site.w} siteH={site.h} entrance={site.entrance}
+                          planning={baseSpec.planning} layout={s.layout} boundary={siteBoundary(baseSpec)} siteW={site.w} siteH={site.h} entrance={site.entrance}
                           greenLocked={greenLocked} greenSelected={false} siteSelected={false} editing={false}
                           entranceEditing={false} entranceValid
                           draftActive={false} draftValid
