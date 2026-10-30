@@ -1,0 +1,68 @@
+AssertionError [ERR_ASSERTION]: touch places and closes a five-sided boundary
+    at check (/home/spotty/projects/unbuilt/tests/project-lifecycle-browser.cjs:3:28)
+    at /home/spotty/projects/unbuilt/tests/project-lifecycle-browser.cjs:23:708
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · no model
+Cedar Market sample · Blank plan
+Selected: Site
+No boundary yet
+Saved in this browser
+
+Opened Cedar Market sample. Accepted plan restored; drafts, undo history and photos are not restored. Plan Undo/Redo starts fresh.
+
+Select
+Pan
+Draw site
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+A new beginning
+
+Draw your site boundary to start planning.
+
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Start your site
+
+Draw a closed boundary on the canvas. Place corners with your pointer or enter their coordinates.
+
+Draw boundary
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Open projects
+EVALUATOR
+Details
+Draw a site boundary to begin.

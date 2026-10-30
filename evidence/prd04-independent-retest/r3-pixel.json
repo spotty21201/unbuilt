@@ -1,0 +1,57 @@
+{
+ "asset": "index-VGmP2eqq.js",
+ "method": "Playwright Chromium headless-shell; pixel crops decoded with pngjs; zoom via 720x450 CSS px at dpr 2 (exact 200%-zoom geometry)",
+ "pixel": {
+  "textarea-1440": {
+   "mean": 237,
+   "h": 50
+  },
+  "send-1440": {
+   "dark": 0.93,
+   "bottom": 727
+  },
+  "canvas-1440": {
+   "draw": 0.37,
+   "size": "600x525"
+  },
+  "textarea-1024": {
+   "mean": 220,
+   "h": 50
+  },
+  "send-1024": {
+   "dark": 0.93,
+   "bottom": 598
+  },
+  "canvas-1024": {
+   "draw": 0.368,
+   "size": "357x313"
+  },
+  "textarea-375": {
+   "mean": 217,
+   "h": 50
+  },
+  "send-375-scrolled": {
+   "dark": 0.93,
+   "bottom": 585
+  },
+  "canvas-375": {
+   "draw": 0.38,
+   "size": "351x307"
+  },
+  "compare": {
+   "draw": [
+    "0.515",
+    "0.479"
+   ]
+  }
+ },
+ "zoom200": {
+  "dpr": 2,
+  "cssW": 720,
+  "reflow": "single-column",
+  "overflow": false,
+  "sendWorks": true,
+  "composerH": 50
+ },
+ "notes": "Two first-run failures were measurement artifacts (viewport-only screenshot of below-fold elements; Playwright boundingBox has no .bottom), corrected by scroll-into-view recapture. Headless shell ignores --force-device-scale-factor, so zoom uses the exact-geometry context instead."
+}

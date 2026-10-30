@@ -1,0 +1,48 @@
+locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Draw boundary', exact: true })[22m
+
+    at /home/spotty/projects/unbuilt/tests/boundary-pointer-range-browser.cjs:19:40
+Skip to plan
+UNBUILT
+Projects
+Save
+Undo
+Redo
+Pointer check · Blank plan
+Selected: Site
+No boundary yet
+Saved in this browser
+
+Opened Pointer check. Accepted plan restored; drafts, undo history and photos are not restored. Plan Undo/Redo starts fresh.
+
+Select
+Pan
+Draw site
+Site
+Streets
+Homes
+Green
+Ask
+Show controls
+Select
+Pan
+Fit site
++
+−
+Open space A
+A new beginning
+
+Draw your site boundary to start planning.
+
+Y ↑
+0
+25
+50 m
+LOCAL METRES
+ZOOM 100%
+Site boundary · 0 m²
+Inspect selection
+EVALUATOR
+Details
+Draw a site boundary to begin.

@@ -1,0 +1,34 @@
+PASS review opens with two actual plan drawings and no unapplied change
+PASS cost-only trial shows hand-calculated 1.26bn saving
+PASS unapplied trial never enters saved accepted state
+PASS empty cost rejects partial economics and disables Apply
+PASS negative costs cannot be applied
+PASS selling costs plus target at or above 100% are rejected
+PASS combined design and cost comparison exposes sequential attribution
+PASS closing review returns keyboard focus to its opener
+PASS Cancel preserves exact accepted geometry and assumptions
+PASS reopening starts from accepted costs and design
+PASS existing search still previews alternatives before a cost change
+PASS applying new costs marks the previous search stale and clears previews
+PASS Apply saves accepted cost assumptions in project v11 with a decision
+PASS plan Undo restores exact prior inputs
+PASS plan Redo restores approved cost trial
+PASS reload restores approved costs
+PASS Escape closes only the unapplied experiment
+PASS live tool server explains approved construction rate
+PASS server search and explanation agree on costs and scenario hash
+PASS economics details and shared rates use accepted cost bases
+PASS portable record v12 retains exact costs and computed economics
+PASS import opens a separate project with approved assumptions
+PASS fractional accepted rates do not drift or dirty a reopened review
+PASS combined design Apply saves dimensions and rates together
+PASS combined experiment Undo restores prior costs and dimensions
+PASS held manual housing disables design controls but permits cost trials
+PASS cost Apply preserves held lots and every home assignment exactly
+PASS clearing layout retains accepted cost assumptions
+PASS starter regeneration retains accepted cost assumptions
+PASS narrow touch review keeps Apply reachable without page overflow
+PASS emulated touch can review and apply an allowance change
+PASS tablet review has no horizontal dialog overflow
+PASS browser scenarios have no uncaught errors
+ALL 33 FEASIBILITY BROWSER CHECKS PASS

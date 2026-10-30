@@ -1,0 +1,86 @@
+M2 UI slice — 2026-10-26
+- web/ Vite react-ts scaffold; npm install clean; vite.config fs.allow for ../../src engine imports.
+- web build: tsc -b + vite build green (24 modules, dist/ emitted). One error found+fixed (unused var, noUnusedLocals).
+- Engine gate: 5 suites green (finance 19, geometry 17, search 22, tester 10, intent 12).
+- Dev server: setsid detached, HTTP 200 + correct title on :5173 (this-session namespace).
+- Known limits: no pointer-drag green editing (numeric only); no upload (M3); no model call (blocked, badged); no browser-driven test yet (no runner confirmed).
+- Designer T11b review dispatched (in flight at log time).
+- Designer T11b review (docs/UX-REVIEW-M2.md): 7x PARTIAL + minor FAIL, core loop praised.
+- Fix pass: full-version undo (all inputs), ceiling inline validation + Accept guard,
+  listbox repaired (references moved out), skip link + live status region, drawer
+  labels from RATES, ASCII minus, input type/enterKeyHint, 44px targets,
+  overflow-x guard, per-card status chips, no-result scope + counterfactual note,
+  1-2 card scope note, preview caption deltas.
+- Rebuild green; engine gate green; dev server re-probed HTTP 200.
+- M3 adds stay absent (compare control, stale/rerun, upload, decision record) — no dead buttons.
+- Browser-review fix pass (REVIEW.md findings 1-8):
+  1. PlanCanvas rewritten in screen space (single transform); mapping independently
+     checked: site/road/lot/grove/entrance-marker all inside 640x560.
+  2. Stale guard: run snapshot vs live inputs; stale cards unpreviewable/unapplyable + Rerun.
+  3. Green/working validation with inline errors; locked green not editable; empty price -> Incomplete.
+  4. Request+proposal moved under plan; intentions in <details>; green coords in <details>.
+  5. Baseline chip + "Same as working plan"; avg lot size per card; identical-economics twin notes;
+     engine dedupe now geometric (dup-frontage test added); "viable" replaces "qualified" in UI.
+  6. Commercial-miss lead line on results; per-card status chips.
+  7/8. Plain names ("Spine · 11 m lots"), Send button, multiline field, honest proposal scope,
+      completed-proposal state with Revise; drawer labels from RATES.
+- Engine gate green (incl. new dup test); web build green; dev :5173 re-probed HTTP 200.
+- Awaiting independent browser re-walk of findings 1-3 before claiming M2.
+- Retest fix pass (ORCHESTRATOR-HANDOFF.md, findings A-C + 4/5/7/8):
+  A. Ghost outlines drawn first, transparent (no fill); added keeps dashed outline + tag.
+  B. VerdictLine: zero/some/all/none commercial outcomes handled explicitly; causal
+     sentence removed (scope-bound shortfall only); zero-result acceptance reads as
+     no-result, not success. "viable" -> "valid layouts" in UI; reasons plain.
+     Negative gap reads Headroom/Shortfall via formatGap.
+  C. All numeric inputs string-held: emptied owner/price/target/ceiling -> Incomplete,
+     never zero. Green uses draft+commit: invalid drafts keep last-good geometry + error.
+     Containment hint respects lock state.
+  4. Assumptions <details> closed by default; site summary trimmed; cards in responsive grid.
+  5. Baseline card has no Apply; titles name lot-size benefit; twin-note explains identical economics.
+  7. Display names on cards/buttons; multiline request kept.
+  8. Lock line clarifies Free = editable manually, held during search.
+- Engine gate green (reason-text change: only non-empty asserted); web build green; :5173 HTTP 200.
+- Empty-input + stale + preview-legibility fixes need independent browser re-verification (no local runner).
+- Test deploy: production build (web/dist) served via vite preview on 0.0.0.0:5173,
+  verified HTTP 200 through the Tailscale address. Awaiting independent re-walk.
+- Workbench increment (ORCHESTRATOR-INTERACTIVE-PLANNING-PROMPT.md):
+  top bar (status, Undo/Redo, deterministic badge), 280px left rail
+  (object list Site/Grove/Circulation/Homes mirrored with canvas, contextual
+  inspector, assumptions with persistent summary), central canvas with
+  Select/Pan/zoom/Fit, persistent bottom dock (summary + Quantities/
+  Economics/Options/Issues tabs). 1 m pointer snap (typed keeps precision).
+  Esc cancels gesture, then clears draft/deselects. Draft edits commit on
+  valid release as one undoable op; alternatives keep Preview/Apply/Cancel
+  with previous-layout toggle. Last-change delta retained in dock summary.
+  Search holds drawn green fixed even unlocked (scope text states it).
+  Out of increment: 3D, maps, arbitrary boundaries/roads, home editing.
+- Engine gate green (7 suites); web build green; prod :5173 re-probed HTTP 200.
+- Do NOT commit per prompt. Awaiting independent browser acceptance (11 tests).
+- Pre-pass defect fixes (T10d D1-D11, all closed in code):
+  D1 Escape clears gesture ref via cancelTick; idle-Esc clears draft/deselects; no-op Apply guarded.
+  D2 onPointerCancel reverts to gesture start, never commits.
+  D3 greenLocked in undo Snapshot + restore; proposal-accept pushes history.
+  D4 assumption blur/Enter commits one undoable step (pre-value restore).
+  D5 lastDelta cleared on undo/redo.
+  D6 working-plan applicability via shared failingLots(): warning (Issues tab + inline), not a blocker.
+  D7 preview geometry rebuilds on run-snapshot green; frozen economics always agree.
+  D8 preview-bar Apply has the draftDirty guard like every other commit path.
+  D9 zero-card VerdictLine suppresses the vacuous sentence.
+  D10 resize preserves untouched edges exactly; moved edges snap 1 m.
+  D11 search elapsedMs already rendered in run-scope notes; browser timing still needs a browser.
+- Engine gate green (7 suites incl. failingLots checks); web build green; prod :5173 HTTP 200.
+- Rewalk defect fixes (RESULTS.md 1-6, all closed in code):
+  1. applyDraft snapshots pre-edit fields (no resurrected drafts); design controls
+     disabled while dirty (same bug class); full Undo verified by construction.
+  2. Deltas baselined on committed values; signed -RpXm form (abs-sign bug fixed).
+  3. Canvas sized by ResizeObserver to column width AND 46vh (explicit px, no
+     letterbox, mapping exact); request/toolbar outside scroll content.
+  4. Topbar wraps; dock tabs scroll internally; kv single-column under 900px.
+     (Browser confirm still needed — no local runner.)
+  5. Issues tab gains Economics-inputs section from the same validity state;
+     retained committed metrics labeled "Last valid values".
+  6. Boundary click selects Site (pan-safe via moved-gesture guard); list
+     arrows/Escape work; rail-level Escape clears draft/deselects; selected
+     site outline mirrors. Zero-case copy distinguishes geometry vs constraints.
+- Engine gate green (7 suites); web build green; prod :5173 HTTP 200.
+- M2 REMAINS UNCLAIMED pending independent re-walk + model/human gates.

@@ -1,0 +1,145 @@
+BADGE Deterministic mode: local parser · tool server offline
+BROWSER ERRORS [
+  "Access to fetch at 'http://100.117.187.86:5174/api/health' from origin 'http://100.117.187.86:5173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+  'Failed to load resource: net::ERR_FAILED'
+]
+TRUE Assistant: Reporting measured results
+
+What is true?Why did it change?What could we try?
+Ask about Open space A
+Ask
+Open space A — measured facts
+24 × 20 m at 78 m from west, 62 m from south — Locked (shape and location held)
+Quantities (from geometry)
+20 homes with valid footprints
+720 m² road (intersections counted once)
+480 m² shared green
+4,000 m² parcels
+6,800 m² unallocated remainder (not designed open space)
+Economics (priced at Rp850m/home)
+Revenue Rp17.00bn; non-land costs Rp10.38bn
+Land allowance Rp3.56bn — what the land is worth to this scheme before paying the owner
+Owner shortfall Rp6.44bn against Rp10bn expectation (a benchmark, not a constraint)
+Ceiling Rp850m/home; target surplus 15% of revenue
+Validity and commitments
+Geometry valid; economics inputs complete.
+Held: Open space A shape+location locked
+Held: Assumed price held at or below the Rp850m/home ceiling
+Cedar Market sample — fictional prices
+WHY NO PREVIEW Assistant: Clarifying
+
+What is true?Why did it change?What could we try?
+Ask about Open space A
+Ask
+
+Nothing to compare yet — preview an option first, then ask why it changed.
+TRY Assistant: Hypothesizing (untested)
+
+What is true?Why did it change?What could we try?
+Ask about Open space A
+Ask
+Hypothesis for Open space A (untested until the engine runs)
+Investigate: Keep this green space. Do not increase the home selling price. What else can change?
+Would hold: Open space A shape+location locked; Assumed price held at or below the Rp850m/home ceiling
+Would test: spine, loop × 9, 10, 11, 12 m frontages, seed 7, budget 250
+Unknown: Whether any tested combo keeps the current home count at the capped price
+Unknown: Whether wider lots pay for their extra road cost
+No outcome is claimed here — Preview will show measured plans or an honest no-result.
+Send this investigation
+REQUEST Keep this green space. Do not increase the home selling price. What else can change? VERDICT [
+  'Proposal — lock Open space A in place (shape and location); hold the assumed selling price at Rp850m (no increase). Scope: change: circulation pattern and lot frontage only; held fixed: drawn green region, price ceiling, owner expectation, target; test: bounded search over the stated ranges, nothing else moves. Accept to run; Reject leaves everything unchanged.Accept and run Reject'
+]
+SEARCH 8 tested: 6 geometrically valid, 8 fit the Family 200 (fictional) profile, 8 within ceiling, 8 meet target surplus — 6 shown below. None shown meet the Rp10bn owner benchmark — best shortfall Rp6.44bn, worst Rp7.59bn. Benchmark observed within the tested ranges only.
+
+Order by
+Lowest road area
+Highest land allowance
+Most homes
+Working plan (baseline)
+Spine · 10 m lots · 20 homes · Shortfall Rp6.44bn
+-3 homes, lots avg 220 m²
+Spine · 11 m lots · 17 homes · Shortfall Rp7.59bn · same economics as Spine · 12 m lots
+Apply
+-3 homes, lots avg 240 m²
+Spine · 12 m lots · 17 homes · Shortfall Rp7.59bn · same economics as Spine · 11 m lots
+Apply
+Compare two plans
+Plan A
+Working plan
+Spine · 10 m lots
+Spine · 11 m lots
+Spine · 12 m lots
+Plan B
+Choose…
+Working plan
+Spine · 10 m lots
+Spine · 11 m lots
+Spine · 12 m lots
+Fit bothExpand comparison
+
+Working plan — 20 homes · 720 m² road · Shortfall Rp6.44bn
+
+Fit site
++
+−
+Expand plan
+Drag background to pan · scroll to zoom · zoom never changes quantities
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A · locked
+Entrance · west
+20 m
+N ↑ (illustrative)
+spine · 20 homes · Open space A (locked, retained) · Entrance west
+
+Choose a second plan to see deltas.
+
+Both plans share the same site coordinates. Comparisons are snapshots of this run only — no saved schemes yet.
+PREVIEW 17 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp2.41bn
+Shortfall Rp7.59bn
+WHY WITH PREVIEW Assistant: Reporting measured results
+
+What is true?Why did it change?What could we try?
+Ask about Open space A
+Ask
+Spine · 10 m lots → Spine · 11 m lots (local engine)
+Homes
+20 → 17 (-3)
+Road area
+720 m² → 720 m²
+Land allowance
+Rp3.56bn → Rp2.41bn
+Owner outcome
+Shortfall Rp6.44bn → Shortfall Rp7.59bn
+
+Both priced at Rp850m/home against a Rp10bn owner benchmark.
+
+Tool server unreachable — computed locally with the same deterministic engine. Figures match the server for the same plan.
+ERRORS AFTER WHY [
+  "Access to fetch at 'http://100.117.187.86:5174/api/health' from origin 'http://100.117.187.86:5173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+  'Failed to load resource: net::ERR_FAILED',
+  "Access to fetch at 'http://100.117.187.86:5174/api/explain' from origin 'http://100.117.187.86:5173' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+  'Failed to load resource: net::ERR_FAILED'
+]
+PAN VIEWBOX 0 0 640 560 -33.82663847780127 -13.526570048309178 640 560

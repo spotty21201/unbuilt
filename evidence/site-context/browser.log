@@ -1,0 +1,34 @@
+PASS CSV preview reports 6006 m² before touching the accepted project
+PASS cancelling file import preserves blank plan
+PASS boundary import enters the existing review draft
+PASS cancelling boundary review preserves accepted data
+PASS Apply accepts geometry and source together using project v6
+PASS one Undo removes imported geometry and source together
+PASS self-crossing imported boundary is refused
+PASS DXF reads millimetre metadata and refuses unreconciled global coordinates
+PASS explicit DXF origin translation preserves 6006 m²
+PASS DXF import records original origin and layer
+PASS real PDF renders locally with both pages available
+PASS PDF text and dimension labels render using bundled font resources
+PASS new PDF calibration is a draft only
+PASS PDF page can change before any calibration is accepted
+PASS invalid survey scale blocks Apply
+PASS Apply saves calibration and displays correctly scaled PDF reference
+PASS 100 m calibration measures 100 m against the 77 m accepted boundary
+PASS survey visibility changes presentation only
+PASS Cancel replacement PDF page retains original attached reference and calibration
+PASS selected PDF page is saved explicitly
+PASS three context types save sources and uncertainty without changing site geometry
+PASS context annotations can be edited
+PASS annotation removal is undoable
+PASS context markers can be placed directly on the plan
+PASS normal reload preserves full context metadata, but not PDF bytes
+PASS reopened project requests reattachment rather than claiming the survey is displayed
+PASS exact PDF reattachment restores saved page and calibration without reapplying
+PASS decision record v7 includes context metadata but no attached media bytes
+PASS record import restores separate project with geometry, context and calibration
+PASS 1440: context panel has no horizontal clipping
+PASS 1024: context panel has no horizontal clipping
+PASS 375: context panel has no horizontal clipping
+PASS no uncaught browser errors
+ALL 33 SITE CONTEXT BROWSER CHECKS PASS

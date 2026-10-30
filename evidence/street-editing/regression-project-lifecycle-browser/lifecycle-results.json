@@ -1,0 +1,24 @@
+{
+  "checks": [
+    "keyboard opens library with focus constrained to dialog",
+    "Escape closes library and returns focus to its opener",
+    "Delete on a keyboard-selected lot opens a guarded removal",
+    "history shortcuts cannot change the plan behind a confirmation",
+    "Escape cancels deletion without removing a home",
+    "project switch removes in-flight explanation, preview and prior results",
+    "project switch preserves other accepted project",
+    "deleting active project opens another saved project",
+    "deleting final project leaves a genuine empty library",
+    "Undo final-project deletion restores and opens accepted plan",
+    "vacant lot can be reshaped without claiming a placed home setback",
+    "restoring a house that no longer fits is refused without changing accepted plan",
+    "correcting vacant lot permits safe home restoration",
+    "adding a corner before gate edge preserves selected physical entrance",
+    "boundary Undo restores gate and four-corner outline together",
+    "removing inserted corner restores gate edge indexing",
+    "deleting boundary clears obsolete edge references so blank project reopens",
+    "touch places and closes a five-sided boundary",
+    "touch corner drag updates measured area",
+    "touch Apply after synthetic-drag click recovery saves without auto-generation"
+  ]
+}

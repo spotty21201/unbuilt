@@ -1,0 +1,513 @@
+
+> unbuilt@0.0.1 test
+> node --experimental-strip-types --no-warnings tests/run.mjs && node --experimental-strip-types --no-warnings tests/geometry.mjs && node --experimental-strip-types --no-warnings tests/search.mjs && node --experimental-strip-types --no-warnings tests/search-tester.mjs && node --experimental-strip-types --no-warnings tests/intent.mjs && node --experimental-strip-types --no-warnings tests/draft.mjs && node --experimental-strip-types --no-warnings tests/draft-tester.mjs && node --experimental-strip-types --no-warnings tests/site.mjs && node --experimental-strip-types --no-warnings tests/site-tester.mjs && node --experimental-strip-types --no-warnings tests/polygon.mjs && node --experimental-strip-types --no-warnings tests/boundary.mjs && node --experimental-strip-types --no-warnings tests/persist.mjs && node --experimental-strip-types --no-warnings tests/snapshot.mjs && node --experimental-strip-types --no-warnings tests/assistant.mjs && node --experimental-strip-types --no-warnings tests/server.mjs && node --experimental-strip-types --no-warnings tests/planning.mjs && node --experimental-strip-types --no-warnings tests/planner-feedback.mjs && node --experimental-strip-types --no-warnings tests/projects.mjs && node --experimental-strip-types --no-warnings tests/site-context.mjs
+
+PASS rev@850: actual=34000000000 expected=34000000000
+PASS surplus@850: actual=4460000000 expected=4460000000
+PASS margin@850: actual=0.13117647058823528 expected=0.13118
+PASS allow@850: actual=9360000000 expected=9360000000
+PASS gap@850: actual=640000000 expected=640000000
+PASS rev@780: actual=31200000000 expected=31200000000
+PASS surplus@780: actual=1744000000 expected=1744000000
+PASS margin@780: actual=0.0558974358974359 expected=0.0559
+PASS allow@780: actual=7064000000 expected=7064000000
+PASS gap@780: actual=2936000000 expected=2936000000
+PASS reqPrice: actual=869512195.1219513 expected=869512195.122
+PASS L-change allowance stable: actual=9360000000 expected=9360000000
+PASS L-change gap moves: actual=2000000000 expected=2000000000
+PASS t-change revenue stable: actual=34000000000 expected=34000000000
+PASS t-change surplus stable: actual=4460000000 expected=4460000000
+PASS negative allowance kept: actual=true expected=true
+PASS zero-home margin null: actual=null expected=null
+PASS zero-home price null: actual=null expected=null
+PASS invalid denom price null: actual=null expected=null
+ALL FIXTURES PASS
+PASS union-overlap: actual=175 expected=175
+PASS spine-road: actual=720 expected=720
+PASS spine-green: actual=480 expected=480
+PASS spine-n: actual=20 expected=20
+PASS spine-parcels: actual=4000 expected=4000
+PASS loop-road: actual=2076 expected=2076
+PASS loop-n: actual=16 expected=16
+PASS distinct-road: actual=1 expected=1
+PASS spine-valid: actual=0 expected=0
+PASS loop-valid: actual=0 expected=0
+PASS lock-kept: actual=0 expected=0
+PASS lock-moved: actual=1 expected=1
+PASS overlap-caught: actual=1 expected=1
+PASS spine-roadcost: actual=576000000 expected=576000000
+PASS loop-roadcost: actual=1660800000 expected=1660800000
+PASS road-saving: actual=1084800000 expected=1084800000
+PASS spine-homes-cost: actual=6000000000 expected=6000000000
+ALL GEOMETRY FIXTURES PASS
+PASS spine9-footprint: actual=true expected=true
+PASS loop9-footprint: actual=true expected=true
+PASS tested-8: actual=8 expected=8
+PASS valid-6: actual=6 expected=6
+PASS qualified-gt0: actual=true expected=true
+PASS green-held-all: actual=true expected=true
+PASS ceiling-held-all: actual=true expected=true
+PASS spine10-n: actual=20 expected=20
+PASS spine10-applicable: actual=true expected=true
+PASS spine10-no-lots: actual={} expected={}
+PASS carry-present: actual=true expected=true
+PASS carry-lots: actual=[[0,28],[10,28],[10,47],[0,47]] expected=[[0,28],[10,28],[10,47],[0,47]]
+PASS carry-area: actual=true expected=true
+PASS carry-applicable: actual=true expected=true
+PASS ghost-clean: actual=true expected=true
+PASS ghost-same-n: actual=6 expected=6
+PASS break-geo: actual=6 expected=6
+PASS break-geo-eq-valid: actual=6 expected=6
+PASS break-bounded: actual=true expected=true
+PASS tight-qualified-0: actual=0 expected=0
+PASS tight-blockers: actual=true expected=true
+PASS tight-candidates-0: actual=0 expected=0
+PASS compact-qualified-2: actual=2 expected=2
+PASS compact-ids: actual=spine-f10,spine-f11 expected=spine-f10,spine-f11
+PASS compact-narrows-base: actual=true expected=true
+PASS sel-max3: actual=true expected=true
+PASS sel-distinct: actual=3 expected=3
+PASS sel-reasons: actual=true expected=true
+PASS sel-ordered: actual=true expected=true
+PASS tiny-one: actual=1 expected=1
+PASS capped-tested: actual=3 expected=3
+PASS capped-truncated: actual=true expected=true
+PASS failing-base-none: actual=0 expected=0
+PASS failing-compact-loop: actual=true expected=true
+PASS dup-tested: actual=2 expected=2
+PASS dup-selected-1: actual=1 expected=1
+ALL SEARCH FIXTURES PASS
+PASS moved-qualified-0: actual=0 expected=0
+PASS moved-candidates-0: actual=0 expected=0
+PASS moved-tested-8: actual=8 expected=8
+PASS moved-green-blocker: actual=true expected=true
+PASS deep-qualified-0: actual=0 expected=0
+PASS deep-candidates-0: actual=0 expected=0
+PASS deep-price-blocker: actual=true expected=true
+PASS deterministic-hash: actual=9f86999b expected=9f86999b
+PASS deterministic-qualified: actual=6 expected=6
+PASS deterministic-ids: actual=spine-f10,spine-f11,spine-f12,loop-f10,loop-f11,loop-f12 expected=spine-f10,spine-f11,spine-f12,loop-f10,loop-f11,loop-f12
+ALL SEARCH-TESTER COUNTERFACTUALS PASS
+PASS sig-kind: actual="proposal"
+PASS sig-green: actual=true
+PASS sig-ceiling: actual=850000000
+PASS sig-run: actual=true
+PASS nosel-kind: actual="clarification"
+PASS nosel-no-object: actual=false
+PASS open-kind: actual="proposal"
+PASS open-green: actual=true
+PASS open-ceiling: actual=850000000
+PASS open-run: actual=true
+PASS cap-kind: actual="proposal"
+PASS cap-value: actual=800000000
+PASS thousands-comma: actual=1000000000
+PASS thousands-dot: actual=1000000000
+PASS decimal-comma: actual=850500000
+PASS billion: actual=1500000000
+PASS miliar: actual=2000000000
+PASS juta: actual=850000000
+PASS weird-groups: actual="clarification"
+PASS weird-no-ceiling: actual=null
+PASS bare-number: actual="clarification"
+PASS bare-no-ceiling: actual=null
+PASS profile-kind: actual="proposal"
+PASS profile-id: actual="starter-150"
+PASS bld-kind: actual="limitation"
+PASS vague-kind: actual="clarification"
+PASS explain-kind: actual="clarification"
+ALL INTENT FIXTURES PASS
+PASS empty-null: actual=null
+PASS spaces-null: actual=null
+PASS word-null: actual=null
+PASS zero-is-zero: actual=0
+PASS decimal: actual=78.5
+PASS draft-valid: actual=true
+PASS draft-rect: actual={"x":80,"y":62,"w":24,"h":20}
+PASS commit-ok: actual={"x":80,"y":62,"w":24,"h":20}
+PASS outside-draftable: actual=false
+PASS outside-error: actual=true
+PASS outside-blocked: actual=null
+PASS empty-draftable: actual=false
+PASS empty-keeps-x: actual=78
+PASS past-len: actual=2
+PASS undo-snap: actual="s1"
+PASS undo-redo: actual=["current"]
+PASS redo-snap: actual="current"
+PASS push-clears-redo: actual=0
+PASS history-cap: actual=50
+PASS history-cap-newest: actual=59
+ALL DRAFT FIXTURES PASS
+PASS edge-exact-commits: actual={"x":96,"y":62,"w":24,"h":20}
+PASS edge-past-blocked: actual=null
+PASS edge-past-keeps-committed: actual={"x":78,"y":62,"w":24,"h":20}
+PASS zero-width-blocked: actual=null
+PASS negative-x-blocked: actual=null
+PASS negative-x-keeps-committed: actual={"x":78,"y":62,"w":24,"h":20}
+PASS undo-empty-null: actual=null
+PASS undo-empty-hist: actual={"past":[],"future":[]}
+PASS redo-empty-null: actual=null
+PASS redo-empty-hist: actual={"past":[],"future":[]}
+PASS lifo-order: actual=["c","b"]
+PASS push-clears-deep-redo: actual=[]
+PASS redo-after-push-null: actual=null
+ALL DRAFT-TESTER COUNTERFACTUALS PASS
+PASS cedar-is-factory: actual={"w":120,"h":100,"entrance":{"edge":"west","offset":50,"width":8},"green":{"x":78,"y":62,"w":24,"h":20}}
+PASS maker-140x110: actual={"w":140,"h":110,"entrance":{"edge":"west","offset":55,"width":8},"green":{"x":91,"y":68,"w":28,"h":22}}
+PASS east-spine-valid: actual=0
+PASS east-loop-valid: actual=0
+PASS north-edge-no: actual=true
+PASS off-edge-no: actual=true
+PASS zero-width-no: actual=true
+PASS west-ok: actual=0
+PASS disconnected-gate: actual=true
+PASS big-spine-valid: actual=0
+PASS big-loop-valid: actual=0
+PASS zero-rejected: actual=true
+PASS small-rejected: actual=true
+PASS huge-rejected: actual=true
+PASS min-accepted: actual=0
+PASS mid-accepted: actual=0
+ALL SITE FIXTURES PASS
+PASS under-w-rejected: actual=true
+PASS under-h-rejected: actual=true
+PASS min-accepted: actual=0
+PASS max-accepted: actual=0
+PASS over-w-rejected: actual=true
+PASS over-h-rejected: actual=true
+PASS nan-rejected: actual=true
+PASS negative-rejected: actual=true
+PASS infinity-rejected: actual=true
+PASS factory-invariants: actual=0
+PASS small-validates-geometrically: actual=0
+PASS small-rejected-by-scope: actual=true
+ALL SITE-TESTER COUNTERFACTUALS PASS
+PASS sq-area: actual=100
+PASS ell-area: actual=27
+PASS sq-edges: actual=[10,10,10,10]
+PASS sq-centroid: actual={"x":5,"y":5}
+PASS sq-simple: actual=true
+PASS ell-simple: actual=true
+PASS bow-simple: actual=false
+PASS two-simple: actual=false
+PASS dup-simple: actual=false
+PASS in-square: actual=true
+PASS out-square: actual=false
+PASS on-edge-inside: actual=true
+PASS in-notch: actual=false
+PASS in-ell: actual=true
+PASS site-in: actual=true
+PASS site-out: actual=false
+PASS shared-full: actual=10
+PASS shared-corner: actual=0
+PASS shared-none: actual=0
+PASS adjacent-no-overlap: actual=false
+PASS shifted-overlap: actual=true
+PASS coincident-overlap: actual=true
+PASS coincident-ell: actual=true
+PASS partial-coincident: actual=true
+PASS corner-touch: actual=false
+PASS t-touch: actual=false
+PASS contain-either: actual=true
+PASS rect-coincident: actual=true
+PASS rect-partial: actual=true
+PASS nan-simple: actual=false
+PASS inf-simple: actual=false
+PASS neginf-area-finite: actual=true
+PASS rect-adjacent: actual=false
+PASS rect-pushed: actual=true
+PASS rect-inside: actual=true
+PASS fp-inside: actual=true
+PASS fp-cross: actual=false
+PASS place-normal: actual={"x":2,"y":5,"w":6,"h":10}
+PASS place-none: actual=null
+PASS cedar-clean: actual=0
+PASS front-edge-on-road: actual=10
+PASS inset-area: actual=190
+PASS inset-valid: actual=[]
+PASS joint-valid: actual=0
+PASS area-delta: actual=10
+PASS remainder-absorbs: actual=10
+PASS recon: actual=12000
+PASS inset-fits-profile: actual=false
+PASS frontage-true: actual=10
+PASS setback-no: actual=["reshape leaves less than the 2 m side setback around the placed home"]
+PASS slim-valid: actual=[]
+PASS slim-fails-profile: actual=true
+PASS bow-no: actual=true
+PASS outside-no: actual=true
+PASS road-no: actual=["reshaped lot overlaps a road"]
+PASS neighbor-no: actual=["reshaped lot overlaps lot 2"]
+PASS footprint-no: actual=true
+PASS access-no: actual=true
+PASS dangling-no: actual=true
+PASS carry-hit: actual=true
+PASS carry-miss: actual=0
+PASS lotkey-format: actual="0,27,10,20"
+PASS nan-lot-no: actual=["lot corners must be finite numbers"]
+PASS nan-failing: actual=true
+PASS coincident-joint: actual=true
+PASS vertex-cap: actual=true
+PASS joint-overlap: actual=true
+ALL POLYGON FIXTURES PASS
+PASS hand-calculated area: rectangle minus 50 × 40 / 2 triangle
+PASS legacy rectangle uses its original area and implicit corners
+PASS clockwise and counterclockwise have same area
+PASS validation rejects crossings, repeated points, spikes, zero area, nonfinite, too many and negative coordinates
+PASS containment rejects concavity bridges with all corners inside and collinear contacts
+PASS spine filters outside lots, keeps whole lots and reconciles true site area
+PASS unsupported road network is empty, invalid and leaves all site area unallocated
+PASS concave sites with roads and green wholly inside can generate
+PASS full gate must lie on actual west/east boundary; collinear split gate remains valid
+PASS green drafts cannot enter clipped-away land
+PASS search returns only valid contained candidates and hashes changed boundaries
+PASS polygon persistence roundtrip preserves all coordinates; bad polygon refuses without replacing state
+PASS boundary Apply is one history step; undo and redo preserve the complete accepted plan
+PASS malformed frontage cannot hang generation or enter persisted snapshots
+PASS server snapshot contract preserves polygon and binds hash to geometry
+ALL 15 BOUNDARY CHECKS PASS
+PASS roundtrip-ok: actual=true
+PASS roundtrip-state: actual={"spec":{"family":"spine","frontage":10},"green":{"x":78,"y":62,"w":24,"h":20},"entrance":{"edge":"west","offset":50,"width":8},"lots":{"0,27,10,20":[{"x":0,"y":28},{"x":10,"y":28},{"x":10,"y":47},{"x":0,"y":47}]},"profileId":"starter-150","greenLocked":true,"priceS":"850","ceilingS":"850","ownerS":"10000","targetS":"15","baseSpec":{"w":120,"h":100}}
+PASS roundtrip-decisions: actual=[{"t":"2026-01-01T00:00:00.000Z","kind":"edit","detail":"x"}]
+PASS photo-never: actual=false
+PASS record-ok: actual=true
+PASS record-site: actual={"w":140,"h":110}
+PASS record-entrance: actual={"edge":"east","offset":55,"width":8}
+PASS record-green: actual={"x":80,"y":60,"w":20,"h":18}
+PASS record-lock: actual=true
+PASS record-target: actual="15"
+PASS record-family: actual={"family":"loop","frontage":11}
+PASS record-assume: actual=["850","850","10"]
+PASS refuse-version: actual=false
+PASS refuse-format: actual=false
+PASS refuse-string: actual=false
+PASS refuse-null: actual=false
+PASS refuse-null-coord: actual=false
+PASS refuse-many-corners: actual=false
+PASS refuse-few-corners: actual=false
+PASS refuse-bad-edge: actual=false
+PASS refuse-bad-decisions: actual=false
+PASS refuse-record-nostate: actual=false
+PASS refuse-reasons: actual=true
+ALL PERSIST FIXTURES PASS
+PASS version-is-5: actual=5
+PASS accepts-cedar: actual=true
+PASS hash-stable-key-order: actual="108748af5759c6"
+PASS hash-moves-on-price: actual=false
+PASS hash-moves-on-lock: actual=false
+PASS hash-moves-on-spec: actual=false
+PASS hash-moves-on-selection: actual=false
+PASS rejects-version: actual=false
+PASS rejects-nonobject: actual=false
+PASS rejects-site: actual=false
+PASS rejects-edge: actual=false
+PASS rejects-green: actual=false
+PASS rejects-lock: actual=false
+PASS rejects-13-corners: actual=false
+PASS rejects-spec: actual=false
+PASS rejects-profile: actual=false
+PASS rejects-nan: actual=false
+PASS rejects-provenance: actual=false
+PASS rejects-capability: actual=false
+PASS rejects-selection: actual=false
+PASS reason-present: actual=true
+PASS canon-order: actual="{\"a\":{\"c\":1,\"d\":2},\"b\":1}"
+PASS canon-round: actual="{\"v\":0.3}"
+ALL FIXTURES PASS
+PASS route-why: actual="why"
+PASS route-compare: actual="why"
+PASS route-try: actual="try"
+PASS route-search: actual="try"
+PASS route-true: actual="true"
+PASS route-worth: actual="true"
+PASS route-empty: actual="clarify"
+PASS route-vague: actual="clarify"
+PASS route-discloses: actual=true
+PASS true-sections: actual=4
+PASS true-echo-n: actual=true
+PASS true-echo-allow: actual=true
+PASS true-echo-gap: actual=true
+PASS true-benchmark: actual=true
+PASS true-held: actual=true
+PASS true-no-invention: actual=true
+PASS true-noecon: actual=true
+PASS true-invalid: actual=true
+PASS try-locks: actual=true
+PASS try-scope: actual=true
+PASS try-unknown: actual=true
+PASS try-untested: actual=true
+PASS clarify-three: actual=true
+PASS clarify-honest: actual=true
+ALL ASSISTANT FIXTURES PASS
+PASS health-adapter: actual="mock"
+PASS health-model-unset: actual=false
+PASS health-no-key: actual=false
+PASS cors-health-status: actual=200
+PASS cors-health-echo: actual="http://100.117.187.86:5173"
+PASS cors-health-vary: actual="Origin"
+PASS cors-preflight: actual=204
+PASS cors-preflight-methods: actual=true
+PASS cors-evil-health: actual=403
+PASS cors-evil-preflight: actual=403
+PASS cors-evil-post: actual=403
+PASS intent-status: actual=200
+PASS intent-kind: actual="proposal"
+PASS intent-lock: actual=true
+PASS intent-ceiling: actual=850000000
+PASS intent-echo: actual="r1"
+PASS intent-no-ctx: actual=400
+PASS intent-malformed: actual=400
+PASS intent-bad-sel: actual=400
+PASS search-tested: actual=8
+PASS search-valid: actual=6
+PASS search-breakdown: actual=6
+PASS search-spine10: actual=20
+PASS search-deterministic: actual="9f86999b"
+PASS search-budget-cap: actual=400
+PASS unknown-route: actual=404
+PASS snap-tested: actual=8
+PASS snap-spine10: actual=20
+PASS snap-hash-present: actual="string"
+PASS snap-rejected: actual=400
+PASS explain-hash: actual="12a749c913a07b"
+PASS explain-base-n: actual=20
+PASS explain-base-road: actual=720
+PASS explain-base-allow: actual=3559600000
+PASS explain-other-n: actual=17
+PASS explain-other-road: actual=2076
+PASS explain-other-allow: actual=1274560000
+PASS explain-d-homes: actual=-3
+PASS explain-d-road: actual=1356
+PASS explain-d-allow: actual=-2285040000
+PASS explain-d-gap: actual=2285040000
+PASS explain-valid: actual=0
+PASS explain-bad-spec: actual=400
+PASS polygon-server-n: actual=18
+PASS polygon-server-remainder: actual=6200
+PASS polygon-server-allowance: actual=2795600000
+PASS polygon-server-loop-omitted: actual=true
+PASS polygon-explain-n: actual=18
+PASS polygon-explain-remainder: actual=6200
+PASS polygon-explain-allowance: actual=2795600000
+PASS polygon-explain-version: actual="1e4d9a4aedc304"
+PASS polygon-unsupported-explain: actual=422
+PASS polygon-unsupported-no-finance: actual=undefined
+PASS polygon-downgrade-refused: actual=400
+PASS polygon-legacy-malformed-refused: actual=400
+PASS parametric-explain-status: actual=200
+PASS parametric-server-home-count: actual=20
+PASS parametric-server-template-cost-effect: actual=2299600000
+PASS parametric-downgrade-refused: actual=400
+PASS parametric-invalid-input-refused: actual=400
+PASS parametric-triangle-explain: actual=200
+PASS parametric-triangle-road-area: actual=672
+PASS parametric-server-price-lock-off: actual=1
+PASS parametric-server-never-changes-price: actual=17000000000
+PASS boundary-edge-search-status: actual=200
+PASS boundary-edge-server-measured-apron: actual=723
+PASS boundary-edge-only-supported-family: actual=true
+PASS boundary-edge-explain-status: actual=200
+PASS boundary-edge-explain-same-geometry: actual=723
+PASS boundary-edge-downgrade-refused: actual=400
+PASS blank-explanation-refuses-fake-economics: actual=422
+PASS blank-search-has-no-candidates: actual=0
+PASS meta-no-key: actual=503
+PASS meta-fallback: actual="local"
+ALL SERVER FIXTURES PASS
+PASS default responsive plan retains sample measured quantities
+PASS park growth routes connected roads around the fixed block
+PASS all routed quantities reconcile without overlapping allocations
+PASS park clearance changes roads or lots while preserving actual park area
+PASS east entrance also routes around a park
+PASS triangle uses true 6000 m², shortens roads and contains every feature
+PASS boundary growth changes the layout deterministically
+PASS cross streets remain connected and change lot distribution
+PASS impossible cross street is refused with empty geometry
+PASS park covering the entrance refuses generation
+PASS larger home template drives actual footprint and construction cost
+PASS vertical street frontage rotates setback axes with the road
+PASS malformed planning refuses both generator entry points
+PASS nonfitting templates omit lots rather than invent fitting homes
+PASS parametric loop refuses a park crossing its fixed road ring
+PASS parameters are validated at the shared trust boundary
+PASS version 3 project restores settings, street handles and locks exactly
+PASS older project versions cannot silently ignore new parameters
+PASS versioned scenario contains complete settings and rejects downgrades
+PASS parameter changes invalidate canonical assistant hashes
+PASS record version 4 roundtrip includes planning parameters
+PASS active buyer-price ceiling blocks above-ceiling options
+PASS disabled price ceiling allows search but never changes assumed price
+PASS search candidates remeasure the same template costs as previews
+PASS search never recommends a zero-home subdivision
+ALL 25 PLANNING CHECKS PASS
+PASS all four sloping boundary approaches generate contained connected streets
+PASS rectangular gate apron has hand-calculated 21 m², road+apron 723 m²
+PASS entrance labels and coordinates address the actual sloping edge
+PASS entrance apron contributes to real road costs
+PASS fixed loop explicitly refuses boundary edge entrances
+PASS legacy rectangular generation and quantities remain unchanged
+PASS invalid edge, corner-spanning gate and park-obstructed apron return no geometry
+PASS connector geometry cannot be altered, overlapped or omitted and remain valid
+PASS version 4 project preserves boundary entrance and minimum-area commitment
+PASS malformed boundary edge never enters persisted projects
+PASS scenario version 4 validates, rejects downgrade and hashes entrance changes
+PASS exported record version 5 reopens boundary-edge access exactly
+PASS minimum-area commitment allows moving/resizing above minimum and rejects smaller parks
+PASS malformed minimum-area settings are rejected before generation
+PASS minimum-area-only settings cannot silently enter older data envelopes
+PASS search with sloping gate only returns revalidated measured Spine candidates
+PASS crossing, repeated and backtracking edges identify repair locations
+PASS planning investigation wins over incidental change keywords
+PASS capacity answer states uncertainty and prepares a supported investigation
+ALL 19 PLANNER FEEDBACK CHECKS PASS
+PASS project IDs work without secure-context-only UUID support
+PASS new blank project has no implicit rectangle and exactly zero site area
+PASS blank plans contain no generated geometry in either generator
+PASS blank search never proposes fake homes or economic outcomes
+PASS boundary-only polygon has its hand-calculated 11000 m² area and no streets
+PASS starter generation yields contained, measured homes on an irregular site
+PASS bounded starter search refuses a thin site without replacing accepted geometry
+PASS removing one home retains lot geometry but removes one home from quantities
+PASS removed homes change measured construction cost and revenue only through home count
+PASS new lots overlapping a removed-home reservation stay vacant after regeneration
+PASS zero-home plan is preserved for editing but cannot be offered as an alternative
+PASS vacant lot edits cannot be restored with a home that no longer fits
+PASS restoring removed homes recovers original quantities without altering geometry
+PASS contents rejects contradictory flags, bad regions and blank outlines
+PASS version 5 roundtrips blank and vacant plans, names and decision log
+PASS version 6 decision records restore absent boundaries and removed homes
+PASS record versions cannot hide unsupported plan contents
+PASS snapshot version and hashes distinguish blank, cleared and occupied plans
+PASS single-project migration preserves the accepted plan and decisions
+PASS library roundtrip preserves independent named projects and active identity
+PASS names require meaningful unique text and permit renaming the same project
+PASS corrupt libraries are refused atomically rather than half-restored
+PASS inserting before an entrance edge preserves the physical gate location
+PASS splitting the gate edge tracks its new segment and distance
+PASS dragging a corner keeps along-edge proportion; legacy gate remains compatible
+ALL 25 PROJECT AND CONTENTS CHECKS PASS
+PASS CSV closing duplicate is removed; hand-calculated 6006 m² retained
+PASS CSV accepts optional headers, tabs, semicolons and exponent coordinates
+PASS CSV refuses extra columns, blank coordinates and nonfinite text
+PASS Unit conversion and explicit origin translation preserve size and angles
+PASS Feet conversion uses international feet
+PASS Crossings, duplicate points and oversize imported boundaries are refused
+PASS ASCII DXF LWPOLYLINE reads layer, millimetres and exact polygon
+PASS Multiple DXF outlines remain separate candidates for explicit selection
+PASS Closed 2D POLYLINE and VERTEX sequence are supported
+PASS Curved, open, 3D and paper-space boundaries refuse rather than flatten
+PASS Unsupported DXF objects report omissions while a supported candidate remains
+PASS Binary, malformed and non-boundary DXF refuse
+PASS Missing/unsupported DXF units require explicit confirmation
+PASS Survey calibration anchors A and maps B to its known distance
+PASS Survey rotation respects local north and image-down coordinates
+PASS Arbitrary pixel direction maps correctly without changing distance
+PASS Invalid/zero calibration, outside pixel picks and invalid anchors refuse
+PASS Context stores surrounding lines, source and uncertainty independently
+PASS Context refuses duplicate IDs, missing sources and invalid marker geometry
+PASS Project v6 roundtrip retains calibration, annotations and import source
+PASS Older project envelopes cannot silently contain site context
+PASS Decision record v7 restores context; downgraded records refuse
+PASS Corrupt context never partially restores an otherwise valid project
+PASS Decimal DXF plane values and matching vertex counts remain supported
+PASS Survey media or unknown fields cannot hide inside persisted context
+ALL 25 SITE CONTEXT CHECKS PASS

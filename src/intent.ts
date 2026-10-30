@@ -11,6 +11,7 @@ export interface Selection {
 export interface IntentContext {
   selected: Selection | null;
   selectedPrice: number;
+  search?: { manualStreets: boolean; manualLots?: boolean; families: ('spine'|'loop')[]; frontages: number[] };
 }
 
 export interface IntentOperations {
@@ -157,10 +158,11 @@ export function parseIntent(raw: string, ctx: IntentContext): IntentResult {
     };
   }
 
+  if(ctx.search?.manualLots)return {kind:'limitation',text:'Manual lots are held. Use Blocks & lots to explore a direct subdivision, split, merge or reshape. To search generated frontage alternatives, explicitly preview and apply generated lots first; your manual plan stays unchanged until approval.',operations:{...none}};
   const scope = [
-    "change: circulation pattern and lot frontage only",
-    `held fixed: ${["drawn green region", "price ceiling", "owner expectation", "target", ops.profileId ? "other profiles" : null].filter(Boolean).join(", ")}`,
-    "test: bounded search over the stated ranges, nothing else moves",
+    ctx.search?.manualStreets ? 'change: lot frontage only; manual street geometry and widths held fixed' : 'change: circulation pattern and lot frontage only',
+    `held fixed: boundary, every named open-space outline, entrance, housing templates and assignments, lot depth, green clearance, assumed selling price, owner expectation and target`,
+    `test: ${ctx.search?.manualStreets ? 'spine' : (ctx.search?.families ?? ['spine','loop']).join(' / ')} × ${(ctx.search?.frontages ?? [9,10,11,12]).join(', ')} m frontages; bounded search, not maximum site capacity`,
   ].join("; ");
   return {
     kind: "proposal",

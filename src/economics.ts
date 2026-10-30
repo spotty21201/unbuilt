@@ -1,20 +1,14 @@
 // UNBUILT layout economics (Coder-owned). Fictional labeled rates for Cedar Market.
 // Every cost-driving quantity comes from measured geometry or a declared allowance.
-import { homeArea } from "./planning.ts";
+import {housingSummary} from "./housing.ts";
+import { DEFAULT_COSTS, costErrors } from './costs.ts';
 import { evaluateFinance } from "./finance.ts";
 import type { FinanceResult } from "./schema.ts";
 import { deriveQuantities, type Layout, type LotEdits, type Quantities, type Site } from "./geometry.ts";
 
 export const RATES = {
+  ...DEFAULT_COSTS,
   homeBuiltArea: 60, // m2/home
-  constructionPerM2: 5_000_000, // Rp/m2
-  roadPerM2: 800_000, // Rp/m2 of unioned road area
-  greenWorksPerM2: 150_000, // Rp/m2 of shared green
-  setupAllowance: 800_000_000, // explicit demolition/setup scope
-  otherWorksAllowance: 1_200_000_000, // utilities/drainage allowance
-  contingencyFraction: 0.05, // of physical-cost lines
-  professionalAllowance: 1_300_000_000,
-  sellFraction: 0.03,
   targetFraction: 0.15,
   ownerExpectation: 10_000_000_000,
 };
@@ -23,6 +17,7 @@ export interface LayoutEconomics {
   quantities: Quantities;
   roadCost: number;
   homeCost: number;
+  builtArea: number;
   greenCost: number;
   costNonLand: number;
   finance: FinanceResult;
@@ -35,21 +30,26 @@ export function evaluateLayout(
   overrides: { ownerExpectation?: number; targetFraction?: number } = {},
   lotEdits: LotEdits = new Map(),
 ): LayoutEconomics {
+  if (layout.empty) throw new Error("Generate a layout before evaluating economics.");
+  const rates = site.costAssumptions ?? DEFAULT_COSTS;
+  const errors = costErrors(rates);
+  if (errors.length) throw new Error(errors[0]);
   const quantities = deriveQuantities(site, layout, lotEdits);
-  const homeCost = quantities.n * homeArea(site.planning) * RATES.constructionPerM2;
-  const roadCost = quantities.roadArea * RATES.roadPerM2;
-  const greenCost = quantities.greenArea * RATES.greenWorksPerM2;
+  const builtArea=housingSummary(site,layout.parcels).builtArea;
+  const homeCost = builtArea * rates.constructionPerM2;
+  const roadCost = quantities.roadArea * rates.roadPerM2;
+  const greenCost = quantities.greenArea * rates.greenWorksPerM2;
   const physical =
-    homeCost + roadCost + greenCost + RATES.setupAllowance + RATES.otherWorksAllowance;
-  const contingency = physical * RATES.contingencyFraction;
-  const costNonLand = physical + contingency + RATES.professionalAllowance;
+    homeCost + roadCost + greenCost + rates.setupAllowance + rates.otherWorksAllowance;
+  const contingency = physical * rates.contingencyFraction;
+  const costNonLand = physical + contingency + rates.professionalAllowance;
   const finance = evaluateFinance({
     n: quantities.n,
     pricePerHome,
     costNonLand,
-    sellFraction: RATES.sellFraction,
+    sellFraction: rates.sellFraction,
     ownerExpectation: overrides.ownerExpectation ?? RATES.ownerExpectation,
     targetFraction: overrides.targetFraction ?? RATES.targetFraction,
   });
-  return { quantities, roadCost, homeCost, greenCost, costNonLand, finance };
+  return { quantities, roadCost, homeCost, builtArea, greenCost, costNonLand, finance };
 }

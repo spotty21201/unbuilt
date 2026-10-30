@@ -1,0 +1,150 @@
+AssertionError [ERR_ASSERTION]: cancel switch retains undo and session photo
+    at check (/home/spotty/projects/unbuilt/tests/planner-feedback-fixes-browser.cjs:6:41)
+    at /home/spotty/projects/unbuilt/tests/planner-feedback-fixes-browser.cjs:102:5
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · no model
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Site
+Plan valid
+Saved in this browser
+
+Undone. Working version restored.
+
+Select
+Pan
+Draw site
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Measured
+SELECTED AREA
+12,000 m²
+SITE SHARE
+100.00%
+MODELED HOMES
+20
+BUILT AREA / HOME
+60.0 m²
+Site access
+
+Choose the boundary edge facing an assumed public access. Edge numbers follow the corners on the drawing. External roads and access permissions are unverified.
+
+Entrance edge
+Current west gate
+Edge 1: corner 1 → 2 · 120.0 m
+Edge 2: corner 2 → 3 · 100.0 m
+Edge 3: corner 3 → 4 · 120.0 m
+Edge 4: corner 4 → 1 · 100.0 m
+Distance from south (m)
+Check mid-edge entrances
+
+8 m gate. A measured apron connects boundary-edge entrances to 6 m orthogonal Spine streets; fixed Loop does not support these gates.
+
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Lot frontage
+10 m
+8 m
+16 m
+Lot depth
+20 m
+12 m
+40 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Housing template · 60 m² / home
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Fix Open space A shape + location
+Locked
+Maintain minimum open space
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Ask about Site
+WHAT SHOULD CHANGE?
+Send
+Bounded local search · 8 layouts
+Run optimization ▷
+
+Produces reviewable alternatives. Preview and Apply keep you in control.
+
+Draw site
+Edit boundary
+Object tools & site source
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn

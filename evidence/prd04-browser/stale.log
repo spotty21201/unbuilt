@@ -1,0 +1,42 @@
+BEFORE Assistant: Reporting measured results
+
+What is true?Why did it change?What could we try?
+Ask about Open space A
+Ask
+Spine · 10 m lots → Spine · 11 m lots (local engine)
+Homes
+20 → 17 (-3)
+Road area
+720 m² → 720 m²
+Land allowance
+Rp3.56bn → Rp2.41bn
+Owner outcome
+Shortfall Rp6.44bn → Shortfall Rp7.59bn
+
+Both priced at Rp850m/home against a Rp10bn owner benchmark.
+
+Tool server unreachable — computed locally with the same deterministic engine. Figures match the server for the same plan.
+AFTER WORKING 20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp16.44bn
+AFTER ASSISTANT Assistant: Reporting measured results
+
+What is true?Why did it change?What could we try?
+Ask about Open space A
+Ask
+Spine · 10 m lots → Spine · 11 m lots (local engine)
+Homes
+20 → 17 (-3)
+Road area
+720 m² → 720 m²
+Land allowance
+Rp3.56bn → Rp2.41bn
+Owner outcome
+Shortfall Rp6.44bn → Shortfall Rp7.59bn
+
+Both priced at Rp850m/home against a Rp10bn owner benchmark.
+
+Tool server unreachable — computed locally with the same deterministic engine. Figures match the server for the same plan.
+PREVIEW COUNT 0

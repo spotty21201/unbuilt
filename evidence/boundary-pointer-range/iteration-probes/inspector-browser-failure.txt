@@ -1,0 +1,167 @@
+AssertionError [ERR_ASSERTION]: irregular boundary area is hand-calculated 11000 m²
+    at check (/home/spotty/projects/unbuilt/tests/dynamic-inspector-browser.cjs:8:35)
+    at /home/spotty/projects/unbuilt/tests/dynamic-inspector-browser.cjs:57:260
+Skip to plan
+UNBUILT
+Projects
+initial-project
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · no model
+initial-project · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Site
+Layout unavailable
+Saved in this browser
+
+Draw a boundary: place vertices, then close the outline. Escape cancels.
+
+Select
+Pan
+Draw site
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+1,400 m² · boundary draft
+Apply
+Cancel
+6.0 m STREET
+LOT 01
+200 m²
+LOT 02
+200 m²
+LOT 03
+200 m²
+LOT 04
+200 m²
+LOT 05
+200 m²
+LOT 06
+200 m²
+LOT 07
+200 m²
+LOT 08
+200 m²
+LOT 09
+200 m²
+LOT 10
+200 m²
+LOT 11
+200 m²
+LOT 12
+200 m²
+LOT 13
+200 m²
+LOT 14
+200 m²
+LOT 15
+200 m²
+LOT 16
+200 m²
+LOT 17
+200 m²
+LOT 18
+200 m²
+LOT 19
+200 m²
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
++
++
++
+Edge 1
+Edge 2
+Edge 3
+1
+2
+3
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+Draw a site
+
+Pointer snap: 1 m
+Approximate placement. Pointer and arrow-key edits stop at the 0–500 m workspace edges; shaded paper is outside that range. For finer positions, type decimal coordinates in metres below. Local x east / y north; not surveyed or georeferenced.
+
+Apply boundary
+Cancel boundary
+
+Drag corners or use coordinates below. Midpoint + handles add a corner. Delete a focused corner to remove it.
+
+1,400 m²
+Boundary area · 3 vertices · rounded to 0.01 m²
+Before you apply
+
+Accepted plan → boundary draft. Nothing is replaced until Apply. Review areas are rounded to whole m²; the draft area above shows finer changes.
+
+Site area
+12,000 m² → 1,400 m²
+Homes
+20 → Unavailable
+Street area, including access
+720 m² → Unavailable
+Open space
+480 m² → 0 m²
+Land allowance
+Rp3.56bn → Unavailable
+Owner outcome
+Shortfall Rp6.44bn → Unavailable
+
+Layout unavailable: Entrance needs a straight west/east boundary segment covering the full gate. Sloping edges are not supported by these road generators. You may save the valid outline, but it will have no assessed layout until this is corrected.
+
+Site access
+
+Choose the boundary edge facing an assumed public access. Edge numbers follow the corners on the drawing. External roads and access permissions are unverified.
+
+Entrance edge
+Current west gate
+Edge 1: corner 1 → 2 · 70.0 m
+Edge 2: corner 2 → 3 · 64.0 m
+Edge 3: corner 3 → 1 · 126.5 m
+Distance from south (m)
+Check mid-edge entrances
+
+Entrance needs a straight west/east boundary segment covering the full gate. Sloping edges are not supported by these road generators.
+
+Escape cancels. Undo/Redo steps through this draft; Apply creates one plan Undo step. Existing open space and manual lots are preserved when compatible; review the layout consequences before Apply.
+
+Vertex 1
+X (m)
+Y (m)
+Add after 1
+Remove 1
+Vertex 2
+X (m)
+Y (m)
+Add after 2
+Remove 2
+Vertex 3
+X (m)
+Y (m)
+Add after 3
+Remove 3
+EVALUATOR
+Details
+Boundary draft · accepted plan unchanged · Apply or Cancel to finish

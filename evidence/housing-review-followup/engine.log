@@ -1,0 +1,23 @@
+PASS legacy home template remains an exact 60 m² compatible default
+PASS creating a library does not mutate legacy planning or other instances
+PASS assignment uses exact lot identity and rotates the assigned footprint
+PASS mixed built area and construction use each occupied template exactly once
+PASS block assignment computes 12 smaller homes and eight original homes
+PASS reserved template on a vacant lot creates no home area or revenue
+PASS oversized assigned template blocks rather than deletes or regenerates its lot
+PASS polygon reshape validates the assigned footprint and its setback ring
+PASS invalid template names, identifiers, dimensions and references are refused
+PASS library and assignment limits are checked at the input boundary
+PASS orphan lot assignments block assessment instead of disappearing
+PASS split children inherit their common source template without changing neighbors
+PASS merge of mixed templates uses the explicit default with no orphan assignment
+PASS project v9 roundtrip retains library and exact assignments; old envelope refuses them
+PASS snapshot v8 validates and hashes templates and assignments and rejects downgrade
+PASS record v10 imports a full mixed plan and refuses hidden mix in v9
+PASS held mixed lot plan produces no false frontage alternatives
+PASS provenance distinguishes explicit and inherited lots even with matching designs
+PASS an explicit assignment to the current default stays fixed after changing default
+PASS split preserves a common explicit default assignment for its children
+PASS failed restoration names the reserved template and repair restores fit
+PASS restoration diagnostics also protect a vacant polygon that cannot contain its reserved home
+ALL 22 HOUSING MIX CHECKS PASS

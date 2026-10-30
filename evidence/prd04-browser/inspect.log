@@ -1,0 +1,273 @@
+WIDTH 1440 BODY Skip to plan
+UNBUILT
+Cedar Market sample — fictional prices
+Working plan
+Undo
+Redo
+Deterministic mode: local parser · tool server offline
+
+Ready. Working plan shows the current proposition.
+
+Tools
+Select (V)
+Pan (H)
+
+Pan moves only the view — geometry cannot change under it. Select restores direct editing.
+
+Objects
+Site
+Open space A
+Circulation
+Homes
+Fit site
++
+−
+Expand plan
+Drag background to pan · scroll to zoom · zoom never changes quantities
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A · locked
+Entrance · west
+20 m
+N ↑ (illustrative)
+spine · 20 homes · Open space A (locked, retained) · Entrance west
+What should change?
+Send
+Site source
+
+Cedar Market sample (120 × 100 m).
+
+Reference photo (PNG/JPEG, illustration only)
+Boundary + scale (meters, confirmed)
+Site summary
+
+120 × 100 m flat site (12,000 m²). Entrance on the west edge. Set a new site under Site source.
+
+Ask about Working plan
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn
+Quantities
+Economics
+Options
+Issues
+Record
+
+No search yet. Send a request above to investigate alternatives.
+DIMENSIONS {
+  scroll: 1440,
+  script: [ 'http://100.117.187.86:5173/assets/index-HKeB9lQj.js' ],
+  svg: {
+    x: 230,
+    y: 150.296875,
+    width: 473,
+    height: 414,
+    top: 150.296875,
+    right: 703,
+    bottom: 564.296875,
+    left: 230
+  }
+}
+WIDTH 1024 BODY Skip to plan
+UNBUILT
+Cedar Market sample — fictional prices
+Working plan
+Undo
+Redo
+Deterministic mode: local parser · tool server offline
+
+Ready. Working plan shows the current proposition.
+
+Tools
+Select (V)
+Pan (H)
+
+Pan moves only the view — geometry cannot change under it. Select restores direct editing.
+
+Objects
+Site
+Open space A
+Circulation
+Homes
+Fit site
++
+−
+Expand plan
+Drag background to pan · scroll to zoom · zoom never changes quantities
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A · locked
+Entrance · west
+20 m
+N ↑ (illustrative)
+spine · 20 homes · Open space A (locked, retained) · Entrance west
+What should change?
+Send
+Site source
+
+Cedar Market sample (120 × 100 m).
+
+Reference photo (PNG/JPEG, illustration only)
+Boundary + scale (meters, confirmed)
+Site summary
+
+120 × 100 m flat site (12,000 m²). Entrance on the west edge. Set a new site under Site source.
+
+Ask about Working plan
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn
+Quantities
+Economics
+Options
+Issues
+Record
+
+No search yet. Send a request above to investigate alternatives.
+DIMENSIONS {
+  scroll: 1024,
+  script: [ 'http://100.117.187.86:5173/assets/index-HKeB9lQj.js' ],
+  svg: {
+    x: 230,
+    y: 178.59375,
+    width: 403,
+    height: 353,
+    top: 178.59375,
+    right: 633,
+    bottom: 531.59375,
+    left: 230
+  }
+}
+WIDTH 375 BODY Skip to plan
+UNBUILT
+Cedar Market sample — fictional prices
+Working plan
+Undo
+Redo
+Deterministic mode: local parser · tool server offline
+
+Ready. Working plan shows the current proposition.
+
+Tools
+Select (V)
+Pan (H)
+
+Pan moves only the view — geometry cannot change under it. Select restores direct editing.
+
+Objects
+Site
+Open space A
+Circulation
+Homes
+Fit site
++
+−
+Expand plan
+Drag background to pan · scroll to zoom · zoom never changes quantities
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A · locked
+Entrance · west
+20 m
+N ↑ (illustrative)
+spine · 20 homes · Open space A (locked, retained) · Entrance west
+What should change?
+Send
+Site source
+
+Cedar Market sample (120 × 100 m).
+
+Reference photo (PNG/JPEG, illustration only)
+Boundary + scale (meters, confirmed)
+Site summary
+
+120 × 100 m flat site (12,000 m²). Entrance on the west edge. Set a new site under Site source.
+
+Ask about Working plan
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn
+Quantities
+Economics
+Options
+Issues
+Record
+
+No search yet. Send a request above to investigate alternatives.
+DIMENSIONS {
+  scroll: 375,
+  script: [ 'http://100.117.187.86:5173/assets/index-HKeB9lQj.js' ],
+  svg: {
+    x: 16,
+    y: 314.90625,
+    width: 343,
+    height: 300,
+    top: 314.90625,
+    right: 359,
+    bottom: 614.90625,
+    left: 16
+  }
+}

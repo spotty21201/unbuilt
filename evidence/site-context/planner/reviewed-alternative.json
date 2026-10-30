@@ -1,0 +1,215 @@
+{
+  "app": "UNBUILT decision record",
+  "projectName": "Cedar Market sample",
+  "exportVersion": 5,
+  "exportedAt": "2026-10-28T21:58:42.691Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in integer Rp.",
+  "state": {
+    "site": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true,
+        "minGreenArea": 480
+      },
+      "areaM2": 12000,
+      "provenance": "fictional Cedar Market sample"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "openSpace": {
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 25,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 11,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 0,
+          "y": 47,
+          "w": 120,
+          "h": 6
+        }
+      ],
+      "parcels": [
+        {
+          "x": 0,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 0,
+          "y": 53,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 11,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 11,
+          "y": 53,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 22,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 22,
+          "y": 53,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 33,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 33,
+          "y": 53,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 44,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 44,
+          "y": 53,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 55,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 55,
+          "y": 53,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 66,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 66,
+          "y": 53,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 77,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 88,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        },
+        {
+          "x": 99,
+          "y": 27,
+          "w": 11,
+          "h": 20
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 17,
+      "roadArea": 720,
+      "greenArea": 500,
+      "parcelArea": 3740,
+      "unallocatedArea": 7040
+    },
+    "economics": {
+      "roadCost": 576000000,
+      "homeCost": 5100000000,
+      "greenCost": 75000000,
+      "costNonLand": 9438550000,
+      "finance": {
+        "revenue": 14450000000,
+        "surplus": -5422050000,
+        "margin": -0.3752283737024221,
+        "landAllowance": 2410450000,
+        "ownerGap": 7589550000,
+        "requiredPrice": 1394444045.9110475
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "events": [
+    {
+      "t": "2026-10-28T21:58:40.547Z",
+      "kind": "parameters",
+      "detail": "Applied 10 m frontage, 20 m depth, 60 m² home template, 0 m park clearance."
+    },
+    {
+      "t": "2026-10-28T21:58:41.163Z",
+      "kind": "edit",
+      "detail": "Moved/resized Open space A to 25 × 20 m at (78, 62)."
+    },
+    {
+      "t": "2026-10-28T21:58:42.038Z",
+      "kind": "search",
+      "detail": "Ran bounded search (family-200, price Rp850M, ceiling Rp850M): 8 tested, 8 geometrically valid, 7 fit profile, 8 within ceiling, 5 meet target surplus, 7 shown. Owner expectation Rp10bn is a benchmark, not a constraint."
+    },
+    {
+      "t": "2026-10-28T21:58:42.593Z",
+      "kind": "apply",
+      "detail": "Applied Spine · 11 m lots (17 homes, allowance Rp2.41bn)."
+    }
+  ],
+  "history": {
+    "undoDepth": 5,
+    "redoDepth": 0,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

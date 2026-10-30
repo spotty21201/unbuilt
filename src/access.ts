@@ -4,6 +4,33 @@ import { isSimple, polyInsidePoly, polyOverlapsRect, type Pt } from './polygon.t
 import type { Entrance, Site } from './geometry.ts';
 import type { Rect } from './schema.ts';
 
+// Corner moves keep the same edge and relative position. Inserting/removing
+// corners keeps the gate near its former position instead of shifting its ID.
+export function rebaseEntrance(before: Pt[], after: Pt[], entrance: Entrance): Entrance {
+  const edge = entrance.boundaryEdge;
+  if (edge === undefined || before.length < 3 || after.length < 3 || !after.every(p => Number.isFinite(p.x) && Number.isFinite(p.y))) return entrance;
+  const a = before[edge], b = before[(edge + 1) % before.length];
+  if (!a || !b) return entrance;
+  const length = Math.hypot(b.x - a.x, b.y - a.y);
+  if (!length) return entrance;
+  const t = entrance.offset / length;
+  if (before.length === after.length) {
+    const c = after[edge], d = after[(edge + 1) % after.length];
+    return { ...entrance, offset: t * Math.hypot(d.x - c.x, d.y - c.y) };
+  }
+  const center = { x: a.x + t * (b.x - a.x), y: a.y + t * (b.y - a.y) };
+  let best = { distance: Infinity, edge, offset: entrance.offset };
+  after.forEach((c, i) => {
+    const d = after[(i + 1) % after.length];
+    const dx = d.x - c.x, dy = d.y - c.y, len = Math.hypot(dx, dy);
+    if (!len) return;
+    const u = Math.max(0, Math.min(1, ((center.x - c.x) * dx + (center.y - c.y) * dy) / (len * len)));
+    const distance = Math.hypot(center.x - c.x - u * dx, center.y - c.y - u * dy);
+    if (distance < best.distance) best = { distance, edge: i, offset: u * len };
+  });
+  return { ...entrance, boundaryEdge: best.edge, offset: best.offset };
+}
+
 export function gateSegment(site: Pick<Site, 'w' | 'h' | 'boundary' | 'entrance'>) {
   const e = site.entrance;
   const pts = siteBoundary(site);
@@ -22,7 +49,7 @@ export function entranceLabel(e: Entrance): string {
   return e.boundaryEdge === undefined ? `${e.edge} edge, ${e.offset} m from south, ${e.width} m wide` : `edge ${e.boundaryEdge + 1}, ${Number(e.offset.toFixed(1))} m from corner ${e.boundaryEdge + 1}, ${e.width} m wide`;
 }
 
-export function accessConnector(site: Site, obstacle: Rect): { polygon: Pt[]; entry: Pt; axis: 'x' | 'y'; direction: number } | null {
+export function accessConnector(site: Site, obstacle: Rect|Rect[]): { polygon: Pt[]; entry: Pt; axis: 'x' | 'y'; direction: number } | null {
   const gate = gateSegment(site);
   if (!gate) return null;
   const outline = siteBoundary(site);
@@ -39,7 +66,7 @@ export function accessConnector(site: Site, obstacle: Rect): { polygon: Pt[]; en
     const end2 = { ...entry, [cross]: entry[cross] + 3 };
     const sorted = [...gate.ends].sort((a, b) => a[cross] - b[cross]);
     const polygon = [sorted[0], sorted[1], end2, end1];
-    if (isSimple(polygon) && polyInsidePoly(polygon, outline) && !polyOverlapsRect(polygon, obstacle)) return { polygon, entry, axis, direction };
+    if (isSimple(polygon) && polyInsidePoly(polygon, outline) && !(Array.isArray(obstacle)?obstacle:[obstacle]).some(r=>polyOverlapsRect(polygon,r))) return { polygon, entry, axis, direction };
   }
   return null;
 }

@@ -1,0 +1,11 @@
+{
+  "asset": "/assets/index-BopW0fE6.js",
+  "nodes": [
+    "Street junction 1, 0, 41 meters",
+    "Street junction 2, 50, 41 meters",
+    "Street junction 3, 120, 41 meters",
+    "Street junction 4, 50, 90 meters"
+  ],
+  "applyDisabled": true,
+  "method": "Grab offset from junction centre (4,9) screen pixels, move horizontally 35 screen pixels after three right-arrow moves. Captured before code changes."
+}

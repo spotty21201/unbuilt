@@ -3,6 +3,7 @@
 // (blob URLs die with the session and bytes exceed quota): restores always
 // report the photo as not included. Version-gated: unknown versions refuse.
 import { siteFrameErrors, type SiteFrame } from "./boundary.ts";
+import { contextErrors, type SiteContext } from './site-context.ts';
 import { MAX_LOT_VERTICES } from "./polygon.ts";
 
 export interface PersistedDecision {
@@ -23,21 +24,24 @@ export interface PersistedState {
   ownerS: string;
   targetS: string;
   baseSpec: SiteFrame;
+  siteContext?: SiteContext;
 }
 
 export interface PersistedProject {
   format: "unbuilt-project";
-  version: 1 | 2 | 3 | 4;
+  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+  name?: string;
   savedAt: string;
   state: PersistedState;
   decisions: PersistedDecision[];
   photo: { included: false; note: string };
 }
 
-export function serializeProject(state: PersistedState, decisions: PersistedDecision[]): PersistedProject {
+export function serializeProject(state: PersistedState, decisions: PersistedDecision[], name?: string): PersistedProject {
   return {
     format: "unbuilt-project",
-    version: state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : state.baseSpec.planning ? 3 : state.baseSpec.boundary ? 2 : 1,
+    ...(name ? { name } : {}),
+    version: state.baseSpec.costAssumptions!==undefined?11:state.baseSpec.planning?.openSpaces!==undefined?10:state.baseSpec.planning?.housing ? 9 : state.baseSpec.planning?.lotPlan !== undefined ? 8 : state.baseSpec.planning?.streetNetwork !== undefined ? 7 : state.siteContext !== undefined ? 6 : state.baseSpec.contents !== undefined ? 5 : state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : state.baseSpec.planning ? 3 : state.baseSpec.boundary ? 2 : 1,
     savedAt: new Date().toISOString(),
     state: JSON.parse(JSON.stringify(state)) as PersistedState,
     decisions: decisions.map((d) => ({ ...d })),
@@ -78,11 +82,11 @@ function pts(v: unknown): v is { x: number; y: number }[] {
 // wrong shapes) refuses with a reason instead of a partial restore.
 export function parseProject(raw: unknown): { ok: true; project: PersistedProject } | Fail {
   if (!isRecord(raw)) return fail("not a project object");
-  if (raw.format === "UNBUILT decision record" || raw.exportVersion === 2 || raw.exportVersion === 3 || raw.exportVersion === 4 || raw.exportVersion === 5) {
+  if (raw.format === "UNBUILT decision record" || raw.exportVersion === 2 || raw.exportVersion === 3 || raw.exportVersion === 4 || raw.exportVersion === 5 || raw.exportVersion === 6 || raw.exportVersion === 7 || raw.exportVersion === 8 || raw.exportVersion === 9 || raw.exportVersion === 10 || raw.exportVersion === 11 || raw.exportVersion === 12) {
     return fromDecisionRecord(raw);
   }
   if (raw.format !== "unbuilt-project") return fail(`unknown format ${JSON.stringify(raw.format)}`);
-  if (raw.version !== 1 && raw.version !== 2 && raw.version !== 3 && raw.version !== 4) return fail(`unsupported project version ${JSON.stringify(raw.version)}: created by a newer app`);
+  if (raw.version !== 1 && raw.version !== 2 && raw.version !== 3 && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11) return fail(`unsupported project version ${JSON.stringify(raw.version)}: created by a newer app`);
   if (!isRecord(raw.state)) return fail("missing state");
   const st = raw.state;
   if (!isRecord(st.spec) || (st.spec.family !== "spine" && st.spec.family !== "loop") || !num(st.spec.frontage) || st.spec.frontage < 1 || st.spec.frontage > 500) {
@@ -97,7 +101,7 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
   ) {
     return fail("state.entrance must be {edge west|east, numeric offset/width}");
   }
-  if (st.entrance.boundaryEdge !== undefined && (raw.version !== 4 || !(st.baseSpec as Record<string, unknown>)?.planning || !Number.isInteger(st.entrance.boundaryEdge) || (st.entrance.boundaryEdge as number) < 0 || (st.entrance.boundaryEdge as number) >= (Array.isArray((st.baseSpec as Record<string, unknown>)?.boundary) ? ((st.baseSpec as Record<string, unknown>).boundary as unknown[]).length : 4))) return fail("Entrance boundary edge must address a live-planning site edge.");
+  if (st.entrance.boundaryEdge !== undefined && ((raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11) || !(st.baseSpec as Record<string, unknown>)?.planning || !Number.isInteger(st.entrance.boundaryEdge) || (st.entrance.boundaryEdge as number) < 0 || (st.entrance.boundaryEdge as number) >= (Array.isArray((st.baseSpec as Record<string, unknown>)?.boundary) ? ((st.baseSpec as Record<string, unknown>).boundary as unknown[]).length : 4))) return fail("Entrance boundary edge must address a live-planning site edge.");
   if (!isRecord(st.lots)) return fail("state.lots must be an object");
   for (const [k, v] of Object.entries(st.lots)) {
     if (!pts(v)) return fail(`state.lots[${k}] must be 3-${MAX_LOT_VERTICES} finite corners`);
@@ -111,8 +115,16 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
   }
   if (st.baseSpec.boundary !== undefined && (!Array.isArray(st.baseSpec.boundary) || !st.baseSpec.boundary.every((p) => isRecord(p) && num(p.x) && num(p.y)))) return fail("boundary must contain finite coordinate pairs");
   if (st.baseSpec.boundary !== undefined && raw.version === 1) return fail("Polygon projects require project version 2 or later.");
-  if (st.baseSpec.planning !== undefined && raw.version !== 3 && raw.version !== 4) return fail("Planning parameters require project version 3.");
-  if ((st.baseSpec.planning as Record<string, unknown> | undefined)?.minGreenArea !== undefined && raw.version !== 4) return fail("Minimum open space requires project version 4.");
+  if (st.baseSpec.planning !== undefined && raw.version !== 3 && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11) return fail("Planning parameters require project version 3.");
+  if ((st.baseSpec.planning as Record<string, unknown> | undefined)?.minGreenArea !== undefined && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11) return fail("Minimum open space requires project version 4.");
+  if (st.baseSpec.contents !== undefined && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11) return fail("Plan contents require project version 5.");
+  if (raw.name !== undefined && (typeof raw.name !== "string" || !raw.name.trim() || raw.name.length > 100)) return fail("Project name must be 1–100 characters.");
+  if (st.siteContext !== undefined) { if (raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11) return fail('Site context requires project version 6 or later.'); const issues = contextErrors(st.siteContext); if (issues.length) return fail(issues[0]); }
+  if ((st.baseSpec.planning as Record<string, unknown> | undefined)?.streetNetwork !== undefined && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11) return fail('Editable streets require project version 7.');
+  if ((st.baseSpec.planning as Record<string,unknown>|undefined)?.lotPlan!==undefined && raw.version!==8 && raw.version!==9 && raw.version!==10 && raw.version!==11) return fail('Manual lot plans require project version 8.');
+  if ((st.baseSpec.planning as Record<string,unknown>|undefined)?.housing!==undefined && raw.version!==9 && raw.version!==10 && raw.version!==11) return fail('Housing mix requires project version 9.');
+  if((st.baseSpec.planning as Record<string,unknown>|undefined)?.openSpaces!==undefined&&raw.version!==10&&raw.version!==11)return fail('Multiple open spaces require project version 10.');
+  if(st.baseSpec.costAssumptions!==undefined&&raw.version!==11)return fail('Editable costs require project version 11.');
   const shapeErrors = siteFrameErrors(st.baseSpec as unknown as SiteFrame);
   if (shapeErrors.length) return fail(shapeErrors[0]);
   if (!Array.isArray(raw.decisions) || !raw.decisions.every((d) => isRecord(d) && typeof d.t === "string" && typeof d.kind === "string" && typeof d.detail === "string")) {
@@ -123,9 +135,17 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
 }
 
 function fromDecisionRecord(raw: Record<string, unknown>): { ok: true; project: PersistedProject } | Fail {
+  if (![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(raw.exportVersion as number)) return fail('Unsupported decision record version.');
   const st = raw.state;
   if (!isRecord(st)) return fail("decision record has no state snapshot");
   const site = isRecord(st.site) ? st.site : {};
+  if (site.contents !== undefined && raw.exportVersion !== 6 && raw.exportVersion !== 7 && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12) return fail('Plan contents require decision record version 6.');
+  if (st.siteContext !== undefined && raw.exportVersion !== 7 && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12) return fail('Site context requires decision record version 7.');
+  if ((site.planning as Record<string, unknown> | undefined)?.streetNetwork !== undefined && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12) return fail('Editable streets require decision record version 8.');
+  if ((site.planning as Record<string,unknown>|undefined)?.lotPlan!==undefined && raw.exportVersion!==9 && raw.exportVersion!==10 && raw.exportVersion!==11 && raw.exportVersion!==12) return fail('Manual lot plans require decision record version 9.');
+  if ((site.planning as Record<string,unknown>|undefined)?.housing!==undefined && raw.exportVersion!==10 && raw.exportVersion!==11 && raw.exportVersion!==12) return fail('Housing mix requires decision record version 10.');
+  if((site.planning as Record<string,unknown>|undefined)?.openSpaces!==undefined&&raw.exportVersion!==11&&raw.exportVersion!==12)return fail('Multiple open spaces require decision record version 11.');
+  if(site.costAssumptions!==undefined&&raw.exportVersion!==12)return fail('Editable costs require decision record version 12.');
   const plan = isRecord(st.plan) ? st.plan : {};
   const openSpace = isRecord(st.openSpace) ? st.openSpace : {};
   const assumptions = isRecord(st.assumptions) ? st.assumptions : {};
@@ -148,7 +168,8 @@ function fromDecisionRecord(raw: Record<string, unknown>): { ok: true; project: 
     ceilingS: "",
     ownerS: "",
     targetS: "",
-    baseSpec: { w, h, ...(site.planning !== undefined ? { planning: site.planning as SiteFrame["planning"] } : {}), ...(site.boundary !== undefined ? { boundary: site.boundary as SiteFrame["boundary"] } : {}) },
+    ...(st.siteContext !== undefined ? { siteContext: st.siteContext as SiteContext } : {}),
+    baseSpec: { w, h, ...(site.costAssumptions!==undefined?{costAssumptions:site.costAssumptions as SiteFrame["costAssumptions"]}:{}), ...(site.contents !== undefined ? { contents: site.contents as SiteFrame["contents"] } : {}), ...(site.planning !== undefined ? { planning: site.planning as SiteFrame["planning"] } : {}), ...(site.boundary !== undefined ? { boundary: site.boundary as SiteFrame["boundary"] } : {}) },
   };
   if (!rect(state.green)) return fail("decision record has no usable open-space geometry");
   const ent = st.entrance;
@@ -170,7 +191,8 @@ function fromDecisionRecord(raw: Record<string, unknown>): { ok: true; project: 
   const events = Array.isArray(raw.events) ? raw.events : [];
   return parseProject({
       format: "unbuilt-project",
-      version: state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : site.planning !== undefined ? 3 : site.boundary !== undefined ? 2 : 1,
+      ...(typeof raw.projectName === "string" ? { name: raw.projectName } : {}),
+      version: state.baseSpec.costAssumptions!==undefined?11:state.baseSpec.planning?.openSpaces!==undefined?10:state.baseSpec.planning?.housing ? 9 : state.baseSpec.planning?.lotPlan !== undefined ? 8 : state.baseSpec.planning?.streetNetwork !== undefined ? 7 : state.siteContext !== undefined ? 6 : state.baseSpec.contents !== undefined ? 5 : state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : site.planning !== undefined ? 3 : site.boundary !== undefined ? 2 : 1,
       savedAt: new Date().toISOString(),
       state,
       decisions: events.filter((d) => isRecord(d)).map((d) => ({ t: String((d as Record<string, unknown>).t ?? ""), kind: String((d as Record<string, unknown>).kind ?? ""), detail: String((d as Record<string, unknown>).detail ?? "") })),

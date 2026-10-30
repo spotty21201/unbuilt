@@ -1,0 +1,20 @@
+{
+  "parcel": {
+    "x": 0,
+    "y": 27,
+    "w": 10,
+    "h": 20
+  },
+  "footprint": {
+    "x": 2,
+    "y": 32,
+    "w": 6,
+    "h": 10
+  },
+  "samePolygonOverlap": false,
+  "sameRectangleOverlap": false,
+  "duplicateLotErrors": [],
+  "insetSetbackErrors": [],
+  "nonfiniteSimple": true,
+  "nonfiniteAreaIsNaN": true
+}

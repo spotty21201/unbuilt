@@ -4,6 +4,7 @@
 // fallback, and a labeled bounded hypothesis. The panel never invents
 // layouts, prices, or outcomes; every number names its source.
 import { useEffect, useRef, useState } from 'react';
+import { hasHome, hasLayout } from '../../../src/contents';
 import { answerTrue, answerTry, answerLimits, clarifyText, routeQuestion } from '../../../src/assistant';
 import type { AnswerSection, PlanFacts, TryContext } from '../../../src/assistant';
 import { snapshotHash } from '../../../src/snapshot';
@@ -67,7 +68,7 @@ function explainLocal(snap: ScenarioSnapshot, base: Props['workingSpec'], other:
       ownerExpectation: snap.assumptions.owner,
       targetFraction: snap.assumptions.target,
     }, carried);
-    const failing = failingLots(layout.parcels, profile, { lotEdits: carried, roads: layout.roads });
+    const failing = failingLots(layout.parcels, profile, { lotEdits: carried, roads: layout.roads }).filter(i => hasHome(site, layout.parcels[i]));
     return {
       layout, econ,
       issues: [...validateLayout(site, layout, carried), ...(failing.length > 0 ? [`${failing.length} lot(s) outside the ${profile.name} profile`] : [])],
@@ -224,6 +225,7 @@ export default function Assistant(props: Props) {
       // published — not even as a local fallback.
       if (!alive()) return;
       const site = { ...snap.site, entrance: snap.entrance, green: snap.green };
+      if (!hasLayout(site)) { setWhy(null); setSections(null); setUnready("Generate a layout before comparing economics."); setState("unavailable"); return; }
       const support = [base, other].map((sp) => (sp.family === 'spine' ? generateSpine(site, sp.frontage) : generateLoop(site, sp.frontage)).supportError).find(Boolean);
       if (support) { setWhy(null); setSections(null); setWhyNote(null); setUnready(support); setState('unavailable'); return; }
       const local = explainLocal(snap, base, other);

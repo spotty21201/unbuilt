@@ -1,0 +1,361 @@
+
+> unbuilt@0.0.1 test
+> node --experimental-strip-types --no-warnings tests/run.mjs && node --experimental-strip-types --no-warnings tests/geometry.mjs && node --experimental-strip-types --no-warnings tests/search.mjs && node --experimental-strip-types --no-warnings tests/search-tester.mjs && node --experimental-strip-types --no-warnings tests/intent.mjs && node --experimental-strip-types --no-warnings tests/draft.mjs && node --experimental-strip-types --no-warnings tests/draft-tester.mjs && node --experimental-strip-types --no-warnings tests/site.mjs && node --experimental-strip-types --no-warnings tests/site-tester.mjs && node --experimental-strip-types --no-warnings tests/polygon.mjs && node --experimental-strip-types --no-warnings tests/persist.mjs && node --experimental-strip-types --no-warnings tests/snapshot.mjs && node --experimental-strip-types --no-warnings tests/assistant.mjs && node --experimental-strip-types --no-warnings tests/server.mjs
+
+PASS rev@850: actual=34000000000 expected=34000000000
+PASS surplus@850: actual=4460000000 expected=4460000000
+PASS margin@850: actual=0.13117647058823528 expected=0.13118
+PASS allow@850: actual=9360000000 expected=9360000000
+PASS gap@850: actual=640000000 expected=640000000
+PASS rev@780: actual=31200000000 expected=31200000000
+PASS surplus@780: actual=1744000000 expected=1744000000
+PASS margin@780: actual=0.0558974358974359 expected=0.0559
+PASS allow@780: actual=7064000000 expected=7064000000
+PASS gap@780: actual=2936000000 expected=2936000000
+PASS reqPrice: actual=869512195.1219513 expected=869512195.122
+PASS L-change allowance stable: actual=9360000000 expected=9360000000
+PASS L-change gap moves: actual=2000000000 expected=2000000000
+PASS t-change revenue stable: actual=34000000000 expected=34000000000
+PASS t-change surplus stable: actual=4460000000 expected=4460000000
+PASS negative allowance kept: actual=true expected=true
+PASS zero-home margin null: actual=null expected=null
+PASS zero-home price null: actual=null expected=null
+PASS invalid denom price null: actual=null expected=null
+ALL FIXTURES PASS
+PASS union-overlap: actual=175 expected=175
+PASS spine-road: actual=720 expected=720
+PASS spine-green: actual=480 expected=480
+PASS spine-n: actual=20 expected=20
+PASS spine-parcels: actual=4000 expected=4000
+PASS loop-road: actual=2076 expected=2076
+PASS loop-n: actual=16 expected=16
+PASS distinct-road: actual=1 expected=1
+PASS spine-valid: actual=0 expected=0
+PASS loop-valid: actual=0 expected=0
+PASS lock-kept: actual=0 expected=0
+PASS lock-moved: actual=1 expected=1
+PASS overlap-caught: actual=1 expected=1
+PASS spine-roadcost: actual=576000000 expected=576000000
+PASS loop-roadcost: actual=1660800000 expected=1660800000
+PASS road-saving: actual=1084800000 expected=1084800000
+PASS spine-homes-cost: actual=6000000000 expected=6000000000
+ALL GEOMETRY FIXTURES PASS
+PASS spine9-footprint: actual=true expected=true
+PASS loop9-footprint: actual=true expected=true
+PASS tested-8: actual=8 expected=8
+PASS valid-6: actual=6 expected=6
+PASS qualified-gt0: actual=true expected=true
+PASS green-held-all: actual=true expected=true
+PASS ceiling-held-all: actual=true expected=true
+PASS spine10-n: actual=20 expected=20
+PASS spine10-applicable: actual=true expected=true
+PASS spine10-no-lots: actual={} expected={}
+PASS carry-present: actual=true expected=true
+PASS carry-lots: actual=[[0,28],[10,28],[10,47],[0,47]] expected=[[0,28],[10,28],[10,47],[0,47]]
+PASS carry-area: actual=true expected=true
+PASS carry-applicable: actual=true expected=true
+PASS ghost-clean: actual=true expected=true
+PASS ghost-same-n: actual=6 expected=6
+PASS break-geo: actual=6 expected=6
+PASS break-geo-eq-valid: actual=6 expected=6
+PASS break-bounded: actual=true expected=true
+PASS tight-qualified-0: actual=0 expected=0
+PASS tight-blockers: actual=true expected=true
+PASS tight-candidates-0: actual=0 expected=0
+PASS compact-qualified-2: actual=2 expected=2
+PASS compact-ids: actual=spine-f10,spine-f11 expected=spine-f10,spine-f11
+PASS compact-narrows-base: actual=true expected=true
+PASS sel-max3: actual=true expected=true
+PASS sel-distinct: actual=3 expected=3
+PASS sel-reasons: actual=true expected=true
+PASS sel-ordered: actual=true expected=true
+PASS tiny-one: actual=1 expected=1
+PASS capped-tested: actual=3 expected=3
+PASS capped-truncated: actual=true expected=true
+PASS failing-base-none: actual=0 expected=0
+PASS failing-compact-loop: actual=true expected=true
+PASS dup-tested: actual=2 expected=2
+PASS dup-selected-1: actual=1 expected=1
+ALL SEARCH FIXTURES PASS
+PASS moved-qualified-0: actual=0 expected=0
+PASS moved-candidates-0: actual=0 expected=0
+PASS moved-tested-8: actual=8 expected=8
+PASS moved-green-blocker: actual=true expected=true
+PASS deep-qualified-0: actual=0 expected=0
+PASS deep-candidates-0: actual=0 expected=0
+PASS deep-price-blocker: actual=true expected=true
+PASS deterministic-hash: actual=9f86999b expected=9f86999b
+PASS deterministic-qualified: actual=6 expected=6
+PASS deterministic-ids: actual=spine-f10,spine-f11,spine-f12,loop-f10,loop-f11,loop-f12 expected=spine-f10,spine-f11,spine-f12,loop-f10,loop-f11,loop-f12
+ALL SEARCH-TESTER COUNTERFACTUALS PASS
+PASS sig-kind: actual="proposal"
+PASS sig-green: actual=true
+PASS sig-ceiling: actual=850000000
+PASS sig-run: actual=true
+PASS nosel-kind: actual="clarification"
+PASS nosel-no-object: actual=false
+PASS open-kind: actual="proposal"
+PASS open-green: actual=true
+PASS open-ceiling: actual=850000000
+PASS open-run: actual=true
+PASS cap-kind: actual="proposal"
+PASS cap-value: actual=800000000
+PASS thousands-comma: actual=1000000000
+PASS thousands-dot: actual=1000000000
+PASS decimal-comma: actual=850500000
+PASS billion: actual=1500000000
+PASS miliar: actual=2000000000
+PASS juta: actual=850000000
+PASS weird-groups: actual="clarification"
+PASS weird-no-ceiling: actual=null
+PASS bare-number: actual="clarification"
+PASS bare-no-ceiling: actual=null
+PASS profile-kind: actual="proposal"
+PASS profile-id: actual="starter-150"
+PASS bld-kind: actual="limitation"
+PASS vague-kind: actual="clarification"
+PASS explain-kind: actual="clarification"
+ALL INTENT FIXTURES PASS
+PASS empty-null: actual=null
+PASS spaces-null: actual=null
+PASS word-null: actual=null
+PASS zero-is-zero: actual=0
+PASS decimal: actual=78.5
+PASS draft-valid: actual=true
+PASS draft-rect: actual={"x":80,"y":62,"w":24,"h":20}
+PASS commit-ok: actual={"x":80,"y":62,"w":24,"h":20}
+PASS outside-draftable: actual=false
+PASS outside-error: actual=true
+PASS outside-blocked: actual=null
+PASS empty-draftable: actual=false
+PASS empty-keeps-x: actual=78
+PASS past-len: actual=2
+PASS undo-snap: actual="s1"
+PASS undo-redo: actual=["current"]
+PASS redo-snap: actual="current"
+PASS push-clears-redo: actual=0
+PASS history-cap: actual=50
+PASS history-cap-newest: actual=59
+ALL DRAFT FIXTURES PASS
+PASS edge-exact-commits: actual={"x":96,"y":62,"w":24,"h":20}
+PASS edge-past-blocked: actual=null
+PASS edge-past-keeps-committed: actual={"x":78,"y":62,"w":24,"h":20}
+PASS zero-width-blocked: actual=null
+PASS negative-x-blocked: actual=null
+PASS negative-x-keeps-committed: actual={"x":78,"y":62,"w":24,"h":20}
+PASS undo-empty-null: actual=null
+PASS undo-empty-hist: actual={"past":[],"future":[]}
+PASS redo-empty-null: actual=null
+PASS redo-empty-hist: actual={"past":[],"future":[]}
+PASS lifo-order: actual=["c","b"]
+PASS push-clears-deep-redo: actual=[]
+PASS redo-after-push-null: actual=null
+ALL DRAFT-TESTER COUNTERFACTUALS PASS
+PASS cedar-is-factory: actual={"w":120,"h":100,"entrance":{"edge":"west","offset":50,"width":8},"green":{"x":78,"y":62,"w":24,"h":20}}
+PASS maker-140x110: actual={"w":140,"h":110,"entrance":{"edge":"west","offset":55,"width":8},"green":{"x":91,"y":68,"w":28,"h":22}}
+PASS east-spine-valid: actual=0
+PASS east-loop-valid: actual=0
+PASS north-edge-no: actual=true
+PASS off-edge-no: actual=true
+PASS zero-width-no: actual=true
+PASS west-ok: actual=0
+PASS disconnected-gate: actual=true
+PASS big-spine-valid: actual=0
+PASS big-loop-valid: actual=0
+PASS zero-rejected: actual=true
+PASS small-rejected: actual=true
+PASS huge-rejected: actual=true
+PASS min-accepted: actual=0
+PASS mid-accepted: actual=0
+ALL SITE FIXTURES PASS
+PASS under-w-rejected: actual=true
+PASS under-h-rejected: actual=true
+PASS min-accepted: actual=0
+PASS max-accepted: actual=0
+PASS over-w-rejected: actual=true
+PASS over-h-rejected: actual=true
+PASS nan-rejected: actual=true
+PASS negative-rejected: actual=true
+PASS infinity-rejected: actual=true
+PASS factory-invariants: actual=0
+PASS small-validates-geometrically: actual=0
+PASS small-rejected-by-scope: actual=true
+ALL SITE-TESTER COUNTERFACTUALS PASS
+PASS sq-area: actual=100
+PASS ell-area: actual=27
+PASS sq-edges: actual=[10,10,10,10]
+PASS sq-centroid: actual={"x":5,"y":5}
+PASS sq-simple: actual=true
+PASS ell-simple: actual=true
+PASS bow-simple: actual=false
+PASS two-simple: actual=false
+PASS dup-simple: actual=false
+PASS in-square: actual=true
+PASS out-square: actual=false
+PASS on-edge-inside: actual=true
+PASS in-notch: actual=false
+PASS in-ell: actual=true
+PASS site-in: actual=true
+PASS site-out: actual=false
+PASS shared-full: actual=10
+PASS shared-corner: actual=0
+PASS shared-none: actual=0
+PASS adjacent-no-overlap: actual=false
+PASS shifted-overlap: actual=true
+PASS coincident-overlap: actual=true
+PASS coincident-ell: actual=true
+PASS partial-coincident: actual=true
+PASS corner-touch: actual=false
+PASS t-touch: actual=false
+PASS contain-either: actual=true
+PASS rect-coincident: actual=true
+PASS rect-partial: actual=true
+PASS nan-simple: actual=false
+PASS inf-simple: actual=false
+PASS neginf-area-finite: actual=true
+PASS rect-adjacent: actual=false
+PASS rect-pushed: actual=true
+PASS rect-inside: actual=true
+PASS fp-inside: actual=true
+PASS fp-cross: actual=false
+PASS place-normal: actual={"x":2,"y":5,"w":6,"h":10}
+PASS place-none: actual=null
+PASS cedar-clean: actual=0
+PASS front-edge-on-road: actual=10
+PASS inset-area: actual=190
+PASS inset-valid: actual=[]
+PASS joint-valid: actual=0
+PASS area-delta: actual=10
+PASS remainder-absorbs: actual=10
+PASS recon: actual=12000
+PASS inset-fits-profile: actual=false
+PASS frontage-true: actual=10
+PASS setback-no: actual=["reshape leaves less than the 2 m side setback around the placed home"]
+PASS slim-valid: actual=[]
+PASS slim-fails-profile: actual=true
+PASS bow-no: actual=true
+PASS outside-no: actual=true
+PASS road-no: actual=["reshaped lot overlaps a road"]
+PASS neighbor-no: actual=["reshaped lot overlaps lot 2"]
+PASS footprint-no: actual=true
+PASS access-no: actual=true
+PASS dangling-no: actual=true
+PASS carry-hit: actual=true
+PASS carry-miss: actual=0
+PASS lotkey-format: actual="0,27,10,20"
+PASS nan-lot-no: actual=["lot corners must be finite numbers"]
+PASS nan-failing: actual=true
+PASS coincident-joint: actual=true
+PASS vertex-cap: actual=true
+PASS joint-overlap: actual=true
+ALL POLYGON FIXTURES PASS
+PASS roundtrip-ok: actual=true
+PASS roundtrip-state: actual={"spec":{"family":"spine","frontage":10},"green":{"x":78,"y":62,"w":24,"h":20},"entrance":{"edge":"west","offset":50,"width":8},"lots":{"0,27,10,20":[{"x":0,"y":28},{"x":10,"y":28},{"x":10,"y":47},{"x":0,"y":47}]},"profileId":"starter-150","greenLocked":true,"priceS":"850","ceilingS":"850","ownerS":"10000","targetS":"15","baseSpec":{"w":120,"h":100}}
+PASS roundtrip-decisions: actual=[{"t":"2026-01-01T00:00:00.000Z","kind":"edit","detail":"x"}]
+PASS photo-never: actual=false
+PASS record-ok: actual=true
+PASS record-site: actual={"w":140,"h":110}
+PASS record-entrance: actual={"edge":"east","offset":55,"width":8}
+PASS record-green: actual={"x":80,"y":60,"w":20,"h":18}
+PASS record-lock: actual=true
+PASS record-family: actual={"family":"loop","frontage":11}
+PASS record-assume: actual=["850","850","10000"]
+PASS refuse-version: actual=false
+PASS refuse-format: actual=false
+PASS refuse-string: actual=false
+PASS refuse-null: actual=false
+PASS refuse-null-coord: actual=false
+PASS refuse-many-corners: actual=false
+PASS refuse-few-corners: actual=false
+PASS refuse-bad-edge: actual=false
+PASS refuse-bad-decisions: actual=false
+PASS refuse-record-nostate: actual=false
+PASS refuse-reasons: actual=true
+ALL PERSIST FIXTURES PASS
+PASS version-is-1: actual=1
+PASS accepts-cedar: actual=true
+PASS hash-stable-key-order: actual="589c44a74fd6f"
+PASS hash-moves-on-price: actual=false
+PASS hash-moves-on-lock: actual=false
+PASS hash-moves-on-spec: actual=false
+PASS hash-moves-on-selection: actual=false
+PASS rejects-version: actual=false
+PASS rejects-nonobject: actual=false
+PASS rejects-site: actual=false
+PASS rejects-edge: actual=false
+PASS rejects-green: actual=false
+PASS rejects-lock: actual=false
+PASS rejects-13-corners: actual=false
+PASS rejects-spec: actual=false
+PASS rejects-profile: actual=false
+PASS rejects-nan: actual=false
+PASS rejects-provenance: actual=false
+PASS rejects-capability: actual=false
+PASS rejects-selection: actual=false
+PASS reason-present: actual=true
+PASS canon-order: actual="{\"a\":{\"c\":1,\"d\":2},\"b\":1}"
+PASS canon-round: actual="{\"v\":0.3}"
+ALL FIXTURES PASS
+PASS route-why: actual="why"
+PASS route-compare: actual="why"
+PASS route-try: actual="try"
+PASS route-search: actual="try"
+PASS route-true: actual="true"
+PASS route-worth: actual="true"
+PASS route-empty: actual="clarify"
+PASS route-vague: actual="clarify"
+PASS route-discloses: actual=true
+PASS true-sections: actual=4
+PASS true-echo-n: actual=true
+PASS true-echo-allow: actual=true
+PASS true-echo-gap: actual=true
+PASS true-benchmark: actual=true
+PASS true-held: actual=true
+PASS true-no-invention: actual=true
+PASS true-noecon: actual=true
+PASS true-invalid: actual=true
+PASS try-locks: actual=true
+PASS try-scope: actual=true
+PASS try-unknown: actual=true
+PASS try-untested: actual=true
+PASS clarify-three: actual=true
+PASS clarify-honest: actual=true
+ALL ASSISTANT FIXTURES PASS
+PASS health-adapter: actual="mock"
+PASS health-model-unset: actual=false
+PASS health-no-key: actual=false
+PASS intent-status: actual=200
+PASS intent-kind: actual="proposal"
+PASS intent-lock: actual=true
+PASS intent-ceiling: actual=850000000
+PASS intent-echo: actual="r1"
+PASS intent-no-ctx: actual=400
+PASS intent-malformed: actual=400
+PASS intent-bad-sel: actual=400
+PASS search-tested: actual=8
+PASS search-valid: actual=6
+PASS search-breakdown: actual=6
+PASS search-spine10: actual=20
+PASS search-deterministic: actual="9f86999b"
+PASS search-budget-cap: actual=400
+PASS unknown-route: actual=404
+PASS snap-tested: actual=8
+PASS snap-spine10: actual=20
+PASS snap-hash-present: actual="string"
+PASS snap-rejected: actual=400
+PASS explain-hash: actual="12a749c913a07b"
+PASS explain-base-n: actual=20
+PASS explain-base-road: actual=720
+PASS explain-base-allow: actual=3559600000
+PASS explain-other-n: actual=17
+PASS explain-other-road: actual=2076
+PASS explain-other-allow: actual=1274560000
+PASS explain-d-homes: actual=-3
+PASS explain-d-road: actual=1356
+PASS explain-d-allow: actual=-2285040000
+PASS explain-d-gap: actual=2285040000
+PASS explain-valid: actual=0
+PASS explain-bad-spec: actual=400
+PASS meta-no-key: actual=503
+PASS meta-fallback: actual="local"
+ALL SERVER FIXTURES PASS

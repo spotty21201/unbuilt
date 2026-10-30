@@ -1,0 +1,160 @@
+TABS [ 'Quantities', 'Economics', 'Options (3)', 'Issues', 'Record (2)' ]
+RECORD UI 2026-10-26 20:22:47 · edit — Moved/resized Grove A to 24 × 20 m at (74, 62).
+2026-10-26 20:22:47 · search — Ran bounded search (family-200, price Rp850M, ceiling Rp850M): 8 tested, 6 valid, 6 meeting all constraints.
+Export record (JSON)
+
+Export carries geometry, economics, and decisions only — never credentials. Entries are append-only: Undo never rewrites them.
+RECORD {
+  "app": "UNBUILT decision record",
+  "exportedAt": "2026-10-26T20:22:47.519Z",
+  "site": {
+    "w": 120,
+    "h": 100
+  },
+  "economics": {
+    "priceS": "850",
+    "ceilingS": "850",
+    "ownerS": "10",
+    "targetS": "15",
+    "profileId": "family-200"
+  },
+  "working": {
+    "spec": {
+      "family": "spine",
+      "frontage": 10
+    },
+    "homes": 21,
+    "roadArea": 720,
+    "greenArea": 480,
+    "landAllowance": 3941600000,
+    "ownerGap": 6058400000
+  },
+  "decisions": [
+    {
+      "t": "2026-10-26T20:22:47.280Z",
+      "kind": "edit",
+      "detail": "Moved/resized Grove A to 24 × 20 m at (74, 62)."
+    },
+    {
+      "t": "2026-10-26T20:22:47.386Z",
+      "kind": "search",
+      "detail": "Ran bounded search (family-200, price Rp850M, ceiling Rp850M): 8 tested, 6 valid, 6 meeting all constraints."
+    }
+  ]
+}
+COMPARE Compare with working plan
+Option
+Choose…
+Spine · 10 m lots
+Spine · 11 m lots
+Spine · 12 m lots
+
+Working plan
+
+Fit site
++
+−
+Drag background to pan · scroll to zoom · zoom never changes quantities
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+Grove A · locked
+Entrance
+spine · 21 homes · Grove A (locked, retained) · Entrance west
+
+Spine · 11 m lots
+
+Fit site
++
+−
+Drag background to pan · scroll to zoom · zoom never changes quantities
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+Grove A · locked
+Entrance
+spine · 17 homes · Grove A (locked, retained) · Entrance west
+Homes (working → option)
+21 → 17
+Road area
+720 m² → 720 m²
+Land allowance
+Rp3.94bn → Rp2.41bn
+Owner outcome
+Shortfall Rp6.06bn → Shortfall Rp7.59bn
+compare dimensions {
+  outer: {
+    x: 31,
+    y: 502.078125,
+    width: 1378,
+    height: 511.03125,
+    top: 502.078125,
+    right: 1409,
+    bottom: 1013.109375,
+    left: 31
+  },
+  children: [
+    {
+      x: 31,
+      y: 502.078125,
+      width: 683,
+      height: 511.03125,
+      top: 502.078125,
+      right: 714,
+      bottom: 1013.109375,
+      left: 31
+    },
+    {
+      x: 726,
+      y: 502.078125,
+      width: 683,
+      height: 511.03125,
+      top: 502.078125,
+      right: 1409,
+      bottom: 1013.109375,
+      left: 726
+    }
+  ],
+  container: {
+    x: 17,
+    y: 623.21875,
+    width: 1406,
+    height: 267.78125,
+    top: 623.21875,
+    right: 1423,
+    bottom: 891,
+    left: 17
+  }
+}

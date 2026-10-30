@@ -64,3 +64,5 @@ export function formatGap(v: number): string {
   if (v < 0) return `Headroom ${formatRp(-v)}`;
   return 'Meets expectation exactly';
 }
+
+export const housingColor=(id:string)=>['#dcd0ec','#bcdce3','#f0dab2','#c4dfc7','#e9c7cc'][Number(id.slice(1))%5];

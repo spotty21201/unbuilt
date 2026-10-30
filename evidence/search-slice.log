@@ -1,0 +1,8 @@
+Search slice — 2026-10-26
+- src/search.ts, schema entities, tests/search.mjs; package.json runs 3 suites.
+- TDD: observed module-missing failure; 2 expectation failures diagnosed (frontage-9 footprint; disqualified-excluded) — product correct, expectations fixed with direct-geometry proof.
+- npm test: 57 checks green (19+17+21), exit 0.
+- Designer T11: docs/UX.md 348-line spec reviewed + accepted (D11).
+- Tester T10b dispatched (in flight at log time).
+- Tester T10b accepted: report + tests/search-tester.mjs (10/10, verified) wired into npm test.
+- Full gate: ALL suites green. AC-12/19/22 Passed engine-side (UI surfacing pending).

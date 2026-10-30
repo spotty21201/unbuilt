@@ -1,0 +1,91 @@
+{
+  "format": "unbuilt-project",
+  "name": "Residential master plan Residential master plan Residential master plan Residential master plan Resi",
+  "version": 5,
+  "savedAt": "2026-10-28T21:48:55.167Z",
+  "state": {
+    "spec": {
+      "family": "spine",
+      "frontage": 10
+    },
+    "green": {
+      "x": 50,
+      "y": 48,
+      "w": 15,
+      "h": 16
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 39,
+      "width": 8
+    },
+    "lots": {},
+    "profileId": "family-200",
+    "greenLocked": false,
+    "priceS": "850",
+    "ceilingS": "850",
+    "ownerS": "10",
+    "targetS": "15",
+    "baseSpec": {
+      "w": 77,
+      "h": 78,
+      "boundary": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 38.5,
+          "y": 0.5
+        },
+        {
+          "x": 77,
+          "y": 0
+        },
+        {
+          "x": 77,
+          "y": 78
+        },
+        {
+          "x": 0,
+          "y": 78
+        }
+      ],
+      "contents": {
+        "boundary": true,
+        "layout": false,
+        "removedHomes": []
+      },
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true
+      }
+    }
+  },
+  "decisions": [
+    {
+      "t": "2026-10-28T21:48:55.046Z",
+      "kind": "boundary",
+      "detail": "Applied 5-vertex site, 5986.75 m². Contained layout regenerated; outside lots omitted."
+    },
+    {
+      "t": "2026-10-28T21:48:55.110Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-28T21:48:55.164Z",
+      "kind": "redo",
+      "detail": "Redo applied (event log itself is append-only)."
+    }
+  ],
+  "photo": {
+    "included": false,
+    "note": "Reference photos are session-only and never stored."
+  }
+}

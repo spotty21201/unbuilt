@@ -1,0 +1,20 @@
+M3 slice 1 — 2026-10-26
+- src/site.ts + tests/site.mjs (9/9): factory exact (Cedar == makeSite(120,100)),
+  entrance centering, size rules, generated validity on 150x120.
+- Fixed real generator limitation: roads hardcoded to Cedar entrance height;
+  now derived (spine) + ring scaled (loop). Prior fixtures confirm Cedar-identical.
+- UI: rail Site-source (upload PNG/JPEG backdrop + boundary/scale + use-site with
+  undo + run reset), canvas backdrop layer, Options compare (dual plans + deltas),
+  Record tab + JSON export (state-only payload).
+- Engine gate: 8 suites green. Web build green.
+- Designer T11e + Tester T10e dispatched (in flight at log time).
+- Tester T10e accepted with 6 issues (O1-O6), all fixed:
+  O1 min-size message is scope policy (engine + UI + header comment).
+  O2 compare gated on !stale && !draftDirty (was outside the ternary).
+  O3 baseSpec in runSnap + stale compare (undo-across-site hole closed).
+  O4 useSite clears the reference photo (stated in status + record).
+  O5 site inspector renders baseSpec; stale boundary line removed.
+  O6 record tab states append-only semantics.
+- site-tester.mjs wired: gate is 9 suites, all green. Web build green.
+- Designer T11e §17 landed (assumed; verified on readback).
+- prod :5173 re-probed HTTP 200.

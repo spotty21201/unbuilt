@@ -1,0 +1,10 @@
+{
+  "nodes": [
+    "Street junction 1, 0, 50 meters",
+    "Street junction 2, 49, 50 meters",
+    "Street junction 3, 120, 50 meters",
+    "Street junction 4, 49, 90 meters"
+  ],
+  "applyDisabled": false,
+  "asset": "/assets/index-CTox2Fej.js"
+}

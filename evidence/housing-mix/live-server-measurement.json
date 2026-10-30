@@ -1,0 +1,110 @@
+{
+  "requestId": null,
+  "adapter": "mock",
+  "planHash": "1e4ab88b59a30f",
+  "pricedAt": {
+    "price": 850000000,
+    "owner": 10000000000,
+    "target": 0.15
+  },
+  "base": {
+    "spec": {
+      "family": "spine",
+      "frontage": 10
+    },
+    "quantities": {
+      "n": 20,
+      "roadArea": 720,
+      "greenArea": 480,
+      "parcelArea": 4000,
+      "unallocatedArea": 6800
+    },
+    "builtArea": 1188,
+    "housing": {
+      "rows": [
+        {
+          "id": "h1",
+          "name": "Original home",
+          "width": 10,
+          "depth": 6,
+          "count": 19,
+          "builtArea": 1140
+        },
+        {
+          "id": "h2",
+          "name": "Courtyard",
+          "width": 8,
+          "depth": 6,
+          "count": 1,
+          "builtArea": 48
+        }
+      ],
+      "vacant": 0,
+      "homes": 20,
+      "builtArea": 1188
+    },
+    "revenue": 17000000000,
+    "costNonLand": 10317400000,
+    "landAllowance": 3622600000,
+    "ownerGap": 6377400000,
+    "surplus": -3827400000,
+    "validationErrors": [],
+    "applicable": true,
+    "failingLots": 0,
+    "carriedReshapes": 0
+  },
+  "other": {
+    "spec": {
+      "family": "spine",
+      "frontage": 10
+    },
+    "quantities": {
+      "n": 20,
+      "roadArea": 720,
+      "greenArea": 480,
+      "parcelArea": 4000,
+      "unallocatedArea": 6800
+    },
+    "builtArea": 1188,
+    "housing": {
+      "rows": [
+        {
+          "id": "h1",
+          "name": "Original home",
+          "width": 10,
+          "depth": 6,
+          "count": 19,
+          "builtArea": 1140
+        },
+        {
+          "id": "h2",
+          "name": "Courtyard",
+          "width": 8,
+          "depth": 6,
+          "count": 1,
+          "builtArea": 48
+        }
+      ],
+      "vacant": 0,
+      "homes": 20,
+      "builtArea": 1188
+    },
+    "revenue": 17000000000,
+    "costNonLand": 10317400000,
+    "landAllowance": 3622600000,
+    "ownerGap": 6377400000,
+    "surplus": -3827400000,
+    "validationErrors": [],
+    "applicable": true,
+    "failingLots": 0,
+    "carriedReshapes": 0
+  },
+  "deltas": {
+    "homes": 0,
+    "roadArea": 0,
+    "greenArea": 0,
+    "parcelArea": 0,
+    "landAllowance": 0,
+    "ownerGap": 0
+  }
+}

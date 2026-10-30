@@ -1,0 +1,13 @@
+Direct-manipulation slice — 2026-10-26
+- src/draft.ts + tests/draft.mjs (18/18 + cap check): parseMeter, draft validity, commit gate, undo/redo stacks.
+- Tester T10c accepted (evidence/draft-tester-report.md, 13/13 counterfactuals, wired? NO — Tester
+  left tests/draft-tester.mjs unwired per ownership; wire into package.json test here).
+- Follow-ups from tester notes: parsed-value dirty compare, History capped at 50.
+- Designer T11c accepted as §15 appended to the T11 spec (file was uncommitted stub + full text; coherent).
+- PlanCanvas: viewBox pan/zoom/fit, green move + 4-corner resize (meter math, 0.1 m snap),
+  draft/invalid outline styling, Esc cancels, background click deselects.
+- App: draft Apply/Cancel (invalid + search blocked while dirty), undo/redo stacks over
+  full snapshots (spec/green/fields/profile/economics inputs), Spine/Loop + frontage
+  design controls (each undoable), draft-preview badge with live draft metrics.
+- Engine gate: 6 suites green. Web build green.
+- Designer T11c spec delta + Tester T10c verification dispatched (in flight at log time).

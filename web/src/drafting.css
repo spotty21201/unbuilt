@@ -207,6 +207,202 @@ button.tool.selected-object { color: #c2a9e4; background: #2e2a38; }
 }
 .canvas .boundary-draft.invalid { stroke: #815f64; }
 .boundary-conflict { stroke: #e3354b; }
+
+/* Keep long boundary reviews inside the inspector and actions above its scroll. */
+.inspector-col { min-width: 0; }
+.boundary-editor { min-width: 0; overflow-wrap: anywhere; }
+.boundary-editor .boundary-actions { position: sticky; top: -12px; z-index: 3; padding: 10px 0; background: var(--panel); border-bottom: 1px solid var(--line); }
+.boundary-editor .boundary-actions button { flex: 1 1 110px; min-height: 44px; }
+.boundary-editor .boundary-coordinates input { min-width: 0; max-width: 100%; scroll-margin-block: 110px 30px; }
+.sitesrc input[type=file] { min-width: 0; max-width: 100%; }
+.boundary-editor .boundary-coordinates .draftrow { flex-wrap: wrap; }
+.boundary-precision { display: grid; gap: 6px; margin: 12px 0; font-size: 14px; line-height: 1.5; }
+.boundary-precision strong { color: #ddc7ff; }
+.boundary-editor :focus-visible, .project-library :focus-visible, .confirm-plan-change :focus-visible { outline: 2px solid #a9d7ff; outline-offset: 2px; }
+.contextstrip .active-project-name { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+@media (max-width: 900px) { .inspector-col:has(.boundary-editor) { overflow: visible; } .boundary-editor .boundary-actions { top: 0; } }
 .entrance-candidates { display: grid; gap: 6px; }
 .entrance-candidates button { min-height: 40px; text-align: left; }
 .assistant .client-explanation { font: inherit; line-height: 1.5; min-height: 180px; }
+
+.site-context-editor { min-width: 0; overflow-wrap: anywhere; }
+.site-context-editor > header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.site-context-editor fieldset { min-width: 0; margin: 16px 0; padding: 12px; border: 1px solid #596170; }
+.site-context-editor legend { color: #ddc7ff; padding-inline: 4px; }
+.site-context-editor label { display: grid; gap: 6px; margin-block: 12px; font-size: 14px; }
+.site-context-editor label:has(input[type=checkbox]) { display: flex; align-items: flex-start; }
+.site-context-editor input, .site-context-editor select, .site-context-editor textarea { width: 100%; min-width: 0; max-width: 100%; }
+.site-context-editor input[type=checkbox] { width: auto; flex: none; }
+.site-context-editor button { min-height: 44px; margin: 4px; overflow-wrap: anywhere; max-width: 100%; }
+.context-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.context-grid fieldset { margin: 0; padding: 8px; }
+.site-context-editor input:not([type=checkbox]), .site-context-editor select { min-height: 40px; padding: 6px; font: inherit; }
+.site-context-editor textarea { min-height: 90px; padding: 8px; font: inherit; }
+.survey-preview { display: block; width: 100%; height: auto; max-height: 340px; min-height: 160px; background: #e7e8ec; touch-action: manipulation; }
+.context-source { padding: 10px; border-left: 3px solid #a48bc9; line-height: 1.5; background: #20232a; }
+.context-notes { padding: 0 !important; list-style: none; }
+.context-notes li { padding: 12px; border: 1px solid #596170; margin-bottom: 10px; }
+.context-notes li > span { display: block; color: #d1c6e3; margin-top: 6px; }
+.context-notes p { margin-block: 8px; }
+.site-context-editor :focus-visible { outline: 2px solid #a9d7ff; outline-offset: 2px; }
+.street-editor { padding: 14px; min-width: 0; }
+.street-editor > header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.street-editor h2 { margin: 0; font-size: 20px; }
+.street-editor h3 { font-size: 15px; margin: 14px 0 8px; }
+.street-editor p { line-height: 1.5; overflow-wrap: anywhere; }
+.street-editor label { display: grid; gap: 6px; margin: 10px 0; font-size: 14px; }
+.street-editor input:not([type=range]), .street-editor select { width: 100%; min-width: 0; min-height: 40px; padding: 7px; color: #eef0f3; background: #191d24; border: 1px solid #697284; font: inherit; }
+.street-editor input[type=range] { width: 100%; accent-color: #a48bce; }
+.street-editor button { min-height: 40px; padding: 7px 10px; font-size: 14px; }
+.street-editor .draftrow { display: flex; flex-wrap: wrap; gap: 8px; }
+.street-editor-actions { position: sticky; top: 0; z-index: 4; display: flex; flex-wrap: wrap; gap: 8px; background: #24272f; padding-block: 10px; border-bottom: 1px solid #454b57; }
+.street-editor-actions > button:first-child { background: #715596; color: #fff; }
+.street-review, .street-drawing { padding: 12px; border: 1px solid #5f5574; background: #302b3c; margin-block: 12px; }
+.street-review .kv { margin-bottom: 0; }
+.street-endpoints { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.street-endpoints fieldset { min-width: 0; margin: 0; padding: 8px; border: 1px solid #596173; }
+.street-node { cursor: move; }
+.street-node:focus-visible, .street-network-overlay g:focus-visible { outline: 2px solid #075cff; }
+@media (max-width: 700px) { .street-editor button, .street-editor input:not([type=range]), .street-editor select { min-height: 44px; } }
+.street-banner { position: absolute; bottom: 14px; right: 12px; z-index: 2; max-width: calc(100% - 190px); padding: 8px 10px; border: 1px solid #a2b6dc; color: #173f80; background: #edf3ffed; font-size: 14px; line-height: 1.5; }
+.street-banner > div { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.street-banner button { min-height: 40px; padding: 5px 8px; font-size: 14px; touch-action: manipulation; }
+@media (max-width: 700px) { .street-banner { max-width: calc(100% - 160px); font-size: 13px; } .street-banner button { min-height: 44px; } }
+.inspector-col .street-editor-actions > button:first-child:not(:disabled) { background: #715596; color: #fff; border-color: #b39ed8; }
+@media (min-width: 901px) { .street-editor .street-view-canvas { display: none; } }
+.street-banner { max-width: min(350px, calc(100% - 190px)); }
+.street-selection-readout, .street-quick-review, .street-motion { display: block; font-size: 12px; }
+.street-motion { font-weight: 650; }
+.street-selected-summary { padding: 8px; border-left: 3px solid #8ca9ef; background: #202936; }
+.street-connector-note { border-left: 3px solid #efae36; padding: 8px; background: #3a3020; }
+@media (max-width: 900px) {
+  .canvastools:has(> .street-banner) { display: flex; flex-direction: column; }
+  .street-banner { position: static; order: 1; max-width: none; padding: 10px; font-size: 14px; display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 8px; }
+  .street-banner > strong, .street-banner > span { grid-column: 1; }
+  .street-banner > div { grid-column: 2; grid-row: 1 / span 4; align-self: center; }
+  .street-banner .street-selection-readout, .street-banner .street-quick-review { font-size: 13px; }
+}
+.lot-plan-editor { padding: 14px; min-width: 0; }
+.lot-plan-editor header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.lot-plan-editor h2 { margin: 0; font-size: 20px; }
+.lot-plan-editor p { line-height: 1.5; overflow-wrap: anywhere; }
+.lot-plan-editor label { display: grid; gap: 6px; margin-block: 12px; }
+.lot-plan-editor input:not([type=checkbox]), .lot-plan-editor select { min-width: 0; width: 100%; min-height: 40px; padding: 8px; color: #eef0f3; background: #191d24; border: 1px solid #697284; font: inherit; }
+.lot-plan-editor .lot-vacancy { display: flex; align-items: start; gap: 8px; }
+.lot-plan-editor .lot-vacancy input { width: 20px; height: 20px; flex: none; }
+.lot-plan-actions { position: sticky; top: 0; z-index: 4; background: #24272f; display: flex; gap: 8px; padding-block: 10px; border-bottom: 1px solid #454b57; }
+.lot-plan-editor button, .lot-tools button { min-height: 40px; padding: 7px 10px; font-size: 14px; }
+.inspector-col .lot-plan-actions > button:first-child:not(:disabled) { background: #715596; color: #fff; border-color: #b39ed8; }
+.lot-plan-review { border: 1px solid #5f5574; background: #302b3c; padding: 12px; margin-block: 12px; scroll-margin-top: 76px; }
+.lot-plan-review h3 { font-size: 15px; }
+.lot-tools { padding-block: 8px; border-bottom: 1px solid #454b57; }
+.lot-tools .draftrow, .lot-plan-editor .draftrow { display: flex; flex-wrap: wrap; gap: 8px; }
+.lot-plan-banner { position: absolute; z-index: 2; bottom: 14px; right: 12px; max-width: 310px; padding: 10px; border: 1px solid #a2b6dc; color: #173f80; background: #edf3ffed; font-size: 14px; }
+.lot-plan-banner > span { display: block; line-height: 1.5; margin-block: 4px; }
+.lot-plan-banner button { min-height: 40px; padding: 6px 10px; }
+@media (max-width: 900px) {
+  .canvastools:has(> .lot-plan-banner) { display: flex; flex-direction: column; }
+  .lot-plan-banner { position: static; order: 1; max-width: none; }
+  .lot-plan-editor button, .lot-plan-editor input:not([type=checkbox]), .lot-plan-editor select, .lot-tools button { min-height: 44px; }
+}
+.lot-reshape-actions { position: sticky; top: 0; z-index: 4; display: flex; gap: 8px; padding-block: 10px; background: #24272f; border-bottom: 1px solid #454b57; }
+.lot-reshape-actions button { min-height: 40px; padding: 7px 10px; }
+
+.selection-assumption { margin: 10px 14px; padding: 10px; border: 1px solid #bb9d5e; background: #3b3326; line-height: 1.5; }
+.lot-lineage { font-size: 14px; line-height: 1.5; }
+.lot-plan-banner { max-height: 45vh; overflow: auto; }
+.housing-mix-editor { padding: 14px; min-width: 0; }
+.housing-mix-editor h2 { margin: 0; font-size: 20px; }
+.housing-mix-editor header { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.housing-mix-editor p { line-height: 1.5; }
+.housing-mix-editor label { display: grid; gap: 6px; margin: 12px 0; }
+.housing-mix-editor input, .housing-mix-editor select { width: 100%; min-width: 0; padding: 8px; min-height: 44px; background: #191d24; border: 1px solid #697284; color: #eef0f3; font: inherit; }
+.housing-mix-editor button, .housing-summary button { min-height: 44px; padding: 8px 10px; margin: 3px; }
+.housing-dimensions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.housing-review { margin: 12px 0; padding: 12px; border: 1px solid #716185; background: #302b3c; scroll-margin-top: 76px; }
+.housing-summary { padding: 12px; border-bottom: 1px solid #454b57; }
+.housing-breakdown table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.housing-breakdown th, .housing-breakdown td { padding: 8px 4px; text-align: left; border-bottom: 1px solid #454b57; overflow-wrap: anywhere; }
+.housing-breakdown small { display: block; color: #b7becb; }
+.housing-swatch { display: inline-block; width: 12px; height: 12px; border: 1px solid #9da8b7; margin-right: 5px; vertical-align: middle; }
+.housing-mix-editor button { font-size: 14px; max-width: 100%; overflow-wrap: anywhere; }
+.housing-mix-editor .lot-plan-actions button { margin: 0; flex: 1 1 0; min-width: 0; }
+.home-restoration-review, .assignment-review, .default-change-review { margin: 12px 0; padding: 10px; border: 1px solid #78678f; line-height: 1.5; overflow-wrap: anywhere; }
+.home-restoration-review { border-color: #ba8b72; background: #382a26; scroll-margin-top: 20px; }
+.home-restoration-review button { min-height: 44px; margin: 4px; }
+.assignment-review ul { max-height: 240px; overflow: auto; }
+.housing-cost-assumptions { line-height: 1.5; }
+.housing-cost-assumptions summary { padding-block: 8px; cursor: pointer; }
+.drawing-housing-key { display: none; }
+@media(max-width:900px){
+  .canvastools:has(.drawing-housing-key) { display: flex; flex-direction: column; }
+  .drawing-housing-key { display: block; order: 1; padding: 10px; font-size: 14px; line-height: 1.5; color: #eef0f3; background: #252932; overflow-wrap: anywhere; }
+  .drawing-housing-key p { margin: 0 0 8px; }
+  .drawing-housing-key summary { min-height: 44px; padding-block: 10px; cursor: pointer; }
+  .canvastools:has(.drawing-housing-key) .lot-plan-banner { order: 2; }
+}
+
+.open-spaces-editor {display:grid;gap:14px;color:var(--text,#e4e6ec)}
+.open-spaces-editor header {display:flex;justify-content:space-between;align-items:center;gap:8px}
+.open-spaces-editor h2,.open-spaces-editor h3 {margin:0;font-size:15px}
+.open-spaces-editor p {margin:0;font-size:13px;line-height:1.5}
+.open-spaces-editor label {display:grid;gap:6px;font-size:13px}
+.open-spaces-editor label:has(input[type=checkbox]) {display:flex;align-items:center}
+.open-spaces-editor input,.open-spaces-editor select {min-width:0;width:100%;min-height:36px;background:#1d2027;border:1px solid #525666;color:#f0f1f6;border-radius:3px;padding:6px}
+.open-spaces-editor input[type=checkbox] {width:18px;min-height:18px}
+.open-spaces-editor button,.space-summary button,.space-drawing-actions button {min-height:36px;white-space:normal;line-height:1.35}
+.space-properties,.space-create,.space-review {display:grid;gap:12px;border:1px solid #424856;padding:12px;background:#242831}
+.space-create summary {cursor:pointer;font-weight:600;padding:6px 0}
+.space-create:not([open]) {display:block}
+.space-corners,.space-fields {display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.space-corners fieldset {min-width:0;margin:0;padding:8px;border:1px solid #505668;display:grid;gap:6px}
+.space-corners legend {font-size:12px;padding:0 3px}
+.space-summary {border-block:1px solid #444958;padding:12px 0;display:grid;gap:8px}
+.space-summary ul {padding:0;list-style:none;margin:0;display:grid;gap:4px}
+.space-summary button {text-align:left;width:100%}
+.space-summary [aria-pressed=true] {border-color:#a690c9;background:#423b54}
+.space-drawing-readout {margin:0;padding:8px 12px;background:#292d37;color:#eee;font-size:13px}
+.space-drawing-actions {display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#292d37;color:#fff;padding:8px 12px;font-size:13px}
+.open-space-layer [role=button] {cursor:pointer;touch-action:none}
+.open-space-layer [role=button]:focus-visible polygon,.open-space-layer [role=button]:focus-visible circle {stroke:#0071ff;stroke-width:3px;outline:none}
+@media(max-width:600px){.open-spaces-editor button,.space-summary button,.space-drawing-actions button {min-height:44px}.space-corners {grid-template-columns:1fr 1fr}.open-spaces-editor .lot-plan-actions {position:sticky;top:0;z-index:4;background:#242831;padding:8px}}
+.space-drawing-actions,.space-drawing-readout {flex-shrink:0}
+@media(min-width:901px){.canvastools:has(.space-drawing-readout) .lot-plan-banner {bottom:64px}}
+
+/* Feasibility review keeps a frozen accepted baseline beside the trial. */
+.feasibility-dialog { width: min(1380px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--txt); overflow: auto; }
+.feasibility-dialog .note { color: var(--mut); }
+.feasibility-dialog .error { color: #ffc1bc; background: #3b2427; padding: 12px; }
+.feasibility-dialog::backdrop { background: #050a10bb; }
+.feasibility-dialog > header, .feasibility-dialog > footer { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: var(--panel); }
+.feasibility-dialog > header { border-bottom: 1px solid var(--line); justify-content: space-between; }
+.feasibility-dialog > header h2 { margin: 0; }
+.feasibility-dialog > header p { margin-bottom: 0; }
+.feasibility-dialog > footer { border-top: 1px solid var(--line); position: sticky; bottom: 0; z-index: 2; flex-wrap: wrap; }
+.feasibility-dialog > footer p { flex: 1 1 260px; margin: 0; }
+.feasibility-body { display: grid; grid-template-columns: minmax(240px, 310px) minmax(0, 1fr); gap: 24px; padding: 20px; }
+.experiment-inputs, .experiment-results { min-width: 0; }
+.experiment-inputs .formgrid { display: grid; grid-template-columns: 1fr; }
+.experiment-inputs fieldset { display: grid; gap: 10px; border: 1px solid var(--line); margin: 12px 0; padding: 12px; }
+.experiment-inputs label { display: grid; gap: 5px; }
+.experiment-inputs :is(input, select) { width: 100%; min-width: 0; min-height: 40px; padding: 8px; border: 1px solid var(--line); background: var(--field); color: var(--txt); font: inherit; }
+.experiment-inputs fieldset:disabled { opacity: .65; }
+.experiment-results .compare-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.experiment-results .compare-grid > div { min-width: 0; }
+.experiment-results .compare-grid h3 { font-size: 12px; }
+.experiment-table { overflow-x: auto; margin: 16px 0; }
+.experiment-table table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.experiment-table caption { text-align: left; margin-bottom: 10px; }
+.experiment-table :is(th, td) { text-align: right; padding: 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.experiment-table th:first-child { text-align: left; white-space: normal; }
+.experiment-entry { width: 100%; margin: 8px 0; }
+@media (max-width: 900px) {
+  .feasibility-dialog { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); }
+  .feasibility-body { grid-template-columns: 1fr; padding: 12px; gap: 16px; }
+  .experiment-inputs .formgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feasibility-dialog > header, .feasibility-dialog > footer { padding: 12px; }
+}
+@media (max-width: 480px) {
+  .experiment-inputs .formgrid, .experiment-results .compare-grid { grid-template-columns: 1fr; }
+  .feasibility-dialog > header { align-items: start; }
+}

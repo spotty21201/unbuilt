@@ -1,0 +1,117 @@
+{
+  "format": "unbuilt-project",
+  "name": "Riverside (2)",
+  "version": 5,
+  "savedAt": "2026-10-29T13:31:11.244Z",
+  "state": {
+    "spec": {
+      "family": "spine",
+      "frontage": 10
+    },
+    "green": {
+      "x": 78,
+      "y": 62,
+      "w": 24,
+      "h": 20
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "lots": {},
+    "profileId": "family-200",
+    "greenLocked": false,
+    "priceS": "850",
+    "ceilingS": "850",
+    "ownerS": "10",
+    "targetS": "15",
+    "baseSpec": {
+      "w": 120,
+      "h": 100,
+      "contents": {
+        "boundary": true,
+        "layout": false,
+        "removedHomes": []
+      },
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true,
+        "minGreenArea": 0
+      },
+      "boundary": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 100
+        },
+        {
+          "x": 50,
+          "y": 90
+        },
+        {
+          "x": 0,
+          "y": 60
+        }
+      ]
+    }
+  },
+  "decisions": [
+    {
+      "t": "2026-10-29T13:31:02.303Z",
+      "kind": "boundary",
+      "detail": "Applied 5-vertex site, 11000 m². Contained layout regenerated; outside lots omitted."
+    },
+    {
+      "t": "2026-10-29T13:31:02.416Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-29T13:31:02.510Z",
+      "kind": "redo",
+      "detail": "Redo applied (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-29T13:31:04.354Z",
+      "kind": "boundary",
+      "detail": "Applied 5-vertex site, 10400 m². Contained layout regenerated; outside lots omitted."
+    },
+    {
+      "t": "2026-10-29T13:31:04.862Z",
+      "kind": "generate",
+      "detail": "Generated a contained starter Spine layout; park and entrance are assumed, not surveyed."
+    },
+    {
+      "t": "2026-10-29T13:31:05.329Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-29T13:31:05.462Z",
+      "kind": "redo",
+      "detail": "Redo applied (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-29T13:31:11.238Z",
+      "kind": "delete",
+      "detail": "Cleared layout; kept the boundary and project assumptions."
+    }
+  ],
+  "photo": {
+    "included": false,
+    "note": "Reference photos are session-only and never stored."
+  }
+}

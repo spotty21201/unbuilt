@@ -150,3 +150,185 @@ commands are in `evidence/dynamic-inspector/README.md`.
 | AC-112 | P1 | Passed | Selection reveals contextual summary; mobile lot area/action opens and focuses inspector; desktop/laptop/mobile and actual 200% zoom verified |
 | AC-113 | P0 | Passed | 438 root checks, 138 browser checks plus actual zoom checks, production build/lint, screenshots inspected; `evidence/planner-improvements/README.md` |
 | AC-114 | P1 | Open | Real model round trip, physical touch hardware and follow-up independent human acceptance remain open; no general route/capacity/access-compliance claim |
+
+## Features 1–3: projects, removal and boundary editing
+
+| ID | Priority | Status | Evidence / limit |
+|---|---|---|---|
+| AC-115 | P0 | Passed | Named blank/sample project creation, rename/name validation, autosave/Save, open/reload, confirmed deletion and session recovery; independent accepted plans |
+| AC-116 | P0 | Passed | Legacy single-project migration retains its original entry; imports create separate projects; project/scenario v5 and record v6 preserve blank/vacant semantics and reject downgrades |
+| AC-117 | P0 | Passed | Remove selected homes keeps vacant lots and changes revenue/construction cost; reservations survive regeneration/reload; restore checks edited-lot fit before changing accepted state |
+| AC-118 | P0 | Passed | Clear layout keeps boundary; delete boundary/start blank remove dependent geometry and obsolete entrance references; confirmations, locks and plan Undo/Redo verified |
+| AC-119 | P0 | Passed | Blank-to-five-sided 11,000 m² site, pointer/coordinate corner movement, add/remove, invalid highlight/blocked Apply, Cancel, draft history, accepted history and explicit contained starter generation |
+| AC-120 | P0 | Passed | Failed-save backup contains current accepted in-memory edit; corrupt library unchanged without explicit replacement; stale cross-tab writer refuses overwrite; isolated async answers/history on project switch |
+| AC-121 | P1 | Passed within scope | 1440×900, 1024×768, 375×812 captures inspected; keyboard/dialog focus; emulated touch drawing and drag; actual browser 200% zoom. Synthetic post-drag click needs recovery; physical touch remains open |
+| AC-122 | P0 | Passed | 465 root checks, 213 browser checks plus 7 actual-zoom assertions; production build and lint pass. `evidence/projects-and-reset/README.md` |
+| AC-123 | P1 | Open | Owner task/aesthetic acceptance, physical-device touch, real-model integration/round trip; features 4–15 remain unapproved for implementation |
+
+## Features 1–3 owner-feedback refinements (28 October 2026)
+
+These rows record the follow-up fixes; preceding milestone rows remain historical.
+Evidence and exact viewport matrix: `evidence/planner-feedback-fixes/README.md`.
+
+| ID | Priority | Status | Evidence / limit |
+|---|---|---|---|
+| AC-124 | P1 | Passed within scope | Inspector wraps at six documented 100% viewports; 64-vertex keyboard focus and sticky actions; 12 actual window/zoom combinations, 100–200%. Original clipping not reproduced; original window dimensions unavailable. |
+| AC-125 | P1 | Passed | Identical blank-reset choices consolidated as Delete boundary and layout; matching dialog, explicit retained assumptions/photo behavior and session Undo lifetime; Cancel/Undo/Redo verified. |
+| AC-126 | P0 | Passed | Real library/deletion downloads restore accepted geometry and assumptions as separate projects; exclusions/private-session/site-data guidance; ordinary profile restart and disposable site-data clearing tested. |
+| AC-127 | P0 | Passed | Boundary draft keep/discard, conditional actual-departure warnings for history/photos, straightforward fresh-session switch and native reload warning; accepted plan cannot become an unapproved draft. Browser warning policy remains outside app control. |
+| AC-128 | P1 | Passed | Visible unchanged 1 m pointer snap, decimal coordinate input, two-decimal draft area, accessible invalid-coordinate errors; retained photo controls on blank plans and corrected image-removal handler. |
+| AC-129 | P0 | Passed | 465 core and 267 browser checks, 12 real-zoom combinations, 7 real-200%-zoom creation assertions, 2 storage-restart/clearing checks; production build/lint. Editor enabled text/control contrast ≥7.34:1 in tested default state. |
+| AC-130 | P1 | Open | Owner task/aesthetic acceptance, original Chrome clipping environment, physical touch-device validation and Incognito-session closure behavior; no durable/cloud, survey or private-mode detection claim. |
+
+## Pointer boundary range correction (28 October 2026)
+
+| ID | Priority | Status | Evidence / limit |
+|---|---|---|---|
+| AC-131 | P0 | Passed | Reproduced six-point manual drawing creating −13 m coordinates. Corrected new-draft framing and bounded pointer/arrow editing; shaded outside-range paper; typed validation retained. 31 focused browser checks at 1440×900, 1024×768 and 375×812. |
+| AC-132 | P0 | Passed within scope | 465 root checks, 59 inspector, 38 viewport, 55 project/storage and 20 lifecycle checks; 9 real-200%-zoom creation/cancel assertions including six pointer clicks; production build/lint. Physical touch hardware remains unverified. See `evidence/boundary-pointer-range/README.md`. |
+
+## Feature 4 — Site context (28 October 2026)
+
+Requirements: `docs/PRD_v0.9.md`; evidence: `evidence/site-context/README.md`.
+
+| ID | Priority | Status | Evidence / limit |
+|---|---|---|---|
+| AC-133 | P0 | Passed | Local multi-page PDF and PNG/JPEG references; two-point known-distance calibration, uniform scale/rotation, actual 100 m alignment and readable bundled-font PDF labels; no guessed distance accepted. |
+| AC-134 | P0 | Passed within scope | CSV and straight closed 2D model-space DXF; units, origin translation, candidate/layer/source preview; invalid/unsupported geometry refused; existing boundary consequence Apply/Cancel and coherent Undo. |
+| AC-135 | P0 | Passed | Surrounding-street lines, feature/access markers, required source and uncertainty, canvas/coordinate placement, edit/remove/Undo; no changes to generated geometry, quantities or access status. |
+| AC-136 | P0 | Passed | Project v6 / record v7 roundtrip and downgrade refusals; metadata persists, media excluded; matching source/page reattachment, project isolation and failed-save backups verified. |
+| AC-137 | P1 | Passed within scope | 1440/1024/375 feature viewports, keyboard controls, emulated touch markers and 8 actual 100–200% zoom combinations; pending-edit protection and boundary lock/reference separation. |
+| AC-138 | P0 | Passed | 490 core checks, 354 browser checks plus 8 real-zoom combinations and 9 existing zoom groups; production build/lint, screenshots inspected. Exact commands and artifacts in evidence. |
+| AC-139 | P1 | Open | Owner task/aesthetic acceptance and physical touch hardware; real-world export compatibility beyond tested subset. No full CAD, cloud/media storage, georeferencing, surveyed/legal access or later-roadmap claim. |
+
+## Planner review follow-up
+
+| ID | Priority | Status | Evidence / limit |
+|---|---|---|---|
+| AC-140 | P1 | Passed | Disabled home restoration names the pending edit, explains that fit is not yet decided and becomes usable after Apply or Cancel; restored generated homes checked. |
+| AC-141 | P1 | Passed | Top-level New project action is visible and keyboard-focuses creation at 1440/1024/375; backup scope remains accessible; mobile lot readout/inspector retained. |
+| AC-142 | P0 | Passed within scope | Existing boundary highlights, pointer repair, valid Apply and invalid-draft Cancel rechecked; 490 root checks, 165 browser checks and 9 actual-200%-zoom assertions; production build/lint. `evidence/planner-review-followup/README.md` |
+| AC-143 | P1 | Open | Draft continuity, saved client materials, linked access and enforced protected areas require follow-up scope; real survey, legal access, physical-device and owner validation remain open. No model integration added. |
+
+## Feature 5 — Street-editing acceptance gate
+
+Requirements: `docs/PRD_v0.10.md`. Automated evidence and remaining limits:
+`evidence/street-editing/README.md`. Automated passes do not close these human gates.
+
+- [ ] Planner can draw, select, move, resize and remove streets and understand
+  lot, land and cost consequences before Apply.
+- [ ] Planner can recover disconnected/outside/park-conflicting drafts, reconnect
+  the entrance, cancel safely and use draft/plan history.
+- [ ] Independently review 720 → 942 → 1,016 m² examples, irregular containment,
+  save/reopen, fixed-network alternatives, comparison and measured explanations.
+- [ ] Owner accepts desktop/laptop/mobile composition and actual 200% zoom workflow.
+- [ ] Physical-device touch and a real site/survey/access review completed.
+
+No compliant turning/traffic/pedestrian/legal-access design or real-model round trip
+is established by this milestone.
+
+### Street-review follow-up gate
+
+Six planner findings are tracked in `evidence/street-review-followup/README.md`:
+off-centre horizontal dragging, centreline joining, truthful proposal scope,
+full-width conflict visuals, connector review and mobile continuity. Focused
+browser verification is separate from human acceptance. Feature 6 has not started.
+
+- [ ] Tester repeats horizontal grab after three arrow moves: X changes, Y=50.
+- [ ] Tester joins a branch with the pointer cue and repairs an explicit typed gap.
+- [ ] Tester sees the same fixed-network/four-frontage scope before and after search.
+- [ ] Tester identifies and directly repairs a full-width conflict on the drawing.
+- [ ] Tester reviews orange connector/affected-lot cues and cancels safely.
+- [ ] Tester reviews width/outcomes on mobile and returns to the same selected branch.
+
+Engineering, legal access, real survey, physical-device and real-model gates stay
+open; these interface corrections do not establish them.
+
+## Feature 6 — Blocks and lots acceptance gate
+
+Owner-authorized requirements: `docs/PRD_v0.11.md`. Automated evidence and limits:
+`evidence/blocks-and-lots/README.md`. Earlier Feature 6 deferrals are historical;
+Feature 7 has not started. Independent acceptance remains separate from test passes.
+
+- [ ] Planner can split, merge and subdivide a rectangular group, understand
+  resulting lot/home counts and review effects before Apply.
+- [ ] Invalid/inaccessible/undersized occupied lots are blocked; explicit vacant
+  parcels remain measurable and are not counted or priced as homes.
+- [ ] Planner can reshape a resulting lot using drawing and keyboard controls,
+  recover invalid edits and use draft/plan Undo/Redo without losing accepted work.
+- [ ] Save/reopen and portable import preserve manual partition and polygon edits.
+- [ ] Street/park changes respect held lots, and generated restoration/search limits
+  are understandable before any manual work is replaced.
+- [ ] Desktop/laptop/mobile/actual-200% and physical-device workflows accepted.
+
+Cadastral approval, real survey/access, traffic/turning, model connection and owner
+workflow/aesthetic acceptance remain open. Rectangular operations and polygon
+reshape do not establish arbitrary polygon splitting/union or legal subdivision.
+
+## Feature 6 review and Feature 7 housing mix
+
+- [x] One-based proposed frontage warning and affected parcel highlight; mobile
+  warning stays beside the drawing with the draft retained.
+- [x] Merge review shows source occupancy, removed occupied homes and resulting
+  vacancy, with accepted-to-proposed references for unchanged parcels.
+- [x] Provisional allowance and selected polygon-setback limitations are adjacent
+  to relevant outcomes; irregular-block planning retained as future discovery.
+- [x] Create/name/edit templates; protect in-use deletion; choose a default and
+  assign individual lots, connected blocks, native multi-selection or all lots.
+- [x] Actual assigned footprints, schedule/counts/built area and summed construction;
+  vacant assignments create no homes/revenue, bad fit blocks application.
+- [x] Preview/Apply/Cancel, history, save/reload and versioned JSON backup/import;
+  held partition, lot inheritance and clear-layout recovery retain exact work.
+- [x] Shared server validation and measured costs include housing; previous envelope
+  versions reject hidden housing data. Existing proposal/stale-response gates retained.
+- [ ] Independent planner acceptance of the revised review and housing mix.
+- [ ] Physical-device touch and survey/access/legal/engineering verification.
+- [ ] Real-model round trip; no model connection is claimed by this increment.
+
+## Housing-mix planner review follow-up
+
+- [x] Oversized vacant reservation: persistent lot/template/dimension explanation,
+  direct reassignment and outline recovery, fitting repair and explicit restoration.
+- [x] Generated-lot prerequisite opens directly, identifies released assignments,
+  supports Cancel, preserves library, and retains two explicit approvals/Undo steps.
+- [x] Default change identifies inherited and held lots before preview; target list
+  and selected readout distinguish same-name explicit/default homes.
+- [x] Mobile text key identifies selected design and mix without color; review
+  round trip preserves the zoomed viewport and draft.
+- [x] Review exposes shared price/rate/contingency and measured cost differences;
+  market assumptions remain provisional.
+- [ ] Independent human acceptance and physical-device touch retest.
+
+## Feature 8 — open-space verification
+
+Current requirements: `docs/PRD_v0.13.md`. Evidence and open gates:
+`evidence/open-spaces/README.md`; planner retest:
+`evidence/open-spaces/TESTER-PROMPT.md`. Keep the separate housing-review retest
+prompt intact at `evidence/housing-review-followup/TESTER-PROMPT.md`.
+
+Acceptance requires true aggregate polygon area/cost, valid containment and
+non-overlap, no conflicting generated geometry, truthful unsupported-route states,
+held manual geometry/assignments, explicit preview approval, draft/plan history and
+portable accepted-state recovery. Browser proof must include real interactions,
+responsive screenshots and actual browser zoom; checks alone do not establish
+professional planning suitability. Physical touch, survey/access confirmation,
+engineering/legal review, independent human sign-off and a real-model round trip
+remain separate gates.
+
+## Feasibility experiments — PRD v0.14
+
+- [x] Frozen accepted/trial design and editable cost review, with generated
+  circulation/frontage/depth, eight costs, measured deltas and sequential attribution.
+- [x] Complete finite cost validation, explicit zero behavior, no partial invalid
+  finances, no accepted-state mutation before Apply; Cancel and Escape preserve work.
+- [x] Manual lots, lot reshapes and assigned homes protected; their costs remain editable.
+- [x] Apply/Undo/Redo, reload, shared economics displays, record export/import,
+  project v11 / record v12 / snapshot v10 gating and cost-sensitive hashes.
+- [x] Local and real HTTP search/explanation use accepted costs consistently.
+- [x] Served build browser checks, narrow touch emulation and actual 200% browser
+  zoom; inspect captured desktop/tablet/mobile/zoom screenshots.
+- [ ] Independent planner acceptance, physical-device gestures and verified
+  site-specific cost/market evidence. No real-model verification is claimed.
+
+See `evidence/feasibility-experiments/README.md` for results and limits. Feature 8
+independent planner testing remains deferred; the preserved prompts are unchanged.

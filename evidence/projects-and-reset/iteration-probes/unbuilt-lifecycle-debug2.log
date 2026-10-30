@@ -1,0 +1,32 @@
+PASS keyboard opens library with focus constrained to dialog
+PASS Escape closes library and returns focus to its opener
+PASS Delete on a keyboard-selected lot opens a guarded removal
+PASS history shortcuts cannot change the plan behind a confirmation
+PASS Escape cancels deletion without removing a home
+PASS project switch removes in-flight explanation, preview and prior results
+PASS project switch preserves other accepted project
+PASS deleting active project opens another saved project
+PASS deleting final project leaves a genuine empty library
+PASS Undo final-project deletion restores and opens accepted plan
+PASS adding a corner before gate edge preserves selected physical entrance
+PASS boundary Undo restores gate and four-corner outline together
+PASS removing inserted corner restores gate edge indexing
+PASS touch places and closes a five-sided boundary
+PASS touch corner drag updates measured area
+TOUCH STATUS Draw a boundary: place vertices, then close the outline. Escape cancels. [
+  [ 'pointerdown', 'BUTTON', 'Apply' ],
+  [ 'touchstart', 'BUTTON', 'Apply' ],
+  [ 'pointerup', 'BUTTON', 'Apply' ],
+  [ 'touchend', 'BUTTON', 'Apply' ]
+]
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /home/spotty/projects/unbuilt/tests/project-lifecycle-browser.cjs:20:1955 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3

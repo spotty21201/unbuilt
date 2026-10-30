@@ -1,0 +1,117 @@
+[
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "panel": {
+      "left": 1092,
+      "right": 1440,
+      "width": 348,
+      "scrollWidth": 347,
+      "clientWidth": 347
+    },
+    "editor": {
+      "width": 323,
+      "scrollWidth": 323
+    },
+    "clipped": []
+  },
+  {
+    "viewport": [
+      1366,
+      768
+    ],
+    "panel": {
+      "left": 1018,
+      "right": 1366,
+      "width": 348,
+      "scrollWidth": 347,
+      "clientWidth": 347
+    },
+    "editor": {
+      "width": 323,
+      "scrollWidth": 323
+    },
+    "clipped": []
+  },
+  {
+    "viewport": [
+      1280,
+      720
+    ],
+    "panel": {
+      "left": 932,
+      "right": 1280,
+      "width": 348,
+      "scrollWidth": 347,
+      "clientWidth": 347
+    },
+    "editor": {
+      "width": 323,
+      "scrollWidth": 323
+    },
+    "clipped": []
+  },
+  {
+    "viewport": [
+      1024,
+      768
+    ],
+    "panel": {
+      "left": 704,
+      "right": 1024,
+      "width": 320,
+      "scrollWidth": 319,
+      "clientWidth": 319
+    },
+    "editor": {
+      "width": 295,
+      "scrollWidth": 295
+    },
+    "clipped": []
+  },
+  {
+    "viewport": [
+      960,
+      640
+    ],
+    "panel": {
+      "left": 640,
+      "right": 960,
+      "width": 320,
+      "scrollWidth": 319,
+      "clientWidth": 319
+    },
+    "editor": {
+      "width": 295,
+      "scrollWidth": 295
+    },
+    "clipped": []
+  },
+  {
+    "viewport": [
+      375,
+      812
+    ],
+    "panel": {
+      "left": 0,
+      "right": 375,
+      "width": 375,
+      "scrollWidth": 375,
+      "clientWidth": 375
+    },
+    "editor": {
+      "width": 351,
+      "scrollWidth": 351
+    },
+    "clipped": []
+  },
+  {
+    "resetDialog": "Start with a blank plan?\n\nRemove the boundary, homes, lots, streets and open space. Keep the project name and economic assumptions. Any reference photo is hidden and remains available in Site source.\n\nUndo restores this change while the project remains open.\n\nKeep plan\nConfirm blank plan"
+  },
+  {
+    "backupButtons": [],
+    "libraryText": "Projects\n\nSaved on this browser and device. Download a project for a portable backup.\n\nClose\nYour projects\nCedar Market sample Open\n\n12,000 m² · Layout · Saved 10/28/2026, 8:27:45 PM\n\nOpen Cedar Market sample\nRename Cedar Market sample\nDelete Cedar Market sample\nNew project\nProject name\nStart with\nBlank plan\nCedar Market sample\n\nAn empty drawing. Create your boundary, then generate a layout when ready.\n\nCreate and open project\nImport a project or decision record\n\nImports become separate named projects. Existing projects are kept."
+  }
+]

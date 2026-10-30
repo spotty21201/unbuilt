@@ -1,0 +1,102 @@
+SIZE {
+  svg: {
+    x: 310,
+    y: 140.84375,
+    width: 473,
+    height: 414,
+    top: 140.84375,
+    right: 783,
+    bottom: 554.84375,
+    left: 310
+  },
+  col: {
+    x: 310,
+    y: 94.84375,
+    width: 1114,
+    height: 638.296875,
+    top: 94.84375,
+    right: 1424,
+    bottom: 733.140625,
+    left: 310
+  }
+}
+PROPOSAL Proposal — lock Open space A in place (shape and location); hold the assumed selling price at Rp850m (no increase). Scope: change: circulation pattern and lot frontage only; held fixed: drawn green region, price ceiling, owner expectation, target; test: bounded search over the stated ranges, nothing else moves. Accept to run; Reject leaves everything unchanged.
+
+Accept and run Reject
+AFTER CHANGED ASSUMPTION 20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp16.44bn 6 valid of 8 tested layouts. Every option below is geometrically valid and fits the Family 200 (fictional) profile. All shown miss the owner expectation — largest shortfall Rp17.59bn. Shortfall observed within the tested ranges only.
+
+Order by
+Lowest road area
+Highest land allowance
+Most homes
+Working plan (baseline)
+Spine · 10 m lots · 20 homes · Shortfall Rp16.44bn
+-3 homes, lots avg 220 m²
+Spine · 11 m lots · 17 homes · Shortfall Rp17.59bn · same economics as Spine · 12 m lots
+Apply
+-3 homes, lots avg 240 m²
+Spine · 12 m lots · 17 homes · Shortfall Rp17.59bn · same economics as Spine · 11 m lots
+Apply
+Compare two plans
+Plan A
+Working plan
+Spine · 10 m lots
+Spine · 11 m lots
+Spine · 12 m lots
+Plan B
+Choose…
+Working plan
+Spine · 10 m lots
+Spine · 11 m lots
+Spine · 12 m lots
+Fit bothExpand comparison
+
+Working plan — 20 homes · 720 m² road · Shortfall Rp16.44bn
+
+Fit site
++
+−
+Expand plan
+Drag background to pan · scroll to zoom · zoom never changes quantities
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A · locked
+Entrance · west
+spine · 20 homes · Open space A (locked, retained) · Entrance west
+
+Choose a second plan to see deltas.
+
+Both plans share the same site coordinates. Comparisons are snapshots of this run only — no saved schemes yet.
+BEFORE RELOAD 20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp16.44bn
+AFTER RELOAD 20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn
+PAGE ERRORS []

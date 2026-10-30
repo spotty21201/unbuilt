@@ -1,0 +1,58 @@
+PASS generated streets enter an explicit unapplied draft
+PASS new branch is selected rather than a split trunk segment
+PASS T junction splits the shared trunk and measures 942 m² before acceptance
+PASS 8 m branch counts the junction overlap once: 1016 m²
+PASS incomplete coordinate cannot silently become zero
+PASS draft Undo returns the branch to 6 m
+PASS draft Redo restores width and measurements
+PASS Apply saves versioned manual geometry
+PASS one plan Undo restores generated routing
+PASS plan Redo restores exact network
+PASS save/reload preserves widths, junctions and 1016 m² surface
+PASS native keyboard width control remeasures a 7 m branch to 979 m²
+PASS pointer moves a shared T junction and keeps its branch orthogonal
+PASS one draft Undo restores a full pointer gesture
+PASS repeated keyboard arrows retain focus and move the connected column
+PASS Cancel restores saved network after pointer and keyboard edits
+PASS disconnected street is rejected with accepted plan retained
+PASS draft Undo repairs the invalid isolated stroke
+PASS street cannot cut through the fixed park or clearance
+PASS branch removal updates the live surface to 720 m²
+PASS moving a row off the gate blocks Apply with specific entrance feedback
+PASS Connect entrance proposes a contained measured link for review
+PASS full corridor outside boundary is rejected even if centerline is inside
+PASS canvas picks plus Enter complete an orthogonal stroke
+PASS Escape cancels only the in-progress stroke
+PASS return to generated routing is a preview, not implicit replacement
+PASS Cancel generated preview keeps manual network
+PASS request review searches supported alternatives while preserving manual streets
+PASS preview does not apply an alternative or change the fixed streets
+PASS comparison renders two plans with the same manual road surface
+PASS tool server remeasures a manual street snapshot without a real model
+PASS changed input clears stale manual-plan explanation and preview
+PASS input change rejects in-flight manual-plan explanation
+PASS alternative Apply preserves exact manual geometry
+PASS decision record v8 exports the manual network
+PASS record imports as a separate project with exact network
+PASS 1440px manual plan has no horizontal overflow
+PASS 1440px street Apply/Cancel are visible after opening editor
+PASS 1024px manual plan has no horizontal overflow
+PASS 1024px street Apply/Cancel are visible after opening editor
+PASS 375px manual plan has no horizontal overflow
+PASS 375px street Apply/Cancel are visible after opening editor
+PASS mobile View drawing returns to the street canvas
+PASS mobile Review streets restores editor focus
+PASS explicit generated-routing Apply removes the manual network
+PASS Undo restores the replaced manual network
+PASS clearing layout removes its network while retaining the boundary
+PASS Undo clear restores both layout and street geometry
+PASS manual-street home lots remain independently editable
+PASS street acceptance reviews the affected manual lot before discarding it
+PASS declining lot conflict retains the reshape and manual network
+PASS manual streets on a five-sided 11000 m² site generate a valid contained plan
+PASS irregular site reload retains true boundary and manual streets
+PASS sloping gate network converts without losing its measured apron
+PASS accepted manual network retains apron, entrance and measured totals
+PASS emulated touch moves a street endpoint without saving it
+PASS no uncaught browser errors
+ALL 57 STREET BROWSER CHECKS PASS

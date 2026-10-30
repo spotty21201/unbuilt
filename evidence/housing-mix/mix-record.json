@@ -1,0 +1,389 @@
+{
+  "app": "UNBUILT decision record",
+  "projectName": "Cedar Market sample",
+  "exportVersion": 10,
+  "exportedAt": "2026-10-29T16:18:58.730Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in integer Rp.",
+  "state": {
+    "site": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true,
+        "lotPlan": [
+          {
+            "x": 0,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 0,
+            "y": 53,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 10,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 10,
+            "y": 53,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 20,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 20,
+            "y": 53,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 30,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 30,
+            "y": 53,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 40,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 40,
+            "y": 53,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 50,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 50,
+            "y": 53,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 60,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 60,
+            "y": 53,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 70,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 80,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 90,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 100,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 110,
+            "y": 27,
+            "w": 10,
+            "h": 20
+          },
+          {
+            "x": 110,
+            "y": 53,
+            "w": 10,
+            "h": 20
+          }
+        ],
+        "housing": {
+          "templates": [
+            {
+              "id": "h1",
+              "name": "Original home",
+              "width": 10,
+              "depth": 6
+            },
+            {
+              "id": "h2",
+              "name": "Courtyard",
+              "width": 8,
+              "depth": 6
+            }
+          ],
+          "defaultId": "h1",
+          "assignments": {
+            "0,27,10,20": "h2"
+          }
+        }
+      },
+      "areaM2": 12000,
+      "provenance": "fictional Cedar Market sample"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "openSpace": {
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 24,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 10,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 0,
+          "y": 47,
+          "w": 120,
+          "h": 6
+        }
+      ],
+      "parcels": [
+        {
+          "x": 0,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 0,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 70,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 80,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 90,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 100,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 20,
+      "roadArea": 720,
+      "greenArea": 480,
+      "parcelArea": 4000,
+      "unallocatedArea": 6800
+    },
+    "economics": {
+      "roadCost": 576000000,
+      "homeCost": 5940000000,
+      "greenCost": 72000000,
+      "costNonLand": 10317400000,
+      "finance": {
+        "revenue": 17000000000,
+        "surplus": -3827400000,
+        "margin": -0.22514117647058823,
+        "landAllowance": 3622600000,
+        "ownerGap": 6377400000,
+        "requiredPrice": 1238865853.6585367
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "events": [
+    {
+      "t": "2026-10-29T16:18:56.332Z",
+      "kind": "housing-mix",
+      "detail": "Applied housing mix: Original home 19 homes; Courtyard 1 homes; 1188 m² built."
+    },
+    {
+      "t": "2026-10-29T16:18:56.398Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-29T16:18:56.448Z",
+      "kind": "redo",
+      "detail": "Redo applied (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-29T16:18:57.585Z",
+      "kind": "delete",
+      "detail": "Removed 1 homes; retained their lots as no-home reservations."
+    },
+    {
+      "t": "2026-10-29T16:18:57.865Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-29T16:18:58.470Z",
+      "kind": "lot-plan",
+      "detail": "Merge lots: 19 lots, 19 homes; roads and park retained."
+    },
+    {
+      "t": "2026-10-29T16:18:58.549Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    }
+  ],
+  "history": {
+    "undoDepth": 0,
+    "redoDepth": 1,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

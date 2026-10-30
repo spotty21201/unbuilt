@@ -1,0 +1,35 @@
+PASS failed restoration names reserved home and lot in a persistent readable panel
+PASS failed restoration preserves 19 homes and accepted vacancy
+PASS both reassignment and lot-edit recovery actions are available
+PASS restoration recovery can open the exact vacant lot for reshape
+PASS reassignment recovery selects the affected lot directly
+PASS repair removes restoration blocker but does not restore home implicitly
+PASS explicit restoration after fitting reassignment restores 20 measured homes
+PASS generated-lot action opens default-assignment review directly
+PASS review identifies released assignment and preserves accepted library
+PASS Cancel prerequisite retains Courtyard and exact accepted partition
+PASS default approval opens a separate unapplied generated-lot preview
+PASS Undo approved prerequisite restores prior explicit assignment
+PASS second approval returns to generated lots while retaining reusable library
+PASS two Undo steps restore the complete original mixed plan
+PASS default change first identifies inherited and explicitly held lots
+PASS before default preview the current draft retains 1182 m²
+PASS approved default preview measures expected 840 m²
+PASS identical template names retain distinct explicit and inherited markers
+PASS selected lot readout identifies explicit assignment
+PASS selected default-following lot is identified even with same name
+PASS changing default again keeps the explicit Courtyard and changes inherited homes
+PASS housing review exposes shared selling price and construction and contingency assumptions
+PASS review explains exact Rp60m construction and Rp3m contingency savings
+PASS financial explanation distinguishes measured savings from unverified sale assumptions
+PASS 1440px drawing and review have no horizontal overflow
+PASS 1440px review round trip preserves zoomed drawing and draft
+PASS 1024px drawing and review have no horizontal overflow
+PASS 1024px review round trip preserves zoomed drawing and draft
+PASS 375px drawing and review have no horizontal overflow
+PASS mobile readout names selected lot and template without color
+PASS accessible mobile legend identifies both designs and counts
+PASS 375px review round trip preserves zoomed drawing and draft
+PASS mobile Cancel leaves original accepted 20-home plan and no library
+PASS no uncaught browser errors
+ALL 34 HOUSING REVIEW CHECKS PASS

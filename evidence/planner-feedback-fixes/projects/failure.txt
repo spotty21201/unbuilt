@@ -1,0 +1,129 @@
+AssertionError [ERR_ASSERTION]: project switching asks to finish the draft
+    at check (/home/spotty/projects/unbuilt/tests/projects-browser.cjs:4:28)
+    at /home/spotty/projects/unbuilt/tests/projects-browser.cjs:19:323
+Leave this boundary draft?
+
+This boundary draft has not been applied or saved. Keep editing to review and Apply it, or discard it to open Projects. The accepted plan stays unchanged.
+
+Discarding the draft cannot be undone. Opening Projects alone keeps accepted-plan history and photos; leaving this project ends them.
+
+Keep editing
+Discard draft and open projects
+Skip to plan
+UNBUILT
+Projects
+Riverside
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · no model
+Riverside · Blank plan
+Selected: Site
+No boundary yet
+Saved in this browser
+
+Draw a boundary: place vertices, then close the outline. Escape cancels.
+
+Select
+Pan
+Draw site
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+11,000 m² · boundary draft
+Apply
+Cancel
+Open space A
++
++
++
++
++
+Edge 1
+Edge 2
+Edge 3
+Edge 4
+Edge 5
+1
+2
+3
+4
+5
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+Draw a site
+
+Pointer snap: 1 m
+Approximate placement. For finer positions, type decimal coordinates in metres below. Local x east / y north, 0–500 m; not surveyed or georeferenced.
+
+Apply boundary
+Cancel boundary
+
+Drag corners or use coordinates below. Midpoint + handles add a corner. Delete a focused corner to remove it.
+
+11,000 m²
+Boundary area · 5 vertices
+Before you apply
+
+Accepted plan → boundary draft. Nothing is replaced until Apply.
+
+Site area
+0 m² → 11,000 m²
+Homes
+0 → 0
+Street area, including access
+0 m² → 0 m²
+Open space
+0 m² → 0 m²
+Land allowance
+Unavailable → Unavailable
+Owner outcome
+Unavailable → Unavailable
+
+Boundary only. Generate a layout after applying this outline.
+
+Escape cancels. Undo/Redo steps through this draft; Apply creates one plan Undo step. Existing open space and manual lots are preserved when compatible; review the layout consequences before Apply.
+
+Vertex 1
+X (m)
+Y (m)
+Add after 1
+Remove 1
+Vertex 2
+X (m)
+Y (m)
+Add after 2
+Remove 2
+Vertex 3
+X (m)
+Y (m)
+Add after 3
+Remove 3
+Vertex 4
+X (m)
+Y (m)
+Add after 4
+Remove 4
+Vertex 5
+X (m)
+Y (m)
+Add after 5
+Remove 5
+EVALUATOR
+Details
+Boundary draft · accepted plan unchanged · Apply or Cancel to finish

@@ -1,0 +1,42 @@
+[
+  {
+    "zoom": 1,
+    "viewport": [
+      1366,
+      769
+    ],
+    "panelScroll": 337,
+    "panelWidth": 337,
+    "pageWidth": 1366
+  },
+  {
+    "zoom": 1.25,
+    "viewport": [
+      1093,
+      615
+    ],
+    "panelScroll": 311,
+    "panelWidth": 311,
+    "pageWidth": 1093
+  },
+  {
+    "zoom": 1.5,
+    "viewport": [
+      911,
+      513
+    ],
+    "panelScroll": 313,
+    "panelWidth": 313,
+    "pageWidth": 911
+  },
+  {
+    "zoom": 2,
+    "viewport": [
+      683,
+      384
+    ],
+    "panelScroll": 676,
+    "panelWidth": 676,
+    "pageWidth": 675
+  }
+]

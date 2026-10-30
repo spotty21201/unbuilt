@@ -1,0 +1,25 @@
+{
+  "before": {
+    "width": 1440,
+    "height": 901,
+    "dpr": 1,
+    "outerWidth": 1440
+  },
+  "after": {
+    "width": 720,
+    "height": 450,
+    "dpr": 2,
+    "outerWidth": 1440,
+    "overflow": 712
+  },
+  "zoom": 2,
+  "asset": "/assets/index-UCa4rHjM.js",
+  "checks": [
+    "actual browser zoom equals 2",
+    "same physical window, half CSS width and DPR 2",
+    "no horizontal overflow",
+    "select and preview adjacent lot merge at 200%",
+    "drawing/review round trip and Apply at 200%",
+    "plan Undo/Redo restores exact manual geometry at 200%"
+  ]
+}

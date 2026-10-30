@@ -1,0 +1,53 @@
+BEFORE [
+  'Corner 1 · edge 10 mX (m from west)Y (m from south)Remove corner',
+  'Corner 2 · edge 20 mX (m from west)Y (m from south)Remove corner',
+  'Corner 3 · edge 10 mX (m from west)Y (m from south)Remove corner',
+  'Corner 4 · edge 20 mX (m from west)Y (m from south)Remove corner'
+]
+DISABLED false ERRORS []
+RESULT Homes
+Product profile
+Family 200 (fictional)
+Starter 150 (fictional)
+Lot frontage (m)
+9 m
+10 m
+11 m
+12 m
+20 valid homes in the working plan
+Lots 180–300 m², frontage ≥ 9 m
+Individual homes never move; lot outlines can be reshaped below
+Individual lots
+Lot
+Choose…
+Lot 1 (reshaped)
+Lot 2
+Lot 3
+Lot 4
+Lot 5
+Lot 6
+Lot 7
+Lot 8
+Lot 9
+Lot 10
+Lot 11
+Lot 12
+Lot 13
+Lot 14
+Lot 15
+Lot 16
+Lot 17
+Lot 18
+Lot 19
+Lot 20
+Lot 1 of 20: reshaped polygon, 4 corners, 180 m², frontage 9.0 m
+Fits the Family 200 (fictional) profile
+Reshape lot
+Discard all reshapes
+
+Reshapes keep the placed home, road access, and clear neighbors — or explain why not. While reshapes exist, search, circulation, and geometry edits stay blocked until you discard them. 20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn
+CLEARED X 0

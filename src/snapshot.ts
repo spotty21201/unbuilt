@@ -9,11 +9,12 @@ import type { Rect } from "./schema.ts";
 import type { Entrance } from "./geometry.ts";
 import type { StableEdits } from "./geometry.ts";
 
-export const SNAPSHOT_VERSION = 4;
+export const SNAPSHOT_VERSION = 10;
 
 // Staged capability envelope ids (v0.4 §8). Tools refuse what is absent.
 export const CAPABILITIES = [
   "rect-site",
+  "editable-plan-contents",
   "simple-site-64",
   "contained-axis-layouts",
   "rect-lots",
@@ -22,12 +23,17 @@ export const CAPABILITIES = [
   "entrance-boundary-edge",
   "open-space-lock",
   "parametric-layout",
+  "editable-orthogonal-streets",
+  "manual-rectangular-lots",
+  "housing-mix",
+  "multiple-open-spaces",
+  "editable-cost-assumptions",
   "bounded-search",
   "explain-deltas",
 ] as const;
 
 export interface ScenarioSnapshot {
-  version: 1 | 2 | 3 | 4;
+  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   site: SiteFrame;
   entrance: Entrance;
   green: Rect;
@@ -61,7 +67,9 @@ export function canonicalize(v: unknown): string {
 
 // cyrb53: short deterministic digest, no dependencies.
 export function snapshotHash(s: ScenarioSnapshot): string {
-  const str = canonicalize({ ...s, selected: s.selected });
+  // Small fraction edits can move large costs; preserve their exact input precision.
+  const precision = s.site.costAssumptions ? canonicalize(Object.fromEntries(Object.entries(s.site.costAssumptions).map(([k,v]) => [k, String(v)]))) : '';
+  const str = canonicalize({ ...s, selected: s.selected }) + precision;
   let h1 = 0xdeadbeef;
   let h2 = 0x41c6ce57;
   for (let i = 0; i < str.length; i++) {
@@ -91,7 +99,7 @@ function rect(v: unknown): v is Rect {
 // against an envelope they do not implement).
 export function validateSnapshot(raw: unknown): { ok: true; snapshot: ScenarioSnapshot } | { ok: false; error: string } {
   if (!isRecord(raw)) return { ok: false, error: "snapshot must be an object" };
-  if (raw.version !== 1 && raw.version !== 2 && raw.version !== 3 && raw.version !== SNAPSHOT_VERSION) {
+  if (raw.version !== 1 && raw.version !== 2 && raw.version !== 3 && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== SNAPSHOT_VERSION) {
     return { ok: false, error: `unsupported snapshot version ${JSON.stringify(raw.version)}` };
   }
   if (!isRecord(raw.site) || !num(raw.site.w) || !num(raw.site.h) || raw.site.w <= 0 || raw.site.h <= 0) {
@@ -99,15 +107,21 @@ export function validateSnapshot(raw: unknown): { ok: true; snapshot: ScenarioSn
   }
   if (raw.site.boundary !== undefined && (!Array.isArray(raw.site.boundary) || !raw.site.boundary.every((p) => isRecord(p) && num(p.x) && num(p.y)))) return { ok: false, error: "boundary must contain finite coordinate pairs" };
   if (raw.site.boundary !== undefined && raw.version === 1) return { ok: false, error: "Polygon snapshots require version 2 or later" };
-  if (raw.site.planning !== undefined && raw.version !== 3 && raw.version !== 4) return { ok: false, error: "Planning parameters require snapshot version 3" };
-  if ((raw.site.planning as Record<string, unknown> | undefined)?.minGreenArea !== undefined && raw.version !== 4) return { ok: false, error: "Minimum open space requires snapshot version 4" };
+  if (raw.site.planning !== undefined && raw.version !== 3 && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10) return { ok: false, error: "Planning parameters require snapshot version 3" };
+  if ((raw.site.planning as Record<string, unknown> | undefined)?.minGreenArea !== undefined && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10) return { ok: false, error: "Minimum open space requires snapshot version 4" };
+  if (raw.site.contents !== undefined && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10) return { ok: false, error: "Plan contents require snapshot version 5" };
+  if ((raw.site.planning as Record<string, unknown> | undefined)?.streetNetwork !== undefined && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10) return { ok: false, error: 'Editable streets require snapshot version 6' };
+  if ((raw.site.planning as Record<string,unknown>|undefined)?.lotPlan!==undefined && raw.version!==7 && raw.version!==8 && raw.version!==9 && raw.version!==10) return {ok:false,error:'Manual lot plans require snapshot version 7'};
+  if ((raw.site.planning as Record<string,unknown>|undefined)?.housing!==undefined && raw.version!==8 && raw.version!==9 && raw.version!==10) return {ok:false,error:'Housing mix requires snapshot version 8'};
+  if((raw.site.planning as Record<string,unknown>|undefined)?.openSpaces!==undefined&&raw.version!==9&&raw.version!==10)return {ok:false,error:'Multiple open spaces require snapshot version 9'};
+  if(raw.site.costAssumptions!==undefined&&(raw.version!==10||!Array.isArray(raw.capabilities)||!raw.capabilities.includes('editable-cost-assumptions')))return {ok:false,error:'Editable costs require snapshot version 10 and capability'};
   const shapeErrors = siteFrameErrors(raw.site as unknown as SiteFrame);
   if (shapeErrors.length) return { ok: false, error: shapeErrors[0] };
   const e = raw.entrance;
   if (!isRecord(e) || (e.edge !== "west" && e.edge !== "east") || !num(e.offset) || !num(e.width) || e.width <= 0) {
     return { ok: false, error: "entrance must be {edge west|east, finite offset, positive width}" };
   }
-  if (e.boundaryEdge !== undefined && (raw.version !== 4 || !raw.site.planning || !Number.isInteger(e.boundaryEdge) || (e.boundaryEdge as number) < 0 || (e.boundaryEdge as number) >= (Array.isArray(raw.site.boundary) ? raw.site.boundary.length : 4))) return { ok: false, error: "entrance boundary edge is outside this live-planning site" };
+  if (e.boundaryEdge !== undefined && ((raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10) || !raw.site.planning || !Number.isInteger(e.boundaryEdge) || (e.boundaryEdge as number) < 0 || (e.boundaryEdge as number) >= (Array.isArray(raw.site.boundary) ? raw.site.boundary.length : 4))) return { ok: false, error: "entrance boundary edge is outside this live-planning site" };
   if (!rect(raw.green)) return { ok: false, error: "green must be a finite rect" };
   if (typeof raw.greenLocked !== "boolean") return { ok: false, error: "greenLocked must be a boolean" };
   if (!isRecord(raw.lots)) return { ok: false, error: "lots must be an object" };
@@ -142,6 +156,8 @@ export function validateSnapshot(raw: unknown): { ok: true; snapshot: ScenarioSn
   if (!Array.isArray(raw.capabilities) || !raw.capabilities.every((c) => typeof c === "string" && (CAPABILITIES as readonly string[]).includes(c))) {
     return { ok: false, error: "capabilities must be known envelope ids" };
   }
+  if ((raw.site.planning as Record<string,unknown>|undefined)?.housing!==undefined && !raw.capabilities.includes('housing-mix'))return {ok:false,error:'Housing mix capability is required'};
+  if((raw.site.planning as Record<string,unknown>|undefined)?.openSpaces!==undefined&&!raw.capabilities.includes('multiple-open-spaces'))return {ok:false,error:'Multiple open spaces capability required'};
   const sel = raw.selected;
   if (
     sel !== null &&

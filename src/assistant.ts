@@ -29,6 +29,7 @@ export interface PlanFacts {
 }
 
 export interface TryContext {
+  manualLots?:boolean;
   selectionLabel: string;
   locksHeld: string[];
   gridScope: string;
@@ -109,6 +110,7 @@ export function answerTrue(f: PlanFacts): AnswerSection[] {
 // locks, the exact search scope, and the unknowns — never a predicted
 // outcome. The outcome is computed only when the engine runs.
 export function answerTry(c: TryContext): AnswerSection[] {
+  if(c.manualLots)return [{heading:'Manual lot plan held',lines:['Use Blocks & lots to preview a direct subdivision, split, merge or reshape. Review measured home counts, areas and costs before Apply.','Frontage search cannot repartition these saved manual lots. Explicitly preview generated lots first if you want generated alternatives; Cancel retains your manual work.','No alternative or maximum-capacity outcome has been calculated.']}];
   return [
     {
       heading: `Hypothesis for ${c.selectionLabel} (untested until the engine runs)`,
@@ -147,8 +149,8 @@ export function answerLimits(f: PlanFacts, c: TryContext): AnswerSection[] {
       ...f.validity.warnings.map(warning => `Current caution: ${warning}`),
       ...c.locksHeld.map(lock => `Held: ${lock}`),
     ] },
-    { heading: 'Next supported investigation (not yet run)', lines: [
-      `Review a search of ${c.gridScope}. It tests frontage and circulation while keeping the current boundary, park, home template, lot depth and assumed selling price.`,
+    { heading: 'Next supported investigation (not yet run)', lines: c.manualLots?answerTry(c)[0].lines:[
+      `Review a search of ${c.gridScope}. Only those displayed choices vary; the current boundary, park, home template, lot depth and assumed selling price stay fixed.`,
       'Compare the measured home counts and land allowance. To investigate lot depth, park clearance or home size, preview one parameter at a time in the inspector and review the consequences before applying.',
       'A poor result in this search does not prove the site cannot support a better scheme.',
     ] },

@@ -1,3 +1,4 @@
+import {housingSummary} from '../src/housing.ts';
 // UNBUILT deterministic server seam (Coder-owned). No dependencies; stdlib only.
 //
 // Run:  node --experimental-strip-types --no-warnings server/intent.mjs [--port 5174]
@@ -24,6 +25,7 @@
 // Without UNBUILT_MODEL_KEY the meta adapter answers 503 model_not_configured
 // (honest, testable); model failure answers 502 with a local fallback hint.
 import http from "node:http";
+import { hasHome, hasLayout } from "../src/contents.ts";
 import { siteFrameErrors } from "../src/boundary.ts";
 import { parseIntent } from "../src/intent.ts";
 import { BASE_PROFILE, COMPACT_PROFILE, failingLots, runSearch } from "../src/search.ts";
@@ -88,6 +90,10 @@ function checkCtx(ctx) {
     }
   }
   if (!num(ctx.selectedPrice)) return "ctx.selectedPrice must be a finite number";
+  if (ctx.search !== undefined) {
+    const s=ctx.search;
+    if (!isRecord(s) || typeof s.manualStreets !== 'boolean' || (s.manualLots!==undefined&&typeof s.manualLots!=='boolean') || !Array.isArray(s.families) || !s.families.length || s.families.length>2 || s.families.some(f=>!['spine','loop'].includes(f)) || !Array.isArray(s.frontages) || !s.frontages.length || s.frontages.length>20 || s.frontages.some(f=>!num(f)||f<1||f>500)) return 'ctx.search must name supported families, frontages and manualStreets';
+  }
   return null;
 }
 
@@ -346,6 +352,7 @@ const server = http.createServer(async (req, res) => {
           snapshotHash: run.snapshotHash,
           elapsedMs: run.elapsedMs,
           candidates: run.candidates,
+          ...(run.blockers?{blockers:run.blockers}:{}),
           ...(planHash === null ? {} : { planHash }),
         });
         return;
@@ -369,12 +376,14 @@ const server = http.createServer(async (req, res) => {
       }
       const s = v.snapshot;
       const site = { ...s.site, entrance: s.entrance, green: s.green };
+      if (!hasLayout(site)) { send(res, 422, { error: "Generate a layout before comparing economics.", layoutUnavailable: true }); return; }
       const profile = PROFILES[s.profileId];
+      if(site.planning?.lotPlan!==undefined && (body.base.family!==body.other.family||body.base.frontage!==body.other.frontage)){send(res,422,{error:'Manual lots are held. A changed frontage specification does not define a different parcel plan; preview generated lots before comparing frontage alternatives.'});return;}
       const explainSide = (sp) => {
         const layout = sp.family === "spine" ? generateSpine(site, sp.frontage) : generateLoop(site, sp.frontage);
         const carried = editsForLayout(layout.parcels, s.lots);
         const validationErrors = validateLayout(site, layout, carried);
-        const failing = failingLots(layout.parcels, profile, { lotEdits: carried, roads: layout.roads });
+        const failing = failingLots(layout.parcels, profile, { lotEdits: carried, roads: layout.roads }).filter(i => hasHome(site, layout.parcels[i]));
         const econ = evaluateLayout(
           site,
           layout,
@@ -385,6 +394,8 @@ const server = http.createServer(async (req, res) => {
         return {
           spec: sp,
           quantities: deriveQuantities(site, layout, carried),
+          builtArea:econ.builtArea,
+          housing:housingSummary(site,layout.parcels),
           revenue: econ.finance.revenue,
           costNonLand: econ.costNonLand,
           landAllowance: econ.finance.landAllowance,

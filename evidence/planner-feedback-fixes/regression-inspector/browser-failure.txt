@@ -1,0 +1,176 @@
+locator.waitFor: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for getByText(/Imported project file/).first() to be visible[22m
+
+    at /home/spotty/projects/unbuilt/tests/dynamic-inspector-browser.cjs:55:253
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · no model
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Circulation
+Plan valid
+Saved in this browser
+
+Undone. Working version restored.
+
+Select
+Pan
+Draw site
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+Open space A
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+X 60.0 m · Y 20.0 m
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Measured
+SELECTED AREA
+828 m²
+SITE SHARE
+6.90%
+MODELED HOMES
+15
+BUILT AREA / HOME
+72.0 m²
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Lot frontage
+10 m
+8 m
+16 m
+Lot depth
+20 m
+12 m
+40 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Housing template · 72 m² / home
+CROSS STREETS
+Add cross street
+
+Spine routes connected orthogonal streets around the park. Loop uses its fixed ring. Road turning and traffic capacity are unmodeled.
+
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Fix Open space A shape + location
+Editable
+Maintain minimum open space
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Ask about Circulation
+WHAT SHOULD CHANGE?
+Send
+
+Accepted. Ran 8 layouts: 7 options meet the modeled constraints (valid geometry, profile fit and active locks; target surplus is reported separately). Owner expectation is a benchmark — see Options.
+
+Revise request
+Bounded local search · 8 layouts
+Run optimization ▷
+
+Produces reviewable alternatives. Preview and Apply keep you in control.
+
+Draw site
+Edit boundary
+Object tools & site source
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Hide details
+15 homes
+Green 1,600 m²
+Road 828 m²
+Allowance Rp0.44bn
+Shortfall Rp9.56bn
+Quantities
+Economics
+Options
+Issues
+Record (11)
+2026-10-28 20:36:37 · parameters — Applied 12 m frontage, 20 m depth, 60 m² home template, 0 m park clearance.
+2026-10-28 20:36:37 · undo — Undo applied — working version restored (event log itself is append-only).
+2026-10-28 20:36:37 · redo — Redo applied (event log itself is append-only).
+2026-10-28 20:36:37 · undo — Undo applied — working version restored (event log itself is append-only).
+2026-10-28 20:36:38 · parameters — Applied 10 m frontage, 20 m depth, 72 m² home template, 0 m park clearance.
+2026-10-28 20:36:39 · search — Ran bounded search (family-200, price Rp850M, ceiling Rp850M): 8 tested, 8 geometrically valid, 7 fit profile, 8 within ceiling, 3 meet target surplus, 7 shown. Owner expectation Rp10bn is a benchmark, not a constraint.
+2026-10-28 20:36:39 · undo — Undo applied — working version restored (event log itself is append-only).
+2026-10-28 20:36:40 · edit — Moved/resized Open space A to 24 × 20 m at (40, 32).
+2026-10-28 20:36:40 · edit — Moved/resized Open space A to 40 × 40 m at (40, 32).
+2026-10-28 20:36:40 · parameters — Applied 10 m frontage, 20 m depth, 72 m² home template, 0 m park clearance.
+2026-10-28 20:36:41 · undo — Undo applied — working version restored (event log itself is append-only).
+Export record (JSON) Print meeting summary
+
+Print carries the plan, key figures, and the decision list on paper. It is a snapshot, not a live document.
+
+Export carries geometry, economics, and decisions only — never credentials. Entries are append-only: Undo never rewrites them.
+
+Project saved in this browser at 8:36:41 PM.
+
+Save contract: the browser keeps the accepted plan, assumptions, reshapes, and the event log on this device only. Searches, comparisons, drafts, undo history, and photos never persist — after a reload, regenerate options to continue the decision.
+
+Import project JSON (opens as a separate project; existing projects are kept)
+Leave this project?
+
+Plan Undo/Redo will end. Accepted edits are saved automatically when browser storage is available. Download a project backup before leaving if saving failed.
+
+Returning to this project starts a fresh session; history and photos cannot be recovered.
+
+Stay in project
+Leave project

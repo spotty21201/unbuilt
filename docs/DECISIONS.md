@@ -241,3 +241,277 @@ older envelopes cannot carry fields they would silently ignore. Existing plans
 remain compatible. Saved-state disclosure and accepted-plan downloads describe
 the actual recovery contract; no saved-preview/history capability is implied.
 See `docs/PRD_v0.7.md` and `evidence/planner-improvements/README.md`.
+
+## Features 1–3: projects and editable plan contents
+
+The owner approved the first three roadmap features together. Use local browser
+storage for this increment; accounts, cloud sync and named saved alternatives
+remain future discussion. `unbuilt.projects.v1` holds a validated named library,
+active project ID and accepted projects. Migrate `unbuilt.project.v1` once without
+writing/deleting that original entry. Imports always create a separate project.
+Reject unreadable libraries atomically; compare the stored raw library before
+writing to detect another tab's changes. Storage errors keep current edits in
+memory and expose a downloadable accepted-project backup. This is conflict
+detection, not concurrent collaboration or an atomic cross-tab transaction.
+
+Optional `contents` distinguishes no boundary, boundary-only and generated
+layouts, plus removed-home reservations. Missing flags preserve legacy behavior.
+Project/scenario version 5 and record version 6 carry these semantics; older
+envelopes may not silently carry them. Empty generators yield no geometry;
+economics refuses intentional empty layouts; search returns no fake options.
+Vacant lots retain parcel allocation, but home count, footprint, revenue and
+construction cost exclude intersecting removed-home lot regions. Those regions
+are a conservative reservation through regeneration, not stable parcel IDs.
+
+New blank boundaries do not auto-generate a scheme. Explicit starter generation
+checks bounded park/gate choices and accepts only a validated contained Spine
+layout with homes. Failure preserves the accepted outline and reports its
+bounded scope. No maximum yield, legal access or new routing capability is
+implied. Corner insertion/removal projects an explicit entrance's former centre
+to the nearest new edge; corner moves keep its along-edge proportion. Gates that
+cannot fit after editing remain subject to the existing preview/validation.
+
+Plan removals are confirmed and reversible within the open workspace. Clearing
+also clears the protected park (disclosed); deleting a boundary respects its
+lock. Project deletion is confirmed separately, with one session Undo action.
+Switching projects remounts workspace state, aborting pending explanations and
+isolating all histories/results. See PRD v0.8 and current milestone evidence.
+
+## Features 1–3 owner review: reset clarity, backups and session recovery
+
+Date: 2026-10-28. The owner requested implementation of six focused review
+priorities, with reproduction before fixes. The original right-edge clipping was
+not reproduced at the documented desktop sizes or actual 100–200% zoom; exact
+original Chrome dimensions were unavailable. Improve intrinsic wrapping and keep
+Apply/Cancel sticky without replacing the canvas-first layout.
+
+Delete boundary and Start blank had identical engine effects. Consolidate them
+as Delete boundary and layout, preserving confirmed reset, assumptions and plan
+history. Downloads in the library use the existing versioned project envelope;
+accepted geometry, assumptions and decisions transfer, session data does not.
+Keep private-browsing guidance general rather than attempting unreliable detection.
+Warn at actual project departure only when history/photo recovery is at risk;
+block implicit application of a boundary draft and offer explicit discard.
+
+Photo checks reproduced inaccessible controls after blank reset and a Remove photo
+handler incorrectly wired to park locking. Share the photo controls across empty
+and generated plans and remove the image through its actual handler. Full test
+results and scope limits are in `evidence/planner-feedback-fixes/README.md`.
+
+## Pointer-drawn boundaries respect the existing local-coordinate range
+
+Date: 2026-10-28. Reproduced the owner's six-vertex failure with ordinary clicks
+across visible paper: two X coordinates became −13 m. The fitted viewport includes
+space outside the 0–500 m domain, and pointer handlers previously accepted it.
+
+Keep the engine's range validation. New drawing views bring the origin onto the
+paper with handle/tool clearance; excessive view spans shrink to the supported
+extent. Pointer placement/dragging and arrow-key movement stop at workspace edges.
+Outside-range paper is shaded and the editor explains the limit. Typed coordinates
+remain unmodified and invalid values still block Apply. No-op arrow presses at an
+edge do not create empty history steps. Accepted geometry changes only on Apply.
+
+The browser regression uses six visible-paper clicks rather than converting a
+known-valid polygon into screen positions. Checks include desktop/laptop/mobile,
+real 200% zoom, range extremes, history and emulated touch. Exact results and
+remaining limits are in `evidence/boundary-pointer-range/README.md`.
+
+## Feature 4 — Local site context, calibrated references and reviewed imports
+
+Date: 2026-10-28. The owner approved feature 4. Their latest format answer makes
+DXF/PDF essential; PNG/JPEG and CSV remain supported. Implement a bounded source
+workflow beside the existing canvas, preserving generation and accepted geometry.
+
+PDF pages render locally through a lazily loaded, version-pinned renderer and
+bundled local font/CMap/decoder resources. Images/PDFs require a user-supplied
+known distance, two pixel points, local anchor and direction. One uniform scale
+and rotation apply; this neither georeferences nor certifies the source. Replaced
+media stays staged until Apply; Cancel preserves the accepted attached file.
+
+CSV and supported closed straight 2D model-space DXF polylines convert through
+explicit units and optional origin translation. Record original origin/layer;
+review the normalized outline through the existing boundary consequence/history
+flow. Do not flatten curves, merge candidates or infer holes. Boundary locks
+prevent import while still allowing reference/annotation work.
+
+Surrounding streets are reference polylines; features/access assumptions are
+markers. Required source and uncertainty remain visible. These do not change the
+solver, land budget, prices or legal-access status. Accepted references survive
+boundary resets; their alignment must be reviewed when the site changes.
+
+Store optional siteContext in project v6 / record v7 and full plan history;
+reject it in older envelopes. Scenario snapshots remain v5 because these are
+reference annotations, not generation inputs. Keep original survey bytes external:
+save metadata, warn on leaving attached media, and restore calibration only when
+the matching source/page is reattached. This keeps existing browser-storage limits
+and failed-save backup behavior honest. See PRD v0.9 and site-context evidence.
+
+## Feature 5 — Reviewed orthogonal development-street networks
+
+Use an optional segment network in existing planning state and its parameter
+transaction, rather than a second plan store. Split crossings into shared junctions;
+move connected collinear components together. Retain Apply/Cancel, draft history
+and one accepted-plan history step. Do not silently move an entrance or reroute a
+planner's streets around conflicts.
+
+Rectangular road corridors use exact union-area and polygon-containment checks.
+Generate only complete fitting frontage lots; fixed park/clearance, compatible lot
+edits and vacant reservations remain protected. This bounded greedy generation is
+not a yield or traffic optimum. A nearest-street entrance link is a reviewable
+proposal; park/boundary conflicts require planner correction.
+
+Manual streets use project v7, record v8 and snapshot v6. Older formats remain
+supported but cannot hide newer generation inputs. Search holds manual streets
+fixed; fixed Loop cannot overwrite them. Replacing the network with generated
+routing requires preview and acceptance. Clearing/deleting a layout removes its
+network; site context retains its existing independent behavior. No new model or
+other roadmap feature is introduced. See PRD v0.10 and street-editing evidence.
+
+## Street-review corrections before Feature 6
+
+Reproduced the off-centre horizontal junction grab jumping vertically, compounded
+when an invalid-access warning resized the viewport. Junction gestures now apply
+pointer deltas through a captured inverse SVG transform to the original junction.
+They preserve grab offset and ignore later projection changes. Retain free two-axis
+movement, live ΔX/ΔY, valid/invalid feedback and one-step gesture history.
+
+Use centreline projection with a visible Join cue for nearby pointer placement;
+node-only snapping was insufficient for branches along a street. Keep typed input
+exact and offer a measured, explicit gap repair. The editor's full-width conflict
+visuals consume the same structured first blocker as generation. Connector legs
+and affected accepted lots use orange rather than implying confirmed access.
+
+Intent proposals receive the current search scope; manual-street searches actually
+run Spine × 9/10/11/12 m frontages. Align the pre-run proposal, local assistant,
+optimization count and post-run scope. Store no new project format or geometry.
+Mobile review summaries sit below the paper; selection and camera survive the
+round trip to detailed controls. Feature 6 remains unstarted. Verification and
+remaining gates: `evidence/street-review-followup/README.md`.
+
+## Feature 6 — Durable manual lot partitions with reviewed operations
+
+The owner authorized Feature 6 after the street-review follow-up. Store the manual
+rectangular partition in planning.lotPlan and keep existing stable rectangle-keyed
+polygon reshapes. Reuse the parameter Apply/Cancel/history transaction, extending
+its preview to explicit vacancy reservations. Do not introduce a parallel project
+store, legal block model or unsupported polygon boolean geometry.
+
+Compute connected blocks from current lots. Split/merge/repartition only a selected
+rectangular union; reject gaps, roads, holes and genuinely reshaped source polygons.
+New occupied lots must fit the current home; an explicit vacant choice permits
+small planning parcels with road frontage and no invented homes. Existing vacant
+reservations remain conservative through regeneration and merge. Manual lot plans
+stay held through road/park/boundary changes and frontage searches; an explicit
+reviewed generated-lot preview is the compatibility path back to generated design.
+
+Shared generators/validation/economics/server tools consume the same partition.
+Use project v8 / record v9 / snapshot v7; older envelopes cannot conceal it. Keep
+source media and session history exclusions unchanged. Reshape drafts gain local
+history, keyboard corner controls and pointer-offset preservation without changing
+the accepted polygon data model. No Feature 7 or real-model integration is included.
+See PRD v0.11 and blocks-and-lots evidence for exact supported behavior and gates.
+
+## Feature 6 planner review follow-up — 29 October 2026
+
+- Frontage blockers use one-based proposed lot numbers and identify inaccessible
+  proposed parcels directly on the drawing. Mobile draft banners carry the same
+  reason beside the plan, retaining the draft and viewport during review.
+- Lot-operation review shows source occupancy, resulting vacancy, explicit loss of
+  occupied homes, and accepted-to-proposed references for unchanged parcels.
+  Drawing labels show reference transitions during preview; these are not legal IDs.
+- Provisional pricing travels beside allowance values; selected reshaped lots show
+  the unverified deeper-setback limitation immediately below their metrics.
+- Irregular block definition/subdivision is retained as future discovery, not silently
+  included in Feature 6. Before implementation, assess a documented nonrectangular
+  block against a real site, independently calculated area, frontage, home fit,
+  infrastructure conflicts and approval review. Current rectangular protections stay.
+
+## Housing mix — Feature 7 — 29 October 2026
+
+- Reuse PlanningParameters and the draft/apply/history path; optional housing holds
+  a named template library, default ID and exact base-rectangle assignments. Keep
+  legacy homeWidth/homeDepth compatibility. No new dependency or provider integration.
+- Applying a mix holds the current lot partition. This avoids assigning templates
+  by unstable array indices or silently redistributing them during frontage search.
+  A generated-lot preview requires explicit clearing of lot-specific assignments;
+  the reusable library survives. Direct rectangular lot changes reconcile exact
+  identities and common-source templates; mixed-source replacements use the default
+  with an explicit result shown before Apply.
+- One storey, one home per occupied lot. Built area and construction sum assigned
+  templates. Selling price and construction rate stay shared and provisional.
+  Template-specific pricing, housing optimization and multi-storey/multi-home lots
+  require a later decision, rather than fabricated inputs.
+- Validate current placed footprints and polygon rings with assigned dimensions.
+  Oversized assignments never remove the lot or silently restore a vacant home.
+  In-use/default templates cannot be deleted. Clear layout removes assignments,
+  preserves the library and remains undoable; setup supports library repair.
+- Mixed plans use project v9, record v10, snapshot v8 and housing-mix capability.
+  Strict version/reference validation prevents old envelopes ignoring the mix.
+  The server uses the same measured schedule/costs. Real-model and human/engineering
+  validation gates remain open.
+
+## Housing-mix planner feedback — 29 October 2026
+
+All five review prompts are addressed without extending into another feature.
+
+- Derive restoration diagnostics from accepted geometry and reserved template fit,
+  including polygon containment/ring checks. Render them persistently beside Restore
+  with direct recovery routes; keep the full validation before restoring any home.
+- Replace the generated-lots status-only prerequisite with a direct, cancellable
+  default-assignment review. Keep two history/approval steps: defaults first, then
+  the generated partition. State the recovery consequences before approval.
+- Assignment field presence is the source of provenance. Explicitly assigning a
+  default template now stores that ID; release-to-default has its own action. No
+  format change is needed: existing project v9 / record v10 / snapshot v8 already
+  represent these references. Existing absent keys continue to mean inheritance.
+- Preserve common explicit source assignments through subdivision even when the ID
+  equals the default. Mixed-source template choices retain the existing reviewed
+  fallback. No template is moved, deleted or restored implicitly.
+- Add a mobile text key and selected-template readout; keep exact viewport/draft
+  through drawing/review navigation. Add an inspectable deterministic explanation
+  of shared price, construction and contingency, rather than claiming market evidence
+  or implementing a new model adapter.
+
+Evidence and human retest prompt: `evidence/housing-review-followup/`.
+
+## Feature 8: named polygon open spaces
+
+Use optional `planning.openSpaces` rather than replacing the legacy rectangle in
+old project envelopes. Absence preserves old behavior; presence (including empty)
+is the canonical collection. Project v10 / record v11 / snapshot v9 explicitly
+advertise it, and downgrade checks reject hidden collections. No library or
+provider dependency is needed for polygon area or straight corridor construction.
+
+Orthogonal routing and whole-lot generation conservatively avoid each outline's
+bounding extent plus clearance. True area alone enters green quantities and cost;
+excess exclusion remains unallocated. This deliberately supports less capacity
+than a polygon-aware routing/partition solver might find. Do not describe it as
+optimal or as full arbitrary-polygon subdivision. Fixed Loop rejects a conflicting
+ring. Manual lots and housing assignments stay held and conflicts block acceptance.
+
+No overlaps or holes; up to twelve named spaces and twenty-four corners each.
+Straight corridor creation makes a four-corner polygon; later edits are ordinary
+outline edits without a guaranteed clear width or path connectivity. Individual
+shape/location locks and minimum areas are separate from the combined green minimum.
+All outlines are held during alternative search. No new real-model connection or
+professional compliance claim is introduced.
+
+## 29 October 2026 — feasibility experiments (owner Feature #9)
+
+- The owner's requested title defines the authorized scope. Historical roadmap
+  item 9 (Planning brief) remains unimplemented; feasibility was historical item 12.
+- Store a complete optional costAssumptions object on the site frame, separate
+  from geometry parameters. All existing evaluation paths read the same accepted
+  inputs. Absence retains exact legacy defaults; explicit zero never falls back.
+- A trial changes circulation/frontage/depth and/or costs against frozen accepted
+  inputs. Native modal review prevents concurrent accepted-plan edits. One Apply
+  records all reviewed changes and one Undo step; trial state itself is session-only.
+- Hold manual partitions, polygon lot reshapes and explicitly assigned homes.
+  Support their cost-only tests and route design work through existing editors.
+- Show design effects at accepted costs followed by cost effects on the trial
+  design. State that order and hold the shared selling-price assumption visibly.
+- Projects v11, records v12 and snapshots v10 gate editable costs and reject
+  disguised older formats. Include exact cost-input precision in scenario hashes;
+  fractions below the geometry rounding precision can affect substantial money.
+- Feature 8 independent testing remains deferred. Preserve its and the housing
+  retest's tester prompts byte-for-byte. No later roadmap scope is implied.

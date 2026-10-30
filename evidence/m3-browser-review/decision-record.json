@@ -1,0 +1,38 @@
+{
+  "app": "UNBUILT decision record",
+  "exportedAt": "2026-10-26T20:22:47.519Z",
+  "site": {
+    "w": 120,
+    "h": 100
+  },
+  "economics": {
+    "priceS": "850",
+    "ceilingS": "850",
+    "ownerS": "10",
+    "targetS": "15",
+    "profileId": "family-200"
+  },
+  "working": {
+    "spec": {
+      "family": "spine",
+      "frontage": 10
+    },
+    "homes": 21,
+    "roadArea": 720,
+    "greenArea": 480,
+    "landAllowance": 3941600000,
+    "ownerGap": 6058400000
+  },
+  "decisions": [
+    {
+      "t": "2026-10-26T20:22:47.280Z",
+      "kind": "edit",
+      "detail": "Moved/resized Grove A to 24 × 20 m at (74, 62)."
+    },
+    {
+      "t": "2026-10-26T20:22:47.386Z",
+      "kind": "search",
+      "detail": "Ran bounded search (family-200, price Rp850M, ceiling Rp850M): 8 tested, 6 valid, 6 meeting all constraints."
+    }
+  ]
+}

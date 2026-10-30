@@ -1,0 +1,60 @@
+PASS live production build exposes a measured spatial inspector
+PASS 1440px default has no horizontal overflow
+PASS 1024px default has no horizontal overflow
+PASS 375px default has no horizontal overflow
+PASS Shift-click aggregates selected parcel areas
+PASS keyboard multi-selection aggregates all three lots
+PASS mouse slider previews without overwriting saved frontage
+PASS Apply commits measured geometry and parameters
+PASS one Undo restores the entire slider gesture
+PASS Redo restores applied parameters
+PASS keyboard slider previews frontage
+PASS Cancel preserves accepted plan
+PASS template corner drag updates every fitting home in live preview
+PASS template applies measured 72 m² per home
+PASS economics uses template construction area
+PASS save/reload retains template and measured homes
+PASS price lock is stored as a real constraint switch
+PASS accepted price cap re-locks and searches the updated scenario
+PASS site lock disables boundary edit
+PASS locked boundary cannot open through the rail
+PASS selection reads actual park area and site share
+PASS green lock disables dimensions
+PASS park drag reroutes connected roads before release
+PASS park release applies the last valid rerouted plan
+PASS park sliders update area and redistribution live
+PASS park growth commits a 1600 m² region
+PASS invalid park leaves last valid canvas and disables Apply
+PASS road handle drives the inspector position
+PASS street creation commits through shared state
+PASS irregular boundary area is hand-calculated 11000 m²
+PASS irregular plan contains 18 actual home lots
+PASS boundary drag updates live valid area before Apply
+PASS boundary pointer movement regenerates home lots before Apply
+PASS boundary midpoint insertion and keyboard removal work
+PASS crossed boundary cannot apply
+PASS invalid boundary Cancel preserves polygon
+PASS polygon reload keeps geometry and planning settings
+PASS other-object editing preserves manual polygons
+PASS request review produces supported alternatives
+PASS preview inspector follows the displayed alternative
+PASS preview stays unapplied
+PASS comparison presents two different measured plans
+PASS live tool server remeasures explanation
+PASS input change clears stale answers and preview
+PASS input change rejects an in-flight explanation
+PASS Apply keeps the authoritative irregular boundary
+PASS optimization can be cancelled without applying a plan
+PASS export version 4 contains boundary and shared planning state
+PASS record import restores exact planning and currency units
+PASS Pan still starts on a parcel
+PASS camera zoom preserves all measured outcomes
+PASS 1440px polygon has no horizontal overflow
+PASS 1024px polygon has no horizontal overflow
+PASS 375px polygon has no horizontal overflow
+PASS touch resize updates the shared housing template
+PASS legacy conversion is a preview and preserves stored plan
+PASS legacy conversion applies with measured geometry
+PASS legacy conversion is undoable
+PASS no uncaught browser errors
+ALL 59 DYNAMIC INSPECTOR BROWSER CHECKS PASS

@@ -1,0 +1,100 @@
+locator.inputValue: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('File coordinate units', { exact: true })[22m
+
+    at /home/spotty/projects/unbuilt/tests/site-context-browser.cjs:21:605
+Skip to plan
+UNBUILT
+Projects
+Survey study
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · no model
+Survey study · 6,006 m² · 4 vertices
+Selected: Site
+Boundary only
+Saved in this browser
+
+Redone.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+77.0 m
+78.0 m
+77.0 m
+78.0 m
+Boundary ready
+
+Generate a layout when you are ready to explore homes, streets and open space.
+
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context
+Back to plan
+
+Reference layers support planning review. They do not create development streets, reserve land, change costs or establish legal access.
+
+Survey reference
+Import or reattach a survey (PDF, PNG, JPEG)
+
+PDFs render one selected page. Set the scale from a known distance; a printed scale or photograph alone does not verify accuracy. Files up to 20 MB; images up to 20 megapixels.
+
+Boundary file
+Import boundary (CSV or ASCII DXF)
+
+CSV: ordered x,y or easting,northing pairs, optional header. DXF: closed straight model-space LWPOLYLINE or 2D POLYLINE. Choose one outline; holes, curves, blocks, DWG and 3D boundaries are unsupported.
+
+Boundary outline
+Choose an outline
+1 · SURVEY_SITE · 4 points
+File coordinate units
+Confirm file units
+Metres
+Millimetres
+Feet (international)
+Move this outline to local origin (0,0)
+
+Confirm units even if suggested by DXF metadata. Moving to the local origin translates the outline without changing its size or angles. Original origin is retained as source information. All other DXF entities are omitted.
+
+Boundary coordinates must be between 0 and 500 m. Check units and the local-origin option. Sites must fit within 500 × 500 m.
+
+Review imported boundaryCancel boundary import
+
+Source: site.csv · m · CSV boundary. Imported outline unchanged.
+
+Surroundings and access
+
+Mark surrounding streets as reference lines, existing features as points, and possible access as assumptions. Even a documented note does not verify permission or connect an entrance.
+
+Add context annotation
+
+Accepted calibration, source information and annotations are saved with this project and its backups. Survey/PDF/image bytes are not saved: keep the original file and reattach it after reopening. Annotations are independent of boundary resets; check their alignment after changing the site.
+
+EVALUATOR
+Details
+Boundary only · generate a layout to see homes, streets and economics.

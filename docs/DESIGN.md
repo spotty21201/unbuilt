@@ -179,3 +179,226 @@ Assistant capacity responses identify what remains unmeasured, and comparison
 text is editable and grounded in the two measured schemes. Save disclosure is
 available beside the saved state. On narrow screens a selected-object area and
 Inspect selection action open and focus the contextual inspector.
+
+## Projects, blank plans and removal
+
+Projects opens a native modal library styled with the workbench's slate shell,
+purple selection and readable controls. The active name is repeated in the
+context strip; Save and accepted-plan download keep the persistence scope clear.
+New projects default to an empty drawing, with the fictional sample optional.
+Opening another project replaces the workspace session, including its results,
+drafts and history. The library itself remains independent of plan history.
+
+Blank plans show drawing guidance directly in the full viewport and inspector.
+Applying the first outline leaves a boundary-only plan; Generate layout is a
+separate, explicitly assumed starter arrangement. Neither empty state displays
+invented streets, park allocations or economic outcomes. Failed generation keeps
+the accepted outline. Existing plans retain measured before/after boundary review.
+
+Plan actions distinguish removal of homes, clearing a layout and clearing its
+boundary. Confirm consequences before destructive changes. Removed homes leave
+dashed, vacant lots; their original lot regions remain reserved through
+regeneration until Restore removed homes. Keep actual home count, footprint
+visibility, revenue and construction costs synchronized. Undo restores the whole
+accepted plan operation. Project deletion has a separate session recovery action.
+Dialogs constrain keyboard focus, Escape cancels, and closing returns focus to
+an existing opener. On narrow screens the library scrolls within the viewport.
+
+## Features 1–3 owner-feedback refinements
+
+The boundary inspector leads with visible pointer precision and decimal-coordinate
+help. Its Apply/Cancel row stays at the top of its scrolling region, and becomes
+page-sticky in the narrow stacked layout. Instructions, comparisons and field
+rows wrap within the inspector; keyboard focus uses a light blue outline against
+the slate panel. The draft area shows up to two decimal places; comparison-strip
+quantities retain their declared whole-square-metre display rounding.
+
+Plan actions distinguish Clear layout from Delete boundary and layout. The latter
+also serves the previous Start blank plan function, avoiding two identical reset
+choices. Confirmations name retained project assumptions, photo visibility and
+session Undo lifetime. The library provides real project downloads, browser-local
+save guidance and conditional leave warnings. Draft discard and project leave are
+separate decisions. Retained photos remain accessible in Site source on empty
+plans; explicit photo removal affects only the reference image.
+
+## Pointer boundary drawing within the local workspace
+
+New boundary drawing frames the local origin inside the paper while preserving
+clearance for corner handles and the lower action toolbar. Pointer placement,
+vertex dragging and arrow-key movement stop at 0 and 500 m. A subtle shade marks
+paper outside that supported range after fitting, zooming or panning; the nearby
+precision note explains the stops. Typed decimal coordinates remain explicit
+inputs and receive the existing range/geometry validation. This changes neither
+the coordinate domain nor accepted plans, and introduces no map/survey claim.
+
+## Site context and survey sources — feature 4
+
+The Context rail action uses a local layers icon and a selected state. It opens a
+single inspector for Survey reference, Boundary file, and Surroundings/access;
+Back to plan returns to the normal object inspector. Inspecting a plan object
+also returns there when no context draft is pending. Pending context edits stay
+protected from project/mode switches and geometry gestures.
+
+Survey preview marks A/B with a keyboard coordinate alternative. A known distance
+is required, with explicit local anchor and direction fields. Draft filename/page
+and accepted source/scale are distinct. The plan renders the reference through
+the same metre projection, lightly showing the accepted outline over the source.
+A visibility checkbox changes only presentation. Empty-plan guidance does not
+cover an attached reference. PDF page selection works before calibration.
+
+File boundaries preview units, candidate/layer, area and optional origin shift,
+then enter the existing boundary review with Apply/Cancel. Street context uses
+brown dashed lines; existing features and possible access use labelled markers.
+Each annotation carries source and uncertainty, and remains visually distinct
+from the generated development network. Neither category establishes permission
+or changes measured quantities. The panel wraps/scrolls with keyboard focus and
+retains the existing dark shell, light canvas and mobile stacked layout.
+
+## Planner review: reachable actions and blocked restoration
+
+Projects leads with a New project action that scrolls to and focuses the existing
+creation form, including on narrow screens. Keep the local/private-storage warning
+visible. Put the longer accepted-state and backup-exclusion explanation behind a
+clearly named disclosure; keep its full content and separate-copy import behavior.
+
+Beside a disabled Restore removed homes action, name the pending edit or preview
+and its Apply/Cancel path. Associate the explanation with the control for assistive
+technology. Waiting for an edit to finish does not establish a home-fit conflict;
+fit remains a separate checked outcome when restoration is attempted.
+
+Larger recovery, access-link and protected-area requests are recorded separately
+in `PLANNER-REVIEW-FOLLOWUP.md`; these small changes do not implement them.
+
+## Editable streets — Feature 5
+
+Choose Circulation → Edit street network. Blue centrelines and constant-screen-size
+junction handles sit on the light canvas. Selection strengthens the line; invalid
+drafts use red dashes over accepted geometry. The inspector supplies coordinates,
+widths, stroke actions, correction feedback and before/after homes, street surface/
+works, retained park and land allowance. Apply/Cancel stays available while scrolling.
+A canvas banner offers Review streets or Finish/Cancel stroke. Hide the passive
+viewport readout during this mode so it does not sit behind those actions. No inner
+viewport frame is added.
+
+Streets are horizontal/vertical; diagonal picks form visible orthogonal bends.
+Crossings join at grade. Moving a shared junction shifts connected rows/columns.
+Pointer/arrow edits snap to 1 m, Shift-arrow to 10 m; typed inputs retain decimals
+and blank fields never mean zero. Enter finishes a stroke; Escape cancels it.
+Draft Undo/Redo precedes plan history. Apply accepts one transaction; Cancel leaves
+saved work untouched. At 375 px retain the plan and compact outcome strip, using
+Show controls / Review streets to reach the flowing inspector and View drawing to return. Inspector touch
+targets are at least 44 px, canvas hit regions 32 px. Physical-device acceptance
+remains open. Show the single-entrance, orthogonal scope and engineering limits.
+
+### Street-review follow-up
+
+A junction grab preserves its offset from the node centre. Its captured screen
+projection prevents a warning-induced resize from changing the intended movement.
+Show (X,Y), ΔX/ΔY and the effect on connected rows/columns during the gesture.
+Drawing near an existing centreline shows a green Join ring and exact coordinate
+before placement; pointer picks snap within 12 CSS px, typed inputs remain exact.
+
+Full-width translucent blue corridors identify the proposed network. Red corridors
+and gap/park/boundary cues identify the actual first conflict; the out-of-site part
+is filled through the site mask. Accepted fallback geometry remains grey. An
+explicit Join highlighted gap action repairs the draft only. Orange connector
+legs have a callout; orange dashed lot footprints show accepted lots affected by
+the total draft, including moving the main street. Full review explains the legend
+and retained access assumptions.
+
+Below 900 CSS px, the selected street, width, length and compact accepted → draft
+homes/street quantities sit in a strip below the paper rather than over its scale.
+Review streets and View drawing retain the same selection and camera. Full Apply/
+Cancel and input controls remain readable in the detailed inspector below.
+
+## Feature 6 — Contextual blocks and lots
+
+Keep the plan as the workspace. Selecting a lot exposes Split lot, Merge lots,
+Subdivide block and Edit lot outline in the inspector. A dedicated lot-plan draft
+shows source selection, cut direction, count/ratio and explicit vacancy choice.
+Preview returns attention to the measured accepted → proposed review. Apply/Cancel
+remain sticky; changed inputs require another Preview. Native multiple selection
+and ordinary fields provide keyboard and touch alternatives.
+
+Use a dashed blue source extent and the existing added/ghost lot styling. Invalid
+proposed child rectangles appear red over accepted geometry. A compact plan banner
+links to the review and carries proposed lot/home counts; passive viewport readouts
+are hidden during this mode to avoid overlapping it. At narrow widths, the banner
+flows below the paper. Preserve camera and draft through the review/drawing round
+trip. Do not add an inner viewport frame.
+
+Polygon outline controls keep their placed-home/setback limitations visible.
+Make Apply/Cancel sticky, expose draft area and history, and allow focused corner
+arrows/Delete in addition to coordinate fields and pointer gestures. A drag keeps
+its pointer offset through the original canvas transform. Clearly distinguish
+changing a lot partition from removing a home, and a vacant lot from a counted home.
+
+## Housing mix — Feature 7
+
+Select home lots to reveal the compact Housing mix summary and Edit housing mix.
+The editor replaces the inspector during a draft; it does not expand permanently
+beside the plan. Use the existing dark shell, sticky Apply/Cancel, light drawing
+surface and measured before/after cards. Named templates have stable T-codes and
+muted footprint colors, matched by a schedule and selected-lot text, so color is not
+the sole identifier. Native multiple selection and a connected-block picker support
+batch assignments with keyboard/touch alternatives.
+
+Preview template edits before applying. Assignment previews bring the measured
+comparison into view. Missing fit is highlighted over the accepted plan, with an
+unavailable-proposed-metrics label. The drawing/review banner retains the draft and
+viewport on narrow screens. Library fields must not let unpreviewed values slip
+through Apply. Source lot occupancy, reference transitions and resulting-template
+inheritance accompany lot-operation review. Provisional allowances and the existing
+unverified polygon setbacks travel beside affected figures/selection.
+
+## Housing-mix review refinements
+
+Recovery must stay beside the action. A restoration conflict panel names the vacant
+lot and reserved template and links directly to its reassignment or outline editor.
+It remains visible until the accepted fit is repaired; the status strip is secondary.
+
+Default changes have a compact pre-preview impact summary and per-lot provenance.
+Use “Explicit” and “Follows default” in the target selector/readout even when names
+match. Keep the longer before/after trace expandable. Returning to generated lots
+opens this review directly and explains the two separate approvals and cancellation
+outcomes. The template library remains reusable.
+
+On narrow screens, keep a selected-template text readout and expandable design key
+immediately after the drawing, ahead of review navigation. Identify home designs by
+code/name/area/count rather than color alone. Cost assumptions expand inside the
+housing comparison, with exact monetary differences and provisional pricing labels.
+
+## Feature 8 — Open-space collection
+
+The inspector exposes a compact named schedule and **Edit open spaces**. Editing
+uses an explicit draft with an accepted/proposed comparison; the canvas remains
+the main work surface. A boundary-only study can reserve spaces before generating
+homes. Parks use lavender, pockets pale green and corridors mint, with readable
+names and true area labels so color is not the sole identifier. Selected outlines
+show accessible corner handles and a dashed conservative routing extent.
+
+Draw an outline, enter a rectangle, or construct a straight corridor from endpoints
+and width. Coordinates, arrow keys, add/remove corner and Finish outline provide
+keyboard alternatives. Freeze the SVG-to-screen projection for each drag and
+retain the initial grab offset. On mobile the drawing banner carries draft status,
+selected-space readout and a direct review action; switching to review preserves
+the same canvas viewport. Apply/Cancel remain explicit and readable.
+
+An unlocked feature can be edited directly; all features remain held during
+search. Shape/location locks differ from individual and combined minimum areas.
+True polygons determine areas and green works. Whole lots and orthogonal streets
+avoid bounding extents plus clearance; extra excluded land remains unallocated.
+The editor discloses this scope and the lack of path/ecology/compliance verification.
+See `docs/PRD_v0.13.md` for the current requirements and persisted-data contract.
+
+## Feasibility experiments — 29 October 2026
+
+The inspector exposes Feasibility experiments beside Assumptions. A native modal
+review holds a frozen accepted baseline beside a trial, retaining the existing
+plan drawing and camera controls. Design inputs and eight cost assumptions are
+explicit; manual lot work disables design regeneration while allowing cost tests.
+Before/trial/change figures and sequential cost attribution support review.
+Apply commits one history step; Cancel/Close/Escape retain accepted work. Narrow
+layouts stack controls and drawings; monetary tables scroll within their region,
+while the Apply/Cancel footer remains reachable. Held price and market uncertainty
+remain visible. See PRD v0.14 and feasibility evidence for scope and verification.

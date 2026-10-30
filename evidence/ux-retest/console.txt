@@ -1,0 +1,243 @@
+VISIBILITY [
+  { kind: 'road', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'parcel', inside: true },
+  { kind: 'footprint', inside: true },
+  { kind: 'greenfill', inside: true },
+  { kind: 'entrance', inside: true }
+]
+RUN Options
+
+6 viable of 8 tested layouts. Every option below is geometrically valid and fits the Family 200 (fictional) profile — but all still miss the owner expectation (see gap). The layout is not the blocker; the commercial expectation is.
+
+Order by
+Lowest road area
+Highest land allowance
+Most homes
+Same as working plan
+
+Spine · 10 m lots · lots avg 200 m²
+
+Working-plan baseline
+
+Homes 20 (+0)
+Green 480 m² · Road 720 m²
+Allowance Rp3.56bn · Gap Rp6.44bn
+
+lowest unioned road area: 720 m2 road, 20 homes
+
+Geometry valid
+Fits Family 200 (fictional)
+Misses owner expectation by Rp6.44bn
+
+Preview Spine · 10 m lots Apply Spine · 10 m lots
+-3 homes
+
+Spine · 11 m lots · lots avg 220 m²
+
+Homes 17 (-3)
+Green 480 m² · Road 720 m²
+Allowance Rp2.41bn · Gap Rp7.59bn
+
+lowest unioned road area: 720 m2 road, 17 homes
+
+Same homes, road and economics as Spine · 12 m lots — differs only in lot dimensions (avg 220 m² vs 240 m²).
+
+Geometry valid
+Fits Family 200 (fictional)
+Misses owner expectation by Rp7.59bn
+
+Preview Spine · 11 m lots Apply Spine · 11 m lots
+-3 homes
+
+Spine · 12 m lots · lots avg 240 m²
+
+Homes 17 (-3)
+Green 480 m² · Road 720 m²
+Allowance Rp2.41bn · Gap Rp7.59bn
+
+lowest unioned road area: 720 m2 road, 17 homes
+
+Same homes, road and economics as Spine · 11 m lots — differs only in lot dimensions (avg 240 m² vs 220 m²).
+
+Geometry valid
+Fits Family 200 (fictional)
+Misses owner expectation by Rp7.59bn
+
+Preview Spine · 12 m lots Apply Spine · 12 m lots
+ACCEPT AFTER RUN 0
+PREVIEW 17 homes
+Green 480 m²
+Road 720 m²
+Land allowance Rp2.41bn
+Owner gap Rp7.59bn
+APPLY 17 homes
+Green 480 m²
+Road 720 m²
+Land allowance Rp2.41bn
+Owner gap Rp7.59bn
+UNDO 20 homes
+Green 480 m²
+Road 720 m²
+Land allowance Rp3.56bn
+Owner gap Rp6.44bn
+STALE Assumed selling price (Rp m/home) 1 0
+STALE Buyer-price ceiling (Rp m/home) 1 0
+STALE Owner expectation (Rp bn) 1 0
+STALE Target surplus/revenue (%) 1 0
+RERUN Same as working plan
+
+Spine · 10 m lots · lots avg 200 m²
+
+Working-plan baseline
+
+Homes 20 (+0)
+Green 480 m² · Road 720 m²
+Allowance Rp2.71bn · Gap Rp7.29bn
+
+lowest unioned road area: 720 m2 road, 20 homes
+
+Geometry valid
+Fits Family 200 (fictional)
+Misses owner expectation by Rp7.29bn
+
+Preview Spine · 10 m lots Apply Spine · 10 m lots
+PROFILE STALE 1
+LOCKED INPUT true
+INVALID GREEN Incomplete — fix the flagged geometry or economics inputs to see metrics. [
+  'Geometry needs attention before results can be trusted:Grove A must sit inside the 120 × 100 m site. Unlock it to move it back inside.'
+]
+EMPTY PRICE Incomplete — fix the flagged geometry or economics inputs to see metrics.
+EMPTY OWNER 20 homes
+Green 480 m²
+Road 720 m²
+Land allowance Rp3.56bn
+Owner gap Rp-3.56bn 0
+MIXED VERDICT Options
+
+6 viable of 8 tested layouts. Every option below is geometrically valid and fits the Family 200 (fictional) profile — but all still miss the owner expectation (see gap). The layout is not the blocker; the commercial expectation is.
+
+Order by
+Lowest road area
+Highest land allowance
+Most homes
+Same as working plan
+
+Spine · 10 m lots · lots avg 200 m²
+
+Working-plan baseline
+
+Homes 20 (+0)
+Green 480 m² · Road 720 m²
+Allowance Rp3.56bn · Gap Rp-0.56bn
+
+lowest unioned road area: 720 m2 road, 20 homes
+
+Geometry valid
+Fits Family 200 (fictional)
+Meets owner expectation
+
+Preview Spine · 10 m lots Apply Spine · 10 m lots
+-3 homes
+
+Spine · 11 m lots · lots avg 220 m²
+
+Homes 17 (-3)
+Green 480 m² · Road 720 m²
+Allowance Rp2.41bn · Gap Rp0.59bn
+
+lowest unioned road area: 720 m2 road, 17 homes
+
+Same homes, road and economics as Spine · 12 m lots — differs only in lot dimensions (avg 220 m² vs 240 m²).
+
+Geometry valid
+Fits Family 200 (fictional)
+Misses owner expectation by Rp0.59bn
+
+Preview Spine · 11 m lots Apply Spine · 11 m lots
+-3 homes
+
+Spine · 12 m lots · lots avg 240 m²
+
+Homes 17 (-3)
+Green 480 m² · Road 720 m²
+Allowance Rp2.41bn · Gap Rp0.59bn
+
+lowest unioned road area: 720 m2 road, 17 homes
+
+Same homes, road and economics as Spine · 11 m lots — differs only in lot dimensions (avg 240 m² vs 220 m²).
+
+Geometry valid
+Fits Family 200 (fictional)
+Misses owner expectation by Rp0.59bn
+
+Preview Spine · 12 m lots Apply Spine · 12 m lots
+NORESULT Options
+
+0 viable of 8 tested layouts. Every option below is geometrically valid and fits the Family 200 (fictional) profile and meets the owner expectation.
+
+Order by
+Lowest road area
+Highest land allowance
+Most homes
+No viable option in the tested scope
+
+Tested: 8 combos (spine, loop × frontages 9, 10, 11, 12 m), profile Family 200 (fictional), ceiling Rp800m, seed 7: 6 valid, 0 viable. Single-condition counterfactuals not run yet — no claim about what one changed condition would do.
+
+No qualifying candidate in 8 tested (seed 7). Geometry invalid: 2. Green lock broken: 0. Price above Rp800m ceiling: 8. Out of Family 200 (fictional) profile: 0. This covers only the tested ranges, not all conceivable designs.
+EMPTY X 0 21 homes
+Green 480 m²
+Road 720 m²
+Land allowance Rp3.94bn
+Owner gap Rp6.06bn
+MOBILE {
+  w: 375,
+  scroll: 375,
+  request: {
+    x: 20,
+    y: 810.75,
+    width: 335,
+    height: 50,
+    top: 810.75,
+    right: 355,
+    bottom: 860.75,
+    left: 20
+  }
+}

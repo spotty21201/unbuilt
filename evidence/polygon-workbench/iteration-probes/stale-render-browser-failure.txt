@@ -1,0 +1,95 @@
+AssertionError [ERR_ASSERTION]: input change clears measured answer
+    at check (/home/spotty/projects/unbuilt/tests/boundary-browser.cjs:9:40)
+    at /home/spotty/projects/unbuilt/tests/boundary-browser.cjs:65:117
+Skip to plan
+UNBUILT
+Custom site · illustrative prices
+Working plan
+Undo
+Redo
+Local tools · server online · no model
+11,000 m² · 5 vertices · Entrance west · spine 10 m
+Selected: Open space A
+Plan valid
+Saved in this browser
+
+Previewing Spine · 11 m lots.
+
+Select
+Pan
+Draw site
+Site
+Fit site
++
+−
+Expand plan
+Drag to pan · scroll to zoom
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+Open space A
+Entrance · west
+20 m
+N ↑ (illustrative)
+spine · 18 homes · Entrance west · local meters
+Draw site
+Edit boundary
+Site source: Custom site (120 × 100 m)
+Objects
+Site
+Open space A (selected)
+Circulation
+Homes
+Open space A (assumed — review)
+
+Generated placeholder for this custom boundary — not a surveyed space. Confirm its position and size on the ground.
+
+480 m² at 78 m from west, 62 m from south — LockedUnlock to edit
+
+Width, depth, position (meters) — unlock to edit
+Distance from west
+Distance from south
+Width
+Depth
+Close assistant
+
+Assistant: Ready
+
+What is true?Why did it change?What could we try?
+Ask about Open space A
+Ask
+What should change?
+Send
+
+Accepted. Ran 8 layouts: 3 options meet the modeled constraints (valid geometry, profile fit, ceiling, target surplus). Owner expectation is a benchmark — see Options.
+
+Revise request
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp11bn · target 15%
+Assumed selling price (Rp m/home)
+Buyer-price ceiling (Rp m/home)
+Owner expectation (Rp bn)
+Target surplus/revenue (%)
+
+Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale). Sample pricing does not evidence this custom site — treat all economics as illustrative.
+
+Details
+18 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp2.80bn
+Shortfall Rp8.20bn

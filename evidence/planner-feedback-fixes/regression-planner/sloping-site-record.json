@@ -1,0 +1,264 @@
+{
+  "app": "UNBUILT decision record",
+  "projectName": "Cedar Market sample",
+  "exportVersion": 5,
+  "exportedAt": "2026-10-28T20:37:48.490Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in integer Rp.",
+  "state": {
+    "site": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true
+      },
+      "boundary": [
+        {
+          "x": 10,
+          "y": 0
+        },
+        {
+          "x": 60,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 10
+        },
+        {
+          "x": 110,
+          "y": 100
+        },
+        {
+          "x": 0,
+          "y": 90
+        }
+      ],
+      "areaM2": 10250,
+      "provenance": "custom confirmed boundary; generated entrance/open space are assumed — review"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 45.27692569068709,
+      "width": 8,
+      "boundaryEdge": 4
+    },
+    "openSpace": {
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 24,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 10,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 8.441726104299386,
+          "y": 42,
+          "w": 106.55827389570061,
+          "h": 6
+        }
+      ],
+      "accessConnector": [
+        {
+          "x": 5.441726104299386,
+          "y": 41.02446506130553
+        },
+        {
+          "x": 4.558273895700614,
+          "y": 48.97553493869447
+        },
+        {
+          "x": 8.441726104299386,
+          "y": 48
+        },
+        {
+          "x": 8.441726104299386,
+          "y": 42
+        }
+      ],
+      "parcels": [
+        {
+          "x": 8.441726104299386,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 8.441726104299386,
+          "y": 48,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 18.441726104299384,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 18.441726104299384,
+          "y": 48,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 28.441726104299384,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 28.441726104299384,
+          "y": 48,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 38.441726104299384,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 38.441726104299384,
+          "y": 48,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 48.441726104299384,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 48.441726104299384,
+          "y": 48,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 58.441726104299384,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 58.441726104299384,
+          "y": 48,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 68.44172610429939,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 78.44172610429939,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 88.44172610429939,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 98.44172610429939,
+          "y": 22,
+          "w": 10,
+          "h": 20
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 16,
+      "roadArea": 663.3575240641609,
+      "greenArea": 480,
+      "parcelArea": 3200,
+      "unallocatedArea": 5906.642475935839
+    },
+    "economics": {
+      "roadCost": 530686019.2513287,
+      "homeCost": 4800000000,
+      "greenCost": 72000000,
+      "costNonLand": 9072820320.213894,
+      "finance": {
+        "revenue": 13600000000,
+        "surplus": -5880820320.213894,
+        "margin": -0.4324132588392569,
+        "landAllowance": 2079179679.786106,
+        "ownerGap": 7920820320.213894,
+        "requiredPrice": 1453721060.9919128
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "events": [
+    {
+      "t": "2026-10-28T20:37:42.685Z",
+      "kind": "boundary",
+      "detail": "Applied 5-vertex site, 10250 m². Contained layout regenerated; outside lots omitted."
+    },
+    {
+      "t": "2026-10-28T20:37:42.981Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-28T20:37:43.090Z",
+      "kind": "redo",
+      "detail": "Redo applied (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-28T20:37:43.519Z",
+      "kind": "edit",
+      "detail": "Moved compound entrance: moved to edge 5, 40 m from corner 5, 8 m wide."
+    },
+    {
+      "t": "2026-10-28T20:37:43.622Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-28T20:37:44.017Z",
+      "kind": "edit",
+      "detail": "Moved compound entrance: moved to edge 5, 46 m from corner 5, 8 m wide."
+    },
+    {
+      "t": "2026-10-28T20:37:44.112Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    }
+  ],
+  "history": {
+    "undoDepth": 0,
+    "redoDepth": 1,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

@@ -1,0 +1,16 @@
+node:fs:560
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open 'evidence/site-context/zoom-boundary/zoom-200-actual.png'
+    at Object.openSync (node:fs:560:18)
+    at Object.writeFileSync (node:fs:2444:35)
+    at capture (/home/spotty/projects/unbuilt/tests/browser-zoom.cjs:18:182)
+    at async /home/spotty/projects/unbuilt/tests/browser-zoom.cjs:18:248 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'evidence/site-context/zoom-boundary/zoom-200-actual.png'
+}
+
+Node.js v22.23.3

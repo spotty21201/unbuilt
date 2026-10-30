@@ -1,3 +1,4 @@
+import {generateSpine} from '../src/geometry.ts';
 // Server seam protocol fixtures (Coder-owned). Spawns the real server on a
 // test port and asserts the HTTP contract with hand-derived expectations:
 // health shape, mock intent, bounded search determinism, refusals, and the
@@ -78,6 +79,13 @@ try {
   check("intent-lock", intent.operations.lockGreen, true);
   check("intent-ceiling", intent.operations.priceCeiling, 850 * M);
   check("intent-echo", intent.requestId, "r1");
+
+  const scoped=await fetch(`${base}/api/intent`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:'Search alternatives',ctx:{selected:sel,selectedPrice:850*M,search:{manualStreets:true,families:['spine'],frontages:[9,10,11,12]}}})});
+  const scopedResult=await scoped.json();
+  check('intent-manual-scope-status',scoped.status,200);
+  check('intent-manual-scope-holds-streets',scopedResult.text.includes('manual street geometry and widths held fixed')&&!scopedResult.text.includes('circulation pattern'),true);
+  const invalidScope=await fetch(`${base}/api/intent`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:'Search',ctx:{selected:null,selectedPrice:850*M,search:{manualStreets:'yes',families:['unknown'],frontages:[null]}}})});
+  check('intent-invalid-search-scope-refused',invalidScope.status,400);
 
   // Shape refusals carry reasons.
   const bad1 = await fetch(`${base}/api/intent`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text: "hi" }) });
@@ -197,6 +205,70 @@ try {
   check("boundary-edge-explain-status", ee.status, 200);
   check("boundary-edge-explain-same-geometry", eem.base.quantities.roadArea, 723);
   check("boundary-edge-downgrade-refused", (await post("/api/search", { snapshot: { ...edgeSnapshot, version: 3 }, ranges: { families: ["spine"], frontages: [10] }, budget: 8 })).status, 400);
+
+  const blank = { ...parametric, version: 5, site: { ...parametric.site, contents: { boundary: false, layout: false, removedHomes: [] } } };
+  check("blank-explanation-refuses-fake-economics", (await post("/api/explain", { snapshot: blank, base: { family: "spine", frontage: 10 }, other: { family: "spine", frontage: 11 } })).status, 422);
+  const emptySearch = await (await post("/api/search", { snapshot: blank, ranges: { families: ["spine"], frontages: [10] }, budget: 8 })).json();
+  check("blank-search-has-no-candidates", emptySearch.candidates.length, 0);
+
+  const streetNetwork = {segments:[{id:'main-a',a:{x:0,y:50},b:{x:40,y:50},width:6},{id:'main-b',a:{x:40,y:50},b:{x:120,y:50},width:6},{id:'branch',a:{x:40,y:50},b:{x:40,y:90},width:6}]};
+  const manual = {...parametric,version:6,site:{...parametric.site,planning:{...planning,homeWidth:10,streetNetwork}}};
+  const ms = await post('/api/search',{snapshot:manual,ranges:{families:['spine','loop'],frontages:[10,11]},budget:8});
+  const mr = await ms.json();
+  check('manual-streets-search-status',ms.status,200);
+  check('manual-streets-search-retains-measured-area',mr.candidates.every(c=>c.quantities.roadArea===942),true);
+  check('manual-streets-search-does-not-replace-network-with-loop',mr.candidates.length>0&&mr.candidates.every(c=>c.family==='spine'),true);
+  const me = await post('/api/explain',{snapshot:manual,base:{family:'spine',frontage:10},other:{family:'spine',frontage:11}});
+  const mm = await me.json();
+  check('manual-streets-explain-status',me.status,200);
+  check('manual-streets-explain-measures-road-surface',mm.base.quantities.roadArea,942);
+  check('manual-streets-explain-holds-road-geometry',mm.deltas.roadArea,0);
+  check('manual-streets-snapshot-downgrade-refused',(await post('/api/search',{snapshot:{...manual,version:5},ranges:{families:['spine'],frontages:[10]},budget:8})).status,400);
+  const parcelSite={...parametric.site,planning:{...planning,homeWidth:10},green:snapshot.green,entrance:snapshot.entrance};
+  const originalLots=generateSpine(parcelSite).parcels;
+  const lotPlan=[{...originalLots[0],w:20},...originalLots.filter((_,i)=>i!==0&&i!==2)];
+  const parcelSnapshot={...parametric,version:7,site:{...parametric.site,planning:{...planning,homeWidth:10,lotPlan}}};
+  const parcelSearch=await post('/api/search',{snapshot:parcelSnapshot,ranges:{families:['spine'],frontages:[10,11]},budget:8});
+  const parcelRun=await parcelSearch.json();
+  check('manual-lots-search-status',parcelSearch.status,200);
+  check('manual-lots-no-false-frontage-alternatives',parcelRun.tested,0);
+  check('manual-lots-search-actionable-blocker',parcelRun.blockers[0].includes('Manual lots are held'),true);
+  const parcelExplain=await post('/api/explain',{snapshot:parcelSnapshot,base:{family:'spine',frontage:10},other:{family:'spine',frontage:10}});
+  const parcelMeasurement=await parcelExplain.json();
+  check('manual-lots-measured-explanation-status',parcelExplain.status,200);
+  check('manual-lots-server-home-count',parcelMeasurement.base.quantities.n,19);
+  check('manual-lots-server-true-area',parcelMeasurement.base.quantities.parcelArea,4000);
+  check('manual-lots-server-retained-roads',parcelMeasurement.base.quantities.roadArea,720);
+  check('manual-lots-inapplicable-frontage-comparison-refused',(await post('/api/explain',{snapshot:parcelSnapshot,base:{family:'spine',frontage:10},other:{family:'spine',frontage:11}})).status,422);
+  check('manual-lots-downgrade-refused',(await post('/api/search',{snapshot:{...parcelSnapshot,version:6},ranges:{families:['spine'],frontages:[10]},budget:8})).status,400);
+
+  const housingSnapshot=structuredClone(parcelSnapshot);housingSnapshot.version=8;
+  const firstLot=housingSnapshot.site.planning.lotPlan[0];
+  housingSnapshot.site.planning.housing={templates:[{id:'h1',name:'Original home',width:10,depth:6},{id:'h2',name:'Courtyard',width:8,depth:6}],defaultId:'h1',assignments:{[`${firstLot.x},${firstLot.y},${firstLot.w},${firstLot.h}`]:'h2'}};
+  housingSnapshot.capabilities.push('housing-mix');
+  const mixExplain=await post('/api/explain',{snapshot:housingSnapshot,base:{family:'spine',frontage:10},other:{family:'spine',frontage:10}}),mixMeasure=await mixExplain.json();
+  check('housing-server-measured-status',mixExplain.status,200);
+  check('housing-server-true-built-area',mixMeasure.base.builtArea,1128);
+  check('housing-server-template-counts',mixMeasure.base.housing.rows.map(r=>r.count),[18,1]);
+  check('housing-server-home-count-unchanged',mixMeasure.base.quantities.n,19);
+  check('housing-server-allowance-from-actual-built-area',mixMeasure.base.landAllowance-parcelMeasurement.base.landAllowance,63e6);
+  check('housing-snapshot-old-envelope-refused',(await post('/api/explain',{snapshot:{...housingSnapshot,version:7},base:{family:'spine',frontage:10},other:{family:'spine',frontage:10}})).status,400);
+  const unknownMix=structuredClone(housingSnapshot);unknownMix.site.planning.housing.defaultId='missing';
+  check('housing-invalid-template-reference-refused',(await post('/api/search',{snapshot:unknownMix,ranges:{families:['spine'],frontages:[10]},budget:8})).status,400);
+  check('housing-missing-capability-refused',(await post('/api/search',{snapshot:{...housingSnapshot,capabilities:housingSnapshot.capabilities.filter(c=>c!=='housing-mix')},ranges:{families:['spine'],frontages:[10]},budget:8})).status,400);
+
+
+  const costSnapshot={...snapshot,version:10,site:{...snapshot.site,costAssumptions:{constructionPerM2:4e6,roadPerM2:8e5,greenWorksPerM2:15e4,setupAllowance:8e8,otherWorksAllowance:12e8,professionalAllowance:13e8,contingencyFraction:.05,sellFraction:.03}},capabilities:[...snapshot.capabilities,'editable-cost-assumptions']};
+  const ce=await post('/api/explain',{snapshot:costSnapshot,base:{family:'spine',frontage:10},other:{family:'loop',frontage:10}}),cm=await ce.json();
+  check('cost-snapshot-server-status',ce.status,200);
+  check('cost-snapshot-server-base-cost',cm.base.costNonLand,9120400000);
+  check('cost-snapshot-server-base-allowance',cm.base.landAllowance,4819600000);
+  const cs=await post('/api/search',{snapshot:costSnapshot,ranges:{families:['spine'],frontages:[10]},budget:8}),cr=await cs.json();
+  check('cost-snapshot-server-search-cost',cr.candidates[0].costNonLand,9120400000);
+  check('cost-snapshot-server-hash-agrees',cr.planHash,cm.planHash);
+  check('cost-snapshot-downgrade-refused',(await post('/api/search',{snapshot:{...costSnapshot,version:9},ranges:{families:['spine'],frontages:[10]},budget:8})).status,400);
+  const corruptCost=structuredClone(costSnapshot);corruptCost.site.costAssumptions.sellFraction=-1;
+  check('invalid-cost-snapshot-refused',(await post('/api/explain',{snapshot:corruptCost,base:{family:'spine',frontage:10},other:{family:'loop',frontage:10}})).status,400);
 
   // Meta adapter without a key: honest 503, never an attempted call.
   const meta = await fetch(`${base}/api/intent`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ text: "hi", ctx: { selected: null, selectedPrice: 1 }, adapter: "meta" }) });

@@ -1,0 +1,57 @@
+{
+  "viewport": [
+    1440,
+    900
+  ],
+  "vertices": [
+    {
+      "name": "Boundary vertex 1 x",
+      "value": "-13"
+    },
+    {
+      "name": "Boundary vertex 1 y",
+      "value": "91"
+    },
+    {
+      "name": "Boundary vertex 2 x",
+      "value": "87"
+    },
+    {
+      "name": "Boundary vertex 2 y",
+      "value": "91"
+    },
+    {
+      "name": "Boundary vertex 3 x",
+      "value": "124"
+    },
+    {
+      "name": "Boundary vertex 3 y",
+      "value": "65"
+    },
+    {
+      "name": "Boundary vertex 4 x",
+      "value": "115"
+    },
+    {
+      "name": "Boundary vertex 4 y",
+      "value": "26"
+    },
+    {
+      "name": "Boundary vertex 5 x",
+      "value": "33"
+    },
+    {
+      "name": "Boundary vertex 5 y",
+      "value": "13"
+    },
+    {
+      "name": "Boundary vertex 6 x",
+      "value": "-13"
+    },
+    {
+      "name": "Boundary vertex 6 y",
+      "value": "39"
+    }
+  ],
+  "message": "Boundary coordinates must be between 0 and 500 m. Enter a number from 0 to 500 for each coordinate, or move/remove a numbered corner to correct the outline. The accepted plan is unchanged."
+}

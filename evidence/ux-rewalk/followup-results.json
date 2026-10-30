@@ -1,0 +1,47 @@
+[
+  {
+    "width": 1440,
+    "loop": "17 homes\nGreen 480 m²\nRoad 2,076 m²\nAllowance Rp1.27bn\nShortfall Rp8.73bn",
+    "frontage": "16 homes\nGreen 480 m²\nRoad 2,076 m²\nAllowance Rp0.89bn\nShortfall Rp9.11bn",
+    "warnings": [
+      "3 working lot(s) fall outside the Starter 150 (fictional) profile (area/frontage). Priced figures assume the profile applies — treat them as provisional."
+    ],
+    "rapid": {
+      "elapsedMs": 57,
+      "metrics": "20 homes\nGreen 480 m²\nRoad 720 m²\nAllowance Rp3.56bn\nShortfall Rp6.44bn",
+      "parcels": 20
+    },
+    "arrow": "Site",
+    "escape": "Site"
+  },
+  {
+    "width": 1024,
+    "loop": "17 homes\nGreen 480 m²\nRoad 2,076 m²\nAllowance Rp1.27bn\nShortfall Rp8.73bn",
+    "frontage": "16 homes\nGreen 480 m²\nRoad 2,076 m²\nAllowance Rp0.89bn\nShortfall Rp9.11bn",
+    "warnings": [
+      "3 working lot(s) fall outside the Starter 150 (fictional) profile (area/frontage). Priced figures assume the profile applies — treat them as provisional."
+    ],
+    "rapid": {
+      "elapsedMs": 54,
+      "metrics": "20 homes\nGreen 480 m²\nRoad 720 m²\nAllowance Rp3.56bn\nShortfall Rp6.44bn",
+      "parcels": 20
+    },
+    "arrow": "Site",
+    "escape": "Site"
+  },
+  {
+    "width": 375,
+    "loop": "17 homes\nGreen 480 m²\nRoad 2,076 m²\nAllowance Rp1.27bn\nShortfall Rp8.73bn",
+    "frontage": "16 homes\nGreen 480 m²\nRoad 2,076 m²\nAllowance Rp0.89bn\nShortfall Rp9.11bn",
+    "warnings": [
+      "3 working lot(s) fall outside the Starter 150 (fictional) profile (area/frontage). Priced figures assume the profile applies — treat them as provisional."
+    ],
+    "rapid": {
+      "elapsedMs": 35,
+      "metrics": "20 homes\nGreen 480 m²\nRoad 720 m²\nAllowance Rp3.56bn\nShortfall Rp6.44bn",
+      "parcels": 20
+    },
+    "arrow": "Site",
+    "escape": "Site"
+  }
+]

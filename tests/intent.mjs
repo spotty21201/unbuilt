@@ -30,6 +30,14 @@ check("open-green", r.operations.lockGreen, true);
 check("open-ceiling", r.operations.priceCeiling, 850000000);
 check("open-run", r.operations.runSearch, true);
 
+r = parseIntent('Search alternatives', {selected:sel,selectedPrice:850000000,search:{manualStreets:true,families:['spine'],frontages:[9,10,11,12]}});
+check('manual proposal holds street geometry and widths',r.text.includes('manual street geometry and widths held fixed'),true);
+check('manual proposal gives exact supported range before approval',r.text.includes('spine × 9, 10, 11, 12 m frontages')&&!r.text.includes('circulation pattern'),true);
+
+r=parseIntent('Search alternatives',{selected:sel,selectedPrice:850000000,search:{manualStreets:false,manualLots:true,families:['spine','loop'],frontages:[9,10,11,12]}});
+check('manual-lot-proposal-states-search-limitation',r.kind,'limitation');
+check('manual-lot-request-does-not-run-or-change-plan',r.operations.runSearch,false);
+
 // Explicit ceiling number.
 r = parseIntent("Cap the selling price at Rp 800m.", { selected: null, selectedPrice: 850000000 });
 check("cap-kind", r.kind, "proposal");

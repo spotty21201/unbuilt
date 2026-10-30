@@ -1,0 +1,21 @@
+PASS keyboard opens library with focus constrained to dialog
+PASS Escape closes library and returns focus to its opener
+PASS Delete on a keyboard-selected lot opens a guarded removal
+PASS history shortcuts cannot change the plan behind a confirmation
+PASS Escape cancels deletion without removing a home
+PASS project switch removes in-flight explanation, preview and prior results
+PASS project switch preserves other accepted project
+PASS deleting active project opens another saved project
+PASS deleting final project leaves a genuine empty library
+PASS Undo final-project deletion restores and opens accepted plan
+PASS vacant lot can be reshaped without claiming a placed home setback
+PASS restoring a house that no longer fits is refused without changing accepted plan
+PASS correcting vacant lot permits safe home restoration
+PASS adding a corner before gate edge preserves selected physical entrance
+PASS boundary Undo restores gate and four-corner outline together
+PASS removing inserted corner restores gate edge indexing
+PASS deleting boundary clears obsolete edge references so blank project reopens
+PASS touch places and closes a five-sided boundary
+PASS touch corner drag updates measured area
+PASS touch Apply after synthetic-drag click recovery saves without auto-generation
+ALL 20 LIFECYCLE BROWSER CHECKS PASS

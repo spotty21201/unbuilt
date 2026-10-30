@@ -1,0 +1,39 @@
+PASS 1600×1280: SVG fills the entire drawing viewport
+PASS 1600×1280: complete site fits with tool and scale clearance
+PASS 1600×1280: scale bar matches measured site metres
+PASS 1600×1280: no page-level horizontal overflow
+PASS 1440×900: SVG fills the entire drawing viewport
+PASS 1440×900: complete site fits with tool and scale clearance
+PASS 1440×900: scale bar matches measured site metres
+PASS 1440×900: no page-level horizontal overflow
+PASS 1024×768: SVG fills the entire drawing viewport
+PASS 1024×768: complete site fits with tool and scale clearance
+PASS 1024×768: scale bar matches measured site metres
+PASS 1024×768: no page-level horizontal overflow
+PASS 375×812: SVG fills the entire drawing viewport
+PASS 375×812: complete site fits with tool and scale clearance
+PASS 375×812: scale bar matches measured site metres
+PASS 375×812: no page-level horizontal overflow
+PASS initial selected park shows measured 480 m² callout
+PASS pan starts at the far left of the viewport outside the site
+PASS pan starts at the far right of the viewport outside the site
+PASS Fit restores the complete real site
+PASS floating Pan controls the actual rail tool
+PASS keyboard Select synchronizes the floating tool
+PASS wheel zoom works across the whole viewport
+PASS wheel zoom keeps the cursor over the same site coordinates
+PASS panel width changes preserve a manually adjusted drawing scale
+PASS footprint layer hides graphics without deleting modeled homes
+PASS dimension layer toggles independently
+PASS lot labels can be hidden for a clear drawing
+PASS grid layer toggles the full viewport background
+PASS Escape closes layers and returns focus to its control
+PASS camera and layer changes leave every planning quantity unchanged
+PASS rail circulation tool selects its real inspector
+PASS rail green tool restores its measured inspector
+PASS assistant rail action opens measured plan facts
+PASS top export action downloads the actual accepted JSON plan
+PASS touch can pan from the viewport edge beyond the site
+PASS mobile inspector remains accessible below a complete drawing
+PASS no uncaught browser errors
+ALL 38 VIEWPORT CHECKS PASS

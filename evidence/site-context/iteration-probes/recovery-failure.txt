@@ -1,0 +1,149 @@
+AssertionError [ERR_ASSERTION]: calibration points can be picked in the image preview
+    at check (/home/spotty/projects/unbuilt/tests/site-context-recovery-browser.cjs:3:28)
+    at /home/spotty/projects/unbuilt/tests/site-context-recovery-browser.cjs:13:398
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · no model
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Site
+Plan valid
+Saved in this browser
+
+Site boundary locked.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+LOT 01
+200 m²
+LOT 02
+200 m²
+LOT 03
+200 m²
+LOT 04
+200 m²
+LOT 05
+200 m²
+LOT 06
+200 m²
+LOT 07
+200 m²
+LOT 08
+200 m²
+LOT 09
+200 m²
+LOT 10
+200 m²
+LOT 11
+200 m²
+LOT 12
+200 m²
+LOT 13
+200 m²
+LOT 14
+200 m²
+LOT 15
+200 m²
+LOT 16
+200 m²
+LOT 17
+200 m²
+LOT 18
+200 m²
+LOT 19
+200 m²
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context
+Back to plan
+
+Reference layers support planning review. They do not create development streets, reserve land, change costs or establish legal access.
+
+Survey reference
+Import or reattach a survey (PDF, PNG, JPEG)
+
+PDFs render one selected page. Set the scale from a known distance; a printed scale or photograph alone does not verify accuracy. Files up to 20 MB; images up to 20 megapixels.
+
+A
+B
+
+Choose two points with a known separation. Their pixel coordinates can also be entered with the keyboard. Calibration uses one uniform scale and rotation; it does not correct a distorted scan.
+
+Pick calibration points
+Point A pixels
+X (px)
+Y (px)
+Point B pixels
+X (px)
+Y (px)
+Known A–B distance (m)
+A local X (m)
+A local Y (m)
+A→B direction (degrees)
+
+0° east, 90° north in the local plan. Position and direction are your declared assumptions; this does not establish a geographic reference.
+
+Set two points, a known distance greater than 0 and at most 500 m, and a direction between −360° and 360°.
+
+Apply survey calibrationCancel context edit
+
+The site boundary is locked. Unlock it in the plan inspector before importing an outline.
+
+Boundary file
+Import boundary (CSV or ASCII DXF)
+
+CSV: ordered x,y or easting,northing pairs, optional header. DXF: closed straight model-space LWPOLYLINE or 2D POLYLINE. Choose one outline; holes, curves, blocks, DWG and 3D boundaries are unsupported.
+
+Surroundings and access
+
+Mark surrounding streets as reference lines, existing features as points, and possible access as assumptions. Even a documented note does not verify permission or connect an entrance.
+
+Add context annotation
+
+Accepted calibration, source information and annotations are saved with this project and its backups. Survey/PDF/image bytes are not saved: keep the original file and reattach it after reopening. Annotations are independent of boundary resets; check their alignment after changing the site.
+
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn

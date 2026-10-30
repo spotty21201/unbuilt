@@ -3,9 +3,9 @@ import type { Entrance } from '../../../src/geometry';
 import type { Pt } from '../../../src/polygon';
 import { polyArea } from '../../../src/polygon';
 import { boundaryConflictEdges, boundaryErrors, MAX_SITE_VERTICES } from '../../../src/boundary';
-import { formatM2 } from './ui';
+import type { BoundarySource } from '../../../src/site-context';
 
-export interface BoundaryDraft { pts: Pt[]; closed: boolean; newSite: boolean; entrance?: Entrance }
+export interface BoundaryDraft { pts: Pt[]; closed: boolean; newSite: boolean; entrance?: Entrance; source?: BoundarySource }
 interface Props {
   draft: BoundaryDraft;
   onChange: (draft: BoundaryDraft) => void;
@@ -19,20 +19,22 @@ export default function BoundaryEditor({ draft, onChange, onApply, onCancel, rev
   const changePoint = (i: number, axis: 'x' | 'y', raw: string) => onChange({ ...draft, pts: draft.pts.map((p, j) => j === i ? { ...p, [axis]: raw.trim() === '' ? NaN : Number(raw) } : p) });
   return <section className="boundary-editor" aria-label="Site boundary editor">
     <h2>{draft.newSite ? 'Draw a site' : 'Edit boundary'}</h2>
-    <p className="note">{draft.closed ? 'Drag corners or use coordinates below. Midpoint + handles add a corner. Delete a focused corner to remove it.' : 'Place corners on the plan. Click the first corner or Close boundary to finish. Enter also closes the outline.'}</p>
-    <div className="boundary-area" aria-live="polite">{draft.closed && !errors.length ? <><strong>{formatM2(polyArea(draft.pts))}</strong><span>Boundary area · {draft.pts.length} vertices</span></> : <><strong>{draft.closed ? 'Invalid outline' : 'Open outline'}</strong><span>{draft.pts.length} vertices · area awaits a valid closed boundary</span></>}</div>
-    {review}
+    {draft.source && <p className="note">Review import: {draft.source.name} · {draft.source.layer} · file units {draft.source.unit}. {draft.source.rebased ? `Translated from source origin ${draft.source.origin.x}, ${draft.source.origin.y} m.` : 'Supplied local coordinates retained.'} Apply replaces the accepted boundary and reviews dependent layout changes below; Cancel keeps accepted work.</p>}
+    <p className="boundary-precision"><strong>Pointer snap: 1 m</strong><span>Approximate placement. Pointer and arrow-key edits stop at the 0–500 m workspace edges; shaded paper is outside that range. For finer positions, type decimal coordinates in metres below. Local x east / y north; not surveyed or georeferenced.</span></p>
     <div className="boundary-actions">
       {!draft.closed && <button type="button" disabled={draft.pts.length < 3} onClick={() => onChange({ ...draft, closed: true })}>Close boundary</button>}
       <button type="button" onClick={onApply} disabled={!draft.closed || errors.length > 0}>Apply boundary</button>
       <button type="button" onClick={onCancel}>Cancel boundary</button>
     </div>
-    {draft.closed && errors.length > 0 && <p className="error" role="alert">{errors[0]} The accepted plan is unchanged. {conflicts.length > 0 && `Red edges ${conflicts.map(i => `${i + 1}–${(i + 1) % draft.pts.length + 1}`).join(", ")} need attention. Move a numbered corner or use its Remove button below.`}</p>}
-    <p className="note">Local meters, x east / y north. Pointer edits snap to 1 m. Escape cancels. Undo/Redo steps through this draft; Apply creates one plan Undo step. Existing open space and manual lots are preserved when compatible; review the layout consequences above before Apply.</p>
+    <p className="note">{draft.closed ? 'Drag corners or use coordinates below. Midpoint + handles add a corner. Delete a focused corner to remove it.' : 'Place corners on the plan. Click the first corner or Close boundary to finish. Enter also closes the outline.'}</p>
+    <div className="boundary-area" aria-live="polite">{draft.closed && !errors.length ? <><strong>{polyArea(draft.pts).toLocaleString('en-US', { maximumFractionDigits: 2 })} m²</strong><span>Boundary area · {draft.pts.length} vertices · rounded to 0.01 m²</span></> : <><strong>{draft.closed ? 'Invalid outline' : 'Open outline'}</strong><span>{draft.pts.length} vertices · area awaits a valid closed boundary</span></>}</div>
+    {review}
+    {draft.closed && errors.length > 0 && <p id="boundary-error" className="error" role="alert">{errors[0]} Enter a number from 0 to 500 for each coordinate, or move/remove a numbered corner to correct the outline. The accepted plan is unchanged. {conflicts.length > 0 && `Red edges ${conflicts.map(i => `${i + 1}–${(i + 1) % draft.pts.length + 1}`).join(", ")} need attention.`}</p>}
+    <p className="note">Escape cancels. Undo/Redo steps through this draft; Apply creates one plan Undo step. Existing open space and manual lots are preserved when compatible; review the layout consequences before Apply.</p>
     <div className="boundary-coordinates">
       {draft.pts.map((p, i) => <fieldset key={i} className={conflicts.includes(i) || conflicts.includes((i - 1 + draft.pts.length) % draft.pts.length) ? 'conflicting-corner' : undefined}>
         <legend>Vertex {i + 1}</legend>
-        {(['x', 'y'] as const).map((axis) => <label key={axis}>{axis.toUpperCase()} (m)<input aria-label={`Boundary vertex ${i + 1} ${axis}`} type="number" min={0} max={500} step="any" value={Number.isFinite(p[axis]) ? p[axis] : ''} onChange={(e) => changePoint(i, axis, e.target.value)} /></label>)}
+        {(['x', 'y'] as const).map((axis) => <label key={axis}>{axis.toUpperCase()} (m)<input aria-label={`Boundary vertex ${i + 1} ${axis}`} aria-invalid={!Number.isFinite(p[axis]) || p[axis] < 0 || p[axis] > 500} aria-describedby={draft.closed && errors.length ? 'boundary-error' : undefined} type="number" min={0} max={500} step="any" value={Number.isFinite(p[axis]) ? p[axis] : ''} onChange={(e) => changePoint(i, axis, e.target.value)} /></label>)}
         <div className="draftrow">
           <button type="button" disabled={draft.pts.length >= MAX_SITE_VERTICES || !Number.isFinite(p.x + p.y)} onClick={() => { const b = draft.pts[(i + 1) % draft.pts.length]; const pts = [...draft.pts]; pts.splice(i + 1, 0, { x: (p.x + b.x) / 2, y: (p.y + b.y) / 2 }); onChange({ ...draft, pts }); }}>Add after {i + 1}</button>
           <button type="button" disabled={draft.closed && draft.pts.length <= 3} onClick={() => onChange({ ...draft, pts: draft.pts.filter((_, j) => i !== j) })}>Remove {i + 1}</button>

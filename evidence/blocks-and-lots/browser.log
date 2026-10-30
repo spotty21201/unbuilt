@@ -1,0 +1,44 @@
+PASS lot tools are discoverable beside selected-lot measurements
+PASS split that cannot fit two homes is blocked without replacing accepted geometry
+PASS invalid proposed children are visible over accepted plan
+PASS explicit vacant split previews 21 lots, 19 homes and unchanged total lot area
+PASS Cancel vacant split retains 20 homes and no manual plan
+PASS merge across the street is refused without filling a bounding rectangle
+PASS adjacent merge previews 19 lots and homes while preserving 4000 m²
+PASS Apply merges two 200 m² lots into one 400 m² lot and recalculates homes
+PASS one plan Undo restores the original lot pattern
+PASS plan Redo restores exact merged geometry
+PASS reload preserves manual lots and measured 19 homes
+PASS split a 400 m² merged lot into two fitting 200 m² lots
+PASS changed inputs invalidate previous preview approval
+PASS split Apply counts both new homes and retains road/park
+PASS rectangular block subdivision yields 18 homes and unchanged total parcel area
+PASS block Apply changes only the manual parcel partition
+PASS request explains held manual lots before promising frontage alternatives
+PASS generated-lot restoration is a preview and leaves saved manual geometry intact
+PASS Cancel generated lots preserves saved subdivision
+PASS reshaping a subdivided lot shows five measured corners
+PASS reshape draft Undo preserves accepted parcel plan
+PASS reshape draft Redo restores the added corner
+PASS polygon outline commits on the new lot identity
+PASS focused lot corner has keyboard movement and live invalid geometry feedback
+PASS Ctrl+Z repairs invalid corner draft without undoing accepted lot plan
+PASS off-centre pointer reshape preserves the intended Y coordinate
+PASS one draft Undo restores the full lot-corner pointer gesture
+PASS record v9 exports full manual lot plan and polygon edits
+PASS record import reopens exact lot plan as a separate project
+PASS street move through held lots cannot silently regenerate or discard the partition
+PASS returning to generated lots reviews an incompatible manual polygon before removal
+PASS explicit generated-lot Apply restores generated partition after reviewed reshape removal
+PASS Undo generated-lot restoration retains manual partition and polygon work
+PASS clear layout removes its lot plan and preserves the site
+PASS Undo clear restores manual partition and reshapes
+PASS 1440px lot controls remain reachable without horizontal overflow
+PASS 1024px lot controls remain reachable without horizontal overflow
+PASS 375px lot controls remain reachable without horizontal overflow
+PASS mobile drawing-to-review round trip preserves pending lot transaction
+PASS manual partition remains contained on an irregular 11000 m² site
+PASS irregular boundary and parcel plan both survive reload
+PASS emulated touch can select, preview and apply a vacant split
+PASS no uncaught browser errors
+ALL 43 BLOCK AND LOT BROWSER CHECKS PASS

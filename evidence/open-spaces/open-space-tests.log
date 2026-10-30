@@ -1,0 +1,23 @@
+PASS legacy park migrates to a locked 480 m² outline without mutation
+PASS three different named spaces have hand-calculated 760 m² total
+PASS supported Spine avoids every reserved extent and reconciles area
+PASS fixed Loop refuses spaces on its ring instead of presenting conflicts as valid
+PASS validation refuses a layout that drops or changes a reserved outline
+PASS green works cost uses total true area at the shared illustrative rate
+PASS concave space counts 72 m² rather than its 120 m² extent
+PASS corridor helper rotates a true four-metre buffer without using its bounding area
+PASS touching spaces are permitted; overlaps, containment and duplicate outlines are blocked
+PASS invalid outlines and hostile data are refused without throwing
+PASS layout validation refuses malformed collection input without area calculation or throwing
+PASS individual minimum and combined minimum block conflicting edits
+PASS true irregular containment rejects a park in the missing corner
+PASS manual partition and assigned homes stay held when a park conflicts
+PASS a park replacing generated lots reduces homes only in the proposed geometry
+PASS routing clearance changes exclusion rather than counted polygon area
+PASS empty collection means no green and no phantom charge or exclusion
+PASS manual street conflicts identify the actual named green space
+PASS stored project v10 roundtrip retains spaces, locks and minima; downgrade refuses even empty collection
+PASS snapshot v9 validates geometry, hashes changed minima and refuses missing capability or downgrade
+PASS bounded alternatives hold every space and report measured aggregate green
+PASS starter generation keeps planner spaces and explicitly empty collection
+ALL 22 OPEN SPACE CHECKS PASS

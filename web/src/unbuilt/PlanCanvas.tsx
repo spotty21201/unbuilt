@@ -1,17 +1,60 @@
+import OpenSpaceLayer from './OpenSpaceLayer';
+import {spaceBounds,type OpenSpace} from '../../../src/open-spaces';
+import HousingDrawingKey from './HousingDrawingKey';
+import {housingColor} from './ui';
+import {homeTemplate} from '../../../src/housing';
+import { nearestStreetPoint, streetLength, streetNodes, streetRect, type StreetNetwork } from '../../../src/streets';
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import type { PlanningParameters } from '../../../src/planning';
 import type { Rect } from '../../../src/schema';
-import type { Entrance, Layout } from '../../../src/geometry';
+import type { Entrance, Layout, StreetConflict } from '../../../src/geometry';
 import { entranceLabel, gateSegment } from '../../../src/access';
+import { hasHome } from '../../../src/contents';
 import { placeFootprint } from '../../../src/geometry';
 import type { Pt } from '../../../src/polygon';
-import { centroid, polyArea } from '../../../src/polygon';
+import { centroid, polyArea, rectCorners, segmentsCross } from '../../../src/polygon';
 import { parcelKey, formatM2 } from './ui';
 import type { BoundaryDraft } from './BoundaryEditor';
 import { FitIcon, LayersIcon, PanIcon, SelectIcon, ExpandIcon } from './icons';
 import { boundaryConflictEdges, boundaryErrors, MAX_SITE_VERTICES } from '../../../src/boundary';
+import { surveyPoint, surveyTransform, type SiteContext, type ContextNote } from '../../../src/site-context';
+import type { SurveyRaster } from './survey-file';
 
 interface Props {
+  spaceDrafts?:OpenSpace[]; activeSpace?:string|null; spacesEditing?:boolean; spaceDrawing?:boolean; spaceValid?:boolean;spaceClearance?:number;
+  onSpaceSelect?:(id:string)=>void;onSpacePoint?:(p:Pt)=>void;onSpaceFinish?:()=>void;onSpaceMove?:(index:number,p:Pt,record?:boolean)=>void;onSpaceRemove?:(i:number)=>void;onSpaceGesture?:(before:Pt[]|null)=>void;onSpaceRevert?:(pts:Pt[])=>void;
+  blockReviewLabel?:string;
+  blockOutline?:Rect|null;
+  blockSummary?:string;
+  blockTitle?:string;
+  invalidHomeLots?:number[];
+  parcelReferences?:string[];
+  parcelProposal?:{lots:Rect[];valid:boolean;inaccessible?:number[]}|null;
+  onBlockReview?:()=>void;
+  editableStreets?: StreetNetwork | null;
+  streetStroke?: Pt[] | null;
+  streetSelected?: string | null;
+  streetDraftValid?: boolean;
+  streetConflict?: StreetConflict | null;
+  streetConnectorIds?: string[];
+  streetAffectedLots?: Rect[];
+  streetSummary?: string;
+  onStreetSelect?: (id: string) => void;
+  onStreetPoint?: (point: Pt) => void;
+  onStreetFinish?: () => void;
+  onStreetStop?: () => void;
+  onStreetReview?: () => void;
+  onStreetNodeMove?: (original: StreetNetwork, from: Pt, to: Pt) => void;
+  onStreetNodeCommit?: (original: StreetNetwork) => void;
+  onStreetNodeKeyMove?: (from: Pt, to: Pt) => void;
+  onStreetNodeCancel?: (original: StreetNetwork) => void;
+  siteContext?: SiteContext;
+  surveyRaster?: SurveyRaster | null;
+  showContext?: boolean;
+  noteDraft?: ContextNote | null;
+  contextPicking?: boolean;
+  onContextPick?: (point: Pt) => void;
+  contents?: import('../../../src/contents').PlanContents;
   planning?: PlanningParameters;
   streetOffsets?: number[];
   onStreetDrag?: (index: number, y: number) => void;
@@ -21,6 +64,7 @@ interface Props {
   boundaryLayoutPreview?: boolean;
   onBoundaryChange?: (draft: BoundaryDraft, record?: boolean) => void;
   onBoundaryApply?: () => void;
+  onBoundaryGestureStart?: () => void;
   onBoundaryGestureCommit?: (pts: Pt[]) => void;
   onBoundaryCancel?: () => void;
   siteW: number;
@@ -58,6 +102,8 @@ interface Props {
   lotDraft: { index: number; pts: Pt[] } | null;
   lotDraftValid: boolean;
   onLotVertexDrag: (vi: number, pt: Pt) => void;
+  onLotNodeKeyMove?: (vi:number,pt:Pt)=>void;
+  onLotGestureCommit?: (pts:Pt[])=>void;
   onLotVertexRevert: (orig: Pt[]) => void;
   onLotVertexAdd: (edgeIdx: number, pt: Pt) => void;
   onLotVertexRemove: (vi: number) => void;
@@ -93,7 +139,7 @@ const M = 28; // stable local projection offset, not a viewport boundary
 const W = 640;
 const H = 560;
 
-type DragKind = 'none' | 'pan' | 'green-move' | 'green-resize' | 'entrance-move' | 'lot-vertex' | 'site-vertex' | 'street';
+type DragKind = 'none' | 'pan' | 'green-move' | 'green-resize' | 'entrance-move' | 'lot-vertex' | 'site-vertex' | 'street' | 'junction';
 
 export default function PlanCanvas(props: Props) {
   const instanceId = useId();
@@ -107,16 +153,25 @@ export default function PlanCanvas(props: Props) {
   const stageRef = useRef<HTMLDivElement>(null);
   const [px, setPx] = useState({ w: W, h: H });
   const [cursor, setCursor] = useState<Pt | null>(null);
+  const [streetSnap,setStreetSnap]=useState<{point:Pt;streetId:string}|null>(null);
+  const [junctionMotion,setJunctionMotion]=useState<{from:Pt;to:Pt}|null>(null);
   const [layers, setLayers] = useState({ grid: true, dimensions: true, footprints: true, labels: true });
   const measured = useRef(false);
   const cameraMoved = useRef(false);
+  const drawingNewBoundary = props.boundaryDraft?.newSite === true;
   const viewportSize = useRef({ w: W, h: H });
   const pannedBetween = useRef(false);
   const outline = props.boundary ?? [{ x: 0, y: 0 }, { x: props.siteW, y: 0 }, { x: props.siteW, y: props.siteH }, { x: 0, y: props.siteH }];
-  const minX = Math.min(...outline.map((p) => M + p.x * s));
-  const maxX = Math.max(...outline.map((p) => M + p.x * s));
-  const minY = Math.min(...outline.map((p) => M + (props.siteH - p.y) * s));
-  const maxY = Math.max(...outline.map((p) => M + (props.siteH - p.y) * s));
+  const reference = props.siteContext?.survey;
+  const surveyAttached = reference && props.surveyRaster && reference.fingerprint === props.surveyRaster.fingerprint && reference.page === props.surveyRaster.page;
+  const surveyCorners = reference && surveyAttached ? [{ x: 0, y: 0 }, { x: reference.width, y: 0 }, { x: reference.width, y: reference.height }, { x: 0, y: reference.height }].map(p => surveyPoint(reference, p)) : [];
+  const draftOutline = props.boundaryDraft?.closed && !boundaryErrors(props.boundaryDraft.pts).length ? props.boundaryDraft.pts : outline;
+  const cameraOutline = [...draftOutline, ...(props.showContext || !outline.length ? surveyCorners : []), ...(props.showContext ? props.siteContext?.notes.flatMap(n => n.points) ?? [] : [])];
+  if (!cameraOutline.length) cameraOutline.push({ x: 0, y: 0 }, { x: props.siteW, y: props.siteH });
+  const minX = Math.min(...cameraOutline.map((p) => M + p.x * s));
+  const maxX = Math.max(...cameraOutline.map((p) => M + p.x * s));
+  const minY = Math.min(...cameraOutline.map((p) => M + (props.siteH - p.y) * s));
+  const maxY = Math.max(...cameraOutline.map((p) => M + (props.siteH - p.y) * s));
   const fitBounds = useRef({ minX, maxX, minY, maxY });
   useLayoutEffect(() => { fitBounds.current = { minX, maxX, minY, maxY }; }, [minX, maxX, minY, maxY]);
   const fittedView = (size: { w: number; h: number }) => {
@@ -125,8 +180,18 @@ export default function PlanCanvas(props: Props) {
     const top = size.w < 500 ? 78 : 96;
     const bottom = 72;
     const scale = Math.min(Math.max(80, size.w - side * 2) / Math.max(1, bounds.maxX - bounds.minX), Math.max(80, size.h - top - bottom) / Math.max(1, bounds.maxY - bounds.minY));
-    const w = size.w / scale, h = size.h / scale;
-    return { x: (bounds.minX + bounds.maxX - w) / 2, y: (bounds.minY + bounds.maxY - h) / 2 - (top - bottom) / (2 * scale), w, h };
+    let w = size.w / scale, h = size.h / scale;
+    const x = (bounds.minX + bounds.maxX - w) / 2;
+    const y = (bounds.minY + bounds.maxY - h) / 2 - (top - bottom) / (2 * scale);
+    if (!drawingNewBoundary) return { x, y, w, h };
+    // Keep the origin reachable inside the paper; pointer edits stop at its limits.
+    const extent = 500 * s;
+    const shrink = Math.min(1, extent / w, extent / h);
+    w *= shrink; h *= shrink;
+    const padX = 24 * w / size.w;
+    // Preserve the fitted view's clearance for the tools below the outline.
+    const padY = Math.max(bottom * w / size.w, y + h - (M + props.siteH * s));
+    return { x: Math.max(M - padX, Math.min(M + extent + padX - w, x)), y: Math.max(M + (props.siteH - 500) * s - padY, Math.min(M + props.siteH * s + padY - h, y)), w, h };
   };
   const fitSite = () => { cameraMoved.current = false; setVb(fittedView(viewportSize.current)); };
   useLayoutEffect(() => {
@@ -153,12 +218,15 @@ export default function PlanCanvas(props: Props) {
     return () => observer.disconnect();
     // Bounds update independently; selection and edits never reset the camera.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.fitMode]);
-  useLayoutEffect(() => { fitSite(); }, [props.fitTick]);
+  }, [props.fitMode, drawingNewBoundary]);
+  // Reframe only for an explicit Fit/reset or a change of drawing mode, not each edit.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useLayoutEffect(() => { fitSite(); }, [props.fitTick, drawingNewBoundary]);
 
   const resetDrag = () => {
     drag.current = { kind: 'none', startCX: 0, startCY: 0, origVb: { ...vb }, origGreen: null, origEntrance: null, origLotPts: null, lotVi: null, handle: null, moved: false };
     setPanning(false);
+    setJunctionMotion(null);
   };
 
   // Parent-driven cancel (Escape): a stuck gesture ref can never survive it.
@@ -168,6 +236,8 @@ export default function PlanCanvas(props: Props) {
   }, [props.cancelTick]);
   const svgRef = useRef<SVGSVGElement>(null);
   // Start point of a gesture on a fixed home, for the F06 explain-instead-of-pan hint.
+  const junctionStart = useRef<{network:StreetNetwork;point:Pt;inverse:DOMMatrix;pointer:DOMPoint}|null>(null);
+  const lotStart=useRef<{inverse:DOMMatrix;pointer:DOMPoint;point:Pt}|null>(null);
   const streetStart = useRef<{ index: number; y: number } | null>(null);
   const fixedStart = useRef<{ x: number; y: number; hinted: boolean; index: number } | null>(null);
   const drag = useRef<{
@@ -191,6 +261,7 @@ export default function PlanCanvas(props: Props) {
 
   // Pointer edits snap to whole meters; typed input keeps its own precision.
   const snap1 = (v: number) => Math.round(v);
+  const boundBoundaryPoint = (p: Pt): Pt => ({ x: Math.max(0, Math.min(500, p.x)), y: Math.max(0, Math.min(500, p.y)) });
 
   // Wheel zoom (non-passive so the page does not scroll while zooming the plan).
   useEffect(() => {
@@ -235,7 +306,7 @@ export default function PlanCanvas(props: Props) {
 
   // Placed home footprint: the engine's single placement rule (a reshape
   // draft is valid only while this footprint of the original rect survives).
-  const footprint = (p: Rect): Rect | null => placeFootprint(p, props.planning, props.layout.roads);
+  const footprint = (p: Rect): Rect | null => hasHome({ contents: props.contents }, p) ? placeFootprint(p, props.planning, props.layout.roads) : null;
 
   const onBackgroundDown = (e: React.PointerEvent) => {
     const menu = wrapRef.current?.querySelector<HTMLDetailsElement>('details[open]');
@@ -277,6 +348,8 @@ export default function PlanCanvas(props: Props) {
     e.stopPropagation();
     if (!props.lotDraft) return;
     (e.target as Element).setPointerCapture?.(e.pointerId);
+    const inverse=svgRef.current!.getScreenCTM()!.inverse();
+    lotStart.current={inverse,pointer:new DOMPoint(e.clientX,e.clientY).matrixTransform(inverse),point:props.lotDraft.pts[vi]};
     drag.current = {
       kind: 'lot-vertex', startCX: e.clientX, startCY: e.clientY,
       origVb: { ...vb }, origGreen: null, origEntrance: null,
@@ -305,6 +378,9 @@ export default function PlanCanvas(props: Props) {
     const r = svgRef.current?.getBoundingClientRect();
     if (r) { const m = toMetersNow(e.clientX, e.clientY, r); setCursor({ x: m.x, y: m.yUp }); }
     const d = drag.current;
+    if (props.editableStreets && props.streetStroke!==null && d.kind==='none') {
+      setStreetSnap(streetPick(e.clientX,e.clientY).snap);
+    }
     if (d.kind === 'none') return;
     if (!r) return;
     if (Math.abs(e.clientX - d.startCX) + Math.abs(e.clientY - d.startCY) > 3) d.moved = true;
@@ -326,6 +402,16 @@ export default function PlanCanvas(props: Props) {
       if (gate) props.onEntranceDrag(snap1((m1.x - gate.a.x) * gate.tangent.x + (m1.yUp - gate.a.y) * gate.tangent.y));
       return;
     }
+    if (d.kind === 'junction' && junctionStart.current) {
+      if (!d.moved) return;
+      const start=junctionStart.current;
+      // Preserve the grab offset and projection even if a warning resizes the paper.
+      const now=new DOMPoint(e.clientX,e.clientY).matrixTransform(start.inverse);
+      const to={x:Math.max(0,Math.min(500,snap1(start.point.x+(now.x-start.pointer.x)/s))),y:Math.max(0,Math.min(500,snap1(start.point.y-(now.y-start.pointer.y)/s)))};
+      setJunctionMotion({from:start.point,to});
+      props.onStreetNodeMove?.(start.network,start.point,to);
+      return;
+    }
     if (d.kind === 'street' && d.lotVi !== null) {
       const m = toMetersRef(e.clientX, e.clientY, r);
       if (!m) return;
@@ -336,14 +422,13 @@ export default function PlanCanvas(props: Props) {
     if (d.kind === 'site-vertex') {
       const m1 = toMetersRef(e.clientX, e.clientY, r);
       if (!m1 || d.lotVi == null || !props.boundaryDraft) return;
-      props.onBoundaryChange?.({ ...props.boundaryDraft, pts: props.boundaryDraft.pts.map((p, i) => i === d.lotVi ? { x: snap1(m1.x), y: snap1(m1.yUp) } : p) }, false);
+      props.onBoundaryChange?.({ ...props.boundaryDraft, pts: props.boundaryDraft.pts.map((p, i) => i === d.lotVi ? boundBoundaryPoint({ x: snap1(m1.x), y: snap1(m1.yUp) }) : p) }, false);
       return;
     }
-    if (d.kind === 'lot-vertex') {
-      const m1 = toMetersRef(e.clientX, e.clientY, r);
-      if (!m1 || d.lotVi == null) return;
-      props.onLotVertexDrag(d.lotVi, { x: snap1(m1.x), y: snap1(m1.yUp) });
-      return;
+    if (d.kind === 'lot-vertex' && lotStart.current) {
+      if(!d.moved||d.lotVi===null)return;
+      const start=lotStart.current,at=new DOMPoint(e.clientX,e.clientY).matrixTransform(start.inverse);
+      props.onLotVertexDrag(d.lotVi,boundBoundaryPoint({x:snap1(start.point.x+(at.x-start.pointer.x)/s),y:snap1(start.point.y-(at.y-start.pointer.y)/s)}));return;
     }
     if (!d.origGreen) return;
     const m0 = toMetersRef(d.startCX, d.startCY, r);
@@ -398,6 +483,20 @@ export default function PlanCanvas(props: Props) {
     return { x: (vx - M) / s, yUp: props.siteH - (vy - M) / s };
   };
 
+  const streetPick=(clientX:number,clientY:number)=>{
+    const matrix=svgRef.current!.getScreenCTM()!;
+    const at=new DOMPoint(clientX,clientY).matrixTransform(matrix.inverse());
+    const raw={x:Math.max(0,Math.min(500,(at.x-M)/s)),y:Math.max(0,Math.min(500,props.siteH-(at.y-M)/s))};
+    const network=props.editableStreets!;
+    const screenDistance=(point:Pt)=>{const q=new DOMPoint(X(point.x),Ypt(point.y)).matrixTransform(matrix);return Math.hypot(q.x-clientX,q.y-clientY);};
+    const node=streetNodes(network).find(point=>screenDistance(point)<=12);
+    const nearest=nearestStreetPoint(network,raw);
+    const snap=node ? {point:node,streetId:nearest?.streetId??''} : nearest && screenDistance(nearest.point)<=12 ? {point:{x:Math.round(nearest.point.x*1000)/1000,y:Math.round(nearest.point.y*1000)/1000},streetId:nearest.streetId} : null;
+    // Project a metre-snapped position onto the centreline, retaining its exact axis.
+    if(snap&&!node){const edge=network.segments.find(s=>s.id===snap.streetId)!;snap.point=edge.a.y===edge.b.y?{x:Math.max(Math.min(edge.a.x,edge.b.x),Math.min(Math.max(edge.a.x,edge.b.x),Math.round(raw.x))),y:edge.a.y}:{x:edge.a.x,y:Math.max(Math.min(edge.a.y,edge.b.y),Math.min(Math.max(edge.a.y,edge.b.y),Math.round(raw.y)))};}
+    return {point:snap?.point??{x:Math.round(raw.x),y:Math.round(raw.y)},snap};
+  };
+
   const nearestEdge = (pt: Pt, pts: Pt[]): number => {
     let bi = 0;
     let bd = Infinity;
@@ -426,11 +525,12 @@ export default function PlanCanvas(props: Props) {
       }
     } else if (d.kind === 'site-vertex') {
       if (d.moved && d.origLotPts) props.onBoundaryGestureCommit?.(d.origLotPts);
+    } else if (d.kind === 'junction') {
+      if(d.moved && junctionStart.current) props.onStreetNodeCommit?.(junctionStart.current.network);
     } else if (d.kind === 'street') {
       // Street gestures remain a parameter draft until Apply or Cancel.
     } else if (d.kind === 'lot-vertex') {
-      // Ephemeral draft: release keeps the live corners; Apply commits.
-      // A click without movement changes nothing.
+      if(d.moved&&d.origLotPts)props.onLotGestureCommit?.(d.origLotPts);
     } else if (d.moved) {
       props.onDraftCommit();
     }
@@ -440,6 +540,7 @@ export default function PlanCanvas(props: Props) {
   const onCancel = () => {
     const d = drag.current;
     if (d.kind === 'none') return;
+    if (d.kind === 'junction' && junctionStart.current) props.onStreetNodeCancel?.(junctionStart.current.network);
     if (d.kind === 'street' && streetStart.current) props.onStreetDrag?.(streetStart.current.index, streetStart.current.y);
     if (d.origGreen) props.onDraftChange({ ...d.origGreen });
     if (d.origEntrance) props.onEntranceCancel(d.origEntrance);
@@ -451,6 +552,12 @@ export default function PlanCanvas(props: Props) {
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
+    if(props.editableStreets) {
+      if(e.key==='Escape' && drag.current.kind==='junction') {e.preventDefault();e.stopPropagation();onCancel();return;}
+      if(e.key==='Escape' && props.streetStroke!==null) {e.preventDefault();e.stopPropagation();props.onStreetStop?.();return;}
+      if(e.key==='Enter' && props.streetStroke!==null) {e.preventDefault();e.stopPropagation();props.onStreetFinish?.();return;}
+      return;
+    }
     if (props.boundaryDraft) {
       if (e.key === 'Enter' && props.boundaryDraft.pts.length >= 3) { e.preventDefault(); props.onBoundaryChange?.({ ...props.boundaryDraft, closed: true }); }
       if (e.key === 'Escape') { e.stopPropagation(); onCancel(); props.onBoundaryCancel?.(); }
@@ -472,10 +579,12 @@ export default function PlanCanvas(props: Props) {
     }
   };
 
+  const focusedSpace=(props.spaceDrafts??props.layout.openSpaces)?.find(s=>s.id===props.activeSpace);
+  const focusSpace=()=>{if(!focusedSpace?.pts.length)return;const points=focusedSpace.pts.filter(p=>Number.isFinite(p.x+p.y));if(!points.length)return;const b=spaceBounds(points),ratio=px.w/px.h,units=Math.max(b.w*s/Math.max(100,px.w-80),b.h*s/Math.max(100,px.h-180),s*.05),w=px.w*units,h=w/ratio;cameraMoved.current=true;setVb({x:X(b.x+b.w/2)-w/2,y:Ypt(b.y+b.h/2)-h/2,w,h});};
   const g = props.layout.green;
   const gb = box(g);
   const gate = gateSegment({ w: props.siteW, h: props.siteH, boundary: props.boundaryDraft?.pts ?? props.boundary, entrance: props.entrance });
-  const egate = gate ? { x: X(gate.center.x), y: Ypt(gate.center.y), angle: -Math.atan2(gate.tangent.y, gate.tangent.x) * 180 / Math.PI, width: props.entrance.width * s } : null;
+  const egate = gate && !props.layout.empty ? { x: X(gate.center.x), y: Ypt(gate.center.y), angle: -Math.atan2(gate.tangent.y, gate.tangent.x) * 180 / Math.PI, width: props.entrance.width * s } : null;
   // Visible handles are 12 units; each carries a 28-unit transparent hit
   // area so pointer targets stay usable when the plan is fitted small.
   const handles = props.editing && props.greenSelected ? ([
@@ -497,7 +606,7 @@ export default function PlanCanvas(props: Props) {
   const conflictEdges = bd?.closed ? boundaryConflictEdges(bd.pts) : [];
   const finitePoints = bd?.pts.filter((p) => Number.isFinite(p.x + p.y)) ?? [];
   const changeVertex = (vi: number, p: Pt) => {
-    if (bd) props.onBoundaryChange?.({ ...bd, pts: bd.pts.map((q, i) => i === vi ? p : q) });
+    if (bd && (p.x !== bd.pts[vi].x || p.y !== bd.pts[vi].y)) props.onBoundaryChange?.({ ...bd, pts: bd.pts.map((q, i) => i === vi ? p : q) });
   };
   const removeVertex = (vi: number) => {
     if (bd && bd.pts.length > (bd.closed ? 3 : 0)) props.onBoundaryChange?.({ ...bd, pts: bd.pts.filter((_, i) => i !== vi) });
@@ -512,6 +621,10 @@ export default function PlanCanvas(props: Props) {
   const pixelsPerMetre = s * px.w / vb.w;
   const scaleMetres = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000].filter((m) => m * pixelsPerMetre <= 130).at(-1) ?? 1;
   const scalePixels = scaleMetres * pixelsPerMetre;
+
+  const selectedStreet=props.editableStreets?.segments.find(edge=>edge.id===props.streetSelected);
+  const connectorStreet=props.editableStreets?.segments.find(edge=>props.streetConnectorIds?.includes(edge.id));
+  const connectorMid=connectorStreet?{x:(connectorStreet.a.x+connectorStreet.b.x)/2,y:(connectorStreet.a.y+connectorStreet.b.y)/2}:null;
 
   return (
     <div className={bd ? 'canvastools boundary-editing' : 'canvastools'} ref={wrapRef}>
@@ -530,6 +643,13 @@ export default function PlanCanvas(props: Props) {
         </div></details>
         <button type="button" onClick={props.onToggleWide} aria-pressed={props.wide} aria-label={props.wide ? 'Dock plan' : 'Expand plan'} title={props.wide ? 'Dock plan' : 'Expand plan'}><ExpandIcon size={18} /></button>
       </div>
+      {props.editableStreets && <div className="street-banner" role="status"><strong>{props.streetStroke!==null?'Drawing street · Enter to finish':'Unapplied street draft'}</strong>
+        {selectedStreet && <span className="street-selection-readout">Street {props.editableStreets.segments.indexOf(selectedStreet)+1} · {selectedStreet.width} m wide · {streetLength(selectedStreet).toFixed(1)} m long</span>}
+        {junctionMotion && <span className="street-motion">Junction ({junctionMotion.to.x}, {junctionMotion.to.y}) · ΔX {junctionMotion.to.x-junctionMotion.from.x} m · ΔY {junctionMotion.to.y-junctionMotion.from.y} m. Connected rows/columns follow.</span>}
+        {props.streetSummary && <span className="street-quick-review">{props.streetSummary}</span>}
+        <div>{props.streetStroke!==null?<><button type="button" disabled={(props.streetStroke?.length??0)<2} onClick={props.onStreetFinish}>Finish drawing</button><button type="button" onClick={props.onStreetStop}>Cancel stroke</button></>:<button type="button" onClick={props.onStreetReview}>Review streets</button>}</div>
+      </div>}
+      {props.onBlockReview&&<div className="lot-plan-banner" role="status"><strong>{props.blockTitle??"Unapplied lot plan"}</strong><span>{props.blockSummary??'Blue source extent · preview changes before Apply'}</span><button type="button" onClick={props.onBlockReview}>{props.blockReviewLabel??(props.blockTitle?"Review housing mix":"Review lot plan")}</button></div>}
       {bd && <div className="boundary-banner" role="status">{bdValid ? `${formatM2(polyArea(bd.pts))} · boundary draft` : bd.closed ? 'Invalid boundary · correct the highlighted outline' : `${bd.pts.length} corners · open outline`}<div className="boundary-banner-actions">{bd.closed && <button type="button" disabled={!bdValid} onClick={() => props.onBoundaryApply?.()}>Apply</button>}{!bd.closed && bd.pts.length >= 3 && <button type="button" onClick={() => props.onBoundaryChange?.({ ...bd, closed: true })}>Close outline</button>}<button type="button" onClick={() => props.onBoundaryCancel?.()}>Cancel</button></div></div>}
       <div className="stage" ref={stageRef}>
       <svg
@@ -539,10 +659,11 @@ export default function PlanCanvas(props: Props) {
         viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
         tabIndex={0}
         role="img"
-        aria-label={`Site plan: ${props.layout.parcels.length} homes, ${props.layout.family} circulation`}
+        aria-label={`Site plan: ${props.layout.parcels.filter(p => hasHome({ contents: props.contents }, p)).length} homes, ${props.layout.family} circulation`}
         className={panning ? 'canvas panning' : props.panTool ? 'canvas pantool' : 'canvas'}
         onPointerDown={onBackgroundDown}
         onPointerMove={onMove}
+        onPointerLeave={() => setStreetSnap(null)}
         onPointerUp={onUp}
         onPointerCancel={onCancel}
         onKeyDown={onKeyDown}
@@ -570,10 +691,12 @@ export default function PlanCanvas(props: Props) {
             pointerEvents="none"
           />
         )}
+        {reference && surveyAttached && (() => { const m = surveyTransform(reference); return <g className="scaled-survey" pointerEvents="none" transform={`translate(${M} ${M + props.siteH * s}) scale(${s} ${-s})`}><image href={props.surveyRaster!.url} width={reference.width} height={reference.height} transform={`matrix(${m.a} ${m.b} ${m.c} ${m.d} ${m.e} ${m.f})`} opacity={0.7} /></g>; })()}
         {/* site boundary */}
-        <polygon
+        {!!outline.length && <polygon
           points={polyPoints(props.boundary ?? [{ x: 0, y: 0 }, { x: props.siteW, y: 0 }, { x: props.siteW, y: props.siteH }, { x: 0, y: props.siteH }])}
           className={props.siteSelected ? 'site selected' : 'site'}
+          fillOpacity={surveyAttached ? 0.08 : undefined}
           opacity={bd ? 0.2 : 1}
           onClick={(e) => {
             e.stopPropagation();
@@ -583,7 +706,7 @@ export default function PlanCanvas(props: Props) {
             }
             props.onSelectSite();
           }}
-        />
+        />}
         <g className="plan-geometry" opacity={bd ? 0.65 : 1} pointerEvents={bd ? 'none' : undefined}>
         {/* removed parcels (ghost outlines, drawn first so nothing is covered) */}
         {props.workingKeys !== null &&
@@ -618,7 +741,7 @@ export default function PlanCanvas(props: Props) {
           />
         ))}
         {layers.labels && (() => {
-          const road = props.layout.roads.filter((r) => r.h === 6).reduce<Rect | null>((best, r) => !best || r.w > best.w ? r : best, null);
+          const road = props.layout.roads.filter((r) => r.w >= r.h).reduce<Rect | null>((best, r) => !best || r.w > best.w ? r : best, null);
           return road && road.w * s / tscale > 230 ? <text pointerEvents="none" className="road-caption" x={X(road.x + road.w / 2)} y={Ypt(road.y + road.h / 2) + fs(4)} textAnchor="middle" fontSize={fs(13)}>{road.h.toFixed(1)} m STREET</text> : null;
         })()}
         {/* parcels + footprints: reshaped lots render true polygons */}
@@ -631,6 +754,7 @@ export default function PlanCanvas(props: Props) {
           const label = poly ? centroid(poly) : { x: p.x + p.w / 2, y: p.y + p.h / 2 };
           // One lot reads selected at a time; the whole-set highlight applies
           // only when Homes is selected with no specific lot (F05).
+          const vacant = !hasHome({ contents: props.contents }, p);
           const cls = isDraft
             ? (props.lotDraftValid ? 'parcel draft' : 'parcel invalid')
             : added
@@ -639,7 +763,7 @@ export default function PlanCanvas(props: Props) {
           return (
             <g
               key={parcelKey(p)}
-              role="button" tabIndex={0} aria-label={`Lot ${i + 1}, ${Math.round(poly ? polyArea(poly) : p.w * p.h)} square metres`}
+              role="button" tabIndex={0} aria-label={`Lot ${i + 1}, ${Math.round(poly ? polyArea(poly) : p.w * p.h)} square metres${vacant ? ', vacant' : ''}`}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); props.onSelectLot(i, e.shiftKey); } }}
               onPointerDown={(e) => {
                 if (props.panTool) { onBackgroundDown(e); return; }
@@ -671,7 +795,7 @@ export default function PlanCanvas(props: Props) {
               {poly ? (
                 <polygon
                   points={polyPoints(poly)}
-                  className={cls}
+                  className={`${cls}${vacant ? ' vacant' : ''}`}
                   onDoubleClick={(e) => {
                     e.stopPropagation();
                     if (!isDraft || !props.lotDraft) return;
@@ -685,17 +809,22 @@ export default function PlanCanvas(props: Props) {
                   }}
                 />
               ) : (
-                <rect {...b} className={cls} />
+                <rect {...b} className={`${cls}${vacant ? ' vacant' : ''}`} />
               )}
-              {f && layers.footprints && <rect {...box(f)} className="footprint" />}
-              <title>{`Lot ${i + 1}: ${Math.round(poly ? polyArea(poly) : p.w * p.h)} m²${poly ? ', reshaped polygon' : ''}${added ? ', new in preview' : ''}`}</title>
-              {layers.labels && <text pointerEvents="none" x={poly ? X(label.x) : b.x + b.width / 2} y={(poly ? Ypt(label.y) : b.y) + 13 * tscale} textAnchor="middle" className="lotno" fontSize={fs(14)} style={halo}>{b.width / tscale >= 54 ? `LOT ${String(i + 1).padStart(2, '0')}` : i + 1}</text>}
+              {f && layers.footprints && <rect {...box(f)} className="footprint" data-template={homeTemplate(props.planning,p).id} style={props.planning?.housing?{fill:housingColor(homeTemplate(props.planning,p).id),stroke:'#394055'}:undefined}><title>{homeTemplate(props.planning,p).name} · {f.w*f.h} m² built</title></rect>}
+              {f&&props.planning?.housing&&layers.footprints&&f.w*s/tscale>=24&&<text pointerEvents="none" x={X(f.x+f.w/2)} y={Ypt(f.y+f.h/2)+fs(3)} fontSize={fs(10)} textAnchor="middle" fill="#263044">T{homeTemplate(props.planning,p).id.slice(1)}</text>}
+              <title>{`Lot ${i + 1}: ${Math.round(poly ? polyArea(poly) : p.w * p.h)} m²${poly ? ', reshaped polygon' : ''}${added ? ', new in preview' : ''}${vacant ? ', vacant lot: home removed' : ''}`}</title>
+              {layers.labels && <text pointerEvents="none" x={poly ? X(label.x) : b.x + b.width / 2} y={(poly ? Ypt(label.y) : b.y) + 13 * tscale} textAnchor="middle" className="lotno" fontSize={fs(14)} style={halo}>{props.parcelReferences?.[i]??(b.width / tscale >= 54 ? `${vacant ? b.width / tscale >= 90 ? 'VACANT' : 'V' : 'LOT'} ${String(i + 1).padStart(2, '0')}` : i + 1)}</text>}
               {layers.labels && b.width / tscale >= 52 && b.height / tscale >= 90 && !poly && <text pointerEvents="none" x={b.x + b.width / 2} y={b.y + b.height - fs(10)} textAnchor="middle" className="parcel-area" fontSize={fs(12)}>{Math.round(p.w * p.h)} m²</text>}
 
             </g>
           );
         })}
         {/* reshape corner handles: drag to move, double-click to remove */}
+        {props.blockOutline&&<g className="block-source-outline" pointerEvents="none"><rect {...box(props.blockOutline)} fill="none" stroke="#075cff" strokeWidth={fs(3)} strokeDasharray={`${fs(7)} ${fs(4)}`}><title>Selected source extent · preview the subdivision before Apply</title></rect></g>}
+        {props.parcelProposal&&!props.parcelProposal.valid&&<g className="invalid-lot-proposal" pointerEvents="none">{props.parcelProposal.lots.map((lot,i)=>!props.workingKeys?.has(parcelKey(lot))?<g key={i} data-proposed-lot={i+1} className={props.parcelProposal?.inaccessible?.includes(i)?'inaccessible-lot':undefined}><rect {...box(lot)} fill="#dc283722" stroke="#b42933" strokeWidth={fs(3)} strokeDasharray={`${fs(6)} ${fs(3)}`}><title>Proposed Lot {i+1}{props.parcelProposal?.inaccessible?.includes(i)?' lacks street frontage':' · invalid draft'}</title></rect><text x={X(lot.x+lot.w/2)} y={Ypt(lot.y+lot.h/2)} textAnchor="middle" fontSize={fs(14)} fill="#9a1425" style={halo}>{lot.w*s/tscale<90?`P${i+1}${props.parcelProposal?.inaccessible?.includes(i)?' !':''}`:props.parcelProposal?.inaccessible?.includes(i)?`Lot ${i+1} · no frontage`:`Proposed ${i+1}`}</text></g>:null)}</g>}
+
+        {props.invalidHomeLots?.map(i=>{const r=props.layout.parcels[i];return r?<g key={`fit-${i}`} className="housing-fit-conflict" pointerEvents="none"><rect {...box(r)} fill="#dc283733" stroke="#b42933" strokeWidth={fs(3)}/><text x={X(r.x+r.w/2)} y={Ypt(r.y+r.h/2)} textAnchor="middle" fontSize={fs(13)} style={halo}>{r.w*s/tscale<150?"!":`Lot ${i+1} · home does not fit`}</text></g>:null;})}
         {props.lotDraft && props.lotDraft.pts.map((v, vi) => (
           <g key={`lv${vi}`}>
             <rect
@@ -703,7 +832,8 @@ export default function PlanCanvas(props: Props) {
               y={Ypt(v.y) - fs(14)}
               width={fs(28)}
               height={fs(28)}
-              className="hithandle"
+              className="hithandle" role="button" tabIndex={0} aria-label={`Lot corner ${vi+1}, ${v.x}, ${v.y} meters`}
+              onKeyDown={e=>{const delta:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]};if(delta[e.key]){e.preventDefault();e.stopPropagation();const[x,y]=delta[e.key],step=e.shiftKey?10:1;props.onLotNodeKeyMove?.(vi,boundBoundaryPoint({x:v.x+x*step,y:v.y+y*step}));}if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();e.stopPropagation();props.onLotVertexRemove(vi);}}}
               onPointerDown={(e) => onLotDown(e, vi)}
               onDoubleClick={(e) => {
                 e.stopPropagation();
@@ -715,12 +845,12 @@ export default function PlanCanvas(props: Props) {
               y={Ypt(v.y) - fs(6)}
               width={fs(12)}
               height={fs(12)}
-              className="handle"
+              className="handle" pointerEvents="none"
             />
           </g>
         ))}
         {/* green space: selectable, draggable/resizable when editing */}
-        <g display={props.layout.supportError ? 'none' : undefined}
+        <g display={props.spaceDrafts!==undefined||props.layout.openSpaces!==undefined||props.layout.empty || props.layout.supportError ? 'none' : undefined}
           onPointerDown={(e) => onGreenDown(e, null)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') props.onSelectGreen();
@@ -756,7 +886,7 @@ export default function PlanCanvas(props: Props) {
               y={-6}
               width={12}
               height={12}
-              className="handle"
+              className="handle" pointerEvents="none"
             />
           </g>
         ))}
@@ -780,12 +910,13 @@ export default function PlanCanvas(props: Props) {
             if (e.key === 'ArrowUp' || e.key === 'ArrowDown') { e.preventDefault(); e.stopPropagation(); props.onStreetDrag?.(i, Math.max(3, Math.min(props.siteH - 3, y + (e.key === 'ArrowUp' ? 1 : -1)))); }
           }}><circle r={16} fill="transparent" /><circle r={7} fill="#fff" stroke="#0b5fff" strokeWidth={2.5} /><text x={12} y={-10} fontSize={13} fill="#174184" style={halo} pointerEvents="none">Street {i + 1}</text></g>)}
         {bd && <g className="boundary-overlay">
+          <path className="boundary-workspace-limit" d={`M${vb.x} ${vb.y}h${vb.w}v${vb.h}h${-vb.w}Z M${X(0)} ${Ypt(500)}h${500 * s}v${500 * s}h${-500 * s}Z`} fillRule="evenodd" fill="#394353" fillOpacity={0.2} pointerEvents="none" />
           <rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" onPointerDown={(e) => {
             if (props.panTool || bd.closed) { onBackgroundDown(e); return; }
             e.stopPropagation();
             const r = svgRef.current!.getBoundingClientRect();
             const m = toMetersNow(e.clientX, e.clientY, r);
-            if (bd.pts.length < MAX_SITE_VERTICES) props.onBoundaryChange?.({ ...bd, pts: [...bd.pts, { x: snap1(m.x), y: snap1(m.yUp) }] });
+            if (bd.pts.length < MAX_SITE_VERTICES) props.onBoundaryChange?.({ ...bd, pts: [...bd.pts, boundBoundaryPoint({ x: snap1(m.x), y: snap1(m.yUp) })] });
           }} />
           {bd.closed ? <polygon points={polyPoints(finitePoints)} className={bdValid ? 'boundary-draft' : 'boundary-draft invalid'} pointerEvents="none" /> : <polyline points={polyPoints(finitePoints)} className="boundary-draft" pointerEvents="none" />}
           {conflictEdges.map(i => { const a = bd.pts[i], b = bd.pts[(i + 1) % bd.pts.length]; return <line key={`conflict-${i}`} className="boundary-conflict" x1={X(a.x)} y1={Ypt(a.y)} x2={X(b.x)} y2={Ypt(b.y)} strokeWidth={fs(5)} pointerEvents="none" />; })}
@@ -801,15 +932,63 @@ export default function PlanCanvas(props: Props) {
             e.stopPropagation();
             if (!bd.closed && vi === 0 && bd.pts.length >= 3) { props.onBoundaryChange?.({ ...bd, closed: true }); return; }
             (e.currentTarget as Element).setPointerCapture(e.pointerId);
+            props.onBoundaryGestureStart?.();
             drag.current = { kind: 'site-vertex', startCX: e.clientX, startCY: e.clientY, origVb: { ...vb }, origGreen: null, origEntrance: null, origLotPts: bd.pts.map((p) => ({ ...p })), lotVi: vi, handle: null, moved: false };
           }} onKeyDown={(e) => {
             if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); e.stopPropagation(); removeVertex(vi); }
             const delta: Record<string, [number, number]> = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
-            if (delta[e.key]) { e.preventDefault(); e.stopPropagation(); const [dx, dy] = delta[e.key]; changeVertex(vi, { x: v.x + dx * (e.shiftKey ? 10 : 1), y: v.y + dy * (e.shiftKey ? 10 : 1) }); }
+            if (delta[e.key]) { e.preventDefault(); e.stopPropagation(); const [dx, dy] = delta[e.key]; changeVertex(vi, boundBoundaryPoint({ x: v.x + dx * (e.shiftKey ? 10 : 1), y: v.y + dy * (e.shiftKey ? 10 : 1) })); }
           }}>
             <circle r={16} fill="transparent" /><circle r={6} className="boundary-point" /><text x={10} y={-9} fontSize={13} fill="#174184" style={halo} pointerEvents="none">{vi + 1}</text>
           </g>)}
         </g>}
+        {props.editableStreets && <g className="street-network-overlay">
+          <rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" onPointerDown={onBackgroundDown}/>
+          <defs><mask id={`${instanceId}-street-outside`} maskUnits="userSpaceOnUse" x={vb.x} y={vb.y} width={vb.w} height={vb.h}><rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="white"/><polygon points={polyPoints(outline)} fill="black"/></mask></defs>
+          <g pointerEvents="none" className="street-draft-corridors">
+            {props.streetAffectedLots?.map((lot,i)=><rect key={i} {...box(lot)} fill="#f9b34120" stroke="#b57116" strokeWidth={fs(2)} strokeDasharray={`${fs(5)} ${fs(3)}`}><title>Accepted lot affected by proposed entrance connection</title></rect>)}
+            {props.editableStreets.segments.map(edge=>{
+              const conflict=props.streetConflict?.segmentIds.includes(edge.id),connector=props.streetConnectorIds?.includes(edge.id);
+              return <rect key={edge.id} {...box(streetRect(edge))} className={`street-corridor${conflict?' conflict':''}${connector?' connector':''}`} fill={conflict?'#db35454d':connector?'#efae3659':'#075cff12'} stroke={conflict?'#b42933':connector?'#aa6410':'#436389'} strokeWidth={fs(conflict||connector?2:1)} strokeDasharray={conflict?`${fs(5)} ${fs(3)}`:undefined}><title>{conflict?'Conflicting':connector?'Proposed entrance connection:':'Draft'} street · {edge.width} m full width</title></rect>;
+            })}
+            {connectorStreet && connectorMid && <g className="street-connector-label"><path d={`M${X(connectorMid.x)} ${Ypt(connectorMid.y)}l${fs(20)} ${fs(-25)}`} fill="none" stroke="#9d590a" strokeWidth={fs(2)}/><text x={X(connectorMid.x)+fs(24)} y={Ypt(connectorMid.y)-fs(28)} fill="#864606" fontSize={fs(14)} style={halo}>Proposed {connectorStreet.width} m entrance link</text></g>}
+            {(props.streetConflict?.kind==='park'||props.streetConflict?.kind==='lot') && props.streetConflict.region && <rect {...box(props.streetConflict.region)} className="street-conflict-region" fill="#b4293320" stroke="#b42933" strokeWidth={fs(3)} strokeDasharray={`${fs(5)} ${fs(3)}`}><title>{props.streetConflict.kind==='lot'?'Held manual lot':'Protected open space and clearance'}</title></rect>}
+            {props.streetConflict?.kind==='boundary' && <g className="street-boundary-conflict">
+              {props.editableStreets.segments.filter(edge=>props.streetConflict!.segmentIds.includes(edge.id)).map(edge=><rect key={edge.id} {...box(streetRect(edge))} mask={`url(#${instanceId}-street-outside)`} fill="#dc2837b3"/>)}
+              {outline.map((a,i)=>{const b=outline[(i+1)%outline.length];const hit=props.editableStreets!.segments.filter(edge=>props.streetConflict!.segmentIds.includes(edge.id)).some(edge=>{const r=streetRect(edge),corners=rectCorners(r);const inside=(p:Pt)=>p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h;return inside(a)||inside(b)||corners.some((p,j)=>segmentsCross(a,b,p,corners[(j+1)%4]));});return hit?<line key={i} x1={X(a.x)} y1={Ypt(a.y)} x2={X(b.x)} y2={Ypt(b.y)} stroke="#b42933" strokeWidth={fs(4)}/>:null;})}
+            </g>}
+          </g>
+          {props.editableStreets.segments.filter(edge=>[edge.a.x,edge.a.y,edge.b.x,edge.b.y].every(Number.isFinite)).map((edge,i)=><g key={edge.id} role="button" tabIndex={props.streetStroke!==null?-1:0} aria-label={`Select street ${i+1}`} onPointerDown={e=>{if(props.panTool)onBackgroundDown(e);else e.stopPropagation();}} onClick={e=>{e.stopPropagation();if(pannedBetween.current){pannedBetween.current=false;return;}props.onStreetSelect?.(edge.id);}} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();props.onStreetSelect?.(edge.id);}}}>
+            <line x1={X(edge.a.x)} y1={Ypt(edge.a.y)} x2={X(edge.b.x)} y2={Ypt(edge.b.y)} stroke="transparent" strokeWidth={fs(22)}/>
+            <line x1={X(edge.a.x)} y1={Ypt(edge.a.y)} x2={X(edge.b.x)} y2={Ypt(edge.b.y)} stroke={props.streetConflict?.segmentIds.includes(edge.id)?'#b42933':props.streetConnectorIds?.includes(edge.id)?'#aa6410':edge.id===props.streetSelected?'#075cff':'#436389'} strokeWidth={fs(edge.id===props.streetSelected?4:2)} strokeDasharray={props.streetConflict?.segmentIds.includes(edge.id)?`${fs(6)} ${fs(4)}`:undefined} pointerEvents="none"/>
+          </g>)}
+          {streetNodes(props.editableStreets).map((point,i)=><g key={i} transform={`translate(${X(point.x)},${Ypt(point.y)}) scale(${tscale})`} className="street-node" role="button" tabIndex={props.streetStroke!==null?-1:0} aria-label={`Street junction ${i+1}, ${point.x}, ${point.y} meters`} onPointerDown={e=>{
+            if(props.panTool){onBackgroundDown(e);return;}
+            e.stopPropagation();e.currentTarget.setPointerCapture(e.pointerId);
+            const inverse=svgRef.current!.getScreenCTM()!.inverse();
+            junctionStart.current={network:props.editableStreets!,point,inverse,pointer:new DOMPoint(e.clientX,e.clientY).matrixTransform(inverse)};
+            drag.current={kind:'junction',startCX:e.clientX,startCY:e.clientY,origVb:{...vb},origGreen:null,origEntrance:null,origLotPts:null,lotVi:null,handle:null,moved:false};
+          }} onKeyDown={e=>{
+            const delta:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]};
+            if(delta[e.key]){e.preventDefault();e.stopPropagation();const[dX,dY]=delta[e.key],step=e.shiftKey?10:1;props.onStreetNodeKeyMove?.(point,{x:Math.max(0,Math.min(500,point.x+dX*step)),y:Math.max(0,Math.min(500,point.y+dY*step))});}
+          }}><circle r={16} fill="transparent"/><circle r={6} fill="#fff" stroke="#075cff" strokeWidth={2.5}/><text x={11} y={-9} fontSize={12} fill="#174184" style={halo} pointerEvents="none">{i+1}</text></g>)}
+          {props.streetConflict?.gap && <g className="street-gap-cue" pointerEvents="none"><line x1={X(props.streetConflict.gap.from.x)} y1={Ypt(props.streetConflict.gap.from.y)} x2={X(props.streetConflict.gap.to.x)} y2={Ypt(props.streetConflict.gap.to.y)} stroke="#b42933" strokeWidth={fs(4)} strokeDasharray={`${fs(3)} ${fs(3)}`}/><circle cx={X(props.streetConflict.gap.to.x)} cy={Ypt(props.streetConflict.gap.to.y)} r={fs(10)} fill="none" stroke="#b42933" strokeWidth={fs(2)}/><text x={X(props.streetConflict.gap.from.x)+fs(15)} y={Ypt(props.streetConflict.gap.from.y)-fs(17)} fill="#9e1521" fontSize={fs(14)} style={halo}>{props.streetConflict.kind==='entrance'?'Entrance gap':'Unjoined gap'} {props.streetConflict.gap.distance.toFixed(1)} m</text></g>}
+          {props.streetStroke!==null && streetSnap && <g className="street-snap-cue" pointerEvents="none"><circle cx={X(streetSnap.point.x)} cy={Ypt(streetSnap.point.y)} r={fs(10)} fill="#c9f5df" stroke="#087343" strokeWidth={fs(3)}/><text x={X(streetSnap.point.x)+fs(15)} y={Ypt(streetSnap.point.y)-fs(15)} fontSize={fs(14)} fill="#075e38" style={halo}>Join street {props.editableStreets.segments.findIndex(edge=>edge.id===streetSnap.streetId)+1} · ({streetSnap.point.x}, {streetSnap.point.y})</text></g>}
+          {props.streetStroke && <polyline points={polyPoints(props.streetStroke)} fill="none" stroke="#075cff" strokeWidth={fs(3)} strokeDasharray={`${fs(6)} ${fs(4)}`} pointerEvents="none"/>}
+          {props.streetStroke && props.streetStroke.map((point,i)=><circle key={i} cx={X(point.x)} cy={Ypt(point.y)} r={fs(5)} fill="#075cff" pointerEvents="none"/>)}
+          {props.streetStroke!==null && <rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" style={{cursor:'crosshair'}} onPointerDown={e=>{
+            if(props.panTool){onBackgroundDown(e);return;}e.stopPropagation();
+            const pick=streetPick(e.clientX,e.clientY);setStreetSnap(pick.snap);
+            props.onStreetPoint?.(pick.point);
+          }}/>}
+        </g>}
+        {props.siteContext?.notes.map(n => <g className={`site-context-mark ${n.kind}`} key={n.id} role="img" aria-label={`${n.label}, ${n.confidence === 'assumed' ? 'assumed' : 'documented by user'} ${n.kind}`} pointerEvents="none">
+          <title>{n.label} · {n.source} · {n.note || 'No additional notes'} · reference only</title>
+          {n.kind === 'street' ? <polyline points={polyPoints(n.points)} fill="none" stroke="#a36119" strokeWidth={fs(4)} strokeDasharray={`${fs(8)} ${fs(5)}`} /> : <circle cx={X(n.points[0].x)} cy={Ypt(n.points[0].y)} r={fs(8)} fill={n.kind === 'access' ? '#ffd28a' : '#caf3e3'} stroke="#485e57" strokeWidth={fs(2)} />}
+          <text x={X(n.points[0].x) + fs(12)} y={Ypt(n.points[0].y) - fs(12)} fontSize={fs(13)} fill="#4e3d26" style={halo}>{n.label} · {n.confidence === 'assumed' ? 'assumed' : 'source noted'}</text>
+        </g>)}
+        {props.noteDraft?.points.length ? <g pointerEvents="none"><polyline points={polyPoints(props.noteDraft.points.filter(p => Number.isFinite(p.x + p.y)))} fill="none" stroke="#075cff" strokeWidth={fs(3)} strokeDasharray={`${fs(6)} ${fs(4)}`} />{props.noteDraft.points.filter(p => Number.isFinite(p.x + p.y)).map((p, i) => <circle key={i} cx={X(p.x)} cy={Ypt(p.y)} r={fs(6)} fill="#fff" stroke="#075cff" strokeWidth={fs(2)} />)}</g> : null}
+        {props.contextPicking && !bd && <rect className="context-pick-surface" x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" style={{ cursor: 'crosshair' }} onPointerDown={e => { if (props.panTool) { onBackgroundDown(e); return; } e.stopPropagation(); const r = svgRef.current!.getBoundingClientRect(), p = toMetersNow(e.clientX, e.clientY, r); props.onContextPick?.({ x: Math.round(Math.max(-500, Math.min(1000, p.x)) * 10) / 10, y: Math.round(Math.max(-500, Math.min(1000, p.yUp)) * 10) / 10 }); }} />}
         {layers.dimensions && <g className="site-dimensions" pointerEvents="none">
           {outline.map((a, i) => {
             const b = outline[(i + 1) % outline.length];
@@ -825,7 +1004,10 @@ export default function PlanCanvas(props: Props) {
           })}
         </g>}
 
+        {props.spaceDrawing&&!props.panTool&&<rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" style={{cursor:'crosshair'}} onPointerDown={e=>{e.stopPropagation();const q=toMetersNow(e.clientX,e.clientY,svgRef.current!.getBoundingClientRect());props.onSpacePoint?.({x:Math.round(Math.max(0,Math.min(500,q.x))),y:Math.round(Math.max(0,Math.min(500,q.yUp)))});}}/>}
+        {(props.spaceDrafts??props.layout.openSpaces)&&<OpenSpaceLayer spaces={props.spaceDrafts??props.layout.openSpaces!} active={props.activeSpace??null} editing={!!props.spacesEditing} drawing={!!props.spaceDrawing} valid={props.spaceValid!==false} clearance={props.spaceClearance??0} X={X} Y={Ypt} scale={fs} pan={props.panTool} onSelect={id=>props.onSpaceSelect?.(id)} onPoint={q=>props.onSpacePoint?.(q)} onFinish={()=>props.onSpaceFinish?.()} onMove={(i,q,record)=>props.onSpaceMove?.(i,q,record)} onRemove={i=>props.onSpaceRemove?.(i)} onGesture={pts=>props.onSpaceGesture?.(pts)} onRevert={pts=>props.onSpaceRevert?.(pts)} pointer={(x,y)=>{const q=toMetersNow(x,y,svgRef.current!.getBoundingClientRect());return {x:q.x,y:q.yUp};}}/>}
       </svg>
+      {props.layout.empty && !bd && !props.showContext && !props.spacesEditing && !props.spaceDrafts?.length && !surveyAttached && <div className="plan-empty-message"><strong>{outline.length ? 'Boundary ready' : 'A new beginning'}</strong><p>{outline.length ? 'Generate a layout when you are ready to explore homes, streets and open space.' : 'Draw your site boundary to start planning.'}</p></div>}
       <div className="drawing-scale" aria-hidden="true">
         <span className="local-axis">Y ↑</span>
         <svg width="145" height="34" viewBox="0 0 145 34">
@@ -833,8 +1015,11 @@ export default function PlanCanvas(props: Props) {
           <rect x="0.5" y="18" width={scalePixels / 2} height="5" fill="#222630" /><rect x={scalePixels / 2} y="18" width={scalePixels / 2} height="5" fill="#fff" stroke="#222630" />
         </svg><span>LOCAL METRES</span>
       </div>
-      <div className="viewport-readout" aria-hidden="true"><span>ZOOM <b>{Math.round(fittedView(px).w / vb.w * 100)}%</b></span><span>{cursor ? `X ${cursor.x.toFixed(1)} m · Y ${cursor.y.toFixed(1)} m` : 'LOCAL PLAN'}</span><span>SNAP 1 m</span></div>
+      {!props.editableStreets && !props.onBlockReview && <div className="viewport-readout" aria-hidden="true"><span>ZOOM <b>{Math.round(fittedView(px).w / vb.w * 100)}%</b></span><span>{cursor ? `X ${cursor.x.toFixed(1)} m · Y ${cursor.y.toFixed(1)} m` : 'LOCAL PLAN'}</span><span>SNAP 1 m</span></div>}
       </div>
+      {props.spaceDrawing&&<div className="space-drawing-actions"><strong>Place corners · click first corner to close</strong><button type="button" disabled={(props.spaceDrafts?.find(s=>s.id===props.activeSpace)?.pts.length??0)<3} onClick={props.onSpaceFinish}>Finish outline</button></div>}
+      {props.spacesEditing&&<p className="space-drawing-readout">{props.spaceDrafts?.find(s=>s.id===props.activeSpace)?.name??'Select or add an open space'} · unapplied draft · {props.spaceValid?'Review before Apply':'Needs attention; accepted plan retained'} {focusedSpace&&<button type="button" onClick={focusSpace}>Fit selected space</button>}</p>}
+      <HousingDrawingKey planning={props.planning} contents={props.contents} lots={props.layout.parcels} selectedLot={props.selectedLot}/>
     </div>
   );
 }

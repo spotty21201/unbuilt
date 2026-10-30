@@ -78,7 +78,7 @@ check("refuse-record-nostate", parseProject({ app: "UNBUILT decision record", ex
 // Every refusal explains itself.
 check(
   "refuse-reasons",
-  [parseProject(null), parseProject({ ...saved, version: 9 })].every((r) => !r.ok && typeof r.error === "string" && r.error.length > 0),
+  [parseProject(null), parseProject({ ...saved, version: 99 })].every((r) => !r.ok && typeof r.error === "string" && r.error.length > 0),
   true,
 );
 

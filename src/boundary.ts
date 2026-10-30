@@ -1,11 +1,14 @@
 // Site outlines use local Cartesian meters; legacy rectangles remain valid.
 import { allFinite, isSimple, polyArea, rectCorners, segmentsCross, type Pt } from "./polygon.ts";
 
+import { contentsErrors, hasBoundary, type PlanContents } from './contents.ts';
 import { planningErrors, type PlanningParameters } from "./planning.ts";
+import { costErrors, type CostAssumptions } from './costs.ts';
 
-export interface SiteFrame { w: number; h: number; boundary?: Pt[]; planning?: PlanningParameters }
+export interface SiteFrame { w: number; h: number; boundary?: Pt[]; planning?: PlanningParameters; contents?: PlanContents; costAssumptions?: CostAssumptions }
 export const MAX_SITE_VERTICES = 64;
 export function siteBoundary(site: SiteFrame): Pt[] {
+  if (!hasBoundary(site)) return [];
   return site.boundary ?? rectCorners({ x: 0, y: 0, w: site.w, h: site.h });
 }
 export function siteArea(site: SiteFrame): number { return polyArea(siteBoundary(site)); }
@@ -18,8 +21,11 @@ export function boundaryErrors(pts: Pt[]): string[] {
   return [];
 }
 export function siteFrameErrors(site: SiteFrame): string[] {
+  if (site.costAssumptions !== undefined) { const errors = costErrors(site.costAssumptions); if (errors.length) return errors; }
   if (!Number.isFinite(site.w) || !Number.isFinite(site.h) || site.w <= 0 || site.h <= 0 || site.w > 500 || site.h > 500) return ["Site extents must be positive and at most 500 m."];
+  if (site.contents !== undefined) { const errors = contentsErrors(site.contents); if (errors.length) return errors; }
   if (site.planning !== undefined) { const errors = planningErrors(site.planning); if (errors.length) return errors; }
+  if (!hasBoundary(site)) return site.boundary === undefined ? [] : ["A blank plan cannot carry a boundary."];
   if (!site.boundary) return [];
   const errors = boundaryErrors(site.boundary);
   if (errors.length) return errors;

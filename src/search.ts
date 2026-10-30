@@ -15,6 +15,7 @@ import {
   type Site,
   type StableEdits,
 } from "./geometry.ts";
+import { hasHome, hasLayout } from './contents.ts';
 import { polyArea } from "./polygon.ts";
 import { evaluateLayout } from "./economics.ts";
 import type { Candidate, Locks, ProductProfile, Rect, SearchRanges, SearchRun } from "./schema.ts";
@@ -110,6 +111,12 @@ export function runSearch(req: SearchRequest): SearchRun {
     seed: req.seed,
     lotEdits: req.lotEdits ?? {},
   });
+  if (!hasLayout(req.site) || req.site.planning?.lotPlan!==undefined) return {
+    snapshotHash, seed: req.seed, tested: 0, valid: 0, qualified: 0,
+    breakdown: { geometryValid: 0, applicable: 0, priceOk: 0, targetOk: 0 },
+    truncated: false, elapsedMs: Date.now() - t0, candidates: [],
+    blockers: [req.site.planning?.lotPlan!==undefined?'Manual lots are held. Use Blocks & lots for direct edits, or explicitly preview generated lots before searching frontage alternatives.':'Generate a layout inside the accepted boundary before searching alternatives.'],
+  };
   const combos: Array<{ family: "spine" | "loop"; frontage: number }> = [];
   for (const family of req.ranges.families) {
     for (const frontage of req.ranges.frontages) combos.push({ family, frontage });
@@ -125,13 +132,14 @@ export function runSearch(req: SearchRequest): SearchRun {
   let targetOkCount = 0;
   for (const { family, frontage } of tested) {
     const layout = buildLayout(req.site, family, frontage);
+    if (layout.empty) { geometryVetoes++; continue; }
     const carried = editsForLayout(layout.parcels, req.lotEdits ?? {});
     const validationErrors = validateLayout(req.site, layout, carried);
-    const greenHeld = checkGreenLock(req.locks.green, layout.green).length === 0;
+    const greenHeld = req.site.planning?.openSpaces!==undefined?JSON.stringify(layout.openSpaces)===JSON.stringify(req.site.planning.openSpaces):checkGreenLock(req.locks.green, layout.green).length===0;
     const priceOk = req.site.planning?.priceLocked === false || req.selectedPrice <= req.locks.priceCeiling;
-    const failing = failingLots(layout.parcels, req.profile, { lotEdits: carried, roads: layout.roads });
-    const applicable = failing.length === 0 && layout.parcels.length > 0;
+    const failing = failingLots(layout.parcels, req.profile, { lotEdits: carried, roads: layout.roads }).filter(i => hasHome(req.site, layout.parcels[i]));
     const quantities = deriveQuantities(req.site, layout, carried);
+    const applicable = failing.length === 0 && quantities.n > 0;
     const econ = evaluateLayout(req.site, layout, req.selectedPrice, {
       ownerExpectation: req.locks.ownerExpectation,
       targetFraction: req.locks.targetFraction,

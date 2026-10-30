@@ -1,0 +1,10 @@
+{
+  "before": {
+    "photoCount": 1,
+    "greenLocked": true
+  },
+  "after": {
+    "photoCount": 1,
+    "greenLocked": false
+  }
+}
