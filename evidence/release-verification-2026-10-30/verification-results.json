@@ -1,0 +1,223 @@
+{
+  "date": "2026-10-30",
+  "asset": "/assets/index-BR3nNjEc.js",
+  "rootChecks": 711,
+  "browserSuites": 35,
+  "browserChecks": 971,
+  "build": "passed",
+  "lint": "passed",
+  "suites": [
+    {
+      "suite": "ai-browser.mjs",
+      "passed": true,
+      "checks": 28,
+      "log": "ai-browser/run.log"
+    },
+    {
+      "suite": "boundary-browser.cjs",
+      "passed": true,
+      "checks": 50,
+      "log": "boundary-browser/rerun.log",
+      "initialExit": 1
+    },
+    {
+      "suite": "boundary-pointer-range-browser.cjs",
+      "passed": true,
+      "checks": 31,
+      "log": "boundary-pointer-range-browser/run.log"
+    },
+    {
+      "suite": "browser-zoom.cjs",
+      "passed": true,
+      "checks": 9,
+      "log": "browser-zoom/run.log"
+    },
+    {
+      "suite": "development-browser.cjs",
+      "passed": true,
+      "checks": 39,
+      "log": "development-browser/run.log"
+    },
+    {
+      "suite": "dynamic-inspector-browser.cjs",
+      "passed": true,
+      "checks": 59,
+      "log": "dynamic-inspector-browser/run.log"
+    },
+    {
+      "suite": "feasibility-browser.cjs",
+      "passed": true,
+      "checks": 33,
+      "log": "feasibility-browser/run.log"
+    },
+    {
+      "suite": "feasibility-zoom.cjs",
+      "passed": true,
+      "checks": 5,
+      "log": "feasibility-zoom/run.log"
+    },
+    {
+      "suite": "housing-browser.cjs",
+      "passed": true,
+      "checks": 39,
+      "log": "housing-browser/run.log"
+    },
+    {
+      "suite": "housing-review-browser.cjs",
+      "passed": true,
+      "checks": 34,
+      "log": "housing-review-browser/run.log"
+    },
+    {
+      "suite": "housing-zoom.cjs",
+      "passed": true,
+      "checks": 7,
+      "log": "housing-zoom/run.log"
+    },
+    {
+      "suite": "lot-review-followup-browser.cjs",
+      "passed": true,
+      "checks": 12,
+      "log": "lot-review-followup-browser/run.log"
+    },
+    {
+      "suite": "open-spaces-browser.cjs",
+      "passed": true,
+      "checks": 31,
+      "log": "open-spaces-browser/run.log"
+    },
+    {
+      "suite": "open-spaces-zoom.cjs",
+      "passed": true,
+      "checks": 7,
+      "log": "open-spaces-zoom/run.log"
+    },
+    {
+      "suite": "parcels-browser.cjs",
+      "passed": true,
+      "checks": 43,
+      "log": "parcels-browser/run.log"
+    },
+    {
+      "suite": "parcels-zoom.cjs",
+      "passed": true,
+      "checks": 6,
+      "log": "parcels-zoom/run.log"
+    },
+    {
+      "suite": "planner-feedback-browser.cjs",
+      "passed": true,
+      "checks": 41,
+      "log": "planner-feedback-browser/rerun.log",
+      "initialExit": 1
+    },
+    {
+      "suite": "planner-feedback-fixes-browser.cjs",
+      "passed": true,
+      "checks": 54,
+      "log": "planner-feedback-fixes-browser/run.log"
+    },
+    {
+      "suite": "planner-feedback-fixes-storage.cjs",
+      "passed": true,
+      "checks": 2,
+      "log": "planner-feedback-fixes-storage/run.log"
+    },
+    {
+      "suite": "planner-feedback-fixes-zoom.cjs",
+      "passed": true,
+      "checks": 12,
+      "log": "planner-feedback-fixes-zoom/run.log"
+    },
+    {
+      "suite": "planner-review-followup-browser.cjs",
+      "passed": true,
+      "checks": 26,
+      "log": "planner-review-followup-browser/run.log"
+    },
+    {
+      "suite": "project-lifecycle-browser.cjs",
+      "passed": true,
+      "checks": 20,
+      "log": "project-lifecycle-browser/run.log"
+    },
+    {
+      "suite": "projects-browser.cjs",
+      "passed": true,
+      "checks": 55,
+      "log": "projects-browser/run.log"
+    },
+    {
+      "suite": "saved-alternatives-browser.cjs",
+      "passed": true,
+      "checks": 36,
+      "log": "saved-alternatives-browser/run.log"
+    },
+    {
+      "suite": "saved-alternatives-zoom.cjs",
+      "passed": true,
+      "checks": 7,
+      "log": "saved-alternatives-zoom/run.log"
+    },
+    {
+      "suite": "site-context-browser.cjs",
+      "passed": true,
+      "checks": 33,
+      "log": "site-context-browser/run.log"
+    },
+    {
+      "suite": "site-context-recovery-browser.cjs",
+      "passed": true,
+      "checks": 23,
+      "log": "site-context-recovery-browser/run.log"
+    },
+    {
+      "suite": "site-context-zoom.cjs",
+      "passed": true,
+      "checks": 8,
+      "log": "site-context-zoom/run.log"
+    },
+    {
+      "suite": "stitch-viewport-browser.cjs",
+      "passed": true,
+      "checks": 38,
+      "log": "stitch-viewport-browser/run.log"
+    },
+    {
+      "suite": "street-review-browser.cjs",
+      "passed": true,
+      "checks": 33,
+      "log": "street-review-browser/run.log"
+    },
+    {
+      "suite": "streets-browser.cjs",
+      "passed": true,
+      "checks": 57,
+      "log": "streets-browser/run.log"
+    },
+    {
+      "suite": "streets-zoom.cjs",
+      "passed": true,
+      "checks": 7,
+      "log": "streets-zoom/run.log"
+    },
+    {
+      "suite": "open-spaces-integration.cjs",
+      "passed": true,
+      "checks": 17,
+      "log": "open-spaces-browser/integration.log"
+    },
+    {
+      "suite": "ai-browser.mjs (200% zoom)",
+      "passed": true,
+      "checks": 29,
+      "log": "ai-zoom.log"
+    },
+    {
+      "suite": "development-browser.cjs (200% zoom)",
+      "passed": true,
+      "checks": 40,
+      "log": "development-zoom.log"
+    }
+  ]
+}

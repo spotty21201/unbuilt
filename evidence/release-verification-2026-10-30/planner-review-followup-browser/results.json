@@ -1,0 +1,46 @@
+{
+  "asset": "/assets/index-BR3nNjEc.js",
+  "checks": [
+    "removed home leaves 19 homes and original street and park allocation",
+    "parameter preview explains the blocked restoration beside the action",
+    "blocked reason distinguishes unfinished editing from a fit conflict",
+    "preview does not change accepted frontage or removed-home reservation",
+    "Cancel makes restoration available without applying frontage",
+    "restoration after cancelling returns 20 homes",
+    "applying frontage preserves one vacant overlapping lot",
+    "restoration after applying passes actual fit checks and fills generated lots",
+    "invalid outline highlights the conflicting edges and prevents Apply",
+    "dragging the conflicting corner back repairs the outline visibly",
+    "Apply accepts only repaired geometry with restored corner",
+    "Cancel invalid edit retains the previously accepted outline",
+    "1440: New project action is visible before scrolling",
+    "1440: library has no horizontal overflow",
+    "1440: keyboard shortcut scrolls to and focuses project name",
+    "1024: New project action is visible before scrolling",
+    "1024: library has no horizontal overflow",
+    "1024: keyboard shortcut scrolls to and focuses project name",
+    "375: New project action is visible before scrolling",
+    "375: library has no horizontal overflow",
+    "375: keyboard shortcut scrolls to and focuses project name",
+    "mobile project creation preserves the existing project",
+    "saved scope remains accessible with explicit exclusions and reattachment",
+    "opening original project restores its accepted revised scheme",
+    "mobile selected-object action still focuses the correct inspector",
+    "no uncaught browser errors"
+  ],
+  "errors": [],
+  "sizes": [
+    {
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "width": 375,
+      "height": 812
+    }
+  ]
+}

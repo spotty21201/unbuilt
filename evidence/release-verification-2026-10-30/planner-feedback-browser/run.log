@@ -1,0 +1,50 @@
+PASS five-point drawn site has hand-calculated 10,250 m² area
+PASS unsupported current access is disclosed before Apply
+PASS boundary review lists accepted and proposed measured outcomes
+PASS drawing leaves the accepted plan saved unchanged
+PASS choosing the sloping west edge enables a measured layout before Apply
+PASS draft preview shows the reserved park footprint
+PASS candidate entrances show measured geometric checks and access assumptions
+PASS apply keeps all five corners and selected boundary entrance
+PASS applied sloping site retains roads, homes and measured outcome
+PASS one Undo restores entire accepted sample
+PASS Redo restores polygon and entrance together
+PASS reload restores exact polygon and boundary-edge access
+PASS selected existing boundary exposes working along-edge entrance placement
+PASS sloping entrance drag projects and snaps along the selected edge
+PASS crossing edges are specifically highlighted
+PASS invalid boundary cannot apply
+PASS repair clears segment highlights and restores valid review
+PASS cancel preserves accepted geometry and entrance
+PASS minimum park area is an explicit saved commitment
+PASS area minimum blocks a smaller park while exact shape is unlocked
+PASS unlocked shape may change while maintaining minimum area
+PASS capacity question explains what is and is not established
+PASS what else can change prepares an investigation instead of demanding comparison
+PASS investigation reaches proposal review without silently running search
+ASSISTANT STATE AI investigation
+AI settings
+
+AI not configured
+
+Context: green · grove-a. Only supported inputs and measured facts are sent to the active connection, together with your intention. Source notes, media and saved alternatives stay out.
+
+Intention for AIAsk AI
+
+Local measured tools
+
+Assistant: Ready
+
+What is true?Why did it change?What could we try?
+ASK ABOUT OPEN SPACE A
+Ask
+AssertionError [ERR_ASSERTION]: every successful search discloses held inputs and bounded scope
+    at check (/home/spotty/projects/unbuilt/tests/planner-feedback-browser.cjs:4:35)
+    at /home/spotty/projects/unbuilt/tests/planner-feedback-browser.cjs:50:53 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

@@ -515,3 +515,38 @@ professional compliance claim is introduced.
   fractions below the geometry rounding precision can affect substantial money.
 - Feature 8 independent testing remains deferred. Preserve its and the housing
   retest's tester prompts byte-for-byte. No later roadmap scope is implied.
+
+## Saved alternatives — owner Feature 10
+
+- Preserve the owner's requested title/numbering; this was historical roadmap
+  item 13. Work through feasibility, including its tester prompt, was committed
+  and pushed as e2dc09f before completing this increment.
+- Store at most 20 independent PersistedState snapshots at project level, outside
+  the active state and global plan history. Save working inputs or explicitly
+  select a current unapplied search preview; never apply it as a side effect.
+- Rename and annotate snapshot metadata explicitly. Working edits and note edits
+  cannot overwrite the saved geometry. An edited version becomes a new scheme.
+- Compare each side using its own saved assumptions, disclose combined effects
+  and independently fitted drawings, and withhold unavailable finances.
+- Reopening requires before/after review and explicit confirmation; preserve the
+  previous working inputs through Undo/Redo and keep the collection unchanged.
+- Project v12 and record v13 carry saved alternatives, including an empty array;
+  older disguised envelopes refuse. Validate all snapshots before restoring any.
+  The active-plan calculation snapshot does not contain the scheme collection.
+- Browser save failures retain in-memory schemes and existing disk data with an
+  export recovery route. Original media, active drafts and session history are
+  outside saved snapshots. Feature 8 independent testing remains deferred.
+
+## Feature 11 — 30 October 2026
+
+The owner authorized a real assistant and then specified changeable primary/alternate routing with secrets to follow later. Use a narrow chat-completion tool adapter with server-owned, administrator-protected routing profiles. Keep keys outside projects and source control; rotation/removal and explicit connection tests require no rebuild. Do not silently switch to a second provider. Real access remains unverified until actual routing and secrets arrive.
+
+Reuse feasibility experiments for AI proposals, measurement, drawing review and Apply/history. A model may propose supported inputs or select engine-composed facts, never supply financial truth or mutate work. Use exact snapshot bindings for the new receipts while preserving historical tool hashes. Send an allowlisted context of supported inputs and measured facts, excluding source notes/media/saved alternatives. Scripted fixtures are labeled as such and never count as real-model verification.
+
+## Feature 12 — 30 October 2026
+
+The owner authorized terrain, drainage and phasing with appropriate data/calculations, and asked to retain tester prompts for Features 11 and 12. Both prompts are saved; no independent reviewer was launched. No actual project elevation, storm or phase data was supplied. Use entered observations/assumptions and explicitly selected fictional examples rather than inventing site conditions.
+
+A complete local-metre elevation grid supplies piecewise planar facets, clipped to the real boundary for slopes and exact split cut/fill to an optional whole-site platform. Drainage is a bounded Rational peak screening with declared catchment/storage applicability, separate gross rainfall volume and an optional entered outfall capacity. Phasing allocates accepted construction/contingency/shared budgets by stable occupied lots and shares, with month-end cash reconciled to accepted surplus. These studies do not automatically add budgets or establish design/financing suitability.
+
+Valid observations persist even while coverage/applicability/assignments need review, but affected results remain unavailable. Changed sites/lots retain source data and obsolete references; remapping is explicit. Extend project/record/snapshot to 13/14/11 with downgrade guards, including studies inside saved schemes. Keep existing AI keys/routing deferred; only computed study facts and limits may enter its model context.

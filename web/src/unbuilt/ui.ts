@@ -54,7 +54,7 @@ export function formatM2(v: number): string {
 
 // The deterministic tool server runs beside the static app (same host,
 // port 5174 in this increment). Absolute base because no dev proxy exists;
-// every assistant call degrades to local computation when unreachable.
+// measured tools can compute locally; AI failures remain explicit.
 export function serverBase(): string {
   return `${window.location.protocol}//${window.location.hostname}:5174`;
 }
@@ -66,3 +66,5 @@ export function formatGap(v: number): string {
 }
 
 export const housingColor=(id:string)=>['#dcd0ec','#bcdce3','#f0dab2','#c4dfc7','#e9c7cc'][Number(id.slice(1))%5];
+
+export const PHASE_COLORS=['#467db0','#9b6aad','#cb8141','#3c9781','#b45973','#758b40','#8a7760','#597486'];

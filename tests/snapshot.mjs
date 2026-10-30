@@ -31,7 +31,7 @@ function cedarSnapshot() {
 }
 
 const good = cedarSnapshot();
-check("version-is-10", SNAPSHOT_VERSION, 10);
+check("version-is-11", SNAPSHOT_VERSION, 11);
 check("accepts-cedar", validateSnapshot(good).ok, true);
 
 // Key order in must not affect the hash: reversed top-level object hashes same.

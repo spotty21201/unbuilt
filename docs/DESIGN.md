@@ -402,3 +402,27 @@ Apply commits one history step; Cancel/Close/Escape retain accepted work. Narrow
 layouts stack controls and drawings; monetary tables scroll within their region,
 while the Apply/Cancel footer remains reachable. Held price and market uncertainty
 remain visible. See PRD v0.14 and feasibility evidence for scope and verification.
+
+## Saved alternatives — owner Feature 10
+
+Alternatives in the workspace navigation opens the project's saved scheme review;
+the inspector and blank-plan setup also expose Saved alternatives. Independent
+named inputs and notes sit beside two real drawings and measured comparison.
+Each scheme uses its own geometry and financial assumptions. Reopening explicitly
+reviews the working plan against the snapshot, then replaces working inputs in
+one undoable step. Metadata and collection edits do not rewrite plan history.
+Native modal focus, reachable close/reopen controls, stacked narrow drawings and
+contained table scrolling preserve the established review behavior. Notes remain
+plain multiline text with explicit Save/Cancel. See PRD v0.15.
+
+## Feature 11 — AI investigations and administration
+
+The planning assistant separates AI investigation from local measured tools. A selection-bound intention yields a clarifying question, known limitation, measured finding selection or explicit hypothetical trial. Inputs are reviewable before Run; measured results precede the existing two-drawing feasibility review; Apply is the single history boundary. Discard, cancellation and stale-response rejection retain the accepted plan.
+
+AI settings is a native modal outside project data. Administrator credentials and replacement key drafts are ephemeral; primary/alternate routes and write-only saved keys live on the server. Unsaved routing is guarded, focus returns to the opener and the modal reflows at narrow width and real browser zoom. Availability distinguishes unconfigured, untested and a verified tool response without claiming verified feasibility.
+
+## Feature 12 — development study review
+
+Terrain, drainage and phasing opens a native draft review beside existing feasibility tools and from blank/boundary-only setup. Three study views share the frozen plan context, a viewport-fitted screening map, accepted-versus-draft results and explicit Apply/Cancel. No project inputs are supplied on open. Source metadata, applicability declarations, numerical entry and example choices remain visible. Phase assignment supports map selection and an accessible lot table, with a named color key and screen-sized focus/text.
+
+Results distinguish quantities from declared assumptions and verified design. Terrain coverage gaps, inapplicable peak methods and stale/unassigned phase references withhold their calculations while preserving entered data. Source snapshots survive history, project lifecycle, portable files and saved alternatives; comparisons expose each side's independent sources/assumptions. Additional civil budgets still require the existing separate cost review.

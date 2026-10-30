@@ -1,3 +1,4 @@
+import type { DevelopmentInputs } from './development-inputs.ts';
 import {siteOpenSpaces,spaceArea,spaceBounds,spaceSiteErrors,type OpenSpace} from './open-spaces.ts';
 import {homeTemplate} from './housing.ts';
 import { disconnectedStreets, nearestStreetPoint, onStreet, streetRect } from './streets.ts';
@@ -61,6 +62,7 @@ export interface Entrance {
 }
 
 export interface Site {
+  development?:DevelopmentInputs;
   costAssumptions?: CostAssumptions;
   w: number;
   h: number;

@@ -1,0 +1,7 @@
+{
+  "checks": [
+    "Closing and reopening an ordinary temporary Chromium profile preserves named accepted projects and active identity",
+    "Clearing this disposable profile’s site data removes the test project; a fresh sample is initialized"
+  ],
+  "limitations": "Ordinary Chromium profile only. No guarantee for private browsing, browser cleanup policies, disk loss or another device."
+}

@@ -1,0 +1,223 @@
+AssertionError [ERR_ASSERTION]: real tool server explains an alternative with measured results and no model claim
+    at check (/home/spotty/projects/unbuilt/tests/open-spaces-integration.cjs:2:109)
+    at /home/spotty/projects/unbuilt/tests/open-spaces-integration.cjs:6:1264
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample (2)
+Previewing Spine · 11 m lots
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample (2) · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Pocket court
+Plan valid
+Saved in this browser
+
+Previewing Spine · 11 m lots.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+removed
+6.0 m STREET
+LOT 01
+220 m²
+LOT 02
+220 m²
+LOT 03
+220 m²
+LOT 04
+220 m²
+LOT 05
+220 m²
+LOT 06
+220 m²
+LOT 07
+220 m²
+LOT 08
+220 m²
+LOT 09
+220 m²
+LOT 10
+220 m²
+LOT 11
+220 m²
+LOT 12
+220 m²
+LOT 13
+220 m²
+LOT 14
+220 m²
+LOT 15
+220 m²
+LOT 16
+220 m²
+LOT 17
+220 m²
+Open space A
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Open space A · 480 m²
+Pocket court · 120 m²
+North link · 160 m²
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Previewing Spine · 11 m lots — changes not applied.
+Show previous layout
+Apply Spine · 11 m lots
+Show options
+Cancel
+SPATIAL INSPECTOR
+Option preview
+Site boundary
+Pocket court
+Circulation
+All home lots
+Locked
+
+Reviewing an alternative. Apply or Cancel on the plan before editing.
+
+SELECTED AREA
+120 m²
+SITE SHARE
+1.00%
+MODELED HOMES
+17
+BUILT AREA / HOME
+60.0 m²
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+Pocket court · pocket · 120.0 m² · fixed
+North link · corridor · 160.0 m² · editable
+
+760.0 m² combined · 3 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Open-space clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+Housing template · 60 m² / home
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Maintain minimum open space
+Minimum area (m²)
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Close assistant
+AI investigation
+AI settings
+
+AI not configured
+
+Context: green · g2. Only supported inputs and measured facts are sent to the active connection, together with your intention. Source notes, media and saved alternatives stay out.
+
+Intention for AIAsk AI
+
+Local measured tools
+
+Assistant: Reporting measured results
+
+What is true?Why did it change?What could we try?
+ASK ABOUT POCKET COURT
+Ask
+Spine · 10 m lots → Spine · 11 m lots (tool server)
+Homes
+20 → 17 (-3)
+Road area
+720 m² → 720 m²
+Land allowance
+Rp3.52bn → Rp2.37bn
+Owner outcome
+Shortfall Rp6.48bn → Shortfall Rp7.63bn
+
+Both priced at Rp850m/home against a Rp10bn owner benchmark.
+
+Client explanation · editable measured summary
+
+Measured by the tool server (plan hash 9bd4a246…).
+
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+
+Accepted. Ran 8 layouts: 3 options meet the modeled constraints (valid geometry, profile fit and active locks; target surplus is reported separately). Owner expectation is a benchmark — see Options.
+
+Revise request
+Bounded local search · 8 layouts
+Run optimization ▷
+
+Produces reviewable alternatives. Preview and Apply keep you in control.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasingSaved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+17 homes
+Green 760 m²
+Road 720 m²
+Allowance Rp2.37bn
+Shortfall Rp7.63bn

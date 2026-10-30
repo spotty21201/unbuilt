@@ -1,0 +1,13 @@
+{
+  "before": {
+    "width": 1440,
+    "dpr": 1,
+    "outerWidth": 1440
+  },
+  "after": {
+    "width": 720,
+    "dpr": 2,
+    "outerWidth": 1440
+  },
+  "zoom": 2
+}

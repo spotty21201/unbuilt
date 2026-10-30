@@ -10,7 +10,7 @@ export const DEFAULT_COSTS = {
   sellFraction: 0.03,
 };
 export type CostAssumptions = typeof DEFAULT_COSTS;
-const labels: Record<keyof CostAssumptions, string> = {
+export const COST_LABELS: Record<keyof CostAssumptions, string> = {
   constructionPerM2: 'Home construction rate', roadPerM2: 'Street works rate', greenWorksPerM2: 'Green works rate',
   setupAllowance: 'Setup allowance', otherWorksAllowance: 'Other physical works', contingencyFraction: 'Contingency',
   professionalAllowance: 'Professional allowance', sellFraction: 'Selling costs',
@@ -22,7 +22,7 @@ export function costErrors(raw: unknown): string[] {
   for (const key of Object.keys(DEFAULT_COSTS) as (keyof CostAssumptions)[]) {
     const v = values[key], fraction = key.endsWith('Fraction');
     if (typeof v !== 'number' || !Number.isFinite(v) || v < 0 || v > (fraction ? 1 : 1e12) || (key === 'sellFraction' && v === 1)) {
-      return [`${labels[key]} must be finite and ${fraction ? key === 'sellFraction' ? 'between 0 and less than 100%.' : 'between 0 and 100%.' : 'between Rp0 and Rp1 trillion.'}`];
+      return [`${COST_LABELS[key]} must be finite and ${fraction ? key === 'sellFraction' ? 'between 0 and less than 100%.' : 'between 0 and 100%.' : 'between Rp0 and Rp1 trillion.'}`];
     }
   }
   return [];

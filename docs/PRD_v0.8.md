@@ -234,3 +234,22 @@ Requirements and implementation contract are appended in `PRD_v0.14.md`. The
 historical Planning brief and rules item is not implemented by this approval.
 Feature 8 independent testing remains deferred; later roadmap items remain
 outside this increment.
+
+## Subsequent owner approval: saved alternatives
+
+The owner requested **Feature 10: Saved alternatives — name, reopen, compare and
+annotate different schemes**, following the feasibility checkpoint. This uses the
+owner's numbering; the same topic was historical roadmap item 13. Requirements
+are appended in `PRD_v0.15.md`. Other roadmap topics remain outside this increment.
+
+Feature 11 owner update (30 October 2026): Real AI assistant is implemented under
+PRD_v0.16 with reviewable feasibility tools and measured explanations. Changeable
+primary/alternate routing and write-only API-key administration are included.
+The owner will supply endpoints and secrets later; real-model verification remains
+open. This supersedes historical item numbering without authorizing other roadmap work.
+
+Feature 12 owner update (30 October 2026): Terrain, drainage and phasing is
+introduced under PRD_v0.17 with entered elevation grids, Rational runoff screening
+and stable-lot monthly phase accounting. No actual project data or civil/financial
+suitability is inferred. Methods and data requirements are documented separately;
+Feature 11 and Feature 12 tester prompts are saved for later independent review.

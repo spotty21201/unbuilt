@@ -1,0 +1,41 @@
+PASS default 1440px has no horizontal overflow
+PASS default 1024px has no horizontal overflow
+PASS default 375px has no horizontal overflow
+PASS closed polygon area matches hand-calculated 11,000 m²
+PASS drawing leaves accepted rectangle untouched
+PASS polygon applies as 5 vertices
+PASS supported spine contains 18 homes and measures 720 m² road
+PASS Undo restores rectangle
+PASS Redo restores complete polygon
+PASS boundary handles retain screen size while zooming
+PASS drag updates actual coordinate
+PASS drag updates valid polygon area
+PASS draft Undo reverts a complete drag gesture
+PASS draft Redo restores the drag gesture
+PASS midpoint adds a sixth vertex
+PASS keyboard moves focused vertex by 1 m
+PASS Delete removes focused boundary vertex
+PASS Undo combines boundary edits into one step
+PASS crossed geometry explains invalidity
+PASS invalid boundary cannot apply
+PASS invalid draft never overwrites accepted geometry
+PASS corrected geometry enables Apply
+PASS Escape cancels edit
+PASS Cancel keeps accepted geometry
+PASS save/reload preserves polygon coordinates
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+locator.click: Timeout 7000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Homes', exact: true })[22m
+
+    at /home/spotty/projects/unbuilt/tests/boundary-browser.cjs:58:56 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Homes', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3

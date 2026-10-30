@@ -332,3 +332,37 @@ remain separate gates.
 
 See `evidence/feasibility-experiments/README.md` for results and limits. Feature 8
 independent planner testing remains deferred; the preserved prompts are unchanged.
+
+## Saved alternatives — PRD v0.15
+
+- [x] Named independent copies of accepted plans and unapplied search previews,
+  with unique names, explicit scheme-level notes and metadata updates.
+- [x] Two-scheme measured comparison with saved geometry, costs and assumptions;
+  unavailable finances are explicit and do not become zeros.
+- [x] Review/confirm/Cancel reopening, prior-plan Undo/Redo, collection independent
+  of plan history, and safe access from blank working plans.
+- [x] Collection save/reload, project/record downloads and import into a separate
+  project; whole-envelope validation and format downgrade protection.
+- [x] Confirmed removal with session recovery; browser save failure retains current
+  disk data and an exportable in-memory project.
+- [x] Complete served-build browser, touch, actual 200% zoom and focused regression
+  checks; record results and screenshot inspection in saved-alternatives evidence.
+- [ ] Independent planner acceptance, physical-device interaction and verified
+  market/cost evidence. Existing earlier tester prompts remain unchanged.
+
+## Feature 11 — real assistant, with routing credentials deferred
+
+- A real completion-protocol adapter accepts only four validated tools; unknown fields, unmeasured numeric prose, multiple tool calls, invalid assumptions and nonexistent selections refuse without plan mutation.
+- Supported proposals display exact hypothetical input changes and held commitments. Run measures only the reviewed snapshot; Review on plan opens the existing drawings; Apply is explicit and supports one-step Undo/Redo and saved alternatives.
+- Current and trial explanations select deterministic measured statements. Source notes, media, saved schemes and model transcripts do not enter the model payload/project exports respectively. Selection changes, new input, cancellation, timeout and configuration revisions reject old answers.
+- Administrator authorization protects settings and connection tests. Primary/alternate routing, key retain/replace/remove, private file permissions, restart persistence and revision conflicts are verified with a scripted fixture. No automatic alternate-provider routing or retry.
+- Production build, lint, full root checks and browser/actual-zoom evidence are recorded in evidence/ai-assistant. Automated fixtures are not real-model verification. Endpoint/secret delivery and later independent acceptance remain open; existing tester prompts remain preserved.
+
+## Feature 12 — terrain, drainage and phasing introduction
+
+- No automatic terrain/storm/schedule results without input data. Bounded CSV grid/source/datum/date validation, concave clipping, slope/threshold area and split positive/negative cut/fill have analytic ground-truth checks; no extrapolation or grading/earthworks-price claim.
+- Measured disjoint runoff areas, weighted C and SI Rational peak require declared catchment/storage applicability and sufficient intensity duration. Gross rainfall volume stays separate from runoff/storage. Optional outfall position/capacity is an unverified reference, not a drainage network or compliance result.
+- Phases use actual assigned occupied-home sizes, contingency once, explicit shared percentages, build/sale months and a single owner payment. Unrounded monthly totals reconcile to accepted modeled surplus. Vacancies and changed references are not automatically reassigned; maximum month-end deficit excludes financing/intramonth assumptions.
+- Apply/Cancel/Reset/Escape, history, local save/reload, file import/export, saved-scheme isolation/comparison, geometry-trial warnings and retained inputs through clear/delete are verified. Invalid values cannot publish partial totals; valid data with unresolved applicability stays clearly unavailable.
+- Project v13, record v14, snapshot v11/capability and full-precision bindings reject disguised downgrades. Server and local findings agree. AI receives computed screening statements, excluding raw grids/source descriptions.
+- Production build/lint, root checks, desktop/narrow and actual 200% browser-zoom evidence are in evidence/terrain-drainage-phasing. Both requested tester prompts are saved and deferred. Actual site data, civil/financial suitability, physical touch and independent planner acceptance remain open.

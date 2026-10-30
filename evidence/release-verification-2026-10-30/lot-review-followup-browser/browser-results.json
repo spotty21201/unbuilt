@@ -1,0 +1,17 @@
+{
+  "asset": "/assets/index-BR3nNjEc.js",
+  "checks": [
+    "depth subdivision names Proposed Lot 1 and street frontage",
+    "inaccessible proposed lot is highlighted and labeled on drawing",
+    "inaccessible layout cannot apply",
+    "source and resulting references are explicit",
+    "unchanged lot lineage is traceable",
+    "drawing shows accepted to proposed number",
+    "provisional allowance status travels with the figure",
+    "vacancy merge identifies occupied home that will be removed",
+    "vacancy review shows resulting vacant lot and 19 to 18 homes",
+    "mobile warning remains beside the drawing with draft retained",
+    "mobile cancel preserves accepted homes",
+    "selected reshaped lot exposes unverified deeper setbacks beside metrics"
+  ]
+}

@@ -1,8 +1,9 @@
+import AIInvestigation from './AIInvestigation';
+import type { AIProposal } from '../../../src/ai-assistant';
 // UNBUILT assistant panel (Designer-owned UI around Coder-owned tools).
-// Answers the three assistant questions through validated deterministic
-// paths only: local measured facts, server /api/explain with a local-engine
-// fallback, and a labeled bounded hypothesis. The panel never invents
-// layouts, prices, or outcomes; every number names its source.
+// AI investigation proposes supported inputs or selects engine facts. The
+// local measured tools retain facts, comparisons and bounded hypotheses
+// without a model connection. Only the explicit plan review can apply work.
 import { useEffect, useRef, useState } from 'react';
 import { hasHome, hasLayout } from '../../../src/contents';
 import { answerTrue, answerTry, answerLimits, clarifyText, routeQuestion } from '../../../src/assistant';
@@ -24,6 +25,7 @@ interface Props {
   workingSpec: { family: 'spine' | 'loop'; frontage: number };
   previewSpec: { family: 'spine' | 'loop'; frontage: number } | null;
   onSendRequest: (text: string) => void;
+  onReviewExperiment: (proposal: AIProposal) => void;
 }
 
 const STATE_LABEL: Record<AssistantState, string> = {
@@ -260,6 +262,8 @@ export default function Assistant(props: Props) {
 
   return (
     <div className="assistant" aria-live="polite">
+      <AIInvestigation getSnapshot={props.getSnapshot} snapshotOk={props.snapshotOk} onReviewExperiment={props.onReviewExperiment} />
+      <h3>Local measured tools</h3>
       <p className="astate">
         <span className={`adot ${state}`} aria-hidden="true" />
         Assistant: {STATE_LABEL[state]}

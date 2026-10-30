@@ -1,0 +1,55 @@
+PASS 77 × 78 rectangle displays 6,006 m²
+PASS snap and decimal coordinate guidance visible beside editor controls
+PASS boundary draft is absent from accepted autosave
+PASS pending boundary opens explicit keep/discard choice
+PASS keep editing preserves four-corner draft
+PASS fractional midpoint retains 38.5 m coordinate and exact area
+PASS decimal coordinate produces hand-calculated 5,986.75 m²
+PASS draft history restores fractional coordinate
+PASS non-finite/incomplete coordinate blocks Apply and announces correction
+PASS duplicate vertices block Apply with actionable error
+PASS valid Apply creates one coherent plan undo step
+PASS Undo applied outline returns blank
+PASS discard before project management preserves accepted outline
+PASS library backup includes name, exact geometry, assumptions, commitments and decisions
+PASS project deletion offers a working backup and states recovery limits
+PASS import warns before ending existing undo
+PASS cancel import leaves project count unchanged
+PASS backup import restores accepted geometry and assumptions in separate project
+PASS freshly opened project has no inherited Undo
+PASS switch with no draft/history/photo needs no confirmation
+PASS Remove photo removes the image without changing park protection
+PASS clear dialog names retained boundary/photo and limited Undo lifetime
+PASS cancel clear retains generated homes
+PASS clear retains boundary and photo
+PASS one restart action has matching dialog and explicit retained photo
+PASS restart removes geometry and hides rather than deletes session photo
+PASS Undo restart restores geometry and photo visibility
+PASS switch warns about both undo and photo loss
+PASS cancel switch retains redo and session photo
+PASS reload with session recovery at risk triggers browser warning; cancelling keeps plan
+PASS normal reload restores accepted plan, with no history or photo claim
+PASS individual removal preserves 20 lots, updates 19 homes and vacant reservation
+PASS multiple removal updates 17 homes without deleting lots
+PASS Restore returns all removed homes
+PASS Undo Restore reinstates reservations
+PASS 1440×900 at 100%: no page/panel horizontal overflow or clipped controls
+PASS 1440: Apply/Cancel remain visible at end of 64-vertex list
+PASS 1440: keyboard focus has visible outline
+PASS 1366×768 at 100%: no page/panel horizontal overflow or clipped controls
+PASS 1366: Apply/Cancel remain visible at end of 64-vertex list
+PASS 1366: keyboard focus has visible outline
+PASS 1280×720 at 100%: no page/panel horizontal overflow or clipped controls
+PASS 1280: Apply/Cancel remain visible at end of 64-vertex list
+PASS 1280: keyboard focus has visible outline
+PASS 1024×768 at 100%: no page/panel horizontal overflow or clipped controls
+PASS 1024: Apply/Cancel remain visible at end of 64-vertex list
+PASS 1024: keyboard focus has visible outline
+PASS 960×640 at 100%: no page/panel horizontal overflow or clipped controls
+PASS 960: Apply/Cancel remain visible at end of 64-vertex list
+PASS 960: keyboard focus has visible outline
+PASS 375×812 at 100%: no page/panel horizontal overflow or clipped controls
+PASS 375: Apply/Cancel remain visible at end of 64-vertex list
+PASS 375: keyboard focus has visible outline
+PASS no uncaught browser errors
+ALL 54 FEEDBACK CHECKS PASS

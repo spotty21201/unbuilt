@@ -1,0 +1,194 @@
+[
+  {
+    "test": "ai-browser.mjs",
+    "exit": 0,
+    "seconds": 10.7,
+    "log": "evidence/release-verification-2026-10-30/ai-browser/run.log"
+  },
+  {
+    "test": "boundary-browser.cjs",
+    "exit": 1,
+    "seconds": 11.7,
+    "log": "evidence/release-verification-2026-10-30/boundary-browser/run.log"
+  },
+  {
+    "test": "boundary-pointer-range-browser.cjs",
+    "exit": 0,
+    "seconds": 6.3,
+    "log": "evidence/release-verification-2026-10-30/boundary-pointer-range-browser/run.log"
+  },
+  {
+    "test": "browser-zoom.cjs",
+    "exit": 0,
+    "seconds": 2.6,
+    "log": "evidence/release-verification-2026-10-30/browser-zoom/run.log"
+  },
+  {
+    "test": "development-browser.cjs",
+    "exit": 0,
+    "seconds": 7.2,
+    "log": "evidence/release-verification-2026-10-30/development-browser/run.log"
+  },
+  {
+    "test": "dynamic-inspector-browser.cjs",
+    "exit": 0,
+    "seconds": 17.1,
+    "log": "evidence/release-verification-2026-10-30/dynamic-inspector-browser/run.log"
+  },
+  {
+    "test": "feasibility-browser.cjs",
+    "exit": 0,
+    "seconds": 7.1,
+    "log": "evidence/release-verification-2026-10-30/feasibility-browser/run.log"
+  },
+  {
+    "test": "feasibility-zoom.cjs",
+    "exit": 0,
+    "seconds": 2.7,
+    "log": "evidence/release-verification-2026-10-30/feasibility-zoom/run.log"
+  },
+  {
+    "test": "housing-browser.cjs",
+    "exit": 0,
+    "seconds": 9.0,
+    "log": "evidence/release-verification-2026-10-30/housing-browser/run.log"
+  },
+  {
+    "test": "housing-review-browser.cjs",
+    "exit": 0,
+    "seconds": 8.8,
+    "log": "evidence/release-verification-2026-10-30/housing-review-browser/run.log"
+  },
+  {
+    "test": "housing-zoom.cjs",
+    "exit": 0,
+    "seconds": 3.2,
+    "log": "evidence/release-verification-2026-10-30/housing-zoom/run.log"
+  },
+  {
+    "test": "lot-review-followup-browser.cjs",
+    "exit": 0,
+    "seconds": 4.7,
+    "log": "evidence/release-verification-2026-10-30/lot-review-followup-browser/run.log"
+  },
+  {
+    "test": "open-spaces-browser.cjs",
+    "exit": 0,
+    "seconds": 7.6,
+    "log": "evidence/release-verification-2026-10-30/open-spaces-browser/run.log"
+  },
+  {
+    "test": "open-spaces-zoom.cjs",
+    "exit": 0,
+    "seconds": 3.1,
+    "log": "evidence/release-verification-2026-10-30/open-spaces-zoom/run.log"
+  },
+  {
+    "test": "parcels-browser.cjs",
+    "exit": 0,
+    "seconds": 12.0,
+    "log": "evidence/release-verification-2026-10-30/parcels-browser/run.log"
+  },
+  {
+    "test": "parcels-zoom.cjs",
+    "exit": 0,
+    "seconds": 3.1,
+    "log": "evidence/release-verification-2026-10-30/parcels-zoom/run.log"
+  },
+  {
+    "test": "planner-feedback-browser.cjs",
+    "exit": 1,
+    "seconds": 5.8,
+    "log": "evidence/release-verification-2026-10-30/planner-feedback-browser/run.log"
+  },
+  {
+    "test": "planner-feedback-fixes-browser.cjs",
+    "exit": 0,
+    "seconds": 18.3,
+    "log": "evidence/release-verification-2026-10-30/planner-feedback-fixes-browser/run.log"
+  },
+  {
+    "test": "planner-feedback-fixes-storage.cjs",
+    "exit": 0,
+    "seconds": 1.7,
+    "log": "evidence/release-verification-2026-10-30/planner-feedback-fixes-storage/run.log"
+  },
+  {
+    "test": "planner-feedback-fixes-zoom.cjs",
+    "exit": 0,
+    "seconds": 6.7,
+    "log": "evidence/release-verification-2026-10-30/planner-feedback-fixes-zoom/run.log"
+  },
+  {
+    "test": "planner-review-followup-browser.cjs",
+    "exit": 0,
+    "seconds": 4.5,
+    "log": "evidence/release-verification-2026-10-30/planner-review-followup-browser/run.log"
+  },
+  {
+    "test": "project-lifecycle-browser.cjs",
+    "exit": 0,
+    "seconds": 5.7,
+    "log": "evidence/release-verification-2026-10-30/project-lifecycle-browser/run.log"
+  },
+  {
+    "test": "projects-browser.cjs",
+    "exit": 0,
+    "seconds": 9.7,
+    "log": "evidence/release-verification-2026-10-30/projects-browser/run.log"
+  },
+  {
+    "test": "saved-alternatives-browser.cjs",
+    "exit": 0,
+    "seconds": 8.9,
+    "log": "evidence/release-verification-2026-10-30/saved-alternatives-browser/run.log"
+  },
+  {
+    "test": "saved-alternatives-zoom.cjs",
+    "exit": 0,
+    "seconds": 3.8,
+    "log": "evidence/release-verification-2026-10-30/saved-alternatives-zoom/run.log"
+  },
+  {
+    "test": "site-context-browser.cjs",
+    "exit": 0,
+    "seconds": 8.9,
+    "log": "evidence/release-verification-2026-10-30/site-context-browser/run.log"
+  },
+  {
+    "test": "site-context-recovery-browser.cjs",
+    "exit": 0,
+    "seconds": 9.4,
+    "log": "evidence/release-verification-2026-10-30/site-context-recovery-browser/run.log"
+  },
+  {
+    "test": "site-context-zoom.cjs",
+    "exit": 0,
+    "seconds": 4.8,
+    "log": "evidence/release-verification-2026-10-30/site-context-zoom/run.log"
+  },
+  {
+    "test": "stitch-viewport-browser.cjs",
+    "exit": 0,
+    "seconds": 5.4,
+    "log": "evidence/release-verification-2026-10-30/stitch-viewport-browser/run.log"
+  },
+  {
+    "test": "street-review-browser.cjs",
+    "exit": 0,
+    "seconds": 11.1,
+    "log": "evidence/release-verification-2026-10-30/street-review-browser/run.log"
+  },
+  {
+    "test": "streets-browser.cjs",
+    "exit": 0,
+    "seconds": 16.4,
+    "log": "evidence/release-verification-2026-10-30/streets-browser/run.log"
+  },
+  {
+    "test": "streets-zoom.cjs",
+    "exit": 0,
+    "seconds": 3.6,
+    "log": "evidence/release-verification-2026-10-30/streets-zoom/run.log"
+  }
+]

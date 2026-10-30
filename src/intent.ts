@@ -93,7 +93,7 @@ export function parseIntent(raw: string, ctx: IntentContext): IntentResult {
   if (/building|mall|shop|retain.*struct|3d|map|terrain|financ|loan|mortgage|irr|cash|phase/i.test(raw)) {
     return {
       kind: "limitation",
-      text: "That is outside the first build: retained buildings, 3D, maps, terrain, and financing are not modeled. Supported: green-space locks, price ceilings, product-profile switches, and bounded layout search.",
+      text: "That request is outside this fixed-rule search. Terrain, drainage and phase inputs have their own review tool. Retained buildings, 3D, debt and IRR are not modeled. This search supports green-space locks, price ceilings, product-profile switches and bounded layouts.",
       operations: { ...none },
     };
   }

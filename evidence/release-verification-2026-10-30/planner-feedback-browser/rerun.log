@@ -1,0 +1,42 @@
+PASS five-point drawn site has hand-calculated 10,250 m² area
+PASS unsupported current access is disclosed before Apply
+PASS boundary review lists accepted and proposed measured outcomes
+PASS drawing leaves the accepted plan saved unchanged
+PASS choosing the sloping west edge enables a measured layout before Apply
+PASS draft preview shows the reserved park footprint
+PASS candidate entrances show measured geometric checks and access assumptions
+PASS apply keeps all five corners and selected boundary entrance
+PASS applied sloping site retains roads, homes and measured outcome
+PASS one Undo restores entire accepted sample
+PASS Redo restores polygon and entrance together
+PASS reload restores exact polygon and boundary-edge access
+PASS selected existing boundary exposes working along-edge entrance placement
+PASS sloping entrance drag projects and snaps along the selected edge
+PASS crossing edges are specifically highlighted
+PASS invalid boundary cannot apply
+PASS repair clears segment highlights and restores valid review
+PASS cancel preserves accepted geometry and entrance
+PASS minimum park area is an explicit saved commitment
+PASS area minimum blocks a smaller park while exact shape is unlocked
+PASS unlocked shape may change while maintaining minimum area
+PASS capacity question explains what is and is not established
+PASS what else can change prepares an investigation instead of demanding comparison
+PASS investigation reaches proposal review without silently running search
+PASS every successful search discloses held inputs and bounded scope
+PASS measured comparison provides an editable evidence-limited client explanation
+PASS client explanation can be cleared and edited without changing the plan
+PASS reviewed alternative only becomes accepted after Apply
+PASS undo after saving the alternative restores previous plan
+PASS import reopens the reviewed alternative with park minimum and price
+PASS reopened reviewed alternative survives reload
+PASS record exports new version, gate geometry and measured apron
+PASS saved-state disclosure explains how to preserve a reviewed alternative
+PASS browser import reopens version 5 sloping-edge geometry exactly
+PASS context change reveals the object summary rather than previous scroll position
+PASS 1440px polygon has no horizontal overflow
+PASS 1024px polygon has no horizontal overflow
+PASS 375px polygon has no horizontal overflow
+PASS mobile selection exposes a readable selected-lot area and inspector action
+PASS mobile selected-object action reveals and focuses the inspector
+PASS no browser page or console errors
+ALL 41 PLANNER FEEDBACK BROWSER CHECKS PASS

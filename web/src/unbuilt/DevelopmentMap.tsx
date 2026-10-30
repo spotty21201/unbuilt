@@ -1,0 +1,29 @@
+import {useEffect,useId,useRef,useState} from 'react';
+import {siteBoundary} from '../../../src/boundary';
+import {hasHome} from '../../../src/contents';
+import {lotKey,type Site,type Layout,type LotEdits} from '../../../src/geometry';
+import {centroid,rectCorners,type Pt} from '../../../src/polygon';
+import {siteOpenSpaces} from '../../../src/open-spaces';
+import type {DevelopmentInputs} from '../../../src/development-inputs';
+import type {assessDevelopment} from '../../../src/development';
+import {PHASE_COLORS} from './ui';
+export default function DevelopmentMap({site,layout,edits,inputs,result,mode,onLot}:{site:Site;layout:Layout;edits:LotEdits;inputs:DevelopmentInputs;result:ReturnType<typeof assessDevelopment>;mode:'terrain'|'drainage'|'phasing';onLot:(key:string)=>void}){
+  const svg=useRef<SVGSVGElement>(null),[size,setSize]=useState({w:600,h:360});
+  useEffect(()=>{const el=svg.current!;const observer=new ResizeObserver(([entry])=>setSize({w:entry.contentRect.width,h:entry.contentRect.height}));observer.observe(el);return()=>observer.disconnect();},[]);
+  const marker=useId(),terrain=result.terrain.value,outline=siteBoundary(site),outfall=inputs.drainage?.outfall;
+  const w=Math.max(site.w,mode==='drainage'&&Number.isFinite(outfall?.x)?outfall!.x:0),h=Math.max(site.h,mode==='drainage'&&Number.isFinite(outfall?.y)?outfall!.y:0),margin=Math.max(w,h)*.06;
+  const scale=Math.max(.01,Math.min(size.w/(w+2*margin),size.h/(h+2*margin)));
+  const points=(p:Pt[])=>p.map(p=>`${p.x},${h-p.y}`).join(' '),stroke=Math.max(w,h)/650;
+  const gradeColor=(level:number)=>{const fraction=terrain&&terrain.max>terrain.min?(level-terrain.min)/(terrain.max-terrain.min):.5;return `hsl(${200-fraction*160} 35% ${80-fraction*20}%)`;};
+  return <figure className="development-map"><svg ref={svg} viewBox={`${-margin} ${-margin} ${w+2*margin} ${h+2*margin}`} role={mode==='phasing'?'group':'img'} aria-label={`${mode==='terrain'?'Elevation and slope':mode==='drainage'?'Site catchment and declared outfall':'Lot phase assignments'} screening map`}>
+    <defs><marker id={marker} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#263f4b"/></marker></defs>
+    <polygon points={points(outline)} fill="#edf0f2" stroke="#38444b" strokeWidth={stroke*2}/>
+    {terrain&&mode!=='phasing'&&terrain.facets.map((f,i)=><polygon key={i} points={points(f.pts)} fill={gradeColor(f.level)} stroke={f.slope>(inputs.terrain?.slopeLimit??100)+1e-9?'#9e3139':'none'} strokeWidth={stroke}><title>{f.level.toFixed(2)} m representative elevation · slope {f.slope.toFixed(2)}%</title></polygon>)}
+    {layout.roads.map((r,i)=><polygon key={i} points={points(rectCorners(r))} fill="#b7c0c9" stroke="#77828e" strokeWidth={stroke}/>)}
+    {layout.accessConnector&&<polygon points={points(layout.accessConnector)} fill="#b7c0c9"/>}
+    {(site.planning?.openSpaces!==undefined||!layout.empty?siteOpenSpaces(site):[]).map(s=><polygon key={s.id} points={points(s.pts)} fill="#a7c3ac" fillOpacity=".65" stroke="#477450" strokeWidth={stroke}/>)}
+    {layout.parcels.map((r,i)=>{const key=lotKey(r),index=inputs.phasing?.phases.findIndex(p=>p.id===inputs.phasing?.assignments[key])??-1,pts=edits.get(i)??rectCorners(r),c=centroid(pts),active=mode==='phasing'&&hasHome(site,r);return <g key={key} role={active?'button':undefined} tabIndex={active?0:undefined} aria-label={active?`Assign lot ${i+1} to active phase`:undefined} aria-description={active?`Currently ${index<0?'unassigned':inputs.phasing?.phases[index].name}`:undefined} onClick={active?()=>onLot(key):undefined} onKeyDown={active?e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onLot(key);}}:undefined} className={active?'phase-map-lot':undefined}><polygon points={points(pts)} fill={mode==='phasing'?(!hasHome(site,r)?'#cbd0d3':index<0?'#e4e7ed':PHASE_COLORS[index]):'transparent'} stroke="#52616c" strokeWidth={stroke}/><title>Lot {i+1} · {hasHome(site,r)?index<0?'unassigned':inputs.phasing?.phases[index].name:'vacant'}</title>{mode==='phasing'&&r.w*scale>=26&&r.h*scale>=22&&<text x={c.x} y={h-c.y} fontSize={14/scale} textAnchor="middle" dominantBaseline="central" fill={index<0?'#26323d':'white'} pointerEvents="none">{i+1}</text>}</g>;})}
+    {terrain&&mode==='terrain'&&terrain.facets.filter((_,i)=>i%Math.ceil(terrain.facets.length/32)===0).map((f,i)=>{const c=centroid(f.pts),length=Math.max(w,h)/35,gradient=Math.hypot(f.gx,f.gy);return gradient>1e-9?<line key={i} x1={c.x} y1={h-c.y} x2={c.x-f.gx/gradient*length} y2={h-c.y+f.gy/gradient*length} stroke="#263f4b" strokeWidth={stroke*1.5} markerEnd={`url(#${marker})`} pointerEvents="none"/>:null;})}
+    {mode==='drainage'&&outfall&&Number.isFinite(outfall.x)&&Number.isFinite(outfall.y)&&<g><circle cx={outfall.x} cy={h-outfall.y} r={stroke*6} fill="#a83c57" stroke="white" strokeWidth={stroke*2}/><text x={outfall.x+(outfall.x<w*.2?4/scale:outfall.x>w*.8?-4/scale:0)} y={h-outfall.y-stroke*10} textAnchor={outfall.x<w*.2?'start':outfall.x>w*.8?'end':'middle'} fontSize={14/scale} fill="#63253c">Declared outfall</text></g>}
+  </svg>{mode==='phasing'&&inputs.phasing&&<ul className="phase-map-key" aria-label="Phase color key">{inputs.phasing.phases.map((p,i)=><li key={p.id}><span aria-hidden="true" style={{background:PHASE_COLORS[i]}}/>{p.name}</li>)}</ul>}<figcaption>{mode==='terrain'?terrain?`Low ${terrain.min.toFixed(2)} → high ${terrain.max.toFixed(2)} m. Red edges: above entered slope threshold. Arrows: sampled local downhill gradient, not drainage paths.`:'No usable elevation surface. Plan geometry shown for context.':mode==='drainage'?'Boundary used only after catchment confirmation. The outfall is an entered reference; no drainage network or downstream access is established.':'Choose the active phase, then select occupied lots on the map or use the assignment table. Lot references are not legal identifiers.'}</figcaption></figure>;
+}

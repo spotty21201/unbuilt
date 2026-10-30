@@ -1,3 +1,7 @@
+import DevelopmentEditor from './unbuilt/DevelopmentEditor';
+import { measureProposal, type AIProposal } from '../../src/ai-assistant';
+import AISettings from './unbuilt/AISettings';
+import SavedAlternatives from './unbuilt/SavedAlternatives';
 import FeasibilityExperiments from './unbuilt/FeasibilityExperiments';
 import {DEFAULT_COSTS} from '../../src/costs';
 import OpenSpacesEditor from './unbuilt/OpenSpacesEditor';
@@ -47,7 +51,7 @@ import { CAPABILITIES } from '../../src/snapshot';
 import type { ScenarioSnapshot } from '../../src/snapshot';
 import type { PlanFacts, TryContext } from '../../src/assistant';
 import { serializeProject } from '../../src/persist';
-import type { PersistedProject, PersistedState } from '../../src/persist';
+import type { PersistedProject, PersistedState, SavedAlternative } from '../../src/persist';
 import { applyDraftEdit, commitDraft, pushUndo, redo, undo } from '../../src/draft';
 import type { History } from '../../src/draft';
 import type { WorkingSpec } from './unbuilt/ui';
@@ -121,6 +125,8 @@ interface WorkbenchProps {
 }
 export default function Workbench({ initialProject, projectName, onSaveProject, onOpenProjects, onImportProject, saveStatus, initialStatus }: WorkbenchProps) {
   const start = initialProject.state;
+  const [alternatives, setAlternatives] = useState<SavedAlternative[] | undefined>(initialProject.alternatives);
+  const [alternativesOpen, setAlternativesOpen] = useState(false);
   const inspectorRef = useRef<HTMLElement>(null);
   const [siteContext, setSiteContext] = useState<SiteContext | undefined>(start.siteContext);
   const [contextOpen, setContextOpen] = useState(false);
@@ -132,6 +138,9 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   useEffect(() => () => { if (surveyRaster) URL.revokeObjectURL(surveyRaster.url); }, [surveyRaster]);
   const [baseSpec, setBaseSpec] = useState<SiteFrame>(start.baseSpec);
   const [experimentOpen, setExperimentOpen] = useState(false);
+  const [developmentOpen,setDevelopmentOpen]=useState(false);
+  const [aiTrial,setAiTrial]=useState<AIProposal|null>(null);
+  const [aiSettingsOpen,setAiSettingsOpen]=useState(false);
   const [parameterDraft, setParameterDraft] = useState<{ planning: PlanningParameters; frontage: number; family?: WorkingSpec['family']; contents?:PlanContents } | null>(null);
   const [spacesEditing,setSpacesEditing]=useState(false);
   const [selectedSpace,setSelectedSpace]=useState<string|null>(null);
@@ -189,7 +198,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   // An open reshape draft addresses parcel indices: regeneration waits until
   // it is applied or cancelled. Committed reshapes are never blocked this
   // way — they carry by stable identity (see askRegen).
-  const regenBlock = experimentOpen ? 'Apply or Cancel the feasibility experiment first.' : contextPending ? 'Apply or Cancel the site context edit first.' : parameterDraft ? 'Apply or Cancel the parameter edit first.' : boundaryDraft ? 'Apply or Cancel the boundary edit first.' : lotDraft
+  const regenBlock = developmentOpen ? 'Apply or Cancel development inputs first.' : alternativesOpen ? 'Close Saved alternatives first.' : experimentOpen ? 'Apply or Cancel the feasibility experiment first.' : contextPending ? 'Apply or Cancel the site context edit first.' : parameterDraft ? 'Apply or Cancel the parameter edit first.' : boundaryDraft ? 'Apply or Cancel the boundary edit first.' : lotDraft
     ? 'A lot reshape is in progress — Apply or Cancel it before regenerating the layout.'
     : null;
   const [greenDraftF, setGreenDraftF] = useState<DraftFields>({
@@ -248,14 +257,16 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   // Truthful tool-server status for the top bar: probed once on boot, never
   // assumed. Local parsing and search always work without it.
   const [serverOk, setServerOk] = useState<boolean | null>(null);
+  const [aiStatus,setAiStatus]=useState('AI not configured');
   useEffect(() => {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 2500);
-    fetch(`${serverBase()}/api/health`, { signal: ctrl.signal })
-      .then((r) => setServerOk(r.ok))
-      .catch(() => setServerOk(false))
-      .finally(() => clearTimeout(timer));
-    return () => ctrl.abort();
+    let pending:AbortController|null=null;
+    const refresh=()=>{
+      pending?.abort();const ctrl=new AbortController();pending=ctrl;
+      const timer=setTimeout(()=>ctrl.abort(),2500);
+      fetch(`${serverBase()}/api/health`,{signal:ctrl.signal}).then(async r=>{if(!r.ok)throw Error('unavailable');const h=await r.json();if(ctrl.signal.aborted)return;setServerOk(true);setAiStatus(!h.ai?.configured?'AI not configured':h.ai.status==='verified'?'AI connection verified':h.ai.status==='error'?'AI connection needs attention':'AI configured · untested');}).catch(()=>{if(pending===ctrl)setServerOk(false);}).finally(()=>clearTimeout(timer));
+    };
+    refresh();window.addEventListener('unbuilt-ai-settings',refresh);window.addEventListener('unbuilt-ai-status',refresh);
+    return()=>{pending?.abort();window.removeEventListener('unbuilt-ai-settings',refresh);window.removeEventListener('unbuilt-ai-status',refresh);};
   }, []);
 
   const exportRecord = () => {
@@ -269,12 +280,13 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     const payload = {
       app: 'UNBUILT decision record',
       projectName,
-      exportVersion: baseSpec.costAssumptions!==undefined?12:baseSpec.planning?.openSpaces!==undefined?11:baseSpec.planning?.housing?10:baseSpec.planning?.lotPlan!==undefined?9:baseSpec.planning?.streetNetwork !== undefined ? 8 : siteContext !== undefined ? 7 : baseSpec.contents !== undefined ? 6 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
+      exportVersion: baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?14:alternatives!==undefined?13:baseSpec.costAssumptions!==undefined?12:baseSpec.planning?.openSpaces!==undefined?11:baseSpec.planning?.housing?10:baseSpec.planning?.lotPlan!==undefined?9:baseSpec.planning?.streetNetwork !== undefined ? 8 : siteContext !== undefined ? 7 : baseSpec.contents !== undefined ? 6 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
       exportedAt: new Date().toISOString(),
       units: 'Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.',
       state: {
         ...(siteContext ? { siteContext } : {}),
         site: {
+          ...(baseSpec.development!==undefined?{development:baseSpec.development}:{}),
           ...(baseSpec.costAssumptions?{costAssumptions:baseSpec.costAssumptions}:{}),
           w: baseSpec.w,
           h: baseSpec.h,
@@ -322,6 +334,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           profileSource: profile.source,
         },
       },
+      ...(alternatives!==undefined?{alternatives:structuredClone(alternatives)}:{}),
       events: decisions,
       history: {
         undoDepth: hist.past.length,
@@ -657,17 +670,28 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     ...(siteContext ? { siteContext } : {}),
   });
 
+  const saveAlternatives = (next: SavedAlternative[], detail: string): boolean => {
+    const event = {t:new Date().toISOString(),kind:'saved-alternatives',detail};
+    const saved = onSaveProject(serializeProject(projectState(), [...decisions,event], projectName, next));
+    setAlternatives(next); setDecisions(d=>[...d,event]);
+    setStatus(saved ? detail : 'Scheme changes remain open in memory; browser saving failed. Download a project backup before leaving.');
+    return saved;
+  };
+  const openAlternatives = () => {
+    if(regenBlock||draftDirty||pendingOp||optimizing){setStatus('Apply or Cancel the current edit before opening Saved alternatives.');return;}
+    setAlternativesOpen(true);
+  };
   useEffect(() => {
-    onSaveProject(serializeProject(projectState(), decisions, projectName));
+    onSaveProject(serializeProject(projectState(), decisions, projectName, alternatives));
     // Accepted state only; drafts remain in this workspace until Apply.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [spec, green, entrance, lotEdits, profileId, greenLocked, priceS, ceilingS, ownerS, targetS, baseSpec, siteContext, decisions, onSaveProject]);
+  }, [spec, green, entrance, lotEdits, profileId, greenLocked, priceS, ceilingS, ownerS, targetS, baseSpec, siteContext, decisions, alternatives, onSaveProject]);
 
   const onImportFile = (file: File) => {
     if (regenBlock || draftDirty) { setStatus('Apply or Cancel the current edit before importing another project.'); return; }
     onImportProject(file, sessionRisk);
   };
-  const sessionRisk = [experimentOpen?'The unapplied experiment will be lost.':'',hist.past.length || hist.future.length ? 'Plan Undo/Redo will end.' : '', surveyRaster ? 'The attached survey file must be reattached after returning.' : '', refImage ? 'The reference photo will be lost; it is not saved or backed up.' : ''].filter(Boolean).join(' ');
+  const sessionRisk = [developmentOpen?'The unapplied development input draft will be lost.':'',alternativesOpen?'Close Saved alternatives before leaving.':'',experimentOpen?'The unapplied experiment will be lost.':'',hist.past.length || hist.future.length ? 'Plan Undo/Redo will end.' : '', surveyRaster ? 'The attached survey file must be reattached after returning.' : '', refImage ? 'The reference photo will be lost; it is not saved or backed up.' : ''].filter(Boolean).join(' ');
   const [leaveBoundary, setLeaveBoundary] = useState(false);
   const leavingRisk = !!(regenBlock || draftDirty || sessionRisk || !saveStatus.startsWith('Project saved'));
   useEffect(() => {
@@ -679,7 +703,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   const openProjects = () => {
     if (boundaryDraft) { setLeaveBoundary(true); return; }
     if (regenBlock || draftDirty || pendingOp || optimizing) { setStatus('Apply or Cancel the current edit before opening Projects.'); return; }
-    onSaveProject(serializeProject(projectState(), decisions, projectName));
+    onSaveProject(serializeProject(projectState(), decisions, projectName, alternatives));
     onOpenProjects(sessionRisk);
   };
   // A proposal is reviewable only against its frozen scenario: any dependent
@@ -761,7 +785,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     // the same source either way, and Undo restores the prior dimensions
     // with the photo still in place. Removal is an explicit separate action.
     const {streetNetwork: omittedNetwork, lotPlan:omittedLots, openSpaces:omittedSpaces, ...dimensionPlanning} = baseSpec.planning ?? DEFAULT_PLANNING; void omittedNetwork;void omittedLots;void omittedSpaces;
-    setBaseSpec({ w, h, ...(baseSpec.costAssumptions?{costAssumptions:baseSpec.costAssumptions}:{}), ...(baseSpec.contents ? { contents: { boundary: true, layout: baseSpec.contents.layout, removedHomes: [] } } : {}), ...(baseSpec.planning ? { planning: {...dimensionPlanning,streets:[],...(dimensionPlanning.housing?{housing:{...dimensionPlanning.housing,assignments:{}}}:{})} } : {}) });
+    setBaseSpec({ w, h, ...(baseSpec.development!==undefined?{development:baseSpec.development}:{}), ...(baseSpec.costAssumptions?{costAssumptions:baseSpec.costAssumptions}:{}), ...(baseSpec.contents ? { contents: { boundary: true, layout: baseSpec.contents.layout, removedHomes: [] } } : {}), ...(baseSpec.planning ? { planning: {...dimensionPlanning,streets:[],...(dimensionPlanning.housing?{housing:{...dimensionPlanning.housing,assignments:{}}}:{})} } : {}) });
     const s = makeSite(w, h);
     setGreen({ ...s.green });
     setEntrance({ ...s.entrance });
@@ -891,7 +915,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   const applyBoundary = () => {
     if (!boundaryDraft || !boundaryDraft.closed || boundaryErrors(boundaryDraft.pts).length) return;
     if (planning.siteLocked) return;
-    const next = { costAssumptions:baseSpec.costAssumptions, ...frameForBoundary(boundaryDraft.pts), ...(baseSpec.contents ? { contents: { ...baseSpec.contents, boundary: true } } : {}), ...(baseSpec.planning ? { planning: baseSpec.planning } : {}) };
+    const next = { development:baseSpec.development, costAssumptions:baseSpec.costAssumptions, ...frameForBoundary(boundaryDraft.pts), ...(baseSpec.contents ? { contents: { ...baseSpec.contents, boundary: true } } : {}), ...(baseSpec.planning ? { planning: baseSpec.planning } : {}) };
     const nextGreen = boundaryDraft.newSite ? makeSite(next.w, next.h).green : green;
     const nextEntrance = boundaryEntrance;
     const nextSite = { ...base, ...next, green: nextGreen, entrance: nextEntrance };
@@ -1395,7 +1419,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   };
 
   const assistantSnapshot = (): ScenarioSnapshot => ({
-    version: baseSpec.costAssumptions!==undefined?10:baseSpec.planning?.openSpaces!==undefined?9:baseSpec.planning?.housing?8:baseSpec.planning?.lotPlan!==undefined?7:baseSpec.planning?.streetNetwork !== undefined ? 6 : baseSpec.contents !== undefined ? 5 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 4 : baseSpec.planning ? 3 : baseSpec.boundary ? 2 : 1,
+    version: baseSpec.development!==undefined?11:baseSpec.costAssumptions!==undefined?10:baseSpec.planning?.openSpaces!==undefined?9:baseSpec.planning?.housing?8:baseSpec.planning?.lotPlan!==undefined?7:baseSpec.planning?.streetNetwork !== undefined ? 6 : baseSpec.contents !== undefined ? 5 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 4 : baseSpec.planning ? 3 : baseSpec.boundary ? 2 : 1,
     site: { ...baseSpec },
     entrance: { ...entrance },
     green: { ...green },
@@ -1666,7 +1690,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     if (result.error) { setStatus(`Layout not generated: ${result.error}`); return; }
     setHist(h => pushUndo(h, snap()));
     const next = result.site;
-    setBaseSpec({ costAssumptions:baseSpec.costAssumptions, w: next.w, h: next.h, boundary: next.boundary, planning: next.planning, contents: next.contents });
+    setBaseSpec({ development:baseSpec.development, costAssumptions:baseSpec.costAssumptions, w: next.w, h: next.h, boundary: next.boundary, planning: next.planning, contents: next.contents });
     setGreen({ ...next.green }); setGreenDraftF(strFields(next.green));
     setEntrance({ ...next.entrance }); setEntranceS(String(next.entrance.offset));
     setSpec({ family: 'spine', frontage: spec.frontage }); setGreenLocked(false); resetResults();
@@ -1745,6 +1769,15 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     setContextOpen(false); setSelected(kind); setControlsOpen(true);
   };
 
+  const alternativePreview = preview && !stale ? (() => {
+    const layout=buildWorking(committedSite,{family:preview.family,frontage:preview.frontage});
+    const lots:Record<string,Pt[]>={};
+    for(const [index,pts] of Object.entries(preview.lots)){
+      const lot=layout.parcels[Number(index)];if(lot)lots[lotKey(lot)]=pts.map(p=>({...p}));
+    }
+    return {label:`Preview: ${dispName(preview)}`,state:{...projectState(),spec:{family:preview.family,frontage:preview.frontage},lots}};
+  })() : null;
+
   return (
     <div className={cmpExpand ? "bench compare-focused" : "bench"} onKeyDown={(e) => {
       const tag = (e.target as HTMLElement).tagName;
@@ -1764,13 +1797,28 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
       } else if (e.key.toLowerCase() === 'v') setTool('select');
       else if (e.key.toLowerCase() === 'h') setTool('pan');
     }}>
-      {experimentOpen && <FeasibilityExperiments site={committedSite} spec={spec} lots={lotEdits} price={price*M} owner={ownerL*BN} target={targetT/100} ceiling={ceiling*M} profile={profile} greenLocked={greenLocked}
-        onCancel={() => { setExperimentOpen(false); setStatus('Experiment cancelled. Accepted plan and costs retained.'); }}
+      {alternativesOpen && <SavedAlternatives working={projectState()} preview={alternativePreview} items={alternatives??[]} saveStatus={saveStatus} onChange={saveAlternatives}
+        onClose={()=>setAlternativesOpen(false)} onReopen={item=>{
+          const state=structuredClone(item.state);
+          setHist(h=>pushUndo(h,snap()));
+          restore({...state,entrance:{...state.entrance,edge:state.entrance.edge==='east'?'east':'west'},spec:{family:state.spec.family==='loop'?'loop':'spine',frontage:state.spec.frontage},greenDraftF:strFields(state.green),showBackdrop:false});
+          resetResults();setSelectedLot(null);setSelectedLots([]);setSelectedSpace(null);setSelected(hasLayout(state.baseSpec)?null:'site');setAlternativesOpen(false);setSiteFit(n=>n+1);
+          logDecision('reopen-scheme',`Reopened saved scheme “${item.name}”. Previous working plan retained for Undo; saved schemes unchanged.`);
+          setStatus(`Reopened “${item.name}”. Undo restores the previous working plan. Original reference photos are hidden; reattach source media if needed.`);
+        }} />}
+      {aiSettingsOpen && <AISettings onClose={()=>setAiSettingsOpen(false)}/>}
+      {developmentOpen&&<DevelopmentEditor site={committedSite} spec={spec} lots={lotEdits} price={price*M} owner={ownerL*BN} target={targetT/100}
+        onCancel={()=>{setDevelopmentOpen(false);setStatus('Development draft cancelled. Accepted inputs retained.');}}
+        onApply={(development,detail)=>{setHist(h=>pushUndo(h,snap()));const next={...baseSpec};if(development)next.development=structuredClone(development);else delete next.development;setBaseSpec(next);setDevelopmentOpen(false);resetResults();logDecision('development',detail);setStatus('Development inputs applied. Calculations require suitable data and applicability; Undo restores the previous inputs.');}}/>}
+      {experimentOpen && <FeasibilityExperiments initialTrial={aiTrial??undefined} site={committedSite} spec={spec} lots={lotEdits} price={price*M} owner={ownerL*BN} target={targetT/100} ceiling={ceiling*M} profile={profile} greenLocked={greenLocked}
+        onCancel={() => { setExperimentOpen(false); setAiTrial(null); setStatus('Experiment cancelled. Accepted plan and costs retained.'); }}
         onApply={(next, nextSpec, detail) => {
+          if(aiTrial){try{measureProposal(assistantSnapshot(),aiTrial);}catch{setExperimentOpen(false);setAiTrial(null);setStatus('AI trial is stale. Ask again against the current accepted plan.');return;}}
+          setAiTrial(null);
           setHist(h => pushUndo(h, snap()));
           setBaseSpec({ ...baseSpec, costAssumptions: next.costAssumptions, ...(next.planning?{planning:next.planning}:{}) });
           setSpec(nextSpec); setExperimentOpen(false); setPreviewId(null); setSelectedLot(null); setSelectedLots([]); setLastDelta(null);
-          logDecision('feasibility', detail); setStatus('Experiment applied. Geometry and costs remeasured; Undo restores the previous accepted plan.');
+          logDecision('feasibility', `${aiTrial?'Reviewed AI proposal. ':''}${detail}`); setStatus('Experiment applied. Geometry and costs remeasured; Undo restores the previous accepted plan.');
         }} />}
       {leaveBoundary && <ConfirmPlanChange title="Leave this boundary draft?" detail="This boundary draft has not been applied or saved. Keep editing to review and Apply it, or discard it to open Projects. The accepted plan stays unchanged." recovery="Discarding the draft cannot be undone. Opening Projects alone keeps accepted-plan history and photos; leaving this project ends them." action="Discard draft and open projects" cancelLabel="Keep editing" onCancel={() => setLeaveBoundary(false)} onConfirm={() => { cancelBoundary(); setLeaveBoundary(false); onOpenProjects(sessionRisk); }} />}
       {deleteKind && <ConfirmPlanChange title={deleteKind === 'homes' ? 'Remove selected homes?' : deleteKind === 'layout' ? 'Clear this layout?' : 'Delete boundary and layout?'} detail={deleteKind === 'homes' ? `Remove ${selectedHomeIndices.length} homes while keeping their lots vacant. New generated lots overlapping these reservations also stay vacant. Keep the boundary, streets, park, project name, assumptions and reference photo.` : deleteKind === 'layout' ? 'Remove homes, lots, streets and open space, including park protections and vacant-home reservations. Keep this boundary, project name, economic assumptions, site context and any reference photo in its current visibility.' : 'Remove the boundary, homes, lots, streets and open space. Keep the project name, economic assumptions and site context. Any reference photo is hidden and remains available in Site source only until you switch projects, reload or close.'} action={deleteKind === 'homes' ? 'Remove homes' : deleteKind === 'layout' ? 'Confirm clear layout' : 'Confirm delete boundary and layout'} onConfirm={confirmDelete} onCancel={() => setDeleteKind(null)} />}
@@ -1785,26 +1833,27 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
         <div className="workstate" aria-live="polite">
           {cmpExpand ? 'Comparing plans' : preview ? `Previewing ${dispName(preview)}` : 'Working plan'}
         </div>
-        <nav className="workspace-tabs" aria-label="Workspace"><button type="button" className={!dockOpen ? 'current' : ''} onClick={() => { setDockOpen(false); setCmpExpand(false); }}>Plan</button><button type="button" disabled={!hasLayout(baseSpec)} onClick={() => { setDockTab('options'); setDockOpen(true); }}>Alternatives</button><button type="button" disabled={!hasLayout(baseSpec)} onClick={() => { selectFromCanvas('homes'); if (!contextPending) setSelectedLot(null); }}>Parcels</button></nav>
+        <nav className="workspace-tabs" aria-label="Workspace"><button type="button" className={!dockOpen ? 'current' : ''} onClick={() => { setDockOpen(false); setCmpExpand(false); }}>Plan</button><button type="button" onClick={openAlternatives}>Alternatives</button><button type="button" disabled={!hasLayout(baseSpec)} onClick={() => { selectFromCanvas('homes'); if (!contextPending) setSelectedLot(null); }}>Parcels</button></nav>
         <div className="topactions" role="toolbar" aria-label="Edit history">
-          <button type="button" className="save-project" title="Save accepted edits in this browser only. Apply pending edits first. Download a backup from Projects." onClick={() => { if (onSaveProject(serializeProject(projectState(), decisions, projectName))) setStatus('Project saved. Pending edits are kept only when you Apply them.'); }}>Save</button>
+          <button type="button" className="save-project" title="Save accepted edits in this browser only. Apply pending edits first. Download a backup from Projects." onClick={() => { if (onSaveProject(serializeProject(projectState(), decisions, projectName, alternatives))) setStatus('Project saved. Pending edits are kept only when you Apply them.'); }}>Save</button>
           <button type="button" onClick={() => boundaryDraft ? undoBoundary() : spacesEditing ? undoSpace() : streetEditing ? undoStreet() : lotDraft?undoLotDraft():doUndo()} disabled={boundaryDraft ? boundaryHistory.past.length === 0 : spacesEditing?spaceHistory.past.length===0:streetEditing ? streetHistory.past.length === 0 : lotDraft?lotHistory.past.length===0:hist.past.length===0} aria-label="Undo" title="Undo (Ctrl+Z)"><UndoIcon size={18} /><span className="sr-only">Undo</span></button>
           <button type="button" onClick={() => boundaryDraft ? undoBoundary(true) : spacesEditing ? undoSpace(true) : streetEditing ? undoStreet(true) : lotDraft?undoLotDraft(true):doRedo()} disabled={boundaryDraft ? boundaryHistory.future.length === 0 : spacesEditing?spaceHistory.future.length===0:streetEditing ? streetHistory.future.length === 0 : lotDraft?lotHistory.future.length===0:hist.future.length===0} aria-label="Redo" title="Redo (Ctrl+Shift+Z)"><RedoIcon size={18} /><span className="sr-only">Redo</span></button>
           <button type="button" className="export-action" title="Export the accepted plan and decision record as JSON" onClick={exportRecord}><DownloadIcon size={16} /><span>Export JSON</span></button>
-          <span className="badge modeloff" title="Typed requests are parsed in the browser by fixed rules (no model, no network). Search tests the fixed family × frontage grid only. Supported: keep open space, cap price, switch profile, run search. The tool server adds validated server-side search and measured explanations when reachable.">
+          <span className="badge modeloff" title="AI interprets intentions into reviewable experiments. The planning engine owns measurements; Apply is explicit. Local measured tools remain available.">
             {serverOk === null
               ? 'Local tools · checking server…'
               : serverOk
-                ? 'Local tools · server online · no model'
-                : 'Local tools · server offline · no model'}
+                ? `Local tools · server online · ${aiStatus}`
+                : 'Local tools · server offline · AI unavailable'}
           </span>
+          <button type="button" className="ai-settings-button" onClick={()=>setAiSettingsOpen(true)}>AI settings</button>
         </div>
       </header>
       <div className="contextstrip" aria-live="polite">
         <span><b className="active-project-name">{projectName} · </b>{hasBoundary(baseSpec) ? <>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices{hasLayout(baseSpec) && <> · Entrance {entrance.boundaryEdge === undefined ? entrance.edge : `edge ${entrance.boundaryEdge + 1}`} · {spec.family} {spec.frontage} m</>}</> : 'Blank plan'}</span>
         <span>Selected: {assistantFacts.label}</span>
         <span title={workingErrors[0]} className={workingErrors.length > 0 ? 'bad' : 'ok'}>{!hasBoundary(baseSpec) ? 'No boundary yet' : workingLayout.empty ? 'Boundary only' : workingLayout.supportError ? 'Layout unavailable' : workingErrors.length > 0 ? 'Invalid plan · see issues' : workingWarnings.length ? 'Profile / template warning' : 'Plan valid'}</span>
-        <details className="save-summary"><summary>{saveStatus.startsWith('Project saved') ? 'Saved in this browser' : saveStatus}</summary><div><strong>Accepted plan · browser-local storage</strong><p>{saveStatus}</p><p>Boundary, entrance, open space, housing templates and lot assignments, constraints, assumptions, lot edits and decisions are saved. Site context and survey calibration are saved. Drafts, undo history, searches, comparisons, photos and survey media are session-only; reattach original survey files after reopening.</p><button type="button" onClick={exportRecord}>Download accepted plan</button><p>Private browsing or clearing site data can remove local projects. Download a portable backup before leaving a private session.</p><p>To keep an alternative, apply it after review and download it. Import the file from Decision record to reopen it. A preview alone is not saved.</p></div></details>
+        <details className="save-summary"><summary>{saveStatus.startsWith('Project saved') ? 'Saved in this browser' : saveStatus}</summary><div><strong>Accepted plan · browser-local storage</strong><p>{saveStatus}</p><p>Boundary, entrance, open space, housing templates and lot assignments, constraints, assumptions, lot edits, named schemes with notes, and decisions are saved. Site context and survey calibration are saved. Drafts, undo history, searches, comparisons, photos and survey media are session-only; reattach original survey files after reopening.</p><button type="button" onClick={exportRecord}>Download accepted plan</button><p>Private browsing or clearing site data can remove local projects. Download a portable backup before leaving a private session.</p><p>Use Saved alternatives to name and keep the working plan or a search preview without replacing accepted work. Scheme notes and inputs are included in project downloads; a preview alone is session-only.</p></div></details>
       </div>
       <p role="status" aria-live="polite" className="note srstatus" title={status}>
         {status}
@@ -2088,7 +2137,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
                 {workingErrors.length ? <p className="error" role="status">Layout unavailable: {workingErrors[0]} You may save the valid outline, but it will have no assessed layout until this is corrected.</p> : <p className="note">{workingLayout.empty ? 'Boundary only. Generate a layout after applying this outline.' : planning.streetNetwork ? 'Manual streets are retained and whole lots regenerated inside the outline. Review full-width containment; this is a bounded layout, not the site’s maximum capacity.' : 'Whole lots and connected orthogonal streets are regenerated inside the outline. Roads and park clearance may leave land unallocated; this is a bounded layout, not the site’s maximum capacity.'}</p>}
               </section>
               {baseSpec.planning && hasLayout(site) && <EntranceEditor site={site} onChange={(next) => changeBoundary({ ...boundaryDraft, entrance: next })} error={entranceErrors(site)[0]} />}
-            </>} /> : !hasLayout(baseSpec) ? <section className="plan-setup" aria-label="Plan setup"><button type="button" onClick={openContext}>Site context & survey</button><h2>{hasBoundary(baseSpec) ? 'Your site is ready' : 'Start your site'}</h2><p>{hasBoundary(baseSpec) ? `${formatM2(siteArea(baseSpec))} · ${siteBoundary(baseSpec).length} corners. No layout has been generated. Any designed open spaces remain reserved.` : 'Draw a closed boundary on the canvas. Place corners with your pointer or enter their coordinates.'}</p><button type="button" onClick={() => startBoundary(!hasBoundary(baseSpec))}>{hasBoundary(baseSpec) ? 'Edit boundary' : 'Draw boundary'}</button>{hasBoundary(baseSpec) && <button type="button" onClick={startSpaces}>Design open spaces</button>}{hasBoundary(baseSpec) && <button type="button" onClick={generateLayout}>Generate layout</button>}<p className="note">Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.</p>{planActions}<details className="sitesrc"><summary>Site source · reference photo</summary>{referencePhotoControls}</details><button type="button" onClick={startHousingMix}>Manage housing templates</button><button type="button" onClick={openProjects}>Open projects</button></section> : <>
+            </>} /> : !hasLayout(baseSpec) ? <section className="plan-setup" aria-label="Plan setup"><button type="button" onClick={openContext}>Site context & survey</button><h2>{hasBoundary(baseSpec) ? 'Your site is ready' : 'Start your site'}</h2><p>{hasBoundary(baseSpec) ? `${formatM2(siteArea(baseSpec))} · ${siteBoundary(baseSpec).length} corners. No layout has been generated. Any designed open spaces remain reserved.` : 'Draw a closed boundary on the canvas. Place corners with your pointer or enter their coordinates.'}</p><button type="button" onClick={() => startBoundary(!hasBoundary(baseSpec))}>{hasBoundary(baseSpec) ? 'Edit boundary' : 'Draw boundary'}</button>{hasBoundary(baseSpec) && <button type="button" onClick={startSpaces}>Design open spaces</button>}{hasBoundary(baseSpec) && <button type="button" onClick={generateLayout}>Generate layout</button>}<p className="note">Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.</p>{planActions}<details className="sitesrc"><summary>Site source · reference photo</summary>{referencePhotoControls}</details><button type="button" onClick={startHousingMix}>Manage housing templates</button><button type="button" onClick={openAlternatives}>Saved alternatives</button><button type="button" onClick={()=>{if(regenBlock){setStatus(regenBlock);return;}setDevelopmentOpen(true);}}>Terrain, drainage and phasing</button><button type="button" onClick={openProjects}>Open projects</button></section> : <>
           <DynamicInspector openSpaceControls={<section className="space-summary" aria-label="Neighborhood open spaces"><h3>Neighborhood open spaces</h3><ul>{spaces.map(s=><li key={s.id}><button type="button" aria-pressed={greenSelected&&s.id===selectedSpace} onClick={()=>{setSelected('grove');setSelectedSpace(s.id);}}>{s.name} · {s.kind} · {polyArea(s.pts).toFixed(1)} m² · {s.locked?'fixed':'editable'}</button></li>)}</ul><p>{spaceArea(spaces).toFixed(1)} m² combined · {spaces.length} spaces</p><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startSpaces}>Edit open spaces</button></section>} builtArea={planning.housing&&selected==='homes'?housingSummary(site,(selectedLots.length?selectedLots:selectedLot===null?planShown.parcels.map((_,i)=>i):[selectedLot]).map(i=>planShown.parcels[i]).filter((r):r is Rect=>!!r)).builtArea:undefined} housingControls={selected==='homes'?<section className="housing-summary" aria-label="Housing mix"><h3>Housing mix</h3>{selectedLot!==null&&workingLayout.parcels[selectedLot]?<p>Lot {selectedLot+1}: {homeTemplate(planning,workingLayout.parcels[selectedLot]).name} · {homeArea(planning,workingLayout.parcels[selectedLot])} m²{hasHome(site,workingLayout.parcels[selectedLot])?' home':' reserved template · vacant lot'} · {assignmentSource(planning.housing,workingLayout.parcels[selectedLot])==='explicit'?'Explicit assignment':'Follows default'}</p>:<p>{shownHousing.rows.map(r=>`${r.name}: ${r.count} homes`).join(' · ')} · {shownHousing.builtArea} m² built</p>}<button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startHousingMix}>Edit housing mix</button></section>:null} lotControls={selected==='homes'?<section className="lot-tools" aria-label="Blocks and lots"><h3>Blocks &amp; lots</h3><div className="draftrow"><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>startParcelEdit('split')}>Split lot</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('merge')}>Merge lots</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('block')}>Subdivide block</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>{const tools=document.querySelector<HTMLDetailsElement>('.object-tools');if(tools)tools.open=true;startLotReshape();}}>Edit lot outline</button></div>
               {selectedLot!==null&&lotEdits[lotKey(committedLayout.parcels[selectedLot]??{x:0,y:0,w:0,h:0})]&&<button type="button" disabled={!!regenBlock||draftDirty||!!preview} onClick={restoreSelectedRectangle}>Restore rectangular outline</button>}
               {planning.lotPlan!==undefined&&<><p className="note">Manual lot plan held. Frontage search cannot repartition these lots; use the direct tools or explicitly return to generated lots.</p><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={previewGeneratedLots}>Preview generated lots</button></>}
@@ -2137,7 +2186,12 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
               facts={assistantFacts}
               tryCtx={assistantTry}
               getSnapshot={assistantSnapshot}
-              snapshotOk={inputsOk && !workingLayout.empty && !parameterDraft && !boundaryDraft && !draftDirty}
+              onReviewExperiment={proposal=>{
+                if(regenBlock){setStatus(regenBlock);return;}
+                try{measureProposal(assistantSnapshot(),proposal);}catch(e){setStatus(e instanceof Error?e.message:'Trial unavailable.');return;}
+                setAiTrial(proposal);setExperimentOpen(true);
+              }}
+              snapshotOk={inputsOk && !workingLayout.empty && !regenBlock && !lotDraft && !draftDirty && !contextPending}
               workingSpec={{ ...spec }}
               previewSpec={preview ? { family: preview.family, frontage: preview.frontage } : null}
               onSendRequest={(text) => submitRequest(text)}
@@ -2146,6 +2200,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
 
           <div className="instr">
             <label htmlFor="request">What should change?</label>
+            <p className="note">Local search request · fixed rules. Use Ask AI to interpret an intention.</p>
             <textarea id="request" rows={2} enterKeyHint="go" value={request} onChange={(e) => setRequest(e.target.value)} />
             <button type="button" disabled={optimizing || !!parameterDraft} onClick={() => submitRequest()}>Send</button>
           </div>
@@ -2539,9 +2594,12 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           </div>
 
           </details>
+          <button type="button" className="experiment-entry" onClick={()=>{if(regenBlock||draftDirty||pendingOp||optimizing||preview){setStatus('Finish the current edit or preview before reviewing development inputs.');return;}setDevelopmentOpen(true);}}>Terrain, drainage and phasing</button>
+          {baseSpec.development&&<p className="note">Saved development studies: {Object.keys(baseSpec.development).join(', ')}. Recheck coverage, storm applicability and lot assignments after plan changes.</p>}
+          <button type="button" className="experiment-entry" onClick={openAlternatives}>Saved alternatives</button>
           <button type="button" className="experiment-entry" onClick={() => {
             if(regenBlock||draftDirty||pendingOp||optimizing||preview||!committedEcon||workingErrors.length){setStatus('Finish the current edit and resolve layout or assumption errors before starting an experiment.');return;}
-            setExperimentOpen(true);
+            setAiTrial(null); setExperimentOpen(true);
           }}>Feasibility experiments</button>
           <details className="assump">
             <summary>
@@ -2856,7 +2914,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
                             Owner expectation Rp{ownerL}bn is a benchmark, not a constraint.
                           </p>
                         )}
-                        <p className="note">Both plans share the same site coordinates. Comparisons are snapshots of this run only — no saved schemes yet.</p>
+                        <p className="note">Both plans share the same site coordinates. This search comparison is session-only; use Saved alternatives to keep a named copy of the accepted plan or its current preview.</p>
                       </>
                     );
                   })()}
@@ -2889,7 +2947,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
               <p className="note">{saveStatus}</p>
               <p className="note">
                 Save contract: the browser keeps the accepted plan, assumptions, reshapes, and the event log on this device only.
-                Searches, comparisons, drafts, undo history, and photos never persist — after a reload, regenerate options to continue the decision.
+                Named schemes and their notes persist. Search runs, comparison selections, drafts, undo history, and photos never persist — after a reload, regenerate options to continue the decision.
               </p>
               <label>
                 Import project JSON (opens as a separate project; existing projects are kept)

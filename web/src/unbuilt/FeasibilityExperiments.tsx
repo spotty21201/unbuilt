@@ -1,3 +1,4 @@
+import {developmentFindings} from '../../../src/development';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { DEFAULT_COSTS, type CostAssumptions } from '../../../src/costs';
 import { evaluateLayout } from '../../../src/economics';
@@ -24,6 +25,7 @@ const costFields = (costs: CostAssumptions) => Object.fromEntries(fields.map(f =
 const number = (s: string) => s.trim() === '' ? NaN : Number(s);
 const noop = () => {};
 interface Props {
+  initialTrial?: {design:ExperimentDesign;costs:CostAssumptions};
   site: Site; spec: WorkingSpec; lots: StableEdits; price: number; owner: number; target: number;
   ceiling: number; profile: ProductProfile; greenLocked: boolean;
   onApply: (site: Site, spec: WorkingSpec, detail: string) => void; onCancel: () => void;
@@ -33,10 +35,10 @@ export default function FeasibilityExperiments(props: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
   const acceptedCosts = site.costAssumptions ?? DEFAULT_COSTS;
   const initialDesign = { ...spec, lotDepth: site.planning?.lotDepth ?? DEFAULT_PLANNING.lotDepth };
-  const [family, setFamily] = useState(spec.family);
-  const [frontage, setFrontage] = useState(String(spec.frontage));
-  const [depth, setDepth] = useState(String(initialDesign.lotDepth));
-  const [values, setValues] = useState(() => costFields(acceptedCosts));
+  const [family, setFamily] = useState(props.initialTrial?.design.family ?? spec.family);
+  const [frontage, setFrontage] = useState(String(props.initialTrial?.design.frontage ?? spec.frontage));
+  const [depth, setDepth] = useState(String(props.initialTrial?.design.lotDepth ?? initialDesign.lotDepth));
+  const [values, setValues] = useState(() => costFields(props.initialTrial?.costs ?? acceptedCosts));
   const [fit, setFit] = useState(0);
   useEffect(() => { const el = dialog.current!; el.showModal(); return () => el.close(); }, []);
   const cancelTrial = () => { dialog.current?.close(); props.onCancel(); };
@@ -86,7 +88,7 @@ export default function FeasibilityExperiments(props: Props) {
     wide={false} onToggleWide={noop} fitTick={fit} fitMode="width" /></div>;
   const detail = `Feasibility experiment: ${spec.family}/${spec.frontage} m/${initialDesign.lotDepth} m → ${family}/${frontage} m/${depth} m; ${fields.filter(f => costs[f.key] !== acceptedCosts[f.key]).map(f => `${f.label}: ${acceptedCosts[f.key] / f.scale} → ${values[f.key]}`).join('; ') || 'costs held'}. Homes ${before.quantities.n} → ${after?.quantities.n}; non-land costs ${formatRp(before.costNonLand)} → ${after ? formatRp(after.costNonLand) : 'unavailable'}; land allowance ${formatRp(before.finance.landAllowance)} → ${after ? formatRp(after.finance.landAllowance) : 'unavailable'}. Shared selling price held; market assumptions provisional.`;
   return <dialog className="feasibility-dialog" ref={dialog} aria-labelledby="feasibility-title" onCancel={e => { e.preventDefault(); cancelTrial(); }}>
-    <header><div><h2 id="feasibility-title">Feasibility experiments</h2><p>Test a change against the accepted plan. Only Apply saves the trial.</p></div><button type="button" onClick={cancelTrial}>Close experiment</button></header>
+    <header><div><h2 id="feasibility-title">Feasibility experiments</h2><p>{props.initialTrial ? 'AI-proposed trial, measured by the planning engine. Review the drawing and assumptions. Only Apply changes accepted work.' : 'Test a change against the accepted plan. Only Apply saves the trial.'}</p></div><button type="button" onClick={cancelTrial}>Close experiment</button></header>
     <div className="feasibility-body">
       <section className="experiment-inputs" aria-label="Trial inputs">
         <h3>Design trial</h3><p>Boundary, entrance, green outlines, vacancies and home templates are held. Generated lots may change.</p>
@@ -106,6 +108,7 @@ export default function FeasibilityExperiments(props: Props) {
         <div className="experiment-table"><table><caption>Measured quantities and assumed finances</caption><thead><tr><th scope="col">Measure</th><th scope="col">Accepted</th><th scope="col">Trial</th><th scope="col">Change</th></tr></thead><tbody>{rows.map(([label, a, b, kind]) => <tr key={label}><th scope="row">{label}</th><td>{display(a, kind)}</td><td>{b === null ? '—' : display(b, kind)}</td><td>{b === null ? '—' : `${b - a > 0 ? '+' : ''}${display(b - a, kind)}`}</td></tr>)}</tbody></table></div>
         <p>Required price at the owner benchmark and target: {before.finance.requiredPrice === null ? 'Unavailable' : `${formatRp(before.finance.requiredPrice)}/home`} → {after?.finance.requiredPrice == null ? 'Unavailable' : `${formatRp(after.finance.requiredPrice)}/home`}. {after?.finance.requiredPrice != null && after.finance.requiredPrice > props.ceiling ? 'Trial required price exceeds the declared buyer ceiling.' : ''}</p>
         {after && trial.designEconomics && <p>Land allowance attribution: design change at accepted costs {display(trial.designEconomics.finance.landAllowance - before.finance.landAllowance, 'money')}; then cost changes on the trial design {display(after.finance.landAllowance - trial.designEconomics.finance.landAllowance, 'money')}.</p>}
+        {site.development&&<section><h3>Development screening after this trial</h3><ul>{developmentFindings(trial.site,trial.layout,trial.edits,after,price,owner).map(f=><li key={f.id}>{f.text}</li>)}</ul><p className="note">Geometry changes can leave phase assignments needing review. Accepted study inputs are retained; no automatic reassignment or earthworks/drainage budget is added.</p></section>}
         <p className="note">{outside > 0 ? `${outside} trial lots fall outside ${props.profile.name}. ` : ''}The shared selling price is held as an assumption even when design changes. Lower costs do not prove saleability or market value. No optimum or verified feasibility is claimed. Trials are session-only; Apply records the accepted inputs and an event, with plan Undo/Redo.</p>
       </section>
     </div>

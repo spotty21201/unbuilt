@@ -1,0 +1,185 @@
+locator.fill: Timeout 7000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Distance from south (m)', { exact: true })[22m
+
+    at /home/spotty/projects/unbuilt/tests/boundary-browser.cjs:81:171
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample (2)
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample (2) · 11,000 m² · 5 vertices · Entrance west · spine 10 m
+Selected: Site
+Plan valid
+Saved in this browser
+
+Imported project file “polygon-record.json” as “Cedar Market sample (2)”. Existing projects were kept. Accepted plan restored; drafts, undo history and photos are not included.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+LOT 01
+200 m²
+LOT 02
+200 m²
+LOT 03
+200 m²
+LOT 04
+200 m²
+LOT 05
+200 m²
+LOT 06
+200 m²
+LOT 07
+200 m²
+LOT 08
+200 m²
+LOT 09
+200 m²
+LOT 10
+200 m²
+LOT 11
+200 m²
+LOT 12
+200 m²
+LOT 13
+200 m²
+LOT 14
+200 m²
+LOT 15
+200 m²
+LOT 16
+200 m²
+LOT 17
+200 m²
+LOT 18
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+70.0 m
+64.0 m
+60.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Measured
+SELECTED AREA
+11,000 m²
+SITE SHARE
+100.00%
+MODELED HOMES
+18
+BUILT AREA / HOME
+60.0 m²
+Site access
+
+Choose the boundary edge facing an assumed public access. Edge numbers follow the corners on the drawing. External roads and access permissions are unverified.
+
+Entrance edge
+Current west gate
+Edge 1: corner 1 → 2 · 120.0 m
+Edge 2: corner 2 → 3 · 100.0 m
+Edge 3: corner 3 → 4 · 70.0 m
+Edge 4: corner 4 → 5 · 64.0 m
+Edge 5: corner 5 → 1 · 60.0 m
+Distance from south (m)
+Check mid-edge entrances
+
+8 m gate. A measured apron connects boundary-edge entrances to 6 m orthogonal Spine streets; fixed Loop does not support these gates.
+
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+
+480.0 m² combined · 1 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Lot frontage
+10 m
+8 m
+16 m
+Lot depth
+20 m
+12 m
+40 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Housing template · 60 m² / home
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Fix Open space A shape + location
+Locked
+Maintain minimum open space
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Ask about Site
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+Bounded local search · 8 layouts
+Run optimization ▷
+
+Produces reviewable alternatives. Preview and Apply keep you in control.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasingSaved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+18 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp2.80bn
+Shortfall Rp7.20bn

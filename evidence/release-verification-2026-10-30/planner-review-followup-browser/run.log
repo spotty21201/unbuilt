@@ -1,0 +1,27 @@
+PASS removed home leaves 19 homes and original street and park allocation
+PASS parameter preview explains the blocked restoration beside the action
+PASS blocked reason distinguishes unfinished editing from a fit conflict
+PASS preview does not change accepted frontage or removed-home reservation
+PASS Cancel makes restoration available without applying frontage
+PASS restoration after cancelling returns 20 homes
+PASS applying frontage preserves one vacant overlapping lot
+PASS restoration after applying passes actual fit checks and fills generated lots
+PASS invalid outline highlights the conflicting edges and prevents Apply
+PASS dragging the conflicting corner back repairs the outline visibly
+PASS Apply accepts only repaired geometry with restored corner
+PASS Cancel invalid edit retains the previously accepted outline
+PASS 1440: New project action is visible before scrolling
+PASS 1440: library has no horizontal overflow
+PASS 1440: keyboard shortcut scrolls to and focuses project name
+PASS 1024: New project action is visible before scrolling
+PASS 1024: library has no horizontal overflow
+PASS 1024: keyboard shortcut scrolls to and focuses project name
+PASS 375: New project action is visible before scrolling
+PASS 375: library has no horizontal overflow
+PASS 375: keyboard shortcut scrolls to and focuses project name
+PASS mobile project creation preserves the existing project
+PASS saved scope remains accessible with explicit exclusions and reattachment
+PASS opening original project restores its accepted revised scheme
+PASS mobile selected-object action still focuses the correct inspector
+PASS no uncaught browser errors
+ALL 26 PLANNER REVIEW FOLLOW-UP CHECKS PASS

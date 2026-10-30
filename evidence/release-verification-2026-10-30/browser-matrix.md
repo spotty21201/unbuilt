@@ -1,0 +1,37 @@
+| Suite | Checks | Result | Evidence |
+| --- | ---: | --- | --- |
+| ai-browser.mjs | 28 | Pass | [ai-browser/run.log](ai-browser/run.log) |
+| boundary-browser.cjs | 50 | Pass | [boundary-browser/rerun.log](boundary-browser/rerun.log) |
+| boundary-pointer-range-browser.cjs | 31 | Pass | [boundary-pointer-range-browser/run.log](boundary-pointer-range-browser/run.log) |
+| browser-zoom.cjs | 9 | Pass | [browser-zoom/run.log](browser-zoom/run.log) |
+| development-browser.cjs | 39 | Pass | [development-browser/run.log](development-browser/run.log) |
+| dynamic-inspector-browser.cjs | 59 | Pass | [dynamic-inspector-browser/run.log](dynamic-inspector-browser/run.log) |
+| feasibility-browser.cjs | 33 | Pass | [feasibility-browser/run.log](feasibility-browser/run.log) |
+| feasibility-zoom.cjs | 5 | Pass | [feasibility-zoom/run.log](feasibility-zoom/run.log) |
+| housing-browser.cjs | 39 | Pass | [housing-browser/run.log](housing-browser/run.log) |
+| housing-review-browser.cjs | 34 | Pass | [housing-review-browser/run.log](housing-review-browser/run.log) |
+| housing-zoom.cjs | 7 | Pass | [housing-zoom/run.log](housing-zoom/run.log) |
+| lot-review-followup-browser.cjs | 12 | Pass | [lot-review-followup-browser/run.log](lot-review-followup-browser/run.log) |
+| open-spaces-browser.cjs | 31 | Pass | [open-spaces-browser/run.log](open-spaces-browser/run.log) |
+| open-spaces-zoom.cjs | 7 | Pass | [open-spaces-zoom/run.log](open-spaces-zoom/run.log) |
+| parcels-browser.cjs | 43 | Pass | [parcels-browser/run.log](parcels-browser/run.log) |
+| parcels-zoom.cjs | 6 | Pass | [parcels-zoom/run.log](parcels-zoom/run.log) |
+| planner-feedback-browser.cjs | 41 | Pass | [planner-feedback-browser/rerun.log](planner-feedback-browser/rerun.log) |
+| planner-feedback-fixes-browser.cjs | 54 | Pass | [planner-feedback-fixes-browser/run.log](planner-feedback-fixes-browser/run.log) |
+| planner-feedback-fixes-storage.cjs | 2 | Pass | [planner-feedback-fixes-storage/run.log](planner-feedback-fixes-storage/run.log) |
+| planner-feedback-fixes-zoom.cjs | 12 | Pass | [planner-feedback-fixes-zoom/run.log](planner-feedback-fixes-zoom/run.log) |
+| planner-review-followup-browser.cjs | 26 | Pass | [planner-review-followup-browser/run.log](planner-review-followup-browser/run.log) |
+| project-lifecycle-browser.cjs | 20 | Pass | [project-lifecycle-browser/run.log](project-lifecycle-browser/run.log) |
+| projects-browser.cjs | 55 | Pass | [projects-browser/run.log](projects-browser/run.log) |
+| saved-alternatives-browser.cjs | 36 | Pass | [saved-alternatives-browser/run.log](saved-alternatives-browser/run.log) |
+| saved-alternatives-zoom.cjs | 7 | Pass | [saved-alternatives-zoom/run.log](saved-alternatives-zoom/run.log) |
+| site-context-browser.cjs | 33 | Pass | [site-context-browser/run.log](site-context-browser/run.log) |
+| site-context-recovery-browser.cjs | 23 | Pass | [site-context-recovery-browser/run.log](site-context-recovery-browser/run.log) |
+| site-context-zoom.cjs | 8 | Pass | [site-context-zoom/run.log](site-context-zoom/run.log) |
+| stitch-viewport-browser.cjs | 38 | Pass | [stitch-viewport-browser/run.log](stitch-viewport-browser/run.log) |
+| street-review-browser.cjs | 33 | Pass | [street-review-browser/run.log](street-review-browser/run.log) |
+| streets-browser.cjs | 57 | Pass | [streets-browser/run.log](streets-browser/run.log) |
+| streets-zoom.cjs | 7 | Pass | [streets-zoom/run.log](streets-zoom/run.log) |
+| open-spaces-integration.cjs | 17 | Pass | [open-spaces-browser/integration.log](open-spaces-browser/integration.log) |
+| ai-browser.mjs (200% zoom) | 29 | Pass | [ai-zoom.log](ai-zoom.log) |
+| development-browser.cjs (200% zoom) | 40 | Pass | [development-zoom.log](development-zoom.log) |

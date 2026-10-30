@@ -16,7 +16,7 @@ export function polyArea(pts: Pt[]): number {
   return Math.abs(signedArea(pts));
 }
 
-function signedArea(pts: Pt[]): number {
+export function signedArea(pts: Pt[]): number {
   let s = 0;
   for (let i = 0; i < pts.length; i++) {
     const a = pts[i];

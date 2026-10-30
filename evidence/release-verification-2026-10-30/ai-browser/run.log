@@ -1,0 +1,29 @@
+PASS unconfigured AI stays explicit and never masquerades as a local model
+PASS administration opens independently of plan editing with no credentials in the project
+PASS saving clears key fields, retains server key and leaves the plan unchanged
+PASS connection status follows an actual fixture tool call
+PASS Escape closes settings and returns focus to its opener
+PASS AI call creates a bound reviewable proposal without changing accepted inputs
+PASS approved measurement reports exact engine costs and remains unapplied
+PASS AI explanation selects real trial findings without inventing measurements
+PASS drawing review opens with the exact proposed cost and explicit Apply
+PASS cancelling the drawing review keeps accepted work
+PASS Apply records only the proposed deterministic cost changes
+PASS one Undo restores the entire prior plan
+PASS Redo restores applied cost assumptions
+PASS current-plan explanations cite engine facts with assumption limits
+PASS ambiguous goals clarify and evidence limits do not run a trial
+PASS unchecked numeric prose is never shown as a result
+PASS local measured tools remain available after AI failure
+PASS discarding a checked proposal changes no accepted inputs
+PASS cancellation discards delayed responses
+PASS selection changes invalidate in-flight AI work
+PASS saved alternatives retain an applied AI trial through the existing snapshot contract
+PASS credentials and model transcript are absent from portable projects and browser storage
+PASS applied trial and named scheme reopen after reload
+PASS unsaved routing is protected on Escape
+PASS alternate routing is used only after explicit save
+PASS narrow administration fits without horizontal overflow
+PASS narrow AI trial preserves an accessible Apply and drawing review
+PASS no uncaught browser exceptions
+ALL 28 AI BROWSER CHECKS PASS (SCRIPTED FIXTURE)

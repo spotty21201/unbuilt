@@ -1,0 +1,307 @@
+{
+  "app": "UNBUILT decision record",
+  "projectName": "Cedar Market sample",
+  "exportVersion": 11,
+  "exportedAt": "2026-10-30T11:27:48.766Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.",
+  "state": {
+    "site": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true,
+        "openSpaces": [
+          {
+            "id": "g1",
+            "name": "Open space A",
+            "kind": "park",
+            "pts": [
+              {
+                "x": 78,
+                "y": 62
+              },
+              {
+                "x": 102,
+                "y": 62
+              },
+              {
+                "x": 102,
+                "y": 82
+              },
+              {
+                "x": 78,
+                "y": 82
+              }
+            ],
+            "locked": true,
+            "minArea": 0
+          },
+          {
+            "id": "g2",
+            "name": "Pocket court",
+            "kind": "pocket",
+            "pts": [
+              {
+                "x": 10,
+                "y": 80
+              },
+              {
+                "x": 22,
+                "y": 80
+              },
+              {
+                "x": 22,
+                "y": 90
+              },
+              {
+                "x": 10,
+                "y": 90
+              }
+            ],
+            "locked": false,
+            "minArea": 120
+          },
+          {
+            "id": "g3",
+            "name": "North link",
+            "kind": "corridor",
+            "pts": [
+              {
+                "x": 30,
+                "y": 94
+              },
+              {
+                "x": 70,
+                "y": 94
+              },
+              {
+                "x": 70,
+                "y": 90
+              },
+              {
+                "x": 30,
+                "y": 90
+              }
+            ],
+            "locked": false,
+            "minArea": 0
+          }
+        ],
+        "minGreenArea": 760
+      },
+      "areaM2": 12000,
+      "provenance": "fictional Cedar Market sample"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "openSpace": {
+      "compatibilityReferenceOnly": true,
+      "canonicalGeometry": "state.site.planning.openSpaces; legacy rectangle below is not an allocation",
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 24,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 10,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 0,
+          "y": 47,
+          "w": 120,
+          "h": 6
+        }
+      ],
+      "parcels": [
+        {
+          "x": 0,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 0,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 70,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 80,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 90,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 100,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 20,
+      "roadArea": 720,
+      "greenArea": 760,
+      "parcelArea": 4000,
+      "unallocatedArea": 6520
+    },
+    "economics": {
+      "roadCost": 576000000,
+      "homeCost": 6000000000,
+      "greenCost": 114000000,
+      "costNonLand": 10424500000,
+      "finance": {
+        "revenue": 17000000000,
+        "surplus": -3934500000,
+        "margin": -0.23144117647058823,
+        "landAllowance": 3515500000,
+        "ownerGap": 6484500000,
+        "requiredPrice": 1245396341.4634147
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "events": [
+    {
+      "t": "2026-10-30T11:27:48.159Z",
+      "kind": "open-spaces",
+      "detail": "Applied 3 open spaces; 760.0 m² true polygon area; streets, lots and costs remeasured."
+    },
+    {
+      "t": "2026-10-30T11:27:48.294Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-30T11:27:48.420Z",
+      "kind": "redo",
+      "detail": "Redo applied (event log itself is append-only)."
+    }
+  ],
+  "history": {
+    "undoDepth": 0,
+    "redoDepth": 0,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

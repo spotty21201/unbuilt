@@ -1,3 +1,6 @@
+import {developmentFindings} from '../src/development.ts';
+import { handleAI } from './ai-assistant.mjs';
+import { publicAIStatus } from './ai-config.mjs';
 import {housingSummary} from '../src/housing.ts';
 // UNBUILT deterministic server seam (Coder-owned). No dependencies; stdlib only.
 //
@@ -60,6 +63,7 @@ function readBody(req) {
     req.on("data", (c) => {
       size += c.length;
       if (size > BODY_LIMIT) {
+        chunks.length = 0;
         reject(new Error("body too large"));
         return;
       }
@@ -227,7 +231,7 @@ const server = http.createServer(async (req, res) => {
         "Access-Control-Allow-Origin": origin,
         Vary: "Origin",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "content-type",
+        "Access-Control-Allow-Headers": "content-type, authorization",
         "Access-Control-Max-Age": "600",
       });
       res.end();
@@ -242,7 +246,17 @@ const server = http.createServer(async (req, res) => {
       res.setHeader("Vary", "Origin");
     }
     if (req.method === "GET" && req.url === "/api/health") {
-      send(res, 200, { ok: true, adapter: MODEL_KEY ? "meta" : "mock", model: MODEL, modelConfigured: MODEL_KEY !== "" });
+      res.setHeader("Cache-Control", "no-store");
+      send(res, 200, { ok: true, adapter: MODEL_KEY ? "meta" : "mock", model: MODEL, modelConfigured: publicAIStatus().configured, ai: publicAIStatus() });
+      return;
+    }
+    if (req.url?.startsWith('/api/ai/')) {
+      let body;
+      if (req.method === 'POST') {
+        try { body = JSON.parse(await readBody(req)); }
+        catch { send(res, 400, {error:'Malformed JSON or body too large.'}); return; }
+      }
+      await handleAI(req,res,body,send);
       return;
     }
     if (req.method === "POST" && (req.url === "/api/intent" || req.url === "/api/search" || req.url === "/api/explain")) {
@@ -396,6 +410,7 @@ const server = http.createServer(async (req, res) => {
           quantities: deriveQuantities(site, layout, carried),
           builtArea:econ.builtArea,
           housing:housingSummary(site,layout.parcels),
+          ...(site.development?{development:developmentFindings(site,layout,carried,econ,s.assumptions.price,s.assumptions.owner)}:{}),
           revenue: econ.finance.revenue,
           costNonLand: econ.costNonLand,
           landAllowance: econ.finance.landAllowance,
