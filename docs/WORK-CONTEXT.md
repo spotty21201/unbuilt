@@ -4,6 +4,12 @@ Updated 31 October 2026. Workspace: `/home/spotty/projects/unbuilt`.
 
 ## Current decision
 
+The current consolidated product specification is [PRD v0.19](PRD_v0.19.md),
+issued 31 October 2026 at the owner's request. It records the implemented scope,
+angled/rounded roads, corrected tester findings, data compatibility and remaining
+validation needs. This is a documentation revision; no additional feature is
+authorized. Earlier PRDs and all tester prompts remain preserved.
+
 The owner authorized **Feature 12: Terrain, drainage and phasing — introduce
 these with appropriate data and calculations**, after completing Feature 11.
 Feature 12 is implemented under `docs/PRD_v0.17.md`; calculation/data requirements
@@ -59,6 +65,8 @@ land budget and walkability remain unimplemented. Angled streets and corner fill
   inspect screenshots and distinguish measured results from planning assumptions.
 
 ## Read first
+
+- `docs/PRD_v0.19.md` — current consolidated product requirements and acceptance limits.
 
 - `docs/PRD_v0.18.md` and `evidence/angled-rounded-streets/README.md` — current angled/rounded street extension. Install root dependencies (`npm ci`) as well as web dependencies before building or starting tools.
 
