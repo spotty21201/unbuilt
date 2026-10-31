@@ -1,0 +1,40 @@
+PASS new drawing defaults to any angle without changing accepted square roads
+PASS diagonal pick creates a direct segment and connected vertical leg
+PASS rounding uses a curved pavement outline in the unapplied draft
+PASS empty radius blocks Apply and retains accepted work
+PASS out of range radius blocks Apply
+PASS explicit Apply saves decimal angled coordinates and fillet radius in project v14
+PASS accepted pavement is rendered as one unioned outline
+PASS one plan Undo restores original generated roads
+PASS Redo restores exact curved angled network
+PASS reload retains exact geometry and curved pavement
+PASS zero radius is an explicit square-corner alternative while keeping angled legs
+PASS saved comparison renders true pavement in both schemes
+PASS reopening restores named rounded road scheme
+PASS keyboard junction editing retains full curve review and focus
+PASS draft Undo restores the angled junction and radius
+PASS right-angle drawing remains available as an explicit choice
+PASS angled full-width boundary violation blocks acceptance with exact accepted network retained
+PASS angled road entering protected green blocks Apply
+PASS cost review keeps rounded outlines in both drawings
+PASS cost experiment keeps street geometry exactly
+PASS record v15 exports actual road outline, editable radius and named scheme
+PASS local measurement service accepts snapshot12 and returns held angled-road alternatives
+PASS road drawing and editor have no detected accessibility violations
+PASS 1024px editor fits viewport and radius remains editable
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+locator.click: Timeout 12000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'View drawing', exact: true })[22m
+
+    at /home/spotty/projects/unbuilt/tests/angled-roads-browser.cjs:36:527 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'View drawing', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3

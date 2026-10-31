@@ -1,0 +1,161 @@
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Circulation
+Plan valid
+Saved in this browser
+
+Street draft: select a segment, move junctions, or draw branches. Review quantities before Apply streets.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Drawing street · Enter to finish
+Street 1 · 6 m wide · 120.0 m long
+Homes 20 → 20 · Street 720 m² → 720 m²
+Finish drawing
+Cancel stroke
+6.0 m STREET
+LOT 01
+200 m²
+LOT 02
+200 m²
+LOT 03
+200 m²
+LOT 04
+200 m²
+LOT 05
+200 m²
+LOT 06
+200 m²
+LOT 07
+200 m²
+LOT 08
+200 m²
+LOT 09
+200 m²
+LOT 10
+200 m²
+LOT 11
+200 m²
+LOT 12
+200 m²
+LOT 13
+200 m²
+LOT 14
+200 m²
+LOT 15
+200 m²
+LOT 16
+200 m²
+LOT 17
+200 m²
+LOT 18
+200 m²
+LOT 19
+200 m²
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+1
+2
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+Edit streets
+Unapplied draft
+
+Draw horizontal and vertical legs. A green Join cue snaps pointer picks to nearby centrelines. Drag junctions to shift connected rows/columns; watch ΔX/ΔY on the drawing. The entrance may need reconnecting.
+
+Selected: Street 1 · 6 m wide · 120.0 m long. (0, 50) → (120, 50)
+
+Apply streets
+Cancel streets
+Accepted plan → street draft
+Homes
+20 → 20
+Street surface
+720 m² → 720 m²
+Street works
+Rp0.58bn → Rp0.58bn
+Open space
+480 m² · retained
+Land allowance
+Rp3.56bn → Rp3.56bn
+
+Widths of 6–12 m are design assumptions, not approved standards. Road costs use unioned surface area. Turning, traffic, pedestrian design and external access remain unverified.
+
+Draw street
+Start at entrance
+Connect entrance
+New street width
+6 m
+Drawing street · 2 corners
+
+Click the canvas or add coordinates. A diagonal pick adds an orthogonal bend. Enter finishes; Escape cancels this stroke. Apply streets accepts the complete network.
+
+X (m)
+Y (m)
+Add street point
+
+(40, 50) → (40, 90)
+
+Finish street
+Remove drawing corner
+Cancel drawing
+Selected street
+Choose a street
+Street 1 · 120.0 m long · 6 m wide
+Street 1
+Width
+6 m
+Start junction
+X (m)
+Y (m)
+End junction
+X (m)
+Y (m)
+Remove selected street
+
+1/64 segments · 2 junction/end points. Pointer/arrow edits snap to 1 m; typed coordinates retain decimals. Undo/Redo edits this street draft; Apply creates one plan-history step.
+
+Preview generated routing instead
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn

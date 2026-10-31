@@ -31,7 +31,7 @@ function cedarSnapshot() {
 }
 
 const good = cedarSnapshot();
-check("version-is-11", SNAPSHOT_VERSION, 11);
+check("version-is-12", SNAPSHOT_VERSION, 12);
 check("accepts-cedar", validateSnapshot(good).ok, true);
 
 // Key order in must not affect the hash: reversed top-level object hashes same.
@@ -73,6 +73,11 @@ check("reason-present", err.ok === false && typeof err.error === "string" && err
 // Canonicalize: nested key order and 0.1+0.2 rounding are stable.
 check("canon-order", canonicalize({ b: 1, a: { d: 2, c: 1 } }), '{"a":{"c":1,"d":2},"b":1}');
 check("canon-round", canonicalize({ v: 0.1 + 0.2 }), '{"v":0.3}');
+check("canon-omits-undefined-optionals", canonicalize({ site: { w: 120, development: undefined, costAssumptions: undefined } }), '{"site":{"w":120}}');
+check("canon-keeps-json-array-positions", canonicalize([undefined, , { optional: undefined }, null]), '[null,null,{},null]');
+const optionalSnapshot = { ...good, site: { ...good.site, development: undefined, costAssumptions: undefined }, entrance: { ...good.entrance, boundaryEdge: undefined } };
+check("hash-survives-json-transport-in-both-precision-modes", [false,true].every(exact => snapshotHash(optionalSnapshot,exact) === snapshotHash(JSON.parse(JSON.stringify(optionalSnapshot)),exact)), true);
+check("canon-null-is-not-an-absent-field", canonicalize({ optional: null }) === canonicalize({ optional: undefined }), false);
 
 if (failures > 0) { console.error(`${failures} FAILURES`); process.exit(1); }
 console.log("ALL FIXTURES PASS");

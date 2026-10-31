@@ -1,0 +1,68 @@
+{
+  "id": "LABEL-01",
+  "status": "Fail",
+  "startingInputs": "unchanged sample; 1024×768; open Feasibility experiments",
+  "expected": "dimension and scale labels remain separate in both drawings",
+  "overlaps": [
+    {
+      "a": {
+        "text": "120.0 m",
+        "kind": "dimension",
+        "box": {
+          "x": 494.6640625,
+          "y": 548.3196411132812,
+          "width": 54.854736328125,
+          "height": 15,
+          "top": 548.3196411132812,
+          "right": 549.518798828125,
+          "bottom": 563.3196411132812,
+          "left": 494.6640625
+        }
+      },
+      "b": {
+        "text": "50 m",
+        "kind": "scale",
+        "box": {
+          "x": 491.5,
+          "y": 545.265625,
+          "width": 26.87255859375,
+          "height": 13,
+          "top": 545.265625,
+          "right": 518.37255859375,
+          "bottom": 558.265625,
+          "left": 491.5
+        }
+      }
+    },
+    {
+      "a": {
+        "text": "120.0 m",
+        "kind": "dimension",
+        "box": {
+          "x": 808.6640625,
+          "y": 548.3196411132812,
+          "width": 54.854736328125,
+          "height": 15,
+          "top": 548.3196411132812,
+          "right": 863.518798828125,
+          "bottom": 563.3196411132812,
+          "left": 808.6640625
+        }
+      },
+      "b": {
+        "text": "50 m",
+        "kind": "scale",
+        "box": {
+          "x": 805.5,
+          "y": 545.265625,
+          "width": 26.87255859375,
+          "height": 13,
+          "top": 545.265625,
+          "right": 832.37255859375,
+          "bottom": 558.265625,
+          "left": 805.5
+        }
+      }
+    }
+  ]
+}

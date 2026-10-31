@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "native browser zoom halves CSS width in the same physical window",
+    "angled drawing and fillet controls work at native 200%",
+    "Apply at 200% persists advanced geometry",
+    "comparison labels have a separate scale strip and no horizontal overflow",
+    "comparison return stays reachable at 200%"
+  ],
+  "before": {
+    "width": 1440,
+    "outer": 1440,
+    "dpr": 1
+  },
+  "after": {
+    "width": 720,
+    "outer": 1440,
+    "dpr": 2
+  }
+}

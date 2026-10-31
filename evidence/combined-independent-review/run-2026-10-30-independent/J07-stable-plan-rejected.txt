@@ -1,0 +1,219 @@
+Skip to plan
+UNBUILT
+Projects
+Independent end-to-end fictional study
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI connection verified
+AI settings
+Independent end-to-end fictional study · 12,000 m² · 5 vertices · Entrance west · spine 10 m
+Selected: Connected south pocket
+Profile / template warning
+Saved in this browser
+
+Saved scheme “Complete held study” from the accepted working plan.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+1
+2
+T2
+LOT 03
+200 m²
+T1
+LOT 04
+200 m²
+T1
+LOT 05
+200 m²
+T1
+LOT 06
+200 m²
+T1
+LOT 07
+200 m²
+T1
+LOT 08
+200 m²
+T1
+LOT 09
+200 m²
+T1
+LOT 10
+200 m²
+T1
+LOT 11
+200 m²
+T1
+LOT 12
+200 m²
+T1
+LOT 13
+200 m²
+T1
+LOT 14
+200 m²
+T1
+LOT 15
+200 m²
+T1
+LOT 16
+200 m²
+T1
+LOT 17
+200 m²
+T1
+LOT 18
+200 m²
+T1
+LOT 19
+200 m²
+T1
+LOT 20
+T1
+LOT 21
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+Fictional existing tree · assumed
+60.0 m
+60.0 m
+100.0 m
+120.0 m
+100.0 m
+Open space A · 480 m²
+Connected south pocket · 120 m²
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+X 5.0 m · Y 37.2 m
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Connected south pocket
+Circulation
+All home lots
+Locked
+SELECTED AREA
+120 m²
+SITE SHARE
+1.00%
+MODELED HOMES
+19
+BUILT AREA / HOME
+60.0 m²
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+Connected south pocket · pocket · 120.0 m² · fixed
+
+600.0 m² combined · 2 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Open-space clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Maintain minimum open space
+Minimum area (m²)
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+
+Removed homes keep their original lot regions vacant during layout changes.
+
+Restore removed homes
+These homes cannot be restored yet
+
+Lot 1: reserved Original home (10 × 6 m) does not fit this lot with the current setbacks. The lot remains vacant.
+
+Reassign home for Lot 1Edit Lot 1 outline
+
+Lot 2: reserved Original home (10 × 6 m) does not fit this lot with the current setbacks. The lot remains vacant.
+
+Reassign home for Lot 2Edit Lot 2 outline
+
+Choose a fitting design or adjust the lot, Apply that edit, then try Restore removed homes again. Accepted homes and vacant lots are unchanged.
+
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Housing mix pricing is provisional: every occupied home uses the shared selling-price assumption; no template-specific market evidence is supplied.
+Close assistant
+AI investigation
+AI settings
+
+AI request failed · local tools available
+
+Context: green · g2. Only supported inputs and measured facts are sent to the active connection, together with your intention. Source notes, media and saved alternatives stay out.
+
+Intention for AIAsk AI
+
+Plan changed while the request was running. Ask again.
+
+Local measured tools
+
+Assistant: Ready
+
+What is true?Why did it change?What could we try?
+ASK ABOUT CONNECTED SOUTH POCKET
+Ask
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+Manual lot plan held
+Run optimization ▷
+
+Manual lots are held. Preview generated lots before searching frontage alternatives.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasing
+
+Saved development studies: terrain, drainage, phasing. Recheck coverage, storm applicability and lot assignments after plan changes.
+
+Saved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+19 homes
+Green 600 m²
+Road 942 m²
+Allowance · provisional Rp3.04bn
+Shortfall Rp6.96bn

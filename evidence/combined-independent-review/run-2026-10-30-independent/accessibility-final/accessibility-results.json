@@ -1,0 +1,255 @@
+[
+  {
+    "id": "AX-01-desktop",
+    "status": "Fail",
+    "violations": [
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".canvas"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"1040\" height=\"740\" viewBox=\"-122.42424242424238 -53.67832167832167 884.8484848484848 629.6037296037296\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 55
+      }
+    ]
+  },
+  {
+    "id": "AX-02-street",
+    "status": "Fail",
+    "violations": [
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".canvas"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"1040\" height=\"740\" viewBox=\"-122.42424242424238 -53.67832167832167 884.8484848484848 629.6037296037296\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 60
+      }
+    ]
+  },
+  {
+    "id": "AX-03-invalid-lot",
+    "status": "Fail",
+    "violations": [
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".canvas"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"1040\" height=\"652\" viewBox=\"-202.86501377410468 -68.52892561983474 1045.7300275482094 655.5922865013774\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 37
+      }
+    ]
+  },
+  {
+    "id": "AX-04-housing",
+    "status": "Fail",
+    "violations": [
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".canvas"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"1040\" height=\"740\" viewBox=\"-122.42424242424238 -53.67832167832167 884.8484848484848 629.6037296037296\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 77
+      }
+    ]
+  },
+  {
+    "id": "AX-05-green",
+    "status": "Fail",
+    "violations": [
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".canvas"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"1040\" height=\"680\" viewBox=\"-174.27083333333326 -63.25 988.5416666666665 646.3541666666666\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 35
+      }
+    ]
+  },
+  {
+    "id": "AX-06-feasibility",
+    "status": "Fail",
+    "violations": [
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "div:nth-child(1) > .canvastools > .stage > .canvas[width=\"496\"][height=\"405\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"496\" height=\"405\" viewBox=\"-153.30718954248357 -120.86274509803914 946.6143790849671 772.9411764705881\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          },
+          {
+            "target": [
+              "div:nth-child(2) > .canvastools > .stage > .canvas[width=\"496\"][height=\"405\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"496\" height=\"405\" viewBox=\"-153.30718954248357 -120.86274509803914 946.6143790849671 772.9411764705881\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 66
+      }
+    ]
+  },
+  {
+    "id": "AX-07-alternatives",
+    "status": "Fail",
+    "violations": [
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "div:nth-child(1) > .canvastools > .stage > .canvas[width=\"496\"][height=\"405\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"496\" height=\"405\" viewBox=\"-153.30718954248357 -120.86274509803914 946.6143790849671 772.9411764705881\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          },
+          {
+            "target": [
+              "div:nth-child(2) > .canvastools > .stage > .canvas[width=\"496\"][height=\"405\"]"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"496\" height=\"405\" viewBox=\"-153.30718954248357 -120.86274509803914 946.6143790849671 772.9411764705881\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 66
+      }
+    ]
+  },
+  {
+    "id": "AX-08-phasing",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 21
+      }
+    ]
+  },
+  {
+    "id": "AX-09-ai",
+    "status": "Fail",
+    "violations": [
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".canvas"
+            ],
+            "summary": "Fix any of the following:\n  Element has focusable descendants",
+            "html": "<svg width=\"1040\" height=\"740\" viewBox=\"-122.42424242424238 -53.67832167832167 884.8484848484848 629.6037296037296\" tabindex=\"0\" role=\"img\" aria-label=\"Site plan: 20 homes, spine circulation\" class=\"canvas\">"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 56
+      }
+    ]
+  },
+  {
+    "id": "AX-10-admin",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 2
+      }
+    ]
+  },
+  {
+    "id": "AX-11-narrow-terrain",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "id": "AX-12-narrow-invalid",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 1
+      }
+    ]
+  }
+]

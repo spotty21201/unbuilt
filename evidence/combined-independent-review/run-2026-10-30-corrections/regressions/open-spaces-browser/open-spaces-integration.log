@@ -1,0 +1,18 @@
+PASS record import reopens all polygons in a separate project
+PASS proposal names selected pocket and holds every named outline before approval
+PASS bounded search retains all measured green polygons and actual scope
+PASS alternative preview is explicit and preserves accepted collection
+PASS real tool server explains an alternative with measured results and no model claim
+PASS input change clears both visible and in-flight measured answers
+PASS HTTP snapshot v9 explanation counts 760 m² in both distinct measured plans
+PASS clear layout removes every designed space and its minimum
+PASS Undo clear restores exact space geometry, locks and minima
+PASS park over held housing partition blocks Apply without deleting or regenerating homes
+PASS Cancel conflicting space keeps exact housing library and partition
+PASS boundary-only study shows and saves its designed space before generation
+PASS starter generation preserves planner-designed spaces exactly
+PASS deleting last open space saves an explicit empty collection without phantom green
+PASS Undo last-space deletion restores its exact accepted outline
+PASS emulated touch can create, focus, review and apply a second space
+PASS integration has no uncaught browser errors
+ALL 17 OPEN SPACE INTEGRATION CHECKS PASS

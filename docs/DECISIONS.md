@@ -550,3 +550,20 @@ The owner authorized terrain, drainage and phasing with appropriate data/calcula
 A complete local-metre elevation grid supplies piecewise planar facets, clipped to the real boundary for slopes and exact split cut/fill to an optional whole-site platform. Drainage is a bounded Rational peak screening with declared catchment/storage applicability, separate gross rainfall volume and an optional entered outfall capacity. Phasing allocates accepted construction/contingency/shared budgets by stable occupied lots and shares, with month-end cash reconciled to accepted surplus. These studies do not automatically add budgets or establish design/financing suitability.
 
 Valid observations persist even while coverage/applicability/assignments need review, but affected results remain unavailable. Changed sites/lots retain source data and obsolete references; remapping is explicit. Extend project/record/snapshot to 13/14/11 with downgrade guards, including studies inside saved schemes. Keep existing AI keys/routing deferred; only computed study facts and limits may enter its model context.
+
+## Independent tester corrections — 30 October 2026
+
+The owner authorized all four findings from the combined independent review. Keep its original report, failing checks and prompts unchanged; corrections have separate evidence in `evidence/combined-independent-review/run-2026-10-30-corrections/`.
+
+- Bind snapshots to their supported JSON representation: omit undefined optional object fields and retain array positions as JSON nulls. Preserve exact numeric input precision, explicit nulls, selection binding and rejection of genuinely stale work. Fix the shared canonicalization rather than bypassing the AI response guard or requiring a reload.
+- Accept decimal 0.01 m grid intervals with tolerance limited to coordinate subtraction roundoff. This is not a survey precision allowance; actual subminimum spacing, missing/duplicate cells and invalid numbers remain rejected.
+- Interactive plan SVGs use named group semantics so their named focusable objects remain descendants. Preserve keyboard interaction and existing focus behavior. Automated accessibility results do not substitute for real-screen-reader or human acceptance.
+- Comparison canvases reserve a separate strip for scale and camera readouts below the clipped drawing. Keep label sizes and geometry/camera calculations unchanged; no overlay can collide with the boundary dimensions. The working canvas retains its existing layout.
+
+The connected fixture journey must complete AI proposal, deterministic measurement, drawing review and explicit Apply; a manual feasibility fallback cannot count as that pass. Real credentials, project data, physical devices and professional sign-off remain external gates. No new feature or publication was requested by this correction task.
+
+## Angled streets and kerb fillets — 31 October 2026
+
+The owner authorized non-orthogonal roads and rounded turning corners. Keep legacy rectangular networks numerically unchanged until explicitly edited. Advanced manual networks use one unioned pavement polygon (including holes) for drawing, quantities, road cost, drainage, containment, conflicts and frontage; axis-aligned road rectangles are only frontage-generation references. Close butt-strip bend notches with bounded miter joins before filleting, beveling extreme hairpins. Circular kerb fillets use the entered 0–50 m radius, tangent distances capped to 45% of adjacent edges, and at most 5 mm chord deviation. Report reduced effective radii. Preserve full-width entrance/dead-end caps.
+
+Use pinned `polygon-clipping` at the root for robust union/holes rather than a new bespoke boolean engine. Project/record/snapshot envelopes become 14/15/12 for advanced road data, including alternative-only upgrade guards. Whole rectangular lots remain generated along axis-aligned legs; land beside angled legs stays unallocated. Review/Apply, held edits, history and all persistence paths remain. Kerb geometry does not establish turning/engineering compliance. No commit or push is authorized by this road request.

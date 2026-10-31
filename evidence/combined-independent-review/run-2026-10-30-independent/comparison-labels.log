@@ -1,0 +1,5 @@
+AssertionError [ERR_ASSERTION]: Small comparison plan dimensions overlap scale labels
+
+2 !== 0
+
+    at /home/spotty/projects/unbuilt/evidence/combined-independent-review/run-2026-10-30-independent/comparison-labels.cjs:2:1229

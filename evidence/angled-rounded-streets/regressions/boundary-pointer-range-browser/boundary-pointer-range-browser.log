@@ -1,0 +1,32 @@
+PASS 1440: six clicks across the paper create an in-range, applicable boundary
+PASS 1440: displayed area equals independent shoelace calculation
+PASS 1440: pointer draft does not overwrite the accepted blank plan
+PASS 1440: Apply persists precisely the six drawn vertices
+PASS 1440: one Undo restores blank
+PASS 1440: dragging past the local origin stops at 0 m
+PASS 1440: one draft Undo restores the entire drag
+PASS 1440: Cancel preserves accepted geometry after drag
+PASS typed negative coordinate remains an explicit error and blocks Apply
+PASS typed coordinate beyond 500 remains an explicit error
+PASS drawing on shaded out-of-range paper stops at the workspace edge
+PASS dragging beyond upper workspace edges stops at 500 m
+PASS arrow and Shift+arrow edits cannot exceed 500 m
+PASS arrows stopped at an edge do not add empty Undo steps
+PASS 1024: six clicks across the paper create an in-range, applicable boundary
+PASS 1024: displayed area equals independent shoelace calculation
+PASS 1024: pointer draft does not overwrite the accepted blank plan
+PASS 1024: Apply persists precisely the six drawn vertices
+PASS 1024: one Undo restores blank
+PASS 1024: dragging past the local origin stops at 0 m
+PASS 1024: one draft Undo restores the entire drag
+PASS 1024: Cancel preserves accepted geometry after drag
+PASS 375: six clicks across the paper create an in-range, applicable boundary
+PASS 375: displayed area equals independent shoelace calculation
+PASS 375: pointer draft does not overwrite the accepted blank plan
+PASS 375: Apply persists precisely the six drawn vertices
+PASS 375: one Undo restores blank
+PASS 375: dragging past the local origin stops at 0 m
+PASS 375: one draft Undo restores the entire drag
+PASS 375: Cancel preserves accepted geometry after drag
+PASS no uncaught browser errors
+ALL 31 POINTER RANGE CHECKS PASS

@@ -1,0 +1,31 @@
+{
+  "fixture": "scripted completion fixture, no real model",
+  "checks": [
+    {
+      "id": "J01",
+      "expected": "named separate sample project opens through UI",
+      "status": "Pass"
+    },
+    {
+      "id": "J02",
+      "expected": "collinear boundary refinement retains 12000 m² and five vertices",
+      "status": "Pass"
+    },
+    {
+      "id": "J03",
+      "expected": "manual branch accepted; measured road area 942 m²",
+      "status": "Pass"
+    },
+    {
+      "id": "J04",
+      "expected": "vacant split reviewed without regenerating held streets",
+      "status": "Pass"
+    },
+    {
+      "id": "JOURNEY-STOP",
+      "status": "Fail",
+      "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Apply open spaces', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button disabled type=\"button\">Apply open spaces</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /home/spotty/projects/unbuilt/evidence/combined-independent-review/run-2026-10-30-independent/connected-browser.mjs:17:480"
+    }
+  ],
+  "errors": []
+}

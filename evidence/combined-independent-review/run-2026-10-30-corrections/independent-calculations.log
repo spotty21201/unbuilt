@@ -1,0 +1,9 @@
+PASS NUM-T-corners
+PASS NUM-T-nonuniform
+PASS NUM-T-maximum-grid
+PASS NUM-T-negative
+PASS NUM-T-concave-reversed
+PASS NUM-D-baseline
+PASS NUM-D-zero-C
+PASS NUM-P-full-ledger
+PASS NUM-P-infrastructure-late-owner

@@ -1,0 +1,250 @@
+{
+  "asset": "/assets/index-B8kEmCUI.js",
+  "rootChecks": 736,
+  "rootExit": 0,
+  "advancedGeometryChecks": 20,
+  "matrix": [
+    {
+      "suite": "ai-browser",
+      "exit": 0,
+      "seconds": 11.3,
+      "log": "evidence/angled-rounded-streets/regressions/ai-browser/ai-browser.log"
+    },
+    {
+      "suite": "angled-roads-browser",
+      "exit": 0,
+      "seconds": 8.1,
+      "log": "evidence/angled-rounded-streets/regressions/angled-roads-browser/angled-roads-browser.log"
+    },
+    {
+      "suite": "boundary-browser",
+      "exit": 0,
+      "seconds": 10.3,
+      "log": "evidence/angled-rounded-streets/regressions/boundary-browser/boundary-browser.log"
+    },
+    {
+      "suite": "boundary-pointer-range-browser",
+      "exit": 0,
+      "seconds": 6.5,
+      "log": "evidence/angled-rounded-streets/regressions/boundary-pointer-range-browser/boundary-pointer-range-browser.log"
+    },
+    {
+      "suite": "browser-zoom",
+      "exit": 0,
+      "seconds": 3.7,
+      "log": "evidence/angled-rounded-streets/regressions/browser-zoom/browser-zoom.log"
+    },
+    {
+      "suite": "development-browser",
+      "exit": 0,
+      "seconds": 7.5,
+      "log": "evidence/angled-rounded-streets/regressions/development-browser/development-browser.log"
+    },
+    {
+      "suite": "dynamic-inspector-browser",
+      "exit": 0,
+      "seconds": 17.6,
+      "log": "evidence/angled-rounded-streets/regressions/dynamic-inspector-browser/dynamic-inspector-browser.log"
+    },
+    {
+      "suite": "feasibility-browser",
+      "exit": 0,
+      "seconds": 7.2,
+      "log": "evidence/angled-rounded-streets/regressions/feasibility-browser/feasibility-browser.log"
+    },
+    {
+      "suite": "feasibility-zoom",
+      "exit": 0,
+      "seconds": 2.8,
+      "log": "evidence/angled-rounded-streets/regressions/feasibility-zoom/feasibility-zoom.log"
+    },
+    {
+      "suite": "housing-browser",
+      "exit": 0,
+      "seconds": 9.6,
+      "log": "evidence/angled-rounded-streets/regressions/housing-browser/housing-browser.log"
+    },
+    {
+      "suite": "housing-review-browser",
+      "exit": 0,
+      "seconds": 9.2,
+      "log": "evidence/angled-rounded-streets/regressions/housing-review-browser/housing-review-browser.log"
+    },
+    {
+      "suite": "housing-zoom",
+      "exit": 0,
+      "seconds": 3.1,
+      "log": "evidence/angled-rounded-streets/regressions/housing-zoom/housing-zoom.log"
+    },
+    {
+      "suite": "lot-review-followup-browser",
+      "exit": 0,
+      "seconds": 4.6,
+      "log": "evidence/angled-rounded-streets/regressions/lot-review-followup-browser/lot-review-followup-browser.log"
+    },
+    {
+      "suite": "open-spaces-browser",
+      "exit": 0,
+      "seconds": 7.7,
+      "log": "evidence/angled-rounded-streets/regressions/open-spaces-browser/open-spaces-browser.log"
+    },
+    {
+      "suite": "open-spaces-zoom",
+      "exit": 0,
+      "seconds": 3.0,
+      "log": "evidence/angled-rounded-streets/regressions/open-spaces-zoom/open-spaces-zoom.log"
+    },
+    {
+      "suite": "parcels-browser",
+      "exit": 0,
+      "seconds": 12.2,
+      "log": "evidence/angled-rounded-streets/regressions/parcels-browser/parcels-browser.log"
+    },
+    {
+      "suite": "parcels-zoom",
+      "exit": 0,
+      "seconds": 2.7,
+      "log": "evidence/angled-rounded-streets/regressions/parcels-zoom/parcels-zoom.log"
+    },
+    {
+      "suite": "planner-feedback-browser",
+      "exit": 0,
+      "seconds": 7.3,
+      "log": "evidence/angled-rounded-streets/regressions/planner-feedback-browser/planner-feedback-browser.log"
+    },
+    {
+      "suite": "planner-feedback-fixes-browser",
+      "exit": 0,
+      "seconds": 18.2,
+      "log": "evidence/angled-rounded-streets/regressions/planner-feedback-fixes-browser/planner-feedback-fixes-browser.log"
+    },
+    {
+      "suite": "planner-feedback-fixes-storage",
+      "exit": 0,
+      "seconds": 1.8,
+      "log": "evidence/angled-rounded-streets/regressions/planner-feedback-fixes-storage/planner-feedback-fixes-storage.log"
+    },
+    {
+      "suite": "planner-feedback-fixes-zoom",
+      "exit": 0,
+      "seconds": 7.0,
+      "log": "evidence/angled-rounded-streets/regressions/planner-feedback-fixes-zoom/planner-feedback-fixes-zoom.log"
+    },
+    {
+      "suite": "planner-review-followup-browser",
+      "exit": 0,
+      "seconds": 4.4,
+      "log": "evidence/angled-rounded-streets/regressions/planner-review-followup-browser/planner-review-followup-browser.log"
+    },
+    {
+      "suite": "project-lifecycle-browser",
+      "exit": 0,
+      "seconds": 6.0,
+      "log": "evidence/angled-rounded-streets/regressions/project-lifecycle-browser/project-lifecycle-browser.log"
+    },
+    {
+      "suite": "projects-browser",
+      "exit": 0,
+      "seconds": 11.2,
+      "log": "evidence/angled-rounded-streets/regressions/projects-browser/projects-browser.log"
+    },
+    {
+      "suite": "saved-alternatives-browser",
+      "exit": 0,
+      "seconds": 10.0,
+      "log": "evidence/angled-rounded-streets/regressions/saved-alternatives-browser/saved-alternatives-browser.log"
+    },
+    {
+      "suite": "saved-alternatives-zoom",
+      "exit": 0,
+      "seconds": 4.1,
+      "log": "evidence/angled-rounded-streets/regressions/saved-alternatives-zoom/saved-alternatives-zoom.log"
+    },
+    {
+      "suite": "site-context-browser",
+      "exit": 0,
+      "seconds": 10.5,
+      "log": "evidence/angled-rounded-streets/regressions/site-context-browser/site-context-browser.log"
+    },
+    {
+      "suite": "site-context-recovery-browser",
+      "exit": 0,
+      "seconds": 10.5,
+      "log": "evidence/angled-rounded-streets/regressions/site-context-recovery-browser/site-context-recovery-browser.log"
+    },
+    {
+      "suite": "site-context-zoom",
+      "exit": 0,
+      "seconds": 5.1,
+      "log": "evidence/angled-rounded-streets/regressions/site-context-zoom/site-context-zoom.log"
+    },
+    {
+      "suite": "stitch-viewport-browser",
+      "exit": 0,
+      "seconds": 5.1,
+      "log": "evidence/angled-rounded-streets/regressions/stitch-viewport-browser/stitch-viewport-browser.log"
+    },
+    {
+      "suite": "street-review-browser",
+      "exit": 0,
+      "seconds": 11.1,
+      "log": "evidence/angled-rounded-streets/regressions/street-review-browser/street-review-browser.log"
+    },
+    {
+      "suite": "streets-browser",
+      "exit": 0,
+      "seconds": 15.4,
+      "log": "evidence/angled-rounded-streets/regressions/streets-browser/streets-browser.log"
+    },
+    {
+      "suite": "streets-zoom",
+      "exit": 0,
+      "seconds": 3.6,
+      "log": "evidence/angled-rounded-streets/regressions/streets-zoom/streets-zoom.log"
+    },
+    {
+      "suite": "open-spaces-integration",
+      "exit": 0,
+      "seconds": 4.9,
+      "log": "evidence/angled-rounded-streets/regressions/open-spaces-browser/open-spaces-integration.log"
+    },
+    {
+      "suite": "ai-zoom",
+      "exit": 0,
+      "seconds": 10.2,
+      "log": "evidence/angled-rounded-streets/regressions/ai-zoom/ai-zoom.log"
+    },
+    {
+      "suite": "development-zoom",
+      "exit": 0,
+      "seconds": 7.5,
+      "log": "evidence/angled-rounded-streets/regressions/development-zoom/development-zoom.log"
+    }
+  ],
+  "finalAdvancedBrowserChecks": 27,
+  "nativeZoom": {
+    "checks": [
+      "native browser zoom halves CSS width in the same physical window",
+      "angled drawing and fillet controls work at native 200%",
+      "Apply at 200% persists advanced geometry",
+      "comparison labels have a separate scale strip and no horizontal overflow",
+      "comparison return stays reachable at 200%"
+    ],
+    "before": {
+      "width": 1440,
+      "outer": 1440,
+      "dpr": 1
+    },
+    "after": {
+      "width": 720,
+      "outer": 1440,
+      "dpr": 2
+    }
+  },
+  "build": "pass",
+  "lint": "pass",
+  "preservation": {
+    "checked": 999,
+    "changed": []
+  }
+}

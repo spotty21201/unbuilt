@@ -1,0 +1,7 @@
+{
+  "id": "LABEL-01",
+  "status": "Pass",
+  "startingInputs": "unchanged sample; 1024×768; open Feasibility experiments",
+  "expected": "dimension and scale labels remain separate in both drawings",
+  "overlaps": []
+}

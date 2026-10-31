@@ -1,0 +1,33 @@
+{
+  "asset": "/assets/index-B8kEmCUI.js",
+  "checks": [
+    "new drawing defaults to any angle without changing accepted square roads",
+    "diagonal pick creates a direct segment and connected vertical leg",
+    "rounding uses a curved pavement outline in the unapplied draft",
+    "empty radius blocks Apply and retains accepted work",
+    "out of range radius blocks Apply",
+    "explicit Apply saves decimal angled coordinates and fillet radius in project v14",
+    "accepted pavement is rendered as one unioned outline",
+    "one plan Undo restores original generated roads",
+    "Redo restores exact curved angled network",
+    "reload retains exact geometry and curved pavement",
+    "pointer projection joins an angled centreline without rounding it off the line",
+    "zero radius is an explicit square-corner alternative while keeping angled legs",
+    "saved comparison renders true pavement in both schemes",
+    "reopening restores named rounded road scheme",
+    "keyboard junction editing retains full curve review and focus",
+    "draft Undo restores the angled junction and radius",
+    "right-angle drawing remains available as an explicit choice",
+    "angled full-width boundary violation blocks acceptance with exact accepted network retained",
+    "angled road entering protected green blocks Apply",
+    "cost review keeps rounded outlines in both drawings",
+    "cost experiment keeps street geometry exactly",
+    "record v15 exports actual road outline, editable radius and named scheme",
+    "local measurement service accepts snapshot12 and returns held angled-road alternatives",
+    "road drawing and editor have no detected accessibility violations",
+    "1024px editor fits viewport and radius remains editable",
+    "375px editor fits viewport and radius remains editable",
+    "no uncaught browser errors"
+  ],
+  "errors": []
+}

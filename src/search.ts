@@ -1,3 +1,4 @@
+import type {RoadSurface} from './road-surfaces.ts';
 // UNBUILT bounded search (Coder-owned). Enumerates family x frontage combos,
 // enforces locks + ceiling + per-lot profile applicability, selects up to three
 // distinct candidates by transparent objectives. Budget-capped, deterministic.
@@ -78,13 +79,13 @@ function buildLayout(site: Site, family: "spine" | "loop", frontage: number): La
 export function failingLots(
   parcels: Rect[],
   profile: ProductProfile,
-  opts: { lotEdits?: LotEdits; roads?: Rect[] } = {},
+  opts: { lotEdits?: LotEdits; roads?: Rect[]; roadSurface?:RoadSurface } = {},
 ): number[] {
   const out: number[] = [];
   parcels.forEach((p, i) => {
     const edit = opts.lotEdits?.get(i);
     const area = edit ? polyArea(edit) : rectArea(p);
-    const frontage = edit
+    const frontage = opts.roadSurface?lotRoadFrontage(opts.roads??[],edit??[{x:p.x,y:p.y},{x:p.x+p.w,y:p.y},{x:p.x+p.w,y:p.y+p.h},{x:p.x,y:p.y+p.h}],opts.roadSurface):edit
       ? opts.roads
         ? lotRoadFrontage(opts.roads, edit)
         : 0
@@ -137,7 +138,7 @@ export function runSearch(req: SearchRequest): SearchRun {
     const validationErrors = validateLayout(req.site, layout, carried);
     const greenHeld = req.site.planning?.openSpaces!==undefined?JSON.stringify(layout.openSpaces)===JSON.stringify(req.site.planning.openSpaces):checkGreenLock(req.locks.green, layout.green).length===0;
     const priceOk = req.site.planning?.priceLocked === false || req.selectedPrice <= req.locks.priceCeiling;
-    const failing = failingLots(layout.parcels, req.profile, { lotEdits: carried, roads: layout.roads }).filter(i => hasHome(req.site, layout.parcels[i]));
+    const failing = failingLots(layout.parcels, req.profile, { lotEdits: carried, roads: layout.roads, roadSurface: layout.roadSurface }).filter(i => hasHome(req.site, layout.parcels[i]));
     const quantities = deriveQuantities(req.site, layout, carried);
     const applicable = failing.length === 0 && quantities.n > 0;
     const econ = evaluateLayout(req.site, layout, req.selectedPrice, {

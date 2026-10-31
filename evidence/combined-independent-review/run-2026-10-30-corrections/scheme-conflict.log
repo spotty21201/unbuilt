@@ -1,0 +1,1 @@
+[{"id":"SC01","status":"Pass","expected":"Conflicting tab shows failure while current unsaved scheme remains exportable"},{"id":"SC02","status":"Pass","expected":"Last durable collection is intact; conflicting metadata never overwrites it"}]

@@ -1,0 +1,530 @@
+{
+  "results": [
+    {
+      "id": "AI-B01-before-boundary",
+      "expected": true,
+      "observed": "AI investigation\nAI settings\n\nAI connection verified\n\nContext: green · grove-a. Only supported inputs and measured facts are sent to the active connection, together with your intention. Source notes, media and saved alternatives stay out.\n\nIntention for AIAsk AI\n\nAI interpretation · checked against supported tools. No accepted inputs changed.\n\nProposed experiment · review inputs\n\nUntested hypothesis: measure sensitivity to a declared cost assumption.\n\nHome construction rate: Rp5,000,000 → Rp4,000,000/m²\n\nThis hypothetical trial affects the whole plan. Boundary, entrance, open spaces, manual work and shared selling assumptions are held. Cost changes are assumptions, not quotations.\n\nRun reviewed experimentDiscard AI proposal",
+      "status": "Pass",
+      "undefinedPaths": []
+    },
+    {
+      "id": "AI-B02-after-boundary",
+      "expected": true,
+      "observed": "AI investigation\nAI settings\n\nAI request failed · local tools available\n\nContext: site · site. Only supported inputs and measured facts are sent to the active connection, together with your intention. Source notes, media and saved alternatives stay out.\n\nIntention for AIAsk AI\n\nPlan changed while the request was running. Ask again.",
+      "status": "Fail",
+      "undefinedPaths": [
+        "snapshot.site.development",
+        "snapshot.site.costAssumptions"
+      ]
+    },
+    {
+      "id": "AI-B03-retry-unchanged",
+      "expected": true,
+      "observed": "AI investigation\nAI settings\n\nAI request failed · local tools available\n\nContext: site · site. Only supported inputs and measured facts are sent to the active connection, together with your intention. Source notes, media and saved alternatives stay out.\n\nIntention for AIAsk AI\n\nPlan changed while the request was running. Ask again.",
+      "status": "Fail",
+      "undefinedPaths": [
+        "snapshot.site.development",
+        "snapshot.site.costAssumptions"
+      ]
+    },
+    {
+      "id": "AI-B04-after-reload",
+      "expected": true,
+      "observed": "AI investigation\nAI settings\n\nAI connection verified\n\nContext: green · grove-a. Only supported inputs and measured facts are sent to the active connection, together with your intention. Source notes, media and saved alternatives stay out.\n\nIntention for AIAsk AI\n\nAI interpretation · checked against supported tools. No accepted inputs changed.\n\nProposed experiment · review inputs\n\nUntested hypothesis: measure sensitivity to a declared cost assumption.\n\nHome construction rate: Rp5,000,000 → Rp4,000,000/m²\n\nThis hypothetical trial affects the whole plan. Boundary, entrance, open spaces, manual work and shared selling assumptions are held. Cost changes are assumptions, not quotations.\n\nRun reviewed experimentDiscard AI proposal",
+      "status": "Pass",
+      "undefinedPaths": []
+    }
+  ],
+  "wire": [
+    {
+      "request": {
+        "text": "Test construction cost at four million per square metre",
+        "snapshot": {
+          "version": 3,
+          "site": {
+            "w": 120,
+            "h": 100,
+            "planning": {
+              "lotDepth": 20,
+              "greenBuffer": 0,
+              "homeWidth": 10,
+              "homeDepth": 6,
+              "streets": [],
+              "siteLocked": false,
+              "priceLocked": true
+            }
+          },
+          "entrance": {
+            "edge": "west",
+            "offset": 50,
+            "width": 8
+          },
+          "green": {
+            "x": 78,
+            "y": 62,
+            "w": 24,
+            "h": 20
+          },
+          "greenLocked": true,
+          "lots": {},
+          "spec": {
+            "family": "spine",
+            "frontage": 10
+          },
+          "profileId": "family-200",
+          "assumptions": {
+            "price": 850000000,
+            "ceiling": 850000000,
+            "owner": 10000000000,
+            "target": 0.15
+          },
+          "provenance": {
+            "sample": "cedar",
+            "photo": false
+          },
+          "capabilities": [
+            "rect-site",
+            "editable-plan-contents",
+            "simple-site-64",
+            "contained-axis-layouts",
+            "rect-lots",
+            "poly-reshape-12",
+            "entrance-west-east",
+            "entrance-boundary-edge",
+            "open-space-lock",
+            "parametric-layout",
+            "editable-orthogonal-streets",
+            "manual-rectangular-lots",
+            "housing-mix",
+            "multiple-open-spaces",
+            "editable-cost-assumptions",
+            "bounded-search",
+            "explain-deltas",
+            "terrain-drainage-phasing"
+          ],
+          "selected": {
+            "kind": "green",
+            "id": "grove-a"
+          }
+        },
+        "requestId": "3"
+      },
+      "response": {
+        "planHash": "9be2ff1ad4ec",
+        "requestId": "3",
+        "answer": {
+          "kind": "proposal",
+          "proposal": {
+            "planHash": "9be2ff1ad4ec",
+            "design": {
+              "family": "spine",
+              "frontage": 10,
+              "lotDepth": 20
+            },
+            "costs": {
+              "constructionPerM2": 4000000,
+              "roadPerM2": 800000,
+              "greenWorksPerM2": 150000,
+              "setupAllowance": 800000000,
+              "otherWorksAllowance": 1200000000,
+              "contingencyFraction": 0.05,
+              "professionalAllowance": 1300000000,
+              "sellFraction": 0.03
+            },
+            "purpose": "cost_sensitivity",
+            "changes": [
+              "Home construction rate: Rp5,000,000 → Rp4,000,000/m²"
+            ]
+          }
+        },
+        "source": "ai-tool-call",
+        "connectionRevision": 1
+      },
+      "wireHash": "9be2ff1ad4ec"
+    },
+    {
+      "request": {
+        "text": "Test construction cost at four million per square metre",
+        "snapshot": {
+          "version": 3,
+          "site": {
+            "w": 120,
+            "h": 100,
+            "boundary": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 60,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 100
+              },
+              {
+                "x": 0,
+                "y": 100
+              }
+            ],
+            "planning": {
+              "lotDepth": 20,
+              "greenBuffer": 0,
+              "homeWidth": 10,
+              "homeDepth": 6,
+              "streets": [],
+              "siteLocked": false,
+              "priceLocked": true
+            }
+          },
+          "entrance": {
+            "edge": "west",
+            "offset": 50,
+            "width": 8
+          },
+          "green": {
+            "x": 78,
+            "y": 62,
+            "w": 24,
+            "h": 20
+          },
+          "greenLocked": true,
+          "lots": {},
+          "spec": {
+            "family": "spine",
+            "frontage": 10
+          },
+          "profileId": "family-200",
+          "assumptions": {
+            "price": 850000000,
+            "ceiling": 850000000,
+            "owner": 10000000000,
+            "target": 0.15
+          },
+          "provenance": {
+            "sample": "custom",
+            "photo": false
+          },
+          "capabilities": [
+            "rect-site",
+            "editable-plan-contents",
+            "simple-site-64",
+            "contained-axis-layouts",
+            "rect-lots",
+            "poly-reshape-12",
+            "entrance-west-east",
+            "entrance-boundary-edge",
+            "open-space-lock",
+            "parametric-layout",
+            "editable-orthogonal-streets",
+            "manual-rectangular-lots",
+            "housing-mix",
+            "multiple-open-spaces",
+            "editable-cost-assumptions",
+            "bounded-search",
+            "explain-deltas",
+            "terrain-drainage-phasing"
+          ],
+          "selected": {
+            "kind": "site",
+            "id": "site"
+          }
+        },
+        "requestId": "3"
+      },
+      "response": {
+        "planHash": "e61634c5b2a4f",
+        "requestId": "3",
+        "answer": {
+          "kind": "proposal",
+          "proposal": {
+            "planHash": "e61634c5b2a4f",
+            "design": {
+              "family": "spine",
+              "frontage": 10,
+              "lotDepth": 20
+            },
+            "costs": {
+              "constructionPerM2": 4000000,
+              "roadPerM2": 800000,
+              "greenWorksPerM2": 150000,
+              "setupAllowance": 800000000,
+              "otherWorksAllowance": 1200000000,
+              "contingencyFraction": 0.05,
+              "professionalAllowance": 1300000000,
+              "sellFraction": 0.03
+            },
+            "purpose": "cost_sensitivity",
+            "changes": [
+              "Home construction rate: Rp5,000,000 → Rp4,000,000/m²"
+            ]
+          }
+        },
+        "source": "ai-tool-call",
+        "connectionRevision": 1
+      },
+      "wireHash": "e61634c5b2a4f"
+    },
+    {
+      "request": {
+        "text": "Test construction cost at four million per square metre",
+        "snapshot": {
+          "version": 3,
+          "site": {
+            "w": 120,
+            "h": 100,
+            "boundary": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 60,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 100
+              },
+              {
+                "x": 0,
+                "y": 100
+              }
+            ],
+            "planning": {
+              "lotDepth": 20,
+              "greenBuffer": 0,
+              "homeWidth": 10,
+              "homeDepth": 6,
+              "streets": [],
+              "siteLocked": false,
+              "priceLocked": true
+            }
+          },
+          "entrance": {
+            "edge": "west",
+            "offset": 50,
+            "width": 8
+          },
+          "green": {
+            "x": 78,
+            "y": 62,
+            "w": 24,
+            "h": 20
+          },
+          "greenLocked": true,
+          "lots": {},
+          "spec": {
+            "family": "spine",
+            "frontage": 10
+          },
+          "profileId": "family-200",
+          "assumptions": {
+            "price": 850000000,
+            "ceiling": 850000000,
+            "owner": 10000000000,
+            "target": 0.15
+          },
+          "provenance": {
+            "sample": "custom",
+            "photo": false
+          },
+          "capabilities": [
+            "rect-site",
+            "editable-plan-contents",
+            "simple-site-64",
+            "contained-axis-layouts",
+            "rect-lots",
+            "poly-reshape-12",
+            "entrance-west-east",
+            "entrance-boundary-edge",
+            "open-space-lock",
+            "parametric-layout",
+            "editable-orthogonal-streets",
+            "manual-rectangular-lots",
+            "housing-mix",
+            "multiple-open-spaces",
+            "editable-cost-assumptions",
+            "bounded-search",
+            "explain-deltas",
+            "terrain-drainage-phasing"
+          ],
+          "selected": {
+            "kind": "site",
+            "id": "site"
+          }
+        },
+        "requestId": "4"
+      },
+      "response": {
+        "planHash": "e61634c5b2a4f",
+        "requestId": "4",
+        "answer": {
+          "kind": "proposal",
+          "proposal": {
+            "planHash": "e61634c5b2a4f",
+            "design": {
+              "family": "spine",
+              "frontage": 10,
+              "lotDepth": 20
+            },
+            "costs": {
+              "constructionPerM2": 4000000,
+              "roadPerM2": 800000,
+              "greenWorksPerM2": 150000,
+              "setupAllowance": 800000000,
+              "otherWorksAllowance": 1200000000,
+              "contingencyFraction": 0.05,
+              "professionalAllowance": 1300000000,
+              "sellFraction": 0.03
+            },
+            "purpose": "cost_sensitivity",
+            "changes": [
+              "Home construction rate: Rp5,000,000 → Rp4,000,000/m²"
+            ]
+          }
+        },
+        "source": "ai-tool-call",
+        "connectionRevision": 1
+      },
+      "wireHash": "e61634c5b2a4f"
+    },
+    {
+      "request": {
+        "text": "Test construction cost at four million per square metre",
+        "snapshot": {
+          "version": 3,
+          "site": {
+            "w": 120,
+            "h": 100,
+            "boundary": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 60,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 100
+              },
+              {
+                "x": 0,
+                "y": 100
+              }
+            ],
+            "planning": {
+              "lotDepth": 20,
+              "greenBuffer": 0,
+              "homeWidth": 10,
+              "homeDepth": 6,
+              "streets": [],
+              "siteLocked": false,
+              "priceLocked": true
+            }
+          },
+          "entrance": {
+            "edge": "west",
+            "offset": 50,
+            "width": 8
+          },
+          "green": {
+            "x": 78,
+            "y": 62,
+            "w": 24,
+            "h": 20
+          },
+          "greenLocked": true,
+          "lots": {},
+          "spec": {
+            "family": "spine",
+            "frontage": 10
+          },
+          "profileId": "family-200",
+          "assumptions": {
+            "price": 850000000,
+            "ceiling": 850000000,
+            "owner": 10000000000,
+            "target": 0.15
+          },
+          "provenance": {
+            "sample": "custom",
+            "photo": false
+          },
+          "capabilities": [
+            "rect-site",
+            "editable-plan-contents",
+            "simple-site-64",
+            "contained-axis-layouts",
+            "rect-lots",
+            "poly-reshape-12",
+            "entrance-west-east",
+            "entrance-boundary-edge",
+            "open-space-lock",
+            "parametric-layout",
+            "editable-orthogonal-streets",
+            "manual-rectangular-lots",
+            "housing-mix",
+            "multiple-open-spaces",
+            "editable-cost-assumptions",
+            "bounded-search",
+            "explain-deltas",
+            "terrain-drainage-phasing"
+          ],
+          "selected": {
+            "kind": "green",
+            "id": "grove-a"
+          }
+        },
+        "requestId": "3"
+      },
+      "response": {
+        "planHash": "8c9adaf750632",
+        "requestId": "3",
+        "answer": {
+          "kind": "proposal",
+          "proposal": {
+            "planHash": "8c9adaf750632",
+            "design": {
+              "family": "spine",
+              "frontage": 10,
+              "lotDepth": 20
+            },
+            "costs": {
+              "constructionPerM2": 4000000,
+              "roadPerM2": 800000,
+              "greenWorksPerM2": 150000,
+              "setupAllowance": 800000000,
+              "otherWorksAllowance": 1200000000,
+              "contingencyFraction": 0.05,
+              "professionalAllowance": 1300000000,
+              "sellFraction": 0.03
+            },
+            "purpose": "cost_sensitivity",
+            "changes": [
+              "Home construction rate: Rp5,000,000 → Rp4,000,000/m²"
+            ]
+          }
+        },
+        "source": "ai-tool-call",
+        "connectionRevision": 1
+      },
+      "wireHash": "8c9adaf750632"
+    }
+  ]
+}

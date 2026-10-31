@@ -1,0 +1,62 @@
+Terrain, drainage and phasing
+
+Review planning inputs and calculations. Geometry and accepted cost assumptions stay held. Apply inputs to keep them; Close discards this draft.
+
+Close development review
+Terrain
+Drainage
+Phasing
+Elevation data
+
+Import a complete rectangular x,y,z grid in local metres (2–20 x and y coordinates, up to 400 points). Coordinates must already share this plan’s origin and datum. Cells split SW–NE into planar triangles; no extrapolation or automatic survey alignment.
+
+Terrain source
+Vertical datum
+Elevation observation date
+Declared elevation basis
+Assumed · unverified
+Survey source · user-declared, unverified
+Import elevation CSV
+Elevation CSV · local metres
+Slope screening threshold (%)
+Whole-site platform level (m) · optional
+Remove terrain inputsLoad fictional terrain example
+
+Fictional terrain loaded in the draft only.
+
+Reset development draft
+
+Terrain is assumed. All source and catchment declarations are user-entered, not independently verified. No terrain/drainage costs are added to accepted economics here; enter approved budgets through Assumptions/Feasibility separately.
+
+Inputs incomplete or invalid: Elevation data must be a complete rectangular grid: 2–20 distinct x and y coordinates, no missing/duplicate cells, spacing at least 0.01 m.
+
+Accepted inputs → development draft
+Screening result	Accepted	Draft
+Mean terrain slope (%)	Unavailable	Unavailable
+Rational peak (m³/s)	Unavailable	Unavailable
+Maximum month-end deficit (Rp)	Unavailable	Unavailable
+No usable elevation surface. Plan geometry shown for context.
+Terrain quantities
+
+Unavailable: Elevation data must be a complete rectangular grid: 2–20 distinct x and y coordinates, no missing/duplicate cells, spacing at least 0.01 m.
+
+Piecewise planar surface from the entered grid, clipped to the actual boundary. No survey verification, breaklines, retaining structures, topsoil, bulking/compaction or earthworks budget is included. The platform is a screening assumption, not a grading design.
+
+Drainage screening
+
+Unavailable: No inputs supplied.
+
+Q = Σ(C × area in m²) × intensity in mm/h ÷ 3,600,000. Uniform rainfall, full site contribution and no significant storage must be declared. Rainfall volume is not runoff or detention storage. No flow routing, pipe sizing, infiltration, flooding, downstream permission or local-standard compliance is established.
+
+Phase cash schedule
+
+Unavailable: No inputs supplied.
+
+Home construction plus its contingency follows occupied-lot assignments. Remaining accepted non-land costs follow entered shared percentages. Costs spread evenly over each build period; all receipts and selling costs occur in its sales month. Owner benchmark is paid once in the entered land month. Closing cash reconciles to accepted modeled surplus. Target surplus is not an expense. Access, utilities, drainage and approvals are not checked per phase. This omits intramonth funding, absorption, escalation, tax, interest/debt and costs absent from accepted assumptions.
+
+Structurally valid inputs can be retained while applicability or assignments need review. Unavailable calculations remain unavailable after Apply. Saved alternatives retain their own inputs and schedules.
+
+Development draft · accepted inputs retained until Apply
+
+Cancel development draft
+Apply development inputs

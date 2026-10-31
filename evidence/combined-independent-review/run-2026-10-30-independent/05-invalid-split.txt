@@ -1,0 +1,148 @@
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Lot 1
+Layout unavailable
+Saved in this browser
+
+Split lot preview: review actual lots, home count, frontage and economics before Apply. Existing vacancy reservations remain held.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Unapplied lot plan
+Lots 20 → 21 · Homes 20 → Unavailable · Manual lots held — Lot 1 cannot fit the current home with setbacks. Enlarge it, assign a fitting template, or explicitly create vacant lots. Adjust blocks/lots or preview generated lots before changing the supporting layout.
+Review lot plan
+6.0 m STREET
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+P1
+P2
+Open space A
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+Blocks & lots
+Unapplied draft
+
+Split rectangular lots, merge a rectangular group, or repartition a connected rectangular block. Blue outlines mark the source; preview colours show changed lots. Streets and open space stay fixed.
+
+Apply lot plan
+Cancel lot plan
+
+Manual lots held — Lot 1 cannot fit the current home with setbacks. Enlarge it, assign a fitting template, or explicitly create vacant lots. Adjust blocks/lots or preview generated lots before changing the supporting layout. The accepted plan is unchanged. Each lot needs road frontage; occupied lots must fit the current home and setbacks. For small lots, explicitly choose vacant lots, or enlarge the subdivision.
+
+Accepted plan → lot preview
+Lots
+20 → 21 proposed · invalid
+Homes
+20 → Unavailable
+Lot area
+4,000 m² → —
+Land allowance
+Rp3.56bn → —
+Streets / open space
+Held at 720 m² / 480 m²
+
+Drawing references show accepted → proposed numbers where they change. “New” marks replacement lots. Numbers are planning references, not legal parcel identifiers.
+
+Source: Lot 1 (occupied).
+
+Result: proposed Lot 1 (one home), proposed Lot 2 (one home).
+
+Trace unchanged lot references
+Operation
+Split one lot
+Merge adjacent lots
+Subdivide block
+Lot to split
+Lot 1 · 200.0 m² · 10.0 × 20.0 m
+Lot 2 · 200.0 m² · 10.0 × 20.0 m
+Lot 3 · 200.0 m² · 10.0 × 20.0 m
+Lot 4 · 200.0 m² · 10.0 × 20.0 m
+Lot 5 · 200.0 m² · 10.0 × 20.0 m
+Lot 6 · 200.0 m² · 10.0 × 20.0 m
+Lot 7 · 200.0 m² · 10.0 × 20.0 m
+Lot 8 · 200.0 m² · 10.0 × 20.0 m
+Lot 9 · 200.0 m² · 10.0 × 20.0 m
+Lot 10 · 200.0 m² · 10.0 × 20.0 m
+Lot 11 · 200.0 m² · 10.0 × 20.0 m
+Lot 12 · 200.0 m² · 10.0 × 20.0 m
+Lot 13 · 200.0 m² · 10.0 × 20.0 m
+Lot 14 · 200.0 m² · 10.0 × 20.0 m
+Lot 15 · 200.0 m² · 10.0 × 20.0 m
+Lot 16 · 200.0 m² · 10.0 × 20.0 m
+Lot 17 · 200.0 m² · 10.0 × 20.0 m
+Lot 18 · 200.0 m² · 10.0 × 20.0 m
+Lot 19 · 200.0 m² · 10.0 × 20.0 m
+Lot 20 · 200.0 m² · 10.0 × 20.0 m
+Cut direction
+Vertical cuts · divide east–west width
+Horizontal cuts · divide north–south depth
+First lot share (%)
+Create resulting lots as vacant · no homes or home revenue
+
+Existing removed-home reservations remain protected, even when lots are merged or split. This checkbox never silently restores removed homes. One home is modeled per occupied resulting lot; a merge can reduce the home count.
+
+Preview lot plan
+View drawing
+
+Minimum rectangular dimension 1 m; at most 500 manual lots. Nonrectangular merges, polygon splitting, holes and curved lot edges are not supported. For polygon outline edits, Cancel and use Reshape lot. These are planning parcels, not a cadastral or subdivision approval.
+
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn
+Invalid plan — Manual lots held — Lot 1 cannot fit the current home with setbacks. Enlarge it, assign a fitting template, or explicitly create vacant lots. Adjust blocks/lots or preview generated lots before changing the supporting layout. Figures describe a scheme that cannot stand; resolve Issues first.
+Last valid values — resolve the draft to update.

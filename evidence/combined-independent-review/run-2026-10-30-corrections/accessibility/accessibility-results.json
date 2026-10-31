@@ -1,0 +1,129 @@
+[
+  {
+    "id": "AX-01-desktop",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 55
+      }
+    ]
+  },
+  {
+    "id": "AX-02-street",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 60
+      }
+    ]
+  },
+  {
+    "id": "AX-03-invalid-lot",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 37
+      }
+    ]
+  },
+  {
+    "id": "AX-04-housing",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 77
+      }
+    ]
+  },
+  {
+    "id": "AX-05-green",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 35
+      }
+    ]
+  },
+  {
+    "id": "AX-06-feasibility",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 62
+      }
+    ]
+  },
+  {
+    "id": "AX-07-alternatives",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 62
+      }
+    ]
+  },
+  {
+    "id": "AX-08-phasing",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 21
+      }
+    ]
+  },
+  {
+    "id": "AX-09-ai",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 56
+      }
+    ]
+  },
+  {
+    "id": "AX-10-admin",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 2
+      }
+    ]
+  },
+  {
+    "id": "AX-11-narrow-terrain",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "id": "AX-12-narrow-invalid",
+    "status": "Pass",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 1
+      }
+    ]
+  }
+]

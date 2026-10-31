@@ -397,7 +397,7 @@ const server = http.createServer(async (req, res) => {
         const layout = sp.family === "spine" ? generateSpine(site, sp.frontage) : generateLoop(site, sp.frontage);
         const carried = editsForLayout(layout.parcels, s.lots);
         const validationErrors = validateLayout(site, layout, carried);
-        const failing = failingLots(layout.parcels, profile, { lotEdits: carried, roads: layout.roads }).filter(i => hasHome(site, layout.parcels[i]));
+        const failing = failingLots(layout.parcels, profile, { lotEdits: carried, roads: layout.roads, roadSurface: layout.roadSurface }).filter(i => hasHome(site, layout.parcels[i]));
         const econ = evaluateLayout(
           site,
           layout,

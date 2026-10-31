@@ -1,0 +1,40 @@
+PASS arbitrary bearings use normal-offset full-width pavement and true segment lengths
+PASS diagonal crossings join at grade, split into four legs and retain shared nodes
+PASS angled collinear repeats are rejected while joined legs and corner metadata survive helpers
+PASS projection onto an angled street retains the exact fractional joining point
+PASS two diagonal crossing areas subtract the square intersection once
+PASS legacy streets keep identical geometry and square area until explicitly rounded
+PASS T-junction circular fillets match independently derived added area within chord tolerance
+PASS L turns have tangent circular kerbs, deterministic winding and finite simple outlines
+PASS short adjacent kerbs cap radii without self-crossing or hiding the reduction
+PASS road loops preserve holes, excluding the inner land from area and conflicts
+PASS diagonal pavement avoids bounding-box false positives and catches true full-width conflicts
+PASS a fillet entering protected green or a held lot blocks acceptance
+PASS parcel generation removes fillet conflicts and reports only actual pavement frontage
+PASS costs and drainage use unioned curved pavement and the full land budget reconciles
+PASS project v14 restores precise road geometry, radius and saved alternatives, rejecting downgrades
+PASS snapshot v12 binds precise road radius and requires its capability across JSON transport
+PASS decision record v15 restores working roads and alternative-only roads, rejecting downgrades
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(m.findings.some(f=>f.text.includes('road')||f.text.includes('Road')))
+
+    at file:///home/spotty/projects/unbuilt/tests/road-surfaces.mjs:83:244
+    at check (file:///home/spotty/projects/unbuilt/tests/road-surfaces.mjs:13:35)
+    at file:///home/spotty/projects/unbuilt/tests/road-surfaces.mjs:81:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

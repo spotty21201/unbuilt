@@ -1,0 +1,28 @@
+{
+  "checks": [
+    "boundary lock prevents import but allows context references",
+    "calibration points can be picked in the image preview",
+    "PNG calibration displays a reference while preserving generated plan metrics",
+    "corrupt PDF leaves accepted calibration and attached image unchanged",
+    "oversize file fails before replacement",
+    "different JPEG requires its own calibration and cannot reuse the saved source silently",
+    "Cancel new survey restores the previous attached PNG",
+    "JPEG survey calibration is supported",
+    "Undo reference replacement restores prior calibration without claiming the wrong image",
+    "reattaching original PNG reuses its saved calibration",
+    "locked-site annotations are editable without changing generated quantities",
+    "pending context draft blocks project switching with a visible explanation",
+    "object navigation cannot discard pending context",
+    "object navigation returns from context to the normal inspector",
+    "save failure keeps latest context in memory without overwriting durable storage",
+    "failed-save backup contains current accepted context",
+    "retry Save persists the accepted context once storage recovers",
+    "leaving a survey project warns about media reattachment",
+    "another project has independent empty context",
+    "returning restores source metadata and annotations but requires reattachment",
+    "touch can place an access assumption without changing the entrance",
+    "touch annotation commits with explicit unverified status",
+    "no uncaught browser errors"
+  ],
+  "errors": []
+}

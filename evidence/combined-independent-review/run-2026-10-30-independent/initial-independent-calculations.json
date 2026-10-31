@@ -1,0 +1,364 @@
+[
+  {
+    "id": "NUM-T-corners",
+    "expected": {
+      "area": 12000,
+      "slope": 2.23606797749979,
+      "cut": 8033.333333333333,
+      "fill": 833.3333333333334
+    },
+    "observed": {
+      "area": 12000,
+      "slope": 2.2360679774997907,
+      "cut": 8033.333333333323,
+      "fill": 833.3333333333351
+    },
+    "status": "Pass"
+  },
+  {
+    "id": "NUM-T-nonuniform",
+    "expected": {
+      "area": 12000,
+      "slope": 2.23606797749979,
+      "cut": 8033.333333333333,
+      "fill": 833.3333333333334
+    },
+    "observed": {
+      "area": 12000.000000000002,
+      "slope": 2.2360679774997894,
+      "cut": 8033.333333333322,
+      "fill": 833.3333333333308
+    },
+    "status": "Pass"
+  },
+  {
+    "id": "NUM-T-maximum-grid",
+    "expected": {
+      "area": 12000,
+      "slope": 2.23606797749979,
+      "cut": 8033.333333333333,
+      "fill": 833.3333333333334
+    },
+    "observed": {
+      "area": 12000.000000000011,
+      "slope": 2.2360679774997902,
+      "cut": 8033.333333333326,
+      "fill": 833.3333333333309
+    },
+    "status": "Pass"
+  },
+  {
+    "id": "NUM-T-negative",
+    "expected": {
+      "cut": 833.3333333333334,
+      "fill": 8033.333333333333,
+      "slope": 2.23606797749979
+    },
+    "observed": {
+      "cut": 833.3333333333351,
+      "fill": 8033.333333333323
+    },
+    "status": "Pass"
+  },
+  {
+    "id": "NUM-T-concave-reversed",
+    "expected": {
+      "area": 11000,
+      "cutMinusFill": 16600
+    },
+    "observed": [
+      {
+        "area": 11000.000000000002,
+        "cut": 17300.00000000003,
+        "fill": 0
+      },
+      {
+        "area": 11000.000000000002,
+        "cut": 17300.00000000003,
+        "fill": 0
+      }
+    ],
+    "status": "Pass"
+  },
+  {
+    "id": "NUM-D-baseline",
+    "expected": {
+      "weightedC": 0.429,
+      "peak": 0.143,
+      "rainfall": 600
+    },
+    "observed": {
+      "area": 12000,
+      "areas": {
+        "roof": 1200,
+        "roads": 720,
+        "green": 480,
+        "other": 9600
+      },
+      "weightedC": 0.429,
+      "peak": 0.143,
+      "rainfallVolume": 600,
+      "capacity": null,
+      "excess": null
+    },
+    "status": "Pass"
+  },
+  {
+    "id": "NUM-D-zero-C",
+    "expected": {
+      "peak": 0,
+      "rainfall": 600
+    },
+    "observed": {
+      "area": 12000,
+      "areas": {
+        "roof": 1200,
+        "roads": 720,
+        "green": 480,
+        "other": 9600
+      },
+      "weightedC": 0,
+      "peak": 0,
+      "rainfallVolume": 600,
+      "capacity": null,
+      "excess": null
+    },
+    "status": "Pass"
+  },
+  {
+    "id": "NUM-P-full-ledger",
+    "expected": {
+      "closing": -3890400000,
+      "deficit": 15190200000
+    },
+    "observed": [
+      {
+        "revenue": 0,
+        "selling": 0,
+        "nonLand": 1730066666.6666667,
+        "land": 10000000000,
+        "cumulative": -11730066666.666666
+      },
+      {
+        "revenue": 0,
+        "selling": 0,
+        "nonLand": 1730066666.6666667,
+        "land": 0,
+        "cumulative": -13460133333.333332
+      },
+      {
+        "revenue": 0,
+        "selling": 0,
+        "nonLand": 1730066666.6666667,
+        "land": 0,
+        "cumulative": -15190199999.999998
+      },
+      {
+        "revenue": 8500000000,
+        "selling": 255000000,
+        "nonLand": 1730066666.6666667,
+        "land": 0,
+        "cumulative": -8675266666.666664
+      },
+      {
+        "revenue": 0,
+        "selling": 0,
+        "nonLand": 1730066666.6666667,
+        "land": 0,
+        "cumulative": -10405333333.33333
+      },
+      {
+        "revenue": 0,
+        "selling": 0,
+        "nonLand": 1730066666.6666667,
+        "land": 0,
+        "cumulative": -12135399999.999996
+      },
+      {
+        "revenue": 8500000000,
+        "selling": 255000000,
+        "nonLand": 0,
+        "land": 0,
+        "cumulative": -3890399999.999996
+      }
+    ],
+    "status": "Pass"
+  },
+  {
+    "id": "NUM-P-infrastructure-late-owner",
+    "expected": {
+      "closing": -3890400000,
+      "ownerPayments": 1
+    },
+    "observed": {
+      "closing": -3890399999.999998,
+      "rows": [
+        {
+          "id": "p1",
+          "name": "First",
+          "startMonth": 1,
+          "buildMonths": 3,
+          "saleMonth": 4,
+          "sharedFraction": 0.25,
+          "homes": 10,
+          "builtArea": 600,
+          "construction": 3150000000,
+          "sharedCost": 1020100000,
+          "cost": 4170100000,
+          "revenue": 8500000000
+        },
+        {
+          "id": "p2",
+          "name": "Second",
+          "startMonth": 4,
+          "buildMonths": 3,
+          "saleMonth": 7,
+          "sharedFraction": 0.25,
+          "homes": 10,
+          "builtArea": 600,
+          "construction": 3150000000,
+          "sharedCost": 1020100000,
+          "cost": 4170100000,
+          "revenue": 8500000000
+        },
+        {
+          "id": "p3",
+          "name": "Infrastructure only",
+          "startMonth": 1,
+          "buildMonths": 2,
+          "saleMonth": 2,
+          "sharedFraction": 0.5,
+          "homes": 0,
+          "builtArea": 0,
+          "construction": 0,
+          "sharedCost": 2040200000,
+          "cost": 2040200000,
+          "revenue": 0
+        }
+      ],
+      "months": [
+        {
+          "month": 1,
+          "label": "2026-11",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 2410133333.333333,
+          "land": 0,
+          "net": -2410133333.333333,
+          "cumulative": -2410133333.333333
+        },
+        {
+          "month": 2,
+          "label": "2026-12",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 2410133333.333333,
+          "land": 0,
+          "net": -2410133333.333333,
+          "cumulative": -4820266666.666666
+        },
+        {
+          "month": 3,
+          "label": "2027-01",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 1390033333.3333333,
+          "land": 0,
+          "net": -1390033333.3333333,
+          "cumulative": -6210299999.999999
+        },
+        {
+          "month": 4,
+          "label": "2027-02",
+          "revenue": 8500000000,
+          "selling": 255000000,
+          "nonLand": 1390033333.3333333,
+          "land": 0,
+          "net": 6854966666.666667,
+          "cumulative": 644666666.6666679
+        },
+        {
+          "month": 5,
+          "label": "2027-03",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 1390033333.3333333,
+          "land": 0,
+          "net": -1390033333.3333333,
+          "cumulative": -745366666.6666653
+        },
+        {
+          "month": 6,
+          "label": "2027-04",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 1390033333.3333333,
+          "land": 0,
+          "net": -1390033333.3333333,
+          "cumulative": -2135399999.9999986
+        },
+        {
+          "month": 7,
+          "label": "2027-05",
+          "revenue": 8500000000,
+          "selling": 255000000,
+          "nonLand": 0,
+          "land": 0,
+          "net": 8245000000,
+          "cumulative": 6109600000.000002
+        },
+        {
+          "month": 8,
+          "label": "2027-06",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 0,
+          "land": 0,
+          "net": 0,
+          "cumulative": 6109600000.000002
+        },
+        {
+          "month": 9,
+          "label": "2027-07",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 0,
+          "land": 0,
+          "net": 0,
+          "cumulative": 6109600000.000002
+        },
+        {
+          "month": 10,
+          "label": "2027-08",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 0,
+          "land": 0,
+          "net": 0,
+          "cumulative": 6109600000.000002
+        },
+        {
+          "month": 11,
+          "label": "2027-09",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 0,
+          "land": 0,
+          "net": 0,
+          "cumulative": 6109600000.000002
+        },
+        {
+          "month": 12,
+          "label": "2027-10",
+          "revenue": 0,
+          "selling": 0,
+          "nonLand": 0,
+          "land": 10000000000,
+          "net": -10000000000,
+          "cumulative": -3890399999.999998
+        }
+      ]
+    },
+    "status": "Pass"
+  }
+]

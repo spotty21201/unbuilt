@@ -1,0 +1,138 @@
+locator.click: Timeout 12000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'View drawing', exact: true })[22m
+
+    at /home/spotty/projects/unbuilt/tests/angled-roads-browser.cjs:36:527
+Skip to plan
+UNBUILT
+Projects
+Working plan
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Circulation
+Plan valid
+Saved in this browser
+
+Street draft: select a segment, move junctions, or draw branches. Review quantities before Apply streets.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Unapplied street draft
+Street 1 · 6 m wide · 40.0 m long
+Homes 16 → 16 · Street 1,004 m² → 1,004 m²
+Review streets
+6.0 m STREET
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+Open space A
+IN/OUT
+1
+2
+3
+4
+5
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+Edit streets
+Unapplied draft
+
+Draw streets at any angle, or choose right-angle drawing. A green Join cue snaps to nearby centrelines. Junctions move with their connected legs; horizontal/vertical rows stay aligned. Review the entrance after moving them.
+
+Selected: Street 1 · 6 m wide · 40.0 m long. (0, 50) → (40, 50)
+
+Apply streets
+Cancel streets
+Accepted plan → street draft
+Homes
+16 → 16
+Street surface
+1,004 m² → 1,004 m²
+Street works
+Rp0.80bn → Rp0.80bn
+Open space
+480 m² · retained
+Land allowance
+Rp2.80bn → Rp2.80bn
+
+Widths of 6–12 m are design assumptions, not approved standards. Road costs use the unioned pavement outline, including fillets. Rectangular lots are generated along horizontal/vertical legs; land beside angled legs stays unallocated. Kerb curves are planning geometry; vehicle turning, road standards and external access remain unverified.
+
+Draw street
+Start at entrance
+Connect entrance
+Drawing alignment
+Any angle
+Right angles
+Corner fillet radius (m)
+Round corners · 4 m
+
+0 keeps square corners. Fillets change the kerb outline and measured road area. Short edges cap each fillet’s tangent distance to 45% of the adjacent edges; curves are measured with a maximum 5 mm chord deviation.
+
+3 short corners use smaller radii, down to 0.48 m. Review the drawing and quantities before Apply.
+
+New street width
+6 m
+Selected street
+Choose a street
+Street 1 · 40.0 m long · 6 m wide
+Street 2 · 80.0 m long · 6 m wide
+Street 3 · 35.0 m long · 6 m wide
+Street 4 · 14.0 m long · 6 m wide
+Street 1
+Width
+6 m
+Start junction
+X (m)
+Y (m)
+End junction
+X (m)
+Y (m)
+Remove selected street
+
+4/64 segments · 5 junction/end points. Pointer/arrow edits snap to 1 m; typed coordinates retain decimals. Undo/Redo edits this street draft; Apply creates one plan-history step.
+
+Preview generated routing instead
+EVALUATOR
+Details
+16 homes
+Green 480 m²
+Road 1,004 m²
+Allowance Rp2.80bn
+Shortfall Rp7.20bn

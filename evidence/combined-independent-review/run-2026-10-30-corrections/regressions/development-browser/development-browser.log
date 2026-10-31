@@ -1,0 +1,40 @@
+PASS no study data is invented on opening
+PASS invalid CSV is visible and cannot replace accepted inputs
+PASS explicit fictional grid produces slope and cut/fill without modifying accepted work
+PASS negative platform levels remain editable and finite
+PASS Cancel discards all unapplied development changes
+PASS file import uses declared local-metre elevation data
+PASS incomplete outfall does not corrupt the screening drawing
+PASS Rational peak waits for catchment and storage declarations
+PASS runoff and rainfall volume have distinct labels and real surface partition
+PASS shorter-than-concentration intensity duration suppresses peak results
+PASS phase budgets and cash totals come from accepted economics
+PASS incorrect shared allocation keeps phase cash unavailable
+PASS sales before construction completion block Apply
+PASS monthly receipts, spending and cumulative balances are reviewable
+PASS map assignment and accessible assignment table share stable lot identities
+PASS Apply stores complete study inputs in project v13 without altering base costs
+PASS one Undo restores the original project and all geometry
+PASS Redo restores terrain, rainfall and phase assignments exactly
+PASS browser save/reload retains source metadata and calculated-study inputs
+PASS Reset restores accepted inputs and a valid active map phase
+PASS Escape cancels the review and restores keyboard focus
+PASS server measured explanations accept v11 studies and match local peak/phase results
+PASS saved schemes compare separate runoff and phase-cash results
+PASS scheme comparison exposes each side’s storm and delivery assumptions
+PASS saved baseline remains isolated from working storm edits
+PASS reopening restores the saved study and schedule
+PASS portable record v14 carries working and saved scheme studies
+PASS record import creates an independent project with studies and both saved schemes
+PASS design review exposes phase assignment invalidation before Apply
+PASS old lot references remain visible and phase cash is withheld
+PASS explicit remapping restores phase calculation
+PASS partial surface coverage reports unavailable terrain rather than extrapolating
+PASS deleting boundary retains declared study data without inventing a replacement surface
+PASS blank plans with retained studies keep geometry-dependent calculations unavailable
+PASS Undo deletion restores both geometry and unchanged study sources
+PASS narrow development review has no horizontal page/dialog overflow
+PASS narrow Apply is reachable above all plan controls
+PASS narrow input review applies only the declared study change
+PASS development review has no uncaught errors or invalid SVG values
+ALL 39 DEVELOPMENT BROWSER CHECKS PASS

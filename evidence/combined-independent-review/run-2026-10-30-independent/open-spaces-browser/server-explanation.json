@@ -1,0 +1,94 @@
+{
+  "requestId": null,
+  "adapter": "mock",
+  "planHash": "192921639263c4",
+  "pricedAt": {
+    "price": 850000000,
+    "owner": 11000000000,
+    "target": 0.15
+  },
+  "base": {
+    "spec": {
+      "family": "spine",
+      "frontage": 10
+    },
+    "quantities": {
+      "n": 20,
+      "roadArea": 720,
+      "greenArea": 760,
+      "parcelArea": 4000,
+      "unallocatedArea": 6520
+    },
+    "builtArea": 1200,
+    "housing": {
+      "rows": [
+        {
+          "id": "original",
+          "name": "Original home",
+          "width": 10,
+          "depth": 6,
+          "count": 20,
+          "builtArea": 1200
+        }
+      ],
+      "vacant": 0,
+      "homes": 20,
+      "builtArea": 1200
+    },
+    "revenue": 17000000000,
+    "costNonLand": 10424500000,
+    "landAllowance": 3515500000,
+    "ownerGap": 7484500000,
+    "surplus": -4934500000,
+    "validationErrors": [],
+    "applicable": true,
+    "failingLots": 0,
+    "carriedReshapes": 0
+  },
+  "other": {
+    "spec": {
+      "family": "spine",
+      "frontage": 11
+    },
+    "quantities": {
+      "n": 17,
+      "roadArea": 720,
+      "greenArea": 760,
+      "parcelArea": 3740,
+      "unallocatedArea": 6780
+    },
+    "builtArea": 1020,
+    "housing": {
+      "rows": [
+        {
+          "id": "original",
+          "name": "Original home",
+          "width": 10,
+          "depth": 6,
+          "count": 17,
+          "builtArea": 1020
+        }
+      ],
+      "vacant": 0,
+      "homes": 17,
+      "builtArea": 1020
+    },
+    "revenue": 14450000000,
+    "costNonLand": 9479500000,
+    "landAllowance": 2369500000,
+    "ownerGap": 8630500000,
+    "surplus": -6463000000,
+    "validationErrors": [],
+    "applicable": true,
+    "failingLots": 0,
+    "carriedReshapes": 0
+  },
+  "deltas": {
+    "homes": -3,
+    "roadArea": 0,
+    "greenArea": 0,
+    "parcelArea": -260,
+    "landAllowance": -1146000000,
+    "ownerGap": 1146000000
+  }
+}

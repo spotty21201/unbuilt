@@ -366,3 +366,24 @@ independent planner testing remains deferred; the preserved prompts are unchange
 - Apply/Cancel/Reset/Escape, history, local save/reload, file import/export, saved-scheme isolation/comparison, geometry-trial warnings and retained inputs through clear/delete are verified. Invalid values cannot publish partial totals; valid data with unresolved applicability stays clearly unavailable.
 - Project v13, record v14, snapshot v11/capability and full-precision bindings reject disguised downgrades. Server and local findings agree. AI receives computed screening statements, excluding raw grids/source descriptions.
 - Production build/lint, root checks, desktop/narrow and actual 200% browser-zoom evidence are in evidence/terrain-drainage-phasing. Both requested tester prompts are saved and deferred. Actual site data, civil/financial suitability, physical touch and independent planner acceptance remain open.
+
+## Combined independent review corrections — 30 October 2026
+
+The original tester report and failing regressions are preserved in `evidence/combined-independent-review/run-2026-10-30-independent/`. Correction evidence is separate in `run-2026-10-30-corrections/`.
+
+- [x] F1: Post-boundary and unchanged-retry AI proposals work without reload. Snapshot transport hashes agree; exact precision, stale plan/selection/configuration rejection, cancellation and explicit Apply remain tested. The connected multi-feature AI journey completes without a manual fallback.
+- [x] F2: Complete decimal 0.01 m grids are accepted with the analytic slope/cut/fill. Subminimum intervals, including near-minimum values at high coordinates, remain rejected; malformed/duplicate/missing data protections remain.
+- [x] F3: Shared interactive canvases have named group semantics. All 12 tested accessibility surfaces have no detected violations, and seven keyboard-only journeys pass. Real screen-reader validation and incomplete automated contrast decisions remain open.
+- [x] F4: Scale/camera readouts occupy a separate comparison strip. No scale/dimension label collisions at desktop, tablet, narrow layouts or native 200% zoom; Fit/zoom and review/reopen controls remain usable. Screenshots were inspected.
+- [x] Full calculations/service suite (716 checks), production build/lint, and all 35 existing browser suite runs (971 checks) pass after corrections. Original prompts and tester evidence remain unchanged.
+
+These results are software verification by an automated agent, not human planner, physical-device, real-model or professional project acceptance. The correction task did not configure real model access or supply real survey/storm/commercial evidence.
+
+## Angled streets and corner fillets — 31 October 2026
+
+- [x] Any-angle drawing connects picks directly, including decimal inputs and pointer projection onto angled centrelines; explicit right-angle drawing remains available. Shared junctions support pointer/keyboard edits.
+- [x] Editable 0–50 m kerb fillets, clean outside bend joins, full-width terminal caps and reported reduced radii on short edges. Unioned outlines/holes drive drawing, costs, drainage area, containment, conflicts and frontage with at most 5 mm chord deviation.
+- [x] Invalid radii/boundary/park/held-lot conflicts retain accepted work. Apply/Cancel, both histories, reload, alternative comparison/reopen, cost trials, portable export and local service pass. Legacy square networks keep their original quantities.
+- [x] Project/record/snapshot 14/15/12 gates include advanced roads in saved alternatives; genuine stale proposals remain rejected.
+- [x] Full root suite: 736 checks. All 35 established browser runs pass; final advanced-road workflow: 27 checks; dedicated native 200% zoom: 5 checks. Production build/lint pass. Advanced editor/canvas scan has zero detected accessibility violations. Screenshots inspected; all 999 preserved prompt/tester-evidence files unchanged. See `evidence/angled-rounded-streets/README.md`.
+- Automatic lots remain rectangular along axis-aligned road legs; land beside angled roads remains unallocated. Rotated parcels, actual device/screen-reader/human validation, vehicle turning compliance and project-specific engineering remain open.

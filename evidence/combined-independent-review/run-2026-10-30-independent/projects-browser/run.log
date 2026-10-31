@@ -1,0 +1,56 @@
+PASS legacy project migrates without changing accepted geometry
+PASS legacy single-project backup remains unchanged
+PASS duplicate names are explained without a false save failure
+PASS new named project starts with zero geometry and no economics
+PASS blank plans keep layout and assistant disabled while saved alternatives remain available
+PASS new blank does not overwrite previous project
+PASS closed five-sided boundary displays hand-calculated 11000 m²
+PASS boundary draft does not enter autosave
+PASS project switching asks to finish the draft
+PASS applying first boundary keeps layout ungenerated
+PASS Undo first boundary returns to truly blank
+PASS Redo restores all five boundary vertices
+PASS add vertex preserves area and creates a sixth corner
+PASS draft Undo removes only added corner
+PASS remove vertex restores five corners
+PASS drag corner updates coordinates and true polygon area
+PASS one Undo reverses entire pointer drag
+PASS invalid crossing highlights segments and blocks Apply
+PASS cancel invalid draft retains accepted polygon
+PASS named polygon save/reload keeps exact 10400 m² outline
+PASS Generate creates real contained lots and measured economics
+PASS generation Undo returns to boundary-only with no economic claim
+PASS sample project begins with 20 homes
+PASS cancel removal preserves all 20 footprints
+PASS removing selected home keeps its vacant lot and updates quantity
+PASS home removal Undo restores footprint and economics
+PASS home deletion survives reload without respawning
+PASS explicit Restore recovers all home footprints
+PASS clear layout retains outline and removes all dependent geometry
+PASS Undo clear restores vacant reservations, park lock and homes
+PASS Delete boundary removes outline with no implicit replacement
+PASS Undo boundary deletion restores boundary-only state
+PASS second Undo restores layout with removed home
+PASS Start blank preserves project name and financial assumptions
+PASS rename updates saved and active project identity
+PASS opening another project restores its own polygon and homes
+PASS undo history does not leak across projects
+PASS cancel project deletion keeps saved project
+PASS delete project removes only chosen project
+PASS session Undo project deletion restores complete accepted plan
+PASS new record explicitly versions accepted plan contents
+PASS import creates a separate named project and preserves others
+PASS 1440: no horizontal overflow
+PASS 1440: project dialog fits viewport
+PASS 1024: no horizontal overflow
+PASS 1024: project dialog fits viewport
+PASS 375: no horizontal overflow
+PASS 375: project dialog fits viewport
+PASS second-tab changes are detected and never overwritten
+PASS quota failure preserves last durable project and keeps current edit open
+PASS failed-save backup includes latest in-memory accepted edit
+PASS retry Save persists in-memory plan once storage recovers
+PASS corrupt library is retained and automatic writes stop
+PASS cancel corrupted-library replacement preserves original
+PASS no uncaught browser errors
+ALL 55 PROJECT BROWSER CHECKS PASS

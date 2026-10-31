@@ -1,0 +1,4 @@
+Pass AI-B01-before-boundary
+Fail AI-B02-after-boundary
+Fail AI-B03-retry-unchanged
+Pass AI-B04-after-reload

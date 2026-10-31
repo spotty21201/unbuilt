@@ -1,0 +1,12 @@
+AX-01-desktop {"id":"AX-01-desktop","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":55}]}
+AX-02-street {"id":"AX-02-street","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":60}]}
+AX-03-invalid-lot {"id":"AX-03-invalid-lot","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":37}]}
+AX-04-housing {"id":"AX-04-housing","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":77}]}
+AX-05-green {"id":"AX-05-green","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":35}]}
+AX-06-feasibility {"id":"AX-06-feasibility","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":62}]}
+AX-07-alternatives {"id":"AX-07-alternatives","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":62}]}
+AX-08-phasing {"id":"AX-08-phasing","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":21}]}
+AX-09-ai {"id":"AX-09-ai","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":56}]}
+AX-10-admin {"id":"AX-10-admin","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":2}]}
+AX-11-narrow-terrain {"id":"AX-11-narrow-terrain","status":"Pass","violations":[],"incomplete":[]}
+AX-12-narrow-invalid {"id":"AX-12-narrow-invalid","status":"Pass","violations":[],"incomplete":[{"id":"color-contrast","nodes":1}]}

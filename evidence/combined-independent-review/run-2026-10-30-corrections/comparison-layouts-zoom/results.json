@@ -1,0 +1,18 @@
+{
+  "asset": "/assets/index-CCOuMecx.js",
+  "checks": [
+    "native browser zoom is 200% with same physical window",
+    "feasibility-200-percent · both named canvas groups retain named object controls",
+    "feasibility-200-percent · scale strip is outside the drawing and dimensions never intersect it",
+    "feasibility-200-percent · page and dialog reflow without horizontal overflow",
+    "feasibility-200-percent · camera zoom changes only the view",
+    "feasibility-200-percent · Cancel remains reachable",
+    "saved-200-percent · both named canvas groups retain named object controls",
+    "saved-200-percent · scale strip is outside the drawing and dimensions never intersect it",
+    "saved-200-percent · page and dialog reflow without horizontal overflow",
+    "saved-200-percent · camera zoom changes only the view",
+    "saved-200-percent · reopen action stays above drawing controls",
+    "no uncaught browser errors"
+  ],
+  "errors": []
+}

@@ -1,0 +1,331 @@
+Feasibility experiments
+
+Test a change against the accepted plan. Only Apply saves the trial.
+
+Close experiment
+Design trial
+
+Boundary, entrance, green outlines, vacancies and home templates are held. Generated lots may change.
+
+Manual lots, lot reshapes and assigned homes are held. Cost experiments remain available; review design edits in their existing editors.
+
+Generated layout
+Trial circulation
+Spine
+Loop
+Trial lot frontage (m)
+Trial lot depth (m)
+Cost assumptions
+
+Illustrative inputs, not quotations. Rates apply to measured quantities; allowances are fixed project totals.
+
+Home construction (Rp/m² built)
+Street works (Rp/m² surface)
+Green works (Rp/m² outline)
+Setup allowance (Rp m)
+Other physical works (Rp m)
+Professional allowance (Rp m)
+Contingency (% physical costs)
+Selling costs (% revenue)
+
+Contingency covers construction, streets, green works, setup and other physical works. Professional and selling costs are outside that base.
+
+Held: Rp850m/home, owner Rp10.00bn, target 15.0%, ceiling Rp850m/home. Change these in Assumptions after closing the trial.
+
+Reset trial Use illustrative costs
+Accepted → trial
+Fit both experiments
+Accepted plan
+Fit site
++
+−
+6.0 m STREET
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+25
+50 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Trial · unapplied
+Fit site
++
+−
+6.0 m STREET
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+25
+50 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Measured quantities and assumed finances
+Measure	Accepted	Trial	Change
+Occupied homes	20	20	0
+Built area	1,188 m²	1,188 m²	0 m²
+Street surface	720 m²	720 m²	0 m²
+Designed green	480 m²	480 m²	0 m²
+Lot area	4,000 m²	4,000 m²	0 m²
+Unallocated land	6,800 m²	6,800 m²	0 m²
+Home construction	Rp5,940,000,000	Rp4,752,000,000	−Rp1,188,000,000
+Street works	Rp576,000,000	Rp576,000,000	Rp0
+Green works	Rp72,000,000	Rp72,000,000	Rp0
+Setup allowance	Rp800,000,000	Rp800,000,000	Rp0
+Other physical works	Rp1,200,000,000	Rp1,200,000,000	Rp0
+Contingency	Rp429,400,000	Rp370,000,000	−Rp59,400,000
+Professional allowance	Rp1,300,000,000	Rp1,300,000,000	Rp0
+Non-land costs	Rp10,317,400,000	Rp9,070,000,000	−Rp1,247,400,000
+Revenue	Rp17,000,000,000	Rp17,000,000,000	Rp0
+Selling costs	Rp510,000,000	Rp510,000,000	Rp0
+Surplus after owner payment	−Rp3,827,400,000	−Rp2,580,000,000	+Rp1,247,400,000
+Land allowance	Rp3,622,600,000	Rp4,870,000,000	+Rp1,247,400,000
+Owner shortfall (+) / headroom (−)	Rp6,377,400,000	Rp5,130,000,000	−Rp1,247,400,000
+
+Required price at the owner benchmark and target: Rp1.24bn/home → Rp1.16bn/home. Trial required price exceeds the declared buyer ceiling.
+
+Land allowance attribution: design change at accepted costs Rp0; then cost changes on the trial design Rp1,247,400,000.
+
+The shared selling price is held as an assumption even when design changes. Lower costs do not prove saleability or market value. No optimum or verified feasibility is claimed. Trials are session-only; Apply records the accepted inputs and an event, with plan Undo/Redo.
+
+20 → 20 homes · land allowance Rp3.62bn → Rp4.87bn
+
+Cancel experiment
+Apply experiment
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Open space A
+Profile / template warning
+Saved in this browser
+
+Parameter edit cancelled. Accepted plan restored.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+T2
+LOT 01
+200 m²
+T1
+LOT 02
+200 m²
+T1
+LOT 03
+200 m²
+T1
+LOT 04
+200 m²
+T1
+LOT 05
+200 m²
+T1
+LOT 06
+200 m²
+T1
+LOT 07
+200 m²
+T1
+LOT 08
+200 m²
+T1
+LOT 09
+200 m²
+T1
+LOT 10
+200 m²
+T1
+LOT 11
+200 m²
+T1
+LOT 12
+200 m²
+T1
+LOT 13
+200 m²
+T1
+LOT 14
+200 m²
+T1
+LOT 15
+200 m²
+T1
+LOT 16
+200 m²
+T1
+LOT 17
+200 m²
+T1
+LOT 18
+200 m²
+T1
+LOT 19
+200 m²
+T1
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+X 5.1 m · Y 36.9 m
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Locked
+SELECTED AREA
+480 m²
+SITE SHARE
+4.00%
+MODELED HOMES
+20
+BUILT AREA / HOME
+60.0 m²
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+
+480.0 m² combined · 1 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Park width
+24 m
+Park depth
+20 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Fix Open space A shape + location
+Locked
+Maintain minimum open space
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Housing mix pricing is provisional: every occupied home uses the shared selling-price assumption; no template-specific market evidence is supplied.
+Ask about Open space A
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+Manual lot plan held
+Run optimization ▷
+
+Manual lots are held. Preview generated lots before searching frontage alternatives.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasingSaved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance · provisional Rp3.62bn
+Shortfall Rp6.38bn

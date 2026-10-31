@@ -174,6 +174,9 @@ button.tool.selected-object { color: #c2a9e4; background: #2e2a38; }
 .constraint-help p { margin-bottom: 0; }
 .compare-grid .stage { height: clamp(320px, 45dvh, 540px); }
 .compare-grid .canvastools { min-height: 0; }
+.comparison-readouts { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 12px; background: var(--paper); border-top: 1px solid #b8bec8; }
+.comparison-readouts .drawing-scale, .comparison-readouts .viewport-readout { position: static; max-width: none; }
+.comparison-readouts .viewport-readout { flex-wrap: wrap; gap: 6px 12px; }
 
 .road-caption { fill: #3a4453; font-family: ui-monospace, monospace; letter-spacing: .02em; }
 .boundary-banner { top: auto; bottom: 14px; left: auto; right: 18px; max-width: calc(100% - 220px); box-shadow: 0 2px 8px #24334e20; }

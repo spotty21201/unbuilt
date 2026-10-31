@@ -1,0 +1,12 @@
+PASS J01 named separate sample project opens through UI
+PASS J02 collinear boundary refinement retains 12000 m² and five vertices
+PASS J03 manual branch accepted; measured road area 942 m²
+PASS J04 vacant split reviewed without regenerating held streets
+PASS J05a park conflict identifies held Lot 20 and blocks Apply without deleting homes
+PASS J05 held housing/lots coexist with protected 120 m² pocket and original 480 m² park
+PASS J06 combined manual work holds regeneration while cost experiment remains enabled
+PASS J07 scripted interpretation leads to measured exact cost input and explicit Apply
+PASS J08 comparison retains equal geometry and independent costs
+PASS J09 reopen Undo, reload and export retain two schemes and full working study
+PASS J10 model routing, keys and intention transcripts absent from portable project
+PASS J11 imported-copy notes do not overwrite original project annotation

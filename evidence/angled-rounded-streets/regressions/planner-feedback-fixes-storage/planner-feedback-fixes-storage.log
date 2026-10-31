@@ -1,0 +1,2 @@
+PASS Closing and reopening an ordinary temporary Chromium profile preserves named accepted projects and active identity
+PASS Clearing this disposable profile’s site data removes the test project; a fresh sample is initialized

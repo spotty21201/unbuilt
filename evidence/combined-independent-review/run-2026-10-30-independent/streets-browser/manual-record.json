@@ -1,0 +1,294 @@
+{
+  "app": "UNBUILT decision record",
+  "projectName": "Cedar Market sample",
+  "exportVersion": 8,
+  "exportedAt": "2026-10-30T16:19:11.723Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.",
+  "state": {
+    "site": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true,
+        "streetNetwork": {
+          "segments": [
+            {
+              "id": "street-1",
+              "width": 6,
+              "a": {
+                "x": 0,
+                "y": 50
+              },
+              "b": {
+                "x": 40,
+                "y": 50
+              }
+            },
+            {
+              "id": "street-3",
+              "width": 6,
+              "a": {
+                "x": 40,
+                "y": 50
+              },
+              "b": {
+                "x": 120,
+                "y": 50
+              }
+            },
+            {
+              "id": "street-2",
+              "a": {
+                "x": 40,
+                "y": 50
+              },
+              "b": {
+                "x": 40,
+                "y": 90
+              },
+              "width": 8
+            }
+          ]
+        }
+      },
+      "areaM2": 12000,
+      "provenance": "fictional Cedar Market sample"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "openSpace": {
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 24,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 10,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 0,
+          "y": 47,
+          "w": 40,
+          "h": 6
+        },
+        {
+          "x": 40,
+          "y": 47,
+          "w": 80,
+          "h": 6
+        },
+        {
+          "x": 36,
+          "y": 50,
+          "w": 8,
+          "h": 40
+        }
+      ],
+      "parcels": [
+        {
+          "x": 0,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 0,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 70,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 80,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 90,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 100,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 16,
+          "y": 80,
+          "w": 20,
+          "h": 10
+        },
+        {
+          "x": 44,
+          "y": 80,
+          "w": 20,
+          "h": 10
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 20,
+      "roadArea": 1016,
+      "greenArea": 480,
+      "parcelArea": 4000,
+      "unallocatedArea": 6504
+    },
+    "economics": {
+      "roadCost": 812800000,
+      "homeCost": 6000000000,
+      "greenCost": 72000000,
+      "costNonLand": 10629040000,
+      "finance": {
+        "revenue": 17000000000,
+        "surplus": -4139040000,
+        "margin": -0.2434729411764706,
+        "landAllowance": 3310960000,
+        "ownerGap": 6689040000,
+        "requiredPrice": 1257868292.682927
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "events": [
+    {
+      "t": "2026-10-30T16:19:06.325Z",
+      "kind": "streets",
+      "detail": "Applied 3 street segments; 1016.0 m² street surface including access. Lots and costs regenerated; park retained."
+    },
+    {
+      "t": "2026-10-30T16:19:06.405Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-30T16:19:06.464Z",
+      "kind": "redo",
+      "detail": "Redo applied (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-30T16:19:10.076Z",
+      "kind": "search",
+      "detail": "Ran bounded search (family-200, price Rp850M, ceiling Rp850M): 4 tested, 4 geometrically valid, 3 fit profile, 4 within ceiling, 3 meet target surplus, 3 shown. Owner expectation Rp10bn is a benchmark, not a constraint."
+    },
+    {
+      "t": "2026-10-30T16:19:11.500Z",
+      "kind": "apply",
+      "detail": "Applied Spine · 11 m lots (16 homes, allowance Rp1.78bn)."
+    },
+    {
+      "t": "2026-10-30T16:19:11.556Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    }
+  ],
+  "history": {
+    "undoDepth": 1,
+    "redoDepth": 1,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

@@ -1,0 +1,40 @@
+PASS manual networks and generated cross streets cannot silently coexist
+PASS seeding generated sample roads preserves measured road area and home count
+PASS orthogonal branch splits the T junction and counts its overlap exactly once
+PASS street works use actual 942 m² and reconcile the whole land budget
+PASS widening one branch remeasures 1016 m² and its construction cost
+PASS moving a shared T node preserves connected orthogonal legs and gate position
+PASS moving the entrance row away from the gate is refused, not silently connected
+PASS an explicit inset connector restores the shifted row with measured geometry
+PASS disconnected branch and corner-touch-only pavement cannot pass centreline connectivity
+PASS all centreline crossings are joined at grade and split for shared editing
+PASS a crossing conserves paved area rather than double-counting the junction
+PASS street entering the park or its protected clearance returns no priced geometry
+PASS full street width must fit inside irregular outline, not just its centreline
+PASS manual roads and regenerated lots remain contained on an 11000 m² polygon
+PASS sloping gate retains the measured apron and attaches the manual network at its inner face
+PASS narrow gate blocks a wider connecting street
+PASS deleting a segment that detaches the branch is rejected with a named correction
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(streetErrors(n).length)
+
+    at file:///home/spotty/projects/unbuilt/tests/streets.mjs:38:438
+    at check (file:///home/spotty/projects/unbuilt/tests/streets.mjs:11:41)
+    at file:///home/spotty/projects/unbuilt/tests/streets.mjs:38:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

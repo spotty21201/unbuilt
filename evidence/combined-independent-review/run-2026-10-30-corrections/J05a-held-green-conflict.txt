@@ -1,0 +1,191 @@
+Skip to plan
+UNBUILT
+Projects
+Independent end-to-end fictional study
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI configured · untested
+AI settings
+Independent end-to-end fictional study · 12,000 m² · 5 vertices · Entrance west · spine 10 m
+Selected: Connected north pocket
+Layout unavailable
+Saved in this browser
+
+Open-space draft. Draw or select an outline; review measured consequences before Apply.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Unapplied open spaces
+2 spaces · 600.0 m² true area · Homes 19 → Unavailable
+Review open spaces
+6.0 m STREET
+1
+2
+T2
+3
+T1
+4
+T1
+5
+T1
+6
+T1
+7
+T1
+8
+T1
+9
+T1
+10
+T1
+11
+T1
+12
+T1
+13
+T1
+14
+T1
+15
+T1
+16
+T1
+17
+T1
+18
+T1
+19
+T1
+LOT 20
+T1
+LOT 21
+Open space A
+IN/OUT
+Fictional existing tree · assumed
+60.0 m
+60.0 m
+100.0 m
+120.0 m
+100.0 m
+Open space A · 480 m²
+Connected north pocket · 120 m²
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+
+Connected north pocket · unapplied draft · Needs attention; accepted plan retained Fit selected space
+
+Open spaces
+Unapplied draft
+
+Design named parks, pocket spaces and green corridors. Draw a closed outline or enter dimensions; drag corners or use coordinates and arrow keys. The accepted plan remains safe until Apply.
+
+Apply open spaces
+Cancel open spaces
+
+Manual lots held — Lot 20 enters an open space or its conservative clearance extent. Adjust blocks/lots or preview generated lots before changing the supporting layout. The accepted plan is unchanged.
+
+Accepted plan → open-space draft
+Designed green area
+480.0 → 600.0 m²
+Homes
+19 → Unavailable
+Street surface
+942 m² → Unavailable
+Green works · assumed rate
+Rp0.07bn → Unavailable
+Land allowance · provisional
+Rp3.05bn → Unavailable
+
+New or moved spaces can change generated streets and remove whole generated lots. Manual lot plans and assigned homes remain held; conflicts require a separate, approved edit. Green works: Rp150,000 / m²; market and compliance assumptions remain unverified.
+
+Selected open space
+Select a space
+Open space A · park · 480.0 m² · locked
+Connected north pocket · pocket · 120.0 m² · locked
+Space name
+Space type
+Park
+Pocket space
+Green corridor
+
+Outline area: 120.0 m².
+
+Fix shape and location
+
+Unlock this space to move corners or delete it.
+
+Minimum space area (m²)
+Corner 1
+X (m)
+Y (m)
+Remove corner 1
+Corner 2
+X (m)
+Y (m)
+Remove corner 2
+Corner 3
+X (m)
+Y (m)
+Remove corner 3
+Corner 4
+X (m)
+Y (m)
+Remove corner 4
+Add corner to longest edge
+Delete selected space
+View drawing
+Add another open space
+New space name
+New space type
+Park
+Pocket space
+Green corridor
+Draw new outline
+X / start X (m)
+Y / start Y (m)
+Width (m)
+Depth (m)
+Add rectangle
+Straight green corridor
+endX (m)
+endY (m)
+width (m)
+Add straight corridor
+Neighborhood green commitments
+Minimum combined open space (m²)
+Routing clearance (m)
+
+2 of 12 spaces · 600.0 m² total. No overlapping areas, holes or curves. Up to 24 corners per outline. Green-works cost uses true area at the shared illustrative rate.
+
+Streets and whole lots conservatively avoid each polygon's bounding extent plus clearance, shown dashed for the selected space. Extra excluded land is unallocated, not designed green space. Manual lots and housing assignments stay held; conflicting edits are blocked. Footpath connectivity, ecology, drainage and statutory open-space compliance are unverified.
+
+EVALUATOR
+Details
+19 homes
+Green 480 m²
+Road 942 m²
+Allowance · provisional Rp3.05bn
+Shortfall Rp6.95bn
+Invalid plan — Manual lots held — Lot 20 enters an open space or its conservative clearance extent. Adjust blocks/lots or preview generated lots before changing the supporting layout. Figures describe a scheme that cannot stand; resolve Issues first.
+Last valid values — resolve the draft to update.

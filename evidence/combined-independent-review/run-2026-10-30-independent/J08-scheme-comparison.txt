@@ -1,0 +1,358 @@
+Saved alternatives
+
+Name, compare and reopen schemes within this project.
+
+Close saved alternatives
+Keep a scheme · 2/20
+
+Save an independent copy. Future working edits leave saved schemes unchanged.
+
+Save as a new scheme
+Scheme source
+Accepted working plan
+New scheme name
+Why keep this scheme?
+Save new scheme
+Complete cost sensitivity
+
+Saved 10/30/2026, 4:25:02 PM. Details updated 10/30/2026, 4:25:02 PM.
+
+Engine measured cost sensitivity; quotes and prices unverified.
+
+Edit name and notes
+Review reopening
+Remove saved scheme
+
+Saved scheme “Complete cost sensitivity” from the accepted working plan.
+
+Project saved in this browser at 4:25:02 PM.
+
+Saved plans, costs, site context and notes are browser-local and included in project downloads. Original photos and survey media, active drafts and session history are not captured.
+
+Compare schemes
+Scheme A
+Working plan
+Saved: Complete held study
+Saved: Complete cost sensitivity
+Scheme B
+Choose a scheme…
+Working plan
+Saved: Complete held study
+Saved: Complete cost sensitivity
+Saved: Complete held study
+Fit site
++
+−
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+T1
+20
+T1
+21
+Open space A
+IN/OUT
+Fictional existing tree · assumed
+60.0 m
+60.0 m
+100.0 m
+120.0 m
+100.0 m
+Open space A · 480 m²
+Connected south pocket · 120 m²
+Y ↑
+0
+25
+50 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Saved: Complete cost sensitivity
+Fit site
++
+−
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+T1
+20
+T1
+21
+Open space A
+IN/OUT
+Fictional existing tree · assumed
+60.0 m
+60.0 m
+100.0 m
+120.0 m
+100.0 m
+Open space A · 480 m²
+Connected south pocket · 120 m²
+Y ↑
+0
+25
+50 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+
+Each side uses its own saved prices, owner benchmark, target and costs. Differences combine all changed inputs; they are not isolated design savings. Drawings fit independently: compare dimensions and measured areas when boundaries differ.
+
+Scheme A → Scheme B · measured comparison
+Measure	Saved: Complete held study	Saved: Complete cost sensitivity	B − A
+Site area	12,000 m²	12,000 m²	0 m²
+Occupied homes	19	19	0
+Built area	1,128 m²	1,128 m²	0 m²
+Street surface	942 m²	942 m²	0 m²
+Designed green	600 m²	600 m²	0 m²
+Lot area	4,000 m²	4,000 m²	0 m²
+Unallocated land	6,458 m²	6,458 m²	0 m²
+Non-land costs	Rp10,207,780,000	Rp9,023,380,000	−Rp1,184,400,000
+Revenue	Rp16,150,000,000	Rp16,150,000,000	Rp0
+Surplus after owner payment	−Rp4,542,280,000	−Rp3,357,880,000	+Rp1,184,400,000
+Land allowance	Rp3,035,220,000	Rp4,219,620,000	+Rp1,184,400,000
+Owner shortfall (+) / headroom (−)	Rp6,964,780,000	Rp5,780,380,000	−Rp1,184,400,000
+Required price per home	Rp1,297,033,376.12	Rp1,221,012,836.97	−Rp76,020,539.15
+Development screening · each scheme’s own inputs
+Measure	Saved: Complete held study	Saved: Complete cost sensitivity
+Terrain mean slope (%)	2.236	2.236
+Gross cut (m³)	8,033.333	8,033.333
+Gross fill (m³)	833.333	833.333
+Rational peak (m³/s)	0.144	0.144
+Maximum month-end deficit (Rp)	15,229,890,000	14,612,490,000
+Closing phase cash (Rp)	-4,542,280,000	-3,357,880,000
+
+A: B: Geometry and base-cost differences also affect these results. Terrain/drainage budgets are not added automatically.
+
+Compare development sources and assumptions
+Compare saved assumptions and costs
+
+Working plan matches: Complete cost sensitivity
+
+Back to working plan
+Skip to plan
+UNBUILT
+Projects
+Independent end-to-end fictional study
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI connection verified
+AI settings
+Independent end-to-end fictional study · 12,000 m² · 5 vertices · Entrance west · spine 10 m
+Selected: Connected south pocket
+Profile / template warning
+Saved in this browser
+
+Saved scheme “Complete cost sensitivity” from the accepted working plan.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+1
+2
+T2
+LOT 03
+200 m²
+T1
+LOT 04
+200 m²
+T1
+LOT 05
+200 m²
+T1
+LOT 06
+200 m²
+T1
+LOT 07
+200 m²
+T1
+LOT 08
+200 m²
+T1
+LOT 09
+200 m²
+T1
+LOT 10
+200 m²
+T1
+LOT 11
+200 m²
+T1
+LOT 12
+200 m²
+T1
+LOT 13
+200 m²
+T1
+LOT 14
+200 m²
+T1
+LOT 15
+200 m²
+T1
+LOT 16
+200 m²
+T1
+LOT 17
+200 m²
+T1
+LOT 18
+200 m²
+T1
+LOT 19
+200 m²
+T1
+LOT 20
+T1
+LOT 21
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+Fictional existing tree · assumed
+60.0 m
+60.0 m
+100.0 m
+120.0 m
+100.0 m
+Open space A · 480 m²
+Connected south pocket · 120 m²
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+X 5.0 m · Y 37.2 m
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Connected south pocket
+Circulation
+All home lots
+Locked
+SELECTED AREA
+120 m²
+SITE SHARE
+1.00%
+MODELED HOMES
+19
+BUILT AREA / HOME
+60.0 m²
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+Connected south pocket · pocket · 120.0 m² · fixed
+
+600.0 m² combined · 2 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Open-space clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Maintain minimum open space
+Minimum area (m²)
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+
+Removed homes keep their original lot regions vacant during layout changes.
+
+Restore removed homes
+
+Close Saved alternatives first. This action is waiting for the current edit to finish; it does not mean a home cannot fit. Fit is checked when you restore.
+
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Housing mix pricing is provisional: every occupied home uses the shared selling-price assumption; no template-specific market evidence is supplied.
+Ask about Connected south pocket
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+Manual lot plan held
+Run optimization ▷
+
+Manual lots are held. Preview generated lots before searching frontage alternatives.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasing
+
+Saved development studies: terrain, drainage, phasing. Recheck coverage, storm applicability and lot assignments after plan changes.
+
+Saved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+19 homes
+Green 600 m²
+Road 942 m²
+Allowance · provisional Rp4.22bn
+Shortfall Rp5.78bn

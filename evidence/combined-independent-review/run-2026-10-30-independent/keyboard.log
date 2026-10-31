@@ -1,0 +1,10 @@
+PASS KEY-01-streets
+PASS KEY-02-vacant-split
+PASS KEY-03-housing
+PASS KEY-04-green
+PASS KEY-05-feasibility-focus
+FAIL KEY-06-alternatives-focus locator.waitFor: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Cancel details', exact: true }) to be visible[22m
+
+PASS KEY-07-development-focus

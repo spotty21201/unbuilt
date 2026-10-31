@@ -1,0 +1,6 @@
+PASS native browser zoom halves CSS width in the same physical window
+PASS angled drawing and fillet controls work at native 200%
+PASS Apply at 200% persists advanced geometry
+PASS comparison labels have a separate scale strip and no horizontal overflow
+PASS comparison return stays reachable at 200%
+ALL 5 ANGLED ROAD ZOOM CHECKS PASS

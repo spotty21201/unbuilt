@@ -1,0 +1,11 @@
+{
+  "fixture": "scripted completion fixture, no real model",
+  "checks": [
+    {
+      "id": "JOURNEY-STOP",
+      "status": "Fail",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n400 !== 200\n\n    at file:///home/spotty/projects/unbuilt/evidence/combined-independent-review/run-2026-10-30-independent/connected-browser.mjs:9:324\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+    }
+  ],
+  "errors": []
+}

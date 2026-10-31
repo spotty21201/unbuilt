@@ -1,9 +1,10 @@
+import {usesShapedStreets,streetSurface,surfaceArea,surfaceInside,surfaceOverlapsRect,surfaceOverlapsPoly,surfaceFrontage,type RoadSurface} from './road-surfaces.ts';
 import type { DevelopmentInputs } from './development-inputs.ts';
 import {siteOpenSpaces,spaceArea,spaceBounds,spaceSiteErrors,type OpenSpace} from './open-spaces.ts';
 import {homeTemplate} from './housing.ts';
 import { disconnectedStreets, nearestStreetPoint, onStreet, streetRect } from './streets.ts';
-// UNBUILT geometry core. Local-metre site polygons with rectangular roads,
-// parcels and park; exact union math and no rounded intermediates.
+// UNBUILT geometry core. Local-metre site polygons, rectangular allocations
+// and measured manual-road surfaces; no rounding of numeric intermediates.
 // Manually reshaped lots are simple polygons over generated rects (see
 // polygon.ts); quantities, validation, and frontage use true polygon math.
 import { hasLayout, hasHome } from './contents.ts';
@@ -76,6 +77,8 @@ export interface Site {
 export interface Layout {
   family: "spine" | "loop";
   roads: Rect[];
+  roadSurface?: RoadSurface;
+  roadRounding?: {limited:number;minimumRadius:number};
   parcels: Rect[];
   green: Rect;
   openSpaces?:OpenSpace[];
@@ -175,7 +178,8 @@ export function placeFootprint(p: Rect, planning?: PlanningParameters, roads?: R
 }
 
 // Driveway frontage basis for a reshaped lot: boundary length shared with roads.
-export function lotRoadFrontage(roads: Rect[], pts: Pt[]): number {
+export function lotRoadFrontage(roads: Rect[], pts: Pt[], surface?:RoadSurface): number {
+  if(surface)return surfaceFrontage(surface,pts);
   return roads.reduce((s, r) => s + sharedBoundaryLength(pts, r), 0);
 }
 
@@ -218,9 +222,10 @@ export function validateLotPoly(
       return ["reshape leaves less than the 2 m side setback around the placed home"];
     }
   }
-  if (lotRoadFrontage(layout.roads, pts) <= TOL) return ["reshaped lot loses road access"];
+  if (lotRoadFrontage(layout.roads, pts, layout.roadSurface) <= TOL) return ["reshaped lot loses road access"];
   if (layout.accessConnector && polysOverlap(pts, layout.accessConnector)) return ["reshaped lot overlaps the entrance apron"];
-  for (const road of layout.roads) {
+  if(layout.roadSurface&&surfaceOverlapsPoly(layout.roadSurface,pts))return ["reshaped lot overlaps a road"];
+  for (const road of layout.roadSurface?[]:layout.roads) {
     if (polyOverlapsRect(pts, road)) return ["reshaped lot overlaps a road"];
   }
   if (layoutOpenSpaces(layout).some(p=>polysOverlap(pts,p.pts))) return ["reshaped lot overlaps the open space"];
@@ -394,14 +399,14 @@ function generateResponsiveSpine(site: Site, frontage: number): Layout {
     unallocatedNote: "Park-aware orthogonal streets; only complete, accessible lots with fitting homes are modeled. Buffer strips and remaining land are unallocated. Turning geometry is unmodeled." };
 }
 
-function parcelsAlongRoads(site: Site, roads: Rect[], frontage: number, access?: Pt[], horizontal?: boolean[]): Rect[] {
+function parcelsAlongRoads(site: Site, roads: Rect[], frontage: number, access?: Pt[], horizontal?: boolean[], surface?:RoadSurface): Rect[] {
   const p = site.planning!;
   const obstacles = openSpaceObstacles(site);
   const parcels: Rect[] = [];
   const addLot = (lot: Rect) => {
     if (insideSite(lot, site) && (p.housing || placeFootprint(lot, p, roads)) && !obstacles.some(o=>intersect(lot,o))
       && (!access || !polyOverlapsRect(access, lot))
-      && !roads.some((r) => intersect(lot, r)) && !parcels.some((r) => intersect(lot, r))) parcels.push(lot);
+      && !(surface?surfaceOverlapsRect(surface,lot):roads.some((r) => intersect(lot, r))) && (!surface||surfaceFrontage(surface,[{x:lot.x,y:lot.y},{x:lot.x+lot.w,y:lot.y},{x:lot.x+lot.w,y:lot.y+lot.h},{x:lot.x,y:lot.y+lot.h}])>TOL) && !parcels.some((r) => intersect(lot, r))) parcels.push(lot);
   };
   for (const r of roads) {
     if (horizontal?.[roads.indexOf(r)] ?? r.h === 6) {
@@ -453,6 +458,16 @@ export function streetConflict(site: Site): StreetConflict | null {
     }
     return {kind:'disconnected',segmentIds:disconnected.map(i=>network.segments[i].id),gap,message:`Street ${disconnected[0]+1} is disconnected from the entrance. Join its centreline to the connected network or remove it.`};
   }
+  if(usesShapedStreets(network)){
+    let surface:RoadSurface;try{surface=streetSurface(network).surface;}catch{return {kind:'boundary',segmentIds:all,message:'Street outlines could not be constructed. Adjust the junctions or reduce the corner radius.'};}
+    if(!surfaceInside(surface,siteBoundary(site)))return {kind:'boundary',segmentIds:all,message:'A street or rounded corner leaves the site at its full width. Move the junction inward, shorten the street or reduce its corner radius.'};
+    const hit=openSpaceObstacles(site).findIndex(o=>surfaceOverlapsRect(surface,o));
+    if(hit>=0)return {kind:'park',segmentIds:all,region:openSpaceObstacles(site)[hit],message:`A street or rounded corner enters ${siteOpenSpaces(site)[hit].name} or its conservative clearance extent. Reroute it or reduce its radius; the open space is retained.`};
+    if(entry.apron&&surfaceOverlapsPoly(surface,entry.apron))return {kind:'apron',segmentIds:all,message:'Street pavement overlaps the entrance apron. Start perpendicular to its inner face, then turn inside the site.'};
+    const lot=site.planning?.lotPlan?.findIndex(lot=>surfaceOverlapsRect(surface,lot));
+    if(lot!==undefined&&lot>=0)return {kind:'lot',segmentIds:all,region:site.planning!.lotPlan![lot],message:`A street or rounded corner enters held Lot ${lot+1}. Adjust the radius or street, or review the manual lot plan separately. Lots are not silently regenerated.`};
+    return null;
+  }
   for (const [i,s] of network.segments.entries()) {
     const rect=streetRect(s);
     if (!insideSite(rect,site)) return {kind:'boundary',segmentIds:[s.id],message:`Street ${i+1} leaves the site at its full width. Move its ends inward, narrow it or shorten it.`};
@@ -472,8 +487,12 @@ function generateManualStreets(site: Site, frontage: number): Layout {
   const conflict=streetConflict(site);
   if (conflict) return unavailableLayout('spine',conflict.message);
   const network=site.planning!.streetNetwork!,entry=streetEntrance(site)!;
-  const roads=network.segments.map(streetRect);
-  const parcels = parcelsAlongRoads(site, roads, frontage, entry.apron, network.segments.map(s=>Math.abs(s.a.y-s.b.y)<.001));
+  const shaped=usesShapedStreets(network)?streetSurface(network):null;
+  // shortcut: frontage generation remains axis aligned; add rotated parcels when requested.
+  const segments=shaped?network.segments.filter(s=>Math.abs(s.a.x-s.b.x)<.001||Math.abs(s.a.y-s.b.y)<.001):network.segments;
+  const roads=segments.map(streetRect);
+  const parcels = parcelsAlongRoads(site, roads, frontage, entry.apron, segments.map(s=>Math.abs(s.a.y-s.b.y)<.001),shaped?.surface);
+  if(shaped)return {family:'spine',roads,roadSurface:shaped.surface,roadRounding:{limited:shaped.limited,minimumRadius:shaped.minimumRadius},parcels,green:{...site.green},...(entry.apron?{accessConnector:entry.apron}:{}),unallocatedNote:'Planner-drawn angled streets with measured kerb fillets. Whole rectangular lots are generated along horizontal/vertical legs only; land along angled legs remains unallocated. Road area uses the unioned outline, with curves approximated to 5 mm chord deviation. Turning sweeps, drainage and road standards are not verified.'};
   return { family:'spine', roads, parcels, green:{...site.green}, ...(entry.apron ? {accessConnector:entry.apron} : {}), unallocatedNote:'Planner-drawn orthogonal streets. Junction surfaces are counted once; only contained whole lots with fitting homes are generated. Turning, traffic, pedestrian and external-access design are unverified.' };
 }
 
@@ -569,7 +588,7 @@ function fitToBoundary(site: Site, layout: Layout): Layout {
 }
 
 export function deriveQuantities(site: Site, layout: Layout, lotEdits: LotEdits = new Map()): Quantities {
-  const roadArea = unionArea(layout.roads) + (layout.accessConnector ? polyArea(layout.accessConnector) : 0);
+  const roadArea = (layout.roadSurface?surfaceArea(layout.roadSurface):unionArea(layout.roads)) + (layout.accessConnector ? polyArea(layout.accessConnector) : 0);
   const greenArea = spaceArea(layoutOpenSpaces(layout));
   // Reshaped lots contribute true polygon area; reconciliation still holds
   // because the remainder absorbs the difference explicitly.
@@ -601,7 +620,7 @@ export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = 
   for (const [i, pts] of lotEdits) {
     errors.push(...validateLotPolyJoint(site, layout, i, pts, lotEdits));
   }
-  const all: Rect[] = [...layout.roads, ...layout.parcels,...(site.planning?.openSpaces===undefined?[layout.green]:[])];
+  const all: Rect[] = [...(layout.roadSurface?[]:layout.roads), ...layout.parcels,...(site.planning?.openSpaces===undefined?[layout.green]:[])];
   errors.push(...greenGeometryErrors(site));
   for (const r of all) {
     if (r.w <= 0 || r.h <= 0) errors.push(`non-positive rect ${JSON.stringify(r)}`);
@@ -611,12 +630,17 @@ export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = 
     for (let j = i + 1; j < layout.parcels.length; j++) {
       if (intersect(layout.parcels[i], layout.parcels[j])) errors.push(`parcels overlap ${i}/${j}`);
     }
-    for (const road of layout.roads) {
+    if(layout.roadSurface&&surfaceOverlapsRect(layout.roadSurface,layout.parcels[i]))errors.push(`parcel ${i} overlaps road`);
+    for (const road of layout.roadSurface?[]:layout.roads) {
       if (intersect(layout.parcels[i], road)) errors.push(`parcel ${i} overlaps road`);
     }
     if (openSpaceObstacles(site).some(o=>intersect(layout.parcels[i],o))) errors.push(`Lot ${i+1} enters an open space or its conservative clearance extent.`);
   }
-  if (site.planning && [...layout.roads, ...layout.parcels].some((r) => openSpaceObstacles(site).some(o=>intersect(r,o)))) errors.push("Geometry enters the reserved park buffer.");
+  if (site.planning && [...(layout.roadSurface?[]:layout.roads), ...layout.parcels].some((r) => openSpaceObstacles(site).some(o=>intersect(r,o)))) errors.push("Geometry enters the reserved park buffer.");
+  if(layout.roadSurface){
+    if(!surfaceInside(layout.roadSurface,siteBoundary(site)))errors.push('Road outline leaves the site.');
+    if(openSpaceObstacles(site).some(o=>surfaceOverlapsRect(layout.roadSurface!,o)))errors.push('Road outline enters the reserved park buffer.');
+  }
   // Footprints fit with setbacks (house rotatable).
   for (let i = 0; i < layout.parcels.length; i++) {
     const p = layout.parcels[i];
@@ -626,7 +650,7 @@ export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = 
   // Access: each parcel edge-adjacent to a road; road graph connected to entrance.
   for (let i = 0; i < layout.parcels.length; i++) {
     const p = layout.parcels[i];
-    const adj = layout.roads.some((r) => {
+    const adj = layout.roadSurface?surfaceFrontage(layout.roadSurface,[{x:p.x,y:p.y},{x:p.x+p.w,y:p.y},{x:p.x+p.w,y:p.y+p.h},{x:p.x,y:p.y+p.h}])>TOL:layout.roads.some((r) => {
       const overX = Math.min(p.x + p.w, r.x + r.w) - Math.max(p.x, r.x);
       const overY = Math.min(p.y + p.h, r.y + r.h) - Math.max(p.y, r.y);
       const edgeX = Math.abs(p.x + p.w - r.x) <= TOL || Math.abs(r.x + r.w - p.x) <= TOL;
@@ -642,8 +666,12 @@ export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = 
     const expected = accessConnector(site, openSpaceObstacles(site));
     if (!expected || JSON.stringify(expected.polygon) !== JSON.stringify(connector)) errors.push("entrance apron does not match the gate");
     if (!isSimple(connector) || !polyInsidePoly(connector, siteBoundary(site))) errors.push("entrance apron leaves the site");
-    if ([...layout.roads, ...layout.parcels, ...openSpaceObstacles(site)].some(r => polyOverlapsRect(connector, r))) errors.push("entrance apron overlaps another allocation");
+    if ((layout.roadSurface&&surfaceOverlapsPoly(layout.roadSurface,connector))||[...(layout.roadSurface?[]:layout.roads), ...layout.parcels, ...openSpaceObstacles(site)].some(r => polyOverlapsRect(connector, r))) errors.push("entrance apron overlaps another allocation");
   }
+  if(layout.roadSurface){
+    const conflict=streetConflict(site);if(conflict)errors.push(conflict.message);
+    if(connector&&surfaceFrontage(layout.roadSurface,connector)<ROAD_W-TOL)errors.push('Road pavement must share the full entrance-apron face. Start perpendicular to it.');
+  }else{
   const entryIdx = layout.roads.findIndex((r) => {
     if (connector) return sharedBoundaryLength(connector, r) >= ROAD_W - TOL;
     const onEdge =
@@ -665,6 +693,7 @@ export function validateLayout(site: Site, layout: Layout, lotEdits: LotEdits = 
       });
     }
     if (seen.size !== layout.roads.length) errors.push("road network disconnected");
+  }
   }
   // Area reconciliation.
   const q = deriveQuantities(site, layout, lotEdits);

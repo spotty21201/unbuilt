@@ -1,0 +1,5 @@
+waiting for viewport
+before { width: 1440, height: 901, dpr: 1, outerWidth: 1440 }
+waiting for zoom
+zoomed { width: 720, height: 450, dpr: 2, outerWidth: 1440 }
+PASS actual 200% browser zoom: experiment inputs, comparison, Apply, Undo/Redo, Escape and reflow {"before":{"width":1440,"height":901,"dpr":1,"outerWidth":1440},"after":{"width":720,"height":450,"dpr":2,"outerWidth":1440},"zoom":2}

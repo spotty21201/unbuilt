@@ -1,0 +1,25 @@
+{
+  "before": {
+    "width": 1440,
+    "height": 901,
+    "dpr": 1,
+    "outerWidth": 1440
+  },
+  "after": {
+    "width": 720,
+    "height": 450,
+    "dpr": 2,
+    "outerWidth": 1440
+  },
+  "zoom": 2,
+  "asset": "/assets/index-BR3nNjEc.js",
+  "checks": [
+    "actual browser zoom 2: half CSS width, DPR 2 and unchanged outer window",
+    "create and annotate a named scheme at 200%",
+    "compare and explicitly reopen saved inputs at 200%",
+    "Undo/Redo reopening preserves saved notes",
+    "Escape closes the manager with no draft",
+    "no page or dialog horizontal overflow",
+    "reopen footer remains above canvas controls"
+  ]
+}

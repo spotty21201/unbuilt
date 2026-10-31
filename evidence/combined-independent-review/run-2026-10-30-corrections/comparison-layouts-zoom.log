@@ -1,0 +1,13 @@
+PASS native browser zoom is 200% with same physical window
+PASS feasibility-200-percent · both named canvas groups retain named object controls
+PASS feasibility-200-percent · scale strip is outside the drawing and dimensions never intersect it
+PASS feasibility-200-percent · page and dialog reflow without horizontal overflow
+PASS feasibility-200-percent · camera zoom changes only the view
+PASS feasibility-200-percent · Cancel remains reachable
+PASS saved-200-percent · both named canvas groups retain named object controls
+PASS saved-200-percent · scale strip is outside the drawing and dimensions never intersect it
+PASS saved-200-percent · page and dialog reflow without horizontal overflow
+PASS saved-200-percent · camera zoom changes only the view
+PASS saved-200-percent · reopen action stays above drawing controls
+PASS no uncaught browser errors
+ALL 12 COMPARISON LAYOUT CHECKS PASS

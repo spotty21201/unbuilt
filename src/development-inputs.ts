@@ -16,7 +16,9 @@ export function developmentErrors(raw:unknown):string[] {
     if(!fields(t,['source','datum','date','basis','points','slopeLimit','platform'])||!text(t.source)||!text(t.datum,120)||!['survey','assumed'].includes(String(t.basis))||typeof t.basis!=='string'||typeof t.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(t.date)||!Number.isFinite(Date.parse(t.date))||new Date(t.date).toISOString().slice(0,10)!==t.date||!number(t.slopeLimit,.1,100)||!(t.platform===null||number(t.platform,-500,9000)))return ['Terrain needs source, datum, valid date, declared basis, slope threshold and optional platform level (m).'];
     if(!Array.isArray(t.points)||t.points.length<4||t.points.length>400||t.points.some(p=>!fields(p,['x','y','z'])||!number(p.x,0,500)||!number(p.y,0,500)||!number(p.z,-500,9000)))return ['Use 4–400 elevation points, local x/y 0–500 m and z −500–9,000 m.'];
     const pts=t.points as ElevationPoint[],xs=[...new Set(pts.map(p=>p.x))].sort((a,b)=>a-b),ys=[...new Set(pts.map(p=>p.y))].sort((a,b)=>a-b);
-    if(xs.length<2||ys.length<2||xs.length>20||ys.length>20||xs.length*ys.length!==pts.length||new Set(pts.map(p=>`${p.x},${p.y}`)).size!==pts.length||[xs,ys].some(axis=>axis.slice(1).some((n,i)=>n-axis[i]<.01)))return ['Elevation data must be a complete rectangular grid: 2–20 distinct x and y coordinates, no missing/duplicate cells, spacing at least 0.01 m.'];
+    // Allow only subtraction roundoff at the two coordinates, not a survey tolerance.
+    const tooClose=(n:number,previous:number)=>.01-(n-previous)>Number.EPSILON*(Math.abs(n)+Math.abs(previous)+.01);
+    if(xs.length<2||ys.length<2||xs.length>20||ys.length>20||xs.length*ys.length!==pts.length||new Set(pts.map(p=>`${p.x},${p.y}`)).size!==pts.length||[xs,ys].some(axis=>axis.slice(1).some((n,i)=>tooClose(n,axis[i]))))return ['Elevation data must be a complete rectangular grid: 2–20 distinct x and y coordinates, no missing/duplicate cells, spacing at least 0.01 m.'];
   }
   const d=raw.drainage;
   if(d!==undefined){

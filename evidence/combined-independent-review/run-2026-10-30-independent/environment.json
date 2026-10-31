@@ -1,0 +1,39 @@
+{
+  "commit": "38ce2f6870d9b83ab85e6ba2ed11dd46f6021048",
+  "js": "/assets/index-BR3nNjEc.js",
+  "css": "/assets/index-6D583crq.css",
+  "node": "v22.23.3",
+  "browser": "Chromium 149.0.7827.55",
+  "kind": "Playwright headless desktop; isolated fresh context",
+  "startingViewport": [
+    1440,
+    900
+  ],
+  "recordedAtUTC": "2026-10-30T16:44:31.084195+00:00",
+  "recordedAtClientTime": "2026-10-30T11:44:31.084195-05:00",
+  "timezone": "America/Chicago",
+  "host": "Linux 6.8.0-147-generic x86_64 GNU/Linux",
+  "assetSHA256": {
+    "index-BR3nNjEc.js": "8aaa16e0eebb6efbb850858961201a5d8142df9bd680b133dce96ce1231cbf28",
+    "index-6D583crq.css": "f9546ddc2aee662fc4f55558639d8ca88843c60aa99a5d7c0670668b278097cc"
+  },
+  "viewportCoverage": {
+    "desktop": [
+      1440,
+      900
+    ],
+    "tablet": [
+      1024,
+      768
+    ],
+    "narrow": [
+      375,
+      812
+    ],
+    "nativeZoom": "2.0; initial CSS width1440\u2192720; DPR1\u21922; unchanged outer1440; see zoom-results.json"
+  },
+  "physicalDevices": "Not tested; unavailable",
+  "screenReader": "Not tested; none available",
+  "mainServiceHealth": "main-service-health.json",
+  "aiFixtures": "Scripted protocol only; services5183/5184,5193/5194,5195/5196,5197/5198; isolated configs removed"
+}

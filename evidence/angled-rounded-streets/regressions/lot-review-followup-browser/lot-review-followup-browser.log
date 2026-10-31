@@ -1,0 +1,13 @@
+PASS depth subdivision names Proposed Lot 1 and street frontage
+PASS inaccessible proposed lot is highlighted and labeled on drawing
+PASS inaccessible layout cannot apply
+PASS source and resulting references are explicit
+PASS unchanged lot lineage is traceable
+PASS drawing shows accepted to proposed number
+PASS provisional allowance status travels with the figure
+PASS vacancy merge identifies occupied home that will be removed
+PASS vacancy review shows resulting vacant lot and 19 to 18 homes
+PASS mobile warning remains beside the drawing with draft retained
+PASS mobile cancel preserves accepted homes
+PASS selected reshaped lot exposes unverified deeper setbacks beside metrics
+ALL 12 LOT REVIEW CHECKS PASS

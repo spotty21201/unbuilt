@@ -1,0 +1,27 @@
+PASS J01 named separate sample project opens through UI
+PASS J02 collinear boundary refinement retains 12000 m² and five vertices
+PASS J03 manual branch accepted; measured road area 942 m²
+PASS J04 vacant split reviewed without regenerating held streets
+PASS J05a park conflict identifies held Lot 20 and blocks Apply without deleting homes
+PASS J05 held housing/lots coexist with protected 120 m² pocket and original 480 m² park
+PASS J06 combined manual work holds regeneration while cost experiment remains enabled
+FAIL J07 unchanged accepted plan incorrectly rejected
+locator.selectOption: Timeout 10000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Scheme A', { exact: true })[22m
+[2m    - locator resolved to <select aria-label="Scheme A">…</select>[22m
+[2m  - attempting select option action[22m
+[2m    2 × waiting for element to be visible and enabled[22m
+[2m      - did not find some options[22m
+[2m    - retrying select option action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible and enabled[22m
+[2m      - did not find some options[22m
+[2m    - retrying select option action[22m
+[2m      - waiting 100ms[22m
+[2m    20 × waiting for element to be visible and enabled[22m
+[2m       - did not find some options[22m
+[2m     - retrying select option action[22m
+[2m       - waiting 500ms[22m
+
+    at /home/spotty/projects/unbuilt/evidence/combined-independent-review/run-2026-10-30-independent/connected-browser.mjs:32:288

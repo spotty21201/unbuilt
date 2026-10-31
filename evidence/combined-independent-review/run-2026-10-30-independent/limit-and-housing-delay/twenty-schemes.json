@@ -1,0 +1,1204 @@
+{
+  "app": "UNBUILT decision record",
+  "projectName": "Cedar Market sample",
+  "exportVersion": 13,
+  "exportedAt": "2026-10-30T16:42:46.849Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.",
+  "state": {
+    "site": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true
+      },
+      "areaM2": 12000,
+      "provenance": "fictional Cedar Market sample"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "openSpace": {
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 24,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 10,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 0,
+          "y": 47,
+          "w": 120,
+          "h": 6
+        }
+      ],
+      "parcels": [
+        {
+          "x": 0,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 0,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 70,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 80,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 90,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 100,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 20,
+      "roadArea": 720,
+      "greenArea": 480,
+      "parcelArea": 4000,
+      "unallocatedArea": 6800
+    },
+    "economics": {
+      "roadCost": 576000000,
+      "homeCost": 6000000000,
+      "greenCost": 72000000,
+      "costNonLand": 10380400000,
+      "finance": {
+        "revenue": 17000000000,
+        "surplus": -3890400000,
+        "margin": -0.2288470588235294,
+        "landAllowance": 3559600000,
+        "ownerGap": 6440400000,
+        "requiredPrice": 1242707317.073171
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "alternatives": [
+    {
+      "id": "609ca969-e7a7b08b-af150e6e-787853e5",
+      "name": "Scheme 01",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:44.833Z",
+      "updatedAt": "2026-10-30T16:42:44.833Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "060796c6-e9c16ce0-7a9b9a12-c96d0c9f",
+      "name": "Scheme 02",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:44.934Z",
+      "updatedAt": "2026-10-30T16:42:44.934Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "473e457a-611baf3d-84078faa-54b72312",
+      "name": "Scheme 03",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.016Z",
+      "updatedAt": "2026-10-30T16:42:45.016Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "2c7f2bde-e00ff47b-114743cb-a97f94e7",
+      "name": "Scheme 04",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.099Z",
+      "updatedAt": "2026-10-30T16:42:45.099Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "131579f8-4b88c006-d24e990a-31e73adc",
+      "name": "Scheme 05",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.183Z",
+      "updatedAt": "2026-10-30T16:42:45.183Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "426188e4-d05c9775-52b13c5e-99302161",
+      "name": "Scheme 06",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.266Z",
+      "updatedAt": "2026-10-30T16:42:45.266Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "3b6d719c-7d03449a-e66ab25f-fbcf845f",
+      "name": "Scheme 07",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.349Z",
+      "updatedAt": "2026-10-30T16:42:45.349Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "2b097e64-2b347ef9-ac6a9681-959d53e2",
+      "name": "Scheme 08",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.433Z",
+      "updatedAt": "2026-10-30T16:42:45.433Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "bb133477-ae157dfd-b762e1f7-ad70e659",
+      "name": "Scheme 09",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.517Z",
+      "updatedAt": "2026-10-30T16:42:45.517Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "98a71ef1-9b9957b2-9ce791f6-10350479",
+      "name": "Scheme 10",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.599Z",
+      "updatedAt": "2026-10-30T16:42:45.599Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "102c5c14-4c8025cf-93e03880-a7900c27",
+      "name": "Scheme 11",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.683Z",
+      "updatedAt": "2026-10-30T16:42:45.683Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "7733fe7a-2cdc8b4a-bad1fa77-9a7d3e80",
+      "name": "Scheme 12",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.766Z",
+      "updatedAt": "2026-10-30T16:42:45.766Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "3635584b-3cc02196-08f0411e-94c543d4",
+      "name": "Scheme 13",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.849Z",
+      "updatedAt": "2026-10-30T16:42:45.849Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "2c9efbd4-fb4cd77b-fdd3e72c-f4bdfacf",
+      "name": "Scheme 14",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:45.933Z",
+      "updatedAt": "2026-10-30T16:42:45.933Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "18f42d65-f782f378-5ad3ef46-b43454bb",
+      "name": "Scheme 15",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:46.016Z",
+      "updatedAt": "2026-10-30T16:42:46.016Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "aa813ebf-24ed9a7d-d579d20c-5a8275f0",
+      "name": "Scheme 16",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:46.100Z",
+      "updatedAt": "2026-10-30T16:42:46.100Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "c3dec8a6-551f7977-90530f28-7a74ec03",
+      "name": "Scheme 17",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:46.183Z",
+      "updatedAt": "2026-10-30T16:42:46.183Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "836f1d5e-38a59184-996e2d2c-244d47d3",
+      "name": "Scheme 18",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:46.267Z",
+      "updatedAt": "2026-10-30T16:42:46.267Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "4663c4c5-e6bb6503-1fb56925-8ee9383f",
+      "name": "Scheme 19",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:46.366Z",
+      "updatedAt": "2026-10-30T16:42:46.366Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    },
+    {
+      "id": "438e659a-0fe46c48-3340fc9c-bd7182cb",
+      "name": "Scheme 20",
+      "note": "",
+      "createdAt": "2026-10-30T16:42:46.449Z",
+      "updatedAt": "2026-10-30T16:42:46.449Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true
+          }
+        }
+      }
+    }
+  ],
+  "events": [
+    {
+      "t": "2026-10-30T16:42:44.833Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 01” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:44.934Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 02” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.016Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 03” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.099Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 04” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.183Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 05” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.266Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 06” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.349Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 07” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.433Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 08” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.517Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 09” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.599Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 10” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.683Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 11” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.766Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 12” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.849Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 13” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:45.933Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 14” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:46.016Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 15” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:46.100Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 16” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:46.183Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 17” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:46.267Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 18” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:46.366Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 19” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:46.449Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Scheme 20” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-30T16:42:46.671Z",
+      "kind": "saved-alternatives",
+      "detail": "Removed saved scheme “Scheme 20”."
+    },
+    {
+      "t": "2026-10-30T16:42:46.732Z",
+      "kind": "saved-alternatives",
+      "detail": "Restored saved scheme “Scheme 20”."
+    }
+  ],
+  "history": {
+    "undoDepth": 0,
+    "redoDepth": 0,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

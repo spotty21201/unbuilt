@@ -1,0 +1,460 @@
+[
+  {
+    "name": "root-tests",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 30.45,
+    "log": "root-tests/run.log"
+  },
+  {
+    "name": "web-build",
+    "command": [
+      "npm",
+      "run",
+      "build",
+      "--prefix",
+      "web"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 11.9,
+    "log": "web-build/run.log"
+  },
+  {
+    "name": "web-lint",
+    "command": [
+      "npm",
+      "run",
+      "lint",
+      "--prefix",
+      "web"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 0.32,
+    "log": "web-lint/run.log"
+  },
+  {
+    "name": "boundary-browser",
+    "command": [
+      "node",
+      "tests/boundary-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 8.2,
+    "log": "boundary-browser/run.log"
+  },
+  {
+    "name": "boundary-pointer-range-browser",
+    "command": [
+      "node",
+      "tests/boundary-pointer-range-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 4.88,
+    "log": "boundary-pointer-range-browser/run.log"
+  },
+  {
+    "name": "development-browser",
+    "command": [
+      "node",
+      "tests/development-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 5.49,
+    "log": "development-browser/run.log"
+  },
+  {
+    "name": "dynamic-inspector-browser",
+    "command": [
+      "node",
+      "tests/dynamic-inspector-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 15.69,
+    "log": "dynamic-inspector-browser/run.log"
+  },
+  {
+    "name": "feasibility-browser",
+    "command": [
+      "node",
+      "tests/feasibility-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 5.97,
+    "log": "feasibility-browser/run.log"
+  },
+  {
+    "name": "housing-browser",
+    "command": [
+      "node",
+      "tests/housing-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 8.12,
+    "log": "housing-browser/run.log"
+  },
+  {
+    "name": "housing-review-browser",
+    "command": [
+      "node",
+      "tests/housing-review-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 7.46,
+    "log": "housing-review-browser/run.log"
+  },
+  {
+    "name": "lot-review-followup-browser",
+    "command": [
+      "node",
+      "tests/lot-review-followup-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 3.45,
+    "log": "lot-review-followup-browser/run.log"
+  },
+  {
+    "name": "open-spaces-browser",
+    "command": [
+      "node",
+      "tests/open-spaces-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 5.66,
+    "log": "open-spaces-browser/run.log"
+  },
+  {
+    "name": "parcels-browser",
+    "command": [
+      "node",
+      "tests/parcels-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 10.15,
+    "log": "parcels-browser/run.log"
+  },
+  {
+    "name": "planner-feedback-browser",
+    "command": [
+      "node",
+      "tests/planner-feedback-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 6.42,
+    "log": "planner-feedback-browser/run.log"
+  },
+  {
+    "name": "planner-feedback-fixes-browser",
+    "command": [
+      "node",
+      "tests/planner-feedback-fixes-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 16.5,
+    "log": "planner-feedback-fixes-browser/run.log"
+  },
+  {
+    "name": "planner-feedback-fixes-storage",
+    "command": [
+      "node",
+      "tests/planner-feedback-fixes-storage.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 1.78,
+    "log": "planner-feedback-fixes-storage/run.log"
+  },
+  {
+    "name": "planner-review-followup-browser",
+    "command": [
+      "node",
+      "tests/planner-review-followup-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 3.74,
+    "log": "planner-review-followup-browser/run.log"
+  },
+  {
+    "name": "project-lifecycle-browser",
+    "command": [
+      "node",
+      "tests/project-lifecycle-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 4.48,
+    "log": "project-lifecycle-browser/run.log"
+  },
+  {
+    "name": "projects-browser",
+    "command": [
+      "node",
+      "tests/projects-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 7.91,
+    "log": "projects-browser/run.log"
+  },
+  {
+    "name": "saved-alternatives-browser",
+    "command": [
+      "node",
+      "tests/saved-alternatives-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 7.65,
+    "log": "saved-alternatives-browser/run.log"
+  },
+  {
+    "name": "site-context-browser",
+    "command": [
+      "node",
+      "tests/site-context-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 7.78,
+    "log": "site-context-browser/run.log"
+  },
+  {
+    "name": "site-context-recovery-browser",
+    "command": [
+      "node",
+      "tests/site-context-recovery-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 8.18,
+    "log": "site-context-recovery-browser/run.log"
+  },
+  {
+    "name": "stitch-viewport-browser",
+    "command": [
+      "node",
+      "tests/stitch-viewport-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 3.85,
+    "log": "stitch-viewport-browser/run.log"
+  },
+  {
+    "name": "street-review-browser",
+    "command": [
+      "node",
+      "tests/street-review-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 9.4,
+    "log": "street-review-browser/run.log"
+  },
+  {
+    "name": "streets-browser",
+    "command": [
+      "node",
+      "tests/streets-browser.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 14.39,
+    "log": "streets-browser/run.log"
+  },
+  {
+    "name": "browser-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/browser-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 3.09,
+    "log": "browser-zoom/run.log"
+  },
+  {
+    "name": "feasibility-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/feasibility-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 2.19,
+    "log": "feasibility-zoom/run.log"
+  },
+  {
+    "name": "housing-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/housing-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 2.48,
+    "log": "housing-zoom/run.log"
+  },
+  {
+    "name": "open-spaces-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/open-spaces-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 2.58,
+    "log": "open-spaces-zoom/run.log"
+  },
+  {
+    "name": "parcels-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/parcels-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 2.79,
+    "log": "parcels-zoom/run.log"
+  },
+  {
+    "name": "planner-feedback-fixes-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/planner-feedback-fixes-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 7.13,
+    "log": "planner-feedback-fixes-zoom/run.log"
+  },
+  {
+    "name": "saved-alternatives-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/saved-alternatives-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 3.44,
+    "log": "saved-alternatives-zoom/run.log"
+  },
+  {
+    "name": "site-context-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/site-context-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 4.36,
+    "log": "site-context-zoom/run.log"
+  },
+  {
+    "name": "streets-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/streets-zoom.cjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 3.1,
+    "log": "streets-zoom/run.log"
+  },
+  {
+    "name": "development-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "tests/development-browser.cjs"
+    ],
+    "env": {
+      "UNBUILT_DEVELOPMENT_ZOOM": "2"
+    },
+    "exit": 0,
+    "seconds": 7.88,
+    "log": "development-zoom/run.log"
+  },
+  {
+    "name": "ai-browser",
+    "command": [
+      "node",
+      "--experimental-strip-types",
+      "--no-warnings",
+      "tests/ai-browser.mjs"
+    ],
+    "env": {},
+    "exit": 0,
+    "seconds": 9.42,
+    "log": "ai-browser/run.log"
+  },
+  {
+    "name": "ai-zoom",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "node",
+      "--experimental-strip-types",
+      "--no-warnings",
+      "tests/ai-browser.mjs"
+    ],
+    "env": {
+      "UNBUILT_AI_ZOOM": "2"
+    },
+    "exit": 0,
+    "seconds": 10.56,
+    "log": "ai-zoom/run.log"
+  },
+  {
+    "name": "open-spaces-integration",
+    "command": [
+      "node",
+      "tests/open-spaces-integration.cjs"
+    ],
+    "env": {
+      "PLAYWRIGHT_MODULE": "/home/spotty/projects/studioos/node_modules/playwright",
+      "UNBUILT_EVIDENCE_DIR": "evidence/combined-independent-review/run-2026-10-30-independent/open-spaces-browser"
+    },
+    "exit": 0,
+    "seconds": null,
+    "log": "open-spaces-integration/run.log",
+    "note": "Explicit dependency completion after runner harness error; see COMMANDS.md."
+  }
+]

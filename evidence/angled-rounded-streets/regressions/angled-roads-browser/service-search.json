@@ -1,0 +1,75 @@
+{
+  "requestId": "angled-road-review",
+  "adapter": "mock",
+  "tested": 2,
+  "valid": 2,
+  "qualified": 2,
+  "breakdown": {
+    "geometryValid": 2,
+    "applicable": 2,
+    "priceOk": 2,
+    "targetOk": 2
+  },
+  "snapshotHash": "e6df35aa",
+  "elapsedMs": 17,
+  "candidates": [
+    {
+      "id": "spine-f10",
+      "family": "spine",
+      "frontage": 10,
+      "lots": {},
+      "quantities": {
+        "n": 16,
+        "roadArea": 1007.1784402662704,
+        "greenArea": 480,
+        "parcelArea": 3200,
+        "unallocatedArea": 7312.821559733729
+      },
+      "validationErrors": [],
+      "greenHeld": true,
+      "priceOk": true,
+      "applicable": true,
+      "failingLots": [],
+      "roadCost": 805742752.2130163,
+      "costNonLand": 8353629889.823668,
+      "finance": {
+        "revenue": 13600000000,
+        "surplus": -5161629889.823668,
+        "margin": -0.3795316095458579,
+        "landAllowance": 2798370110.1763325,
+        "ownerGap": 7201629889.823668,
+        "requiredPrice": 1398904717.2121701
+      }
+    },
+    {
+      "id": "spine-f11",
+      "family": "spine",
+      "frontage": 11,
+      "lots": {},
+      "quantities": {
+        "n": 14,
+        "roadArea": 1007.1784402662704,
+        "greenArea": 480,
+        "parcelArea": 3080,
+        "unallocatedArea": 7432.821559733729
+      },
+      "validationErrors": [],
+      "greenHeld": true,
+      "priceOk": true,
+      "applicable": true,
+      "failingLots": [],
+      "roadCost": 805742752.2130163,
+      "costNonLand": 7849629889.823668,
+      "finance": {
+        "revenue": 11900000000,
+        "surplus": -6306629889.823668,
+        "margin": -0.5299688983045099,
+        "landAllowance": 1908370110.1763325,
+        "ownerGap": 8091629889.823668,
+        "requiredPrice": 1554845809.2180898
+      }
+    }
+  ],
+  "blockers": [],
+  "planHash": "ccccf84e8259"
+}

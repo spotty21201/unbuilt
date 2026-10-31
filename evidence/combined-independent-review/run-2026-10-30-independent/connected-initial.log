@@ -1,0 +1,6 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+400 !== 200
+
+    at file:///home/spotty/projects/unbuilt/evidence/combined-independent-review/run-2026-10-30-independent/connected-browser.mjs:9:324
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)

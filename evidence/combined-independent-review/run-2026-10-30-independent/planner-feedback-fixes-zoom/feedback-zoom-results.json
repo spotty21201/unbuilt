@@ -1,0 +1,230 @@
+[
+  {
+    "physicalWindowWidth": 1440,
+    "actualBrowserZoom": 1,
+    "viewport": [
+      1440,
+      769
+    ],
+    "outerWidth": 1440,
+    "dpr": 1,
+    "pageWidth": 1440,
+    "panel": [
+      337,
+      337
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 1040
+  },
+  {
+    "physicalWindowWidth": 1440,
+    "actualBrowserZoom": 1.25,
+    "viewport": [
+      1152,
+      615
+    ],
+    "outerWidth": 1440,
+    "dpr": 1.25,
+    "pageWidth": 1152,
+    "panel": [
+      311,
+      311
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 780
+  },
+  {
+    "physicalWindowWidth": 1440,
+    "actualBrowserZoom": 1.5,
+    "viewport": [
+      960,
+      513
+    ],
+    "outerWidth": 1440,
+    "dpr": 1.5,
+    "pageWidth": 950,
+    "panel": [
+      313,
+      313
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 578
+  },
+  {
+    "physicalWindowWidth": 1440,
+    "actualBrowserZoom": 2,
+    "viewport": [
+      720,
+      384
+    ],
+    "outerWidth": 1440,
+    "dpr": 2,
+    "pageWidth": 712,
+    "panel": [
+      713,
+      713
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 712.5
+  },
+  {
+    "physicalWindowWidth": 1366,
+    "actualBrowserZoom": 1,
+    "viewport": [
+      1366,
+      769
+    ],
+    "outerWidth": 1366,
+    "dpr": 1,
+    "pageWidth": 1366,
+    "panel": [
+      337,
+      337
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 966
+  },
+  {
+    "physicalWindowWidth": 1366,
+    "actualBrowserZoom": 1.25,
+    "viewport": [
+      1093,
+      615
+    ],
+    "outerWidth": 1366,
+    "dpr": 1.25,
+    "pageWidth": 1093,
+    "panel": [
+      311,
+      311
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 720.7999877929688
+  },
+  {
+    "physicalWindowWidth": 1366,
+    "actualBrowserZoom": 1.5,
+    "viewport": [
+      911,
+      513
+    ],
+    "outerWidth": 1366,
+    "dpr": 1.5,
+    "pageWidth": 901,
+    "panel": [
+      313,
+      313
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 528.6666870117188
+  },
+  {
+    "physicalWindowWidth": 1366,
+    "actualBrowserZoom": 2,
+    "viewport": [
+      683,
+      384
+    ],
+    "outerWidth": 1366,
+    "dpr": 2,
+    "pageWidth": 675,
+    "panel": [
+      676,
+      676
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 675.5
+  },
+  {
+    "physicalWindowWidth": 1024,
+    "actualBrowserZoom": 1,
+    "viewport": [
+      1024,
+      769
+    ],
+    "outerWidth": 1024,
+    "dpr": 1,
+    "pageWidth": 1024,
+    "panel": [
+      309,
+      309
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 652
+  },
+  {
+    "physicalWindowWidth": 1024,
+    "actualBrowserZoom": 1.25,
+    "viewport": [
+      819,
+      615
+    ],
+    "outerWidth": 1024,
+    "dpr": 1.25,
+    "pageWidth": 807,
+    "panel": [
+      807,
+      807
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 807.2000122070312
+  },
+  {
+    "physicalWindowWidth": 1024,
+    "actualBrowserZoom": 1.5,
+    "viewport": [
+      683,
+      513
+    ],
+    "outerWidth": 1024,
+    "dpr": 1.5,
+    "pageWidth": 673,
+    "panel": [
+      673,
+      673
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 672.6666870117188
+  },
+  {
+    "physicalWindowWidth": 1024,
+    "actualBrowserZoom": 2,
+    "viewport": [
+      512,
+      384
+    ],
+    "outerWidth": 1024,
+    "dpr": 2,
+    "pageWidth": 504,
+    "panel": [
+      505,
+      505
+    ],
+    "clipped": [],
+    "actionsVisible": true,
+    "focusVisible": true,
+    "canvasWidth": 504.5
+  }
+]

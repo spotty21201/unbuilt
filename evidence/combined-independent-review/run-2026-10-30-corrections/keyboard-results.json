@@ -1,0 +1,254 @@
+{
+  "results": [
+    {
+      "id": "KEY-01-streets",
+      "status": "Pass"
+    },
+    {
+      "id": "KEY-02-vacant-split",
+      "status": "Pass"
+    },
+    {
+      "id": "KEY-03-housing",
+      "status": "Pass"
+    },
+    {
+      "id": "KEY-04-green",
+      "status": "Pass"
+    },
+    {
+      "id": "KEY-05-feasibility-focus",
+      "status": "Pass"
+    },
+    {
+      "id": "KEY-06-alternatives-focus",
+      "status": "Pass"
+    },
+    {
+      "id": "KEY-07-development-focus",
+      "status": "Pass"
+    }
+  ],
+  "trace": [
+    {
+      "target": "Inspect circulation",
+      "tabs": 16
+    },
+    {
+      "target": "Edit street network",
+      "tabs": 41
+    },
+    {
+      "target": "Draw street",
+      "tabs": 3
+    },
+    {
+      "target": "Drawing street X",
+      "tabs": 2
+    },
+    {
+      "target": "Drawing street Y",
+      "tabs": 1
+    },
+    {
+      "target": "Add street point",
+      "tabs": 1
+    },
+    {
+      "target": "Drawing street X",
+      "tabs": 63
+    },
+    {
+      "target": "Drawing street Y",
+      "tabs": 1
+    },
+    {
+      "target": "Add street point",
+      "tabs": 1
+    },
+    {
+      "target": "Finish street",
+      "tabs": 1
+    },
+    {
+      "target": "Street junction 2, 40, 50 meters",
+      "tabs": 66
+    },
+    {
+      "target": "Apply streets",
+      "tabs": 3
+    },
+    {
+      "target": "Undo",
+      "tabs": 38
+    },
+    {
+      "target": "Lot 1, 200 square metres",
+      "tabs": 28
+    },
+    {
+      "target": "Split lot",
+      "tabs": 25
+    },
+    {
+      "target": "INPUT",
+      "tabs": 6
+    },
+    {
+      "target": "Preview lot plan",
+      "tabs": 1
+    },
+    {
+      "target": "Apply lot plan",
+      "tabs": 55
+    },
+    {
+      "target": "Undo",
+      "tabs": 43
+    },
+    {
+      "target": "Inspect homes",
+      "tabs": 17
+    },
+    {
+      "target": "Edit housing mix",
+      "tabs": 38
+    },
+    {
+      "target": "New home template",
+      "tabs": 6
+    },
+    {
+      "target": "Template name",
+      "tabs": 1
+    },
+    {
+      "target": "Template width",
+      "tabs": 1
+    },
+    {
+      "target": "Template depth",
+      "tabs": 1
+    },
+    {
+      "target": "Preview template",
+      "tabs": 1
+    },
+    {
+      "target": "Cancel housing mix",
+      "tabs": 61
+    },
+    {
+      "target": "Edit open spaces",
+      "tabs": 52
+    },
+    {
+      "target": "Add another open space",
+      "tabs": 9
+    },
+    {
+      "target": "New space name",
+      "tabs": 1
+    },
+    {
+      "target": "New space x",
+      "tabs": 3
+    },
+    {
+      "target": "New space y",
+      "tabs": 1
+    },
+    {
+      "target": "New space w",
+      "tabs": 1
+    },
+    {
+      "target": "New space h",
+      "tabs": 1
+    },
+    {
+      "target": "Add rectangle",
+      "tabs": 1
+    },
+    {
+      "target": "Feasibility experiments",
+      "tabs": 73
+    },
+    {
+      "target": "INPUT",
+      "tabs": 4
+    },
+    {
+      "target": "Apply experiment",
+      "tabs": 68
+    },
+    {
+      "target": "Undo",
+      "tabs": 11
+    },
+    {
+      "target": "Feasibility experiments",
+      "tabs": 67
+    },
+    {
+      "target": "Alternatives",
+      "tabs": 5
+    },
+    {
+      "target": "INPUT",
+      "tabs": 2
+    },
+    {
+      "target": "Save new scheme",
+      "tabs": 2
+    },
+    {
+      "target": "Edit name and notes",
+      "tabs": 1
+    },
+    {
+      "target": "Scheme notes",
+      "tabs": 2
+    },
+    {
+      "target": "Cancel scheme details",
+      "tabs": 2
+    },
+    {
+      "target": "Review reopening",
+      "tabs": 2
+    },
+    {
+      "target": "Cancel reopening",
+      "tabs": 1
+    },
+    {
+      "target": "Back to working plan",
+      "tabs": 58
+    },
+    {
+      "target": "Terrain, drainage and phasing",
+      "tabs": 71
+    },
+    {
+      "target": "Load fictional terrain example",
+      "tabs": 5
+    },
+    {
+      "target": "INPUT",
+      "tabs": 19
+    },
+    {
+      "target": "Apply development inputs",
+      "tabs": 6
+    },
+    {
+      "target": "Undo",
+      "tabs": 13
+    },
+    {
+      "target": "Terrain, drainage and phasing",
+      "tabs": 65
+    }
+  ]
+}

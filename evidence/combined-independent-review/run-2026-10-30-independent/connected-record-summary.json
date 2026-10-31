@@ -1,0 +1,149 @@
+{
+  "version": 14,
+  "assumptions": {
+    "assumedPriceRp": 850000000,
+    "ceilingRp": 850000000,
+    "ownerExpectationRp": 10000000000,
+    "targetFraction": 0.15,
+    "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+  },
+  "quantities": {
+    "n": 19,
+    "roadArea": 942,
+    "greenArea": 600,
+    "parcelArea": 4000,
+    "unallocatedArea": 6458
+  },
+  "studies": {
+    "terrain": {
+      "source": "Fictional example · not a survey",
+      "datum": "Fictional local datum",
+      "date": "2026-10-30",
+      "basis": "assumed",
+      "points": [
+        {
+          "x": 0,
+          "y": 0,
+          "z": 100
+        },
+        {
+          "x": 60,
+          "y": 0,
+          "z": 100.6
+        },
+        {
+          "x": 120,
+          "y": 0,
+          "z": 101.2
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "z": 101
+        },
+        {
+          "x": 60,
+          "y": 50,
+          "z": 101.6
+        },
+        {
+          "x": 120,
+          "y": 50,
+          "z": 102.2
+        },
+        {
+          "x": 0,
+          "y": 100,
+          "z": 102
+        },
+        {
+          "x": 60,
+          "y": 100,
+          "z": 102.6
+        },
+        {
+          "x": 120,
+          "y": 100,
+          "z": 103.2
+        }
+      ],
+      "slopeLimit": 2,
+      "platform": 101
+    },
+    "drainage": {
+      "source": "Fictional example · not a local design storm",
+      "returnYears": 10,
+      "intensity": 100,
+      "durationMinutes": 30,
+      "tcMinutes": 15,
+      "coefficients": {
+        "roof": 0.9,
+        "roads": 0.85,
+        "green": 0.2,
+        "other": 0.35
+      },
+      "siteCatchment": true,
+      "noStorage": true,
+      "outfall": {
+        "x": 0,
+        "y": 0,
+        "capacity": 0.15,
+        "source": "Fictional capacity · no downstream verification"
+      }
+    },
+    "phasing": {
+      "source": "Fictional delivery schedule",
+      "startDate": "2026-11",
+      "landMonth": 1,
+      "phases": [
+        {
+          "id": "p1",
+          "name": "First delivery",
+          "startMonth": 1,
+          "buildMonths": 3,
+          "saleMonth": 4,
+          "sharedFraction": 0.5
+        },
+        {
+          "id": "p2",
+          "name": "Second delivery",
+          "startMonth": 4,
+          "buildMonths": 3,
+          "saleMonth": 7,
+          "sharedFraction": 0.5
+        }
+      ],
+      "assignments": {
+        "0,53,10,20": "p1",
+        "10,27,10,20": "p1",
+        "10,53,10,20": "p1",
+        "20,27,10,20": "p1",
+        "20,53,10,20": "p1",
+        "30,27,10,20": "p1",
+        "40,27,10,20": "p1",
+        "50,27,10,20": "p1",
+        "50,53,10,20": "p1",
+        "60,27,10,20": "p1",
+        "60,53,10,20": "p2",
+        "70,27,10,20": "p2",
+        "80,27,10,20": "p2",
+        "90,27,10,20": "p2",
+        "100,27,10,20": "p2",
+        "110,27,10,20": "p2",
+        "110,53,10,20": "p2",
+        "17,80,20,10": "p2",
+        "43,80,20,10": "p2"
+      }
+    }
+  },
+  "alternatives": [
+    {
+      "name": "Complete held study",
+      "note": "Fictional baseline with streets, vacancy, housing, protected green and studies."
+    },
+    {
+      "name": "Complete cost sensitivity",
+      "note": "Engine measured cost sensitivity; quotes and prices unverified."
+    }
+  ]
+}

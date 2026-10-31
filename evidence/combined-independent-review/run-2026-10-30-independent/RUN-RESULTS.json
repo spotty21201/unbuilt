@@ -1,0 +1,34 @@
+{
+  "verdict": "Corrections required",
+  "commit": "38ce2f6870d9b83ab85e6ba2ed11dd46f6021048",
+  "asset": "/assets/index-BR3nNjEc.js",
+  "rootChecksPassed": 711,
+  "browserChecksPassed": 971,
+  "browserSuiteRuns": 35,
+  "newNamedCases": 60,
+  "newCaseStatuses": {
+    "Pass": 46,
+    "Fail": 14,
+    "Unclear": 0,
+    "Not tested": 0,
+    "Blocked": 0
+  },
+  "findingCount": 4,
+  "findings": [
+    "AI false-stale rejection after boundary acceptance",
+    "Valid decimal0.01m grid rejected",
+    "Canvas semantic accessibility rule failures; real screen reader unverified",
+    "Comparison dimension/scale label overlap"
+  ],
+  "acceptedWorkLossObserved": false,
+  "productFixes": false,
+  "commitsOrPublication": false,
+  "gates": {
+    "realModel": "Blocked",
+    "realProjectProfessionalValidation": "Blocked",
+    "physicalDevices": "Not tested",
+    "realScreenReader": "Not tested",
+    "humanPlannerAcceptance": "Not tested",
+    "completeAccessibilityConformance": "Unclear"
+  }
+}

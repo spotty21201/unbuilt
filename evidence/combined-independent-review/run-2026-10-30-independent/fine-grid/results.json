@@ -1,0 +1,75 @@
+[
+  {
+    "id": "GRID-01",
+    "status": "Fail",
+    "startingInputs": {
+      "source": "Independent decimal spacing fixture",
+      "datum": "Fictional local datum",
+      "date": "2026-10-30",
+      "basis": "assumed",
+      "points": [
+        {
+          "x": 0,
+          "y": 0,
+          "z": 100
+        },
+        {
+          "x": 0.01,
+          "y": 0,
+          "z": 100.0001
+        },
+        {
+          "x": 0.02,
+          "y": 0,
+          "z": 100.0002
+        },
+        {
+          "x": 0.03,
+          "y": 0,
+          "z": 100.0003
+        },
+        {
+          "x": 120,
+          "y": 0,
+          "z": 101.2
+        },
+        {
+          "x": 0,
+          "y": 100,
+          "z": 102
+        },
+        {
+          "x": 0.01,
+          "y": 100,
+          "z": 102.0001
+        },
+        {
+          "x": 0.02,
+          "y": 100,
+          "z": 102.0002
+        },
+        {
+          "x": 0.03,
+          "y": 100,
+          "z": 102.0003
+        },
+        {
+          "x": 120,
+          "y": 100,
+          "z": 103.2
+        }
+      ],
+      "slopeLimit": 2,
+      "platform": 101
+    },
+    "expected": "Complete 5×2 grid with minimum decimal spacing exactly 0.01 m accepted; analytic slope sqrt(5)%, cut 24100/3 and fill 2500/3 m³.",
+    "observed": {
+      "validationErrors": [
+        "Elevation data must be a complete rectangular grid: 2–20 distinct x and y coordinates, no missing/duplicate cells, spacing at least 0.01 m."
+      ],
+      "applyEnabled": false,
+      "reportedSlope": "Mean terrain slope (%)\tUnavailable\tUnavailable\n"
+    },
+    "binaryDelta": 0.009999999999999998
+  }
+]

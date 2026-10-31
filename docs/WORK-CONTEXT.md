@@ -1,6 +1,6 @@
 # Unbuilt — current work context
 
-Updated 30 October 2026. Workspace: `/home/spotty/projects/unbuilt`.
+Updated 31 October 2026. Workspace: `/home/spotty/projects/unbuilt`.
 
 ## Current decision
 
@@ -13,8 +13,9 @@ fictional examples for review.
 
 The owner requested keeping tester prompts for both Feature 11 and Feature 12.
 They are saved under `evidence/ai-assistant/TESTER-PROMPT.md` and
-`evidence/terrain-drainage-phasing/TESTER-PROMPT.md`. Neither review was launched.
-Preserve them and all earlier prompts. Feature 8 planner testing remains deferred.
+`evidence/terrain-drainage-phasing/TESTER-PROMPT.md`. Their individual reviews
+were initially deferred; the combined automated tester review below now covers
+them. Preserve all prompts. Human planner/professional acceptance remains open.
 
 The owner subsequently requested testing everything, then committing and pushing
 once verified. This authorizes the Features 10–12 checkpoint and its test evidence.
@@ -23,16 +24,25 @@ The earlier Feature 9 checkpoint is on GitHub main as
 `evidence/release-verification-2026-10-30/README.md`. Feature 11 routing/keys and
 real-model verification remain deferred; setup is in `docs/AI-ADMIN.md`.
 
+The owner then requested consolidating the outstanding tester procedures into
+one prompt, and deployed the tester. The preserved assignment is
+`evidence/combined-independent-review/TESTER-PROMPT.md`; the report is in
+`evidence/combined-independent-review/run-2026-10-30-independent/REPORT.md`.
+The owner authorized implementing all four findings: AI snapshot transport,
+minimum decimal grid spacing, canvas accessibility semantics and comparison
+label collisions. Corrections and fresh evidence are in
+`evidence/combined-independent-review/run-2026-10-30-corrections/README.md`.
+All original prompts and the independent tester's evidence remain unchanged.
+The earlier Features 10–12 checkpoint is `38ce2f6870d9b83ab85e6ba2ed11dd46f6021048`. The owner subsequently authorized angled streets and rounded turning corners; see `docs/PRD_v0.18.md` and `evidence/angled-rounded-streets/README.md`. The owner has now requested committing and pushing this verified extension together with the four corrections, preserved tester prompts and evidence.
+
 The owner's titles/numbering supersede the historical roadmap. Planning brief,
-land budget and walkability remain unimplemented. No subsequent feature is
-authorized.
+land budget and walkability remain unimplemented. Angled streets and corner fillets are now authorized. No other subsequent roadmap feature is authorized.
 
 ## Working rules
 
 - Preserve the extensive modified and untracked tree. It contains valuable work
   from Features 1–12 and their reviews. Do not reset, clean, discard, stage, commit
-  or push unless explicitly requested. The owner has now explicitly requested
-  committing and pushing the verified Features 10–12 checkpoint.
+  or push unless explicitly requested. The earlier authorization to commit/push the Features 10–12 checkpoint is complete. The owner has now explicitly requested committing and pushing the verified corrections and angled-road extension.
 - Preserve project branding. Do not add model-provider branding, attribution,
   trademarks, development signatures or names to product/source/docs/assets or
   commit metadata. Do not claim unsupported development provenance.
@@ -49,6 +59,8 @@ authorized.
   inspect screenshots and distinguish measured results from planning assumptions.
 
 ## Read first
+
+- `docs/PRD_v0.18.md` and `evidence/angled-rounded-streets/README.md` — current angled/rounded street extension. Install root dependencies (`npm ci`) as well as web dependencies before building or starting tools.
 
 0. `docs/PRD_v0.17.md`, `docs/DEVELOPMENT-CALCULATIONS.md` and
    `evidence/terrain-drainage-phasing/README.md` — current Feature 12 scope/evidence.
@@ -341,6 +353,11 @@ never count or render it as another allocation. Do not downgrade the new formats
 
 ## Preserved tester prompts
 
+- Combined assignment (prepared, not launched):
+  `evidence/combined-independent-review/TESTER-PROMPT.md`. When the owner assigns
+  its execution, its named scope consolidates the historical per-feature review
+  deferrals; other features and external credential/data gates remain separate.
+
 - Feature 11: `evidence/ai-assistant/TESTER-PROMPT.md`
   SHA-256 `641deaf378e409db54cfa54cc8a89c71103b72deebdb781febcdd8d388b640e8`.
 - Feature 12: `evidence/terrain-drainage-phasing/TESTER-PROMPT.md`
@@ -355,9 +372,10 @@ never count or render it as another allocation. Do not downgrade the new formats
 - Housing retest: `evidence/housing-review-followup/TESTER-PROMPT.md`
   SHA-256 `3c719f0025d90912e84141dd85f030594d355e7456b25fbc8eb24dc453f7e9dc`.
 
-Testing is deferred at the owner's request. Do not launch or rewrite these reviews
-as a substitute for waiting for the next task. They request planner-facing
-comments as concrete implementation prompts with evidence and explicit uncertainty.
+These prompts were deferred when prepared and are now covered by the combined
+automated review described above. Preserve them unchanged; do not launch further
+independent reviews without the owner's request. Human/physical/professional and
+real-model validation remain separate from the automated tester's findings.
 
 ## Feature 10 verification (historical)
 
@@ -458,3 +476,32 @@ phase screening; it does not establish drainage design, statutory compliance,
 paths, ecological connections, holes or curves for the green outlines. Original media, active drafts/history, comparison selections and search results
 remain session-only; explicitly saved scheme inputs and notes are now durable
 under the browser-local project save contract.
+
+## Current angled/rounded street extension — 31 October 2026
+
+The owner requested corner fillets and roads at angles other than 90°. Implemented
+under `docs/PRD_v0.18.md`. Open Circulation → Edit street network; Any angle draws
+direct segments, Right angles retains orthogonal drawing. Corner fillet radius
+accepts 0–50 m, with a 4 m preset; short kerbs report limited effective radii.
+Unioned measured pavement, bounded miter/bevel joins and circular fillets with
+5 mm maximum chord deviation drive rendering, costs, drainage, containment,
+conflicts and frontage. Existing legacy networks remain unchanged until edited.
+Whole rectangular lot generation remains on horizontal/vertical legs; angled
+frontage land stays explicitly unallocated. No swept-path or engineering approval
+is implied.
+
+Advanced roads use project/record/snapshot 14/15/12 with downgrade guards,
+including alternative-only upgrades. Root `polygon-clipping` dependency is pinned;
+run root `npm ci` as well as `npm ci --prefix web` before starting/building.
+Normal production preview remains on 5173, refreshed deterministic tools on 5174;
+served asset is `/assets/index-B8kEmCUI.js`. Live AI remains unconfigured.
+
+Full root checks: 736 pass. Existing browser matrix: 35 established runs plus the
+new-road initial run, 36/36 pass. Final advanced-road workflow: 27 checks; added
+native 200% zoom: 5 checks; build/lint pass. Advanced canvas/editor accessibility
+scan has no detected violations. All 999 preserved prompt/tester-evidence files
+remain unchanged. Evidence, reproduction and limits are in
+`evidence/angled-rounded-streets/README.md`. The owner has now requested committing and pushing this verified checkpoint,
+including all prior corrections and preserved tester evidence. Consult git log
+and the remote branch for the checkpoint identity; earlier uncommitted labels
+in implementation evidence describe their original verification turn.

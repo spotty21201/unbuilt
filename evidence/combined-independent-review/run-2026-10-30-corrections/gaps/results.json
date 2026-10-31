@@ -1,0 +1,22 @@
+[
+  {
+    "id": "GAP-A3-reject-search",
+    "status": "Pass"
+  },
+  {
+    "id": "GAP-B1-merge-cancel",
+    "status": "Pass"
+  },
+  {
+    "id": "GAP-C1-persistent-guidance",
+    "status": "Pass"
+  },
+  {
+    "id": "GAP-D1-concave-UI",
+    "status": "Pass"
+  },
+  {
+    "id": "GAP-H5-study-lifecycle",
+    "status": "Pass"
+  }
+]

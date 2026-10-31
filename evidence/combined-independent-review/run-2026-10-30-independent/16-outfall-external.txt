@@ -1,0 +1,282 @@
+Terrain, drainage and phasing
+
+Review planning inputs and calculations. Geometry and accepted cost assumptions stay held. Apply inputs to keep them; Close discards this draft.
+
+Close development review
+Terrain
+Drainage
+Phasing
+Storm and catchment
+
+Use a local intensity-duration-frequency source and a separately assessed time of concentration. The site is only usable as the catchment after the declarations below.
+
+Storm, runoff C and concentration-time sources
+Storm return period (years)
+Rainfall intensity (mm/h)
+Intensity duration (minutes)
+Time of concentration (minutes)
+Home footprint runoff coefficient C
+Street surface runoff coefficient C
+Designed green runoff coefficient C
+All other land runoff coefficient C
+I declare the site boundary is the entire contributing catchment, with no off-site inflow.
+I declare no significant storage affects the peak response.
+Declared outfall · unverified
+Outfall x (m)
+Outfall y (m)
+Declared outfall capacity (m³/s)
+Outfall capacity source
+Remove declared outfall
+Remove drainage inputsLoad fictional storm example
+
+Reset development draft
+
+Terrain is assumed. All source and catchment declarations are user-entered, not independently verified. No terrain/drainage costs are added to accepted economics here; enter approved budgets through Assumptions/Feasibility separately.
+
+Accepted inputs → development draft
+Screening result	Accepted	Draft
+Mean terrain slope (%)	2.236068	2.236068
+Rational peak (m³/s)	Unavailable	0.14281667
+Maximum month-end deficit (Rp)	15,127,200,000	15,127,200,000
+Declared outfall
+Boundary used only after catchment confirmation. The outfall is an entered reference; no drainage network or downstream access is established.
+Terrain quantities
+Elevation range
+100 → 103.2 m
+Mean / maximum slope
+2.23607% / 2.23607%
+Area above entered threshold
+12,000 m²
+Gross cut / fill to whole-site platform
+8,033.33 / 833.333 m³
+
+Piecewise planar surface from the entered grid, clipped to the actual boundary. No survey verification, breaklines, retaining structures, topsoil, bulking/compaction or earthworks budget is included. The platform is a screening assumption, not a grading design.
+
+Drainage screening
+Whole-site catchment
+12,000 m²
+Area-weighted runoff C
+0.42845
+Rational peak discharge
+0.142817 m³/s
+Declared outfall capacity
+0.15 m³/s
+Peak above declared capacity
+0 m³/s
+Gross rainfall volume · before losses
+600 m³
+Runoff area partition
+
+Q = Σ(C × area in m²) × intensity in mm/h ÷ 3,600,000. Uniform rainfall, full site contribution and no significant storage must be declared. Rainfall volume is not runoff or detention storage. No flow routing, pipe sizing, infiltration, flooding, downstream permission or local-standard compliance is established.
+
+Phase cash schedule
+Total modeled receipts
+Rp17,000,000,000
+Allocated non-land costs
+Rp10,317,400,000
+Maximum month-end deficit
+Rp15,127,200,000
+Closing net cash
+Rp-3,827,400,000
+Phase allocations
+Phase	Homes	Built m²	Non-land budget	Receipts
+First delivery	10	588	Rp5,127,200,000	Rp8,500,000,000
+Second delivery	10	600	Rp5,190,200,000	Rp8,500,000,000
+Monthly cash movements
+
+Home construction plus its contingency follows occupied-lot assignments. Remaining accepted non-land costs follow entered shared percentages. Costs spread evenly over each build period; all receipts and selling costs occur in its sales month. Owner benchmark is paid once in the entered land month. Closing cash reconciles to accepted modeled surplus. Target surplus is not an expense. Access, utilities, drainage and approvals are not checked per phase. This omits intramonth funding, absorption, escalation, tax, interest/debt and costs absent from accepted assumptions.
+
+Structurally valid inputs can be retained while applicability or assignments need review. Unavailable calculations remain unavailable after Apply. Saved alternatives retain their own inputs and schedules.
+
+Development draft · accepted inputs retained until Apply
+
+Cancel development draft
+Apply development inputs
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Open space A
+Profile / template warning
+Saved in this browser
+
+Opened Cedar Market sample. Accepted plan restored; drafts, undo history and photos are not restored. Plan Undo/Redo starts fresh.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+T2
+LOT 01
+200 m²
+T1
+LOT 02
+200 m²
+T1
+LOT 03
+200 m²
+T1
+LOT 04
+200 m²
+T1
+LOT 05
+200 m²
+T1
+LOT 06
+200 m²
+T1
+LOT 07
+200 m²
+T1
+LOT 08
+200 m²
+T1
+LOT 09
+200 m²
+T1
+LOT 10
+200 m²
+T1
+LOT 11
+200 m²
+T1
+LOT 12
+200 m²
+T1
+LOT 13
+200 m²
+T1
+LOT 14
+200 m²
+T1
+LOT 15
+200 m²
+T1
+LOT 16
+200 m²
+T1
+LOT 17
+200 m²
+T1
+LOT 18
+200 m²
+T1
+LOT 19
+200 m²
+T1
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Locked
+SELECTED AREA
+480 m²
+SITE SHARE
+4.00%
+MODELED HOMES
+20
+BUILT AREA / HOME
+60.0 m²
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+
+480.0 m² combined · 1 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Park width
+24 m
+Park depth
+20 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Fix Open space A shape + location
+Locked
+Maintain minimum open space
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Housing mix pricing is provisional: every occupied home uses the shared selling-price assumption; no template-specific market evidence is supplied.
+Ask about Open space A
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+Manual lot plan held
+Run optimization ▷
+
+Manual lots are held. Preview generated lots before searching frontage alternatives.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasing
+
+Saved development studies: terrain, drainage, phasing. Recheck coverage, storm applicability and lot assignments after plan changes.
+
+Saved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance · provisional Rp3.62bn
+Shortfall Rp6.38bn

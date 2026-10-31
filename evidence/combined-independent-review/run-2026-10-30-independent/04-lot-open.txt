@@ -1,0 +1,102 @@
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Lot 1
+Plan valid
+Saved in this browser
+
+Choose a split, merge or block subdivision, then Preview. Roads and park stay fixed; Apply accepts one plan-history step.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Unapplied lot plan
+Blue source extent · preview changes before Apply
+Review lot plan
+6.0 m STREET
+LOT 01
+200 m²
+LOT 02
+200 m²
+LOT 03
+200 m²
+LOT 04
+200 m²
+LOT 05
+200 m²
+LOT 06
+200 m²
+LOT 07
+200 m²
+LOT 08
+200 m²
+LOT 09
+200 m²
+LOT 10
+200 m²
+LOT 11
+200 m²
+LOT 12
+200 m²
+LOT 13
+200 m²
+LOT 14
+200 m²
+LOT 15
+200 m²
+LOT 16
+200 m²
+LOT 17
+200 m²
+LOT 18
+200 m²
+LOT 19
+200 m²
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+
+Loading lot tools…
+
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn

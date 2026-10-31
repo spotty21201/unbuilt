@@ -1,0 +1,127 @@
+{
+  "format": "unbuilt-project",
+  "name": "Cedar Market sample",
+  "version": 6,
+  "savedAt": "2026-10-30T16:19:03.167Z",
+  "state": {
+    "spec": {
+      "family": "spine",
+      "frontage": 10
+    },
+    "green": {
+      "x": 78,
+      "y": 62,
+      "w": 24,
+      "h": 20
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "lots": {},
+    "profileId": "family-200",
+    "greenLocked": true,
+    "priceS": "850",
+    "ceilingS": "850",
+    "ownerS": "10",
+    "targetS": "15",
+    "baseSpec": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": true,
+        "priceLocked": true
+      }
+    },
+    "siteContext": {
+      "notes": [
+        {
+          "id": "535b944f-458711b3-0d986111-08ce5024",
+          "kind": "feature",
+          "label": "Existing tree",
+          "source": "Fictional site visit",
+          "confidence": "assumed",
+          "note": "",
+          "points": [
+            {
+              "x": 30,
+              "y": 30
+            }
+          ]
+        },
+        {
+          "id": "dc27d1a0-9a18cc96-b3292ed9-2cca89c4",
+          "kind": "feature",
+          "label": "Existing drain",
+          "source": "Fictional site visit",
+          "confidence": "assumed",
+          "note": "",
+          "points": [
+            {
+              "x": 30,
+              "y": 30
+            }
+          ]
+        }
+      ],
+      "survey": {
+        "name": "survey.png",
+        "fingerprint": "7065-5b430a94-2a6a5528",
+        "page": 1,
+        "width": 400,
+        "height": 200,
+        "a": {
+          "x": 99.66329966329977,
+          "y": 99.81060606060603
+        },
+        "b": {
+          "x": 348.82154882154873,
+          "y": 99.81060606060603
+        },
+        "distance": 100,
+        "anchor": {
+          "x": 20,
+          "y": 20
+        },
+        "direction": 0
+      }
+    }
+  },
+  "decisions": [
+    {
+      "t": "2026-10-30T16:18:57.759Z",
+      "kind": "context",
+      "detail": "Survey calibration applied. Reference media remains session-only; retain the original file."
+    },
+    {
+      "t": "2026-10-30T16:19:02.223Z",
+      "kind": "context",
+      "detail": "Survey calibration applied. Reference media remains session-only; retain the original file."
+    },
+    {
+      "t": "2026-10-30T16:19:02.274Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-30T16:19:02.610Z",
+      "kind": "context",
+      "detail": "Site annotation saved. It is reference context, not a verified access or planning constraint."
+    },
+    {
+      "t": "2026-10-30T16:19:03.162Z",
+      "kind": "context",
+      "detail": "Site annotation saved. It is reference context, not a verified access or planning constraint."
+    }
+  ],
+  "photo": {
+    "included": false,
+    "note": "Reference photos are session-only and never stored."
+  }
+}

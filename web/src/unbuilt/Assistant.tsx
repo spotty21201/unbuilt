@@ -70,7 +70,7 @@ function explainLocal(snap: ScenarioSnapshot, base: Props['workingSpec'], other:
       ownerExpectation: snap.assumptions.owner,
       targetFraction: snap.assumptions.target,
     }, carried);
-    const failing = failingLots(layout.parcels, profile, { lotEdits: carried, roads: layout.roads }).filter(i => hasHome(site, layout.parcels[i]));
+    const failing = failingLots(layout.parcels, profile, { lotEdits: carried, roads: layout.roads, roadSurface: layout.roadSurface }).filter(i => hasHome(site, layout.parcels[i]));
     return {
       layout, econ,
       issues: [...validateLayout(site, layout, carried), ...(failing.length > 0 ? [`${failing.length} lot(s) outside the ${profile.name} profile`] : [])],

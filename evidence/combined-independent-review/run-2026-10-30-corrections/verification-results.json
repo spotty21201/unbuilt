@@ -1,0 +1,58 @@
+{
+  "rootChecks": 716,
+  "existingBrowserChecks": 971,
+  "existingBrowserRuns": 35,
+  "build": "Pass",
+  "lint": "Pass",
+  "asset": "/assets/index-CCOuMecx.js",
+  "focused": {
+    "ai-boundary": {
+      "passed": 4,
+      "file": "ai-boundary-repro/results.json"
+    },
+    "connected": {
+      "passed": 12,
+      "file": "connected-results.json"
+    },
+    "grid": {
+      "passed": 1,
+      "file": "fine-grid/results.json"
+    },
+    "comparison-labels": {
+      "passed": 1,
+      "file": "comparison-labels/results.json"
+    },
+    "accessibility": {
+      "passed": 12,
+      "file": "accessibility/accessibility-results.json"
+    },
+    "keyboard": {
+      "passed": 7,
+      "file": "keyboard-results.json"
+    },
+    "arithmetic": {
+      "passed": 9,
+      "file": "independent-calculations.json"
+    },
+    "housing-delay-and-limits": {
+      "passed": 6,
+      "file": "limit-and-housing-delay/results.json"
+    },
+    "tab-recovery": {
+      "passed": 2,
+      "file": "scheme-conflict/results.json"
+    },
+    "procedural-gaps": {
+      "passed": 5,
+      "file": "gaps/results.json"
+    },
+    "comparison-layouts": {
+      "passed": 31,
+      "file": "comparison-layouts/results.json"
+    },
+    "comparison-native-zoom": {
+      "passed": 12,
+      "file": "comparison-layouts-zoom/results.json"
+    }
+  }
+}

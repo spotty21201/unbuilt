@@ -1,0 +1,215 @@
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Lot 1
+Profile / template warning
+Saved in this browser
+
+Housing mix draft. Current lots stay fixed; review templates, assignments and measured costs before Apply. Cancel preserves the accepted library.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Unapplied housing mix
+1200 → 1188 m² built
+Review housing mix
+6.0 m STREET
+T2
+LOT 01
+200 m²
+T1
+LOT 02
+200 m²
+T1
+LOT 03
+200 m²
+T1
+LOT 04
+200 m²
+T1
+LOT 05
+200 m²
+T1
+LOT 06
+200 m²
+T1
+LOT 07
+200 m²
+T1
+LOT 08
+200 m²
+T1
+LOT 09
+200 m²
+T1
+LOT 10
+200 m²
+T1
+LOT 11
+200 m²
+T1
+LOT 12
+200 m²
+T1
+LOT 13
+200 m²
+T1
+LOT 14
+200 m²
+T1
+LOT 15
+200 m²
+T1
+LOT 16
+200 m²
+T1
+LOT 17
+200 m²
+T1
+LOT 18
+200 m²
+T1
+LOT 19
+200 m²
+T1
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+Housing mix
+Unapplied draft
+
+Create named, one-storey rectangular homes and assign one template per lot. The current lot partition is held; homes rotate to fit. Vacant lots stay vacant.
+
+Apply housing mix
+Cancel housing mix
+Accepted plan → housing preview
+Homes
+20 → 20
+Total built area
+1200 → 1188 m²
+Home construction
+Rp6.00bn → Rp5.94bn
+Land allowance · provisional assumptions
+Rp3.56bn → Rp3.62bn
+
+Lots, streets, park and selling price held. The template library and assignments are saved only after Apply.
+
+Measured construction changes are cost effects. They do not establish that a smaller or different home can achieve the same selling price.
+
+Inspect selling price, construction and contingency
+Assignment provenance
+
+19 lots follow the default; 1 have explicit assignments. Explicit assignments stay on their chosen design when the default changes, including when both names match. Vacant reservations remain vacant.
+
+Trace lot assignments before and after
+Home templates
+Edit template
+New template…
+Original home · 60 m²
+Courtyard · 48 m²
+New home template
+Template name
+Width (m)
+Depth (m)
+Preview templateDelete template
+
+To delete this template, choose a different default and reassign its 1 explicit lot assignment(s) first. Cancel keeps the accepted library.
+
+Default for unassigned lots
+Original home
+Courtyard
+Assign across the neighborhood
+Choose block
+Choose a connected block
+Block 1 · 12 lots
+Block 2 · 7 lots
+Block 3 · 1 lots
+Target lots
+Lot 1 · Courtyard · Explicit
+Lot 2 · Original home · Follows default
+Lot 3 · Original home · Follows default
+Lot 4 · Original home · Follows default
+Lot 5 · Original home · Follows default
+Lot 6 · Original home · Follows default
+Lot 7 · Original home · Follows default
+Lot 8 · Original home · Follows default
+Lot 9 · Original home · Follows default
+Lot 10 · Original home · Follows default
+Lot 11 · Original home · Follows default
+Lot 12 · Original home · Follows default
+Lot 13 · Original home · Follows default
+Lot 14 · Original home · Follows default
+Lot 15 · Original home · Follows default
+Lot 16 · Original home · Follows default
+Lot 17 · Original home · Follows default
+Lot 18 · Original home · Follows default
+Lot 19 · Original home · Follows default
+Lot 20 · Original home · Follows default
+
+Choose lots on the drawing (Shift adds/removes), or use Ctrl/Command, Shift or the native touch selector here. Block selection sets the whole connected group.
+
+Select all lots
+Template to assign
+Original home · 60 m²
+Courtyard · 48 m²
+Preview assignment to 1 lot
+
+This makes an explicit assignment, even when you choose the current default design.
+
+Preview selected lots following defaultPreview all lots using default
+Proposed housing schedule
+Template	Homes	Built m²
+T1 · Original home
+10 × 6 m
+	19	1,140
+T2 · Courtyard
+8 × 6 m
+	1	48
+
+20 homes · 1,188 m² built · 0 vacant lots.
+
+One floor and one home per occupied lot; up to 20 templates, dimensions 4–16 m. Shared selling price and construction rate remain explicit assumptions. A different template is not new market evidence. No automated mix optimization, multi-storey or multiple-home lots are modeled. Existing polygon setback limitations still apply.
+
+View drawing
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance · provisional Rp3.62bn
+Shortfall Rp6.38bn

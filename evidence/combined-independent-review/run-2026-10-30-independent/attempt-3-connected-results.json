@@ -1,0 +1,46 @@
+{
+  "fixture": "scripted completion fixture, no real model",
+  "checks": [
+    {
+      "id": "J01",
+      "expected": "named separate sample project opens through UI",
+      "status": "Pass"
+    },
+    {
+      "id": "J02",
+      "expected": "collinear boundary refinement retains 12000 m² and five vertices",
+      "status": "Pass"
+    },
+    {
+      "id": "J03",
+      "expected": "manual branch accepted; measured road area 942 m²",
+      "status": "Pass"
+    },
+    {
+      "id": "J04",
+      "expected": "vacant split reviewed without regenerating held streets",
+      "status": "Pass"
+    },
+    {
+      "id": "J05a",
+      "expected": "park conflict identifies held Lot 20 and blocks Apply without deleting homes",
+      "status": "Pass"
+    },
+    {
+      "id": "J05",
+      "expected": "held housing/lots coexist with protected 120 m² pocket and original 480 m² park",
+      "status": "Pass"
+    },
+    {
+      "id": "J06",
+      "expected": "combined manual work holds regeneration while cost experiment remains enabled",
+      "status": "Pass"
+    },
+    {
+      "id": "JOURNEY-STOP",
+      "status": "Fail",
+      "error": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Proposed experiment · review inputs', { exact: true }) to be visible\u001b[22m\n\n    at /home/spotty/projects/unbuilt/evidence/combined-independent-review/run-2026-10-30-independent/connected-browser.mjs:21:229"
+    }
+  ],
+  "errors": []
+}

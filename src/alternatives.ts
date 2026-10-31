@@ -28,7 +28,7 @@ export function assessAlternative(state: PersistedState) {
   if (!hasLayout(site)) warnings.push('Boundary-only or blank scheme: no layout economics.');
   if (site.planning?.priceLocked && price > ceiling) warnings.push('Assumed selling price exceeds this scheme’s buyer ceiling.');
   const profile = state.profileId === 'starter-150' ? COMPACT_PROFILE : BASE_PROFILE;
-  const outside = failingLots(layout.parcels, profile, { lotEdits: edits, roads: layout.roads }).filter(i => hasHome(site, layout.parcels[i])).length;
+  const outside = failingLots(layout.parcels, profile, { lotEdits: edits, roads: layout.roads, roadSurface: layout.roadSurface }).filter(i => hasHome(site, layout.parcels[i])).length;
   if (outside) warnings.push(`${outside} occupied lots fall outside ${profile.name}; pricing is provisional.`);
   return { site, layout, edits, errors, warnings, quantities, builtArea, economics, price, ceiling, owner, target, development:assessDevelopment(site,layout,edits,economics,price,owner) };
 }

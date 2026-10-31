@@ -1,0 +1,24 @@
+PASS boundary lock prevents import but allows context references
+PASS calibration points can be picked in the image preview
+PASS PNG calibration displays a reference while preserving generated plan metrics
+PASS corrupt PDF leaves accepted calibration and attached image unchanged
+PASS oversize file fails before replacement
+PASS different JPEG requires its own calibration and cannot reuse the saved source silently
+PASS Cancel new survey restores the previous attached PNG
+PASS JPEG survey calibration is supported
+PASS Undo reference replacement restores prior calibration without claiming the wrong image
+PASS reattaching original PNG reuses its saved calibration
+PASS locked-site annotations are editable without changing generated quantities
+PASS pending context draft blocks project switching with a visible explanation
+PASS object navigation cannot discard pending context
+PASS object navigation returns from context to the normal inspector
+PASS save failure keeps latest context in memory without overwriting durable storage
+PASS failed-save backup contains current accepted context
+PASS retry Save persists the accepted context once storage recovers
+PASS leaving a survey project warns about media reattachment
+PASS another project has independent empty context
+PASS returning restores source metadata and annotations but requires reattachment
+PASS touch can place an access assumption without changing the entrance
+PASS touch annotation commits with explicit unverified status
+PASS no uncaught browser errors
+ALL 23 CONTEXT RECOVERY CHECKS PASS

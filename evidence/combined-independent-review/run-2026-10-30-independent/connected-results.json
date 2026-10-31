@@ -1,0 +1,1085 @@
+{
+  "fixture": "scripted completion fixture, no real model",
+  "checks": [
+    {
+      "id": "J01",
+      "expected": "named separate sample project opens through UI",
+      "status": "Pass"
+    },
+    {
+      "id": "J02",
+      "expected": "collinear boundary refinement retains 12000 m² and five vertices",
+      "status": "Pass"
+    },
+    {
+      "id": "J03",
+      "expected": "manual branch accepted; measured road area 942 m²",
+      "status": "Pass"
+    },
+    {
+      "id": "J04",
+      "expected": "vacant split reviewed without regenerating held streets",
+      "status": "Pass"
+    },
+    {
+      "id": "J05a",
+      "expected": "park conflict identifies held Lot 20 and blocks Apply without deleting homes",
+      "status": "Pass"
+    },
+    {
+      "id": "J05",
+      "expected": "held housing/lots coexist with protected 120 m² pocket and original 480 m² park",
+      "status": "Pass"
+    },
+    {
+      "id": "J06",
+      "expected": "combined manual work holds regeneration while cost experiment remains enabled",
+      "status": "Pass"
+    },
+    {
+      "id": "J07",
+      "status": "Fail",
+      "expected": "An unchanged accepted connected study returns a reviewable cost proposal",
+      "observed": "Plan changed while the request was running. Ask again."
+    },
+    {
+      "id": "J08",
+      "expected": "comparison retains equal geometry and independent costs",
+      "status": "Pass"
+    },
+    {
+      "id": "J09",
+      "expected": "reopen Undo, reload and export retain two schemes and full working study",
+      "status": "Pass"
+    },
+    {
+      "id": "J10",
+      "expected": "model routing, keys and intention transcripts absent from portable project",
+      "status": "Pass"
+    },
+    {
+      "id": "J11",
+      "expected": "imported-copy notes do not overwrite original project annotation",
+      "status": "Pass"
+    }
+  ],
+  "errors": [],
+  "wire": [
+    {
+      "request": {
+        "text": "Test construction at four million per square metre",
+        "snapshot": {
+          "version": 11,
+          "site": {
+            "development": {
+              "terrain": {
+                "source": "Fictional example · not a survey",
+                "datum": "Fictional local datum",
+                "date": "2026-10-30",
+                "basis": "assumed",
+                "points": [
+                  {
+                    "x": 0,
+                    "y": 0,
+                    "z": 100
+                  },
+                  {
+                    "x": 60,
+                    "y": 0,
+                    "z": 100.6
+                  },
+                  {
+                    "x": 120,
+                    "y": 0,
+                    "z": 101.2
+                  },
+                  {
+                    "x": 0,
+                    "y": 50,
+                    "z": 101
+                  },
+                  {
+                    "x": 60,
+                    "y": 50,
+                    "z": 101.6
+                  },
+                  {
+                    "x": 120,
+                    "y": 50,
+                    "z": 102.2
+                  },
+                  {
+                    "x": 0,
+                    "y": 100,
+                    "z": 102
+                  },
+                  {
+                    "x": 60,
+                    "y": 100,
+                    "z": 102.6
+                  },
+                  {
+                    "x": 120,
+                    "y": 100,
+                    "z": 103.2
+                  }
+                ],
+                "slopeLimit": 2,
+                "platform": 101
+              },
+              "drainage": {
+                "source": "Fictional example · not a local design storm",
+                "returnYears": 10,
+                "intensity": 100,
+                "durationMinutes": 30,
+                "tcMinutes": 15,
+                "coefficients": {
+                  "roof": 0.9,
+                  "roads": 0.85,
+                  "green": 0.2,
+                  "other": 0.35
+                },
+                "siteCatchment": true,
+                "noStorage": true,
+                "outfall": {
+                  "x": 0,
+                  "y": 0,
+                  "capacity": 0.15,
+                  "source": "Fictional capacity · no downstream verification"
+                }
+              },
+              "phasing": {
+                "source": "Fictional delivery schedule",
+                "startDate": "2026-11",
+                "landMonth": 1,
+                "phases": [
+                  {
+                    "id": "p1",
+                    "name": "First delivery",
+                    "startMonth": 1,
+                    "buildMonths": 3,
+                    "saleMonth": 4,
+                    "sharedFraction": 0.5
+                  },
+                  {
+                    "id": "p2",
+                    "name": "Second delivery",
+                    "startMonth": 4,
+                    "buildMonths": 3,
+                    "saleMonth": 7,
+                    "sharedFraction": 0.5
+                  }
+                ],
+                "assignments": {
+                  "0,53,10,20": "p1",
+                  "10,27,10,20": "p1",
+                  "10,53,10,20": "p1",
+                  "20,27,10,20": "p1",
+                  "20,53,10,20": "p1",
+                  "30,27,10,20": "p1",
+                  "40,27,10,20": "p1",
+                  "50,27,10,20": "p1",
+                  "50,53,10,20": "p1",
+                  "60,27,10,20": "p1",
+                  "60,53,10,20": "p2",
+                  "70,27,10,20": "p2",
+                  "80,27,10,20": "p2",
+                  "90,27,10,20": "p2",
+                  "100,27,10,20": "p2",
+                  "110,27,10,20": "p2",
+                  "110,53,10,20": "p2",
+                  "17,80,20,10": "p2",
+                  "43,80,20,10": "p2"
+                }
+              }
+            },
+            "w": 120,
+            "h": 100,
+            "boundary": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 60,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 100
+              },
+              {
+                "x": 0,
+                "y": 100
+              }
+            ],
+            "planning": {
+              "lotDepth": 20,
+              "greenBuffer": 0,
+              "homeWidth": 10,
+              "homeDepth": 6,
+              "streets": [],
+              "siteLocked": false,
+              "priceLocked": true,
+              "streetNetwork": {
+                "segments": [
+                  {
+                    "id": "street-1",
+                    "width": 6,
+                    "a": {
+                      "x": 0,
+                      "y": 50
+                    },
+                    "b": {
+                      "x": 40,
+                      "y": 50
+                    }
+                  },
+                  {
+                    "id": "street-3",
+                    "width": 6,
+                    "a": {
+                      "x": 40,
+                      "y": 50
+                    },
+                    "b": {
+                      "x": 120,
+                      "y": 50
+                    }
+                  },
+                  {
+                    "id": "street-2",
+                    "a": {
+                      "x": 40,
+                      "y": 50
+                    },
+                    "b": {
+                      "x": 40,
+                      "y": 90
+                    },
+                    "width": 6
+                  }
+                ]
+              },
+              "lotPlan": [
+                {
+                  "x": 0,
+                  "y": 27,
+                  "w": 5,
+                  "h": 20
+                },
+                {
+                  "x": 5,
+                  "y": 27,
+                  "w": 5,
+                  "h": 20
+                },
+                {
+                  "x": 0,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 10,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 10,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 20,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 20,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 30,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 40,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 50,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 50,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 60,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 60,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 70,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 80,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 90,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 100,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 110,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 110,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 17,
+                  "y": 80,
+                  "w": 20,
+                  "h": 10
+                },
+                {
+                  "x": 43,
+                  "y": 80,
+                  "w": 20,
+                  "h": 10
+                }
+              ],
+              "housing": {
+                "templates": [
+                  {
+                    "id": "h1",
+                    "name": "Original home",
+                    "width": 10,
+                    "depth": 6
+                  },
+                  {
+                    "id": "h2",
+                    "name": "Connected Courtyard",
+                    "width": 8,
+                    "depth": 6
+                  }
+                ],
+                "defaultId": "h1",
+                "assignments": {
+                  "0,53,10,20": "h2"
+                }
+              },
+              "openSpaces": [
+                {
+                  "id": "g1",
+                  "name": "Open space A",
+                  "kind": "park",
+                  "pts": [
+                    {
+                      "x": 78,
+                      "y": 62
+                    },
+                    {
+                      "x": 102,
+                      "y": 62
+                    },
+                    {
+                      "x": 102,
+                      "y": 82
+                    },
+                    {
+                      "x": 78,
+                      "y": 82
+                    }
+                  ],
+                  "locked": true,
+                  "minArea": 0
+                },
+                {
+                  "id": "g2",
+                  "name": "Connected south pocket",
+                  "kind": "pocket",
+                  "pts": [
+                    {
+                      "x": 10,
+                      "y": 10
+                    },
+                    {
+                      "x": 22,
+                      "y": 10
+                    },
+                    {
+                      "x": 22,
+                      "y": 20
+                    },
+                    {
+                      "x": 10,
+                      "y": 20
+                    }
+                  ],
+                  "locked": true,
+                  "minArea": 0
+                }
+              ],
+              "minGreenArea": 600
+            },
+            "contents": {
+              "boundary": true,
+              "layout": true,
+              "removedHomes": [
+                {
+                  "x": 0,
+                  "y": 27,
+                  "w": 5,
+                  "h": 20
+                },
+                {
+                  "x": 5,
+                  "y": 27,
+                  "w": 5,
+                  "h": 20
+                }
+              ]
+            }
+          },
+          "entrance": {
+            "edge": "west",
+            "offset": 50,
+            "width": 8
+          },
+          "green": {
+            "x": 78,
+            "y": 62,
+            "w": 24,
+            "h": 20
+          },
+          "greenLocked": true,
+          "lots": {},
+          "spec": {
+            "family": "spine",
+            "frontage": 10
+          },
+          "profileId": "family-200",
+          "assumptions": {
+            "price": 850000000,
+            "ceiling": 850000000,
+            "owner": 10000000000,
+            "target": 0.15
+          },
+          "provenance": {
+            "sample": "custom",
+            "photo": false
+          },
+          "capabilities": [
+            "rect-site",
+            "editable-plan-contents",
+            "simple-site-64",
+            "contained-axis-layouts",
+            "rect-lots",
+            "poly-reshape-12",
+            "entrance-west-east",
+            "entrance-boundary-edge",
+            "open-space-lock",
+            "parametric-layout",
+            "editable-orthogonal-streets",
+            "manual-rectangular-lots",
+            "housing-mix",
+            "multiple-open-spaces",
+            "editable-cost-assumptions",
+            "bounded-search",
+            "explain-deltas",
+            "terrain-drainage-phasing"
+          ],
+          "selected": {
+            "kind": "green",
+            "id": "g2"
+          }
+        },
+        "requestId": "3"
+      },
+      "response": {
+        "planHash": "49a61a405fe4f",
+        "requestId": "3",
+        "answer": {
+          "kind": "proposal",
+          "proposal": {
+            "planHash": "49a61a405fe4f",
+            "design": {
+              "family": "spine",
+              "frontage": 10,
+              "lotDepth": 20
+            },
+            "costs": {
+              "constructionPerM2": 4000000,
+              "roadPerM2": 800000,
+              "greenWorksPerM2": 150000,
+              "setupAllowance": 800000000,
+              "otherWorksAllowance": 1200000000,
+              "contingencyFraction": 0.05,
+              "professionalAllowance": 1300000000,
+              "sellFraction": 0.03
+            },
+            "purpose": "cost_sensitivity",
+            "changes": [
+              "Home construction rate: Rp5,000,000 → Rp4,000,000/m²"
+            ]
+          }
+        },
+        "source": "ai-tool-call",
+        "connectionRevision": 1
+      }
+    },
+    {
+      "request": {
+        "text": "Test construction at four million per square metre",
+        "snapshot": {
+          "version": 11,
+          "site": {
+            "development": {
+              "terrain": {
+                "source": "Fictional example · not a survey",
+                "datum": "Fictional local datum",
+                "date": "2026-10-30",
+                "basis": "assumed",
+                "points": [
+                  {
+                    "x": 0,
+                    "y": 0,
+                    "z": 100
+                  },
+                  {
+                    "x": 60,
+                    "y": 0,
+                    "z": 100.6
+                  },
+                  {
+                    "x": 120,
+                    "y": 0,
+                    "z": 101.2
+                  },
+                  {
+                    "x": 0,
+                    "y": 50,
+                    "z": 101
+                  },
+                  {
+                    "x": 60,
+                    "y": 50,
+                    "z": 101.6
+                  },
+                  {
+                    "x": 120,
+                    "y": 50,
+                    "z": 102.2
+                  },
+                  {
+                    "x": 0,
+                    "y": 100,
+                    "z": 102
+                  },
+                  {
+                    "x": 60,
+                    "y": 100,
+                    "z": 102.6
+                  },
+                  {
+                    "x": 120,
+                    "y": 100,
+                    "z": 103.2
+                  }
+                ],
+                "slopeLimit": 2,
+                "platform": 101
+              },
+              "drainage": {
+                "source": "Fictional example · not a local design storm",
+                "returnYears": 10,
+                "intensity": 100,
+                "durationMinutes": 30,
+                "tcMinutes": 15,
+                "coefficients": {
+                  "roof": 0.9,
+                  "roads": 0.85,
+                  "green": 0.2,
+                  "other": 0.35
+                },
+                "siteCatchment": true,
+                "noStorage": true,
+                "outfall": {
+                  "x": 0,
+                  "y": 0,
+                  "capacity": 0.15,
+                  "source": "Fictional capacity · no downstream verification"
+                }
+              },
+              "phasing": {
+                "source": "Fictional delivery schedule",
+                "startDate": "2026-11",
+                "landMonth": 1,
+                "phases": [
+                  {
+                    "id": "p1",
+                    "name": "First delivery",
+                    "startMonth": 1,
+                    "buildMonths": 3,
+                    "saleMonth": 4,
+                    "sharedFraction": 0.5
+                  },
+                  {
+                    "id": "p2",
+                    "name": "Second delivery",
+                    "startMonth": 4,
+                    "buildMonths": 3,
+                    "saleMonth": 7,
+                    "sharedFraction": 0.5
+                  }
+                ],
+                "assignments": {
+                  "0,53,10,20": "p1",
+                  "10,27,10,20": "p1",
+                  "10,53,10,20": "p1",
+                  "20,27,10,20": "p1",
+                  "20,53,10,20": "p1",
+                  "30,27,10,20": "p1",
+                  "40,27,10,20": "p1",
+                  "50,27,10,20": "p1",
+                  "50,53,10,20": "p1",
+                  "60,27,10,20": "p1",
+                  "60,53,10,20": "p2",
+                  "70,27,10,20": "p2",
+                  "80,27,10,20": "p2",
+                  "90,27,10,20": "p2",
+                  "100,27,10,20": "p2",
+                  "110,27,10,20": "p2",
+                  "110,53,10,20": "p2",
+                  "17,80,20,10": "p2",
+                  "43,80,20,10": "p2"
+                }
+              }
+            },
+            "w": 120,
+            "h": 100,
+            "boundary": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 60,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 0
+              },
+              {
+                "x": 120,
+                "y": 100
+              },
+              {
+                "x": 0,
+                "y": 100
+              }
+            ],
+            "planning": {
+              "lotDepth": 20,
+              "greenBuffer": 0,
+              "homeWidth": 10,
+              "homeDepth": 6,
+              "streets": [],
+              "siteLocked": false,
+              "priceLocked": true,
+              "streetNetwork": {
+                "segments": [
+                  {
+                    "id": "street-1",
+                    "width": 6,
+                    "a": {
+                      "x": 0,
+                      "y": 50
+                    },
+                    "b": {
+                      "x": 40,
+                      "y": 50
+                    }
+                  },
+                  {
+                    "id": "street-3",
+                    "width": 6,
+                    "a": {
+                      "x": 40,
+                      "y": 50
+                    },
+                    "b": {
+                      "x": 120,
+                      "y": 50
+                    }
+                  },
+                  {
+                    "id": "street-2",
+                    "a": {
+                      "x": 40,
+                      "y": 50
+                    },
+                    "b": {
+                      "x": 40,
+                      "y": 90
+                    },
+                    "width": 6
+                  }
+                ]
+              },
+              "lotPlan": [
+                {
+                  "x": 0,
+                  "y": 27,
+                  "w": 5,
+                  "h": 20
+                },
+                {
+                  "x": 5,
+                  "y": 27,
+                  "w": 5,
+                  "h": 20
+                },
+                {
+                  "x": 0,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 10,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 10,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 20,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 20,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 30,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 40,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 50,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 50,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 60,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 60,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 70,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 80,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 90,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 100,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 110,
+                  "y": 27,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 110,
+                  "y": 53,
+                  "w": 10,
+                  "h": 20
+                },
+                {
+                  "x": 17,
+                  "y": 80,
+                  "w": 20,
+                  "h": 10
+                },
+                {
+                  "x": 43,
+                  "y": 80,
+                  "w": 20,
+                  "h": 10
+                }
+              ],
+              "housing": {
+                "templates": [
+                  {
+                    "id": "h1",
+                    "name": "Original home",
+                    "width": 10,
+                    "depth": 6
+                  },
+                  {
+                    "id": "h2",
+                    "name": "Connected Courtyard",
+                    "width": 8,
+                    "depth": 6
+                  }
+                ],
+                "defaultId": "h1",
+                "assignments": {
+                  "0,53,10,20": "h2"
+                }
+              },
+              "openSpaces": [
+                {
+                  "id": "g1",
+                  "name": "Open space A",
+                  "kind": "park",
+                  "pts": [
+                    {
+                      "x": 78,
+                      "y": 62
+                    },
+                    {
+                      "x": 102,
+                      "y": 62
+                    },
+                    {
+                      "x": 102,
+                      "y": 82
+                    },
+                    {
+                      "x": 78,
+                      "y": 82
+                    }
+                  ],
+                  "locked": true,
+                  "minArea": 0
+                },
+                {
+                  "id": "g2",
+                  "name": "Connected south pocket",
+                  "kind": "pocket",
+                  "pts": [
+                    {
+                      "x": 10,
+                      "y": 10
+                    },
+                    {
+                      "x": 22,
+                      "y": 10
+                    },
+                    {
+                      "x": 22,
+                      "y": 20
+                    },
+                    {
+                      "x": 10,
+                      "y": 20
+                    }
+                  ],
+                  "locked": true,
+                  "minArea": 0
+                }
+              ],
+              "minGreenArea": 600
+            },
+            "contents": {
+              "boundary": true,
+              "layout": true,
+              "removedHomes": [
+                {
+                  "x": 0,
+                  "y": 27,
+                  "w": 5,
+                  "h": 20
+                },
+                {
+                  "x": 5,
+                  "y": 27,
+                  "w": 5,
+                  "h": 20
+                }
+              ]
+            }
+          },
+          "entrance": {
+            "edge": "west",
+            "offset": 50,
+            "width": 8
+          },
+          "green": {
+            "x": 78,
+            "y": 62,
+            "w": 24,
+            "h": 20
+          },
+          "greenLocked": true,
+          "lots": {},
+          "spec": {
+            "family": "spine",
+            "frontage": 10
+          },
+          "profileId": "family-200",
+          "assumptions": {
+            "price": 850000000,
+            "ceiling": 850000000,
+            "owner": 10000000000,
+            "target": 0.15
+          },
+          "provenance": {
+            "sample": "custom",
+            "photo": false
+          },
+          "capabilities": [
+            "rect-site",
+            "editable-plan-contents",
+            "simple-site-64",
+            "contained-axis-layouts",
+            "rect-lots",
+            "poly-reshape-12",
+            "entrance-west-east",
+            "entrance-boundary-edge",
+            "open-space-lock",
+            "parametric-layout",
+            "editable-orthogonal-streets",
+            "manual-rectangular-lots",
+            "housing-mix",
+            "multiple-open-spaces",
+            "editable-cost-assumptions",
+            "bounded-search",
+            "explain-deltas",
+            "terrain-drainage-phasing"
+          ],
+          "selected": {
+            "kind": "green",
+            "id": "g2"
+          }
+        },
+        "requestId": "4"
+      },
+      "response": {
+        "planHash": "49a61a405fe4f",
+        "requestId": "4",
+        "answer": {
+          "kind": "proposal",
+          "proposal": {
+            "planHash": "49a61a405fe4f",
+            "design": {
+              "family": "spine",
+              "frontage": 10,
+              "lotDepth": 20
+            },
+            "costs": {
+              "constructionPerM2": 4000000,
+              "roadPerM2": 800000,
+              "greenWorksPerM2": 150000,
+              "setupAllowance": 800000000,
+              "otherWorksAllowance": 1200000000,
+              "contingencyFraction": 0.05,
+              "professionalAllowance": 1300000000,
+              "sellFraction": 0.03
+            },
+            "purpose": "cost_sensitivity",
+            "changes": [
+              "Home construction rate: Rp5,000,000 → Rp4,000,000/m²"
+            ]
+          }
+        },
+        "source": "ai-tool-call",
+        "connectionRevision": 1
+      }
+    }
+  ]
+}

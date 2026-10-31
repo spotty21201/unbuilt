@@ -1,0 +1,324 @@
+Saved alternatives
+
+Name, compare and reopen schemes within this project.
+
+Close saved alternatives
+Keep a scheme · 1/20
+
+Save an independent copy. Future working edits leave saved schemes unchanged.
+
+Save as a new scheme
+Scheme source
+Accepted working plan
+New scheme name
+Why keep this scheme?
+Save new scheme
+Independent Courtyard
+
+Saved 10/30/2026, 4:16:39 PM. Details updated 10/30/2026, 4:16:39 PM.
+
+Fictional review; one smaller home, shared price unverified.
+
+Edit name and notes
+Review reopening
+Remove saved scheme
+
+Saved scheme “Independent Courtyard” from the accepted working plan.
+
+Project saved in this browser at 4:16:39 PM.
+
+Saved plans, costs, site context and notes are browser-local and included in project downloads. Original photos and survey media, active drafts and session history are not captured.
+
+Compare schemes
+Scheme A
+Working plan
+Saved: Independent Courtyard
+Scheme B
+Choose a scheme…
+Working plan
+Saved: Independent Courtyard
+Working plan
+Fit site
++
+−
+6.0 m STREET
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+25
+50 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Saved: Independent Courtyard
+Fit site
++
+−
+6.0 m STREET
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Open space A
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+25
+50 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+
+Each side uses its own saved prices, owner benchmark, target and costs. Differences combine all changed inputs; they are not isolated design savings. Drawings fit independently: compare dimensions and measured areas when boundaries differ.
+
+Scheme A → Scheme B · measured comparison
+Measure	Working plan	Saved: Independent Courtyard	B − A
+Site area	12,000 m²	12,000 m²	0 m²
+Occupied homes	20	20	0
+Built area	1,188 m²	1,188 m²	0 m²
+Street surface	720 m²	720 m²	0 m²
+Designed green	480 m²	480 m²	0 m²
+Lot area	4,000 m²	4,000 m²	0 m²
+Unallocated land	6,800 m²	6,800 m²	0 m²
+Non-land costs	Rp10,317,400,000	Rp10,317,400,000	Rp0
+Revenue	Rp17,000,000,000	Rp17,000,000,000	Rp0
+Surplus after owner payment	−Rp3,827,400,000	−Rp3,827,400,000	Rp0
+Land allowance	Rp3,622,600,000	Rp3,622,600,000	Rp0
+Owner shortfall (+) / headroom (−)	Rp6,377,400,000	Rp6,377,400,000	Rp0
+Required price per home	Rp1,238,865,853.66	Rp1,238,865,853.66	Rp0
+Compare saved assumptions and costs
+
+Working plan matches: Independent Courtyard
+
+Back to working plan
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m
+Selected: Open space A
+Profile / template warning
+Saved in this browser
+
+Saved scheme “Independent Courtyard” from the accepted working plan.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+T2
+LOT 01
+200 m²
+T1
+LOT 02
+200 m²
+T1
+LOT 03
+200 m²
+T1
+LOT 04
+200 m²
+T1
+LOT 05
+200 m²
+T1
+LOT 06
+200 m²
+T1
+LOT 07
+200 m²
+T1
+LOT 08
+200 m²
+T1
+LOT 09
+200 m²
+T1
+LOT 10
+200 m²
+T1
+LOT 11
+200 m²
+T1
+LOT 12
+200 m²
+T1
+LOT 13
+200 m²
+T1
+LOT 14
+200 m²
+T1
+LOT 15
+200 m²
+T1
+LOT 16
+200 m²
+T1
+LOT 17
+200 m²
+T1
+LOT 18
+200 m²
+T1
+LOT 19
+200 m²
+T1
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+10
+20 m
+LOCAL METRES
+ZOOM 100%
+X 5.1 m · Y 36.9 m
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Locked
+SELECTED AREA
+480 m²
+SITE SHARE
+4.00%
+MODELED HOMES
+20
+BUILT AREA / HOME
+60.0 m²
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+
+480.0 m² combined · 1 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Park width
+24 m
+Park depth
+20 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Fix Open space A shape + location
+Locked
+Maintain minimum open space
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Housing mix pricing is provisional: every occupied home uses the shared selling-price assumption; no template-specific market evidence is supplied.
+Ask about Open space A
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+Manual lot plan held
+Run optimization ▷
+
+Manual lots are held. Preview generated lots before searching frontage alternatives.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasingSaved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance · provisional Rp3.62bn
+Shortfall Rp6.38bn

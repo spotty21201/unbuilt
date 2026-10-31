@@ -1,0 +1,24 @@
+{"clientHash":"1b6218f28cc95b","serverHash":"9d25fc007cdf2","undefinedFields":["site.development","site.costAssumptions"]}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: unchanged accepted snapshot must retain its binding across JSON transport
++ actual - expected
+
++ '1b6218f28cc95b'
+- '9d25fc007cdf2'
+
+    at file:///home/spotty/projects/unbuilt/evidence/combined-independent-review/run-2026-10-30-independent/hash-transport-regression.mjs:10:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '1b6218f28cc95b',
+  expected: '9d25fc007cdf2',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

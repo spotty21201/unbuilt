@@ -1,0 +1,32 @@
+PASS legacy migration previews exactly 480 m² with 20 homes and preserves accepted project
+PASS migrated locked park disables corner and deletion controls
+PASS unfinished outline Undo stays editable and cannot close with two corners
+PASS pointer closes a 120 m² pocket polygon and live aggregate is 600 m²
+PASS draft does not save before approval
+PASS off-centre horizontal corner drag moves X only
+PASS one draft Undo reverses the whole pointer gesture
+PASS repeated keyboard corner moves retain focus and metre increments
+PASS add corner retains polygon area and creates a fifth accessible handle
+PASS remove corner returns to four vertices
+PASS crossed outline blocks Apply and highlights conflicting edges
+PASS repair returns a measured applicable outline
+PASS individual minimum blocks a smaller outline with named warning
+PASS fixing a space locks canvas handles and numeric corners
+PASS 40 × 4 m corridor creates four corners and 760 m² combined green
+PASS combined minimum blocks only conflicting draft and accepted geometry stays unchanged
+PASS overlap with original park blocks approval
+PASS Apply saves three exact named polygons and combined minimum
+PASS plan Undo restores legacy single park and avoids leaving partial collection
+PASS reload restores exact outlines, names, kinds and minimum
+PASS accepted total is 760 m² on outcome strip and schedule
+PASS decision record v11 carries all measured spaces and quantities
+PASS outside workspace draft remains blocked
+PASS Cancel restores exact saved accepted collection
+PASS 1440px view has no horizontal overflow and names selected draft
+PASS 1440px review roundtrip retains zoom and polygon draft
+PASS 1024px view has no horizontal overflow and names selected draft
+PASS 1024px review roundtrip retains zoom and polygon draft
+PASS 375px view has no horizontal overflow and names selected draft
+PASS 375px review roundtrip retains zoom and polygon draft
+PASS no uncaught browser errors
+ALL 31 OPEN SPACE BROWSER CHECKS PASS

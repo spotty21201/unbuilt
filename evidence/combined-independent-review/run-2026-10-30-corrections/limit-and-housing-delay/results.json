@@ -1,0 +1,32 @@
+[
+  {
+    "id": "HD01",
+    "expected": "A housing-library/assignment edit prevents the held old reply from creating a proposal",
+    "status": "Pass"
+  },
+  {
+    "id": "HD02",
+    "expected": "Housing edit is retained and the stale4m proposal never changes accepted construction cost",
+    "status": "Pass"
+  },
+  {
+    "id": "LIMIT01",
+    "expected": "20 distinct visible saves reach the20-scheme limit and block a21st save",
+    "status": "Pass"
+  },
+  {
+    "id": "LIMIT02",
+    "expected": "Confirmed removal frees one slot",
+    "status": "Pass"
+  },
+  {
+    "id": "LIMIT03",
+    "expected": "Removal Undo restores scheme20 and its full-collection protection",
+    "status": "Pass"
+  },
+  {
+    "id": "LIMIT04",
+    "expected": "Portable backup includes20 unique saved schemes after removal recovery",
+    "status": "Pass"
+  }
+]

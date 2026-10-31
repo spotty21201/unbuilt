@@ -1,0 +1,623 @@
+{
+  "app": "UNBUILT decision record",
+  "projectName": "Cedar Market sample",
+  "exportVersion": 15,
+  "exportedAt": "2026-10-31T04:29:51.420Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.",
+  "state": {
+    "site": {
+      "costAssumptions": {
+        "constructionPerM2": 4000000,
+        "roadPerM2": 800000,
+        "greenWorksPerM2": 150000,
+        "setupAllowance": 800000000,
+        "otherWorksAllowance": 1200000000,
+        "professionalAllowance": 1300000000,
+        "contingencyFraction": 0.05,
+        "sellFraction": 0.03
+      },
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true,
+        "streetNetwork": {
+          "segments": [
+            {
+              "id": "street-1",
+              "width": 6,
+              "a": {
+                "x": 0,
+                "y": 50
+              },
+              "b": {
+                "x": 40,
+                "y": 50
+              }
+            },
+            {
+              "id": "street-4",
+              "width": 6,
+              "a": {
+                "x": 40,
+                "y": 50
+              },
+              "b": {
+                "x": 120,
+                "y": 50
+              }
+            },
+            {
+              "id": "street-2",
+              "a": {
+                "x": 40,
+                "y": 50
+              },
+              "b": {
+                "x": 62.25,
+                "y": 77
+              },
+              "width": 6
+            },
+            {
+              "id": "street-3",
+              "a": {
+                "x": 62.25,
+                "y": 77
+              },
+              "b": {
+                "x": 62.25,
+                "y": 91
+              },
+              "width": 6
+            }
+          ],
+          "cornerRadius": 4
+        }
+      },
+      "areaM2": 12000,
+      "provenance": "fictional Cedar Market sample"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "openSpace": {
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 24,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 10,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 0,
+          "y": 47,
+          "w": 40,
+          "h": 6
+        },
+        {
+          "x": 40,
+          "y": 47,
+          "w": 80,
+          "h": 6
+        },
+        {
+          "x": 59.25,
+          "y": 77,
+          "w": 6,
+          "h": 14
+        }
+      ],
+      "roadSurface": [
+        [
+          [
+            {
+              "x": 0,
+              "y": 47
+            },
+            {
+              "x": 120,
+              "y": 47
+            },
+            {
+              "x": 120,
+              "y": 53
+            },
+            {
+              "x": 54.83911970578781,
+              "y": 53
+            },
+            {
+              "x": 54.446700588299656,
+              "y": 53.01929563566574
+            },
+            {
+              "x": 54.058067458971166,
+              "y": 53.076996381885095
+            },
+            {
+              "x": 53.67696977943791,
+              "y": 53.172545552369705
+            },
+            {
+              "x": 53.30708431068857,
+              "y": 53.305021306128666
+            },
+            {
+              "x": 52.95197964034466,
+              "y": 53.473145541222436
+            },
+            {
+              "x": 52.61508175357725,
+              "y": 53.67529622565753
+            },
+            {
+              "x": 52.29964097982616,
+              "y": 53.909523046455746
+            },
+            {
+              "x": 52.0087006342136,
+              "y": 54.17356622591844
+            },
+            {
+              "x": 51.74506765619426,
+              "y": 54.464878323550145
+            },
+            {
+              "x": 51.51128552871482,
+              "y": 54.7806488133004
+            },
+            {
+              "x": 51.30960973915379,
+              "y": 55.11783119900709
+            },
+            {
+              "x": 51.14198601879014,
+              "y": 55.47317240643648
+            },
+            {
+              "x": 51.01003157074241,
+              "y": 55.843244168350765
+            },
+            {
+              "x": 50.9150194674876,
+              "y": 56.22447609980592
+            },
+            {
+              "x": 50.857866368489844,
+              "y": 56.61319014457518
+            },
+            {
+              "x": 50.83912367643684,
+              "y": 57.00563606036553
+            },
+            {
+              "x": 50.85897221740722,
+              "y": 57.39802760047219
+            },
+            {
+              "x": 50.91722049629345,
+              "y": 57.78657904279704
+            },
+            {
+              "x": 51.01330654431177,
+              "y": 58.16754171380582
+            },
+            {
+              "x": 51.146303340774594,
+              "y": 58.53724015504753
+            },
+            {
+              "x": 51.31492775681732,
+              "y": 58.89210758330797
+            },
+            {
+              "x": 51.51755293479177,
+              "y": 59.22872030228446
+            },
+            {
+              "x": 51.75222398389251,
+              "y": 59.54383073378409
+            },
+            {
+              "x": 64.56517179142148,
+              "y": 75.09212694966193
+            },
+            {
+              "x": 64.94182730613966,
+              "y": 75.54919206864581
+            },
+            {
+              "x": 65.04991974740433,
+              "y": 75.70049765825246
+            },
+            {
+              "x": 65.13619535136979,
+              "y": 75.86522129791953
+            },
+            {
+              "x": 65.19901725527336,
+              "y": 76.04023777055771
+            },
+            {
+              "x": 65.23719357136859,
+              "y": 76.22222657843932
+            },
+            {
+              "x": 65.25,
+              "y": 76.40773494129793
+            },
+            {
+              "x": 65.25,
+              "y": 91
+            },
+            {
+              "x": 59.25,
+              "y": 91
+            },
+            {
+              "x": 59.25,
+              "y": 79.51263964297847
+            },
+            {
+              "x": 59.230625294457504,
+              "y": 79.11941926567701
+            },
+            {
+              "x": 59.172688867437444,
+              "y": 78.73000815288731
+            },
+            {
+              "x": 59.07675196954668,
+              "y": 78.348178667432
+            },
+            {
+              "x": 58.94374397535884,
+              "y": 77.97762972623516
+            },
+            {
+              "x": 58.77495338023503,
+              "y": 77.6219509676092
+            },
+            {
+              "x": 58.57201531821468,
+              "y": 77.28458797716212
+            },
+            {
+              "x": 58.3368957218953,
+              "y": 76.96880890919438
+            },
+            {
+              "x": 39.784813053144525,
+              "y": 54.45616926621591
+            },
+            {
+              "x": 39.52124754961927,
+              "y": 54.16648513714176
+            },
+            {
+              "x": 39.230616249312796,
+              "y": 53.903964439732704
+            },
+            {
+              "x": 38.91570528317825,
+              "y": 53.67112382322826
+            },
+            {
+              "x": 38.57953353868338,
+              "y": 53.470195409385795
+            },
+            {
+              "x": 38.22532371930825,
+              "y": 53.30310539429152
+            },
+            {
+              "x": 37.85647145016491,
+              "y": 53.17145558292143
+            },
+            {
+              "x": 37.47651272590747,
+              "y": 53.07650803347108
+            },
+            {
+              "x": 37.089090012992415,
+              "y": 53.01917295866075
+            },
+            {
+              "x": 36.69791733124922,
+              "y": 53
+            },
+            {
+              "x": 0,
+              "y": 53
+            }
+          ]
+        ]
+      ],
+      "parcels": [
+        {
+          "x": 0,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 0,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 70,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 80,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 90,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 100,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 16,
+      "roadArea": 1007.1784402662704,
+      "greenArea": 480,
+      "parcelArea": 3200,
+      "unallocatedArea": 7312.821559733729
+    },
+    "economics": {
+      "roadCost": 805742752.2130163,
+      "homeCost": 3840000000,
+      "greenCost": 72000000,
+      "costNonLand": 8353629889.823668,
+      "finance": {
+        "revenue": 13600000000,
+        "surplus": -5161629889.823668,
+        "margin": -0.3795316095458579,
+        "landAllowance": 2798370110.1763325,
+        "ownerGap": 7201629889.823668,
+        "requiredPrice": 1398904717.2121701
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "alternatives": [
+    {
+      "id": "de38875b-60c59144-1b6c2ce5-6a50abef",
+      "name": "Rounded angle",
+      "note": "",
+      "createdAt": "2026-10-31T04:29:48.123Z",
+      "updatedAt": "2026-10-31T04:29:48.123Z",
+      "state": {
+        "spec": {
+          "family": "spine",
+          "frontage": 10
+        },
+        "green": {
+          "x": 78,
+          "y": 62,
+          "w": 24,
+          "h": 20
+        },
+        "entrance": {
+          "edge": "west",
+          "offset": 50,
+          "width": 8
+        },
+        "lots": {},
+        "profileId": "family-200",
+        "greenLocked": true,
+        "priceS": "850",
+        "ceilingS": "850",
+        "ownerS": "10",
+        "targetS": "15",
+        "baseSpec": {
+          "w": 120,
+          "h": 100,
+          "planning": {
+            "lotDepth": 20,
+            "greenBuffer": 0,
+            "homeWidth": 10,
+            "homeDepth": 6,
+            "streets": [],
+            "siteLocked": false,
+            "priceLocked": true,
+            "streetNetwork": {
+              "segments": [
+                {
+                  "id": "street-1",
+                  "width": 6,
+                  "a": {
+                    "x": 0,
+                    "y": 50
+                  },
+                  "b": {
+                    "x": 40,
+                    "y": 50
+                  }
+                },
+                {
+                  "id": "street-4",
+                  "width": 6,
+                  "a": {
+                    "x": 40,
+                    "y": 50
+                  },
+                  "b": {
+                    "x": 120,
+                    "y": 50
+                  }
+                },
+                {
+                  "id": "street-2",
+                  "a": {
+                    "x": 40,
+                    "y": 50
+                  },
+                  "b": {
+                    "x": 62.25,
+                    "y": 77
+                  },
+                  "width": 6
+                },
+                {
+                  "id": "street-3",
+                  "a": {
+                    "x": 62.25,
+                    "y": 77
+                  },
+                  "b": {
+                    "x": 62.25,
+                    "y": 91
+                  },
+                  "width": 6
+                }
+              ],
+              "cornerRadius": 4
+            }
+          }
+        }
+      }
+    }
+  ],
+  "events": [
+    {
+      "t": "2026-10-31T04:29:47.421Z",
+      "kind": "streets",
+      "detail": "Applied 4 street segments; 1007.2 m² street surface including access. Lots and costs regenerated; park retained."
+    },
+    {
+      "t": "2026-10-31T04:29:47.626Z",
+      "kind": "undo",
+      "detail": "Undo applied — working version restored (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-31T04:29:47.704Z",
+      "kind": "redo",
+      "detail": "Redo applied (event log itself is append-only)."
+    },
+    {
+      "t": "2026-10-31T04:29:48.124Z",
+      "kind": "saved-alternatives",
+      "detail": "Saved scheme “Rounded angle” from the accepted working plan."
+    },
+    {
+      "t": "2026-10-31T04:29:48.515Z",
+      "kind": "streets",
+      "detail": "Applied 4 street segments; 990.6 m² street surface including access. Lots and costs regenerated; park retained."
+    },
+    {
+      "t": "2026-10-31T04:29:49.114Z",
+      "kind": "reopen-scheme",
+      "detail": "Reopened saved scheme “Rounded angle”. Previous working plan retained for Undo; saved schemes unchanged."
+    },
+    {
+      "t": "2026-10-31T04:29:51.349Z",
+      "kind": "feasibility",
+      "detail": "Feasibility experiment: spine/10 m/20 m → spine/10 m/20 m; Home construction (Rp/m² built): 5000000 → 4000000. Homes 16 → 16; non-land costs Rp9.36bn → Rp8.35bn; land allowance Rp1.79bn → Rp2.80bn. Shared selling price held; market assumptions provisional."
+    }
+  ],
+  "history": {
+    "undoDepth": 3,
+    "redoDepth": 0,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

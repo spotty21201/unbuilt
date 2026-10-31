@@ -77,7 +77,7 @@ export default function FeasibilityExperiments(props: Props) {
     ['Owner shortfall (+) / headroom (−)', before.finance.ownerGap, after?.finance.ownerGap ?? null, 'money'],
   ];
   const display = (v: number, kind: string) => kind === 'money' ? `${v < 0 ? '−' : ''}Rp${Math.abs(v).toLocaleString('en-US', { maximumFractionDigits: 2 })}` : `${v.toLocaleString('en-US', { maximumFractionDigits: 1 })}${kind === 'area' ? ' m²' : ''}`;
-  const outside = failingLots(trial.layout.parcels, props.profile, { lotEdits: trial.edits, roads: trial.layout.roads }).length;
+  const outside = failingLots(trial.layout.parcels, props.profile, { lotEdits: trial.edits, roads: trial.layout.roads, roadSurface: trial.layout.roadSurface }).length;
   const preview = (label: string, activeSite: Site, layout: typeof trial.layout, edits: typeof trial.edits) => <div><h3>{label}</h3><PlanCanvas
     contents={activeSite.contents} planning={activeSite.planning} layout={layout} boundary={siteBoundary(activeSite)} siteW={site.w} siteH={site.h} entrance={site.entrance}
     greenLocked={props.greenLocked} greenSelected={false} siteSelected={false} editing={false} entranceEditing={false} entranceValid

@@ -1,0 +1,23 @@
+{
+  "before": {
+    "width": 1440,
+    "height": 901,
+    "dpr": 1,
+    "outerWidth": 1440
+  },
+  "after": {
+    "width": 720,
+    "height": 450,
+    "dpr": 2,
+    "outerWidth": 1440
+  },
+  "zoom": 2,
+  "asset": "/assets/index-BR3nNjEc.js",
+  "checks": [
+    "actual browser zoom 2 with same outer window and half CSS width",
+    "cost edit and comparison accessible at 200%",
+    "Apply and plan Undo/Redo retain exact inputs at 200%",
+    "Escape cancels unapplied trial",
+    "no page or dialog horizontal overflow"
+  ]
+}

@@ -1,3 +1,4 @@
+import {usesShapedStreets} from '../../src/road-surfaces';
 import DevelopmentEditor from './unbuilt/DevelopmentEditor';
 import { measureProposal, type AIProposal } from '../../src/ai-assistant';
 import AISettings from './unbuilt/AISettings';
@@ -13,7 +14,7 @@ import type {LotOperation} from './unbuilt/LotPlanEditor';
 import {lotBlocks,rectangleForLots} from '../../src/parcels';
 import type {PlanContents} from '../../src/contents';
 import StreetEditor from './unbuilt/StreetEditor';
-import { appendStreetPath, moveStreetNode, networkFromRoads, onStreet, samePoint, splitJunctions, type StreetNetwork } from '../../src/streets';
+import { nearestStreetPoint, appendStreetPath, moveStreetNode, networkFromRoads, onStreet, samePoint, splitJunctions, type StreetNetwork } from '../../src/streets';
 import { streetEntrance, streetConflict } from '../../src/geometry';
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { deriveQuantities, editsForLayout, entranceErrors, generateLoop, generateSpine, lotKey, lotRoadFrontage, placeFootprint, homeRestorationConflicts, validateLayout } from '../../src/geometry';
@@ -161,6 +162,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   const [streetDrawing, setStreetDrawing] = useState<Pt[] | null>(null);
   const [streetSelected, setStreetSelected] = useState<string | null>(null);
   const [streetWidth, setStreetWidth] = useState(6);
+  const [streetDrawingMode,setStreetDrawingMode]=useState<'free'|'orthogonal'>('free');
   const [streetHistory, setStreetHistory] = useState<History<StreetNetwork>>({past:[],future:[]});
   const [optimizing, setOptimizing] = useState(false);
   const searchTicket = useRef(0);
@@ -280,7 +282,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     const payload = {
       app: 'UNBUILT decision record',
       projectName,
-      exportVersion: baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?14:alternatives!==undefined?13:baseSpec.costAssumptions!==undefined?12:baseSpec.planning?.openSpaces!==undefined?11:baseSpec.planning?.housing?10:baseSpec.planning?.lotPlan!==undefined?9:baseSpec.planning?.streetNetwork !== undefined ? 8 : siteContext !== undefined ? 7 : baseSpec.contents !== undefined ? 6 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
+      exportVersion: usesShapedStreets(baseSpec.planning?.streetNetwork)||alternatives?.some(a=>usesShapedStreets(a.state.baseSpec.planning?.streetNetwork))?15:baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?14:alternatives!==undefined?13:baseSpec.costAssumptions!==undefined?12:baseSpec.planning?.openSpaces!==undefined?11:baseSpec.planning?.housing?10:baseSpec.planning?.lotPlan!==undefined?9:baseSpec.planning?.streetNetwork !== undefined ? 8 : siteContext !== undefined ? 7 : baseSpec.contents !== undefined ? 6 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
       exportedAt: new Date().toISOString(),
       units: 'Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.',
       state: {
@@ -311,6 +313,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           frontage: spec.frontage,
           profile: profileId,
           roads: committedLayout.roads,
+          ...(committedLayout.roadSurface?{roadSurface:committedLayout.roadSurface}:{}),
           ...(committedLayout.accessConnector ? { accessConnector: committedLayout.accessConnector } : {}),
           parcels: committedLayout.parcels,
           lotReshapes: copyLotEdits(lotEdits),
@@ -432,7 +435,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   // candidates are judged independently, but pricing an out-of-profile plan
   // at profile prices would mislead. Reshaped lots use true polygon area and
   // road-shared frontage.
-  const workingFailing = failingLots(workingLayout.parcels, profile, { lotEdits: editsMap, roads: workingLayout.roads }).filter(i => hasHome(site, workingLayout.parcels[i]));
+  const workingFailing = failingLots(workingLayout.parcels, profile, { lotEdits: editsMap, roads: workingLayout.roads, roadSurface: workingLayout.roadSurface }).filter(i => hasHome(site, workingLayout.parcels[i]));
   const planWarnings =
     workingFailing.length > 0
       ? [
@@ -1419,7 +1422,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   };
 
   const assistantSnapshot = (): ScenarioSnapshot => ({
-    version: baseSpec.development!==undefined?11:baseSpec.costAssumptions!==undefined?10:baseSpec.planning?.openSpaces!==undefined?9:baseSpec.planning?.housing?8:baseSpec.planning?.lotPlan!==undefined?7:baseSpec.planning?.streetNetwork !== undefined ? 6 : baseSpec.contents !== undefined ? 5 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 4 : baseSpec.planning ? 3 : baseSpec.boundary ? 2 : 1,
+    version: usesShapedStreets(baseSpec.planning?.streetNetwork)?12:baseSpec.development!==undefined?11:baseSpec.costAssumptions!==undefined?10:baseSpec.planning?.openSpaces!==undefined?9:baseSpec.planning?.housing?8:baseSpec.planning?.lotPlan!==undefined?7:baseSpec.planning?.streetNetwork !== undefined ? 6 : baseSpec.contents !== undefined ? 5 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 4 : baseSpec.planning ? 3 : baseSpec.boundary ? 2 : 1,
     site: { ...baseSpec },
     entrance: { ...entrance },
     green: { ...green },
@@ -1524,7 +1527,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
       const last=points.at(-1);
       if (!last) return [point];
       if (samePoint(last,point)) return points;
-      if (last.x!==point.x && last.y!==point.y) {
+      if (streetDrawingMode==='orthogonal' && last.x!==point.x && last.y!==point.y) {
         const bend=Math.abs(last.x-point.x)>=Math.abs(last.y-point.y)?{x:point.x,y:last.y}:{x:last.x,y:point.y};
         return [...points,bend,point];
       }
@@ -1542,7 +1545,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     const entry=streetEntrance(site);
     if (!entry) { setStatus('No contained apron fits this entrance. Cancel the street draft and review the entrance or park.'); return; }
     setStreetDrawing([entry.point]); setTool('select');
-    setStatus('Drawing from the entrance connection. Pick an existing junction or draw orthogonal legs into the site.');
+    setStatus('Drawing from the entrance connection. Pick an existing junction or draw straight legs at the angles you need.');
   };
   const connectStreetEntrance = () => {
     const entry=streetEntrance(site);
@@ -1553,7 +1556,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     const horizontal=!entry.apron || Math.abs(dx)>=Math.abs(dy);
     const direction=entry.apron?Math.sign(horizontal?dx:dy):(entrance.edge==='east'?-1:1);
     const approach={x:entry.point.x+(horizontal?6*direction:0),y:entry.point.y+(horizontal?0:6*direction)};
-    const points=streetNetwork.segments.map(s=>s.a.y===s.b.y?{x:Math.max(Math.min(s.a.x,s.b.x),Math.min(Math.max(s.a.x,s.b.x),approach.x)),y:s.a.y}:{x:s.a.x,y:Math.max(Math.min(s.a.y,s.b.y),Math.min(Math.max(s.a.y,s.b.y),approach.y))});
+    const points=streetNetwork.segments.flatMap(s=>{const hit=nearestStreetPoint({segments:[s]},approach);return hit?[hit.point]:[];});
     points.sort((a,b)=>Math.hypot(a.x-approach.x,a.y-approach.y)-Math.hypot(b.x-approach.x,b.y-approach.y));
     const end=points[0],bend=horizontal?{x:end.x,y:approach.y}:{x:approach.x,y:end.y};
     const next=appendStreetPath(streetNetwork,[entry.point,approach,bend,end],6);
@@ -1615,7 +1618,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     setHist((h) => pushUndo(h, snap())); setGreenLocked((v) => !v); setLastDelta(null);
   };
   const parcelPreviewLots=parcelReady?parameterDraft?.planning.lotPlan??[]:[];
-  const parcelNoFrontage=parcelPreviewLots.flatMap((r,i)=>lotRoadFrontage(committedLayout.roads,rectCorners(r))<=.001?[i]:[]);
+  const parcelNoFrontage=parcelPreviewLots.flatMap((r,i)=>lotRoadFrontage(committedLayout.roads,rectCorners(r),committedLayout.roadSurface)<=.001?[i]:[]);
   const parcelReference=(r:Rect,i:number)=>{const old=committedLayout.parcels.findIndex(p=>lotKey(p)===lotKey(r));return old<0?`New ${i+1}`:old===i?`${i+1}`:`${old+1}→${i+1}`;};
   const parcelRemovedOccupied=parcelSources.filter(i=>hasHome(committedSite,committedLayout.parcels[i])&&parcelCreated.some(r=>!hasHome(site,r)&&Math.min(r.x+r.w,committedLayout.parcels[i].x+committedLayout.parcels[i].w)>Math.max(r.x,committedLayout.parcels[i].x)&&Math.min(r.y+r.h,committedLayout.parcels[i].y+committedLayout.parcels[i].h)>Math.max(r.y,committedLayout.parcels[i].y)));
   const invalidHomeLots=housingEditing?(parameterDraft?.planning.lotPlan??[]).flatMap((r,i)=>hasHome(site,r)&&!placeFootprint(r,planning,committedLayout.roads)?[i]:[]):[];
@@ -2115,7 +2118,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
             review={<section className="lot-plan-review"><h3>Accepted plan → lot preview</h3><dl className="kv"><dt>Lots</dt><dd>{committedLayout.parcels.length} → {parcelReady?`${parameterDraft?.planning.lotPlan?.length??0}${workingErrors.length?' proposed · invalid':''}`:'—'}</dd><dt>Homes</dt><dd>{committedEcon?.quantities.n??'—'} → {parcelReady?draftEcon?.quantities.n??'Unavailable':'—'}</dd><dt>Lot area</dt><dd>{formatM2(deriveQuantities(committedSite,committedLayout,editsForLayout(committedLayout.parcels,lotEdits)).parcelArea)} → {parcelReady&&draftEcon?formatM2(draftEcon.quantities.parcelArea):'—'}</dd><dt>Land allowance{workingWarnings.length?" · provisional":""}</dt><dd>{committedEcon?formatRp(committedEcon.finance.landAllowance):'—'} → {parcelReady&&draftEcon?formatRp(draftEcon.finance.landAllowance):'—'}</dd><dt>Streets / open space</dt><dd>Held at {formatM2(deriveQuantities(committedSite,committedLayout).roadArea)} / {formatM2(spaceArea(spaces))}</dd></dl>{parcelReady&&<section className="lot-lineage" aria-label="Lot references and occupancy"><p>Drawing references show accepted → proposed numbers where they change. “New” marks replacement lots. Numbers are planning references, not legal parcel identifiers.</p><p>Source: {parcelSources.map(i=>`Lot ${i+1} (${hasHome(committedSite,committedLayout.parcels[i])?'occupied':'vacant'})`).join(', ')}.</p><p>Result: {parcelCreated.map(r=>`proposed Lot ${parcelPreviewLots.findIndex(p=>lotKey(p)===lotKey(r))+1} (${hasHome(site,r)?'one home':'vacant'})`).join(', ')}.</p>{parcelRemovedOccupied.length>0&&<p className="error">{parcelRemovedOccupied.length===1?`Home on accepted Lot ${parcelRemovedOccupied[0]+1} will be removed`:`Homes on accepted Lots ${parcelRemovedOccupied.map(i=>i+1).join(', ')} will be removed`}: the resulting lots are vacant. No removed home will be restored.</p>}<details><summary>Trace unchanged lot references</summary><ul>{parcelPreviewLots.map((r,i)=>{const old=committedLayout.parcels.findIndex(p=>lotKey(p)===lotKey(r));return old>=0?<li key={i}>Accepted Lot {old+1} → proposed Lot {i+1} · geometry unchanged</li>:null;})}</ul></details></section>}{parcelReady&&planning.housing&&<p className="note">Resulting housing: {parcelCreated.map(r=>`Lot ${parcelPreviewLots.findIndex(p=>lotKey(p)===lotKey(r))+1}: ${homeTemplate(planning,r).name}`).join("; ")}. Matching source templates carry to new lots; mixed source templates use the default. Vacant results remain vacant.</p>}{parcelReady&&workingWarnings.length>0&&<p className="note">{workingWarnings[0]}</p>}</section>}/></Suspense>
             : contextOpen ? <SiteContextEditor context={siteContext ?? { notes: [] }} raster={surveyRaster} boundary={siteBoundary(baseSpec)} boundaryLocked={planning.siteLocked} showSurvey={showSurvey} onShowSurvey={setShowSurvey} disabled={!!boundaryDraft || !!parameterDraft || !!lotDraft || draftDirty || optimizing}
             onChange={commitContext} onRaster={setSurveyRaster} onBoundary={reviewImportedBoundary} onDirty={setContextPending} onClose={() => { setContextOpen(false); setSiteFit(n => n + 1); }} noteDraft={noteDraft} onNoteDraft={setNoteDraft} picking={contextPicking} onPicking={setContextPicking} /> : streetEditing ? <StreetEditor network={streetNetwork} selectedId={streetSelected} onSelect={setStreetSelected} onChange={updateStreets} onMove={(from,to)=>updateStreets(moveStreetNode(streetNetwork,from,to))}
-            drawing={streetDrawing} onDraw={()=>setStreetDrawing([])} onPoint={addStreetPoint} onFinish={finishStreet} onBack={()=>setStreetDrawing(points=>points?.slice(0,-1)??null)} onStop={()=>setStreetDrawing(null)}
+            drawingMode={streetDrawingMode} onDrawingMode={setStreetDrawingMode} rounding={workingLayout.roadRounding} drawing={streetDrawing} onDraw={()=>setStreetDrawing([])} onPoint={addStreetPoint} onFinish={finishStreet} onBack={()=>setStreetDrawing(points=>points?.slice(0,-1)??null)} onStop={()=>setStreetDrawing(null)}
             onEntrance={startAtEntrance} onConnect={connectStreetEntrance} onGenerated={previewGeneratedStreets} onCanvas={() => { const canvas=document.querySelector<SVGSVGElement>('main svg.canvas'); canvas?.scrollIntoView({block:'center'}); canvas?.focus({preventScroll:true}); }} newWidth={streetWidth} onWidth={setStreetWidth}
             joinGap={streetIssue?.kind==='disconnected'&&streetIssue.gap?{distance:streetIssue.gap.distance,onJoin:joinStreetGap}:undefined}
             connectorNote={streetConnectorIds.length?`${streetConnectorIds.length} connector legs proposed; ${affectedStreetLots.length} accepted lots affected.`:undefined}
@@ -2501,7 +2504,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
                   const rect = workingLayout.parcels[i];
                   const edit = lotEdits[lotKey(rect)];
                   const area = edit ? polyArea(edit) : rect.w * rect.h;
-                  const front = edit ? lotRoadFrontage(workingLayout.roads, edit) : Math.min(rect.w, rect.h);
+                  const front = edit||workingLayout.roadSurface ? lotRoadFrontage(workingLayout.roads, edit??rectCorners(rect),workingLayout.roadSurface) : Math.min(rect.w, rect.h);
                   const inProfile = area >= profile.lotAreaMin && area <= profile.lotAreaMax && front >= profile.frontageMin;
                   const occupied = hasHome(site, rect);
                   return (
