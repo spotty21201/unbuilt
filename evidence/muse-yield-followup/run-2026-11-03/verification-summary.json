@@ -1,0 +1,48 @@
+{
+  "checks": {
+    "museDomain": 28,
+    "scriptedMuseAPI": 17,
+    "residentialGeometry": 151,
+    "legacyAIContractAndAPI": 31,
+    "controlledNetworkTransport": 7,
+    "livePlanningReviewBrowser": 13,
+    "yieldBrowser": 17,
+    "curvedGeometryBrowser": 4
+  },
+  "total": 268,
+  "build": "pass",
+  "lint": "pass",
+  "diffCheck": "pass",
+  "liveWonder": "latest full browser run passed on HTTP network origin; real request and response in browser-connected/results.json",
+  "example": {
+    "validLotsBefore": 31,
+    "validLotsAfter": 34,
+    "roadsBefore": 3,
+    "roadsAfter": 4,
+    "roadLengthBefore": 190,
+    "roadLengthAfter": 282.1327412287184,
+    "unchanged": [
+      "boundary",
+      "entrance",
+      "protected and flexible spaces",
+      "products",
+      "mix",
+      "original roads"
+    ]
+  },
+  "curvedCase": {
+    "validLots": 43,
+    "trials": 93,
+    "result": "No qualifying improvement; accepted scenario preserved",
+    "browserElapsedMs": 67248
+  },
+  "limitations": [
+    "Bounded additive search; no global optimum claim",
+    "Back-to-back spacing tested; not a guarantee of paired rows on every site edge",
+    "Network reachability intermittently failed with ENETUNREACH; visible error, bounded pre-connection retry, no state changes",
+    "Geometry deadline 120 seconds; no change committed on failure",
+    "Project scale, road design, vehicle movements, approvals and missing costs remain as recorded unknowns"
+  ],
+  "preserved": "Historical evidence, user projects and private credentials",
+  "delivery": "Local only; no commit, push or deploy"
+}

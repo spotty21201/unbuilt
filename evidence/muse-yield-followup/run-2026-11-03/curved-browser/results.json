@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "Curved-plan search shows elapsed progress",
+    "Calculation finishes before its deadline with explicit no-improvement result",
+    "Accepted geometry and schedules remain unchanged",
+    "No uncaught browser errors"
+  ],
+  "elapsedMs": 67248,
+  "panel": "Ask Muse WONDER\nMuse Wonder connected\n\nYour intelligent master-planning assistant.\n\nAsk Muse about this plan\nAsk Muse\nTest higher-yield layouts\n\nNo improvement found among the supported trials with entrance and spaces held. Review rejected trials for the binding constraints. This does not prove no better layout exists.\n\n93 geometry trials\nRejected trials",
+  "note": "Controlled Muse intent response; real full geometry worker and original fictitious curved-road fixture."
+}

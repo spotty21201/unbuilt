@@ -1,0 +1,251 @@
+diff --git a/docs/MUSE-MASTER-PLANNER.md b/docs/MUSE-MASTER-PLANNER.md
+index 66c4f42..bebec86 100644
+--- a/docs/MUSE-MASTER-PLANNER.md
++++ b/docs/MUSE-MASTER-PLANNER.md
+@@ -8,7 +8,7 @@ Return exactly one of the supplied function calls. For explanations, give one br
+ 
+ Hold the boundary, all fixed/protected features, external-road access restrictions, standard corridor widths, product dimensions and limits, mandatory mix/tolerance, cost assumptions and manual locks. Do not invent an entrance, remove a protection buffer, quietly shrink products or relax mix. Locked objects require a separate deliberate manual unlock, even if the user asks you to ignore a lock. Use stable IDs from the current context for actions; resolve names from that context, and ask if a name is ambiguous. A selected object is helpful context, not permission to change unrelated objects.
+ 
+-Use test_alternatives for a requested search, fill_residual for testing existing products in residual land, assign_product for coherent whole sections, shift_road for an explicit displacement, move_entrance for a supplied offset on its existing permitted boundary side, and reshape_space for a specified flexible vertex displacement. Opposing groups must remain coherent. Any edit is a proposed transaction: rebuild dependencies, measure and validate, show before/after, and let the planner preview, accept or cancel. You cannot accept or save a layout yourself. Never state that an edit is complete before planner acceptance.
++Use test_alternatives with more-lots when asked to maximize yield, add roads and units, or test back-to-back lots. This runs additional connected-road trials using existing product depths; do not require the user to supply road coordinates for that search. Back-to-back rows must each have their own serving road frontage; a site edge is not road access. The search can return an improvement or an explicit tested limitation, never a promise of an optimum. Use test_alternatives for other requested searches, fill_residual for testing existing products in residual land, assign_product for coherent whole sections, shift_road for an explicit displacement, move_entrance for a supplied offset on its existing permitted boundary side, and reshape_space for a specified flexible vertex displacement. Opposing groups must remain coherent. Any edit is a proposed transaction: rebuild dependencies, measure and validate, show before/after, and let the planner preview, accept or cancel. You cannot accept or save a layout yourself. Never state that an edit is complete before planner acceptance.
+ 
+ Use prepare_layout only when the user requests a new road/lot structure. If non-looped ends need a decision, ask dead end versus cul-de-sac; do not assume it. Preserve the preferred fixed entrance and committed recreation access/minimum/location. If a search finds no supported improvement, explain the tested limitation without claiming global impossibility or an optimum. Do not use arbitrary weighted scores or a universal efficiency threshold.
+ 
+diff --git a/package.json b/package.json
+index 5bfa0c6..6202b0c 100644
+--- a/package.json
++++ b/package.json
+@@ -6,11 +6,12 @@
+   "scripts": {
+     "test": "node --experimental-strip-types --no-warnings tests/run.mjs && node --experimental-strip-types --no-warnings tests/geometry.mjs && node --experimental-strip-types --no-warnings tests/search.mjs && node --experimental-strip-types --no-warnings tests/search-tester.mjs && node --experimental-strip-types --no-warnings tests/intent.mjs && node --experimental-strip-types --no-warnings tests/draft.mjs && node --experimental-strip-types --no-warnings tests/draft-tester.mjs && node --experimental-strip-types --no-warnings tests/site.mjs && node --experimental-strip-types --no-warnings tests/site-tester.mjs && node --experimental-strip-types --no-warnings tests/polygon.mjs && node --experimental-strip-types --no-warnings tests/boundary.mjs && node --experimental-strip-types --no-warnings tests/persist.mjs && node --experimental-strip-types --no-warnings tests/snapshot.mjs && node --experimental-strip-types --no-warnings tests/assistant.mjs && node --experimental-strip-types --no-warnings tests/server.mjs && node --experimental-strip-types --no-warnings tests/planning.mjs && node --experimental-strip-types --no-warnings tests/planner-feedback.mjs && node --experimental-strip-types --no-warnings tests/projects.mjs && node --experimental-strip-types --no-warnings tests/site-context.mjs && node --experimental-strip-types --no-warnings tests/streets.mjs && node --experimental-strip-types --no-warnings tests/parcels.mjs && node --experimental-strip-types --no-warnings tests/housing.mjs && node --experimental-strip-types --no-warnings tests/open-spaces.mjs && node --experimental-strip-types --no-warnings tests/feasibility.mjs && node --experimental-strip-types --no-warnings tests/saved-alternatives.mjs && node --experimental-strip-types --no-warnings tests/ai-assistant.mjs && node --experimental-strip-types --no-warnings tests/ai-server.mjs && node --experimental-strip-types --no-warnings tests/development.mjs && node --experimental-strip-types --no-warnings tests/road-surfaces.mjs && node --experimental-strip-types --no-warnings tests/planning-insights.mjs && node --experimental-strip-types --no-warnings tests/rotated-lots.mjs && node --experimental-strip-types --no-warnings tests/residual.mjs && node --experimental-strip-types --no-warnings tests/residential.mjs && node --experimental-strip-types --no-warnings tests/residential-v2.mjs && npm run test:prepare",
+     "check": "node --experimental-strip-types --no-warnings tests/run.mjs",
+-    "test:ai": "node --experimental-strip-types --no-warnings tests/ai-assistant.mjs && node --experimental-strip-types --no-warnings tests/ai-server.mjs",
++    "test:ai": "node --experimental-strip-types --no-warnings tests/ai-assistant.mjs && node --experimental-strip-types --no-warnings tests/ai-server.mjs && node tests/ai-network.mjs",
+     "test:development": "node --experimental-strip-types --no-warnings tests/development.mjs",
+     "test:streets": "node --experimental-strip-types --no-warnings tests/streets.mjs && node --experimental-strip-types --no-warnings tests/road-surfaces.mjs",
+     "test:residential": "node --experimental-strip-types --no-warnings tests/residential.mjs && node --experimental-strip-types --no-warnings tests/residential-v2.mjs",
+-    "test:prepare": "node --experimental-strip-types --no-warnings tests/prepare-residential.mjs"
++    "test:prepare": "node --experimental-strip-types --no-warnings tests/prepare-residential.mjs",
++    "test:muse": "node --experimental-strip-types --no-warnings tests/residential-muse.mjs && node --experimental-strip-types --no-warnings tests/residential-muse-server.mjs"
+   },
+   "dependencies": {
+     "polygon-clipping": "0.15.7"
+diff --git a/server/ai-model.mjs b/server/ai-model.mjs
+index 4b022f8..af3688d 100644
+--- a/server/ai-model.mjs
++++ b/server/ai-model.mjs
+@@ -1,18 +1,25 @@
+ import {activeConnection,assertConnectionRevision,markConnection} from './ai-config.mjs';
++import {setTimeout as delay} from 'node:timers/promises';
+ let busy=0;
+ export async function modelChoice(messages,signal,tools){
+   const connection=activeConnection();
+   if(busy>=2)throw Error('AI is busy. Try again shortly.');
+   busy++;
++  let stage='request',status;
+   try{
+     const meta=new URL(connection.endpoint).hostname==='api.meta.ai';
+-    const response=await fetch(connection.endpoint,{method:'POST',redirect:'error',headers:{'content-type':'application/json',authorization:`Bearer ${connection.key}`},body:JSON.stringify({model:connection.model,messages,tools,tool_choice:meta?'auto':'required',...(meta?{parallel_tool_calls:false}:{}),max_tokens:1600}),signal:AbortSignal.any([signal,AbortSignal.timeout(meta?60_000:20_000)])});
++    const deadline=AbortSignal.any([signal,AbortSignal.timeout(meta?60_000:20_000)]),request={method:'POST',redirect:'error',headers:{'content-type':'application/json',authorization:`Bearer ${connection.key}`},body:JSON.stringify({model:connection.model,messages,tools,tool_choice:meta?'auto':'required',...(meta?{parallel_tool_calls:false}:{}),max_tokens:1600}),signal:deadline};let response;
++    for(let attempt=0;;attempt++){
++      try{response=await fetch(connection.endpoint,request);break;}
++      catch(e){if(attempt||!['ENETUNREACH','EAI_AGAIN'].includes(e.cause?.code))throw e;await delay(500,undefined,{signal:deadline});}
++    }
++    status=response.status;stage='provider response';
+     if(!response.ok){await response.body?.cancel();throw Error('upstream');}
+     const reader=response.body.getReader(),chunks=[];let size=0;
+     while(true){const{done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>256_000){await reader.cancel();throw Error('oversize');}chunks.push(value);}
+-    const raw=JSON.parse(Buffer.concat(chunks).toString('utf8'));assertConnectionRevision(connection.revision);
++    stage='tool response';const raw=JSON.parse(Buffer.concat(chunks).toString('utf8'));assertConnectionRevision(connection.revision);
+     const calls=raw.choices?.[0]?.message?.tool_calls;
+     if(!Array.isArray(calls)||calls.length!==1||calls[0].type!=='function'||typeof calls[0].function?.arguments!=='string')throw Error('invalid tool call');
+     return{name:calls[0].function.name,args:JSON.parse(calls[0].function.arguments),revision:connection.revision};
+-  }catch{markConnection(connection.revision,'error');throw Error('The AI connection did not return a usable planning response. Retry or continue editing the plan.');}finally{busy--;}
++  }catch(e){console.warn('AI planning request failed',{stage,status,type:e.name,code:e.cause?.code});markConnection(connection.revision,'error');throw Error(e.name==='TimeoutError'?'The AI connection took too long. Retry or continue editing the plan.':['ENETUNREACH','EAI_AGAIN'].includes(e.cause?.code)?'Muse cannot reach the model service. Retry when the connection is available. Your plan is unchanged.':'The AI connection did not return a usable planning response. Retry or continue editing the plan.');}finally{busy--;}
+ }
+diff --git a/server/residential-muse.mjs b/server/residential-muse.mjs
+index 5faa814..da84750 100644
+--- a/server/residential-muse.mjs
++++ b/server/residential-muse.mjs
+@@ -8,7 +8,7 @@ const id={type:'string',maxLength:200},delta={type:'number',minimum:-20,maximum:
+ export const museTools=[
+  tool('explain_plan','Give one concise qualitative planning assessment plus up to three measured fact IDs. Use no digits or quantities in insight; all numbers come from facts.',{insight:{type:'string',maxLength:320},factIds:{type:'array',items:{type:'string',enum:['yield','mix','roads','land','residual','cost','constraints','unknowns','stage','locks']},minItems:1,maxItems:3}}),
+  tool('clarify_request','Ask one short question for missing intent, ambiguous object names, unsupported edits or professional evidence.',{question:{type:'string',maxLength:400}}),
+- tool('test_alternatives','Run bounded geometry trials for an explicitly requested improvement; keep entrance, protection and all spaces fixed.',{goal:{type:'string',enum:['more-lots','less-road','better-mix']}}),
++ tool('test_alternatives','Run bounded geometry trials for a requested improvement. More-lots includes additional connected return roads, back-to-back lot-depth spacing and coherent product allocations. Keep entrance, protection and all spaces fixed.',{goal:{type:'string',enum:['more-lots','less-road','better-mix']}}),
+  tool('prepare_layout','Construct a new connected layout from site commitments. Null end asks the planner to choose if needed. Do not assume an end treatment.',{end:{type:['string','null'],enum:[null,'dead-end','cul-de-sac']}}),
+  tool('fill_residual','Test existing permitted products in actual residual land; never invent a new product.',{}),
+  tool('move_entrance','Move the unlocked primary gate to a user-specified offset in metres along its current boundary edge. Permission and corridor checks remain required.',{offset:{type:'number',minimum:0,maximum:200000}}),
+diff --git a/src/residential-muse.ts b/src/residential-muse.ts
+index de3c991..ce71265 100644
+--- a/src/residential-muse.ts
++++ b/src/residential-muse.ts
+@@ -1,6 +1,7 @@
+-import {buildResidentialScenario,residentialInputErrors,residentialTransitionErrors,searchResidential,rankResidential,type ResidentialInputs,type ResidentialScenario} from './residential.ts';
++import {buildResidentialScenario,residentialNetwork,residentialInputErrors,residentialTransitionErrors,searchResidential,rankResidential,type ResidentialInputs,type ResidentialScenario} from './residential.ts';
+ import {prepareResidential,moveResidentialEntrance,type EndTreatment} from './prepare-residential.ts';
+-import {entranceList,distance} from './residential-site.ts';
++import {entranceList,distance,polygonSurface,subtractSurface} from './residential-site.ts';
++import {streetSurface,surfaceArea} from './road-surfaces.ts';
+ export interface MuseFact{id:string;text:string}
+ export type MuseAction={kind:'test_alternatives';goal:'more-lots'|'less-road'|'better-mix'}|{kind:'prepare_layout';end:EndTreatment|null}|{kind:'fill_residual'}|{kind:'move_entrance';offset:number}|{kind:'shift_road';roadId:string;dx:number;dy:number}|{kind:'assign_product';groupId:string;productId:string}|{kind:'reshape_space';spaceId:string;vertex:number;dx:number;dy:number};
+ export type MuseAnswer={kind:'explanation';facts:MuseFact[];insight:string}|{kind:'clarification';question:string}|{kind:'proposal';action:MuseAction;label:string};
+@@ -42,15 +43,39 @@ export function validateMuseChoice(name:string,raw:unknown,s:ResidentialScenario
+ export function shiftResidentialRoad(i:ResidentialInputs,id:string,dx:number,dy:number,index=-1){
+  const r=i.roads.find(r=>r.id===id);if(!r||r.locked)throw Error('This street is locked.');const pinned=[...entranceList(i).flatMap(e=>i.roads.find(r=>r.id===e.roadId)?.path.slice(0,2)??[]),...i.roads.filter(r=>r.locked).flatMap(r=>r.path)],nodes=r.path.filter((p,k)=>(index<0||k===index)&&!pinned.some(q=>distance(p,q)<.001));if(!nodes.length)throw Error('The entrance connection is held at its gate and transition. Move the entrance itself, or a street beyond the transition.');for(const other of i.roads)other.path=other.path.map(p=>nodes.some(n=>distance(n,p)<.001)?{x:p.x+dx,y:p.y+dy}:p);
+ }
++function testInfillRoads(base:ResidentialScenario){
++ const i=base.inputs,candidates:ResidentialScenario[]=[],conflicts:string[]=[];
++ const available=subtractSurface(polygonSurface(i.boundary),base.result.externalReservation??[],...i.spaces.filter(s=>s.prohibition!=='lots').map(s=>base.result.exclusions[s.id]));
++ const products=i.products.filter(p=>(i.mix.targets[p.id]??0)>0),depths=[...new Set(products.flatMap(a=>products.map(b=>(a.depth+b.depth)/2)))],segments=i.roads.filter(r=>!r.locked).flatMap(r=>{const points=base.result.resolvedRoads?.find(x=>x.id===r.id)?.points??r.path;return points.slice(1).map((b,k)=>({a:points[k],b}));}),radius=i.roadRules.centrelineRadius??i.roadRules.corridor;
++ let tested=0;
++ // Test actual straight street sections; endpoints of a bent road do not describe its buildable frontage.
++ trials:for(const depth of depths)for(const sign of [-1,1])for(const product of [...products,null])for(const {a,b} of segments){
++  if(tested>=64)break trials;
++  const length=distance(a,b);if(length*.7<=2*radius+.01)continue;
++  const normal={x:-(b.y-a.y)/length,y:(b.x-a.x)/length},start={x:a.x+(b.x-a.x)*.15,y:a.y+(b.y-a.y)*.15},end={x:a.x+(b.x-a.x)*.85,y:a.y+(b.y-a.y)*.85},spacing=2*depth+i.roadRules.corridor,next=structuredClone(i),id=`muse_infill_${i.roads.length}_${tested}`;
++  if(next.roads.some(r=>r.id===id))continue;
++  next.roads.push({id,name:'Infill return loop',locked:false,path:[start,{x:start.x+normal.x*spacing*sign,y:start.y+normal.y*spacing*sign},{x:end.x+normal.x*spacing*sign,y:end.y+normal.y*spacing*sign},end],curves:[{vertex:1,radius},{vertex:2,radius}]});
++  const assigned=product?[product]:products,weights=assigned.map(p=>(i.mix.targets[p.id]??0)*p.frontage),total=weights.reduce((n,w)=>n+w,0);let from=0;
++  for(const [k,p] of assigned.entries()){const to=k===assigned.length-1?1:from+weights[k]/total;next.groups.push({id:`${id}_${p.id}`,roadId:id,from,to,productId:p.id,locked:false});from=to;}
++  tested++;
++  try{const errors=residentialTransitionErrors(i,next);if(errors.length){conflicts.push(errors[0]);continue;}
++   const footprint=streetSurface({...residentialNetwork({...next,roads:[next.roads.at(-1)!]}),cornerRadius:0}).surface;
++   if(surfaceArea(subtractSurface(footprint,available))>.01){conflicts.push('An added full-width road crosses the fixed boundary, held space or external-road reservation.');continue;}
++   const s=buildResidentialScenario(next,id,'Additional connected road','Return loop with back-to-back lot-depth spacing');const failed=s.result.issues.filter(x=>x.state==='fail');if(failed.length){conflicts.push(failed[0].message);continue;}
++   s.advantage=`${s.result.counts.valid-base.result.counts.valid} additional valid lots`;s.compromise=`${(s.result.roadLength-base.result.roadLength).toFixed(1)}m additional road; ${s.result.issues.filter(x=>x.state==='unknown').length} unresolved checks`;if(i.roadRules.centrelineRadius===null)s.assumptions=`Added return-loop centreline radius provisionally equals the ${radius}m corridor width; the project minimum radius remains unconfirmed.`;candidates.push(s);
++  }catch(e){conflicts.push(e instanceof Error?e.message:String(e));}
++ }
++ return{candidates,tested,conflicts:[...new Set(conflicts)]};
++}
+ export function executeMuseAction(base:ResidentialInputs,action:MuseAction):MuseTrial{
+  const current=buildResidentialScenario(base,'muse_base','Current plan'),checked=validateMuseChoice(action.kind,(({kind,...args})=>args)(action),current);if(checked.kind!=='proposal')throw Error('Unsupported edit.');const i=structuredClone(base),result=(scenario:ResidentialScenario,tested=1):MuseTrial=>({scenario,candidates:[scenario],tested,conflicts:scenario.result.issues.filter(x=>x.state==='fail').map(x=>x.message),message:'Measured proposal — review before accepting.'});
+  if(action.kind==='prepare_layout'){const found=prepareResidential(i,action.end??undefined);return{scenario:found.scenario,candidates:found.scenario?[found.scenario]:[],tested:found.tested,conflicts:found.conflicts,message:found.message,chooseEnd:found.status==='choose-end-treatment'};}
+  if(action.kind==='test_alternatives'){
+-  const found=searchResidential(current,action.goal==='better-mix'),same=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b),eligible=found.candidates.filter(s=>same(s.inputs.entrance,base.entrance)&&same(s.inputs.additionalEntrances,base.additionalEntrances)&&same(s.inputs.spaces,base.spaces));
++  const found=searchResidential(current,action.goal==='better-mix',true),infill=action.goal==='more-lots'?testInfillRoads(current):{candidates:[],tested:0,conflicts:[]},same=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b),eligible=[...found.candidates,...infill.candidates].filter(s=>same(s.inputs.entrance,base.entrance)&&same(s.inputs.additionalEntrances,base.additionalEntrances)&&same(s.inputs.spaces,base.spaces));
+   const deviation=(s:ResidentialScenario)=>s.result.schedule.reduce((n,p)=>n+Math.abs(s.inputs.mix.mode==='count'?p.valid-s.inputs.mix.targets[p.productId]:p.deviation??100),0);
+   const ranked=action.goal==='less-road'?eligible.sort((a,b)=>a.result.roadLength-b.result.roadLength||b.result.counts.valid-a.result.counts.valid):action.goal==='better-mix'?eligible.sort((a,b)=>deviation(a)-deviation(b)||b.result.counts.valid-a.result.counts.valid):rankResidential(eligible.map(s=>({...s,inputs:{...s.inputs,objective:'yield' as const}}))).map(s=>({...s,inputs:{...s.inputs,objective:base.objective}}));
+   const improving=ranked.filter(s=>action.goal==='less-road'?s.result.roadLength<current.result.roadLength-.001:action.goal==='better-mix'?deviation(s)<deviation(current)-.000001:s.result.counts.valid>current.result.counts.valid);
+-  return{scenario:improving[0],candidates:improving,tested:found.tested,conflicts:found.conflicts,message:improving.length?'Best improvement found among tested layouts; review the trade-offs.':'No improvement found among the supported trials with entrance and spaces held. This does not prove no better layout exists.'};
++  return{scenario:improving[0],candidates:improving.slice(0,5),tested:found.tested+infill.tested,conflicts:[...new Set([...found.conflicts,...infill.conflicts])],message:improving.length?`Best improvement found among tested layouts; review the trade-offs.${action.goal==='more-lots'?' Tested added return loops and back-to-back lot-depth spacing; boundary lots still need their own road frontage.':''}`:'No improvement found among the supported trials with entrance and spaces held. Review rejected trials for the binding constraints. This does not prove no better layout exists.'};
+  }
+  if(action.kind==='move_entrance')moveResidentialEntrance(i,undefined,i.entrance.edge,action.offset);
+  if(action.kind==='shift_road')shiftResidentialRoad(i,action.roadId,action.dx,action.dy);
+diff --git a/src/residential.ts b/src/residential.ts
+index 60736ff..fc17ab5 100644
+--- a/src/residential.ts
++++ b/src/residential.ts
+@@ -367,7 +367,7 @@ export function rankResidential(candidates:ResidentialScenario[]):ResidentialSce
+   };
+   return [...candidates].sort((a,b)=>{const ga=gates(a),gb=gates(b);for(let k=0;k<ga.length;k++)if(ga[k]!==gb[k])return ga[k]-gb[k];return (a.inputs.objective==='declared'?0:a.inputs.objective==='least-road'?a.result.roadLength-b.result.roadLength:b.result.counts.valid-a.result.counts.valid)||a.result.roadLength-b.result.roadLength||a.id.localeCompare(b.id);});
+ }
+-export function searchResidential(base:ResidentialScenario,allocationsOnly=false):{tested:number;candidates:ResidentialScenario[];conflicts:string[]} {
++export function searchResidential(base:ResidentialScenario,allocationsOnly=false,holdSiteInputs=false):{tested:number;candidates:ResidentialScenario[];conflicts:string[]} {
+   const trials:ResidentialInputs[]=[];
+   for(const delta of allocationsOnly?[]:[-10,10,-20,20]){const i=structuredClone(base.inputs),r=i.roads.find(r=>!r.locked&&r.id===i.entrance.roadId);if(!r)continue;const k=r.path.length>3?2:r.path.length-1;r.path[k].y+=delta;trials.push(i);}
+   for(const g of base.inputs.groups.filter(g=>!g.locked))for(const p of base.inputs.products.filter(p=>p.id!==g.productId)){const i=structuredClone(base.inputs);i.groups.find(n=>n.id===g.id)!.productId=p.id;trials.push(i);}
+@@ -380,18 +380,21 @@ export function searchResidential(base:ResidentialScenario,allocationsOnly=false
+   }
+   if(base.inputs.version===2&&!allocationsOnly){
+     const spatial:ResidentialInputs[]=[];
+-    if(!base.inputs.entrance.locked)for(const e of base.inputs.entranceCandidates??[]){const i=structuredClone(base.inputs);try{chooseEntrance(i,{...e,roadId:i.entrance.roadId});spatial.push(i);}catch{/* recorded validation below still checks constructed trials */}}
++    if(!holdSiteInputs&&!base.inputs.entrance.locked)for(const e of base.inputs.entranceCandidates??[]){const i=structuredClone(base.inputs);try{chooseEntrance(i,{...e,roadId:i.entrance.roadId});spatial.push(i);}catch{/* recorded validation below still checks constructed trials */}}
+     for(const road of base.inputs.roads.filter(r=>!r.locked)){
+       const a=road.path[Math.min(1,road.path.length-2)],b=road.path.at(-1)!,length=distance(a,b);if(length<10)continue;
+       const normal={x:-(b.y-a.y)/length,y:(b.x-a.x)/length},spacing=2*Math.max(...base.inputs.products.map(p=>p.depth),10)+base.inputs.roadRules.corridor;
+       for(const sign of [-1,1]){const i=structuredClone(base.inputs),id=`structure_${road.id}_${sign===1?'left':'right'}`,p={x:a.x+normal.x*spacing*sign,y:a.y+normal.y*spacing*sign},q={x:b.x+normal.x*spacing*sign,y:b.y+normal.y*spacing*sign};i.roads.push({id,name:'Parallel return loop',path:[a,p,q,b],locked:false});if(i.products[0])i.groups.push({id:`group_${id}`,roadId:id,from:0,to:1,productId:i.products[0].id,locked:false});spatial.push(i);}
+     }
+-    for(const space of base.inputs.spaces.filter(s=>s.kind==='flexible'&&!s.locked))for(const sign of [-1,1]){const i=structuredClone(base.inputs),s=i.spaces.find(s=>s.id===space.id)!;const center=s.points.reduce((n,p)=>({x:n.x+p.x/s.points.length,y:n.y+p.y/s.points.length}),{x:0,y:0});s.points=s.points.map(p=>({x:center.x+(p.x-center.x)*(1+sign*.15),y:p.y}));spatial.push(i);}
++    for(const space of base.inputs.spaces.filter(s=>!holdSiteInputs&&s.kind==='flexible'&&!s.locked))for(const sign of [-1,1]){const i=structuredClone(base.inputs),s=i.spaces.find(s=>s.id===space.id)!;const center=s.points.reduce((n,p)=>({x:n.x+p.x/s.points.length,y:n.y+p.y/s.points.length}),{x:0,y:0});s.points=s.points.map(p=>({x:center.x+(p.x-center.x)*(1+sign*.15),y:p.y}));spatial.push(i);}
+     trials.unshift(...spatial);
+   }
+   const candidates:ResidentialScenario[]=[],conflicts:string[]=[];let tested=0;
++  const roadLand=holdSiteInputs&&!base.inputs.spaces.some(s=>s.crossingDecision?.status==='approved')?diff(shape(base.inputs.boundary),base.result.externalReservation??[],...base.inputs.spaces.filter(s=>s.prohibition!=='lots').map(s=>base.result.exclusions[s.id])):null;
+   for(const [index,i] of trials.slice(0,64).entries()){
+-    tested++;try{const errors=residentialTransitionErrors(base.inputs,i);if(errors.length){conflicts.push(errors[0]);continue;}const s=buildResidentialScenario(i,`trial_${index}`,`Option ${index+1}`,JSON.stringify(i.spaces)!==JSON.stringify(base.inputs.spaces)?'Reshape flexible open-space edge':JSON.stringify(i.entrance)!==JSON.stringify(base.inputs.entrance)?'Test explicitly permitted entrance candidate':i.roads.length>base.inputs.roads.length?'Parallel double-loaded return loop':JSON.stringify(i.roads)!==JSON.stringify(base.inputs.roads)?'Shift unlocked road alignment':'Reallocate a complete facing street section');
++    tested++;try{const errors=residentialTransitionErrors(base.inputs,i);if(errors.length){conflicts.push(errors[0]);continue;}
++      if(roadLand){const changed=i.roads.filter(r=>JSON.stringify(r)!==JSON.stringify(base.inputs.roads.find(old=>old.id===r.id))),footprint=streetSurface({...residentialNetwork({...i,roads:changed}),cornerRadius:0}).surface;if(area(diff(footprint,roadLand))>.01){conflicts.push('A proposed full-width road crosses the fixed boundary, held space or external-road reservation.');continue;}}
++      const s=buildResidentialScenario(i,`trial_${index}`,`Option ${index+1}`,JSON.stringify(i.spaces)!==JSON.stringify(base.inputs.spaces)?'Reshape flexible open-space edge':JSON.stringify(i.entrance)!==JSON.stringify(base.inputs.entrance)?'Test explicitly permitted entrance candidate':i.roads.length>base.inputs.roads.length?'Parallel double-loaded return loop':JSON.stringify(i.roads)!==JSON.stringify(base.inputs.roads)?'Shift unlocked road alignment':'Reallocate a complete facing street section');
+       const failed=s.result.issues.filter(x=>x.state==='fail');if(failed.length){conflicts.push(failed[0].message);continue;}
+       const spatialKey=(c:ResidentialScenario)=>JSON.stringify([c.inputs.entrance,c.inputs.additionalEntrances,c.inputs.roads.map(r=>[r.path,r.curves,r.turningHeads]),c.inputs.spaces.map(p=>[p.points,p.holes]),c.result.lots.map(l=>[l.productId,l.points])]);
+       if(spatialKey(s)===spatialKey(base)||candidates.some(c=>spatialKey(c)===spatialKey(s)))continue;
+@@ -401,7 +404,7 @@ export function searchResidential(base:ResidentialScenario,allocationsOnly=false
+     }catch(e){conflicts.push(e instanceof Error?e.message:String(e));}
+   }
+   if(trials.length>64)conflicts.push('Search stopped at the declared 64-configuration limit; further allocations remain untested.');
+-  return {tested,candidates:rankResidential(candidates).slice(0,5),conflicts:[...new Set(conflicts)]};
++  return {tested,candidates:holdSiteInputs?candidates:rankResidential(candidates).slice(0,5),conflicts:[...new Set(conflicts)]};
+ }
+ // Reproduction permits declared numerical error; discrete counts and identities stay exact.
+ function sameResidentialResult(actual:unknown,expected:unknown,path:string[]=[]):boolean {
+diff --git a/tests/residential-muse.mjs b/tests/residential-muse.mjs
+index f5a4aa1..b13ef12 100644
+--- a/tests/residential-muse.mjs
++++ b/tests/residential-muse.mjs
+@@ -12,4 +12,14 @@ const i=copy(base.inputs),street=i.roads.at(-1),old=copy(street.path);shiftResid
+ const park=base.inputs.spaces.find(s=>s.kind==='flexible'),reshaped=executeMuseAction(base.inputs,{kind:'reshape_space',spaceId:park.id,vertex:3,dx:2,dy:0});check('space tool retains commitments and fixed protection while recalculating land',reshaped.scenario.result.land.flexible>base.result.land.flexible&&JSON.stringify(reshaped.scenario.inputs.spaces[0])===JSON.stringify(base.inputs.spaces[0])&&reshaped.scenario.inputs.spaces[1].requiresAccess===park.requiresAccess);
+ const filled=copy(base.inputs);filled.fill=true;check('already-filled residual does not fabricate an improvement',!executeMuseAction(filled,{kind:'fill_residual'}).scenario);
+ const v1=copy(s);v1.inputs.version=1;refuse('legacy version edits require explicit reviewed upgrade',()=>validateMuseChoice('fill_residual',{},v1));check('all tools preserve original accepted input snapshot',before===JSON.stringify(base));
++const yieldBase=JSON.parse(fs.readFileSync(`${E}/baseline-31.json`)).accepted;yieldBase.inputs.entrance.locked=true;const yieldBefore=JSON.stringify(yieldBase.inputs),yieldTrial=executeMuseAction(yieldBase.inputs,{kind:'test_alternatives',goal:'more-lots'}),improved=yieldTrial.scenario;
++check('higher-yield request tests additional real connected roads and generates more valid lots',improved&&improved.result.counts.valid>yieldBase.result.counts.valid&&improved.inputs.roads.length>yieldBase.inputs.roads.length);
++check('infill search preserves gate, boundary, widths, spaces, products, mix and original roads',improved&&['entrance','boundary','roadRules','spaces','products','mix','externalRoads'].every(key=>JSON.stringify(improved.inputs[key])===JSON.stringify(yieldBase.inputs[key]))&&JSON.stringify(improved.inputs.roads.slice(0,yieldBase.inputs.roads.length))===JSON.stringify(yieldBase.inputs.roads));
++check('new road curves affect measured geometry and all required checks pass',improved?.inputs.roads.at(-1).curves.length===2&&!improved.result.issues.some(x=>x.state==='fail')&&Math.abs(improved.result.land.gap)<improved.result.land.tolerance&&Math.abs(improved.result.land.overlap)<improved.result.land.tolerance);
++check('search reports back-to-back depth trials without claiming global optimality',yieldTrial.tested>14&&yieldTrial.tested<=128&&/back-to-back/.test(yieldTrial.message)&&/Best improvement found among tested/.test(yieldTrial.message));
++check('bounded search leaves original accepted state untouched',JSON.stringify(yieldBase.inputs)===yieldBefore);
++const held=copy(yieldBase.inputs);held.roads.forEach(r=>r.locked=true);held.groups.forEach(g=>g.locked=true);const noFit=executeMuseAction(held,{kind:'test_alternatives',goal:'more-lots'});check('no editable network yields an explicit no-improvement result',!noFit.scenario&&/No improvement found/.test(noFit.message));
++const shorter=executeMuseAction(yieldBase.inputs,{kind:'test_alternatives',goal:'less-road'});check('held-input search still finds shorter-road alternatives',shorter.scenario?.result.roadLength<yieldBase.result.roadLength&&!shorter.scenario.result.issues.some(x=>x.state==='fail'));
++check('provisional return-loop radius stays in proposal assumptions',yieldBase.inputs.roadRules.centrelineRadius!==null||improved?.assumptions.includes('provisionally'));
++fs.writeFileSync(`${O}/yield-search.json`,JSON.stringify({before:yieldBase,trial:yieldTrial,heldResult:noFit},null,2));
+ fs.writeFileSync(`${O}/domain-results.json`,JSON.stringify({checks:count,source:'deterministic tools; no model used',moved,assigned,reshaped},null,2));console.log(`ALL ${count} RESIDENTIAL MUSE CHECKS PASS`);
+diff --git a/web/src/unbuilt/ResidentialMuse.tsx b/web/src/unbuilt/ResidentialMuse.tsx
+index 7d92dea..de5cad3 100644
+--- a/web/src/unbuilt/ResidentialMuse.tsx
++++ b/web/src/unbuilt/ResidentialMuse.tsx
+@@ -6,19 +6,26 @@ import {residentialCalculationWorker} from './useResidentialPreview';
+ export default function ResidentialMuse({inputs,selected,disabled,baseline,onPreview}:{inputs:ResidentialInputs;selected:string;disabled:boolean;baseline?:ResidentialResult;onPreview:(s:ResidentialScenario)=>void}){
+  const [text,setText]=useState(''),[answer,setAnswer]=useState<MuseAnswer|null>(null),[trial,setTrial]=useState<MuseTrial|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[connection,setConnection]=useState('Checking connection…');
+  const conversation=useRef<Array<{request:string;response:string}>>([]);
+- const lifecycle=useRef<{generation:number;controller:AbortController|null;worker:Worker|null}>({generation:0,controller:null,worker:null});
+- useEffect(()=>{const task=lifecycle.current,ctrl=new AbortController();fetch(`${serverBase()}/api/health`,{signal:ctrl.signal}).then(r=>r.json()).then(h=>setConnection(h.ai?.configured?(h.ai.status==='error'?'Connection needs attention':`${h.ai.connection} ${h.ai.status==='verified'?'connected':'ready'}`):'Connection not configured')).catch(()=>{if(!ctrl.signal.aborted)setConnection('Connection unavailable');});return()=>{ctrl.abort();task.generation++;task.controller?.abort();task.worker?.terminate();};},[]);
+- const stop=()=>{lifecycle.current.generation++;lifecycle.current.controller?.abort();lifecycle.current.worker?.terminate();setBusy(false);setAnswer(null);setTrial(null);setError('Request cancelled. Plan unchanged.');};
+- const test=(action:MuseAction)=>{setBusy(true);setError('');setTrial(null);const run=++lifecycle.current.generation,w=residentialCalculationWorker();lifecycle.current.worker=w;w.postMessage({kind:'muse',inputs,action});w.onmessage=e=>{w.terminate();if(run!==lifecycle.current.generation)return;setBusy(false);if(!e.data.ok){setError(e.data.error);return;}setTrial(e.data.value);};w.onerror=()=>{w.terminate();if(run===lifecycle.current.generation){setBusy(false);setError('Layout test could not finish. Your plan is preserved.');}};};
+- const ask=async(request=text)=>{if(disabled||busy||!request.trim())return;setText(request);setAnswer(null);setTrial(null);setError('');setBusy(true);const run=++lifecycle.current.generation,ctrl=new AbortController();lifecycle.current.controller=ctrl;const requestId=crypto.randomUUID();
+-  try{const response=await fetch(`${serverBase()}/api/ai/residential`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:request,inputs,selected,requestId,conversation:conversation.current}),signal:AbortSignal.any([ctrl.signal,AbortSignal.timeout(75_000)])}),data=await response.json();if(run!==lifecycle.current.generation)return;if(!response.ok)throw Error(data.error??'Muse is unavailable.');if(data.requestId!==requestId||data.source!=='ai-tool-call')throw Error('This answer no longer matches the request.');setConnection('Muse Wonder connected');window.dispatchEvent(new Event('unbuilt-ai-status'));setAnswer(data.answer);conversation.current=[...conversation.current,{request:request.slice(0,500),response:data.answer.kind==='clarification'?data.answer.question:data.answer.kind==='proposal'?data.answer.label:data.answer.facts.map((f:{text:string})=>f.text).join(' ').slice(0,500)}].slice(-4);if(data.answer.kind==='proposal')test(data.answer.action);else setBusy(false);
++ const [elapsed,setElapsed]=useState(0);
++ useEffect(()=>{if(!busy)return;const timer=setInterval(()=>setElapsed(n=>n+1),1000);return()=>clearInterval(timer);},[busy]);
++ const lifecycle=useRef<{generation:number;controller:AbortController|null;worker:Worker|null;timer?:ReturnType<typeof setTimeout>}>({generation:0,controller:null,worker:null});
++ useEffect(()=>{const task=lifecycle.current,ctrl=new AbortController();fetch(`${serverBase()}/api/health`,{signal:ctrl.signal}).then(r=>r.json()).then(h=>setConnection(h.ai?.configured?(h.ai.status==='error'?'Connection needs attention':`${h.ai.connection} ${h.ai.status==='verified'?'connected':'ready'}`):'Connection not configured')).catch(()=>{if(!ctrl.signal.aborted)setConnection('Connection unavailable');});return()=>{ctrl.abort();task.generation++;task.controller?.abort();task.worker?.terminate();clearTimeout(task.timer);};},[]);
++ const stop=()=>{lifecycle.current.generation++;lifecycle.current.controller?.abort();lifecycle.current.worker?.terminate();clearTimeout(lifecycle.current.timer);setBusy(false);setAnswer(null);setTrial(null);setError('Request cancelled. Plan unchanged.');};
++ const test=(action:MuseAction)=>{setBusy(true);setError('');setTrial(null);const run=++lifecycle.current.generation;
++  const finish=(message?:string)=>{if(run!==lifecycle.current.generation)return;lifecycle.current.worker?.terminate();clearTimeout(lifecycle.current.timer);setBusy(false);if(message)setError(message);};
++  try{const w=residentialCalculationWorker();lifecycle.current.worker=w;w.onmessage=e=>{if(run!==lifecycle.current.generation)return;finish(e.data.ok?undefined:e.data.error);if(e.data.ok)setTrial(e.data.value);};w.onerror=()=>finish('Layout test could not finish. Your plan is preserved.');lifecycle.current.timer=setTimeout(()=>{if(run!==lifecycle.current.generation)return;finish('Layout testing took too long. Try a smaller edit. Your plan is unchanged.');lifecycle.current.generation++;},120_000);w.postMessage({kind:'muse',inputs,action});}catch{finish('Layout test could not start. Retry or keep editing. Your plan is unchanged.');}
++ };
++ const ask=async(request=text)=>{if(disabled||busy||!request.trim())return;setText(request);setAnswer(null);setTrial(null);setError('');setElapsed(0);setBusy(true);const run=++lifecycle.current.generation,ctrl=new AbortController();lifecycle.current.controller=ctrl;
++  try{// Request correlation is not an authentication token; randomUUID is unavailable on HTTP network addresses.
++   const requestId=Array.from(crypto.getRandomValues(new Uint32Array(4)),n=>n.toString(16).padStart(8,'0')).join('');
++   const response=await fetch(`${serverBase()}/api/ai/residential`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:request,inputs,selected,requestId,conversation:conversation.current}),signal:AbortSignal.any([ctrl.signal,AbortSignal.timeout(75_000)])}),data=await response.json();if(run!==lifecycle.current.generation)return;if(!response.ok)throw Error(data.error??'Muse is unavailable.');if(data.requestId!==requestId||data.source!=='ai-tool-call')throw Error('This answer no longer matches the request.');setConnection('Muse Wonder connected');window.dispatchEvent(new Event('unbuilt-ai-status'));setAnswer(data.answer);conversation.current=[...conversation.current,{request:request.slice(0,500),response:data.answer.kind==='clarification'?data.answer.question:data.answer.kind==='proposal'?data.answer.label:data.answer.facts.map((f:{text:string})=>f.text).join(' ').slice(0,500)}].slice(-4);if(data.answer.kind==='proposal')test(data.answer.action);else setBusy(false);
+   }catch(e){if(run!==lifecycle.current.generation)return;setBusy(false);setError(e instanceof Error&&e.name!=='TimeoutError'?e.message:'Muse took too long. Retry or keep editing.');}
+  };
+  const requiredFailures=trial?.scenario?.result.issues.filter(x=>x.state==='fail').map(x=>x.message)??[];
+  return <section className="res-muse" aria-label="Ask Muse"><header><h2>Ask Muse <span>Wonder</span></h2><small>{connection}</small></header><p className="res-muse-tagline">Your intelligent master-planning assistant.</p>
+  <form onSubmit={e=>{e.preventDefault();void ask();}}><label className="sr-only" htmlFor="muse-request">Ask Muse about this plan</label><textarea id="muse-request" aria-label="Ask Muse about this plan" value={text} maxLength={4000} rows={2} placeholder="How can we improve this plan?" onChange={e=>setText(e.target.value)} disabled={busy||disabled}/><div className="res-muse-actions"><button type="submit" disabled={busy||disabled||!text.trim()}>Ask Muse</button>{busy&&<button type="button" onClick={stop}>Stop Muse</button>}</div></form>
+  {!answer&&!busy&&!error&&<div className="res-muse-suggestions">{['Explain this plan','Try more lots','Why is land left over?'].map(q=><button key={q} disabled={disabled} onClick={()=>void ask(q)}>{q}</button>)}</div>}
+- {busy&&<p role="status">{answer?.kind==='proposal'?'Testing geometry…':'Muse is thinking…'}</p>}{error&&<p role="alert" className="res-fail">{error}</p>}
++ {busy&&<p role="status">{answer?.kind==='proposal'?'Testing geometry…':'Muse is thinking…'}{elapsed>=5&&` (${elapsed}s)`}</p>}{error&&<p role="alert" className="res-fail">{error}</p>}
+  {answer?.kind==='explanation'&&<>{answer.insight&&<p className="res-muse-insight">{answer.insight}</p>}<p className="res-muse-fact">{answer.facts[0]?.text}</p>{answer.facts.length>1&&<details><summary>Measured evidence ({answer.facts.length-1})</summary><ul className="res-muse-answer">{answer.facts.slice(1).map(f=><li key={f.id}>{f.text}</li>)}</ul></details>}</>}{answer?.kind==='clarification'&&<p className="res-muse-answer">{answer.question}</p>}
+  {answer?.kind==='proposal'&&<div className="res-muse-proposal"><strong>{answer.label}</strong>{trial&&<><p>{trial.message}</p>{trial.chooseEnd&&<div className="res-muse-actions"><button disabled={busy} onClick={()=>test({kind:'prepare_layout',end:'dead-end'})}>Test dead ends</button><button disabled={busy} onClick={()=>test({kind:'prepare_layout',end:'cul-de-sac'})}>Test cul-de-sacs</button></div>}{trial.scenario&&<><p className="res-muse-quantities">{baseline?.counts.valid??0} → {trial.scenario.result.counts.valid} valid lots · {baseline?.roadLength.toLocaleString(undefined,{maximumFractionDigits:1})??'—'} → {trial.scenario.result.roadLength.toLocaleString(undefined,{maximumFractionDigits:1})}m road · {trial.scenario.result.land.residual.toLocaleString(undefined,{maximumFractionDigits:1})}m² residual</p>{requiredFailures.length>0&&<small className="res-fail">{requiredFailures.length} required checks fail; acceptance is blocked.</small>}<button disabled={busy||disabled} onClick={()=>onPreview(trial.scenario!)}>Preview on plan</button></>}{trial.tested>0&&<small>{trial.tested} geometry {trial.tested===1?'trial':'trials'}</small>}{trial.conflicts.length>0&&<details><summary>{requiredFailures.length?'Checks to review':'Rejected trials'}</summary>{(requiredFailures.length?requiredFailures:trial.conflicts).slice(0,5).map((s,k)=><p key={k}>{s}</p>)}</details>}</>}</div>}
+  </section>;
+diff --git a/web/src/unbuilt/ResidentialPlanner.tsx b/web/src/unbuilt/ResidentialPlanner.tsx
+index 59fb717..5f31bf8 100644
+--- a/web/src/unbuilt/ResidentialPlanner.tsx
++++ b/web/src/unbuilt/ResidentialPlanner.tsx
+@@ -217,7 +217,7 @@ export default function ResidentialPlanner({focusExternalRoad=false,initial,proj
+         </>}
+         {tab==='inputs'&&<p>Select or drag an object. Review changes before accepting.</p>}
+       </div>
+-    </main><aside className="res-inspector" aria-label="Residential inputs"><ResidentialMuse key={JSON.stringify([draft,selected])} inputs={draft} selected={selected} baseline={shown?.result} disabled={searching||!!drawing||measured.pending||!!coordinateError||!!setupError} onPreview={scenario=>{setDraft(structuredClone(scenario.inputs));setScenarioId(`muse_${Date.now()}`);setParents(accepted?[accepted.id]:undefined);setAssumptions('Muse Wonder proposed this edit; deterministic geometry tested it. Review before accepting.');setPreparation(null);setMixTrials([]);setCompare(null);setStatus('Muse proposal ready. Review quantities and checks, then accept or cancel.');setFitTick(n=>n+1);}}/>
++    </main><aside className="res-inspector" aria-label="Residential inputs"><ResidentialMuse key={JSON.stringify(draft)} inputs={draft} selected={selected} baseline={shown?.result} disabled={searching||!!drawing||measured.pending||!!coordinateError||!!setupError} onPreview={scenario=>{setDraft(structuredClone(scenario.inputs));setScenarioId(`muse_${Date.now()}`);setParents(accepted?[accepted.id]:undefined);setAssumptions(`Muse Wonder proposed this edit; deterministic geometry tested it. ${scenario.assumptions??'Review before accepting.'}`);setPreparation(null);setMixTrials([]);setCompare(null);setStatus('Muse proposal ready. Review quantities and checks, then accept or cancel.');setFitTick(n=>n+1);}}/>
+       <h2>Plan controls</h2>{draft.inputCommitments&&<p className="res-stage">Inputs saved · road access and park usability await layout checks.</p>}{draft.version===2&&<details className="res-setup-shell" open={draft.phase==='site'||!!draft.inputCommitments||!draft.products.length||focusExternalRoad||!!preparation}><summary>Site, roads & products</summary><ResidentialSetup key={`${scenarioId}:${setupRevision}`} onValidity={setSetupError} inputs={draft} busy={searching} drawing={!!drawing} onChange={change} onDrawRoad={(name,width,permit)=>{setRoadDrawing({name,width,permit});beginDrawing('external-edge');}} onEditRoad={editSetupRoad} onPrepare={()=>prepare()} preparation={preparation} onChoose={prepare} onCancel={()=>{searchWorker.current?.terminate();setSearching(false);setStatus('Preparation cancelled. Accepted geometry and setup inputs retained.');}} onStatus={setStatus}/></details>}<fieldset className="res-controls" disabled={searching}>{draft.phase==='site'&&<p className="res-stage">Boundary → adjoining road → entrance → products → layout.</p>}
+       {draft.version===2&&<ResidentialSiteTools inputs={draft} onDraw={beginDrawing} onImport={importGeometry} onClearReference={()=>{setRaster(null);setReference(undefined);change(i=>{delete i.survey;i.calibration='unverified';});setStatus('Reference calibration removed in preview. Fixed vector geometry is preserved; review before accepting.');}} raster={raster} onReference={(r,s)=>{setRaster(r);setReference(s);setFitTick(n=>n+1);}} onStatus={setStatus}/>}
+ <label>Scenario name<input value={name} onChange={e=>setName(e.target.value)}/></label>

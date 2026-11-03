@@ -8,7 +8,7 @@ const id={type:'string',maxLength:200},delta={type:'number',minimum:-20,maximum:
 export const museTools=[
  tool('explain_plan','Give one concise qualitative planning assessment plus up to three measured fact IDs. Use no digits or quantities in insight; all numbers come from facts.',{insight:{type:'string',maxLength:320},factIds:{type:'array',items:{type:'string',enum:['yield','mix','roads','land','residual','cost','constraints','unknowns','stage','locks']},minItems:1,maxItems:3}}),
  tool('clarify_request','Ask one short question for missing intent, ambiguous object names, unsupported edits or professional evidence.',{question:{type:'string',maxLength:400}}),
- tool('test_alternatives','Run bounded geometry trials for an explicitly requested improvement; keep entrance, protection and all spaces fixed.',{goal:{type:'string',enum:['more-lots','less-road','better-mix']}}),
+ tool('test_alternatives','Run bounded geometry trials for a requested improvement. More-lots includes additional connected return roads, back-to-back lot-depth spacing and coherent product allocations. Keep entrance, protection and all spaces fixed.',{goal:{type:'string',enum:['more-lots','less-road','better-mix']}}),
  tool('prepare_layout','Construct a new connected layout from site commitments. Null end asks the planner to choose if needed. Do not assume an end treatment.',{end:{type:['string','null'],enum:[null,'dead-end','cul-de-sac']}}),
  tool('fill_residual','Test existing permitted products in actual residual land; never invent a new product.',{}),
  tool('move_entrance','Move the unlocked primary gate to a user-specified offset in metres along its current boundary edge. Permission and corridor checks remain required.',{offset:{type:'number',minimum:0,maximum:200000}}),

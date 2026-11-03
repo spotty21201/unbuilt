@@ -1,0 +1,29 @@
+PASS explanations derive from actual current valid counts and mix
+PASS fact selection returns engine facts, not model arithmetic
+PASS untrusted apply_plan arguments are rejected
+PASS untrusted explain_plan arguments are rejected
+PASS untrusted shift_road arguments are rejected
+PASS untrusted shift_road arguments are rejected
+PASS untrusted test_alternatives arguments are rejected
+PASS untrusted reshape_space arguments are rejected
+PASS qualitative planning insight is kept with engine facts
+PASS model arithmetic cannot enter the planning insight
+PASS locked gate cannot be moved even with explicit model intent
+PASS locked roads cannot be shifted
+PASS entrance tool rebuilds physical connection and dependent lots
+PASS fixed boundary, products, road widths and protection are exact after gate edit
+PASS whole-group product change regenerates real polygons and exposes mix failure
+PASS shared manual and Muse road helper changes actual free controls
+PASS space tool retains commitments and fixed protection while recalculating land
+PASS already-filled residual does not fabricate an improvement
+PASS legacy version edits require explicit reviewed upgrade
+PASS all tools preserve original accepted input snapshot
+PASS higher-yield request tests additional real connected roads and generates more valid lots
+PASS infill search preserves gate, boundary, widths, spaces, products, mix and original roads
+PASS new road curves affect measured geometry and all required checks pass
+PASS search reports back-to-back depth trials without claiming global optimality
+PASS bounded search leaves original accepted state untouched
+PASS no editable network yields an explicit no-improvement result
+PASS held-input search still finds shorter-road alternatives
+PASS provisional return-loop radius stays in proposal assumptions
+ALL 28 RESIDENTIAL MUSE CHECKS PASS

@@ -1,0 +1,10 @@
+[
+  {
+    "request": "Can you maximize the yield, insert more roads and units. On edges put back to back lots.",
+    "status": 400,
+    "data": {
+      "error": "The AI connection did not return a usable planning response. Retry or continue editing the plan."
+    },
+    "elapsedMs": 178
+  }
+]

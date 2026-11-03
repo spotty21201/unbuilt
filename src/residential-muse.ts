@@ -1,6 +1,7 @@
-import {buildResidentialScenario,residentialInputErrors,residentialTransitionErrors,searchResidential,rankResidential,type ResidentialInputs,type ResidentialScenario} from './residential.ts';
+import {buildResidentialScenario,residentialNetwork,residentialInputErrors,residentialTransitionErrors,searchResidential,rankResidential,type ResidentialInputs,type ResidentialScenario} from './residential.ts';
 import {prepareResidential,moveResidentialEntrance,type EndTreatment} from './prepare-residential.ts';
-import {entranceList,distance} from './residential-site.ts';
+import {entranceList,distance,polygonSurface,subtractSurface} from './residential-site.ts';
+import {streetSurface,surfaceArea} from './road-surfaces.ts';
 export interface MuseFact{id:string;text:string}
 export type MuseAction={kind:'test_alternatives';goal:'more-lots'|'less-road'|'better-mix'}|{kind:'prepare_layout';end:EndTreatment|null}|{kind:'fill_residual'}|{kind:'move_entrance';offset:number}|{kind:'shift_road';roadId:string;dx:number;dy:number}|{kind:'assign_product';groupId:string;productId:string}|{kind:'reshape_space';spaceId:string;vertex:number;dx:number;dy:number};
 export type MuseAnswer={kind:'explanation';facts:MuseFact[];insight:string}|{kind:'clarification';question:string}|{kind:'proposal';action:MuseAction;label:string};
@@ -42,15 +43,39 @@ export function validateMuseChoice(name:string,raw:unknown,s:ResidentialScenario
 export function shiftResidentialRoad(i:ResidentialInputs,id:string,dx:number,dy:number,index=-1){
  const r=i.roads.find(r=>r.id===id);if(!r||r.locked)throw Error('This street is locked.');const pinned=[...entranceList(i).flatMap(e=>i.roads.find(r=>r.id===e.roadId)?.path.slice(0,2)??[]),...i.roads.filter(r=>r.locked).flatMap(r=>r.path)],nodes=r.path.filter((p,k)=>(index<0||k===index)&&!pinned.some(q=>distance(p,q)<.001));if(!nodes.length)throw Error('The entrance connection is held at its gate and transition. Move the entrance itself, or a street beyond the transition.');for(const other of i.roads)other.path=other.path.map(p=>nodes.some(n=>distance(n,p)<.001)?{x:p.x+dx,y:p.y+dy}:p);
 }
+function testInfillRoads(base:ResidentialScenario){
+ const i=base.inputs,candidates:ResidentialScenario[]=[],conflicts:string[]=[];
+ const available=subtractSurface(polygonSurface(i.boundary),base.result.externalReservation??[],...i.spaces.filter(s=>s.prohibition!=='lots').map(s=>base.result.exclusions[s.id]));
+ const products=i.products.filter(p=>(i.mix.targets[p.id]??0)>0),depths=[...new Set(products.flatMap(a=>products.map(b=>(a.depth+b.depth)/2)))],segments=i.roads.filter(r=>!r.locked).flatMap(r=>{const points=base.result.resolvedRoads?.find(x=>x.id===r.id)?.points??r.path;return points.slice(1).map((b,k)=>({a:points[k],b}));}),radius=i.roadRules.centrelineRadius??i.roadRules.corridor;
+ let tested=0;
+ // Test actual straight street sections; endpoints of a bent road do not describe its buildable frontage.
+ trials:for(const depth of depths)for(const sign of [-1,1])for(const product of [...products,null])for(const {a,b} of segments){
+  if(tested>=64)break trials;
+  const length=distance(a,b);if(length*.7<=2*radius+.01)continue;
+  const normal={x:-(b.y-a.y)/length,y:(b.x-a.x)/length},start={x:a.x+(b.x-a.x)*.15,y:a.y+(b.y-a.y)*.15},end={x:a.x+(b.x-a.x)*.85,y:a.y+(b.y-a.y)*.85},spacing=2*depth+i.roadRules.corridor,next=structuredClone(i),id=`muse_infill_${i.roads.length}_${tested}`;
+  if(next.roads.some(r=>r.id===id))continue;
+  next.roads.push({id,name:'Infill return loop',locked:false,path:[start,{x:start.x+normal.x*spacing*sign,y:start.y+normal.y*spacing*sign},{x:end.x+normal.x*spacing*sign,y:end.y+normal.y*spacing*sign},end],curves:[{vertex:1,radius},{vertex:2,radius}]});
+  const assigned=product?[product]:products,weights=assigned.map(p=>(i.mix.targets[p.id]??0)*p.frontage),total=weights.reduce((n,w)=>n+w,0);let from=0;
+  for(const [k,p] of assigned.entries()){const to=k===assigned.length-1?1:from+weights[k]/total;next.groups.push({id:`${id}_${p.id}`,roadId:id,from,to,productId:p.id,locked:false});from=to;}
+  tested++;
+  try{const errors=residentialTransitionErrors(i,next);if(errors.length){conflicts.push(errors[0]);continue;}
+   const footprint=streetSurface({...residentialNetwork({...next,roads:[next.roads.at(-1)!]}),cornerRadius:0}).surface;
+   if(surfaceArea(subtractSurface(footprint,available))>.01){conflicts.push('An added full-width road crosses the fixed boundary, held space or external-road reservation.');continue;}
+   const s=buildResidentialScenario(next,id,'Additional connected road','Return loop with back-to-back lot-depth spacing');const failed=s.result.issues.filter(x=>x.state==='fail');if(failed.length){conflicts.push(failed[0].message);continue;}
+   s.advantage=`${s.result.counts.valid-base.result.counts.valid} additional valid lots`;s.compromise=`${(s.result.roadLength-base.result.roadLength).toFixed(1)}m additional road; ${s.result.issues.filter(x=>x.state==='unknown').length} unresolved checks`;if(i.roadRules.centrelineRadius===null)s.assumptions=`Added return-loop centreline radius provisionally equals the ${radius}m corridor width; the project minimum radius remains unconfirmed.`;candidates.push(s);
+  }catch(e){conflicts.push(e instanceof Error?e.message:String(e));}
+ }
+ return{candidates,tested,conflicts:[...new Set(conflicts)]};
+}
 export function executeMuseAction(base:ResidentialInputs,action:MuseAction):MuseTrial{
  const current=buildResidentialScenario(base,'muse_base','Current plan'),checked=validateMuseChoice(action.kind,(({kind,...args})=>args)(action),current);if(checked.kind!=='proposal')throw Error('Unsupported edit.');const i=structuredClone(base),result=(scenario:ResidentialScenario,tested=1):MuseTrial=>({scenario,candidates:[scenario],tested,conflicts:scenario.result.issues.filter(x=>x.state==='fail').map(x=>x.message),message:'Measured proposal — review before accepting.'});
  if(action.kind==='prepare_layout'){const found=prepareResidential(i,action.end??undefined);return{scenario:found.scenario,candidates:found.scenario?[found.scenario]:[],tested:found.tested,conflicts:found.conflicts,message:found.message,chooseEnd:found.status==='choose-end-treatment'};}
  if(action.kind==='test_alternatives'){
-  const found=searchResidential(current,action.goal==='better-mix'),same=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b),eligible=found.candidates.filter(s=>same(s.inputs.entrance,base.entrance)&&same(s.inputs.additionalEntrances,base.additionalEntrances)&&same(s.inputs.spaces,base.spaces));
+  const found=searchResidential(current,action.goal==='better-mix',true),infill=action.goal==='more-lots'?testInfillRoads(current):{candidates:[],tested:0,conflicts:[]},same=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b),eligible=[...found.candidates,...infill.candidates].filter(s=>same(s.inputs.entrance,base.entrance)&&same(s.inputs.additionalEntrances,base.additionalEntrances)&&same(s.inputs.spaces,base.spaces));
   const deviation=(s:ResidentialScenario)=>s.result.schedule.reduce((n,p)=>n+Math.abs(s.inputs.mix.mode==='count'?p.valid-s.inputs.mix.targets[p.productId]:p.deviation??100),0);
   const ranked=action.goal==='less-road'?eligible.sort((a,b)=>a.result.roadLength-b.result.roadLength||b.result.counts.valid-a.result.counts.valid):action.goal==='better-mix'?eligible.sort((a,b)=>deviation(a)-deviation(b)||b.result.counts.valid-a.result.counts.valid):rankResidential(eligible.map(s=>({...s,inputs:{...s.inputs,objective:'yield' as const}}))).map(s=>({...s,inputs:{...s.inputs,objective:base.objective}}));
   const improving=ranked.filter(s=>action.goal==='less-road'?s.result.roadLength<current.result.roadLength-.001:action.goal==='better-mix'?deviation(s)<deviation(current)-.000001:s.result.counts.valid>current.result.counts.valid);
-  return{scenario:improving[0],candidates:improving,tested:found.tested,conflicts:found.conflicts,message:improving.length?'Best improvement found among tested layouts; review the trade-offs.':'No improvement found among the supported trials with entrance and spaces held. This does not prove no better layout exists.'};
+  return{scenario:improving[0],candidates:improving.slice(0,5),tested:found.tested+infill.tested,conflicts:[...new Set([...found.conflicts,...infill.conflicts])],message:improving.length?`Best improvement found among tested layouts; review the trade-offs.${action.goal==='more-lots'?' Tested added return loops and back-to-back lot-depth spacing; boundary lots still need their own road frontage.':''}`:'No improvement found among the supported trials with entrance and spaces held. Review rejected trials for the binding constraints. This does not prove no better layout exists.'};
  }
  if(action.kind==='move_entrance')moveResidentialEntrance(i,undefined,i.entrance.edge,action.offset);
  if(action.kind==='shift_road')shiftResidentialRoad(i,action.roadId,action.dx,action.dy);

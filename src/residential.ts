@@ -367,7 +367,7 @@ export function rankResidential(candidates:ResidentialScenario[]):ResidentialSce
   };
   return [...candidates].sort((a,b)=>{const ga=gates(a),gb=gates(b);for(let k=0;k<ga.length;k++)if(ga[k]!==gb[k])return ga[k]-gb[k];return (a.inputs.objective==='declared'?0:a.inputs.objective==='least-road'?a.result.roadLength-b.result.roadLength:b.result.counts.valid-a.result.counts.valid)||a.result.roadLength-b.result.roadLength||a.id.localeCompare(b.id);});
 }
-export function searchResidential(base:ResidentialScenario,allocationsOnly=false):{tested:number;candidates:ResidentialScenario[];conflicts:string[]} {
+export function searchResidential(base:ResidentialScenario,allocationsOnly=false,holdSiteInputs=false):{tested:number;candidates:ResidentialScenario[];conflicts:string[]} {
   const trials:ResidentialInputs[]=[];
   for(const delta of allocationsOnly?[]:[-10,10,-20,20]){const i=structuredClone(base.inputs),r=i.roads.find(r=>!r.locked&&r.id===i.entrance.roadId);if(!r)continue;const k=r.path.length>3?2:r.path.length-1;r.path[k].y+=delta;trials.push(i);}
   for(const g of base.inputs.groups.filter(g=>!g.locked))for(const p of base.inputs.products.filter(p=>p.id!==g.productId)){const i=structuredClone(base.inputs);i.groups.find(n=>n.id===g.id)!.productId=p.id;trials.push(i);}
@@ -380,18 +380,21 @@ export function searchResidential(base:ResidentialScenario,allocationsOnly=false
   }
   if(base.inputs.version===2&&!allocationsOnly){
     const spatial:ResidentialInputs[]=[];
-    if(!base.inputs.entrance.locked)for(const e of base.inputs.entranceCandidates??[]){const i=structuredClone(base.inputs);try{chooseEntrance(i,{...e,roadId:i.entrance.roadId});spatial.push(i);}catch{/* recorded validation below still checks constructed trials */}}
+    if(!holdSiteInputs&&!base.inputs.entrance.locked)for(const e of base.inputs.entranceCandidates??[]){const i=structuredClone(base.inputs);try{chooseEntrance(i,{...e,roadId:i.entrance.roadId});spatial.push(i);}catch{/* recorded validation below still checks constructed trials */}}
     for(const road of base.inputs.roads.filter(r=>!r.locked)){
       const a=road.path[Math.min(1,road.path.length-2)],b=road.path.at(-1)!,length=distance(a,b);if(length<10)continue;
       const normal={x:-(b.y-a.y)/length,y:(b.x-a.x)/length},spacing=2*Math.max(...base.inputs.products.map(p=>p.depth),10)+base.inputs.roadRules.corridor;
       for(const sign of [-1,1]){const i=structuredClone(base.inputs),id=`structure_${road.id}_${sign===1?'left':'right'}`,p={x:a.x+normal.x*spacing*sign,y:a.y+normal.y*spacing*sign},q={x:b.x+normal.x*spacing*sign,y:b.y+normal.y*spacing*sign};i.roads.push({id,name:'Parallel return loop',path:[a,p,q,b],locked:false});if(i.products[0])i.groups.push({id:`group_${id}`,roadId:id,from:0,to:1,productId:i.products[0].id,locked:false});spatial.push(i);}
     }
-    for(const space of base.inputs.spaces.filter(s=>s.kind==='flexible'&&!s.locked))for(const sign of [-1,1]){const i=structuredClone(base.inputs),s=i.spaces.find(s=>s.id===space.id)!;const center=s.points.reduce((n,p)=>({x:n.x+p.x/s.points.length,y:n.y+p.y/s.points.length}),{x:0,y:0});s.points=s.points.map(p=>({x:center.x+(p.x-center.x)*(1+sign*.15),y:p.y}));spatial.push(i);}
+    for(const space of base.inputs.spaces.filter(s=>!holdSiteInputs&&s.kind==='flexible'&&!s.locked))for(const sign of [-1,1]){const i=structuredClone(base.inputs),s=i.spaces.find(s=>s.id===space.id)!;const center=s.points.reduce((n,p)=>({x:n.x+p.x/s.points.length,y:n.y+p.y/s.points.length}),{x:0,y:0});s.points=s.points.map(p=>({x:center.x+(p.x-center.x)*(1+sign*.15),y:p.y}));spatial.push(i);}
     trials.unshift(...spatial);
   }
   const candidates:ResidentialScenario[]=[],conflicts:string[]=[];let tested=0;
+  const roadLand=holdSiteInputs&&!base.inputs.spaces.some(s=>s.crossingDecision?.status==='approved')?diff(shape(base.inputs.boundary),base.result.externalReservation??[],...base.inputs.spaces.filter(s=>s.prohibition!=='lots').map(s=>base.result.exclusions[s.id])):null;
   for(const [index,i] of trials.slice(0,64).entries()){
-    tested++;try{const errors=residentialTransitionErrors(base.inputs,i);if(errors.length){conflicts.push(errors[0]);continue;}const s=buildResidentialScenario(i,`trial_${index}`,`Option ${index+1}`,JSON.stringify(i.spaces)!==JSON.stringify(base.inputs.spaces)?'Reshape flexible open-space edge':JSON.stringify(i.entrance)!==JSON.stringify(base.inputs.entrance)?'Test explicitly permitted entrance candidate':i.roads.length>base.inputs.roads.length?'Parallel double-loaded return loop':JSON.stringify(i.roads)!==JSON.stringify(base.inputs.roads)?'Shift unlocked road alignment':'Reallocate a complete facing street section');
+    tested++;try{const errors=residentialTransitionErrors(base.inputs,i);if(errors.length){conflicts.push(errors[0]);continue;}
+      if(roadLand){const changed=i.roads.filter(r=>JSON.stringify(r)!==JSON.stringify(base.inputs.roads.find(old=>old.id===r.id))),footprint=streetSurface({...residentialNetwork({...i,roads:changed}),cornerRadius:0}).surface;if(area(diff(footprint,roadLand))>.01){conflicts.push('A proposed full-width road crosses the fixed boundary, held space or external-road reservation.');continue;}}
+      const s=buildResidentialScenario(i,`trial_${index}`,`Option ${index+1}`,JSON.stringify(i.spaces)!==JSON.stringify(base.inputs.spaces)?'Reshape flexible open-space edge':JSON.stringify(i.entrance)!==JSON.stringify(base.inputs.entrance)?'Test explicitly permitted entrance candidate':i.roads.length>base.inputs.roads.length?'Parallel double-loaded return loop':JSON.stringify(i.roads)!==JSON.stringify(base.inputs.roads)?'Shift unlocked road alignment':'Reallocate a complete facing street section');
       const failed=s.result.issues.filter(x=>x.state==='fail');if(failed.length){conflicts.push(failed[0].message);continue;}
       const spatialKey=(c:ResidentialScenario)=>JSON.stringify([c.inputs.entrance,c.inputs.additionalEntrances,c.inputs.roads.map(r=>[r.path,r.curves,r.turningHeads]),c.inputs.spaces.map(p=>[p.points,p.holes]),c.result.lots.map(l=>[l.productId,l.points])]);
       if(spatialKey(s)===spatialKey(base)||candidates.some(c=>spatialKey(c)===spatialKey(s)))continue;
@@ -401,7 +404,7 @@ export function searchResidential(base:ResidentialScenario,allocationsOnly=false
     }catch(e){conflicts.push(e instanceof Error?e.message:String(e));}
   }
   if(trials.length>64)conflicts.push('Search stopped at the declared 64-configuration limit; further allocations remain untested.');
-  return {tested,candidates:rankResidential(candidates).slice(0,5),conflicts:[...new Set(conflicts)]};
+  return {tested,candidates:holdSiteInputs?candidates:rankResidential(candidates).slice(0,5),conflicts:[...new Set(conflicts)]};
 }
 // Reproduction permits declared numerical error; discrete counts and identities stay exact.
 function sameResidentialResult(actual:unknown,expected:unknown,path:string[]=[]):boolean {

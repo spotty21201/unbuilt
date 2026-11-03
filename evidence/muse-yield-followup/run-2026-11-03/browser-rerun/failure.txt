@@ -1,0 +1,290 @@
+AssertionError [ERR_ASSERTION]: exact user request reaches real Muse Wonder and returns a yield-search intent
+    at check (/home/spotty/projects/unbuilt/tests/residential-muse-yield-browser.cjs:7:35)
+    at /home/spotty/projects/unbuilt/tests/residential-muse-yield-browser.cjs:19:2
+UNBUILT · Cedar Market sample
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Back to project
+Saved residential study · Geometry screening only
+Master Planner Workflow Test — fixed inputs
+12,000 m² gross · Unresolved inputs
+Draw site boundary
+External road & width
+Draw supplied road centreline
+Draw supplied natural feature
+Draw river centreline
+Draw irregular open space
+Draw reservation
+Draw connected street
+Select
+Pan
+Fit site & context
++
+−
+Snap spaces/lots to road edges
+Snap (m)
+South Main Road · 12 m
+10 m · local coordinates
+Compact
+Family
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+31 valid lots
+0 unresolved / 0 invalid
+2,904 m² valid lots
+1,456 m² roads
+190 m road
+6.1 m / valid lot
+517.2 m² fixed protection
+268 m² flexible space
+6,854.8 m² residual
+Rp 0 priced · 4 missing scopes
+SOP procedure
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+
+Select or drag an object. Review changes before accepting.
+
+Ask Muse WONDER
+Connection needs attention
+
+Your intelligent master-planning assistant.
+
+Ask Muse about this plan
+Ask Muse
+
+The AI connection did not return a usable planning response. Retry or continue editing the plan.
+
+Plan controls
+Site, roads & products
+Source geometry & reliable scale
+Scenario name
+Assignment and site
+Entrance & adjoining roads
+Entrance decisions and additional entrances
+Road structure & parameters
+Full internal corridor (m)
+Internal carriageway (m)
+Corner return radius (m)
+Required centreline radius (m)
+Preferred junction angle (degrees)
+Allow oblique junctions; treat the angle as a preference
+Turning requirements (separate vehicle check)
+Road dimensions confirmed as project inputs
+Junction angle tolerance (degrees)
+Junction exceptions: first road ID, second road ID, reason
+Declare screening vehicle
+Entrance street · main
+Internal street name
+Lock street
+Entrance street centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Entrance street start turning-head radius (m)
+Entrance street end turning-head radius (m)
+Move Entrance street north 2 mRemove street
+Street 2 · street_1793661937915
+Internal street name
+Lock street
+Street 2 centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Street 2 start turning-head radius (m)
+Street 2 end turning-head radius (m)
+Move Street 2 north 2 mRemove street
+Street 3 · street_1793662048496
+Internal street name
+Lock street
+Street 3 centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Street 3 start turning-head radius (m)
+Street 3 end turning-head radius (m)
+Move Street 3 north 2 mRemove street
+Add connected branch
+Lot products & development rates
+Product groups & target composition
+Protection, flexible space & reservations
+Separate common works costs
+Start or reset residential study
+Accepted imported scenario collection. Saved with geometry and schedules.
+Cancel preview
+Accept residential change
+Export residential scenarios
+Import residential collection
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI connection needs attention
+AI settings
+Residential planning
+External road setup
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · Spine · lot frontage setting 10 m · street width 6 m
+Residential study: 31 screened valid lots · 0 shortlisted options · 14 unresolved checks; not qualified
+Selected: Open space A
+Geometry valid
+Financial concerns · 2
+Saved in this browser
+
+Opened Cedar Market sample. Accepted plan restored; drafts, undo history and photos are not restored. Plan Undo/Redo starts fresh.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+LOT 01
+200 m²
+LOT 02
+200 m²
+LOT 03
+200 m²
+LOT 04
+200 m²
+LOT 05
+200 m²
+LOT 06
+200 m²
+LOT 07
+200 m²
+LOT 08
+200 m²
+LOT 09
+200 m²
+LOT 10
+200 m²
+LOT 11
+200 m²
+LOT 12
+200 m²
+LOT 13
+200 m²
+LOT 14
+200 m²
+LOT 15
+200 m²
+LOT 16
+200 m²
+LOT 17
+200 m²
+LOT 18
+200 m²
+LOT 19
+200 m²
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Locked
+SELECTED AREA
+480 m²
+SITE SHARE
+4.00%
+MODELED HOMES
+20
+BUILT AREA / HOME
+60.0 m²
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+
+480.0 m² combined · 1 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Park width
+24 m
+Park depth
+20 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+Housing template · 60 m² / home
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Fix Open space A shape + location
+Locked
+Maintain minimum open space
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Ask about Open space A
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+Bounded local search · 8 layouts
+Run optimization ▷
+
+Produces reviewable alternatives. Preview and Apply keep you in control.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasingSaved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn

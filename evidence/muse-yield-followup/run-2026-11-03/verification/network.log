@@ -1,0 +1,33 @@
+PASS ENETUNREACH: retry only the failed pre-connection attempt
+PASS EAI_AGAIN: retry only the failed pre-connection attempt
+AI planning request failed {
+  stage: 'request',
+  status: undefined,
+  type: 'TypeError',
+  code: 'ENETUNREACH'
+}
+PASS persistent unreachable connection ends after one retry
+AI planning request failed {
+  stage: 'request',
+  status: undefined,
+  type: 'TimeoutError',
+  code: undefined
+}
+PASS timeout: never repeat a potentially delivered model request
+AI planning request failed {
+  stage: 'provider response',
+  status: 503,
+  type: 'Error',
+  code: undefined
+}
+PASS http: never repeat a potentially delivered model request
+AI planning request failed {
+  stage: 'request',
+  status: undefined,
+  type: 'TypeError',
+  code: 'ECONNRESET'
+}
+PASS reset: never repeat a potentially delivered model request
+AI planning request failed { stage: 'request', status: undefined, type: 'AbortError', code: 20 }
+PASS cancellation stops before a second connection attempt
+ALL 7 AI NETWORK CHECKS PASS (CONTROLLED TRANSPORT; NO PROVIDER CALLS)

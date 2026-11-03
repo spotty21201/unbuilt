@@ -1,0 +1,22 @@
+{
+  "baseCommit": "95bacfdc92f6aea225a84c6e3b589312c2bb2700",
+  "files": {
+    "docs/MUSE-MASTER-PLANNER.md": "d1664c7b8fd1c4665260a67d44c9cb11cabbc45e8af21da250ed395a8264e54a",
+    "package.json": "eb1d05ce18eb84134d9b00decc4249a3474f01c4eba4c51ba2a4124bed4aa80b",
+    "server/ai-model.mjs": "9d2f4399a38871aefd2c81eb2f24285bdb114e60fe6881bf0e6b73447b10e57a",
+    "server/residential-muse.mjs": "395c8f563879b07ac0196fc1eab3d0802e9a06917c185e7d1bfa4d8fe3ed1734",
+    "src/residential-muse.ts": "41d763a24c049d0c741cd430c0d7a55c8ee0140cf78b38f82dd0f08eb839ff06",
+    "src/residential.ts": "9ded7fff809bfc010558a7cfe9a0b95c1f54b767bbde42fd804f4411d4552967",
+    "tests/residential-muse.mjs": "2551471e7a5c5962d9fe8e0aff1e35673d7675022006e1924a27fa4d24562e50",
+    "web/src/unbuilt/ResidentialMuse.tsx": "ced7eaa46945de1966e6a950fd73438d0ad71afc6022e45ac47d976e53196fd6",
+    "web/src/unbuilt/ResidentialPlanner.tsx": "ff6393865a0d341a1fc16d865b0e1598a0c2ff612f0c9fd14d768d1af5a6c4e7",
+    "tests/residential-muse-yield-browser.cjs": "9d8312c3fdb468f919735e69390ab01d9f980cf6f03fb3917f24952d1494ddce",
+    "tests/ai-network.mjs": "12d5dc5a6bf1951b38a05c1d7d7249e8ba6562588bfd3ad9abcc9bbe7b238159"
+  },
+  "build": {
+    "ResidentialPlanner-D-EwmOjA.css": "da53538443b994c06c0306236dbb288ea577da17caf3e8a28f6a65a04d7d8caa",
+    "ResidentialPlanner-H8hEsukP.js": "85af668ff13eb8169207ca313e770dc33639819011bc38ba88b8d86d78255a9c",
+    "residential.worker-_1qc6LKF.js": "e1fd29913edadd0345bc76d574c80a59e2f89608f445efcf331be59138e4c613"
+  },
+  "scope": "Local changes only. Historical evidence and existing project data retained. No commit, push or deployment."
+}

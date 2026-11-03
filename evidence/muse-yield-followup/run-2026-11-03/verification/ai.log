@@ -1,0 +1,37 @@
+
+> unbuilt@0.0.1 test:ai
+> node --experimental-strip-types --no-warnings tests/ai-assistant.mjs && node --experimental-strip-types --no-warnings tests/ai-server.mjs
+
+PASS interpretation proposes complete held inputs without mutating the snapshot
+PASS reviewed experiment uses the same measured engine and sequential attribution
+PASS unsupported mutations, numeric strings and no-op trials refuse
+PASS stale proposals cannot be measured after any material cost or selection change
+PASS manual work holds design while permitting a hypothetical cost trial
+PASS numeric prose from the model is never accepted as evidence
+PASS clarifications and known evidence limits remain separate from measurements
+PASS missing or invalid assumptions and orphaned selections refuse before model calls
+PASS proposal measurement revalidates full costs and geometry, never trusts change descriptions
+PASS model context excludes arbitrary site notes, labels, media and original geometry
+PASS selection quantities are engine measurements for actual lots and green
+PASS even submillimetre or fractional assumption edits stale an AI proposal
+ALL 12 AI CONTRACT CHECKS PASS
+PASS unconfigured is explicit; no model calls or automatic local interpretation
+PASS administrator token protects reads and writes; keys never leave settings response
+PASS save validates endpoint and fields before disk mutation
+PASS private routing file saves atomically; public health stays untested
+PASS explicit connection test verifies supported tool round trip
+PASS malformed snapshots, invalid selection and text bounds refuse before a paid call
+PASS actual service translates fixture tool calls into bound proposals and measured results
+PASS explanations, clarification and unsupported evidence requests remain distinct
+PASS model explanations of reviewed trials can only select actual measured findings
+PASS invented tools, parallel calls and unmeasured prose refuse without silent fallback
+PASS bounded parallel requests refuse extra model calls without retrying
+PASS client cancellation aborts the upstream request
+PASS provider timeout ends within the fixed deadline with no automatic retry
+PASS configuration revision guards concurrent administrators; blank key keeps server secret
+PASS switching connections is explicit; late replies from old configuration refuse
+PASS stale measurements refuse after plan edits
+PASS restart preserves routes and keys but requires a new verification
+PASS clear key disables active routing and never resurrects the old environment secret
+PASS untrusted browser origins cannot reach administrative or assistant routes
+ALL 19 AI SERVICE CHECKS PASS (SCRIPTED FIXTURE, NOT A REAL MODEL)

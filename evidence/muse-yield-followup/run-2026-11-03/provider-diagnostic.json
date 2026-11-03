@@ -1,0 +1,24 @@
+{
+  "status": 200,
+  "elapsedMs": 3696,
+  "finish": "tool_calls",
+  "usage": {
+    "completion_tokens": 329,
+    "prompt_tokens": 3777,
+    "total_tokens": 4106,
+    "completion_tokens_details": {
+      "reasoning_tokens": 246
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "tools": [
+    {
+      "type": "function",
+      "name": "test_alternatives",
+      "args": "{\"goal\":\"more-lots\"}"
+    }
+  ],
+  "contentLength": 113
+}

@@ -1,0 +1,75 @@
+{
+  "checks": [
+    "completed layout keeps setup controls collapsed but available",
+    "live Muse Wonder provides a concise qualitative planning assessment",
+    "Muse response refreshes the global connection indicator",
+    "numeric evidence still comes from current deterministic facts",
+    "Muse chooses the shorter-road search tool",
+    "road search measures a real proposal while accepted geometry is held",
+    "rejected trials do not label the retained valid proposal as failing",
+    "valid tested search proposal can be accepted",
+    "search proposal is a whole-plan review, not an automatic acceptance",
+    "cancel preserves original source geometry and schedules",
+    "actual running connection is verified Muse Wonder",
+    "project exports contain no provider token",
+    "normal browser storage contains no provider token"
+  ],
+  "exchanges": [
+    {
+      "request": "As a master planner, what is the most useful next improvement to investigate in this plan? Give a brief qualitative assessment with the measured evidence. Do not propose a geometry edit yet.",
+      "status": 200,
+      "data": {
+        "requestId": "c74b0c5c94950b1f244d8d7bef929f5e",
+        "answer": {
+          "kind": "explanation",
+          "insight": "The current layout leaves most land outside valid lots while mix already passes, so the most useful next investigation is whether additional connected roads can serve further back-to-back lots within the fixed protections, rather than adjusting product mix.",
+          "facts": [
+            {
+              "id": "yield",
+              "text": "31 screened valid lots; 0 unresolved; 0 invalid."
+            },
+            {
+              "id": "land",
+              "text": "12,000m² fixed gross; 2,904m² valid lots; 517.2m² protection; 268m² flexible space; 6,854.8m² residual. Gap 0m²; overlap 0m²."
+            },
+            {
+              "id": "mix",
+              "text": "Target percentages by valid lot count: Compact: target 60, actual 19 valid lots / 61.29%, pass; Family: target 40, actual 12 valid lots / 38.71%, pass. Mandatory; tolerance 5."
+            }
+          ]
+        },
+        "source": "ai-tool-call"
+      }
+    },
+    {
+      "request": "Please test layouts with shorter internal road length. Keep the current entrance and all open-space geometry unchanged, and respect the required product mix.",
+      "status": 200,
+      "data": {
+        "requestId": "dac72fd577452a689106ea36d84a3183",
+        "answer": {
+          "kind": "proposal",
+          "action": {
+            "kind": "test_alternatives",
+            "goal": "less-road"
+          },
+          "label": "Test shorter road layouts"
+        },
+        "source": "ai-tool-call"
+      }
+    }
+  ],
+  "health": {
+    "ok": true,
+    "adapter": "meta",
+    "model": "muse-wonder-1.0",
+    "modelConfigured": true,
+    "ai": {
+      "configured": true,
+      "connection": "Muse Wonder",
+      "revision": 1,
+      "status": "verified",
+      "adminEnabled": false
+    }
+  },
+  "browser": "149.0.7827.55"
+}
