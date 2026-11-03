@@ -1,0 +1,12 @@
+PASS imported engineered fixture recalculates real curves, terminal head and scoped quantities
+PASS scoped product/common costs use current valid counts and actual unioned road area
+PASS curve control changes actual road surface and adjoining lots
+PASS declared vehicle that cannot fit blocks acceptance without changing saved plan
+PASS manual lot outline becomes held real geometry with recalculated measurements
+PASS combination creates distinct scenario and recalculates all lot scenario relationships
+PASS two-option shortlist and reasons survive combination
+PASS combined result compares to source at exactly the same plan frame
+PASS procedure report covers all 26 steps using the measured current scenario
+PASS combined accepted geometry, costs, parents and client choice reproduce on reopening
+PASS no uncaught browser errors
+ALL 11 ADVANCED RESIDENTIAL BROWSER CHECKS PASS

@@ -1,0 +1,19 @@
+PASS 72m² polygon with 9m frontage and 8m depth is dimensionally invalid
+PASS invalid geometry is excluded and cannot replace the accepted plan
+PASS cancel preserves complete accepted geometry and costs
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: /^Northeast woodland, protected,/ })[22m
+
+    at /home/spotty/projects/unbuilt/tests/master-planner-invalid-browser.cjs:2:1606 {
+  log: [
+    "  - waiting for getByRole('button', { name: /^Northeast woodland, protected,/ })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3

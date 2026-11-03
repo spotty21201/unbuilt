@@ -12,6 +12,7 @@ interface Props {
   builtArea?:number;
   housingControls?:ReactNode;
   onEditStreets: () => void;
+  onRoundStreets: () => void;
   onGeneratedStreets: () => void;
   siteControls?: ReactNode;
   openSpaceControls?:ReactNode;
@@ -35,6 +36,9 @@ interface Props {
   onGreenLock: () => void;
   onLock: (key: 'siteLocked' | 'priceLocked') => void;
   onChange: (planning: PlanningParameters, frontage: number) => void;
+  // Yield starting points: apply a family + frontage combo through the
+  // reviewed spec-change path. Starting points, never optima.
+  onPreset?: (family: 'spine' | 'loop', frontage: number) => void;
   dirty: boolean;
   error: string | null;
   onApply: () => void;
@@ -68,6 +72,7 @@ export default function DynamicInspector(p: Props) {
       <div><dt>{p.builtArea!==undefined?"Home built area":"Built area / home"}</dt><dd>{(p.builtArea??homeArea(p.planning)).toFixed(1)} m²</dd></div>
     </dl>
     {p.selectionNotice&&<p className="selection-assumption" role="status">{p.selectionNotice}</p>}
+    {p.selection==='circulation' && <section className="road-corner-controls" aria-label="Road corner treatment"><button type="button" disabled={p.disabled||p.dirty} onClick={p.onRoundStreets}>Round road corners</button><p className="note">Preview smooth joined pavement with fillets set to half the road width (3 m for a 6 m street). Mixed widths start with the narrowest street. Generated Spine routing may move to fit curves beside kept green. Review lots and costs before Apply; protected spaces and held lots stay protected. Applying keeps a manual street network.</p></section>}
     {p.siteControls}{p.openSpaceControls}
     {p.lotControls}
     {p.housingControls}
@@ -80,6 +85,7 @@ export default function DynamicInspector(p: Props) {
       {p.selection !== 'grove' && <>
       {slider('Lot frontage', p.frontage, 8, 16, 1, (v) => p.onChange(p.planning, v))}
       {slider('Lot depth', p.planning.lotDepth, 12, 40, 1, (v) => change('lotDepth', v))}
+      {p.onPreset && <div className="preset-row"><span>Yield starting points (not optima):</span><button type="button" disabled={p.disabled} onClick={() => p.onPreset!('spine', 8)}>Compact · Spine 8 m</button><button type="button" disabled={p.disabled} onClick={() => p.onPreset!('spine', 10)}>Standard · Spine 10 m</button><button type="button" disabled={p.disabled} onClick={() => p.onPreset!('loop', 12)}>Garden · Loop 12 m</button></div>}
       </>}
       {slider(p.planning.openSpaces!==undefined?'Open-space clearance':'Park clearance', p.planning.greenBuffer, 0, 4.5, 0.5, (v) => change('greenBuffer', v))}
       {p.selection === 'grove' && <details className="subdivision-parameters"><summary>Subdivision parameters</summary>

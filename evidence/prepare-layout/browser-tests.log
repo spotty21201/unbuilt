@@ -1,0 +1,21 @@
+PASS Prepare is blocked until a real external road and products are supplied
+PASS drawn named road touches west edge, full width outside fixed site
+PASS home table stores true dimensions and unit-count composition
+PASS external width edit changes real corridor while keeping fixed boundary exact
+PASS empty product dimension blocks preparation and acceptance
+PASS cancelling active preparation preserves setup and accepted quantities
+PASS non-looped areas ask dead end or cul-de-sac before applying geometry
+PASS generated geometry is a reviewable preview with quantity changes
+PASS Prepare makes internal corridors, physical turning heads, grouped lots and west-road gate
+PASS automatic layout preserves accepted boundary and external road
+PASS mouse entrance movement rebuilds physical connection, shared street and measured lots
+PASS mouse road movement updates corridors and dependent lots without disconnecting the network
+PASS one undo restores complete road operation and quantities
+PASS redo restores complete road operation and quantities
+PASS product dimension edit regenerates actual measured polygons in preview
+PASS cancel retains complete accepted geometry and product schedule
+PASS renaming the external road preserves internal geometry and lot quantities
+PASS save and reload reproduce external road, geometry, product groups, mix, locks and quantities
+PASS oblique internal junctions are exposed as a project preference
+PASS no browser runtime exceptions
+ALL 20 PREPARE BROWSER CHECKS PASS

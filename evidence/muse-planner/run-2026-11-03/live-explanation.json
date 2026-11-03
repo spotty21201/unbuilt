@@ -1,0 +1,19 @@
+{
+  "status": 200,
+  "elapsedMs": 3752,
+  "requestId": "live-wonder-explanation",
+  "answer": {
+    "kind": "explanation",
+    "facts": [
+      {
+        "id": "yield",
+        "text": "28 screened valid lots; 0 unresolved; 0 invalid."
+      },
+      {
+        "id": "mix",
+        "text": "Target percentages by valid lot count: Compact: target 60, actual 18 valid lots / 64.29%, pass; Family: target 40, actual 10 valid lots / 35.71%, pass. Mandatory; tolerance 5."
+      }
+    ]
+  },
+  "source": "ai-tool-call"
+}

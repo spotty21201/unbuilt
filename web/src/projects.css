@@ -76,3 +76,9 @@
 .project-save-scope > summary { cursor: pointer; min-height: 36px; padding-block: 6px; color: #e7d9ff; }
 .project-save-scope > p { margin-top: 8px; }
 @media (max-width: 700px) { .project-library > header { gap: 12px; } .project-header-actions { flex-basis: 100px; } }
+
+.road-next-step { color: #f3f5fa; border: 1px solid #647d96; background: #273b4c; padding: 14px; margin: 16px 0; }
+.road-next-step h3 { margin: 0 0 6px; }
+.inspector-col .road-next-step button:not(.seg):not(.tool) { width: 100%; min-height: 44px; padding: 10px; background: #216b96; color: #fff; border: 1px solid #90bdd8; border-radius: 4px; font: inherit; font-weight: 600; cursor: pointer; }
+
+.road-next-step .note { color: #d2e2ee; }

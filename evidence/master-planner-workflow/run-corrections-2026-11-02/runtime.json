@@ -1,0 +1,41 @@
+{
+  "observedAt": "2026-11-03T07:32:15.288Z",
+  "clientWorkday": "2026-11-02 America/Los_Angeles; original environment clock is UTC",
+  "node": "v22.23.3",
+  "browser": "149.0.7827.55",
+  "playwright": "1.61.1",
+  "viewport": [
+    1440,
+    1100
+  ],
+  "additionalViewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      900,
+      900
+    ]
+  ],
+  "resources": [
+    {
+      "url": "http://localhost:5173/assets/index-CpdSNjde.css",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:5173/assets/index-B-aw48LB.js",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:5173/assets/ResidentialPlanner-B0jEimpt.css",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:5173/assets/ResidentialPlanner-Blew2-JM.js",
+      "status": 200
+    }
+  ],
+  "head": "b6c660f8c13402e853968ad47d0f75428d7ca50c",
+  "services": "PID COMMAND\n 673841 node /home/spotty/projects/unbuilt/web/node_modules/.bin/vite preview --host 0.0.0.0 --port 5173 --strictPort\n 673842 /home/spotty/.local/share/pi-node/node-v22.23.3-linux-x64/bin/node --experimental-strip-types --no-warnings server/intent.mjs --port 5174"
+}

@@ -1,0 +1,49 @@
+PASS D1 mixed radii 8,4,4 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 8,4.05,4 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 8,4,4.05 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 7.95,4,4 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 8,3.95,4.05 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 original fixture inputs remain exact
+PASS original portable project with 11 alternatives remains readable
+PASS original accepted geometry and schedules are not regenerated on load
+PASS D4 supplied retained mix already passes
+PASS D5 summary identifies yield, shortlist and qualification without legacy conversion
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: D6 selected lot resolves Family, street, section and stable reference
+    at check (file:///home/spotty/projects/unbuilt/tests/master-planner-corrections.mjs:8:169)
+    at file:///home/spotty/projects/unbuilt/tests/master-planner-corrections.mjs:15:171
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

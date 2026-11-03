@@ -1,0 +1,128 @@
+locator.click: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: '−', exact: true })[22m
+
+    at eval (<anonymous>:1:295)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.fill: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Supplied natural feature coordinates', { exact: true })[22m
+
+    at field (/home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:625)
+    at eval (<anonymous>:1:223)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.click: Error: strict mode violation: getByRole('button', { name: 'Draw irregular open space', exact: true }) resolved to 2 elements:
+    1) <button>Draw irregular open space</button> aka getByLabel('Residential drawing tools').getByRole('button', { name: 'Draw irregular open space' })
+    2) <button>Draw irregular open space</button> aka getByLabel('Residential inputs').getByRole('button', { name: 'Draw irregular open space' })
+
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Draw irregular open space', exact: true })[22m
+
+    at eval (<anonymous>:1:512)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.check: Error: Not a checkbox or radio button
+Call log:
+[2m  - waiting for getByLabel('Location commitment', { exact: true })[22m
+[2m    - locator resolved to <input value=""/>[22m
+
+    at eval (<anonymous>:1:680)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.click: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Accept residential change', exact: true })[22m
+[2m    - locator resolved to <button disabled class="res-primary">Accept residential change</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    10 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is not enabled[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at eval (<anonymous>:1:463)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.fill: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Internal street corridor (m)', { exact: true })[22m
+
+    at field (/home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:625)
+    at eval (<anonymous>:1:510)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.click: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Accept residential change', exact: true })[22m
+[2m    - locator resolved to <button disabled class="res-primary">Accept residential change</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    10 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is not enabled[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at eval (<anonymous>:1:130)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.click: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Accept residential change', exact: true })[22m
+[2m    - locator resolved to <button disabled class="res-primary">Accept residential change</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    10 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is not enabled[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at eval (<anonymous>:1:895)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.click: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Accept residential change', exact: true })[22m
+[2m    - locator resolved to <button disabled class="res-primary">Accept residential change</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    10 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is not enabled[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at eval (<anonymous>:1:651)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+locator.innerText: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for locator('.res-footer')[22m
+
+    at eval (<anonymous>:1:453)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066
+page.reload: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for navigation until "load"[22m
+
+    at eval (<anonymous>:1:1808)
+    at async /home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/explore.cjs:2:1066

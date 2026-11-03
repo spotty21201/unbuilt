@@ -1,0 +1,26 @@
+PASS Cedar header names lot frontage separately from actual street width
+PASS canvas and evaluator agree on 6 m by 120 m and 720 square metres
+PASS geometry status is explicitly separate from a visible financial concern
+PASS financial indicator opens the counted Issues tab
+PASS default financial review reports 6.44bn owner shortfall and negative 22.88 percent
+PASS geometry validation never provides a broad no-open-issues assurance
+PASS economics retains the measured figures and removes the scheme-works claim
+PASS financial concerns do not disable a geometry-valid street draft
+PASS header labels active 8 m draft while nominal lot frontage stays 10 m
+PASS full-width draft drawing and review remeasure 960 square metres without accepting it
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+AssertionError [ERR_ASSERTION]: financial concerns follow draft economics and identify unapplied scope
+    at check (/home/spotty/projects/unbuilt/tests/geometry-finance-browser.cjs:4:52)
+    at /home/spotty/projects/unbuilt/tests/geometry-finance-browser.cjs:26:27 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

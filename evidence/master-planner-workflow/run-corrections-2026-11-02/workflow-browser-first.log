@@ -1,0 +1,28 @@
+PASS crossing boundary refuses acceptance
+PASS external road is real, named and outside fixed south boundary
+PASS preferred entrance can be saved and locked before products or a finished network
+PASS park commitments save before future road access exists
+PASS exact original recreation region and source geometry are retained
+PASS input commitments and preferred entry reproduce on reopening
+PASS supplied product dimensions, tolerances and mandatory unit mix stay explicit
+PASS non-looped candidate waits for a deliberate end-treatment decision
+PASS automatic constrained layout is a reviewable preview
+PASS automatic layout services recreation and meets fixed mix without manual roads
+PASS individual lots expose actual dimensions and readable current relationships
+PASS fixed preferred entrance resists mouse movement
+PASS whole-section product change regenerates actual lot polygons in preview
+PASS product dimension trial cancels back to original definitions
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.res-delta') to be visible[22m
+
+    at /home/spotty/projects/unbuilt/tests/master-planner-workflow-browser.cjs:25:169 {
+  log: [ "  - waiting for locator('.res-delta') to be visible" ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3

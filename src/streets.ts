@@ -2,6 +2,8 @@ import type { Pt } from './polygon.ts';
 import type { Rect } from './schema.ts';
 export interface StreetSegment { id: string; a: Pt; b: Pt; width: number }
 export interface StreetNetwork { segments: StreetSegment[]; cornerRadius?: number }
+// One explicit radius is stored; mixed-width networks start conservatively.
+export const halfRoadWidth=(n:StreetNetwork)=>n.segments.length?Math.min(...n.segments.map(s=>s.width))/2:0;
 export const MAX_STREETS = 64;
 const near = (a: number, b: number) => Math.abs(a - b) < .001;
 export const samePoint = (a: Pt, b: Pt) => near(a.x,b.x) && near(a.y,b.y);
@@ -88,6 +90,24 @@ export function networkFromRoads(roads: Rect[]): StreetNetwork {
     const horizontal=r.h===6 || (r.w!==6 && r.w>=r.h);
     return {id:`street-${i+1}`,width:horizontal?r.h:r.w,a:horizontal?{x:r.x,y:r.y+r.h/2}:{x:r.x+r.w/2,y:r.y},b:horizontal?{x:r.x+r.w,y:r.y+r.h/2}:{x:r.x+r.w/2,y:r.y+r.h}};
   })});
+}
+// Rectangle junctions can leave short overlapping tails in saved manual
+// networks. During explicit rounding they are joins, not protected end caps.
+export function roundedStreetNetwork(network:StreetNetwork,cornerRadius:number):StreetNetwork {
+  const split=splitJunctions(network);
+  return {...split,cornerRadius,segments:split.segments.filter(s=>{
+    const horizontal=near(s.a.y,s.b.y),vertical=near(s.a.x,s.b.x);
+    if(!horizontal&&!vertical)return true;
+    return ![s.a,s.b].some((end,i)=>{
+      if(split.segments.filter(t=>onStreet(end,t)).length!==1)return false;
+      const junction=i?s.a:s.b;
+      const cross=split.segments.filter(t=>t.id!==s.id&&onStreet(junction,t)&&streetLength(s)<=t.width/2+.001&&(horizontal?near(t.a.x,t.b.x):near(t.a.y,t.b.y)));
+      const axis=horizontal?'y':'x',extent=cross.flatMap(t=>[t.a[axis],t.b[axis]]);
+      // The full tail strip must be covered on both sides of the junction;
+      // two genuinely short L legs must retain their real end caps.
+      return extent.length>0&&Math.min(...extent)<=junction[axis]-s.width/2+.001&&Math.max(...extent)>=junction[axis]+s.width/2-.001;
+    });
+  })};
 }
 export function disconnectedStreets(n: StreetNetwork, entry: Pt): number[] {
   const reached=new Set<number>(n.segments.flatMap((s,i)=>onStreet(entry,s)?[i]:[]));let changed=true;

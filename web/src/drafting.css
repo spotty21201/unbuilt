@@ -490,3 +490,53 @@ button.tool.selected-object { color: #c2a9e4; background: #2e2a38; }
 .phase-map-key { display:flex; flex-wrap:wrap; gap:8px 20px; margin:10px 0; padding:0; list-style:none; }
 .phase-map-key li { display:flex; align-items:center; gap:7px; }
 .phase-map-key span { display:inline-block; width:16px; height:16px; border:1px solid #adb8c6; flex:none; }
+
+.contextstrip .financial-concerns { padding: 2px 7px; color: #ffd79b; border: 1px solid #9b7848; background: #3a3024; font: inherit; white-space: normal; text-align: left; }
+.financial-review { border-left: 3px solid #b68d51; padding: 2px 12px; margin: 12px 0; }
+.financial-review li { margin-bottom: 8px; }
+
+/* Planner insights: brief inputs, check rows, yield presets. */
+.briefgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  margin: 6px 0 10px;
+}
+
+.briefgrid label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13px;
+  color: var(--mut, #aab0ba);
+}
+
+.briefgrid input {
+  min-height: 36px;
+  padding: 4px 8px;
+}
+
+.briefrow {
+  border-left: 3px solid #3f7d5c;
+  padding-left: 8px;
+}
+
+.briefrow.badrow {
+  border-left-color: #b05750;
+}
+
+.preset-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.preset-row > span {
+  font-size: 13px;
+  color: var(--mut, #aab0ba);
+}
+
+/* Residential study stays reachable when compact workspace navigation is hidden. */
+.contextstrip .residential-entry { padding: 6px 9px; min-height: 32px; white-space: nowrap; color: #ecf3ff; background: #344556; border: 1px solid #647d96; }

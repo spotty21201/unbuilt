@@ -18,14 +18,14 @@ async function point(p,x,y){return p.locator('main svg.canvas').evaluate((el,q)=
  check('boundary review lists accepted and proposed measured outcomes',/20 → Unavailable/.test(await p.locator('.boundary-review').innerText())&&/Land allowance/.test(await p.locator('.boundary-review').innerText()));
  check('drawing leaves the accepted plan saved unchanged',JSON.stringify((await state(p)).baseSpec)===JSON.stringify(original.baseSpec));
  await p.getByRole('combobox',{name:'Entrance boundary edge',exact:true}).selectOption('4');await settle(p);
- check('choosing the sloping west edge enables a measured layout before Apply',!/Unavailable/.test(await p.locator('.boundary-review').innerText())&&await p.locator('main polygon.road').count()===1);
+ check('choosing the sloping west edge enables a measured layout before Apply',!/Unavailable/.test(await p.locator('.boundary-review').innerText())&&await p.locator('main path.road[aria-label="Street pavement including entrance apron"]').count()===1);
  check('draft preview shows the reserved park footprint',await p.locator('main .greenfill').isVisible() && (await p.locator('main .greenfill').boundingBox()).width>0);
  await p.screenshot({path:`${out}/sloping-access-review.png`});
  await p.getByRole('button',{name:'Check mid-edge entrances',exact:true}).click();
  check('candidate entrances show measured geometric checks and access assumptions',/geometric options, not confirmed public access/.test(await p.locator('.entrance-candidates').innerText())&&await p.locator('.entrance-candidates button').count()>0);
  await p.getByRole('button',{name:'Apply boundary',exact:true}).click();await settle(p);const applied=await state(p);
  check('apply keeps all five corners and selected boundary entrance',applied.baseSpec.boundary.length===5&&applied.entrance.boundaryEdge===4);
- check('applied sloping site retains roads, homes and measured outcome',await p.locator('main polygon.road').count()===1&&/homes/.test(await p.locator('.docksummary').innerText())&&!/Layout unavailable/.test(await p.locator('.docksummary').innerText()));
+ check('applied sloping site retains roads, homes and measured outcome',await p.locator('main path.road[aria-label="Street pavement including entrance apron"]').count()===1&&/homes/.test(await p.locator('.docksummary').innerText())&&!/Layout unavailable/.test(await p.locator('.docksummary').innerText()));
  await p.screenshot({path:`${out}/sloping-access-applied.png`});
  await p.getByRole('button',{name:'Undo',exact:true}).click();await settle(p);check('one Undo restores entire accepted sample',!(await state(p)).baseSpec.boundary&&!(await state(p)).entrance.boundaryEdge);
  await p.getByRole('button',{name:'Redo',exact:true}).click();await settle(p);check('Redo restores polygon and entrance together',isDeepStrictEqual((await state(p)).entrance,applied.entrance));

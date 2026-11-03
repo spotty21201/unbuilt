@@ -1,0 +1,28 @@
+PASS generated bent roads render one merged outline with no rectangle seams
+PASS merging preserves exact accepted legacy state and version
+PASS rounding action is visible beside circulation metrics
+PASS direct action opens a valid four metre fillet preview
+PASS rounding preview leaves the accepted state unchanged
+PASS draft drawing has tangent fillets rather than stacked rectangles
+PASS Cancel restores exact old outline and measured summary
+PASS Apply saves actual rounded geometry with the existing guarded format
+PASS rounded result keeps protected space and all financial commitments
+PASS rounded pavement, evaluator area and street costs agree
+PASS rounded land quantities reconcile to the site
+PASS one Undo restores generated routing, quantities and exact accepted inputs
+PASS Redo restores exact rounded network
+PASS Save and reload keep fillets and held commitments
+PASS portable record carries actual curved outline and radius
+PASS square loop displays one unioned pavement with its interior hole
+PASS generated loop can be rounded without false dead-end caps
+PASS all loop outer turns become curved while its hole stays open
+PASS loop Undo restores exact generated family and commitments
+PASS fillet entering protected space refuses Apply with a reason
+PASS invalid rounding never silently moves protected space or changes assumptions
+PASS Cancel protected-space conflict preserves exact work
+PASS sloping entrance apron and road form a single outline
+PASS 1024px rounded road controls fit the viewport
+PASS 375px rounded road controls fit the viewport
+PASS rounding controls have no detected accessibility violations
+PASS no uncaught browser errors
+ALL 27 MERGED ROAD CORNER BROWSER CHECKS PASS

@@ -1,0 +1,6 @@
+{
+  "header": "Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · spine 10 m\nSelected: Open space A\nPlan valid\nSaved in this browser",
+  "evaluator": "EVALUATOR\nHide details\n20 homes\nGreen 480 m²\nRoad 720 m²\nAllowance Rp3.56bn\nShortfall Rp6.44bn",
+  "issues": "No open issues. Geometry valid, inputs complete, no blockers.",
+  "economics": "Total home built area\n20 × 60 m² × Rp5m = Rp6.00bn\nRoad area\nRp0.58bn\nGreen works\nRp0.07bn\nSetup + other + contingency + professional\nRp3.73bn\nNon-land costs\nRp10.38bn\nRevenue (selling costs Rp0.51bn)\nRp17.00bn\nSurplus\nRp-3.89bn (-22.88%)\nLand allowance\nRp3.56bn\nOwner outcome\nShortfall Rp6.44bn\nRevenue Rp17.00bn minus selling costs, minus non-land costs above, minus the 15% target surplus leaves the land allowance: what the land is worth to this scheme before paying the owner.\nSurplus additionally subtracts the owner's asking price — positive allowance with negative surplus means the scheme works, but not at this asking price.\nCost bases use the accepted project assumptions. Open Feasibility experiments to test construction, street and green rates, allowances, contingency and selling costs before Apply."
+}

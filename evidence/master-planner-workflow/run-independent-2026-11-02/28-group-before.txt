@@ -1,0 +1,333 @@
+UNBUILT · Master Planner Workflow Test
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Back to project
+Flat landed residential study · geometry checks do not establish house feasibility or statutory approval. Accepted scenario · browser-local project storage.
+Master Planner Workflow Test — fixed inputs
+12,000 m² gross · Unresolved / failing constraints
+Draw site boundary
+External road & width
+Draw supplied road centreline
+Draw supplied natural feature
+Draw river centreline
+Draw irregular open space
+Draw reservation
+Draw connected street
+Select
+Pan
+Fit site & context
++
+−
+Snap spaces/lots to road edges
+Snap (m)
+South Main Road · 12 m
+10 m · local coordinates
+Compact
+Family
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+28 valid lots
+0 unresolved / 0 invalid
+2,576 m² valid lots
+1,457.5 m² roads
+190.2 m road
+6.8 m / valid lot
+517.2 m² fixed protection
+268 m² flexible space
+7,181.2 m² residual
+Rp 0 priced · 4 missing scopes
+SOP procedure
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+Current accepted scenario · percent, unit count denominator · tolerance 5 percentage points
+Product	Nominal F × D	Target %	Rounded target units	Valid	Actual %	Deviation pp	Mix	Area m²	Min / mean / max m²	Cost Rp
+Compact	6 × 12	60	17	18	64.29	4.29	pass	1,296	72 / 72 / 72	Unpriced
+Family	8 × 16	40	11	10	35.71	-4.29	pass	1,280	128 / 128 / 128	Unpriced
+
+Groups: group_street_1793661937915: 18 valid, product product_1, facing match · group_street_1793662048496: 10 valid, product product_2, facing match. Depth = minimum of rear intersections at 10%, 50%, 90% of primary frontage chord; frontage = measured kerb shared by polygon.
+
+Download measured lot schedule
+Inputs & commitments
+Prepare your layout
+
+Boundary → external road → lot products → Prepare Layout
+
+Site boundary: 4 corners · locked
+
+1 · External road beside the site
+
+Enter the road name and full width, then draw along the site edge, including any corners it follows. Its corridor is placed outside the fixed boundary. Finish with Enter or Finish drawing.
+
+New external road name
+New external road width (m)
+Allow a residential entrance along this road
+Draw adjacent external road
+South Main Road
+External road name
+Full external road width (m)
+Entrance permitted on adjoining frontage
+Known carriageway width and restricted access sections can be refined in Entrance & adjoining roads.
+2 · Home lot products and unit mix
+
+Width is frontage along the street. Mix is the percentage of valid lot count.
+
+Product	Width m	Depth m	Mix %	
+
+				×
+
+				×
+Add product row
+
+Total mix: 100% · must equal 100%.
+
+Mix tolerance (percentage points)
+Require mix within this tolerance
+Advanced product tolerances, pricing and individual street groups remain available below.
+Internal street corridor (m)
+Full internal corridor; provisional until confirmed in Road structure & parameters. A wider gate remains a bounded entrance exception.
+Prepare Layout
+
+Generate connected internal roads and as many measured valid lots as found within the product mix. Review the result before accepting.
+
+Source geometry & reliable scale
+Scenario name
+Assignment and site
+Comparison objective
+Maximum valid lot yield
+Least internal road length
+Other declared objective (manual ranking)
+Objective / declared comparison basis
+Source information
+Fixed requirements
+Preferences
+Adjustable variables
+Unknown inputs
+Independent dimension check
+Scale status
+Unverified
+Source coordinates in metres
+Calibrated source reference
+
+Use Source geometry & scale above to import or trace a calibrated source. Changing this status alone does not calibrate geometry.
+
+Lock accepted boundary
+Boundary coordinates
+Metres: x, y on each line. Last corner closes to the first.
+Entrance & adjoining roads
+Entrance decisions and additional entrances
+Road structure & parameters
+Full internal corridor (m)
+Internal carriageway (m)
+Corner return radius (m)
+Required centreline radius (m)
+Preferred junction angle (degrees)
+Allow oblique junctions; treat the angle as a preference
+Turning requirements (separate vehicle check)
+Road dimensions confirmed as project inputs
+Junction angle tolerance (degrees)
+Junction exceptions: first road ID, second road ID, reason
+Declare screening vehicle
+Entrance street · main
+Internal street name
+Lock street
+Entrance street centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Entrance street start turning-head radius (m)
+Entrance street end turning-head radius (m)
+Move Entrance street north 2 mRemove street
+Street 2 · street_1793661937915
+Internal street name
+Lock street
+Street 2 centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Street 2 start turning-head radius (m)
+Street 2 end turning-head radius (m)
+Move Street 2 north 2 mRemove street
+Street 3 · street_1793662048496
+Internal street name
+Lock street
+Street 3 centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Street 3 start turning-head radius (m)
+Street 3 end turning-head radius (m)
+Move Street 3 north 2 mRemove street
+Add connected branch
+Lot products & development rates
+
+Frontage is the first dimension, along the serving kerb. Depth extends into the block. Rates are Rp per valid lot.
+
+Compact · product_1
+Product name
+Product colour
+Nominal frontage (m)
+Nominal depth (m)
+Minimum frontage (m)
+Maximum frontage (m)
+Minimum usable depth (m)
+Maximum depth (m)
+Minimum area (m²)
+Maximum area (m²)
+Maximum saleable area (m²)
+Minimum rear / front span ratio
+Permit declared irregular shapes
+Compact development rate (Rp / lot)
+Remove unused product
+Family · product_2
+Product name
+Product colour
+Nominal frontage (m)
+Nominal depth (m)
+Minimum frontage (m)
+Maximum frontage (m)
+Minimum usable depth (m)
+Maximum depth (m)
+Minimum area (m²)
+Maximum area (m²)
+Maximum saleable area (m²)
+Minimum rear / front span ratio
+Permit declared irregular shapes
+Family development rate (Rp / lot)
+Remove unused product
+Add lot product
+Product groups & target composition
+Assign a product group to Entrance street
+
+Street sections normally assign one product to both facing sides. Side-specific sections require a recorded exception when facing products differ.
+
+group_street_1793661937915 · street_1793661937915
+Compact
+Family
+group_street_1793661937915 section start (%)
+group_street_1793661937915 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+group_street_1793662048496 · street_1793662048496
+Compact
+Family
+group_street_1793662048496 section start (%)
+group_street_1793662048496 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+Target basis
+Percentage of valid units
+Percentage of valid residential lot area
+Target integer counts
+Compact target
+Family target
+Mix tolerance (percentage points or units)
+Mandatory product composition
+
+Integer allocation uses largest remainder; actual percentages always use measured integer valid counts or actual lot area.
+
+Rebalance draft mix
+Protection, flexible space & reservations
+Separate common works costs
+Start or reset residential study
+Accepted residential layout. Saved with geometry and schedules.
+Cancel preview
+Accept residential change
+Export residential scenarios
+Import residential collection
+Skip to plan
+UNBUILT
+Projects
+Master Planner Workflow Test
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+External road setup
+Master Planner Workflow Test · 12,000 m² · 4 vertices
+Selected: Site
+Boundary only
+Saved in this browser
+
+Boundary applied: 12,000 m². Next, draw and name the adjoining external road with its width. Undo restores the previous boundary.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Boundary ready
+
+Next, draw the adjoining external road and enter its name and width.
+
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context & survey
+Your site is ready
+
+12,000 m² · 4 corners. No layout has been generated. Any designed open spaces remain reserved.
+
+Continue residential planning
+
+Your residential study is saved. Continue with road inputs, home products and Prepare Layout.
+
+Continue residential planning
+
+Boundary → external road → home products → Prepare Layout
+
+Edit boundaryDesign open spacesGenerate layout
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Manage housing templatesSaved alternativesTerrain, drainage and phasingOpen projects
+EVALUATOR
+Details
+Boundary only · next, draw the external road and enter its name and width.

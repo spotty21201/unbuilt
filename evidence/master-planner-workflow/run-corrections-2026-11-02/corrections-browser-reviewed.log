@@ -1,0 +1,21 @@
+PASS D3 1440×1000 fitted south endpoints are immediately pointer-accessible
+PASS D3 1440×1000 actual clicks place both road points without zoom or scrolling
+PASS D3 1440×1000 saved road stays at exact metre geometry
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+locator.click: Error: strict mode violation: getByRole('button', { name: 'Pan', exact: true }) resolved to 2 elements:
+    1) <button aria-pressed="false">Pan</button> aka getByLabel('Residential master planning').getByRole('button', { name: 'Pan' })
+    2) <button class="" type="button" aria-pressed="false" title="Pan the drawing">…</button> aka getByRole('button', { name: 'Pan', description: 'Pan the drawing' })
+
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Pan', exact: true })[22m
+
+    at /home/spotty/projects/unbuilt/tests/master-planner-corrections-browser.cjs:8:1326 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Pan', exact: true })"
+  ]
+}
+
+Node.js v22.23.3

@@ -1,0 +1,37 @@
+PASS new project starts with an empty scheme collection and explicit save source
+PASS named accepted scheme stores its exact inputs and notes in project v12
+PASS saving a scheme does not apply a different working plan
+PASS duplicate scheme names cannot overwrite saved work
+PASS blank scheme names are rejected
+PASS closing the manager returns keyboard focus to the opener
+PASS working design changes leave earlier snapshots immutable
+PASS two saved schemes compare their own measured finances
+PASS comparison uses two real plan drawings
+PASS comparison exposes distinct saved construction assumptions
+PASS unapplied annotation edits stay open on Escape
+PASS rename and multiline notes persist without rewriting saved geometry
+PASS reopening begins with explicit accepted-versus-saved review
+PASS Cancel reopening retains exact working inputs
+PASS confirmed reopening restores the saved plan exactly
+PASS Undo reopening restores prior working inputs and retains saved notes
+PASS Redo reopening restores the chosen snapshot without erasing the collection
+PASS reload restores named schemes and multiline annotations
+PASS search preview is offered as an explicit save source
+PASS saving an unapplied option retains accepted work and distinct saved inputs
+PASS saving an option preserves its unapplied preview
+PASS removal requests explicit confirmation before changing the collection
+PASS removal preserves the accepted plan
+PASS Undo removal restores exact scheme state and annotation
+PASS portable decision record v13 contains every saved state and note
+PASS import opens a separate project and retains all alternatives
+PASS imported scheme details are independent of the original project
+PASS blank-versus-saved comparison does not invent blank layout finances
+PASS a saved layout can reopen from a blank working plan
+PASS storage failure retains the original disk library and visibly reports memory-only changes
+PASS memory-only saved schemes remain exportable after failed browser save
+PASS narrow review keeps controls reachable with no page or dialog overflow
+PASS reopening footer stays above floating canvas controls
+PASS emulated touch can save and reopen original cost assumptions
+PASS tablet comparison fits its dialog
+PASS saved alternatives have no uncaught browser errors
+ALL 36 SAVED ALTERNATIVE BROWSER CHECKS PASS

@@ -1,0 +1,341 @@
+AssertionError [ERR_ASSERTION]: entrance edit is a live proposal, not an accepted save
+    at check (/home/spotty/projects/unbuilt/tests/residential-browser.cjs:5:72)
+    at /home/spotty/projects/unbuilt/tests/residential-browser.cjs:20:2
+UNBUILT · Cedar Market sample
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Cancel preview to close
+Flat landed residential study · geometry checks do not establish house feasibility or statutory approval. Unaccepted preview — accepted project is preserved.
+Last accepted: Fictitious rectangle study
+12,000 m² gross · Unresolved / failing constraints
+Draw site boundary
+Draw external main road
+Draw supplied natural feature
+Draw river centreline
+Draw irregular open space
+Draw reservation
+Draw connected street
+
+Preview quantities unavailable. Showing last accepted plan.
+
+Select
+Pan
+Fit site & context
++
+−
+Snap (m)
+10 m · local coordinates
+
+Recalculating proposed geometry and quantities… Accepted values remain displayed until calculation finishes.
+
+Compact
+Family
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+27 valid lots
+0 unresolved / 0 invalid
+2,560 m² valid lots
+908 m² roads
+112 m road
+4.1 m / valid lot
+8,111.4 m² residual
+Rp 0 priced · 4 missing scopes
+SOP procedure
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+
+Select an object on the plan or edit inputs at right. Drag an adjustable entrance along its edge, a street or a flexible-space corner; review the regenerated lots and quantities before accepting.
+
+Inputs & commitments
+Source geometry & reliable scale
+Scenario name
+Assignment and site
+Comparison objective
+Maximum valid lot yield
+Least internal road length
+Other declared objective (manual ranking)
+Objective / declared comparison basis
+Source information
+Fixed requirements
+Preferences
+Adjustable variables
+Unknown inputs
+Independent dimension check
+Scale status
+Unverified
+Source coordinates in metres
+Calibrated source reference
+
+Use Source geometry & scale above to import or trace a calibrated source. Changing this status alone does not calibrate geometry.
+
+Lock accepted boundary
+Boundary coordinates
+Metres: x, y on each line. Last corner closes to the first.
+Entrance & adjoining roads
+
+Place/import the main road first, enter its real widths and mark permitted adjoining frontage. Entrances below are derived from that physical relationship.
+
+Existing West Road (fictitious)
+Main road name
+Lock supplied main-road alignment
+Road source
+External road alignment
+Metres: x, y on each line. Consecutive points define the open alignment.
+External right of way (m)
+External carriageway (m)
+Eligible access frontage (edge number, from m, to m)
+Edges are numbered from 1. All other frontage is restricted. No extra entrance is assumed.
+Permit access on adjoining frontage
+
+1 adjoining frontage intervals can fit the current gate width.
+
+Edge 4, 50 m along edge
+Use this entrance
+Permit this candidate in alternative search
+Add explicitly permitted entrance
+Edge 4, 32.5 m along edge
+Use this entrance
+Permit this candidate in alternative search
+Add explicitly permitted entrance
+Edge 4, 67.5 m along edge
+Use this entrance
+Permit this candidate in alternative search
+Add explicitly permitted entrance
+Lock entrance location and strategy
+Entrance boundary edge
+Entrance offset along edge (m)
+Entrance width (m)
+Entrance transition length (m)
+Serving external road
+external
+Entrance role
+Permitted movements
+Entrance decisions and additional entrances
+Road structure & parameters
+Lot products & development rates
+Product groups & target composition
+
+Street sections normally assign one product to both facing sides. Side-specific sections require a recorded exception when facing products differ.
+
+west · main
+Compact
+Family
+west section start (%)
+west section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+east · main
+Compact
+Family
+east section start (%)
+east section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+Target basis
+Percentage of valid units
+Percentage of valid residential lot area
+Target integer counts
+Compact target
+Family target
+Mix tolerance (percentage points or units)
+Mandatory product composition
+
+Integer allocation uses largest remainder; actual percentages always use measured integer valid counts or actual lot area.
+
+Rebalance draft mix
+Protection, flexible space & reservations
+Separate common works costs
+Start or reset residential study
+
+These actions preview a replacement residential scenario. Existing project geometry and saved alternatives stay in the project. Cancel restores the accepted residential scenario.
+
+Use existing site inputsLoad fictitious rectangleLoad fictitious angledLoad fictitious concaveLoad fictitious neckPreview clear lot allocations
+
+Fixed protection and locks can block replacement. For a different fixed site create a separate named project.
+
+Undid complete residential operation.
+Cancel preview
+Accept residential change
+Export residential scenarios
+Import accepted scenario
+Skip to plan
+UNBUILT
+Projects
+Cedar Market sample
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+Cedar Market sample · 12,000 m² · 4 vertices · Entrance west · Spine · lot frontage setting 10 m · street width 6 m
+Selected: Open space A
+Geometry valid
+Financial concerns · 2
+Saved in this browser
+
+Opened Cedar Market sample. Accepted plan restored; drafts, undo history and photos are not restored. Plan Undo/Redo starts fresh.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+6.0 m STREET
+LOT 01
+200 m²
+LOT 02
+200 m²
+LOT 03
+200 m²
+LOT 04
+200 m²
+LOT 05
+200 m²
+LOT 06
+200 m²
+LOT 07
+200 m²
+LOT 08
+200 m²
+LOT 09
+200 m²
+LOT 10
+200 m²
+LOT 11
+200 m²
+LOT 12
+200 m²
+LOT 13
+200 m²
+LOT 14
+200 m²
+LOT 15
+200 m²
+LOT 16
+200 m²
+LOT 17
+200 m²
+LOT 18
+200 m²
+LOT 19
+200 m²
+LOT 20
+200 m²
+Open space A
+480 m²
+LOCKED GREEN
+IN/OUT
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+SPATIAL INSPECTOR
+Working plan
+Site boundary
+Open space A
+Circulation
+All home lots
+Locked
+SELECTED AREA
+480 m²
+SITE SHARE
+4.00%
+MODELED HOMES
+20
+BUILT AREA / HOME
+60.0 m²
+Neighborhood open spaces
+Open space A · park · 480.0 m² · fixed
+
+480.0 m² combined · 1 spaces
+
+Edit open spaces
+GEOMETRIC PARAMETERS
+LIVE PREVIEW
+Park width
+24 m
+Park depth
+20 m
+Park clearance
+0.0 m
+0 m
+4.5 m
+Subdivision parameters
+Housing template · 60 m² / home
+PLANNING COMMITMENTS
+Fix site boundary
+Editable
+Fix Open space A shape + location
+Locked
+Maintain minimum open space
+Price ceiling ≤ Rp850m
+Held
+How locks work
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Ask about Open space A
+WHAT SHOULD CHANGE?
+
+Local search request · fixed rules. Use Ask AI to interpret an intention.
+
+Send
+Bounded local search · 8 layouts
+Run optimization ▷
+
+Produces reviewable alternatives. Preview and Apply keep you in control.
+
+Draw site
+Edit boundary
+Site context & survey
+Object tools & site source
+Terrain, drainage and phasingSaved alternativesFeasibility experiments
+Assumptions · price Rp850m · ceiling Rp850m · owner Rp10bn · target 15%
+EVALUATOR
+Details
+20 homes
+Green 480 m²
+Road 720 m²
+Allowance Rp3.56bn
+Shortfall Rp6.44bn

@@ -1,0 +1,27 @@
+PASS D1 mixed radii 8,4,4 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 8,4.05,4 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1422
+  isExteriorRing() {
+                ^
+
+RangeError: Maximum call stack size exceeded
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1422:17)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+
+Node.js v22.23.3

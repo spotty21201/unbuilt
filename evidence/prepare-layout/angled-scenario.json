@@ -1,0 +1,3729 @@
+{
+  "id": "prepared_3",
+  "name": "Prepared residential layout",
+  "idea": "Connected double-loaded streets",
+  "advantage": "58 measured valid lots; 370.9 m internal road",
+  "compromise": "Non-looped street ends require the selected termination and a vehicle review",
+  "inputs": {
+    "version": 2,
+    "phase": "layout",
+    "objective": "yield",
+    "objectiveNote": "Maximum valid lot yield within the declared product mix and constraints",
+    "source": "Fictitious prepare-layout survey",
+    "fixedRequirements": "",
+    "preferences": "Coherent facing street groups",
+    "adjustable": "Internal roads, product-group allocation and proposed open space",
+    "unknowns": "",
+    "boundary": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 110,
+        "y": 0
+      },
+      {
+        "x": 125,
+        "y": 50
+      },
+      {
+        "x": 100,
+        "y": 100
+      },
+      {
+        "x": 0,
+        "y": 100
+      }
+    ],
+    "boundaryLocked": true,
+    "calibration": "source-metres",
+    "independentCheck": "",
+    "externalRoads": [
+      {
+        "id": "external",
+        "name": "Given West Road",
+        "a": {
+          "x": -5,
+          "y": 100
+        },
+        "b": {
+          "x": -5,
+          "y": 0
+        },
+        "path": [
+          {
+            "x": -5,
+            "y": 100
+          },
+          {
+            "x": -5,
+            "y": 0
+          }
+        ],
+        "rightOfWay": 10,
+        "carriageway": null,
+        "eligible": [
+          {
+            "edge": 0,
+            "from": 0,
+            "to": 0.001999998
+          },
+          {
+            "edge": 3,
+            "from": 99.998,
+            "to": 100
+          },
+          {
+            "edge": 4,
+            "from": 0,
+            "to": 100
+          }
+        ],
+        "boundaryAlignment": [
+          {
+            "x": 0,
+            "y": 100
+          },
+          {
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "source": "Planner-drawn adjoining road; survey and access assurance remain project inputs",
+        "locked": false
+      }
+    ],
+    "entrance": {
+      "id": "primary",
+      "edge": 4,
+      "offset": 50,
+      "width": 8,
+      "transition": 12,
+      "roadId": "prepared_entry",
+      "externalRoadId": "external",
+      "locked": false,
+      "role": "Primary",
+      "movements": ""
+    },
+    "roadRules": {
+      "corridor": 8,
+      "carriageway": null,
+      "cornerReturn": 0,
+      "centrelineRadius": null,
+      "junctionAngle": 90,
+      "anglePolicy": "preference",
+      "turning": "",
+      "confirmed": false
+    },
+    "roads": [
+      {
+        "id": "prepared_entry",
+        "name": "Entrance street",
+        "path": [
+          {
+            "x": 0,
+            "y": 50
+          },
+          {
+            "x": 16,
+            "y": 50
+          }
+        ],
+        "locked": false,
+        "curves": []
+      },
+      {
+        "id": "prepared_street_1",
+        "name": "Connecting street",
+        "path": [
+          {
+            "x": 16,
+            "y": 50
+          },
+          {
+            "x": 20,
+            "y": 50
+          }
+        ],
+        "locked": false,
+        "curves": []
+      },
+      {
+        "id": "prepared_street_2",
+        "name": "Residential street 2",
+        "path": [
+          {
+            "x": 20,
+            "y": 95.98499999660001
+          },
+          {
+            "x": 20,
+            "y": 50
+          },
+          {
+            "x": 20,
+            "y": 4.015000003400004
+          }
+        ],
+        "locked": false,
+        "curves": []
+      },
+      {
+        "id": "prepared_street_3",
+        "name": "Connecting street",
+        "path": [
+          {
+            "x": 20,
+            "y": 50
+          },
+          {
+            "x": 60,
+            "y": 50
+          }
+        ],
+        "locked": false,
+        "curves": []
+      },
+      {
+        "id": "prepared_street_4",
+        "name": "Residential street 4",
+        "path": [
+          {
+            "x": 60,
+            "y": 95.98499999660001
+          },
+          {
+            "x": 60,
+            "y": 50
+          },
+          {
+            "x": 60,
+            "y": 4.015000003400004
+          }
+        ],
+        "locked": false,
+        "curves": []
+      },
+      {
+        "id": "prepared_street_5",
+        "name": "Connecting street",
+        "path": [
+          {
+            "x": 60,
+            "y": 50
+          },
+          {
+            "x": 100,
+            "y": 50
+          }
+        ],
+        "locked": false,
+        "curves": []
+      },
+      {
+        "id": "prepared_street_6",
+        "name": "Residential street 6",
+        "path": [
+          {
+            "x": 100,
+            "y": 91.0221877832
+          },
+          {
+            "x": 100,
+            "y": 50
+          },
+          {
+            "x": 100,
+            "y": 4.015000003400004
+          }
+        ],
+        "locked": false,
+        "curves": []
+      }
+    ],
+    "products": [
+      {
+        "id": "compact",
+        "name": "Compact",
+        "color": "#d4a35c",
+        "frontage": 6,
+        "depth": 12,
+        "frontageMin": 5.4,
+        "frontageMax": 6.6000000000000005,
+        "depthMin": 10.8,
+        "depthMax": 13.200000000000001,
+        "areaMin": 57.6,
+        "areaMax": 86.39999999999999,
+        "maxSaleableArea": 86.39999999999999,
+        "irregular": true,
+        "minRearRatio": 0.7,
+        "rate": null
+      },
+      {
+        "id": "family",
+        "name": "Family",
+        "color": "#7ca8cc",
+        "frontage": 8,
+        "depth": 16,
+        "frontageMin": 7.2,
+        "frontageMax": 8.8,
+        "depthMin": 14.4,
+        "depthMax": 17.6,
+        "areaMin": 102.4,
+        "areaMax": 153.6,
+        "maxSaleableArea": 153.6,
+        "irregular": true,
+        "minRearRatio": 0.7,
+        "rate": null
+      }
+    ],
+    "groups": [
+      {
+        "id": "prepared_group_0_compact",
+        "roadId": "prepared_entry",
+        "from": 0,
+        "to": 0.42857142857142855,
+        "productId": "compact",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_0_family",
+        "roadId": "prepared_entry",
+        "from": 0.42857142857142855,
+        "to": 1,
+        "productId": "family",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_1_compact",
+        "roadId": "prepared_street_1",
+        "from": 0,
+        "to": 0.42857142857142855,
+        "productId": "compact",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_1_family",
+        "roadId": "prepared_street_1",
+        "from": 0.42857142857142855,
+        "to": 1,
+        "productId": "family",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "from": 0,
+        "to": 0.42857142857142855,
+        "productId": "compact",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "from": 0.42857142857142855,
+        "to": 1,
+        "productId": "family",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_3_compact",
+        "roadId": "prepared_street_3",
+        "from": 0,
+        "to": 0.42857142857142855,
+        "productId": "compact",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_3_family",
+        "roadId": "prepared_street_3",
+        "from": 0.42857142857142855,
+        "to": 1,
+        "productId": "family",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "from": 0,
+        "to": 0.42857142857142855,
+        "productId": "compact",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "from": 0.42857142857142855,
+        "to": 1,
+        "productId": "family",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_5_compact",
+        "roadId": "prepared_street_5",
+        "from": 0,
+        "to": 0.42857142857142855,
+        "productId": "compact",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_5_family",
+        "roadId": "prepared_street_5",
+        "from": 0.42857142857142855,
+        "to": 1,
+        "productId": "family",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "from": 0,
+        "to": 0.42857142857142855,
+        "productId": "compact",
+        "locked": false
+      },
+      {
+        "id": "prepared_group_6_family",
+        "roadId": "prepared_street_6",
+        "from": 0.42857142857142855,
+        "to": 1,
+        "productId": "family",
+        "locked": false
+      }
+    ],
+    "spaces": [],
+    "mix": {
+      "basis": "units",
+      "mode": "percent",
+      "tolerance": 5,
+      "mandatory": true,
+      "rounding": "largest-remainder",
+      "targets": {
+        "compact": 50,
+        "family": 50
+      }
+    },
+    "commonRates": [],
+    "lockedLots": [],
+    "fill": true,
+    "preparation": {
+      "endTreatment": "dead-end",
+      "strategy": "Loops / dead ends",
+      "tested": 17
+    },
+    "additionalEntrances": []
+  },
+  "result": {
+    "phase": "layout",
+    "externalReservation": [],
+    "screening": [
+      {
+        "object": "prepared_street_1/prepared_street_2",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_1/prepared_street_2",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_1/prepared_street_2",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_1/prepared_street_2",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_2/prepared_street_3",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_2/prepared_street_3",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_2/prepared_street_3",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_2/prepared_street_3",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_3/prepared_street_4",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_3/prepared_street_4",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_3/prepared_street_4",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_3/prepared_street_4",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_4/prepared_street_5",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_4/prepared_street_5",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_4/prepared_street_5",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_4/prepared_street_5",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_5/prepared_street_6",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_5/prepared_street_6",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "object": "prepared_street_5/prepared_street_6",
+        "state": "pass",
+        "message": "Junction angle 90.00°; preference 90° ± 10°."
+      },
+      {
+        "object": "prepared_street_5/prepared_street_6",
+        "state": "unknown",
+        "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      }
+    ],
+    "resolvedRoads": [
+      {
+        "id": "prepared_entry",
+        "points": [
+          {
+            "x": 0,
+            "y": 50
+          },
+          {
+            "x": 16,
+            "y": 50
+          }
+        ]
+      },
+      {
+        "id": "prepared_street_1",
+        "points": [
+          {
+            "x": 16,
+            "y": 50
+          },
+          {
+            "x": 20,
+            "y": 50
+          }
+        ]
+      },
+      {
+        "id": "prepared_street_2",
+        "points": [
+          {
+            "x": 20,
+            "y": 95.98499999660001
+          },
+          {
+            "x": 20,
+            "y": 50
+          },
+          {
+            "x": 20,
+            "y": 4.015000003400004
+          }
+        ]
+      },
+      {
+        "id": "prepared_street_3",
+        "points": [
+          {
+            "x": 20,
+            "y": 50
+          },
+          {
+            "x": 60,
+            "y": 50
+          }
+        ]
+      },
+      {
+        "id": "prepared_street_4",
+        "points": [
+          {
+            "x": 60,
+            "y": 95.98499999660001
+          },
+          {
+            "x": 60,
+            "y": 50
+          },
+          {
+            "x": 60,
+            "y": 4.015000003400004
+          }
+        ]
+      },
+      {
+        "id": "prepared_street_5",
+        "points": [
+          {
+            "x": 60,
+            "y": 50
+          },
+          {
+            "x": 100,
+            "y": 50
+          }
+        ]
+      },
+      {
+        "id": "prepared_street_6",
+        "points": [
+          {
+            "x": 100,
+            "y": 91.0221877832
+          },
+          {
+            "x": 100,
+            "y": 50
+          },
+          {
+            "x": 100,
+            "y": 4.015000003400004
+          }
+        ]
+      }
+    ],
+    "overlays": [],
+    "residualRegions": [
+      {
+        "id": "residual_1",
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 110,
+            "y": 0
+          },
+          {
+            "x": 118.4045,
+            "y": 28.015
+          },
+          {
+            "x": 104,
+            "y": 28.015
+          },
+          {
+            "x": 104,
+            "y": 4.015
+          },
+          {
+            "x": 96,
+            "y": 4.015
+          },
+          {
+            "x": 96,
+            "y": 6
+          },
+          {
+            "x": 80,
+            "y": 6
+          },
+          {
+            "x": 80,
+            "y": 4.015
+          },
+          {
+            "x": 56,
+            "y": 4.015
+          },
+          {
+            "x": 56,
+            "y": 6
+          },
+          {
+            "x": 40,
+            "y": 6
+          },
+          {
+            "x": 40,
+            "y": 4.015
+          },
+          {
+            "x": 16,
+            "y": 4.015
+          },
+          {
+            "x": 16,
+            "y": 6
+          },
+          {
+            "x": 0,
+            "y": 6
+          }
+        ],
+        "holes": [],
+        "area": 798.6560337500001,
+        "status": "accessible",
+        "reason": "Road edge exists; only tested frontage/depth/shape fits may become lots"
+      },
+      {
+        "id": "residual_2",
+        "points": [
+          {
+            "x": 0,
+            "y": 30
+          },
+          {
+            "x": 6.857143,
+            "y": 30
+          },
+          {
+            "x": 6.857143,
+            "y": 46
+          },
+          {
+            "x": 6,
+            "y": 46
+          },
+          {
+            "x": 6,
+            "y": 34
+          },
+          {
+            "x": 0,
+            "y": 34
+          }
+        ],
+        "holes": [],
+        "area": 37.71428800000001,
+        "status": "too-small",
+        "reason": "Below the smallest permitted product area"
+      },
+      {
+        "id": "residual_3",
+        "points": [
+          {
+            "x": 0,
+            "y": 54
+          },
+          {
+            "x": 16,
+            "y": 54
+          },
+          {
+            "x": 16,
+            "y": 59.985
+          },
+          {
+            "x": 4,
+            "y": 59.985
+          },
+          {
+            "x": 4,
+            "y": 95.985
+          },
+          {
+            "x": 24,
+            "y": 95.985
+          },
+          {
+            "x": 24,
+            "y": 92.569286
+          },
+          {
+            "x": 36,
+            "y": 92.569286
+          },
+          {
+            "x": 36,
+            "y": 74.569286
+          },
+          {
+            "x": 24,
+            "y": 74.569286
+          },
+          {
+            "x": 24,
+            "y": 70
+          },
+          {
+            "x": 40,
+            "y": 70
+          },
+          {
+            "x": 40,
+            "y": 54
+          },
+          {
+            "x": 56,
+            "y": 54
+          },
+          {
+            "x": 56,
+            "y": 59.985
+          },
+          {
+            "x": 44,
+            "y": 59.985
+          },
+          {
+            "x": 44,
+            "y": 95.985
+          },
+          {
+            "x": 64,
+            "y": 95.985
+          },
+          {
+            "x": 64,
+            "y": 92.569286
+          },
+          {
+            "x": 76,
+            "y": 92.569286
+          },
+          {
+            "x": 76,
+            "y": 74.569286
+          },
+          {
+            "x": 64,
+            "y": 74.569286
+          },
+          {
+            "x": 64,
+            "y": 70
+          },
+          {
+            "x": 80,
+            "y": 70
+          },
+          {
+            "x": 80,
+            "y": 54
+          },
+          {
+            "x": 96,
+            "y": 54
+          },
+          {
+            "x": 96,
+            "y": 55.022188
+          },
+          {
+            "x": 84,
+            "y": 55.022188
+          },
+          {
+            "x": 84,
+            "y": 91.022188
+          },
+          {
+            "x": 104,
+            "y": 91.022188
+          },
+          {
+            "x": 104,
+            "y": 65.733393
+          },
+          {
+            "x": 116,
+            "y": 65.733393
+          },
+          {
+            "x": 116,
+            "y": 53.733393
+          },
+          {
+            "x": 104,
+            "y": 53.733393
+          },
+          {
+            "x": 104,
+            "y": 52.015
+          },
+          {
+            "x": 120,
+            "y": 52.015
+          },
+          {
+            "x": 120,
+            "y": 33.333333
+          },
+          {
+            "x": 125,
+            "y": 50
+          },
+          {
+            "x": 100,
+            "y": 100
+          },
+          {
+            "x": 0,
+            "y": 100
+          }
+        ],
+        "holes": [],
+        "area": 1866.4891634999985,
+        "status": "accessible",
+        "reason": "Road edge exists; only tested frontage/depth/shape fits may become lots"
+      },
+      {
+        "id": "residual_4",
+        "points": [
+          {
+            "x": 14.857143,
+            "y": 30
+          },
+          {
+            "x": 16,
+            "y": 30
+          },
+          {
+            "x": 16,
+            "y": 46
+          },
+          {
+            "x": 14.857143,
+            "y": 46
+          }
+        ],
+        "holes": [],
+        "area": 18.28571199999999,
+        "status": "too-small",
+        "reason": "Below the smallest permitted product area"
+      },
+      {
+        "id": "residual_5",
+        "points": [
+          {
+            "x": 24,
+            "y": 44.015
+          },
+          {
+            "x": 40,
+            "y": 44.015
+          },
+          {
+            "x": 40,
+            "y": 46
+          },
+          {
+            "x": 24,
+            "y": 46
+          }
+        ],
+        "holes": [],
+        "area": 31.76000000000022,
+        "status": "too-small",
+        "reason": "Below the smallest permitted product area"
+      },
+      {
+        "id": "residual_6",
+        "points": [
+          {
+            "x": 64,
+            "y": 44.015
+          },
+          {
+            "x": 80,
+            "y": 44.015
+          },
+          {
+            "x": 80,
+            "y": 46
+          },
+          {
+            "x": 64,
+            "y": 46
+          }
+        ],
+        "holes": [],
+        "area": 31.76000000000022,
+        "status": "too-small",
+        "reason": "Below the smallest permitted product area"
+      }
+    ],
+    "lots": [
+      {
+        "id": "lot_prepared_group_0_compact_0_46000_6000_46000",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_0_compact",
+        "roadId": "prepared_entry",
+        "points": [
+          {
+            "x": 0,
+            "y": 34
+          },
+          {
+            "x": 6,
+            "y": 34
+          },
+          {
+            "x": 6,
+            "y": 46
+          },
+          {
+            "x": 0,
+            "y": 46
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_0_family_6857_46000_14857_46000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_0_family",
+        "roadId": "prepared_entry",
+        "points": [
+          {
+            "x": 6.857143,
+            "y": 30
+          },
+          {
+            "x": 14.857143,
+            "y": 30
+          },
+          {
+            "x": 14.857143,
+            "y": 46
+          },
+          {
+            "x": 6.857143,
+            "y": 46
+          }
+        ],
+        "area": 128,
+        "frontage": 7.999999857142857,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_family_16000_30000_16000_22000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 0,
+            "y": 22
+          },
+          {
+            "x": 16,
+            "y": 22
+          },
+          {
+            "x": 16,
+            "y": 30
+          },
+          {
+            "x": 0,
+            "y": 30
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_family_16000_22000_16000_14000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 0,
+            "y": 14
+          },
+          {
+            "x": 16,
+            "y": 14
+          },
+          {
+            "x": 16,
+            "y": 22
+          },
+          {
+            "x": 0,
+            "y": 22
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_family_16000_14000_16000_6000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 0,
+            "y": 6
+          },
+          {
+            "x": 16,
+            "y": 6
+          },
+          {
+            "x": 16,
+            "y": 14
+          },
+          {
+            "x": 0,
+            "y": 14
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_family_24000_4015_24000_12015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 24,
+            "y": 4.015
+          },
+          {
+            "x": 40,
+            "y": 4.015
+          },
+          {
+            "x": 40,
+            "y": 12.015
+          },
+          {
+            "x": 24,
+            "y": 12.015
+          }
+        ],
+        "area": 127.99999999999999,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_family_24000_12015_24000_20015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 24,
+            "y": 12.015
+          },
+          {
+            "x": 40,
+            "y": 12.015
+          },
+          {
+            "x": 40,
+            "y": 20.015
+          },
+          {
+            "x": 24,
+            "y": 20.015
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_family_24000_20015_24000_28015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 24,
+            "y": 20.015
+          },
+          {
+            "x": 40,
+            "y": 20.015
+          },
+          {
+            "x": 40,
+            "y": 28.015
+          },
+          {
+            "x": 24,
+            "y": 28.015
+          }
+        ],
+        "area": 127.99999999999989,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_family_24000_28015_24000_36015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 24,
+            "y": 28.015
+          },
+          {
+            "x": 40,
+            "y": 28.015
+          },
+          {
+            "x": 40,
+            "y": 36.015
+          },
+          {
+            "x": 24,
+            "y": 36.015
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_family_24000_36015_24000_44015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_2_family",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 24,
+            "y": 36.015
+          },
+          {
+            "x": 40,
+            "y": 36.015
+          },
+          {
+            "x": 40,
+            "y": 44.015
+          },
+          {
+            "x": 24,
+            "y": 44.015
+          }
+        ],
+        "area": 127.99999999999989,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_3_family_40000_46000_48000_46000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_3_family",
+        "roadId": "prepared_street_3",
+        "points": [
+          {
+            "x": 40,
+            "y": 30
+          },
+          {
+            "x": 48,
+            "y": 30
+          },
+          {
+            "x": 48,
+            "y": 46
+          },
+          {
+            "x": 40,
+            "y": 46
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_3_family_48000_46000_56000_46000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_3_family",
+        "roadId": "prepared_street_3",
+        "points": [
+          {
+            "x": 48,
+            "y": 30
+          },
+          {
+            "x": 56,
+            "y": 30
+          },
+          {
+            "x": 56,
+            "y": 46
+          },
+          {
+            "x": 48,
+            "y": 46
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_family_56000_30000_56000_22000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 40,
+            "y": 22
+          },
+          {
+            "x": 56,
+            "y": 22
+          },
+          {
+            "x": 56,
+            "y": 30
+          },
+          {
+            "x": 40,
+            "y": 30
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_family_56000_22000_56000_14000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 40,
+            "y": 14
+          },
+          {
+            "x": 56,
+            "y": 14
+          },
+          {
+            "x": 56,
+            "y": 22
+          },
+          {
+            "x": 40,
+            "y": 22
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_family_56000_14000_56000_6000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 40,
+            "y": 6
+          },
+          {
+            "x": 56,
+            "y": 6
+          },
+          {
+            "x": 56,
+            "y": 14
+          },
+          {
+            "x": 40,
+            "y": 14
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_family_64000_4015_64000_12015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 64,
+            "y": 4.015
+          },
+          {
+            "x": 80,
+            "y": 4.015
+          },
+          {
+            "x": 80,
+            "y": 12.015
+          },
+          {
+            "x": 64,
+            "y": 12.015
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_family_64000_12015_64000_20015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 64,
+            "y": 12.015
+          },
+          {
+            "x": 80,
+            "y": 12.015
+          },
+          {
+            "x": 80,
+            "y": 20.015
+          },
+          {
+            "x": 64,
+            "y": 20.015
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_family_64000_20015_64000_28015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 64,
+            "y": 20.015
+          },
+          {
+            "x": 80,
+            "y": 20.015
+          },
+          {
+            "x": 80,
+            "y": 28.015
+          },
+          {
+            "x": 64,
+            "y": 28.015
+          }
+        ],
+        "area": 127.99999999999977,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_family_64000_28015_64000_36015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 64,
+            "y": 28.015
+          },
+          {
+            "x": 80,
+            "y": 28.015
+          },
+          {
+            "x": 80,
+            "y": 36.015
+          },
+          {
+            "x": 64,
+            "y": 36.015
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_family_64000_36015_64000_44015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_4_family",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 64,
+            "y": 36.015
+          },
+          {
+            "x": 80,
+            "y": 36.015
+          },
+          {
+            "x": 80,
+            "y": 44.015
+          },
+          {
+            "x": 64,
+            "y": 44.015
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_5_family_80000_46000_88000_46000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_5_family",
+        "roadId": "prepared_street_5",
+        "points": [
+          {
+            "x": 80,
+            "y": 30
+          },
+          {
+            "x": 88,
+            "y": 30
+          },
+          {
+            "x": 88,
+            "y": 46
+          },
+          {
+            "x": 80,
+            "y": 46
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_5_family_88000_46000_96000_46000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_5_family",
+        "roadId": "prepared_street_5",
+        "points": [
+          {
+            "x": 88,
+            "y": 30
+          },
+          {
+            "x": 96,
+            "y": 30
+          },
+          {
+            "x": 96,
+            "y": 46
+          },
+          {
+            "x": 88,
+            "y": 46
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_family_96000_30000_96000_22000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_6_family",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 80,
+            "y": 22
+          },
+          {
+            "x": 96,
+            "y": 22
+          },
+          {
+            "x": 96,
+            "y": 30
+          },
+          {
+            "x": 80,
+            "y": 30
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_family_96000_22000_96000_14000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_6_family",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 80,
+            "y": 14
+          },
+          {
+            "x": 96,
+            "y": 14
+          },
+          {
+            "x": 96,
+            "y": 22
+          },
+          {
+            "x": 80,
+            "y": 22
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_family_96000_14000_96000_6000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_6_family",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 80,
+            "y": 6
+          },
+          {
+            "x": 96,
+            "y": 6
+          },
+          {
+            "x": 96,
+            "y": 14
+          },
+          {
+            "x": 80,
+            "y": 14
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_family_104000_28015_104000_36015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_6_family",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 104,
+            "y": 28.015
+          },
+          {
+            "x": 118.4045,
+            "y": 28.015
+          },
+          {
+            "x": 120,
+            "y": 33.333333
+          },
+          {
+            "x": 120,
+            "y": 36.015
+          },
+          {
+            "x": 104,
+            "y": 36.015
+          }
+        ],
+        "area": 123.7572998492501,
+        "frontage": 8,
+        "depth": 14.644500015042306,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_family_104000_36015_104000_44015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_6_family",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 104,
+            "y": 36.015
+          },
+          {
+            "x": 120,
+            "y": 36.015
+          },
+          {
+            "x": 120,
+            "y": 44.015
+          },
+          {
+            "x": 104,
+            "y": 44.015
+          }
+        ],
+        "area": 127.99999999999955,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_family_104000_44015_104000_52015",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_6_family",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 104,
+            "y": 44.015
+          },
+          {
+            "x": 120,
+            "y": 44.015
+          },
+          {
+            "x": 120,
+            "y": 52.015
+          },
+          {
+            "x": 104,
+            "y": 52.015
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_compact_104000_53733_104000_59733",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 104,
+            "y": 53.733393
+          },
+          {
+            "x": 116,
+            "y": 53.733393
+          },
+          {
+            "x": 116,
+            "y": 59.733393
+          },
+          {
+            "x": 104,
+            "y": 59.733393
+          }
+        ],
+        "area": 72,
+        "frontage": 5.9999998571428605,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_compact_104000_59733_104000_65733",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 104,
+            "y": 59.733393
+          },
+          {
+            "x": 116,
+            "y": 59.733393
+          },
+          {
+            "x": 116,
+            "y": 65.733393
+          },
+          {
+            "x": 104,
+            "y": 65.733393
+          }
+        ],
+        "area": 72,
+        "frontage": 5.999999857142868,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1.000000000000001,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_compact_96000_91022_96000_85022",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 84,
+            "y": 85.022188
+          },
+          {
+            "x": 96,
+            "y": 85.022188
+          },
+          {
+            "x": 96,
+            "y": 91.022188
+          },
+          {
+            "x": 84,
+            "y": 91.022188
+          }
+        ],
+        "area": 71.99999999999909,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_compact_96000_85022_96000_79022",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 84,
+            "y": 79.022188
+          },
+          {
+            "x": 96,
+            "y": 79.022188
+          },
+          {
+            "x": 96,
+            "y": 85.022188
+          },
+          {
+            "x": 84,
+            "y": 85.022188
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_compact_96000_79022_96000_73022",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 84,
+            "y": 73.022188
+          },
+          {
+            "x": 96,
+            "y": 73.022188
+          },
+          {
+            "x": 96,
+            "y": 79.022188
+          },
+          {
+            "x": 84,
+            "y": 79.022188
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_compact_96000_73022_96000_67022",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 84,
+            "y": 67.022188
+          },
+          {
+            "x": 96,
+            "y": 67.022188
+          },
+          {
+            "x": 96,
+            "y": 73.022188
+          },
+          {
+            "x": 84,
+            "y": 73.022188
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_compact_96000_67022_96000_61022",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 84,
+            "y": 61.022188
+          },
+          {
+            "x": 96,
+            "y": 61.022188
+          },
+          {
+            "x": 96,
+            "y": 67.022188
+          },
+          {
+            "x": 84,
+            "y": 67.022188
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_6_compact_96000_61022_96000_55022",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_6_compact",
+        "roadId": "prepared_street_6",
+        "points": [
+          {
+            "x": 84,
+            "y": 55.022188
+          },
+          {
+            "x": 96,
+            "y": 55.022188
+          },
+          {
+            "x": 96,
+            "y": 61.022188
+          },
+          {
+            "x": 84,
+            "y": 61.022188
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_5_family_80000_54000_72000_54000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_5_family",
+        "roadId": "prepared_street_5",
+        "points": [
+          {
+            "x": 72,
+            "y": 54
+          },
+          {
+            "x": 80,
+            "y": 54
+          },
+          {
+            "x": 80,
+            "y": 70
+          },
+          {
+            "x": 72,
+            "y": 70
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_5_family_72000_54000_64000_54000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_5_family",
+        "roadId": "prepared_street_5",
+        "points": [
+          {
+            "x": 64,
+            "y": 54
+          },
+          {
+            "x": 72,
+            "y": 54
+          },
+          {
+            "x": 72,
+            "y": 70
+          },
+          {
+            "x": 64,
+            "y": 70
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_64000_74569_64000_80569",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 64,
+            "y": 74.569286
+          },
+          {
+            "x": 76,
+            "y": 74.569286
+          },
+          {
+            "x": 76,
+            "y": 80.569286
+          },
+          {
+            "x": 64,
+            "y": 80.569286
+          }
+        ],
+        "area": 72,
+        "frontage": 5.999999714008069,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_64000_80569_64000_86569",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 64,
+            "y": 80.569286
+          },
+          {
+            "x": 76,
+            "y": 80.569286
+          },
+          {
+            "x": 76,
+            "y": 86.569286
+          },
+          {
+            "x": 64,
+            "y": 86.569286
+          }
+        ],
+        "area": 72,
+        "frontage": 5.999999714008069,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_64000_86569_64000_92569",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 64,
+            "y": 86.569286
+          },
+          {
+            "x": 76,
+            "y": 86.569286
+          },
+          {
+            "x": 76,
+            "y": 92.569286
+          },
+          {
+            "x": 64,
+            "y": 92.569286
+          }
+        ],
+        "area": 72,
+        "frontage": 5.999999714008069,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_56000_95985_56000_89985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 44,
+            "y": 89.985
+          },
+          {
+            "x": 56,
+            "y": 89.985
+          },
+          {
+            "x": 56,
+            "y": 95.985
+          },
+          {
+            "x": 44,
+            "y": 95.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_56000_89985_56000_83985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 44,
+            "y": 83.985
+          },
+          {
+            "x": 56,
+            "y": 83.985
+          },
+          {
+            "x": 56,
+            "y": 89.985
+          },
+          {
+            "x": 44,
+            "y": 89.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_56000_83985_56000_77985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 44,
+            "y": 77.985
+          },
+          {
+            "x": 56,
+            "y": 77.985
+          },
+          {
+            "x": 56,
+            "y": 83.985
+          },
+          {
+            "x": 44,
+            "y": 83.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_56000_77985_56000_71985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 44,
+            "y": 71.985
+          },
+          {
+            "x": 56,
+            "y": 71.985
+          },
+          {
+            "x": 56,
+            "y": 77.985
+          },
+          {
+            "x": 44,
+            "y": 77.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_56000_71985_56000_65985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 44,
+            "y": 65.985
+          },
+          {
+            "x": 56,
+            "y": 65.985
+          },
+          {
+            "x": 56,
+            "y": 71.985
+          },
+          {
+            "x": 44,
+            "y": 71.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_4_compact_56000_65985_56000_59985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_4_compact",
+        "roadId": "prepared_street_4",
+        "points": [
+          {
+            "x": 44,
+            "y": 59.985
+          },
+          {
+            "x": 56,
+            "y": 59.985
+          },
+          {
+            "x": 56,
+            "y": 65.985
+          },
+          {
+            "x": 44,
+            "y": 65.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_3_family_40000_54000_32000_54000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_3_family",
+        "roadId": "prepared_street_3",
+        "points": [
+          {
+            "x": 32,
+            "y": 54
+          },
+          {
+            "x": 40,
+            "y": 54
+          },
+          {
+            "x": 40,
+            "y": 70
+          },
+          {
+            "x": 32,
+            "y": 70
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_3_family_32000_54000_24000_54000",
+        "scenarioId": "prepared_3",
+        "productId": "family",
+        "groupId": "prepared_group_3_family",
+        "roadId": "prepared_street_3",
+        "points": [
+          {
+            "x": 24,
+            "y": 54
+          },
+          {
+            "x": 32,
+            "y": 54
+          },
+          {
+            "x": 32,
+            "y": 70
+          },
+          {
+            "x": 24,
+            "y": 70
+          }
+        ],
+        "area": 128,
+        "frontage": 8,
+        "depth": 16,
+        "depthMax": 16,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_24000_74569_24000_80569",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 24,
+            "y": 74.569286
+          },
+          {
+            "x": 36,
+            "y": 74.569286
+          },
+          {
+            "x": 36,
+            "y": 80.569286
+          },
+          {
+            "x": 24,
+            "y": 80.569286
+          }
+        ],
+        "area": 72,
+        "frontage": 5.999999714008069,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_24000_80569_24000_86569",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 24,
+            "y": 80.569286
+          },
+          {
+            "x": 36,
+            "y": 80.569286
+          },
+          {
+            "x": 36,
+            "y": 86.569286
+          },
+          {
+            "x": 24,
+            "y": 86.569286
+          }
+        ],
+        "area": 72.00000000000023,
+        "frontage": 5.999999714008069,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_24000_86569_24000_92569",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 24,
+            "y": 86.569286
+          },
+          {
+            "x": 36,
+            "y": 86.569286
+          },
+          {
+            "x": 36,
+            "y": 92.569286
+          },
+          {
+            "x": 24,
+            "y": 92.569286
+          }
+        ],
+        "area": 72,
+        "frontage": 5.999999714008069,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_16000_95985_16000_89985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 4,
+            "y": 89.985
+          },
+          {
+            "x": 16,
+            "y": 89.985
+          },
+          {
+            "x": 16,
+            "y": 95.985
+          },
+          {
+            "x": 4,
+            "y": 95.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_16000_89985_16000_83985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 4,
+            "y": 83.985
+          },
+          {
+            "x": 16,
+            "y": 83.985
+          },
+          {
+            "x": 16,
+            "y": 89.985
+          },
+          {
+            "x": 4,
+            "y": 89.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_16000_83985_16000_77985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 4,
+            "y": 77.985
+          },
+          {
+            "x": 16,
+            "y": 77.985
+          },
+          {
+            "x": 16,
+            "y": 83.985
+          },
+          {
+            "x": 4,
+            "y": 83.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_16000_77985_16000_71985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 4,
+            "y": 71.985
+          },
+          {
+            "x": 16,
+            "y": 71.985
+          },
+          {
+            "x": 16,
+            "y": 77.985
+          },
+          {
+            "x": 4,
+            "y": 77.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_16000_71985_16000_65985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 4,
+            "y": 65.985
+          },
+          {
+            "x": 16,
+            "y": 65.985
+          },
+          {
+            "x": 16,
+            "y": 71.985
+          },
+          {
+            "x": 4,
+            "y": 71.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      },
+      {
+        "id": "lot_prepared_group_2_compact_16000_65985_16000_59985",
+        "scenarioId": "prepared_3",
+        "productId": "compact",
+        "groupId": "prepared_group_2_compact",
+        "roadId": "prepared_street_2",
+        "points": [
+          {
+            "x": 4,
+            "y": 59.985
+          },
+          {
+            "x": 16,
+            "y": 59.985
+          },
+          {
+            "x": 16,
+            "y": 65.985
+          },
+          {
+            "x": 4,
+            "y": 65.985
+          }
+        ],
+        "area": 72,
+        "frontage": 6,
+        "depth": 12,
+        "depthMax": 12,
+        "rearRatio": 1,
+        "status": "valid",
+        "exceptions": [],
+        "locked": false
+      }
+    ],
+    "road": [
+      [
+        [
+          {
+            "x": 0,
+            "y": 46
+          },
+          {
+            "x": 16,
+            "y": 46
+          },
+          {
+            "x": 16,
+            "y": 4.015
+          },
+          {
+            "x": 24,
+            "y": 4.015
+          },
+          {
+            "x": 24,
+            "y": 46
+          },
+          {
+            "x": 56,
+            "y": 46
+          },
+          {
+            "x": 56,
+            "y": 4.015
+          },
+          {
+            "x": 64,
+            "y": 4.015
+          },
+          {
+            "x": 64,
+            "y": 46
+          },
+          {
+            "x": 96,
+            "y": 46
+          },
+          {
+            "x": 96,
+            "y": 4.015
+          },
+          {
+            "x": 104,
+            "y": 4.015
+          },
+          {
+            "x": 104,
+            "y": 91.022188
+          },
+          {
+            "x": 96,
+            "y": 91.022188
+          },
+          {
+            "x": 96,
+            "y": 54
+          },
+          {
+            "x": 64,
+            "y": 54
+          },
+          {
+            "x": 64,
+            "y": 95.985
+          },
+          {
+            "x": 56,
+            "y": 95.985
+          },
+          {
+            "x": 56,
+            "y": 54
+          },
+          {
+            "x": 24,
+            "y": 54
+          },
+          {
+            "x": 24,
+            "y": 95.985
+          },
+          {
+            "x": 16,
+            "y": 95.985
+          },
+          {
+            "x": 16,
+            "y": 54
+          },
+          {
+            "x": 0,
+            "y": 54
+          }
+        ]
+      ]
+    ],
+    "connection": [
+      [
+        [
+          {
+            "x": 0,
+            "y": 46
+          },
+          {
+            "x": 16,
+            "y": 46
+          },
+          {
+            "x": 16,
+            "y": 54
+          },
+          {
+            "x": 0,
+            "y": 54
+          }
+        ]
+      ]
+    ],
+    "offsiteConnection": [
+      [
+        [
+          {
+            "x": -5,
+            "y": 46
+          },
+          {
+            "x": 0,
+            "y": 46
+          },
+          {
+            "x": 0,
+            "y": 54
+          },
+          {
+            "x": -5,
+            "y": 54
+          }
+        ]
+      ]
+    ],
+    "blocks": [
+      [
+        [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 110,
+            "y": 0
+          },
+          {
+            "x": 125,
+            "y": 50
+          },
+          {
+            "x": 100,
+            "y": 100
+          },
+          {
+            "x": 0,
+            "y": 100
+          },
+          {
+            "x": 0,
+            "y": 54
+          },
+          {
+            "x": 16,
+            "y": 54
+          },
+          {
+            "x": 16,
+            "y": 95.985
+          },
+          {
+            "x": 24,
+            "y": 95.985
+          },
+          {
+            "x": 24,
+            "y": 54
+          },
+          {
+            "x": 56,
+            "y": 54
+          },
+          {
+            "x": 56,
+            "y": 95.985
+          },
+          {
+            "x": 64,
+            "y": 95.985
+          },
+          {
+            "x": 64,
+            "y": 54
+          },
+          {
+            "x": 96,
+            "y": 54
+          },
+          {
+            "x": 96,
+            "y": 91.022188
+          },
+          {
+            "x": 104,
+            "y": 91.022188
+          },
+          {
+            "x": 104,
+            "y": 4.015
+          },
+          {
+            "x": 96,
+            "y": 4.015
+          },
+          {
+            "x": 96,
+            "y": 46
+          },
+          {
+            "x": 64,
+            "y": 46
+          },
+          {
+            "x": 64,
+            "y": 4.015
+          },
+          {
+            "x": 56,
+            "y": 4.015
+          },
+          {
+            "x": 56,
+            "y": 46
+          },
+          {
+            "x": 24,
+            "y": 46
+          },
+          {
+            "x": 24,
+            "y": 4.015
+          },
+          {
+            "x": 16,
+            "y": 4.015
+          },
+          {
+            "x": 16,
+            "y": 46
+          },
+          {
+            "x": 0,
+            "y": 46
+          }
+        ]
+      ]
+    ],
+    "residual": [
+      [
+        [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 110,
+            "y": 0
+          },
+          {
+            "x": 118.4045,
+            "y": 28.015
+          },
+          {
+            "x": 104,
+            "y": 28.015
+          },
+          {
+            "x": 104,
+            "y": 4.015
+          },
+          {
+            "x": 96,
+            "y": 4.015
+          },
+          {
+            "x": 96,
+            "y": 6
+          },
+          {
+            "x": 80,
+            "y": 6
+          },
+          {
+            "x": 80,
+            "y": 4.015
+          },
+          {
+            "x": 56,
+            "y": 4.015
+          },
+          {
+            "x": 56,
+            "y": 6
+          },
+          {
+            "x": 40,
+            "y": 6
+          },
+          {
+            "x": 40,
+            "y": 4.015
+          },
+          {
+            "x": 16,
+            "y": 4.015
+          },
+          {
+            "x": 16,
+            "y": 6
+          },
+          {
+            "x": 0,
+            "y": 6
+          }
+        ]
+      ],
+      [
+        [
+          {
+            "x": 0,
+            "y": 30
+          },
+          {
+            "x": 6.857143,
+            "y": 30
+          },
+          {
+            "x": 6.857143,
+            "y": 46
+          },
+          {
+            "x": 6,
+            "y": 46
+          },
+          {
+            "x": 6,
+            "y": 34
+          },
+          {
+            "x": 0,
+            "y": 34
+          }
+        ]
+      ],
+      [
+        [
+          {
+            "x": 0,
+            "y": 54
+          },
+          {
+            "x": 16,
+            "y": 54
+          },
+          {
+            "x": 16,
+            "y": 59.985
+          },
+          {
+            "x": 4,
+            "y": 59.985
+          },
+          {
+            "x": 4,
+            "y": 95.985
+          },
+          {
+            "x": 24,
+            "y": 95.985
+          },
+          {
+            "x": 24,
+            "y": 92.569286
+          },
+          {
+            "x": 36,
+            "y": 92.569286
+          },
+          {
+            "x": 36,
+            "y": 74.569286
+          },
+          {
+            "x": 24,
+            "y": 74.569286
+          },
+          {
+            "x": 24,
+            "y": 70
+          },
+          {
+            "x": 40,
+            "y": 70
+          },
+          {
+            "x": 40,
+            "y": 54
+          },
+          {
+            "x": 56,
+            "y": 54
+          },
+          {
+            "x": 56,
+            "y": 59.985
+          },
+          {
+            "x": 44,
+            "y": 59.985
+          },
+          {
+            "x": 44,
+            "y": 95.985
+          },
+          {
+            "x": 64,
+            "y": 95.985
+          },
+          {
+            "x": 64,
+            "y": 92.569286
+          },
+          {
+            "x": 76,
+            "y": 92.569286
+          },
+          {
+            "x": 76,
+            "y": 74.569286
+          },
+          {
+            "x": 64,
+            "y": 74.569286
+          },
+          {
+            "x": 64,
+            "y": 70
+          },
+          {
+            "x": 80,
+            "y": 70
+          },
+          {
+            "x": 80,
+            "y": 54
+          },
+          {
+            "x": 96,
+            "y": 54
+          },
+          {
+            "x": 96,
+            "y": 55.022188
+          },
+          {
+            "x": 84,
+            "y": 55.022188
+          },
+          {
+            "x": 84,
+            "y": 91.022188
+          },
+          {
+            "x": 104,
+            "y": 91.022188
+          },
+          {
+            "x": 104,
+            "y": 65.733393
+          },
+          {
+            "x": 116,
+            "y": 65.733393
+          },
+          {
+            "x": 116,
+            "y": 53.733393
+          },
+          {
+            "x": 104,
+            "y": 53.733393
+          },
+          {
+            "x": 104,
+            "y": 52.015
+          },
+          {
+            "x": 120,
+            "y": 52.015
+          },
+          {
+            "x": 120,
+            "y": 33.333333
+          },
+          {
+            "x": 125,
+            "y": 50
+          },
+          {
+            "x": 100,
+            "y": 100
+          },
+          {
+            "x": 0,
+            "y": 100
+          }
+        ]
+      ],
+      [
+        [
+          {
+            "x": 14.857143,
+            "y": 30
+          },
+          {
+            "x": 16,
+            "y": 30
+          },
+          {
+            "x": 16,
+            "y": 46
+          },
+          {
+            "x": 14.857143,
+            "y": 46
+          }
+        ]
+      ],
+      [
+        [
+          {
+            "x": 24,
+            "y": 44.015
+          },
+          {
+            "x": 40,
+            "y": 44.015
+          },
+          {
+            "x": 40,
+            "y": 46
+          },
+          {
+            "x": 24,
+            "y": 46
+          }
+        ]
+      ],
+      [
+        [
+          {
+            "x": 64,
+            "y": 44.015
+          },
+          {
+            "x": 80,
+            "y": 44.015
+          },
+          {
+            "x": 80,
+            "y": 46
+          },
+          {
+            "x": 64,
+            "y": 46
+          }
+        ]
+      ]
+    ],
+    "exclusions": {},
+    "issues": [
+      {
+        "state": "unknown",
+        "object": "entrance",
+        "message": "Primary: permissible movements are not specified."
+      },
+      {
+        "state": "unknown",
+        "object": "external",
+        "message": "External road ROW or carriageway dimensions are missing."
+      },
+      {
+        "state": "unknown",
+        "object": "entrance",
+        "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_1/prepared_street_2: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_1/prepared_street_2: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_2/prepared_street_3: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_2/prepared_street_3: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_3/prepared_street_4: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_3/prepared_street_4: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_4/prepared_street_5: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_4/prepared_street_5: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_5/prepared_street_6: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "prepared_street_5/prepared_street_6: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Road dimensions are provisional project inputs."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Carriageway width is missing."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Project turning requirements have not been supplied."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+      }
+    ],
+    "counts": {
+      "valid": 58,
+      "unresolved": 0,
+      "invalid": 0
+    },
+    "validLotArea": 5907.757299849249,
+    "roadLength": 370.94718776620005,
+    "roadPerLot": 6.39564116838276,
+    "land": {
+      "gross": 11500,
+      "residential": 5907.757299849249,
+      "roads": 2807.577504000002,
+      "protected": 0,
+      "flexible": 0,
+      "reservations": 0,
+      "residual": 2784.665197249999,
+      "overlap": 0,
+      "gap": 0,
+      "tolerance": 0.01
+    },
+    "schedule": [
+      {
+        "productId": "compact",
+        "valid": 27,
+        "target": 50,
+        "roundedTarget": 29,
+        "actual": 46.55172413793103,
+        "deviation": -3.448275862068968,
+        "mix": "pass",
+        "area": 1943.9999999999993,
+        "minArea": 71.99999999999909,
+        "meanArea": 71.99999999999997,
+        "maxArea": 72.00000000000023,
+        "cost": null
+      },
+      {
+        "productId": "family",
+        "valid": 31,
+        "target": 50,
+        "roundedTarget": 29,
+        "actual": 53.44827586206896,
+        "deviation": 3.448275862068961,
+        "mix": "pass",
+        "area": 3963.757299849249,
+        "minArea": 123.7572998492501,
+        "meanArea": 127.86313870481449,
+        "maxArea": 128,
+        "cost": null
+      }
+    ],
+    "groupSchedule": [
+      {
+        "groupId": "prepared_group_0_compact",
+        "productId": "compact",
+        "valid": 1,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_0_family",
+        "productId": "family",
+        "valid": 1,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_1_compact",
+        "productId": "compact",
+        "valid": 0,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_1_family",
+        "productId": "family",
+        "valid": 0,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_2_compact",
+        "productId": "compact",
+        "valid": 9,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_2_family",
+        "productId": "family",
+        "valid": 8,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_3_compact",
+        "productId": "compact",
+        "valid": 0,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_3_family",
+        "productId": "family",
+        "valid": 4,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_4_compact",
+        "productId": "compact",
+        "valid": 9,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_4_family",
+        "productId": "family",
+        "valid": 8,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_5_compact",
+        "productId": "compact",
+        "valid": 0,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_5_family",
+        "productId": "family",
+        "valid": 4,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_6_compact",
+        "productId": "compact",
+        "valid": 8,
+        "matching": true
+      },
+      {
+        "groupId": "prepared_group_6_family",
+        "productId": "family",
+        "valid": 6,
+        "matching": true
+      }
+    ],
+    "cost": 0,
+    "missingCosts": [
+      "Compact: per-lot development rate missing",
+      "Family: per-lot development rate missing",
+      "roads: common works unpriced",
+      "spaces: common works unpriced"
+    ],
+    "qualified": false,
+    "skipped": {
+      "fragmented or reserved land": 218,
+      "overlap with road, reservation or another lot": 44,
+      "usable depth outside product variation": 64,
+      "frontage outside product variation": 56
+    }
+  }
+}

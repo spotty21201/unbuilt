@@ -1,3 +1,5 @@
+import {residentialStudySummary} from '../../src/residential-labels';
+import type {ResidentialWorkspace} from '../../src/residential';
 import {usesShapedStreets} from '../../src/road-surfaces';
 import DevelopmentEditor from './unbuilt/DevelopmentEditor';
 import { measureProposal, type AIProposal } from '../../src/ai-assistant';
@@ -14,10 +16,10 @@ import type {LotOperation} from './unbuilt/LotPlanEditor';
 import {lotBlocks,rectangleForLots} from '../../src/parcels';
 import type {PlanContents} from '../../src/contents';
 import StreetEditor from './unbuilt/StreetEditor';
-import { nearestStreetPoint, appendStreetPath, moveStreetNode, networkFromRoads, onStreet, samePoint, splitJunctions, type StreetNetwork } from '../../src/streets';
-import { streetEntrance, streetConflict } from '../../src/geometry';
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
-import { deriveQuantities, editsForLayout, entranceErrors, generateLoop, generateSpine, lotKey, lotRoadFrontage, placeFootprint, homeRestorationConflicts, validateLayout } from '../../src/geometry';
+import { nearestStreetPoint, appendStreetPath, moveStreetNode, networkFromRoads, halfRoadWidth, onStreet, samePoint, splitJunctions, type StreetNetwork } from '../../src/streets';
+import { streetEntrance, streetConflict, halfWidthStreetDraft } from '../../src/geometry';
+import { Fragment, lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { ROAD_W, layoutOpenSpaces, deriveQuantities, editsForLayout, entranceErrors, generateLoop, generateSpine, lotKey, lotRoadFrontage, placeFootprint, homeRestorationConflicts, validateLayout } from '../../src/geometry';
 import type { Entrance, LotEdits, Site } from '../../src/geometry';
 import type { Pt } from '../../src/polygon';
 import { hasBoundary, hasLayout, hasHome } from '../../src/contents';
@@ -49,6 +51,10 @@ import Assistant from './unbuilt/Assistant';
 import { LayersIcon, DrawSiteIcon, DownloadIcon, UndoIcon, RedoIcon, AssistantIcon, CirculationIcon, HomesIcon, OpenSpaceIcon, PanIcon, SelectIcon, SiteIcon } from './unbuilt/icons';
 import { copyLotEdits, formatGap, formatM2, formatRp, indexLotsRecord, parcelKey, serverBase, siteWithEntrance, siteWithGreen } from './unbuilt/ui';
 import { CAPABILITIES } from '../../src/snapshot';
+import { landBudget } from '../../src/landbudget';
+import { evaluateBrief, type BriefRules } from '../../src/brief';
+import { lotAccess } from '../../src/catchment';
+import { residualForLayout } from '../../src/residual';
 import type { ScenarioSnapshot } from '../../src/snapshot';
 import type { PlanFacts, TryContext } from '../../src/assistant';
 import { serializeProject } from '../../src/persist';
@@ -59,6 +65,7 @@ import type { WorkingSpec } from './unbuilt/ui';
 import './App.css';
 import './drafting.css';
 
+const ResidentialPlanner=lazy(()=>import('./unbuilt/ResidentialPlanner'));
 const LotPlanEditor=lazy(()=>import('./unbuilt/LotPlanEditor'));
 const M = 1_000_000;
 const BN = 1_000_000_000;
@@ -117,6 +124,7 @@ function VerdictLine({ cards, run, profileName, ownerBn, priceLocked }: { cards:
 
 interface WorkbenchProps {
   initialStatus?: string;
+  residentialRequest?:number;
   initialProject: PersistedProject;
   projectName: string;
   onSaveProject: (project: PersistedProject) => boolean;
@@ -124,8 +132,13 @@ interface WorkbenchProps {
   onImportProject: (file: File, sessionRisk: string) => void;
   saveStatus: string;
 }
-export default function Workbench({ initialProject, projectName, onSaveProject, onOpenProjects, onImportProject, saveStatus, initialStatus }: WorkbenchProps) {
+export default function Workbench({ initialProject, projectName, onSaveProject, onOpenProjects, onImportProject, saveStatus, initialStatus, residentialRequest }: WorkbenchProps) {
   const start = initialProject.state;
+  const [residential, setResidential] = useState<ResidentialWorkspace | undefined>(start.residential);
+  const [residentialHistory,setResidentialHistory]=useState<{past:ResidentialWorkspace[];future:ResidentialWorkspace[]}>({past:[],future:[]});
+  const [residentialOpen, setResidentialOpen] = useState(false);
+  useEffect(()=>{if(residentialRequest)setResidentialOpen(true);},[residentialRequest]);
+  const [residentialRoadStep, setResidentialRoadStep] = useState(false);
   const [alternatives, setAlternatives] = useState<SavedAlternative[] | undefined>(initialProject.alternatives);
   const [alternativesOpen, setAlternativesOpen] = useState(false);
   const inspectorRef = useRef<HTMLElement>(null);
@@ -229,6 +242,9 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     lots: Record<number, Pt[]>; baseSpec: SiteFrame;
   } | null>(null);
   const [ordering, setOrdering] = useState<Ordering>('lowest-road');
+  // Owner-declared planning brief (session-only in this slice): evaluated
+  // against the measured land budget, never presented as regulation.
+  const [brief, setBrief] = useState<BriefRules>({});
   const [previewId, setPreviewId] = useState<string | null>(null);
   const [showPrev, setShowPrev] = useState(true);
   const [dockTab, setDockTab] = useState<DockTab>('options');
@@ -282,11 +298,12 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     const payload = {
       app: 'UNBUILT decision record',
       projectName,
-      exportVersion: usesShapedStreets(baseSpec.planning?.streetNetwork)||alternatives?.some(a=>usesShapedStreets(a.state.baseSpec.planning?.streetNetwork))?15:baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?14:alternatives!==undefined?13:baseSpec.costAssumptions!==undefined?12:baseSpec.planning?.openSpaces!==undefined?11:baseSpec.planning?.housing?10:baseSpec.planning?.lotPlan!==undefined?9:baseSpec.planning?.streetNetwork !== undefined ? 8 : siteContext !== undefined ? 7 : baseSpec.contents !== undefined ? 6 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
+      exportVersion: residential?.version===2||alternatives?.some(a=>a.state.residential?.version===2)?17:residential!==undefined||alternatives?.some(a=>a.state.residential!==undefined)?16:usesShapedStreets(baseSpec.planning?.streetNetwork)||alternatives?.some(a=>usesShapedStreets(a.state.baseSpec.planning?.streetNetwork))?15:baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?14:alternatives!==undefined?13:baseSpec.costAssumptions!==undefined?12:baseSpec.planning?.openSpaces!==undefined?11:baseSpec.planning?.housing?10:baseSpec.planning?.lotPlan!==undefined?9:baseSpec.planning?.streetNetwork !== undefined ? 8 : siteContext !== undefined ? 7 : baseSpec.contents !== undefined ? 6 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
       exportedAt: new Date().toISOString(),
       units: 'Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.',
       state: {
         ...(siteContext ? { siteContext } : {}),
+        ...(residential?{residential}:{}),
         site: {
           ...(baseSpec.development!==undefined?{development:baseSpec.development}:{}),
           ...(baseSpec.costAssumptions?{costAssumptions:baseSpec.costAssumptions}:{}),
@@ -659,6 +676,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   // import. Photos are never stored (session-only blobs); every restore says
   // so. Storage denial surfaces as status, never a silent loss.
   const projectState = (): PersistedState => ({
+    ...(residential ? {residential} : {}),
     spec: { ...spec },
     green: { ...green },
     entrance: { ...entrance },
@@ -688,7 +706,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     onSaveProject(serializeProject(projectState(), decisions, projectName, alternatives));
     // Accepted state only; drafts remain in this workspace until Apply.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [spec, green, entrance, lotEdits, profileId, greenLocked, priceS, ceilingS, ownerS, targetS, baseSpec, siteContext, decisions, alternatives, onSaveProject]);
+  }, [residential, spec, green, entrance, lotEdits, profileId, greenLocked, priceS, ceilingS, ownerS, targetS, baseSpec, siteContext, decisions, alternatives, onSaveProject]);
 
   const onImportFile = (file: File) => {
     if (regenBlock || draftDirty) { setStatus('Apply or Cancel the current edit before importing another project.'); return; }
@@ -940,7 +958,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
       setSiteFit((t) => t + 1);
       setRun(null); setRunSnap(null); setPreviewId(null); setIntent(null); setPropSnap(null); setAcceptedSummary(null); setLastDelta(null);
       logDecision('boundary', `Applied ${next.boundary!.length}-vertex site, ${siteArea(next)} m². ${nextLayout.supportError ?? 'Contained layout regenerated; outside lots omitted.'}`);
-      setStatus(nextLayout.empty ? `Boundary applied: ${formatM2(siteArea(next))}. Generate a layout when ready. Undo restores the previous boundary.` : nextLayout.supportError ? `Boundary saved (${formatM2(siteArea(next))}). Layout unavailable: ${nextLayout.supportError}` : `Boundary applied: ${formatM2(siteArea(next))}. Layout measured inside the boundary. Undo restores the previous plan.`);
+      setStatus(nextLayout.empty ? `Boundary applied: ${formatM2(siteArea(next))}. Next, draw and name the adjoining external road with its width. Undo restores the previous boundary.` : nextLayout.supportError ? `Boundary saved (${formatM2(siteArea(next))}). Layout unavailable: ${nextLayout.supportError}` : `Boundary applied: ${formatM2(siteArea(next))}. Layout measured inside the boundary. Undo restores the previous plan.`);
     });
   };
 
@@ -1320,8 +1338,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   const greenCost = econShown ? econShown.q.greenArea * R.greenWorksPerM2 : 0;
   const revenue = econShown?.fin.revenue ?? 0;
   const sellCost = revenue * R.sellFraction;
-  // Issues and the summary derive from the same validation state: geometry,
-  // economics inputs, ceiling, and search blockers together.
+  // Geometry/input validation and modeled financial concerns are separate checks.
   const inputIssues: string[] = [];
   if (!Number.isFinite(price) || price <= 0) inputIssues.push('Assumed selling price is missing or not positive.');
   if (!Number.isFinite(ceiling) || ceiling <= 0) inputIssues.push('Buyer-price ceiling is missing or not positive.');
@@ -1330,7 +1347,20 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     inputIssues.push('Target surplus/revenue must be between 0 and 100.');
   }
   if (priceError) inputIssues.push(priceError);
-  const issueCount = workingErrors.length + workingWarnings.length + inputIssues.length + (run?.blockers.length ?? 0);
+  const validationIssueCount = workingErrors.length + workingWarnings.length + inputIssues.length + (run?.blockers.length ?? 0);
+  const financeScope = preview ? 'Unapplied option' : metricsAreCommitted ? 'Accepted plan · last valid figures' : parameterDraft || draftDirty ? 'Unapplied draft' : 'Working plan';
+  const financialIssues: string[] = [];
+  if (econShown && inputsOk && !boundaryDraft) {
+    const f = econShown.fin;
+    if (f.ownerGap > .01) financialIssues.push(`Owner benchmark shortfall: ${formatRp(f.ownerGap)}. The entered owner expectation exceeds the modeled land allowance at the ${targetT}% target surplus.`);
+    if (f.margin === null) financialIssues.push('No home revenue: a surplus percentage and financial feasibility cannot be established.');
+    else if (f.surplus < -.01) financialIssues.push(`Negative surplus after owner payment: ${formatRp(f.surplus)} (${(f.margin * 100).toFixed(2)}% of revenue), below the ${targetT}% target. The scheme does not cover its modeled costs and owner payment under these assumptions.`);
+    else if (f.margin + 1e-10 < targetT / 100) financialIssues.push(`Surplus after owner payment: ${(f.margin * 100).toFixed(2)}% of revenue, below the ${targetT}% target under the entered assumptions.`);
+  }
+  const issueCount = validationIssueCount + financialIssues.length;
+  const headerWidths = [...new Set(planning.streetNetwork ? planning.streetNetwork.segments.map(s => s.width) : [ROAD_W])].sort((a,b) => a-b);
+  const widthLabel = headerWidths.length ? `street width${headerWidths.length > 1 ? 's' : ''} ${headerWidths.join(' / ')} m` : 'street width unavailable';
+  const layoutLabel = `${parameterDraft ? 'Draft · ' : ''}${planning.streetNetwork ? 'Manual streets' : (parameterDraft?.family ?? spec.family) === 'spine' ? 'Spine' : 'Loop'} · lot frontage setting ${parameterDraft?.frontage ?? spec.frontage} m · ${widthLabel}`;
 
   // Assistant context: selection-bound measured facts, a bounded try
   // scope, and the canonical snapshot the tool server validates. Figures
@@ -1508,13 +1538,16 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     setParameterDraft({ planning: { ...planning, streets: [], streetNetwork: next }, frontage: parameterDraft?.frontage ?? spec.frontage, family: 'spine' });
     setPreviewId(null); setLastDelta(null);
   };
-  const startStreetEdit = () => {
+  const startStreetEdit = (roundCorners=false) => {
     if (regenBlock || draftDirty || pendingOp || optimizing || preview) { setStatus('Apply or Cancel the current edit or alternative first.'); return; }
-    const network = structuredClone(baseSpec.planning?.streetNetwork ?? networkFromRoads(committedLayout.roads));
+    const source = baseSpec.planning?.streetNetwork ?? networkFromRoads(committedLayout.roads);
+    const rounded=roundCorners?halfWidthStreetDraft(committedSite,committedLayout,spec.frontage):null;
+    const radius=halfRoadWidth(source);
+    const network = structuredClone(rounded?.network??source);
     setParameterDraft({ planning: { ...(baseSpec.planning ?? DEFAULT_PLANNING), streets: [], streetNetwork: network }, frontage: spec.frontage, family: 'spine' });
     setStreetEditing(true); setStreetConnectorIds([]); setStreetDrawing(null); setStreetSelected(network.segments[0]?.id ?? null); setStreetHistory({past:[],future:[]});
     setContextOpen(false); setAskOpen(false); setControlsOpen(true); setDockOpen(false); setSelected('circulation'); setTool('select');
-    setStatus('Street draft: select a segment, move junctions, or draw branches. Review quantities before Apply streets.');
+    setStatus(roundCorners?`Rounded-corner draft: ${radius} m fillets, half the narrowest road width.${rounded?.rerouted?' Generated routing adjusted to leave room beside kept green.':''} Review smooth joins, lots and measured costs before Apply streets. Applying holds this manual network during search.`:'Street draft: select a segment, move junctions, or draw branches. Review quantities before Apply streets.');
   };
   const undoStreet = (forward = false) => {
     if (streetDrawing?.length && !forward) { setStreetDrawing(streetDrawing.slice(0,-1)); return; }
@@ -1673,7 +1706,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
       }
       setSiteFit(n => n + 1);
       logDecision('delete', boundary ? 'Cleared layout; kept the boundary and project assumptions.' : 'Removed boundary and dependent layout. Reference photo hidden; project assumptions retained.');
-      setStatus(boundary ? 'Layout cleared. Boundary retained. Generate a layout when ready; Undo restores the previous scheme.' : 'Blank plan. Draw a boundary to begin. Project name and assumptions are retained; Undo restores the plan.');
+      setStatus(boundary ? 'Layout cleared. Boundary retained. Open External road setup before preparing a residential layout; Undo restores the previous scheme.' : 'Blank plan. Draw a boundary to begin. Project name and assumptions are retained; Undo restores the plan.');
     }
     resetResults(deleteKind === 'homes'); setDeleteKind(null);
   };
@@ -1686,6 +1719,11 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
     setHist(h => pushUndo(h, snap()));
     setBaseSpec({ ...baseSpec, contents: { boundary: true, layout: true, removedHomes: [] } });
     resetResults(); logDecision('restore', 'Restored removed homes in the current generated lots.'); setStatus('Removed homes restored. Undo available.');
+  };
+  const openResidential = (roadStep = false) => {
+    if (regenBlock || draftDirty || pendingOp || optimizing || preview) { setStatus('Apply or Cancel the current edit before opening Residential planning.'); return; }
+    setResidentialRoadStep(roadStep);
+    setResidentialOpen(true);
   };
   const generateLayout = () => {
     if (!hasBoundary(baseSpec) || regenBlock || draftDirty) return;
@@ -1766,6 +1804,22 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   const boundaryEditing = boundaryDraft !== null;
   useEffect(() => { inspectorRef.current?.scrollTo({ top: 0 }); }, [selected, selectedLot, boundaryEditing, streetEditing, parcelEditing,housingEditing]);
 
+  // Planner insights for the displayed plan: measured land budget,
+  // declared-brief evaluation, and open-space access. All deterministic.
+  const insightSite = preview ? previewSite : metricsAreCommitted ? committedSite : site;
+  const insightSpaces = layoutOpenSpaces(planShown);
+  const budgetShown = econShown ? landBudget(siteArea(insightSite), econShown.q) : null;
+  const briefResult = budgetShown ? evaluateBrief(budgetShown, brief) : null;
+  const accessShown = econShown ? lotAccess(planShown.parcels, insightSpaces.map(s => s.pts)) : null;
+  const hasInsightEconomics = econShown !== null;
+  const residualAssessment = useMemo(() => {
+    if (!hasInsightEconomics) return {report:null,error:null};
+    const edits = preview ? new Map(Object.entries(preview.lots).map(([i,pts]) => [Number(i),pts])) : editsForLayout(planShown.parcels,lotEdits);
+    try { return {report:residualForLayout(insightSite,planShown,edits,profile.lotAreaMin),error:null}; }
+    catch (error) { return {report:null,error:error instanceof Error ? error.message : 'Residual assessment unavailable.'}; }
+  }, [hasInsightEconomics, insightSite, planShown, preview, profile.lotAreaMin, lotEdits]);
+  const residualShown = residualAssessment.report;
+
   const selectFromCanvas = (kind: Exclude<Sel, null>) => {
     if (contextPending) { setStatus('Apply or Cancel the site context edit before inspecting plan objects.'); return; }
     if (streetEditing || parcelEditing) { setStatus('Apply or Cancel the current plan edit first.'); return; }
@@ -1809,6 +1863,8 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           logDecision('reopen-scheme',`Reopened saved scheme “${item.name}”. Previous working plan retained for Undo; saved schemes unchanged.`);
           setStatus(`Reopened “${item.name}”. Undo restores the previous working plan. Original reference photos are hidden; reattach source media if needed.`);
         }} />}
+      {residentialOpen && <Suspense fallback={<p role="status">Opening residential planner…</p>}><ResidentialPlanner focusExternalRoad={residentialRoadStep} initialHistory={residentialHistory} onHistory={setResidentialHistory} initial={residential} projectName={projectName} site={committedSite} layout={committedLayout} context={siteContext} frontage={spec.frontage}
+        onClose={()=>setResidentialOpen(false)} onSave={next=>{const project=serializeProject({...projectState(),residential:next},decisions,projectName,alternatives);const saved=onSaveProject(project);setResidential(next);return saved;}} /></Suspense>}
       {aiSettingsOpen && <AISettings onClose={()=>setAiSettingsOpen(false)}/>}
       {developmentOpen&&<DevelopmentEditor site={committedSite} spec={spec} lots={lotEdits} price={price*M} owner={ownerL*BN} target={targetT/100}
         onCancel={()=>{setDevelopmentOpen(false);setStatus('Development draft cancelled. Accepted inputs retained.');}}
@@ -1853,9 +1909,13 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
         </div>
       </header>
       <div className="contextstrip" aria-live="polite">
-        <span><b className="active-project-name">{projectName} · </b>{hasBoundary(baseSpec) ? <>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices{hasLayout(baseSpec) && <> · Entrance {entrance.boundaryEdge === undefined ? entrance.edge : `edge ${entrance.boundaryEdge + 1}`} · {spec.family} {spec.frontage} m</>}</> : 'Blank plan'}</span>
+        <button type="button" className="residential-entry" title="Establish the site boundary, adjoining main road and fixed features before choosing an entrance" onClick={()=>openResidential()}>Residential planning</button>
+        <button type="button" className="residential-entry" disabled={!hasBoundary(baseSpec)||!!regenBlock||draftDirty||!!pendingOp||optimizing||!!preview} onClick={()=>openResidential(true)}>External road setup</button>
+        <span><b className="active-project-name">{projectName} · </b>{hasBoundary(baseSpec) ? <>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices{hasLayout(baseSpec) && <> · Entrance {entrance.boundaryEdge === undefined ? entrance.edge : `edge ${entrance.boundaryEdge + 1}`} · {layoutLabel}</>}</> : 'Blank plan'}</span>
+        {residential&&<span className="saved-residential-summary">{residentialStudySummary(residential)}</span>}
         <span>Selected: {assistantFacts.label}</span>
-        <span title={workingErrors[0]} className={workingErrors.length > 0 ? 'bad' : 'ok'}>{!hasBoundary(baseSpec) ? 'No boundary yet' : workingLayout.empty ? 'Boundary only' : workingLayout.supportError ? 'Layout unavailable' : workingErrors.length > 0 ? 'Invalid plan · see issues' : workingWarnings.length ? 'Profile / template warning' : 'Plan valid'}</span>
+        <span title={workingErrors[0] ?? 'Geometry checks only. Review financial outcomes separately under the entered assumptions.'} className={workingErrors.length > 0 ? 'bad' : 'ok'}>{!hasBoundary(baseSpec) ? 'No boundary yet' : workingLayout.empty ? residential?'Saved residential study · legacy boundary only':'Boundary only' : workingLayout.supportError ? 'Layout unavailable' : workingErrors.length > 0 ? 'Invalid plan · see issues' : workingWarnings.length ? 'Profile / template warning' : 'Geometry valid'}</span>
+        {financialIssues.length > 0 && <button type="button" className="financial-concerns" title={`Financial review · ${financeScope}`} aria-label={`Review financial concerns (${financialIssues.length})`} onClick={() => { setDockOpen(true); setDockTab('issues'); setCmpExpand(false); requestAnimationFrame(() => { dockPanelRef.current?.querySelector('.financial-review')?.scrollIntoView({block:'nearest'}); dockPanelRef.current?.focus({preventScroll:true}); }); }}>Financial concerns · {financialIssues.length}</button>}
         <details className="save-summary"><summary>{saveStatus.startsWith('Project saved') ? 'Saved in this browser' : saveStatus}</summary><div><strong>Accepted plan · browser-local storage</strong><p>{saveStatus}</p><p>Boundary, entrance, open space, housing templates and lot assignments, constraints, assumptions, lot edits, named schemes with notes, and decisions are saved. Site context and survey calibration are saved. Drafts, undo history, searches, comparisons, photos and survey media are session-only; reattach original survey files after reopening.</p><button type="button" onClick={exportRecord}>Download accepted plan</button><p>Private browsing or clearing site data can remove local projects. Download a portable backup before leaving a private session.</p><p>Use Saved alternatives to name and keep the working plan or a search preview without replacing accepted work. Scheme notes and inputs are included in project downloads; a preview alone is session-only.</p></div></details>
       </div>
       <p role="status" aria-live="polite" className="note srstatus" title={status}>
@@ -1936,6 +1996,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           </div>
           <div className="canvas-workspace" inert={optimizing || undefined}>
           <PlanCanvas
+            emptySummary={residential?`${residentialStudySummary(residential)}. Continue through Residential planning. This canvas shows the separate legacy plan.`:undefined}
             spaceDrafts={spacesEditing||(!hasLayout(baseSpec)&&collection)?spaces:undefined} activeSpace={greenSelected?selectedSpace:null} spacesEditing={spacesEditing} spaceDrawing={spaceDrawing} spaceValid={!spacesError&&!workingErrors.length} spaceClearance={planning.greenBuffer}
             onSpaceSelect={id=>{setSelected('grove');setSelectedSpace(id);setSelectedLot(null);}}
             onSpacePoint={point=>{if(activeSpace&&!activeSpace.locked&&activeSpace.pts.length<24)updateSpaces(spaces.map(s=>s.id===activeSpace.id?{...s,pts:[...s.pts,point]}:s));}}
@@ -2137,18 +2198,18 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
                   <dt>Land allowance</dt><dd>{committedEcon ? formatRp(committedEcon.finance.landAllowance) : 'Unavailable'} → {draftEcon && !workingErrors.length ? formatRp(draftEcon.finance.landAllowance) : 'Unavailable'}</dd>
                   <dt>Owner outcome</dt><dd>{committedEcon ? formatGap(committedEcon.finance.ownerGap) : 'Unavailable'} → {draftEcon && !workingErrors.length ? formatGap(draftEcon.finance.ownerGap) : 'Unavailable'}</dd>
                 </dl>
-                {workingErrors.length ? <p className="error" role="status">Layout unavailable: {workingErrors[0]} You may save the valid outline, but it will have no assessed layout until this is corrected.</p> : <p className="note">{workingLayout.empty ? 'Boundary only. Generate a layout after applying this outline.' : planning.streetNetwork ? 'Manual streets are retained and whole lots regenerated inside the outline. Review full-width containment; this is a bounded layout, not the site’s maximum capacity.' : 'Whole lots and connected orthogonal streets are regenerated inside the outline. Roads and park clearance may leave land unallocated; this is a bounded layout, not the site’s maximum capacity.'}</p>}
+                {workingErrors.length ? <p className="error" role="status">Layout unavailable: {workingErrors[0]} You may save the valid outline, but it will have no assessed layout until this is corrected.</p> : <p className="note">{workingLayout.empty ? 'Boundary only. After applying this outline, draw the named external road and enter its width.' : planning.streetNetwork ? 'Manual streets are retained and whole lots regenerated inside the outline. Review full-width containment; this is a bounded layout, not the site’s maximum capacity.' : 'Whole lots and connected orthogonal streets are regenerated inside the outline. Roads and park clearance may leave land unallocated; this is a bounded layout, not the site’s maximum capacity.'}</p>}
               </section>
               {baseSpec.planning && hasLayout(site) && <EntranceEditor site={site} onChange={(next) => changeBoundary({ ...boundaryDraft, entrance: next })} error={entranceErrors(site)[0]} />}
-            </>} /> : !hasLayout(baseSpec) ? <section className="plan-setup" aria-label="Plan setup"><button type="button" onClick={openContext}>Site context & survey</button><h2>{hasBoundary(baseSpec) ? 'Your site is ready' : 'Start your site'}</h2><p>{hasBoundary(baseSpec) ? `${formatM2(siteArea(baseSpec))} · ${siteBoundary(baseSpec).length} corners. No layout has been generated. Any designed open spaces remain reserved.` : 'Draw a closed boundary on the canvas. Place corners with your pointer or enter their coordinates.'}</p><button type="button" onClick={() => startBoundary(!hasBoundary(baseSpec))}>{hasBoundary(baseSpec) ? 'Edit boundary' : 'Draw boundary'}</button>{hasBoundary(baseSpec) && <button type="button" onClick={startSpaces}>Design open spaces</button>}{hasBoundary(baseSpec) && <button type="button" onClick={generateLayout}>Generate layout</button>}<p className="note">Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.</p>{planActions}<details className="sitesrc"><summary>Site source · reference photo</summary>{referencePhotoControls}</details><button type="button" onClick={startHousingMix}>Manage housing templates</button><button type="button" onClick={openAlternatives}>Saved alternatives</button><button type="button" onClick={()=>{if(regenBlock){setStatus(regenBlock);return;}setDevelopmentOpen(true);}}>Terrain, drainage and phasing</button><button type="button" onClick={openProjects}>Open projects</button></section> : <>
-          <DynamicInspector openSpaceControls={<section className="space-summary" aria-label="Neighborhood open spaces"><h3>Neighborhood open spaces</h3><ul>{spaces.map(s=><li key={s.id}><button type="button" aria-pressed={greenSelected&&s.id===selectedSpace} onClick={()=>{setSelected('grove');setSelectedSpace(s.id);}}>{s.name} · {s.kind} · {polyArea(s.pts).toFixed(1)} m² · {s.locked?'fixed':'editable'}</button></li>)}</ul><p>{spaceArea(spaces).toFixed(1)} m² combined · {spaces.length} spaces</p><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startSpaces}>Edit open spaces</button></section>} builtArea={planning.housing&&selected==='homes'?housingSummary(site,(selectedLots.length?selectedLots:selectedLot===null?planShown.parcels.map((_,i)=>i):[selectedLot]).map(i=>planShown.parcels[i]).filter((r):r is Rect=>!!r)).builtArea:undefined} housingControls={selected==='homes'?<section className="housing-summary" aria-label="Housing mix"><h3>Housing mix</h3>{selectedLot!==null&&workingLayout.parcels[selectedLot]?<p>Lot {selectedLot+1}: {homeTemplate(planning,workingLayout.parcels[selectedLot]).name} · {homeArea(planning,workingLayout.parcels[selectedLot])} m²{hasHome(site,workingLayout.parcels[selectedLot])?' home':' reserved template · vacant lot'} · {assignmentSource(planning.housing,workingLayout.parcels[selectedLot])==='explicit'?'Explicit assignment':'Follows default'}</p>:<p>{shownHousing.rows.map(r=>`${r.name}: ${r.count} homes`).join(' · ')} · {shownHousing.builtArea} m² built</p>}<button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startHousingMix}>Edit housing mix</button></section>:null} lotControls={selected==='homes'?<section className="lot-tools" aria-label="Blocks and lots"><h3>Blocks &amp; lots</h3><div className="draftrow"><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>startParcelEdit('split')}>Split lot</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('merge')}>Merge lots</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('block')}>Subdivide block</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>{const tools=document.querySelector<HTMLDetailsElement>('.object-tools');if(tools)tools.open=true;startLotReshape();}}>Edit lot outline</button></div>
+            </>} /> : !hasLayout(baseSpec) ? <section className="plan-setup" aria-label="Plan setup"><button type="button" onClick={openContext}>Site context & survey</button><h2>{hasBoundary(baseSpec) ? 'Your site is ready' : 'Start your site'}</h2><p>{hasBoundary(baseSpec) ? residential?`${residentialStudySummary(residential)}. The separate legacy plan has a boundary only.`:`${formatM2(siteArea(baseSpec))} · ${siteBoundary(baseSpec).length} corners. No layout has been generated. Any designed open spaces remain reserved.` : 'Draw a closed boundary on the canvas. Place corners with your pointer or enter their coordinates.'}</p>{hasBoundary(baseSpec) && <section className="road-next-step" aria-label="Next step: external road"><h3>{residential?.accepted.inputs.externalRoads.length ? 'Continue residential planning' : 'Next: external road'}</h3><p>{residential?.accepted.inputs.externalRoads.length ? `${residentialStudySummary(residential!)}. Continue the saved study.` : 'Name the adjoining road, enter its full width, then draw along the site edge. Its position determines where a residential entrance can connect.'}</p><button type="button" onClick={()=>openResidential(!residential?.accepted.inputs.externalRoads.length)}>{residential?.accepted.inputs.externalRoads.length ? 'Continue residential planning' : 'Draw external road'}</button><p className="note">Boundary → external road → home products → Prepare Layout</p></section>}<button type="button" onClick={() => startBoundary(!hasBoundary(baseSpec))}>{hasBoundary(baseSpec) ? 'Edit boundary' : 'Draw boundary'}</button>{hasBoundary(baseSpec) && <button type="button" onClick={startSpaces}>Design open spaces</button>}{hasBoundary(baseSpec) && <button type="button" onClick={generateLayout}>Generate layout</button>}<p className="note">Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.</p>{planActions}<details className="sitesrc"><summary>Site source · reference photo</summary>{referencePhotoControls}</details><button type="button" onClick={startHousingMix}>Manage housing templates</button><button type="button" onClick={openAlternatives}>Saved alternatives</button><button type="button" onClick={()=>{if(regenBlock){setStatus(regenBlock);return;}setDevelopmentOpen(true);}}>Terrain, drainage and phasing</button><button type="button" onClick={openProjects}>Open projects</button></section> : <>
+          <DynamicInspector openSpaceControls={<section className="space-summary" aria-label="Neighborhood open spaces"><h3>Neighborhood open spaces</h3><ul>{spaces.map(s=><li key={s.id}><button type="button" aria-pressed={greenSelected&&s.id===selectedSpace} onClick={()=>{setSelected('grove');setSelectedSpace(s.id);}}>{s.name} · {s.kind} · {polyArea(s.pts).toFixed(1)} m² · {s.locked?'fixed':'editable'}</button></li>)}</ul><p>{spaceArea(spaces).toFixed(1)} m² combined · {spaces.length} spaces</p><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startSpaces}>Edit open spaces</button></section>} onPreset={(family, frontage) => changeSpec({ family, frontage })} builtArea={planning.housing&&selected==='homes'?housingSummary(site,(selectedLots.length?selectedLots:selectedLot===null?planShown.parcels.map((_,i)=>i):[selectedLot]).map(i=>planShown.parcels[i]).filter((r):r is Rect=>!!r)).builtArea:undefined} housingControls={selected==='homes'?<section className="housing-summary" aria-label="Housing mix"><h3>Housing mix</h3>{selectedLot!==null&&workingLayout.parcels[selectedLot]?<p>Lot {selectedLot+1}: {homeTemplate(planning,workingLayout.parcels[selectedLot]).name} · {homeArea(planning,workingLayout.parcels[selectedLot])} m²{hasHome(site,workingLayout.parcels[selectedLot])?' home':' reserved template · vacant lot'} · {assignmentSource(planning.housing,workingLayout.parcels[selectedLot])==='explicit'?'Explicit assignment':'Follows default'}</p>:<p>{shownHousing.rows.map(r=>`${r.name}: ${r.count} homes`).join(' · ')} · {shownHousing.builtArea} m² built</p>}<button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startHousingMix}>Edit housing mix</button></section>:null} lotControls={selected==='homes'?<section className="lot-tools" aria-label="Blocks and lots"><h3>Blocks &amp; lots</h3><div className="draftrow"><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>startParcelEdit('split')}>Split lot</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('merge')}>Merge lots</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('block')}>Subdivide block</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>{const tools=document.querySelector<HTMLDetailsElement>('.object-tools');if(tools)tools.open=true;startLotReshape();}}>Edit lot outline</button></div>
               {selectedLot!==null&&lotEdits[lotKey(committedLayout.parcels[selectedLot]??{x:0,y:0,w:0,h:0})]&&<button type="button" disabled={!!regenBlock||draftDirty||!!preview} onClick={restoreSelectedRectangle}>Restore rectangular outline</button>}
               {planning.lotPlan!==undefined&&<><p className="note">Manual lot plan held. Frontage search cannot repartition these lots; use the direct tools or explicitly return to generated lots.</p><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={previewGeneratedLots}>Preview generated lots</button></>}
               <p className="note">Select lots on the plan; Shift adds to a selection. Rectangular blocks are connected groups of existing lots, not surveyed legal parcels.</p></section>:null} siteControls={selected === 'site' && baseSpec.planning ? <EntranceEditor site={site} disabled={!!parameterDraft || !!preview || optimizing || !!lotDraft || draftDirty} onChange={(next) => commitEntrance(next, entrance, `moved to ${entranceLabel(next)}`)} error={entranceErrors(site)[0] ?? workingLayout.supportError} /> : null} selection={selected} onSelect={(value) => { if (!optimizing) { setSelected(value); setSelectedLot(null); setSelectedLots([]); } }}
             selectionNotice={selected==='homes'?(selectedReshaped?'Setbacks partly unverified: this outline keeps the placed home and a 2 m ring; deeper 3 m front/rear setbacks are not verified.':workingWarnings.length?workingWarnings.join(' '):undefined):undefined}
             label={selected === 'grove'  ? greenLabel : selected === 'circulation' ? 'Circulation' : selected === 'homes' ? selectedLots.length > 1 ? `${selectedLots.length} home lots` : selectedLot === null ? 'All home lots' : `Lot ${selectedLot + 1}` : 'Site boundary'}
             area={inspectorArea} siteArea={siteArea(boundaryPreview ?? baseSpec)} homes={selected === 'homes' && selectedLot !== null ? selectedHomeIndices.length : inspectorQuantities?.n ?? null}
-            preview={!!preview} legacy={!baseSpec.planning && !parameterDraft} family={spec.family} planning={planning} onEditStreets={startStreetEdit} onGeneratedStreets={previewGeneratedStreets} frontage={preview?.frontage ?? parameterDraft?.frontage ?? spec.frontage} greenLocked={collection?(activeSpace?.locked??spaces.every(s=>s.locked)):greenLocked}
+            preview={!!preview} legacy={!baseSpec.planning && !parameterDraft} family={spec.family} planning={planning} onEditStreets={()=>startStreetEdit()} onRoundStreets={()=>startStreetEdit(true)} onGeneratedStreets={previewGeneratedStreets} frontage={preview?.frontage ?? parameterDraft?.frontage ?? spec.frontage} greenLocked={collection?(activeSpace?.locked??spaces.every(s=>s.locked)):greenLocked}
             green={draft.draft} greenDirty={draftDirty}
             onGreenChange={(g) => { if (!greenLocked && !parameterDraft && !lotDraft && !optimizing) touchDraft(strFields(g)); }}
             onGreenApply={applyDraft} onGreenCancel={cancelDraft} greenError={workingErrors[0] ?? null}
@@ -2668,7 +2729,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
               {lastDelta && <span className="note">{lastDelta}</span>}
             </>
           ) : (
-            <span>{boundaryDraft ? 'Boundary draft · accepted plan unchanged · Apply or Cancel to finish' : !hasBoundary(baseSpec) ? 'Draw a site boundary to begin.' : workingLayout.empty ? 'Boundary only · generate a layout to see homes, streets and economics.' : workingLayout.supportError ? `Layout unavailable · ${workingLayout.supportError}` : 'Incomplete — fix the flagged geometry or economics inputs to see metrics.'}</span>
+            <span>{boundaryDraft ? 'Boundary draft · accepted plan unchanged · Apply or Cancel to finish' : !hasBoundary(baseSpec) ? 'Draw a site boundary to begin.' : workingLayout.empty ? residential?`${residentialStudySummary(residential)}. Separate legacy plan: boundary only.`:'Boundary only · next, draw the external road and enter its name and width.' : workingLayout.supportError ? `Layout unavailable · ${workingLayout.supportError}` : 'Incomplete — fix the flagged geometry or economics inputs to see metrics.'}</span>
           )}
         </div>
         <div className="docktabs" role="tablist" aria-label="Result details" hidden={!dockOpen}>
@@ -2692,7 +2753,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
             </button>
           ))}
         </div>
-        <div className="dockpanel" ref={dockPanelRef} hidden={!dockOpen}>
+        <div className="dockpanel" ref={dockPanelRef} hidden={!dockOpen} role="region" aria-label="Result details content" tabIndex={0}>
           {dockTab === 'quantities' && econShown && (
             <dl className="kv">
               <dt>Homes (valid footprints)</dt><dd>{econShown.q.n}</dd>
@@ -2701,6 +2762,58 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
               <dt>Parcels</dt><dd>{formatM2(econShown.q.parcelArea)}</dd>
               <dt>Unallocated remainder (not designed open space)</dt><dd>{formatM2(econShown.q.unallocatedArea)}</dd>
             </dl>
+          )}
+          {dockTab === 'quantities' && budgetShown && (
+            <>
+              <h3>Land budget</h3>
+              <dl className="kv">
+                <dt>Site (gross)</dt><dd>{formatM2(budgetShown.siteArea)} ({budgetShown.grossHa.toFixed(2)} ha)</dd>
+                <dt>Density — gross</dt><dd>{budgetShown.densityGross.toFixed(1)} homes/ha</dd>
+                <dt>Density — net (lots + roads + green)</dt><dd>{budgetShown.densityNet === null ? '—' : `${budgetShown.densityNet.toFixed(1)} homes/ha`}</dd>
+                <dt>Lots</dt><dd>{budgetShown.pctParcels.toFixed(1)}% of site</dd>
+                <dt>Streets</dt><dd>{budgetShown.pctRoad.toFixed(1)}% of site{budgetShown.roadPerHome === null ? '' : ` · ${budgetShown.roadPerHome.toFixed(1)} m² road / home`}</dd>
+                <dt>Designed green</dt><dd>{budgetShown.pctGreen.toFixed(1)}% of site</dd>
+                <dt>Unallocated remainder</dt><dd>{budgetShown.pctUnallocated.toFixed(1)}% of site</dd>
+              </dl>
+              <h3>Planning brief (owner-declared, session-only)</h3>
+              <p className="note">Brief rules are not saved with projects or exported schemes. Keep a separate record before closing this session.</p>
+              <div className="briefgrid">
+                <label>Min density (homes/ha)<input type="number" min="0" step="1" value={brief.densityMinHa ?? ''} onChange={(e) => setBrief((b) => ({ ...b, densityMinHa: e.target.value === '' ? undefined : Number(e.target.value) }))} /></label>
+                <label>Max density (homes/ha)<input type="number" min="0" step="1" value={brief.densityMaxHa ?? ''} onChange={(e) => setBrief((b) => ({ ...b, densityMaxHa: e.target.value === '' ? undefined : Number(e.target.value) }))} /></label>
+                <label>Min designed green (% of site)<input type="number" min="0" step="1" value={brief.greenMinPct ?? ''} onChange={(e) => setBrief((b) => ({ ...b, greenMinPct: e.target.value === '' ? undefined : Number(e.target.value) }))} /></label>
+                <label>Max unallocated (% of site)<input type="number" min="0" step="1" value={brief.unallocatedMaxPct ?? ''} onChange={(e) => setBrief((b) => ({ ...b, unallocatedMaxPct: e.target.value === '' ? undefined : Number(e.target.value) }))} /></label>
+              </div>
+              {briefResult && briefResult.checks.length === 0 && <p className="note">No rules set — add thresholds to evaluate this plan against your brief. Your brief is not a regulation.</p>}
+              {briefResult?.checks.map((c) => (
+                <p key={c.id} className={c.pass ? 'note briefrow' : 'note briefrow badrow'}>{c.pass ? 'Pass' : 'Fail'} — {c.label}: {c.actual.toFixed(1)} {c.unit} (rule {c.rule.toFixed(1)}; margin {c.margin >= 0 ? '+' : ''}{c.margin.toFixed(1)})</p>
+              ))}
+              {accessShown && (
+                <>
+                  <h3>Open-space access</h3>
+                  <dl className="kv">
+                    <dt>Lots adjoining open space (≤ 2 m)</dt><dd>{accessShown.adjacentCount} of {accessShown.perLot.length}</dd>
+                    {accessShown.buckets.map((bk) => (
+                      <Fragment key={bk.distance}><dt>Homes within {bk.distance} m</dt><dd>{bk.count} ({bk.share.toFixed(0)}%)</dd></Fragment>
+                    ))}
+                  </dl>
+                  <p className="note">Straight-line lot-edge to open-space-edge distances on the plan. Not walking routes; says nothing about amenity quality.</p>
+                </>
+              )}
+              <section className="residual-review" aria-label="Residual land assessment">
+                <h3>Residual land</h3>
+                <p className="note">{financeScope}</p>
+                {residualShown ? <>
+                  <dl className="kv">
+                    <dt>Potentially developable (size + shared road edge)</dt><dd>{residualShown.totals.developable.count} regions · {formatM2(residualShown.totals.developable.area)}</dd>
+                    <dt>Too small under current assumptions</dt><dd>{residualShown.totals['too-small'].count} regions · {formatM2(residualShown.totals['too-small'].area)}</dd>
+                    <dt>Inaccessible (no shared road edge)</dt><dd>{residualShown.totals.inaccessible.count} regions · {formatM2(residualShown.totals.inaccessible.area)}</dd>
+                    <dt>Touches open-space exclusion (whole region flagged)</dt><dd>{residualShown.totals['reserved-clearance'].count} regions · {formatM2(residualShown.totals['reserved-clearance'].area)}</dd>
+                    <dt>Total classified remainder</dt><dd>{formatM2(residualShown.remainderArea)}</dd>
+                  </dl>
+                  <p className="note">Connected regions, including holes, reconcile to the displayed unallocated remainder. Size uses the {profile.name} minimum ({profile.lotAreaMin} m²). Road access requires a shared pavement edge, including entrance aprons. A region touching a conservative open-space exclusion is flagged in full; this is not a measure of the exclusion area. These checks do not establish lot fit, capacity, legal access or approval.</p>
+                </> : <p className="note">Residual assessment unavailable: {residualAssessment.error}</p>}
+              </section>
+            </>
           )}
           {dockTab === 'economics' && econShown && (
             <>
@@ -2716,8 +2829,8 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
               <dt>Owner outcome</dt><dd>{formatGap(econShown.fin.ownerGap)}</dd>
             </dl>
             <ol className="note">
-              <li>Revenue {formatRp(econShown.fin.revenue)} minus selling costs, minus non-land costs above, minus the {targetT}% target surplus leaves the <strong>land allowance</strong>: what the land is worth to this scheme before paying the owner.</li>
-              <li><strong>Surplus</strong> additionally subtracts the owner's asking price — positive allowance with negative surplus means the scheme works, but not at this asking price.</li>
+              <li>Revenue {formatRp(econShown.fin.revenue)} minus selling costs, minus non-land costs above, minus the {targetT}% target surplus leaves the <strong>land allowance</strong>: the modeled amount available for land at that target under the entered assumptions.</li>
+              <li><strong>Surplus</strong> subtracts selling costs, non-land costs and the owner's benchmark from revenue. A positive land allowance does not establish financial viability at the entered owner expectation.</li>
               <li>Cost bases use the accepted project assumptions. Open Feasibility experiments to test construction, street and green rates, allowances, contingency and selling costs before Apply.</li>
             </ol>
             </>
@@ -2870,6 +2983,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
                       <div key={key}>
                         <p className="note"><strong>{s.label}</strong> — {s.q.n} homes · {formatM2(s.q.roadArea)} road · {formatGap(s.fin.ownerGap)}</p>
                         <PlanCanvas
+            emptySummary={residential?`${residentialStudySummary(residential)}. Continue through Residential planning. This canvas shows the separate legacy plan.`:undefined}
                           contents={baseSpec.contents} planning={baseSpec.planning} layout={s.layout} boundary={siteBoundary(baseSpec)} siteW={site.w} siteH={site.h} entrance={site.entrance}
                           greenLocked={greenLocked} greenSelected={false} siteSelected={false} editing={false}
                           entranceEditing={false} entranceValid
@@ -2969,7 +3083,14 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           )}
           {dockTab === 'issues' && (
             <div>
-              {issueCount === 0 && <p className="note">No open issues. Geometry valid, inputs complete, no blockers.</p>}
+              <h3>Geometry and input checks</h3>
+              {validationIssueCount === 0 && <p className="note">{workingLayout.empty ? 'No active layout to assess.' : 'No geometry, profile or input issues detected. Financial outcomes are assessed separately below.'}</p>}
+              <section className="financial-review" aria-label="Financial review">
+                <h3>Financial review</h3>
+                <p className="note">{boundaryDraft ? 'Boundary edit in progress · financial review unavailable until Apply or Cancel.' : financeScope}</p>
+                {financialIssues.length > 0 ? <ul>{financialIssues.map((message,i) => <li key={i}>{message}</li>)}</ul> : econShown && inputsOk && !boundaryDraft ? <p>No owner shortfall or target-surplus deficit under the entered assumptions. This does not establish financial viability.</p> : <p>Financial outcomes unavailable. Generate a layout and complete valid economics inputs to assess them.</p>}
+                <p className="note">Geometry validity does not establish financial feasibility. These modeled outcomes use the entered costs, selling price, owner benchmark and target; market evidence and professional review remain separate.</p>
+              </section>
               {workingErrors.length > 0 && (
                 <>
                   <h3>Geometry / inputs</h3>

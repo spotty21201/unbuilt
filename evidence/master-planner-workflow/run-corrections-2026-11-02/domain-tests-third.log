@@ -1,0 +1,73 @@
+PASS D1 mixed radii 8,4,4 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 8,4.05,4 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 8,4,4.05 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 7.95,4,4 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 mixed radii 8,3.95,4.05 calculate without dropping streets
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D1 repeat calculation is deterministic
+PASS D1 original fixture inputs remain exact
+PASS original portable project with 11 alternatives remains readable
+PASS original accepted geometry and schedules are not regenerated on load
+PASS D4 supplied retained mix already passes
+PASS D5 summary identifies yield, shortlist and qualification without legacy conversion
+PASS D6 selected lot resolves Family, street, section and stable reference
+PASS D6 names follow current data without changing IDs
+PASS D6 missing references are explicit and safe
+PASS rate source limit has a specific validation error
+PASS per-lot source limit has a specific validation error
+PASS D2 future park access can be saved without pretending a completed park
+PASS D7 empty denominator remains null and missing rates remain unpriced
+PASS D2 commitments roundtrip with fixed preferred entry and obligations
+PASS D2 non-looped preparation requires explicit termination before producing proposal
+PASS D2 exact supplied commitments yield a connected passing measured candidate
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+PASS D2 fixed source inputs, products, mix, protection and park stay exact
+PASS D2 fixed preferred entrance is preserved through generation
+PASS D2 obligatory park access is measured and never relaxed
+angled ready Best found among 16 tested geometry/allocation configurations: 53 valid lots. Review the plan, mix and quantity differences before accepting.
+PASS angled: inputs are never silently changed
+PASS angled: connected preparation services committed park without relaxing mix
+PASS valid yield equals actual counted polygons and product counts
+PASS land reconciles with separate gaps and overlaps
+PASS valid product counts reproduce unit percentages and current scoped costs
+concave failed No tested full-corridor layout fits these inputs. Review the reported conflicts; this bounded search is not a proof of impossibility.
+PASS concave: inputs are never silently changed
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: concave: connected preparation services committed park without relaxing mix
+    at check (file:///home/spotty/projects/unbuilt/tests/master-planner-corrections.mjs:8:169)
+    at file:///home/spotty/projects/unbuilt/tests/master-planner-corrections.mjs:19:321
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

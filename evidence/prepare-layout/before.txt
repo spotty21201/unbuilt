@@ -1,0 +1,90 @@
+UNBUILT · Cedar Market sample
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Back to project
+Flat landed residential study · geometry checks do not establish house feasibility or statutory approval. Unaccepted preview — accepted project is preserved.
+Preview: Residential working plan
+12,000 m² gross · Unresolved / failing constraints
+Draw site boundary
+Draw external main road
+Draw supplied natural feature
+Draw river centreline
+Draw irregular open space
+Draw reservation
+Draw connected street
+Select
+Pan
+Fit site & context
++
+−
+Snap spaces/lots to road edges
+Snap (m)
+10 m · local coordinates
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+0 valid lots
+0 unresolved / 0 invalid
+0 m² valid lots
+0 m² roads
+0 m road
+Undefined m / valid lot
+0 m² fixed protection
+0 m² flexible space
+12,000 m² residual
+Rp 0 priced · 0 missing scopes
+SOP procedure
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+
+Select an object on the plan or edit inputs at right. Drag an adjustable entrance along its edge, a street or a flexible-space corner; review the regenerated lots and quantities before accepting.
+
+Inputs & commitments
+
+Site inputs first: boundary → existing main road → permitted frontage → entrance. Given features keep their source position/shape. Lots are generated after products and street groups are defined.
+
+Source geometry & reliable scale
+Scenario name
+Assignment and site
+Comparison objective
+Maximum valid lot yield
+Least internal road length
+Other declared objective (manual ranking)
+Objective / declared comparison basis
+Source information
+Fixed requirements
+Preferences
+Adjustable variables
+Unknown inputs
+Independent dimension check
+Scale status
+Unverified
+Source coordinates in metres
+Calibrated source reference
+
+Use Source geometry & scale above to import or trace a calibrated source. Changing this status alone does not calibrate geometry.
+
+Lock accepted boundary
+Boundary coordinates
+Metres: x, y on each line. Last corner closes to the first.
+Entrance & adjoining roads
+
+Place/import the main road first, enter its real widths and mark permitted adjoining frontage. Entrances below are derived from that physical relationship.
+
+Road structure & parameters
+Lot products & development rates
+Product groups & target composition
+Protection, flexible space & reservations
+Separate common works costs
+Start or reset residential study
+Review inputs and quantities; accepted project geometry remains preserved.
+
+4 unresolved checks remain visible; acceptance records a study, not approval.
+
+Cancel preview
+Accept site inputs
+Import residential collection

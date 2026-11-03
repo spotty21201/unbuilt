@@ -1,6 +1,6 @@
 import {developmentFindings} from '../src/development.ts';
 import { handleAI } from './ai-assistant.mjs';
-import { publicAIStatus } from './ai-config.mjs';
+import { publicAIStatus,activeConnection } from './ai-config.mjs';
 import {housingSummary} from '../src/housing.ts';
 // UNBUILT deterministic server seam (Coder-owned). No dependencies; stdlib only.
 //
@@ -247,7 +247,8 @@ const server = http.createServer(async (req, res) => {
     }
     if (req.method === "GET" && req.url === "/api/health") {
       res.setHeader("Cache-Control", "no-store");
-      send(res, 200, { ok: true, adapter: MODEL_KEY ? "meta" : "mock", model: MODEL, modelConfigured: publicAIStatus().configured, ai: publicAIStatus() });
+      const ai=publicAIStatus();
+      send(res, 200, { ok: true, adapter: ai.configured||MODEL_KEY ? "meta" : "mock", model: ai.configured?activeConnection().model:MODEL, modelConfigured: ai.configured, ai });
       return;
     }
     if (req.url?.startsWith('/api/ai/')) {

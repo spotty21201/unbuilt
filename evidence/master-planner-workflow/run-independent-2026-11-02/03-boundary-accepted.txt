@@ -1,0 +1,82 @@
+Skip to plan
+UNBUILT
+Projects
+Master Planner Workflow Test
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+External road setup
+Master Planner Workflow Test · 12,000 m² · 4 vertices
+Selected: Site
+Boundary only
+Saved in this browser
+
+Boundary applied: 12,000 m². Next, draw and name the adjoining external road with its width. Undo restores the previous boundary.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Boundary ready
+
+Next, draw the adjoining external road and enter its name and width.
+
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context & survey
+Your site is ready
+
+12,000 m² · 4 corners. No layout has been generated. Any designed open spaces remain reserved.
+
+Next: external road
+
+Name the adjoining road, enter its full width, then draw along the site edge. Its position determines where a residential entrance can connect.
+
+Draw external road
+
+Boundary → external road → home products → Prepare Layout
+
+Edit boundaryDesign open spacesGenerate layout
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Manage housing templatesSaved alternativesTerrain, drainage and phasingOpen projects
+EVALUATOR
+Details
+Boundary only · next, draw the external road and enter its name and width.

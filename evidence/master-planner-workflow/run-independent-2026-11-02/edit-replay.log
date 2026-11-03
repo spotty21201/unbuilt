@@ -1,0 +1,102 @@
+[
+  {
+    case: 'entry',
+    acceptEnabled: true,
+    geometryChanged: true,
+    before: '31 valid lots\n' +
+      '0 unresolved / 0 invalid\n' +
+      '2,904 m² valid lots\n' +
+      '1,456 m² roads\n' +
+      '190 m road\n' +
+      '6.1 m / valid lot\n' +
+      '517.2 m² fixed protection\n' +
+      '268 m² flexible space\n' +
+      '6,854.8 m² residual\n' +
+      'Rp 0 priced · 4 missing scopes',
+    after: '28 valid lots\n' +
+      '0 unresolved / 0 invalid\n' +
+      '2,576 m² valid lots\n' +
+      '1,457.4 m² roads\n' +
+      '190.2 m road\n' +
+      '6.8 m / valid lot\n' +
+      '517.2 m² fixed protection\n' +
+      '268 m² flexible space\n' +
+      '7,181.3 m² residual\n' +
+      'Rp 0 priced · 4 missing scopes'
+  },
+  {
+    case: 'road',
+    acceptEnabled: true,
+    geometryChanged: true,
+    before: '28 valid lots\n' +
+      '0 unresolved / 0 invalid\n' +
+      '2,576 m² valid lots\n' +
+      '1,457.4 m² roads\n' +
+      '190.2 m road\n' +
+      '6.8 m / valid lot\n' +
+      '517.2 m² fixed protection\n' +
+      '268 m² flexible space\n' +
+      '7,181.3 m² residual\n' +
+      'Rp 0 priced · 4 missing scopes',
+    after: '28 valid lots\n' +
+      '0 unresolved / 0 invalid\n' +
+      '2,576 m² valid lots\n' +
+      '1,457.5 m² roads\n' +
+      '190.2 m road\n' +
+      '6.8 m / valid lot\n' +
+      '517.2 m² fixed protection\n' +
+      '268 m² flexible space\n' +
+      '7,181.2 m² residual\n' +
+      'Rp 0 priced · 4 missing scopes'
+  },
+  {
+    case: 'group',
+    acceptEnabled: false,
+    geometryChanged: true,
+    before: '28 valid lots\n' +
+      '0 unresolved / 0 invalid\n' +
+      '2,576 m² valid lots\n' +
+      '1,457.5 m² roads\n' +
+      '190.2 m road\n' +
+      '6.8 m / valid lot\n' +
+      '517.2 m² fixed protection\n' +
+      '268 m² flexible space\n' +
+      '7,181.2 m² residual\n' +
+      'Rp 0 priced · 4 missing scopes',
+    after: '32 valid lots\n' +
+      '0 unresolved / 0 invalid\n' +
+      '2,304 m² valid lots\n' +
+      '1,457.5 m² roads\n' +
+      '190.2 m road\n' +
+      '5.9 m / valid lot\n' +
+      '517.2 m² fixed protection\n' +
+      '268 m² flexible space\n' +
+      '7,453.2 m² residual\n' +
+      'Rp 0 priced · 3 missing scopes'
+  },
+  {
+    case: 'space',
+    acceptEnabled: true,
+    geometryChanged: false,
+    before: '28 valid lots\n' +
+      '0 unresolved / 0 invalid\n' +
+      '2,576 m² valid lots\n' +
+      '1,457.5 m² roads\n' +
+      '190.2 m road\n' +
+      '6.8 m / valid lot\n' +
+      '517.2 m² fixed protection\n' +
+      '268 m² flexible space\n' +
+      '7,181.2 m² residual\n' +
+      'Rp 0 priced · 4 missing scopes',
+    after: '28 valid lots\n' +
+      '0 unresolved / 0 invalid\n' +
+      '2,576 m² valid lots\n' +
+      '1,457.5 m² roads\n' +
+      '190.2 m road\n' +
+      '6.8 m / valid lot\n' +
+      '517.2 m² fixed protection\n' +
+      '272 m² flexible space\n' +
+      '7,177.2 m² residual\n' +
+      'Rp 0 priced · 4 missing scopes'
+  }
+]

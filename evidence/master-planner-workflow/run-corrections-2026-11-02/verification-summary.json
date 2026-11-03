@@ -1,0 +1,141 @@
+{
+  "suites": [
+    {
+      "suite": "Root regression",
+      "assertions": 1044,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "root-tests.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/root-regression npm test"
+    },
+    {
+      "suite": "Preparation, final wording",
+      "assertions": 42,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "prepare-reviewed.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/prepare-reviewed npm run test:prepare"
+    },
+    {
+      "suite": "Corrections domain",
+      "assertions": 59,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "domain-reviewed.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/domain-reviewed node --experimental-strip-types --no-warnings tests/master-planner-corrections.mjs"
+    },
+    {
+      "suite": "Invalid lot and cost",
+      "assertions": 4,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "invalid-lot-domain-final.log",
+      "command": "node --experimental-strip-types --no-warnings tests/master-planner-invalid.mjs"
+    },
+    {
+      "suite": "Independent quantities",
+      "assertions": 251,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "independent-audit-final.log",
+      "command": "UNBUILT_WORKFLOW_EVIDENCE_DIR=workflow-final node tests/master-planner-quantities.mjs"
+    },
+    {
+      "suite": "Existing residential browser",
+      "assertions": 26,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "residential-browser.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/residential-browser node tests/residential-browser.cjs"
+    },
+    {
+      "suite": "Existing projects browser",
+      "assertions": 55,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "projects-browser.log",
+      "command": "PLAYWRIGHT_MODULE=/home/spotty/projects/studioos/node_modules/playwright UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/projects-regression node tests/projects-browser.cjs"
+    },
+    {
+      "suite": "Existing advanced browser",
+      "assertions": 11,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "advanced-browser.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/advanced-regression node evidence/master-planner-workflow/run-corrections-2026-11-02/regression-scripts/advanced.cjs"
+    },
+    {
+      "suite": "Existing prepare browser",
+      "assertions": 20,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "prepare-browser.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/prepare-browser-regression node evidence/master-planner-workflow/run-corrections-2026-11-02/regression-scripts/prepare.cjs"
+    },
+    {
+      "suite": "Fresh26-action workflow",
+      "assertions": 25,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "workflow-browser-final.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/workflow-final node tests/master-planner-workflow-browser.cjs"
+    },
+    {
+      "suite": "D1\u2013D7 browser",
+      "assertions": 28,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "corrections-browser-release-local.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/browser-release-local node tests/master-planner-corrections-browser.cjs"
+    },
+    {
+      "suite": "Secondary sites browser",
+      "assertions": 17,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "secondary-browser-second.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/secondary node tests/master-planner-secondary-browser.cjs"
+    },
+    {
+      "suite": "Invalid lot/protection browser",
+      "assertions": 4,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "invalid-lot-browser-final.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/master-planner-workflow/run-corrections-2026-11-02/invalid-lot node tests/master-planner-invalid-browser.cjs"
+    },
+    {
+      "suite": "Final visual review",
+      "assertions": 2,
+      "status": "passed",
+      "exitCode": 0,
+      "log": "visual-review-final.log",
+      "command": "node tests/master-planner-review-browser.cjs"
+    }
+  ],
+  "rootIncludes": "The95 SOP,56 V2 and42 prepare assertions are included in1044, not additional. The42 preparation checks were also rerun after final feedback wording. UI-only CSS/wrapping final change covered by focused browser/visual checks.",
+  "browserAssertions": 188,
+  "mouseReplayCases": 4,
+  "finalFailingSuites": [],
+  "retainedEarlierFailures": "See REPORT.md; baseline product failures, intermediate approaches, harness selector/timing failures and an earlier25-assertion workflow command exit143 are retained. Final fresh workflow exit0.",
+  "build": {
+    "command": "npm run build --prefix web",
+    "status": "passed",
+    "log": "build-release-local.log",
+    "warning": "Existing Vite large-bundle warning, non-fatal"
+  },
+  "lint": {
+    "command": "npm run lint --prefix web",
+    "status": "passed",
+    "log": "lint-release-local.log"
+  },
+  "limitations": [
+    "Boolean verification uses the same polygon-clipping kernel; independent arithmetic is not an independent geometry engine.",
+    "Design vehicle/engineering/house/statutory decisions and missing project/cost inputs remain unknown.",
+    "Physical-device/screen-reader/human planner acceptance not tested."
+  ],
+  "freshPortableProject": "workflow-final/Master-Planner-Workflow-Test.project.json",
+  "originalPortableProjectUnchanged": true,
+  "preservation": "preservation-after.json",
+  "runtime": "runtime.json"
+}

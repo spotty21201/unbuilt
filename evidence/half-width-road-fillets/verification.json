@@ -1,0 +1,33 @@
+{
+  "asset": "/assets/index-CWlgXymI.js",
+  "rootChecks": 856,
+  "roadGeometryChecks": 37,
+  "halfWidthBrowserChecks": 27,
+  "browserSuites": 42,
+  "browserFailures": [],
+  "build": "pass",
+  "lint": "pass",
+  "serviceMatchesCurrentEngine": true,
+  "servicePublicConfigurationUnchanged": true,
+  "preservedFiles": 6207,
+  "changedPreservedFiles": [],
+  "sourceSha256": {
+    "src/geometry.ts": "49bb85bf8a7e2f9109354d2f53fdd62c8a62102e3c3e99076b3b0c5319f75ffe",
+    "src/road-surfaces.ts": "fc6d8140d6651807cf05d72bd559ed586d1521f6e7761ef94ec1a693a6f6fac1",
+    "src/streets.ts": "5ab769261a5cd426febe663a408b9606f403e27a8522a2808cf0e2db8cde9be1",
+    "web/src/App.tsx": "a53698802b4462e9851d72df5511956a3cb034ca00dbb9f67c77a344365c51ef",
+    "web/src/unbuilt/DynamicInspector.tsx": "ddb175b19bf6a1bbddb5cab6dec80993d67096eecde3f8c7e31e8e5c1a5f58bf",
+    "web/src/unbuilt/StreetEditor.tsx": "4127da12f8b3d68183c6e02e84b679a893ba876cf6008422b05cea1ae762a911",
+    "web/src/unbuilt/PlanCanvas.tsx": "4131c9500c0fac4bdfff48e34bcd38a3d10c7dc5cd60df9506d4e596a1bd2b2f",
+    "tests/road-surfaces.mjs": "3cb7166c43996151ed26aacc639fe5c7790b102080f268fcbdb22b4f60bf93d0",
+    "tests/merged-road-corners-browser.cjs": "ddeb286ab24fda600db5d64fa635975a8e64ecd875d979a1a5746903d9b606e3",
+    "tests/half-width-fillets-browser.cjs": "35f4aabc372715c0d537a7a513738f79a0874a05bc77edff65a8b844c5d75a0d"
+  },
+  "screenshotsInspected": [
+    "illustration/smooth-turns-detail.png",
+    "browser/green-corner-before.png",
+    "browser/green-corner-smooth.png",
+    "browser/tight-step-smooth.png"
+  ],
+  "publication": "none"
+}

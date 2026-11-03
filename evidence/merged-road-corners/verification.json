@@ -1,0 +1,35 @@
+{
+  "asset": "/assets/index-Dq5UMVlU.js",
+  "rootChecks": 846,
+  "roadChecks": 27,
+  "targetedBrowserChecks": 32,
+  "browserSuites": 41,
+  "browserFailures": [],
+  "build": "pass",
+  "lint": "pass",
+  "preservedFiles": 4755,
+  "changedPreservedFiles": [],
+  "earlierReviewPreservedFiles": 999,
+  "changedEarlierReviewFiles": [],
+  "sourceSha256": {
+    "src/road-surfaces.ts": "962eb6efa577d620746517be564c406d7122b7177a6e8968c7932cff72828d31",
+    "src/streets.ts": "9ce0a3647e696e74b5f5d8c42150566ab46dfef384bf438b03f7509780fa7806",
+    "web/src/App.tsx": "8aa8e46bb6edb243fa1575074a0db9ed0d15fb907e6f2bce60d994568dd47425",
+    "web/src/unbuilt/PlanCanvas.tsx": "132ea992c235d97dfe51082fa2f185d20e80b6b5a823246105abb6f3fcb50039",
+    "web/src/unbuilt/DynamicInspector.tsx": "412f878da52f1e116806df5b95a9d26875e5f965f92aaa030cca564e5632b7f9",
+    "web/src/unbuilt/StreetEditor.tsx": "07201e02f86e49f859a801d26023e520b6b2f02be5d42ec98f85238abc00ed61",
+    "tests/road-surfaces.mjs": "40878ce5fb0910002ef30cce05962802ec4e8b991cef7f5dc897285fb411e7d2",
+    "tests/merged-road-corners-browser.cjs": "d7a43476c6be02b2931d7a9b4e31c9a5db798b3960686f3d7eea92317c07d344",
+    "tests/residual-browser.cjs": "672caaad529117525c083de163306606faa1e1efca5e8c79426798dc46709ec0",
+    "tests/streets-browser.cjs": "e5af72125832730cb4a6025d64ec48c5c345a320e208f19664ae1c021ff0f80a",
+    "tests/planner-feedback-browser.cjs": "ce104a33ae74059da3efc52fcb919bef5954565283550729c3bdc21b78484a13",
+    "tests/dynamic-inspector-browser.cjs": "8a1d184c786af0e7c86e2c495717c2cfe9566e31ef850f34b40e0e3e4a3ef378"
+  },
+  "screenshotsInspected": [
+    "final-matrix/merged-road-corners-browser/generated-bend-rounded.png",
+    "final-matrix/merged-road-corners-browser/generated-loop-rounded.png",
+    "final-matrix/merged-road-corners-browser/rounded-375.png",
+    "final-matrix/angled-roads-zoom/angled-drawing-200.png"
+  ],
+  "publication": "none"
+}

@@ -1,0 +1,25 @@
+PASS D3 1440×1000 fitted south endpoints are immediately pointer-accessible
+PASS D3 1440×1000 actual clicks place both road points without zoom or scrolling
+PASS D3 1440×1000 saved road stays at exact metre geometry
+PASS D3 1440×1100 fitted south endpoints are immediately pointer-accessible
+PASS D3 1440×1100 actual clicks place both road points without zoom or scrolling
+PASS D3 1440×1100 saved road stays at exact metre geometry
+PASS D3 900×900 fitted south endpoints are immediately pointer-accessible
+PASS D3 900×900 actual clicks place both road points without zoom or scrolling
+PASS D3 900×900 saved road stays at exact metre geometry
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+AssertionError [ERR_ASSERTION]: D5 outer plan identifies 43 screened valid lots and unresolved study
+    at check (/home/spotty/projects/unbuilt/tests/master-planner-corrections-browser.cjs:2:274)
+    at /home/spotty/projects/unbuilt/tests/master-planner-corrections-browser.cjs:9:323 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

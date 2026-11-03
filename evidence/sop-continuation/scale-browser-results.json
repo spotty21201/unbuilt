@@ -1,0 +1,418 @@
+{
+  "checks": [
+    "attaching reference makes no false scale confirmation",
+    "known-distance calibration records real source pixel points and fixed-vector boundary",
+    "independent dimension actually measures coordinates and compares entered tolerance",
+    "failed dimension does not stretch boundary or commit proposed inputs",
+    "reopen preserves calibration and check but does not invent retained image media",
+    "reattached matching source uses saved calibration",
+    "no uncaught browser errors"
+  ],
+  "errors": [],
+  "calibrated": {
+    "id": "residential",
+    "name": "Residential working plan",
+    "idea": "Working residential layout",
+    "advantage": "Measured valid yield and scoped quantities",
+    "compromise": "Residual and unresolved checks remain visible",
+    "inputs": {
+      "version": 2,
+      "phase": "site",
+      "objective": "yield",
+      "objectiveNote": "Maximum valid lot yield within the declared product mix and constraints",
+      "source": "fictitious-scale.png; calibrated from a supplied 20 m dimension",
+      "fixedRequirements": "",
+      "preferences": "Coherent facing street groups",
+      "adjustable": "Internal roads, product-group allocation and proposed open space",
+      "unknowns": "",
+      "boundary": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 100
+        },
+        {
+          "x": 0,
+          "y": 100
+        }
+      ],
+      "boundaryLocked": true,
+      "calibration": "calibrated",
+      "independentCheck": "",
+      "externalRoads": [],
+      "entrance": {
+        "id": "primary",
+        "edge": 0,
+        "offset": 0,
+        "width": 8,
+        "transition": 12,
+        "roadId": "main",
+        "externalRoadId": "",
+        "locked": false,
+        "role": "Primary",
+        "movements": ""
+      },
+      "roadRules": {
+        "corridor": 8,
+        "carriageway": null,
+        "cornerReturn": 0,
+        "centrelineRadius": null,
+        "junctionAngle": 90,
+        "turning": "",
+        "confirmed": false
+      },
+      "roads": [],
+      "products": [],
+      "groups": [],
+      "spaces": [],
+      "mix": {
+        "basis": "units",
+        "mode": "percent",
+        "tolerance": 5,
+        "mandatory": false,
+        "rounding": "largest-remainder",
+        "targets": {}
+      },
+      "commonRates": [],
+      "lockedLots": [],
+      "fill": false,
+      "survey": {
+        "name": "fictitious-scale.png",
+        "fingerprint": "6165-466534fc-5af05310",
+        "page": 1,
+        "width": 400,
+        "height": 200,
+        "a": {
+          "x": 49.6,
+          "y": 149.6
+        },
+        "b": {
+          "x": 150,
+          "y": 149.6
+        },
+        "distance": 20,
+        "anchor": {
+          "x": 12.4,
+          "y": 12.600000000000001
+        },
+        "direction": 0
+      }
+    },
+    "result": {
+      "phase": "site",
+      "externalReservation": [],
+      "resolvedRoads": [],
+      "lots": [],
+      "road": [],
+      "connection": [],
+      "offsiteConnection": [],
+      "blocks": [
+        [
+          [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ]
+        ]
+      ],
+      "residual": [
+        [
+          [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ]
+        ]
+      ],
+      "exclusions": {},
+      "issues": [
+        {
+          "state": "unknown",
+          "object": "external-roads",
+          "message": "Place the existing main road before choosing any entrance."
+        },
+        {
+          "state": "unknown",
+          "object": "products",
+          "message": "Define residential products before generating lots."
+        },
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Site inputs only: an entrance has not been selected from adjoining-road frontage."
+        }
+      ],
+      "counts": {
+        "valid": 0,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "validLotArea": 0,
+      "roadLength": 0,
+      "roadPerLot": null,
+      "land": {
+        "gross": 12000,
+        "residential": 0,
+        "roads": 0,
+        "protected": 0,
+        "flexible": 0,
+        "reservations": 0,
+        "residual": 12000,
+        "overlap": 0,
+        "gap": 0,
+        "tolerance": 0.01
+      },
+      "schedule": [],
+      "groupSchedule": [],
+      "cost": 0,
+      "missingCosts": [],
+      "qualified": false,
+      "skipped": {}
+    }
+  },
+  "checked": {
+    "id": "residential",
+    "name": "Residential working plan",
+    "idea": "Working residential layout",
+    "advantage": "Measured valid yield and scoped quantities",
+    "compromise": "Residual and unresolved checks remain visible",
+    "inputs": {
+      "version": 2,
+      "phase": "site",
+      "objective": "yield",
+      "objectiveNote": "Maximum valid lot yield within the declared product mix and constraints",
+      "source": "fictitious-scale.png; calibrated from a supplied 20 m dimension",
+      "fixedRequirements": "",
+      "preferences": "Coherent facing street groups",
+      "adjustable": "Internal roads, product-group allocation and proposed open space",
+      "unknowns": "",
+      "boundary": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 100
+        },
+        {
+          "x": 0,
+          "y": 100
+        }
+      ],
+      "boundaryLocked": true,
+      "calibration": "calibrated",
+      "independentCheck": "Measured between supplied points against 50 m, tolerance 1 m",
+      "externalRoads": [],
+      "entrance": {
+        "id": "primary",
+        "edge": 0,
+        "offset": 0,
+        "width": 8,
+        "transition": 12,
+        "roadId": "main",
+        "externalRoadId": "",
+        "locked": false,
+        "role": "Primary",
+        "movements": ""
+      },
+      "roadRules": {
+        "corridor": 8,
+        "carriageway": null,
+        "cornerReturn": 0,
+        "centrelineRadius": null,
+        "junctionAngle": 90,
+        "turning": "",
+        "confirmed": false
+      },
+      "roads": [],
+      "products": [],
+      "groups": [],
+      "spaces": [],
+      "mix": {
+        "basis": "units",
+        "mode": "percent",
+        "tolerance": 5,
+        "mandatory": false,
+        "rounding": "largest-remainder",
+        "targets": {}
+      },
+      "commonRates": [],
+      "lockedLots": [],
+      "fill": false,
+      "survey": {
+        "name": "fictitious-scale.png",
+        "fingerprint": "6165-466534fc-5af05310",
+        "page": 1,
+        "width": 400,
+        "height": 200,
+        "a": {
+          "x": 49.6,
+          "y": 149.6
+        },
+        "b": {
+          "x": 150,
+          "y": 149.6
+        },
+        "distance": 20,
+        "anchor": {
+          "x": 12.4,
+          "y": 12.600000000000001
+        },
+        "direction": 0
+      },
+      "scaleCheck": {
+        "a": {
+          "x": 19.900000000000002,
+          "y": 20.1
+        },
+        "b": {
+          "x": 69.9,
+          "y": 20.1
+        },
+        "known": 50,
+        "tolerance": 1,
+        "source": "fictitious-scale.png; calibrated from a supplied 20 m dimension"
+      }
+    },
+    "result": {
+      "phase": "site",
+      "externalReservation": [],
+      "resolvedRoads": [],
+      "lots": [],
+      "road": [],
+      "connection": [],
+      "offsiteConnection": [],
+      "blocks": [
+        [
+          [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ]
+        ]
+      ],
+      "residual": [
+        [
+          [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ]
+        ]
+      ],
+      "exclusions": {},
+      "issues": [
+        {
+          "state": "unknown",
+          "object": "external-roads",
+          "message": "Place the existing main road before choosing any entrance."
+        },
+        {
+          "state": "unknown",
+          "object": "products",
+          "message": "Define residential products before generating lots."
+        },
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Site inputs only: an entrance has not been selected from adjoining-road frontage."
+        }
+      ],
+      "counts": {
+        "valid": 0,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "validLotArea": 0,
+      "roadLength": 0,
+      "roadPerLot": null,
+      "land": {
+        "gross": 12000,
+        "residential": 0,
+        "roads": 0,
+        "protected": 0,
+        "flexible": 0,
+        "reservations": 0,
+        "residual": 12000,
+        "overlap": 0,
+        "gap": 0,
+        "tolerance": 0.01
+      },
+      "schedule": [],
+      "groupSchedule": [],
+      "cost": 0,
+      "missingCosts": [],
+      "qualified": false,
+      "skipped": {},
+      "sourceCheck": {
+        "measured": 50,
+        "difference": 0,
+        "state": "pass"
+      }
+    }
+  }
+}

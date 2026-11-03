@@ -1,0 +1,7 @@
+PASS native 200 percent uses the same physical window
+PASS angled rounded draft can be explicitly accepted at native zoom
+PASS manual-road residual remains evaluated and fits at native zoom
+PASS native zoom totals reconcile to the displayed remainder
+PASS residual findings remain keyboard scrollable at 200 percent
+PASS native zoom reload restores manual residual results
+ALL 6 RESIDUAL ZOOM CHECKS PASS

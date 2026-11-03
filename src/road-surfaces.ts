@@ -1,3 +1,4 @@
+import {isPolygonOverlayError} from './geometry-errors.ts';
 import clipping from 'polygon-clipping';
 import type { MultiPolygon, Pair } from 'polygon-clipping';
 import { polyArea, polyInsidePoly, polyOverlapsRect, polysOverlap, rectCorners, type Pt } from './polygon.ts';
@@ -9,6 +10,12 @@ export type RoadSurface = Pt[][][];
 const coordinates=(surface:RoadSurface):MultiPolygon=>surface.map(p=>p.map(r=>r.map(q=>[q.x,q.y] as Pair)));
 const points=(surface:MultiPolygon):RoadSurface=>surface.map(p=>p.map(r=>r.slice(0,-1).map(([x,y])=>({x,y}))));
 export const surfaceArea=(surface:RoadSurface)=>surface.reduce((n,p)=>n+p.reduce((a,r,i)=>a+(i?-1:1)*polyArea(r),0),0);
+// Legacy rectangles and the disjoint entrance apron share one visible kerb.
+// Union changes the outline only; rounding remains an explicitly measured edit.
+export function mergedRoadSurface(roads:Rect[],pavement?:RoadSurface,apron?:Pt[]):RoadSurface {
+  const parts=[...(pavement??roads.map(r=>[rectCorners(r)])),...(apron?[ [apron] ]:[])];
+  return parts.length?points(clipping.union(coordinates([parts[0]]),...parts.slice(1).map(p=>coordinates([p])))):[];
+}
 export function usesShapedStreets(raw:unknown):boolean {
   if(!raw||typeof raw!=='object'||Array.isArray(raw))return false;
   const n=raw as StreetNetwork;
@@ -21,8 +28,8 @@ export function streetPolygon(s:StreetSegment):Pt[]{
 }
 
 // Circular kerb fillets, polygonised to at most 5 mm chord deviation.
-// Short edges limit tangent distance to 45% at either end; report reduced radii.
-export function streetSurface(network:StreetNetwork){
+// Adjacent tangent runs share each edge; curves can meet without leftover steps.
+export function streetSurface(network:StreetNetwork,options?:{junctionOnly:boolean}){
   const strips=network.segments.map(streetPolygon).filter(p=>p.length);
   if(!strips.length)return {surface:[] as RoadSurface,limited:0,minimumRadius:0};
   // Butt-ended strips leave a notch outside a bend. Close that wedge with
@@ -43,7 +50,22 @@ export function streetSurface(network:StreetNetwork){
       strips.push(bounded?[node,first,miter,last]:[node,first,last]);
     }
   }
-  const original=points(clipping.union(coordinates([[strips[0]]]),...strips.slice(1).map(p=>coordinates([[p]]))));
+  const merge=(polygons:Pt[][])=>points(clipping.union(coordinates([[polygons[0]]]),...polygons.slice(1).map(p=>coordinates([[p]]))));
+  let original:RoadSurface;
+  try{original=merge(strips);}catch(error){
+    if(!isPolygonOverlayError(error))throw error;
+    // Retry failing near-coincident arc kerbs on a micrometre grid; successful legacy results stay exact.
+    const grid=strips.map(r=>r.map(p=>({x:Math.round(p.x*1e6)/1e6,y:Math.round(p.y*1e6)/1e6})));
+    try{original=merge(grid);}catch(retryError){
+      if(!isPolygonOverlayError(retryError))throw retryError;
+      // A radius equal to half-width collapses inner kerbs. Pairwise unions avoid
+      // simultaneous near-coincident events without coarsening or dropping strips.
+      let parts=grid.map(p=>coordinates([[p]]));
+      while(parts.length>1){const next:MultiPolygon[]=[];for(let k=0;k<parts.length;k+=2)next.push(k+1<parts.length?clipping.union(parts[k],parts[k+1]):parts[k]);parts=next;}
+      original=points(parts[0]);
+    }
+  }
+  const junctions=options?.junctionOnly?streetNodes(network).filter(p=>network.segments.filter(s=>onStreet(p,s)).reduce((n,s)=>n+Number(!samePoint(s.a,p))+Number(!samePoint(s.b,p)),0)>=3):[];
   const radius=network.cornerRadius??0;
   if(!radius)return {surface:original,limited:0,minimumRadius:0};
   // End caps and entrance mouths retain their full declared width.
@@ -52,23 +74,31 @@ export function streetSurface(network:StreetNetwork){
     return [{x:p.x+x,y:p.y+y},{x:p.x-x,y:p.y-y}];
   }));
   let limited=0,minimumRadius=radius;
-  const rounded=original.map(p=>p.map(r=>r.flatMap((b,i)=>{
-    if(caps.some(c=>samePoint(c,b)))return [b];
+  const rounded=original.map(p=>p.map(r=>{
+    const corners=r.map((b,i)=>{
+    if(caps.some(c=>samePoint(c,b))||options?.junctionOnly&&!junctions.some(p=>Math.hypot(p.x-b.x,p.y-b.y)<=Math.max(...network.segments.filter(s=>onStreet(p,s)).map(s=>s.width))+ .002))return null;
     const a=r[(i+r.length-1)%r.length],c=r[(i+1)%r.length],la=Math.hypot(a.x-b.x,a.y-b.y),lc=Math.hypot(c.x-b.x,c.y-b.y);
     const u={x:(a.x-b.x)/la,y:(a.y-b.y)/la},v={x:(c.x-b.x)/lc,y:(c.y-b.y)/lc};
     const angle=Math.acos(Math.max(-1,Math.min(1,u.x*v.x+u.y*v.y))),tan=Math.tan(angle/2);
-    if(!Number.isFinite(tan)||tan<1e-6||Math.PI-angle<1e-6)return [b];
-    const distance=Math.min(radius/tan,la*.45,lc*.45),effective=distance*tan;
+    if(!Number.isFinite(tan)||tan<1e-6||Math.PI-angle<1e-6)return null;
+    return {u,v,angle,tan,la,lc,desired:radius/tan};
+    });
+    return r.flatMap((b,i)=>{
+    const corner=corners[i];if(!corner)return [b];
+    const {u,v,angle,tan,la,lc,desired}=corner;
+    const distance=desired*Math.min(1,la/(desired+(corners[(i+r.length-1)%r.length]?.desired??0)),lc/(desired+(corners[(i+1)%r.length]?.desired??0))),effective=distance*tan;
     if(effective<radius-1e-6){limited++;minimumRadius=Math.min(minimumRadius,effective);}
     const bisector=Math.hypot(u.x+v.x,u.y+v.y),offset=effective/Math.sin(angle/2);
     const center={x:b.x+(u.x+v.x)/bisector*offset,y:b.y+(u.y+v.y)/bisector*offset};
     const first={x:b.x+u.x*distance,y:b.y+u.y*distance},last={x:b.x+v.x*distance,y:b.y+v.y*distance};
     const start=Math.atan2(first.y-center.y,first.x-center.x),end=Math.atan2(last.y-center.y,last.x-center.x);
+    const a=r[(i+r.length-1)%r.length],c=r[(i+1)%r.length];
     const turn=(b.x-a.x)*(c.y-b.y)-(b.y-a.y)*(c.x-b.x);let sweep=end-start;
     if(turn>0&&sweep<0)sweep+=2*Math.PI;if(turn<0&&sweep>0)sweep-=2*Math.PI;
     const step=2*Math.acos(Math.max(-1,1-.005/effective)),count=Math.max(2,Math.ceil(Math.abs(sweep)/Math.max(.01,step)));
     return Array.from({length:count+1},(_,j)=>j===0?first:j===count?last:{x:center.x+effective*Math.cos(start+sweep*j/count),y:center.y+effective*Math.sin(start+sweep*j/count)});
-  })));
+    });
+  }));
   return {surface:points(clipping.union(coordinates(rounded))),limited,minimumRadius};
 }
 export function surfaceInside(surface:RoadSurface,outline:Pt[]):boolean{return surface.every(p=>polyInsidePoly(p[0],outline));}

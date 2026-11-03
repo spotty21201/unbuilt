@@ -1,0 +1,18 @@
+PASS invalid context refuses before paid model request
+PASS invalid context refuses before paid model request
+PASS invalid context refuses before paid model request
+PASS invalid context refuses before paid model request
+PASS invalid inputs made no provider requests
+PASS residential route uses validated measured facts
+PASS response binds request identity and identifies AI source
+PASS custom Wonder instructions and full current products/mix reach model
+PASS provider credentials remain server-only
+PASS natural-language tool response is an intent, not accepted geometry
+PASS plain cannot fabricate a valid edit or numeric answer
+PASS unsafe cannot fabricate a valid edit or numeric answer
+PASS unknown fact cannot fabricate a valid edit or numeric answer
+PASS locked cannot fabricate a valid edit or numeric answer
+PASS clarification remains distinct from edits
+PASS health reports actual routed model and verified state
+PASS residential route retains trusted-origin checks
+ALL 17 MUSE SERVER CHECKS PASS (SCRIPTED PROVIDER)

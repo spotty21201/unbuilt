@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import type { Pt } from '../../../src/polygon';
-import { MAX_STREETS, streetLength, streetNodes, type StreetNetwork } from '../../../src/streets';
+import { MAX_STREETS, halfRoadWidth, roundedStreetNetwork, streetLength, streetNodes, type StreetNetwork } from '../../../src/streets';
 interface Props {
   drawingMode:'free'|'orthogonal';onDrawingMode:(mode:'free'|'orthogonal')=>void;rounding?:{limited:number;minimumRadius:number};
   network: StreetNetwork; selectedId: string | null; onSelect: (id: string) => void;
@@ -37,8 +37,9 @@ export default function StreetEditor(p: Props) {
     <p className="note">Widths of 6–12 m are design assumptions, not approved standards. Road costs use the unioned pavement outline, including fillets. Rectangular lots are generated along horizontal/vertical legs; land beside angled legs stays unallocated. Kerb curves are planning geometry; vehicle turning, road standards and external access remain unverified.</p>
     <div className="draftrow"><button type="button" disabled={p.drawing!==null||p.network.segments.length>=MAX_STREETS} onClick={p.onDraw}>Draw street</button><button type="button" disabled={p.drawing!==null} onClick={p.onEntrance}>Start at entrance</button><button type="button" disabled={p.drawing!==null} onClick={p.onConnect}>Connect entrance</button><button type="button" className="street-view-canvas" onClick={p.onCanvas}>View drawing</button></div>
     <label>Drawing alignment<select aria-label="Street drawing alignment" value={p.drawingMode} onChange={e=>p.onDrawingMode(e.target.value as Props['drawingMode'])}><option value="free">Any angle</option><option value="orthogonal">Right angles</option></select></label>
-    <label>Corner fillet radius (m)<input type="number" aria-label="Corner fillet radius (m)" min={0} max={50} step="any" aria-invalid={coordinateText.radius!==undefined} value={coordinateText.radius??String(p.network.cornerRadius??0)} onChange={e=>{const radius=e.target.value.trim()===''?NaN:Number(e.target.value);if(Number.isFinite(radius)&&radius>=0&&radius<=50){p.onChange({...p.network,cornerRadius:radius});setCoordinateText({});}else setCoordinateText({...coordinateText,radius:e.target.value});}}/></label>
-    <button type="button" onClick={()=>{p.onChange({...p.network,cornerRadius:4});setCoordinateText({});}}>Round corners · 4 m</button>
+    <label>Corner fillet radius (m)<input type="number" aria-label="Corner fillet radius (m)" min={0} max={50} step="any" aria-invalid={coordinateText.radius!==undefined} value={coordinateText.radius??String(p.network.cornerRadius??0)} onChange={e=>{const radius=e.target.value.trim()===''?NaN:Number(e.target.value);if(Number.isFinite(radius)&&radius>=0&&radius<=50){p.onChange(roundedStreetNetwork(p.network,radius));setCoordinateText({});}else setCoordinateText({...coordinateText,radius:e.target.value});}}/></label>
+    <button type="button" onClick={()=>{p.onChange(roundedStreetNetwork(p.network,halfRoadWidth(p.network)));setCoordinateText({});}}>Round corners · half road width</button>
+    <p className="note">Half road width = {halfRoadWidth(p.network)} m here. Mixed widths use the narrowest street as the starting radius; custom radii remain editable.</p>
     <p className="note">0 keeps square corners. Fillets change the kerb outline and measured road area. Short edges cap each fillet’s tangent distance to 45% of the adjacent edges; curves are measured with a maximum 5 mm chord deviation.</p>
     {!!p.rounding?.limited&&<p role="status">{p.rounding.limited} short corners use smaller radii, down to {p.rounding.minimumRadius.toFixed(2)} m. Review the drawing and quantities before Apply.</p>}
     <label>New street width <output>{p.newWidth} m</output><input type="range" aria-label="New street width" min={6} max={12} step={1} value={p.newWidth} onChange={e=>p.onWidth(Number(e.target.value))}/></label>

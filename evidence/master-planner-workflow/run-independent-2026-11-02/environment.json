@@ -1,0 +1,9 @@
+{
+  "commit": "b6c660f8c13402e853968ad47d0f75428d7ca50c",
+  "servedJS": "/assets/index-FEUX2Fqt.js",
+  "servedCSS": "/assets/index-CpdSNjde.css",
+  "recordedUTC": "2026-11-02T23:18:21.524505+00:00",
+  "node": "v22.23.3",
+  "host": "Linux 6.8.0-147-generic x86_64 GNU/Linux",
+  "profile": "fresh isolated Playwright context; no owner browser storage"
+}

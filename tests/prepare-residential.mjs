@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {siteFirstInputs,suppliedSpace} from '../src/residential-inputs.ts';
+import {residentialBoundaries,residentialProduct} from '../src/residential-fixtures.ts';
+import {adjoiningRoad,roadOutsideBoundary,prepareResidential,prepareInputErrors,resizeLotProduct,moveResidentialEntrance,deadEnds} from '../src/prepare-residential.ts';
+import {calculateResidential,residentialWorkspaceErrors} from '../src/residential.ts';
+import {entranceAllowed,entrancePoint,externalSurface,intersectSurface} from '../src/residential-site.ts';
+import {polyArea} from '../src/polygon.ts';
+import {surfaceArea} from '../src/road-surfaces.ts';
+import {serializeProject,parseProject} from '../src/persist.ts';
+import {starterProject} from '../src/projects.ts';
+const out=process.env.UNBUILT_EVIDENCE_DIR||'evidence/prepare-layout';
+let n=0;const check=(name,v)=>{assert.ok(v,name);n++;console.log('PASS '+name);},copy=structuredClone,fail=r=>r.issues.filter(i=>i.state==='fail');
+function fixture(kind='rectangle',multiple=true){const i=siteFirstInputs(residentialBoundaries[kind],'Fictitious prepare-layout survey');i.calibration='source-metres';i.externalRoads=[adjoiningRoad(i,[{x:0,y:100},{x:0,y:0}],10,'Given West Road','external',true)];i.products=[residentialProduct('compact','Compact',6,12,'#d4a35c'),...(multiple?[residentialProduct('family','Family',8,16,'#7ca8cc')]:[])];i.mix.targets=multiple?{compact:50,family:50}:{compact:100};return i;}
+const input=fixture();check('named road runs outside and touches the given boundary',input.externalRoads[0].name==='Given West Road'&&input.externalRoads[0].path.every(p=>p.x===-5)&&surfaceArea(intersectSurface(externalSurface(input),[[input.boundary]]))<.01);
+const reverse=roadOutsideBoundary([...input.boundary].reverse(),[{x:0,y:0},{x:120,y:0}],12);check('outside placement works for both boundary windings',reverse.every(p=>p.y===-6));
+const corner=roadOutsideBoundary(input.boundary,[{x:0,y:100},{x:0,y:0},{x:120,y:0}],10);check('external road can follow adjacent edges with a real offset join',corner.length===3&&corner[1].x===-5&&corner[1].y===-5);
+assert.throws(()=>roadOutsideBoundary(input.boundary,[{x:10,y:10},{x:80,y:20}],10),/site edges/);n++;
+const bad=fixture();bad.externalRoads[0].eligible=[];check('Prepare refuses restricted frontage',prepareInputErrors(bad).length>0);bad.externalRoads[0].path=bad.externalRoads[0].path.map(p=>({x:p.x-30,y:p.y}));check('remote external road cannot drive a fabricated gate',prepareResidential(bad).status==='failed');
+const product=input.products[0],resized=resizeLotProduct(product,8,16);check('table dimensions rescale actual dimensional and saleable limits while preserving identity',resized.id===product.id&&resized.depthMin>product.depthMin&&resized.areaMax>product.areaMax&&resized.rate===product.rate);
+const snapshots=[];
+for(const kind of ['rectangle','angled','concave','neck']){
+ const i=fixture(kind),before=JSON.stringify(i);console.time(kind);const p=prepareResidential(i,'dead-end');console.timeEnd(kind);check(`${kind}: auto preparation generates connected valid lots`,p.status==='ready'&&p.scenario.result.counts.valid>0&&!fail(p.scenario.result).length);const s=p.scenario;
+ check(`${kind}: fixed site, given main road and products remain exact`,before===JSON.stringify(i)&&JSON.stringify(s.inputs.boundary)===JSON.stringify(i.boundary)&&JSON.stringify(s.inputs.externalRoads)===JSON.stringify(i.externalRoads)&&JSON.stringify(s.inputs.products)===JSON.stringify(i.products));
+ check(`${kind}: tested configuration count is recorded with the scenario`,s.inputs.preparation.tested===p.tested);
+ check(`${kind}: gate is on permitted actual adjoining frontage`,entranceAllowed(s.inputs,s.inputs.entrance)&&Math.abs(entrancePoint(s.inputs,s.inputs.entrance).x)<.001);
+ check(`${kind}: percentages match actual integer counts within required tolerance`,s.result.schedule.every(p=>p.mix==='pass'&&Math.abs(p.actual-p.valid/s.result.counts.valid*100)<.000001));
+ check(`${kind}: real land reconciles and lot checks do not inflate yield`,s.result.land.overlap<.01&&s.result.land.gap<.01&&s.result.counts.valid===s.result.schedule.reduce((n,p)=>n+p.valid,0)&&s.result.lots.every(l=>l.status==='valid'&&l.area<=s.inputs.products.find(p=>p.id===l.productId).maxSaleableArea+.01));
+ snapshots.push(s);fs.mkdirSync(out,{recursive:true});fs.writeFileSync(`${out}/${kind}-scenario.json`,JSON.stringify(s,null,2));
+}
+const prepared=snapshots[0],moved=copy(prepared.inputs);moveResidentialEntrance(moved,undefined,moved.entrance.edge,moved.entrance.offset+3);const regenerated=calculateResidential(moved,prepared.id);check('interactive entrance move reconnects shared transition and dependent streets',!fail(regenerated).length&&JSON.stringify(regenerated.connection)!==JSON.stringify(prepared.result.connection)&&JSON.stringify(regenerated.lots)!==JSON.stringify(prepared.result.lots)&&entranceAllowed(moved,moved.entrance));
+const locked=copy(prepared.inputs);locked.entrance.locked=true;assert.throws(()=>moveResidentialEntrance(locked,undefined,locked.entrance.edge,locked.entrance.offset+2),/locked/);n++;
+const rejected=copy(prepared.inputs),old=JSON.stringify(rejected);assert.throws(()=>moveResidentialEntrance(rejected,undefined,rejected.entrance.edge,500),/permitted frontage/);check('invalid entrance move leaves complete inputs unchanged',JSON.stringify(rejected)===old);
+const loop=prepareResidential(fixture('rectangle',false));check('automatic search tests a valid fully looped configuration',loop.bestLoopYield>0&&loop.status==='ready'&&loop.scenario.inputs.roads.some(r=>r.curves?.length)&&!fail(loop.scenario.result).length);
+fs.writeFileSync(`${out}/loop-scenario.json`,JSON.stringify(loop.scenario,null,2));
+const lone=fixture('rectangle',false);lone.boundary=[{x:0,y:0},{x:120,y:0},{x:120,y:40},{x:0,y:40}];lone.externalRoads=[adjoiningRoad(lone,[{x:0,y:40},{x:0,y:0}],10,'West Road','external',true)];const decision=prepareResidential(lone);check('non-looped ends require explicit user choice when no loop fits tested spacing',decision.status==='choose-end-treatment'&&decision.bestOpenYield>0&&!decision.scenario);
+const cul=prepareResidential(lone,'cul-de-sac');check('cul-de-sac choice generates physical heads within the boundary',cul.status==='ready'&&cul.scenario.inputs.roads.some(r=>r.turningHeads?.length)&&!fail(cul.scenario.result).length&&deadEnds(cul.scenario.inputs).every(e=>cul.scenario.inputs.roads.find(r=>r.id===e.roadId).turningHeads.some(h=>h.end===e.end)));
+const protectedInput=fixture('rectangle',false);protectedInput.spaces=[suppliedSpace([{x:38,y:8},{x:58,y:8},{x:58,y:28},{x:38,y:28}],'protected','Given natural feature','feature')];const protectedCopy=JSON.stringify(protectedInput.spaces),protectedResult=prepareResidential(protectedInput,'dead-end');check('fixed natural features stay exact through automatic preparation',protectedResult.status==='ready'&&JSON.stringify(protectedResult.scenario.inputs.spaces)===protectedCopy&&!fail(protectedResult.scenario.result).length);
+const ws={version:2,accepted:prepared,alternatives:[],selected:[],selectionReason:'Fictitious test',decisions:[]};check('prepared geometry and relationships reproduce in workspace validator',!residentialWorkspaceErrors(ws).length);const legacy=starterProject(true,'Existing project');const parsed=parseProject(serializeProject({...legacy.state,residential:ws},[],'Prepared project'));check('save/reopen retains external-road relationship, generated groups, mix and geometry',parsed.ok&&JSON.stringify(parsed.project.state.residential)===JSON.stringify(ws));
+const frozen=copy(prepared.inputs);frozen.roads[1].locked=true;check('automatic replacement cannot silently remove manual locks',prepareResidential(frozen,'dead-end').status==='failed');check('geometry quantity changes never resize site boundary',polyArea(input.boundary)===polyArea(moved.boundary)&&JSON.stringify(input.boundary)===JSON.stringify(moved.boundary));
+fs.writeFileSync(`${out}/domain-summary.json`,JSON.stringify({checks:n,loopYield:loop.bestLoopYield,rectangularYield:prepared.result.counts.valid,culDeSacYield:cul.scenario.result.counts.valid,protectedYield:protectedResult.scenario.result.counts.valid},null,2));console.log(`ALL ${n} PREPARE LAYOUT CHECKS PASS`);

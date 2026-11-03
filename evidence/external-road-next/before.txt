@@ -1,0 +1,17 @@
+Site context & survey
+Your site is ready
+
+12,000 m² · 4 corners. No layout has been generated. Any designed open spaces remain reserved.
+
+Edit boundaryDesign open spacesGenerate layout
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Manage housing templatesSaved alternativesTerrain, drainage and phasingOpen projects

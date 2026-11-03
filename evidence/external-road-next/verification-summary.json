@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "counts": {
+    "newFlow": 20,
+    "projectLifecycle": 55,
+    "residential": 26,
+    "preparation": 20
+  },
+  "totalBrowserChecks": 121,
+  "build": "passed",
+  "lint": "passed",
+  "preview": "http://localhost:5173",
+  "scope": "Boundary-to-external-road interface and related browser regressions"
+}

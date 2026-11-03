@@ -1,0 +1,11 @@
+{
+  "acceptedScenarioSnapshotsChecked": 34,
+  "completeWorkspaceEqualityPairs": 12,
+  "visibleUiEditReplays": 4,
+  "retainedMainSiteAlternatives": 11,
+  "preferredValid": 43,
+  "preexistingFilesUnchanged": 7323,
+  "independentAggregation": "PASS",
+  "existingResidentialRegression": "151 checks passed",
+  "focusedCurveRegression": "FAIL (outstanding reproduced product defect)"
+}

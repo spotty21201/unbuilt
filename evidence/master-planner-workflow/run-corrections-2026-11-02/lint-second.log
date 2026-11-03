@@ -1,0 +1,5 @@
+
+> web@0.0.0 lint
+> oxlint
+
+src/unbuilt/ResidentialCanvas.tsx:23:240: warning react-hooks(exhaustive-deps): React Hook useLayoutEffect has a missing dependency: 'drawing' help: Either include it or remove the dependency array.

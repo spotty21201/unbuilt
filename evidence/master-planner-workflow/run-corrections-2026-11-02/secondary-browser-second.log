@@ -1,0 +1,18 @@
+PASS angled: end treatment is explicit and accepted inputs remain unchanged
+PASS angled: automatic proposal is measured and reviewable
+PASS angled: source boundary, protection, parks, mix, products and 8m corridor retained
+PASS angled: no invented second entrance and only real validated lot counts
+PASS angled: accepted secondary scenario reproduces after reopening
+PASS concave: end treatment is explicit and accepted inputs remain unchanged
+PASS concave: automatic proposal is measured and reviewable
+PASS concave: source boundary, protection, parks, mix, products and 8m corridor retained
+PASS concave: no invented second entrance and only real validated lot counts
+PASS concave: accepted secondary scenario reproduces after reopening
+PASS neck: end treatment is explicit and accepted inputs remain unchanged
+PASS neck: automatic proposal is measured and reviewable
+PASS neck: source boundary, protection, parks, mix, products and 8m corridor retained
+PASS neck: no invented second entrance and only real validated lot counts
+PASS neck: accepted secondary scenario reproduces after reopening
+PASS neck: visible full-width crossing fails and preserves the accepted partial layout
+PASS secondary workflows have no uncaught browser errors
+ALL 17 SECONDARY BROWSER CHECKS PASS

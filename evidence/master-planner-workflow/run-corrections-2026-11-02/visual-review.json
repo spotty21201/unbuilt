@@ -1,0 +1,23 @@
+{
+  "checks": [
+    "Compared plan polygons are visible together at identical scale/orientation",
+    "Stable references wrap inside the inspector"
+  ],
+  "plans": [
+    {
+      "viewBox": "-15.24 -109.24 150.48000000000002 130.48",
+      "x": 0,
+      "y": 295.1875,
+      "width": 540,
+      "height": 500
+    },
+    {
+      "viewBox": "-15.24 -109.24 150.48000000000002 130.48",
+      "x": 550,
+      "y": 295.1875,
+      "width": 540,
+      "height": 500
+    }
+  ],
+  "inspectorFits": true
+}

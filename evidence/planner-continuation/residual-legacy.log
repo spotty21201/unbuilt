@@ -1,0 +1,17 @@
+PASS resid-remainder: actual=true
+PASS resid-developable-area: actual=true
+PASS resid-developable-count: actual=2
+PASS resid-toosmall-count: actual=0
+PASS resid-inaccessible-count: actual=0
+PASS resid-reserved-count: actual=0
+PASS resid-reconciles: actual=true
+PASS resid-clearance-count: actual=1
+PASS resid-clearance-area: actual=true
+PASS resid-clearance-developable: actual=1
+PASS resid-small-count: actual=1
+PASS resid-small-area: actual=true
+PASS resid-stranded-count: actual=1
+PASS resid-stranded-area: actual=true
+PASS resid-empty: actual=0
+PASS resid-full: actual=true
+ALL FIXTURES PASS

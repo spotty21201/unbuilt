@@ -1,0 +1,356 @@
+UNBUILT · Master Planner Workflow Test
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Cancel preview to close
+Flat landed residential study · geometry checks do not establish house feasibility or statutory approval. Unaccepted preview — accepted project is preserved.
+Preview: A — central entrance, compact west and family east
+12,000 m² gross · Unresolved / failing constraints
+Draw site boundary
+External road & width
+Draw supplied road centreline
+Draw supplied natural feature
+Draw river centreline
+Draw irregular open space
+Draw reservation
+Draw connected street
+Select
+Pan
+Fit site & context
++
+−
+Snap spaces/lots to road edges
+Snap (m)
+South Main Road · 12 m
+10 m · local coordinates
+Compact
+Family
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+31 valid lots
+0 unresolved / 0 invalid
+2,904 m² valid lots
+1,456 m² roads
+190 m road
+6.1 m / valid lot
+517.2 m² fixed protection
+268 m² flexible space
+6,854.8 m² residual
+Rp 182,600,000 priced · 1 missing scopes
+Before → proposed: 28 → 31 valid lots (3); road 1,457.5 → 1,456 m²; residential 2,576 → 2,904 m²; cost Rp 178,754,995 → 182,600,000.
+SOP procedure
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+
+Fixed/access/road/lot constraints, then mandatory mix, then declared objective. Recommendation means best found among tested candidates. Unknown checks prevent qualification.
+
+Save named alternativeTest meaningful alternatives
+
+Tested 14 configurations. Conflicts: Mandatory product composition is outside tolerance or undefined. · Repeated or overlapping centrelines would duplicate road length; remove the repeated alignment. · The full road corridor, entrance transition or turning head leaves the fixed boundary. · Flexible northwest recreation: below its 250 m² minimum.. Search is bounded; fewer than three credible options may remain.
+
+Best found among saved tests · 28 valid lots · Unresolved constraints · 190.2 m road · Rp 178,754,995 priced
+
+Working residential layout. Measured valid yield and scoped quantities. Residual and unresolved checks remain visible.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+28 valid lots · Unresolved constraints · 190.2 m road · Rp 178,754,995 priced
+
+Reshape flexible open-space edge. +0 valid lots versus accepted. 7136.4 m² residual; 16 unresolved checks.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+28 valid lots · Unresolved constraints · 200.2 m road · Rp 186,714,250 priced
+
+Shift unlocked road alignment. +0 valid lots versus accepted. 7097.6 m² residual; 16 unresolved checks.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+28 valid lots · Unresolved constraints · 210.1 m road · Rp 194,690,697 priced
+
+Shift unlocked road alignment. +0 valid lots versus accepted. 7017.9 m² residual; 16 unresolved checks.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+24 valid lots · Unresolved constraints · 290.5 m road · Rp 229,079,527 priced
+
+Parallel double-loaded return loop. -4 valid lots versus accepted. 6923.1 m² residual; 26 unresolved checks.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+Selection reasons and changed assumptions
+Inputs & commitments
+Prepare your layout
+
+Boundary → external road → lot products → Prepare Layout
+
+Site boundary: 4 corners · locked
+
+1 · External road beside the site
+
+Enter the road name and full width, then draw along the site edge, including any corners it follows. Its corridor is placed outside the fixed boundary. Finish with Enter or Finish drawing.
+
+New external road name
+New external road width (m)
+Allow a residential entrance along this road
+Draw adjacent external road
+South Main Road
+External road name
+Full external road width (m)
+Entrance permitted on adjoining frontage
+Known carriageway width and restricted access sections can be refined in Entrance & adjoining roads.
+2 · Home lot products and unit mix
+
+Width is frontage along the street. Mix is the percentage of valid lot count.
+
+Product	Width m	Depth m	Mix %	
+
+				×
+
+				×
+Add product row
+
+Total mix: 100% · must equal 100%.
+
+Mix tolerance (percentage points)
+Require mix within this tolerance
+Advanced product tolerances, pricing and individual street groups remain available below.
+Internal street corridor (m)
+Full internal corridor; provisional until confirmed in Road structure & parameters. A wider gate remains a bounded entrance exception.
+Prepare Layout
+
+Generate connected internal roads and as many measured valid lots as found within the product mix. Review the result before accepting.
+
+Source geometry & reliable scale
+Scenario name
+Assignment and site
+Comparison objective
+Maximum valid lot yield
+Least internal road length
+Other declared objective (manual ranking)
+Objective / declared comparison basis
+Source information
+Fixed requirements
+Preferences
+Adjustable variables
+Unknown inputs
+Independent dimension check
+Scale status
+Unverified
+Source coordinates in metres
+Calibrated source reference
+
+Use Source geometry & scale above to import or trace a calibrated source. Changing this status alone does not calibrate geometry.
+
+Lock accepted boundary
+Boundary coordinates
+Metres: x, y on each line. Last corner closes to the first.
+Entrance & adjoining roads
+Entrance decisions and additional entrances
+Road structure & parameters
+Lot products & development rates
+
+Frontage is the first dimension, along the serving kerb. Depth extends into the block. Rates are Rp per valid lot.
+
+Compact · product_1
+Product name
+Product colour
+Nominal frontage (m)
+Nominal depth (m)
+Minimum frontage (m)
+Maximum frontage (m)
+Minimum usable depth (m)
+Maximum depth (m)
+Minimum area (m²)
+Maximum area (m²)
+Maximum saleable area (m²)
+Minimum rear / front span ratio
+Permit declared irregular shapes
+Compact development rate (Rp / lot)
+Rate source
+Rate date
+Rate includes lots
+Rate includes roads
+Rate includes spaces
+Remove unused product
+Family · product_2
+Product name
+Product colour
+Nominal frontage (m)
+Nominal depth (m)
+Minimum frontage (m)
+Maximum frontage (m)
+Minimum usable depth (m)
+Maximum depth (m)
+Minimum area (m²)
+Maximum area (m²)
+Maximum saleable area (m²)
+Minimum rear / front span ratio
+Permit declared irregular shapes
+Family development rate (Rp / lot)
+Rate source
+Rate date
+Rate includes lots
+Rate includes roads
+Rate includes spaces
+Remove unused product
+Add lot product
+Product groups & target composition
+Assign a product group to Entrance street
+
+Street sections normally assign one product to both facing sides. Side-specific sections require a recorded exception when facing products differ.
+
+group_street_1793661937915 · street_1793661937915
+Compact
+Family
+group_street_1793661937915 section start (%)
+group_street_1793661937915 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+group_street_1793662048496 · street_1793662048496
+Compact
+Family
+group_street_1793662048496 section start (%)
+group_street_1793662048496 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+Target basis
+Percentage of valid units
+Percentage of valid residential lot area
+Target integer counts
+Compact target
+Family target
+Mix tolerance (percentage points or units)
+Mandatory product composition
+
+Integer allocation uses largest remainder; actual percentages always use measured integer valid counts or actual lot area.
+
+Rebalance draft mix
+Protection, flexible space & reservations
+Separate common works costs
+
+Add only scopes excluded from per-lot rates. Intersecting roads are measured once.
+
+roads
+Measured unit
+Square metre
+Centreline metre
+roads common rate (Rp)
+Common rate source
+Common rate date
+Remove common rate
+Add spaces common rate
+Start or reset residential study
+Imported accepted geometry and 5 retained/merged alternatives as a preview. Existing alternatives are preserved. Review and accept, or cancel the complete import.
+
+Cannot accept: Entrance is locked. Accept an explicit unlock before moving it.
+
+Cancel preview
+Accept residential change
+Export residential scenarios
+Import residential collection
+Skip to plan
+UNBUILT
+Projects
+Master Planner Workflow Test
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+External road setup
+Master Planner Workflow Test · 12,000 m² · 4 vertices
+Selected: Site
+Boundary only
+Saved in this browser
+
+Boundary applied: 12,000 m². Next, draw and name the adjoining external road with its width. Undo restores the previous boundary.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Boundary ready
+
+Next, draw the adjoining external road and enter its name and width.
+
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context & survey
+Your site is ready
+
+12,000 m² · 4 corners. No layout has been generated. Any designed open spaces remain reserved.
+
+Continue residential planning
+
+Your residential study is saved. Continue with road inputs, home products and Prepare Layout.
+
+Continue residential planning
+
+Boundary → external road → home products → Prepare Layout
+
+Edit boundaryDesign open spacesGenerate layout
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Manage housing templatesSaved alternativesTerrain, drainage and phasingOpen projects
+EVALUATOR
+Details
+Boundary only · next, draw the external road and enter its name and width.

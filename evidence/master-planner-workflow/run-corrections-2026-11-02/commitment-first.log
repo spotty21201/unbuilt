@@ -1,0 +1,18 @@
+commitments true [
+  {
+    state: 'unknown',
+    object: 'space_1793661701463',
+    message: 'Flexible northwest recreation: future measured road-edge access is a saved input obligation; this reserved footprint is not yet a completed usable park.'
+  },
+  {
+    state: 'unknown',
+    object: 'entrance',
+    message: 'Input commitments only: preferred entrance recorded; the connected layout and park access have not been constructed.'
+  },
+  {
+    state: 'unknown',
+    object: 'boundary',
+    message: 'Site scale is unverified.'
+  }
+]
+prepared ready { valid: 52, unresolved: 0, invalid: 0 } Best found among 18 tested geometry/allocation configurations: 52 valid lots. Review the plan, mix and quantity differences before accepting.

@@ -1,0 +1,70 @@
+Skip to plan
+UNBUILT
+Projects
+Master Planner Workflow Test
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+External road setup
+Master Planner Workflow Test · Blank plan
+Selected: Site
+No boundary yet
+Saved in this browser
+
+Opened Master Planner Workflow Test. Accepted plan restored; drafts, undo history and photos are not restored. Plan Undo/Redo starts fresh.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+A new beginning
+
+Draw your site boundary to start planning.
+
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context & survey
+Start your site
+
+Draw a closed boundary on the canvas. Place corners with your pointer or enter their coordinates.
+
+Draw boundary
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Manage housing templatesSaved alternativesTerrain, drainage and phasingOpen projects
+EVALUATOR
+Details
+Draw a site boundary to begin.

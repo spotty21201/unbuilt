@@ -3,9 +3,9 @@ import {spaceBounds,type OpenSpace} from '../../../src/open-spaces';
 import HousingDrawingKey from './HousingDrawingKey';
 import {housingColor} from './ui';
 import {homeTemplate} from '../../../src/housing';
-import { streetPolygon, streetSurface, surfacePath, usesShapedStreets } from '../../../src/road-surfaces';
+import { mergedRoadSurface, streetPolygon, streetSurface, surfacePath, usesShapedStreets } from '../../../src/road-surfaces';
 import { nearestStreetPoint, streetLength, streetNodes, streetRect, type StreetNetwork } from '../../../src/streets';
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { PlanningParameters } from '../../../src/planning';
 import type { Rect } from '../../../src/schema';
 import type { Entrance, Layout, StreetConflict } from '../../../src/geometry';
@@ -22,6 +22,7 @@ import { surveyPoint, surveyTransform, type SiteContext, type ContextNote } from
 import type { SurveyRaster } from './survey-file';
 
 interface Props {
+  emptySummary?:string;
   spaceDrafts?:OpenSpace[]; activeSpace?:string|null; spacesEditing?:boolean; spaceDrawing?:boolean; spaceValid?:boolean;spaceClearance?:number;
   onSpaceSelect?:(id:string)=>void;onSpacePoint?:(p:Pt)=>void;onSpaceFinish?:()=>void;onSpaceMove?:(index:number,p:Pt,record?:boolean)=>void;onSpaceRemove?:(i:number)=>void;onSpaceGesture?:(before:Pt[]|null)=>void;onSpaceRevert?:(pts:Pt[])=>void;
   blockReviewLabel?:string;
@@ -143,6 +144,7 @@ const H = 560;
 type DragKind = 'none' | 'pan' | 'green-move' | 'green-resize' | 'entrance-move' | 'lot-vertex' | 'site-vertex' | 'street' | 'junction';
 
 export default function PlanCanvas(props: Props) {
+  const pavement=useMemo(()=>mergedRoadSurface(props.layout.roads,props.layout.roadSurface,props.layout.accessConnector),[props.layout.roads,props.layout.roadSurface,props.layout.accessConnector]);
   const instanceId = useId();
   const hatchId = `green-hatch-${instanceId}`;
   const gridId = `metre-grid-${instanceId}`;
@@ -736,24 +738,8 @@ export default function PlanCanvas(props: Props) {
               </g>
             );
           })}
-        {props.layout.accessConnector && <polygon points={polyPoints(props.layout.accessConnector)} className={props.selectedKind === 'circulation' ? 'road selected' : 'road'} aria-label="Entrance apron" onPointerDown={e => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }} onClick={e => { e.stopPropagation(); props.onSelectKind('circulation'); }} />}
-        {/* roads: gestures starting here never pan — click selects */}
-        {props.layout.roadSurface ? <path d={surfacePath(props.layout.roadSurface, X, Ypt)} fillRule="evenodd" className={props.selectedKind === 'circulation' ? 'road selected' : 'road'} onPointerDown={e => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }} onClick={e => { e.stopPropagation(); if (pannedBetween.current) { pannedBetween.current = false; return; } props.onSelectKind('circulation'); }} /> : props.layout.roads.map((r, i) => (
-          <rect
-            key={`r${i}`}
-            {...box(r)}
-            className={props.selectedKind === 'circulation' ? 'road selected' : 'road'}
-            onPointerDown={(e) => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (pannedBetween.current) {
-                pannedBetween.current = false;
-                return;
-              }
-              props.onSelectKind('circulation');
-            }}
-          />
-        ))}
+        {/* One unioned pavement outline removes internal rectangle/apron seams. */}
+        {pavement.length>0 && <path d={surfacePath(pavement, X, Ypt)} fillRule="evenodd" strokeLinejoin="round" className={props.selectedKind === 'circulation' ? 'road selected' : 'road'} role="img" aria-label={props.layout.accessConnector?'Street pavement including entrance apron':'Street pavement'} onPointerDown={e => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }} onClick={e => { e.stopPropagation(); if (pannedBetween.current) { pannedBetween.current = false; return; } props.onSelectKind('circulation'); }} />}
         {layers.labels && (() => {
           const road = props.layout.roads.filter((r) => r.w >= r.h).reduce<Rect | null>((best, r) => !best || r.w > best.w ? r : best, null);
           return road && road.w * s / tscale > 230 ? <text pointerEvents="none" className="road-caption" x={X(road.x + road.w / 2)} y={Ypt(road.y + road.h / 2) + fs(4)} textAnchor="middle" fontSize={fs(13)}>{road.h.toFixed(1)} m STREET</text> : null;
@@ -961,7 +947,7 @@ export default function PlanCanvas(props: Props) {
           <defs><mask id={`${instanceId}-street-outside`} maskUnits="userSpaceOnUse" x={vb.x} y={vb.y} width={vb.w} height={vb.h}><rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="white"/><polygon points={polyPoints(outline)} fill="black"/></mask></defs>
           <g pointerEvents="none" className="street-draft-corridors">
             {props.streetAffectedLots?.map((lot,i)=><rect key={i} {...box(lot)} fill="#f9b34120" stroke="#b57116" strokeWidth={fs(2)} strokeDasharray={`${fs(5)} ${fs(3)}`}><title>Accepted lot affected by proposed entrance connection</title></rect>)}
-            {shapedDraft ? <path d={surfacePath(shapedDraft,X,Ypt)} fillRule="evenodd" className={`street-corridor${props.streetConflict?' conflict':''}`} fill={props.streetConflict?'#db35454d':'#075cff12'} stroke={props.streetConflict?'#b42933':'#436389'} strokeWidth={fs(props.streetConflict?2:1)}><title>Draft pavement with measured angled legs and corner fillets</title></path> : props.editableStreets.segments.map(edge=>{
+            {shapedDraft ? <path d={surfacePath(shapedDraft,X,Ypt)} fillRule="evenodd" strokeLinejoin="round" className={`street-corridor${props.streetConflict?' conflict':''}`} fill={props.streetConflict?'#db35454d':'#075cff12'} stroke={props.streetConflict?'#b42933':'#436389'} strokeWidth={fs(props.streetConflict?2:1)}><title>Draft pavement with measured angled legs and corner fillets</title></path> : props.editableStreets.segments.map(edge=>{
               const conflict=props.streetConflict?.segmentIds.includes(edge.id),connector=props.streetConnectorIds?.includes(edge.id);
               return <rect key={edge.id} {...box(streetRect(edge))} className={`street-corridor${conflict?' conflict':''}${connector?' connector':''}`} fill={conflict?'#db35454d':connector?'#efae3659':'#075cff12'} stroke={conflict?'#b42933':connector?'#aa6410':'#436389'} strokeWidth={fs(conflict||connector?2:1)} strokeDasharray={conflict?`${fs(5)} ${fs(3)}`:undefined}><title>{conflict?'Conflicting':connector?'Proposed entrance connection:':'Draft'} street · {edge.width} m full width</title></rect>;
             })}
@@ -1021,7 +1007,7 @@ export default function PlanCanvas(props: Props) {
         {props.spaceDrawing&&!props.panTool&&<rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" style={{cursor:'crosshair'}} onPointerDown={e=>{e.stopPropagation();const q=toMetersNow(e.clientX,e.clientY,svgRef.current!.getBoundingClientRect());props.onSpacePoint?.({x:Math.round(Math.max(0,Math.min(500,q.x))),y:Math.round(Math.max(0,Math.min(500,q.yUp)))});}}/>}
         {(props.spaceDrafts??props.layout.openSpaces)&&<OpenSpaceLayer spaces={props.spaceDrafts??props.layout.openSpaces!} active={props.activeSpace??null} editing={!!props.spacesEditing} drawing={!!props.spaceDrawing} valid={props.spaceValid!==false} clearance={props.spaceClearance??0} X={X} Y={Ypt} scale={fs} pan={props.panTool} onSelect={id=>props.onSpaceSelect?.(id)} onPoint={q=>props.onSpacePoint?.(q)} onFinish={()=>props.onSpaceFinish?.()} onMove={(i,q,record)=>props.onSpaceMove?.(i,q,record)} onRemove={i=>props.onSpaceRemove?.(i)} onGesture={pts=>props.onSpaceGesture?.(pts)} onRevert={pts=>props.onSpaceRevert?.(pts)} pointer={(x,y)=>{const q=toMetersNow(x,y,svgRef.current!.getBoundingClientRect());return {x:q.x,y:q.yUp};}}/>}
       </svg>
-      {props.layout.empty && !bd && !props.showContext && !props.spacesEditing && !props.spaceDrafts?.length && !surveyAttached && <div className="plan-empty-message"><strong>{outline.length ? 'Boundary ready' : 'A new beginning'}</strong><p>{outline.length ? 'Generate a layout when you are ready to explore homes, streets and open space.' : 'Draw your site boundary to start planning.'}</p></div>}
+      {props.layout.empty && !bd && !props.showContext && !props.spacesEditing && !props.spaceDrafts?.length && !surveyAttached && <div className="plan-empty-message"><strong>{props.emptySummary?'Saved residential study':outline.length ? 'Boundary ready' : 'A new beginning'}</strong><p>{props.emptySummary??(outline.length ? 'Next, draw the adjoining external road and enter its name and width.' : 'Draw your site boundary to start planning.')}</p></div>}
       {!separateReadouts && <>{scaleReadout}{viewportReadout}</>}
       </div>
       {separateReadouts && <div className="comparison-readouts">{scaleReadout}{viewportReadout}</div>}

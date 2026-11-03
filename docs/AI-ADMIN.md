@@ -29,3 +29,42 @@ No real endpoint or secret has been installed for Feature 11. The owner will sup
 `npm run test:ai` verifies argument bounds, bindings, held work, configuration persistence/permissions, administrator authorization, explicit switching, restart behavior, timeouts, concurrency and cancellation against a scripted protocol fixture. It does not verify access to a real model.
 
 `PLAYWRIGHT_MODULE=/path/to/playwright node --experimental-strip-types --no-warnings tests/ai-browser.mjs` exercises the served production app against an isolated real tool service and scripted upstream. For actual 200% zoom, run the same command under `xvfb-run -a` with `UNBUILT_AI_ZOOM=2` and a separate `UNBUILT_EVIDENCE_DIR`.
+
+## Residential Ask Muse — 3 November 2026
+
+The residential planner now has its own **Ask Muse** panel. The current local
+connection uses Muse Wonder (`muse-wonder-1.0`) through the existing private
+server routing file. The owner supplied the credential; it is stored outside
+the repository with mode0600 and is not included in browser state, project
+exports or evidence. No credential belongs in this document.
+
+The active residential custom instruction is `docs/MUSE-MASTER-PLANNER.md`.
+The server reads it at startup. It requires brief planning assessments, current
+measured evidence, protected inputs/locks, explicit end-treatment decisions and
+reviewable proposals. Muse selects a supported tool; the geometry worker
+calculates the proposed plan. Preview, acceptance, cancellation and complete
+undo/redo use the residential editor's existing transaction path. No model tool
+can accept a plan or invent quantitative results.
+
+Meta's hosted endpoint uses `tool_choice: auto` and disables parallel tool calls
+for this single-proposal workflow. Generic compatible connections retain the
+previous required-tool protocol. A plain response, multiple calls, unsupported
+tool, malformed parameters or invented fact ID is refused. No automatic provider
+switching or unvalidated text fallback occurs. The actual routed model is shown
+by public health; connection verification resets after a restart. Meta requests
+have a bounded sixty-second deadline; generic adapter timeout remains twenty
+seconds. Both paths share the existing two-request concurrency bound.
+
+Conversation context is limited to four exchanges in memory and resets on plan
+or selection changes. Requests are cancelled when the context changes; an old
+answer cannot replace current geometry. Chats and credentials are not persisted
+into projects. Explanatory quantities always come from engine facts; the short
+qualitative assessment is advisory rather than a geometry or approval result.
+
+Earlier statements above about no real endpoint being configured describe the
+original Feature11 baseline. A real Wonder connection is now verified locally.
+See `evidence/muse-planner/run-2026-11-03/REPORT.md` for live-model evidence and
+separately identified scripted-provider tests. Admin settings still require the
+operator's separate administrator token; this change does not invent or enable
+an administrator credential. Standard Meta routing is used, without a silent
+Contributor-mode or alternate-provider fallback.

@@ -1,0 +1,83 @@
+UNBUILT · Cedar Market sample
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Back to project
+Flat landed residential study · geometry checks do not establish house feasibility or statutory approval. Unaccepted preview — accepted project is preserved.
+Preview: Residential working plan
+12,000 m² gross · Unresolved / failing constraints
+10 m · local metres · same frame in comparison
+Existing nominal lot
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+0 valid lots
+18 unresolved / 0 invalid
+0 m² valid lots
+732 m² roads
+120 m road
+Undefined m / valid lot
+7,188 m² residual
+Rp 0 priced · 2 missing scopes
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+
+Select an object on the plan or edit inputs at right. Drag an adjustable entrance along its edge, a street or a flexible-space corner; review the regenerated lots and quantities before accepting.
+
+Inputs & commitments
+Scenario name
+Assignment and site
+Comparison objective
+Maximum valid lot yield
+Least internal road length
+Other declared objective (manual ranking)
+Objective / declared comparison basis
+Source information
+Fixed requirements
+Preferences
+Adjustable variables
+Unknown inputs
+Independent dimension check
+Scale status
+Unverified
+Source coordinates in metres
+Calibrated in project survey tools
+
+Raster/PDF calibration and CSV/DXF import remain in the project's Site context & survey tools. This editor accepts metre coordinates; selecting a status does not calibrate a file.
+
+Lock accepted boundary
+Boundary coordinates
+Metres: x, y on each line. Last corner closes to the first.
+Entrance & adjoining roads
+Lock entrance location and strategy
+Entrance boundary edge
+Entrance offset along edge (m)
+Entrance width (m)
+Entrance transition length (m)
+Serving external road
+external
+Entrance role
+Permitted movements
+External road — confirm alignment and eligibility
+External road alignment
+Metres: x, y on each line. Consecutive points define the open alignment.
+External right of way (m)
+External carriageway (m)
+Eligible access frontage (edge number, from m, to m)
+Edges are numbered from 1. All other frontage is restricted. No extra entrance is assumed.
+Road structure & parameters
+Lot products & development rates
+Product groups & target composition
+Protection, flexible space & reservations
+Separate common works costs
+Start or reset residential study
+Review inputs and quantities; accepted project geometry remains preserved.
+
+Cannot accept: entrance: Entrance is outside explicitly eligible external-road frontage.
+
+Cancel preview
+Accept residential change
+Import accepted scenario

@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "counts": {
+    "prepareDomain": 42,
+    "prepareBrowser": 20,
+    "coupledBrowser": 26,
+    "siteBrowser": 21,
+    "advancedBrowser": 11
+  },
+  "build": "passed",
+  "lint": "passed",
+  "legacyRegressionPassLines": 1004,
+  "url": "http://localhost:5173"
+}

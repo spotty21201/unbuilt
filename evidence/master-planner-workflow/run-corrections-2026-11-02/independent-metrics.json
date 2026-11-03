@@ -1,0 +1,876 @@
+{
+  "method": "No application calculation imports. Independent shoelace, aggregation, shared-edge intervals, analytic fillet lengths and cost arithmetic on UI exports. Polygon union/intersection/difference uses polygon-clipping, the application kernel; not independent Boolean-kernel or engineering validation. Applicable fixtures have no external ROW area inside boundary.",
+  "checks": 251,
+  "scenarios": [
+    {
+      "file": "workflow/accepted",
+      "id": "prepared_1793691008761",
+      "valid": 52,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 33,
+        "product_2": 19
+      },
+      "gross": 12000,
+      "actualLotArea": 4802.243403776841,
+      "validLotArea": 4802.243403776841,
+      "roadArea": 2223.52,
+      "analyticRoadLength": 289.93999998879997,
+      "reportedRoadLength": 289.93999998879997,
+      "roadPerValidLot": 5.5757692305538455,
+      "physicalAreasSum": 12000,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 283852000,
+      "reportedCost": 283852000,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 33,
+          "actual": 63.46153846153846,
+          "target": 60,
+          "deviation": 3.46153846153846
+        },
+        {
+          "product": "Family",
+          "valid": 19,
+          "actual": 36.53846153846153,
+          "target": 40,
+          "deviation": -3.461538461538467
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 6
+    },
+    {
+      "file": "workflow/alternative-1",
+      "id": "scheme_1793691012550",
+      "valid": 52,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 33,
+        "product_2": 19
+      },
+      "gross": 12000,
+      "actualLotArea": 4808.000000000001,
+      "validLotArea": 4808.000000000001,
+      "roadArea": 2223.52,
+      "analyticRoadLength": 289.93999998879997,
+      "reportedRoadLength": 289.93999998879997,
+      "roadPerValidLot": 5.5757692305538455,
+      "physicalAreasSum": 12000,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 0,
+      "reportedCost": 0,
+      "missingCosts": [
+        "Compact: per-lot development rate missing",
+        "Family: per-lot development rate missing",
+        "roads: common works unpriced",
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 33,
+          "actual": 63.46153846153846,
+          "target": 60,
+          "deviation": 3.46153846153846
+        },
+        {
+          "product": "Family",
+          "valid": 19,
+          "actual": 36.53846153846153,
+          "target": 40,
+          "deviation": -3.461538461538467
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 6
+    },
+    {
+      "file": "workflow/alternative-2",
+      "id": "scheme_1793691016199",
+      "valid": 52,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 33,
+        "product_2": 19
+      },
+      "gross": 12000,
+      "actualLotArea": 4802.243403776841,
+      "validLotArea": 4802.243403776841,
+      "roadArea": 2223.52,
+      "analyticRoadLength": 289.93999998879997,
+      "reportedRoadLength": 289.93999998879997,
+      "roadPerValidLot": 5.5757692305538455,
+      "physicalAreasSum": 12000,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 283852000,
+      "reportedCost": 283852000,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 33,
+          "actual": 63.46153846153846,
+          "target": 60,
+          "deviation": 3.46153846153846
+        },
+        {
+          "product": "Family",
+          "valid": 19,
+          "actual": 36.53846153846153,
+          "target": 40,
+          "deviation": -3.461538461538467
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 6
+    },
+    {
+      "file": "workflow/alternative-3",
+      "id": "search_1793691050688_trial_10",
+      "valid": 52,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 33,
+        "product_2": 19
+      },
+      "gross": 12000,
+      "actualLotArea": 4807.780979601486,
+      "validLotArea": 4807.780979601486,
+      "roadArea": 2223.52,
+      "analyticRoadLength": 289.93999998879997,
+      "reportedRoadLength": 289.93999998879997,
+      "roadPerValidLot": 5.5757692305538455,
+      "physicalAreasSum": 12000.000000000002,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 1.8189894035458565e-12,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 283852000,
+      "reportedCost": 283852000,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 33,
+          "actual": 63.46153846153846,
+          "target": 60,
+          "deviation": 3.46153846153846
+        },
+        {
+          "product": "Family",
+          "valid": 19,
+          "actual": 36.53846153846153,
+          "target": 40,
+          "deviation": -3.461538461538467
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 6
+    },
+    {
+      "file": "workflow/alternative-4",
+      "id": "search_1793691051218_trial_56",
+      "valid": 52,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 33,
+        "product_2": 19
+      },
+      "gross": 12000,
+      "actualLotArea": 4802.243403776841,
+      "validLotArea": 4802.243403776841,
+      "roadArea": 2223.52,
+      "analyticRoadLength": 289.93999998879997,
+      "reportedRoadLength": 289.93999998879997,
+      "roadPerValidLot": 5.5757692305538455,
+      "physicalAreasSum": 12000,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 283852000,
+      "reportedCost": 283852000,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 33,
+          "actual": 63.46153846153846,
+          "target": 60,
+          "deviation": 3.46153846153846
+        },
+        {
+          "product": "Family",
+          "valid": 19,
+          "actual": 36.53846153846153,
+          "target": 40,
+          "deviation": -3.461538461538467
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.999999999999998
+    },
+    {
+      "file": "workflow/alternative-5",
+      "id": "search_1793691051711_trial_57",
+      "valid": 52,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 33,
+        "product_2": 19
+      },
+      "gross": 12000,
+      "actualLotArea": 4802.243403776841,
+      "validLotArea": 4802.243403776841,
+      "roadArea": 2223.52,
+      "analyticRoadLength": 289.93999998879997,
+      "reportedRoadLength": 289.93999998879997,
+      "roadPerValidLot": 5.5757692305538455,
+      "physicalAreasSum": 12000,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 283852000,
+      "reportedCost": 283852000,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 33,
+          "actual": 63.46153846153846,
+          "target": 60,
+          "deviation": 3.46153846153846
+        },
+        {
+          "product": "Family",
+          "valid": 19,
+          "actual": 36.53846153846153,
+          "target": 40,
+          "deviation": -3.461538461538467
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.9999999999999964
+    },
+    {
+      "file": "workflow/alternative-6",
+      "id": "search_1793691052210_trial_54",
+      "valid": 51,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 31,
+        "product_2": 20
+      },
+      "gross": 12000,
+      "actualLotArea": 4786.243403776841,
+      "validLotArea": 4786.243403776841,
+      "roadArea": 2223.52,
+      "analyticRoadLength": 289.93999998879997,
+      "reportedRoadLength": 289.93999998879997,
+      "roadPerValidLot": 5.6850980389960775,
+      "physicalAreasSum": 12000,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 283352000,
+      "reportedCost": 283352000,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 31,
+          "actual": 60.78431372549019,
+          "target": 60,
+          "deviation": 0.7843137254901933
+        },
+        {
+          "product": "Family",
+          "valid": 20,
+          "actual": 39.21568627450981,
+          "target": 40,
+          "deviation": -0.7843137254901933
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 6
+    },
+    {
+      "file": "workflow/alternative-7",
+      "id": "search_1793691052709_trial_55",
+      "valid": 51,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 32,
+        "product_2": 19
+      },
+      "gross": 12000,
+      "actualLotArea": 4730.243403776841,
+      "validLotArea": 4730.243403776841,
+      "roadArea": 2223.52,
+      "analyticRoadLength": 289.93999998879997,
+      "reportedRoadLength": 289.93999998879997,
+      "roadPerValidLot": 5.6850980389960775,
+      "physicalAreasSum": 12000,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 282852000,
+      "reportedCost": 282852000,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 32,
+          "actual": 62.745098039215684,
+          "target": 60,
+          "deviation": 2.7450980392156836
+        },
+        {
+          "product": "Family",
+          "valid": 19,
+          "actual": 37.254901960784316,
+          "target": 40,
+          "deviation": -2.7450980392156836
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 6
+    },
+    {
+      "file": "secondary/angled",
+      "id": "prepared_1793690439423",
+      "valid": 53,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 33,
+        "product_2": 20
+      },
+      "gross": 11800,
+      "actualLotArea": 4933.361537121729,
+      "validLotArea": 4933.361537121729,
+      "roadArea": 2194.054304000001,
+      "analyticRoadLength": 286.25678764659995,
+      "reportedRoadLength": 286.25678764659995,
+      "roadPerValidLot": 5.401071465030188,
+      "physicalAreasSum": 11800,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": -1.8189894035458565e-12,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 0,
+      "reportedCost": 0,
+      "missingCosts": [
+        "Compact: per-lot development rate missing",
+        "Family: per-lot development rate missing",
+        "roads: common works unpriced",
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 33,
+          "actual": 62.264150943396224,
+          "target": 60,
+          "deviation": 2.264150943396224
+        },
+        {
+          "product": "Family",
+          "valid": 20,
+          "actual": 37.735849056603776,
+          "target": 40,
+          "deviation": -2.264150943396224
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.999999999999998
+    },
+    {
+      "file": "secondary/concave",
+      "id": "prepared_1793690463283",
+      "valid": 30,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 18,
+        "product_2": 12
+      },
+      "gross": 10400,
+      "actualLotArea": 2803.540617680881,
+      "validLotArea": 2803.540617680881,
+      "roadArea": 2213.39546405172,
+      "analyticRoadLength": 321.33705133297167,
+      "reportedRoadLength": 321.33705133297167,
+      "roadPerValidLot": 10.711235044432389,
+      "physicalAreasSum": 10400.000009182375,
+      "geometryGap": 0.0000021528639990719967,
+      "geometryOutside": 0,
+      "geometryOverlap": 0.000011778220141422935,
+      "reportedGap": 0.0000033338071148136805,
+      "reportedOverlap": 0.000012516182323452085,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0.000005091442062621354,
+      "pricedCost": 0,
+      "reportedCost": 0,
+      "missingCosts": [
+        "Compact: per-lot development rate missing",
+        "Family: per-lot development rate missing",
+        "roads: common works unpriced",
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 18,
+          "actual": 60,
+          "target": 60,
+          "deviation": 0
+        },
+        {
+          "product": "Family",
+          "valid": 12,
+          "actual": 40,
+          "target": 40,
+          "deviation": 0
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.3999999999999915
+    },
+    {
+      "file": "secondary/neck",
+      "id": "prepared_1793690473436",
+      "valid": 15,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 9,
+        "product_2": 6
+      },
+      "gross": 9180,
+      "actualLotArea": 1416,
+      "validLotArea": 1416,
+      "roadArea": 1023.5041439999997,
+      "analyticRoadLength": 139.9380180038,
+      "reportedRoadLength": 139.9380180038,
+      "roadPerValidLot": 9.329201200253333,
+      "physicalAreasSum": 9180,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 0,
+      "reportedGap": 0,
+      "reportedOverlap": 0,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 0,
+      "pricedCost": 0,
+      "reportedCost": 0,
+      "missingCosts": [
+        "Compact: per-lot development rate missing",
+        "Family: per-lot development rate missing",
+        "roads: common works unpriced",
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 9,
+          "actual": 60,
+          "target": 60,
+          "deviation": 0
+        },
+        {
+          "product": "Family",
+          "valid": 6,
+          "actual": 40,
+          "target": 40,
+          "deviation": 0
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 6
+    },
+    {
+      "file": "mixed/8-4-4",
+      "valid": 43,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 25,
+        "product_2": 18
+      },
+      "gross": 12000,
+      "actualLotArea": 4075.623816453784,
+      "validLotArea": 4075.623816453784,
+      "roadArea": 2546.8376612840075,
+      "analyticRoadLength": 313.1327412287184,
+      "reportedRoadLength": 313.13274122871826,
+      "roadPerValidLot": 7.282156772760892,
+      "physicalAreasSum": 12000.000000126101,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 1.261014404008165e-7,
+      "reportedGap": 0,
+      "reportedOverlap": 1.261014404008165e-7,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 1.1104920361049153e-7,
+      "pricedCost": 306683766.12840074,
+      "reportedCost": 306683766.1284013,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 25,
+          "actual": 58.139534883720934,
+          "target": 60,
+          "deviation": -1.860465116279066
+        },
+        {
+          "product": "Family",
+          "valid": 18,
+          "actual": 41.86046511627907,
+          "target": 40,
+          "deviation": 1.860465116279073
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.999999707948141
+    },
+    {
+      "file": "mixed/8-4.05-4",
+      "valid": 43,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 25,
+        "product_2": 18
+      },
+      "gross": 12000,
+      "actualLotArea": 4075.867645026625,
+      "validLotArea": 4075.867645026625,
+      "roadArea": 2546.6658656721265,
+      "analyticRoadLength": 313.1112810450581,
+      "reportedRoadLength": 313.11128104505804,
+      "roadPerValidLot": 7.281657698722281,
+      "physicalAreasSum": 12000.0000001261,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 1.2611053534783423e-7,
+      "reportedGap": 0,
+      "reportedOverlap": 1.2609962141141295e-7,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 1.1104920361049153e-7,
+      "pricedCost": 306666586.56721264,
+      "reportedCost": 306666586.56721246,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 25,
+          "actual": 58.139534883720934,
+          "target": 60,
+          "deviation": -1.860465116279066
+        },
+        {
+          "product": "Family",
+          "valid": 18,
+          "actual": 41.86046511627907,
+          "target": 40,
+          "deviation": 1.860465116279073
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.999999552011241
+    },
+    {
+      "file": "mixed/8-4-4.05",
+      "valid": 43,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 25,
+        "product_2": 18
+      },
+      "gross": 12000,
+      "actualLotArea": 4075.609618464617,
+      "validLotArea": 4075.609618464617,
+      "roadArea": 2546.6658676416355,
+      "analyticRoadLength": 313.1112810450581,
+      "reportedRoadLength": 313.11128104505804,
+      "roadPerValidLot": 7.281657698722281,
+      "physicalAreasSum": 12000.000000396576,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 8.553106454201043e-7,
+      "reportedGap": 0,
+      "reportedOverlap": 3.9657606976106763e-7,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 5.692615019370351e-7,
+      "pricedCost": 306666586.76416355,
+      "reportedCost": 306666586.7641637,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 25,
+          "actual": 58.139534883720934,
+          "target": 60,
+          "deviation": -1.860465116279066
+        },
+        {
+          "product": "Family",
+          "valid": 18,
+          "actual": 41.86046511627907,
+          "target": 40,
+          "deviation": 1.860465116279073
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.999999254565738
+    },
+    {
+      "file": "mixed/7.95-4-4",
+      "valid": 44,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 26,
+        "product_2": 18
+      },
+      "gross": 12000,
+      "actualLotArea": 4145.152647440521,
+      "validLotArea": 4145.152647440521,
+      "roadArea": 2547.0094000944723,
+      "analyticRoadLength": 313.1542014123786,
+      "reportedRoadLength": 313.1542014123786,
+      "roadPerValidLot": 7.1171409411904225,
+      "physicalAreasSum": 12000.000000078595,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 7.859125616960227e-8,
+      "reportedGap": 0,
+      "reportedOverlap": 7.859489414840937e-8,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 6.365041826938977e-8,
+      "pricedCost": 307700940.0094472,
+      "reportedCost": 307700940.009448,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 26,
+          "actual": 59.09090909090909,
+          "target": 60,
+          "deviation": -0.9090909090909065
+        },
+        {
+          "product": "Family",
+          "valid": 18,
+          "actual": 40.909090909090914,
+          "target": 40,
+          "deviation": 0.9090909090909136
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.999999583405656
+    },
+    {
+      "file": "mixed/8-3.95-4.05",
+      "valid": 43,
+      "unresolved": 0,
+      "invalid": 0,
+      "counts": {
+        "product_1": 25,
+        "product_2": 18
+      },
+      "gross": 12000,
+      "actualLotArea": 4075.574414292119,
+      "validLotArea": 4075.574414292119,
+      "roadArea": 2546.8371526292512,
+      "analyticRoadLength": 313.1327412287184,
+      "reportedRoadLength": 313.13274122871826,
+      "roadPerValidLot": 7.282156772760892,
+      "physicalAreasSum": 12000.000000396574,
+      "geometryGap": 0,
+      "geometryOutside": 0,
+      "geometryOverlap": 8.553106454201043e-7,
+      "reportedGap": 0,
+      "reportedOverlap": 3.965742507716641e-7,
+      "lotOutside": 0,
+      "roadOutside": 0,
+      "lotBlocked": 5.692615019370351e-7,
+      "pricedCost": 306683715.26292515,
+      "reportedCost": 306683715.262925,
+      "missingCosts": [
+        "spaces: common works unpriced"
+      ],
+      "qualified": false,
+      "mix": [
+        {
+          "product": "Compact",
+          "valid": 25,
+          "actual": 58.139534883720934,
+          "target": 60,
+          "deviation": -1.860465116279066
+        },
+        {
+          "product": "Family",
+          "valid": 18,
+          "actual": 41.86046511627907,
+          "target": 40,
+          "deviation": 1.860465116279073
+        }
+      ],
+      "minimumMeasuredRoadFrontage": 5.999999254565738
+    }
+  ],
+  "spaceOnly": {
+    "oldSpaceArea": 268,
+    "newSpaceArea": 322,
+    "addedSpaceArea": 54,
+    "touchedLots": [
+      {
+        "id": "lot_prepared_group_4_product_1_33293_70000_27293_70000",
+        "occupiedArea": 5.756596029819548,
+        "oldArea": 71.99999999999955,
+        "newLot": {
+          "id": "lot_prepared_group_4_product_1_33293_70000_27293_70000",
+          "scenarioId": "prepared_1793691008761",
+          "productId": "product_1",
+          "groupId": "prepared_group_4_product_1",
+          "roadId": "prepared_street_4",
+          "points": [
+            {
+              "x": 27.293235,
+              "y": 70
+            },
+            {
+              "x": 33.293235,
+              "y": 70
+            },
+            {
+              "x": 33.293235,
+              "y": 82
+            },
+            {
+              "x": 27.293235,
+              "y": 82
+            },
+            {
+              "x": 27.293235,
+              "y": 81.546723
+            },
+            {
+              "x": 30,
+              "y": 80
+            },
+            {
+              "x": 27.293235,
+              "y": 77.293235
+            }
+          ],
+          "area": 66.24340377683939,
+          "frontage": 5.999999705882352,
+          "depth": 12,
+          "depthMax": 12,
+          "rearRatio": 1.0000000000000007,
+          "status": "valid",
+          "exceptions": [],
+          "locked": false
+        }
+      }
+    ],
+    "beforeValid": 52,
+    "afterValid": 52,
+    "beforeLotArea": 4808,
+    "afterLotArea": 4802.24340377684,
+    "roadsUnchanged": true,
+    "protectionUnchanged": true
+  }
+}

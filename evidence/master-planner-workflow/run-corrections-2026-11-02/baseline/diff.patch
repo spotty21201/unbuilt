@@ -1,0 +1,1539 @@
+diff --git a/docs/ACCEPTANCE.md b/docs/ACCEPTANCE.md
+index c085c84..81a2ad0 100644
+--- a/docs/ACCEPTANCE.md
++++ b/docs/ACCEPTANCE.md
+@@ -387,3 +387,109 @@ These results are software verification by an automated agent, not human planner
+ - [x] Project/record/snapshot 14/15/12 gates include advanced roads in saved alternatives; genuine stale proposals remain rejected.
+ - [x] Full root suite: 736 checks. All 35 established browser runs pass; final advanced-road workflow: 27 checks; dedicated native 200% zoom: 5 checks. Production build/lint pass. Advanced editor/canvas scan has zero detected accessibility violations. Screenshots inspected; all 999 preserved prompt/tester-evidence files unchanged. See `evidence/angled-rounded-streets/README.md`.
+ - Automatic lots remain rectangular along axis-aligned road legs; land beside angled roads remains unallocated. Rotated parcels, actual device/screen-reader/human validation, vehicle turning compliance and project-specific engineering remain open.
++
++## Cedar Market geometry / financial-status clarity — 31 October 2026
++
++- [x] Header explicitly names the nominal lot-frontage setting and actual street width. Generated width uses the shared engine constant; manual widths follow the active network, including mixed widths and marked drafts.
++- [x] Geometry success is labeled “Geometry valid.” Issues separately counts and reports owner shortfall, negative/below-target surplus and unavailable revenue; no blanket no-open-issues/no-blockers claim remains. Financial numbers use the same displayed finance object as the evaluator, with accepted/draft/option/last-valid scope. Meeting modeled targets remains qualified by entered assumptions.
++- [x] Default Cedar retains 720 m², Rp6.44bn shortfall and −22.88% surplus. An 8 m street correctly measures 960 m² and updates modeled outcomes to Rp6.64bn / −24.07%. Apply/Cancel, Undo/Redo, Save/reload and portable restore retain consistent labels, geometry and financial findings.
++- [x] Financial indicator navigates to the review on narrow screens; keyboard users can focus and scroll its longer content. Compact indicator text preserves drawing projection during changing financial scope.
++- [x] Final verification: 736 calculation/service checks; 36 targeted UI checks; 38/38 browser matrix runs; build/lint pass; targeted axe scan has zero detected violations. Existing open-space workflow passes 31 checks; three rapid 120 m² pointer drawings preserve a constant 57 px header. Screenshots inspected; all 999 preserved files unchanged. See `evidence/geometry-finance-review/README.md`.
++
++These clarify modeled outcomes under entered assumptions. They do not establish market value, commercial/engineering feasibility, real screen-reader or physical-device acceptance. Original tester evidence/prompts and the unrelated video draft remain preserved. This review remains local and uncommitted.
++
++## Planner insights slice — owner-authorized follow-up
++
++- [x] Quantities now includes a measured Land budget: gross/net density (definitions stated), allocation shares and road area per home, derived only from existing quantities. Cedar shows 16.7 homes/ha gross, 38.5 net, 56.7% unallocated.
++- [x] Owner-declared planning brief (session-only): density band, minimum designed green and maximum unallocated remainder evaluated as Pass/Fail with margins. Blank or non-positive rules are not checked; wording never claims regulation or compliance.
++- [x] Open-space access: per-lot straight-line edge distances, 150/300/400 m buckets and direct-adjacency counts; labelled as plan approximations, not walking routes or amenity quality.
++- [x] Yield starting points (Compact/Standard/Garden) in the inspector apply family + frontage through the reviewed spec-change path. Not optima.
++- [x] 30 new deterministic checks (`tests/planning-insights.mjs`); full `npm test` 766 pass; production build passes; Playwright verifies panels render real Cedar values, brief rows evaluate both ways, presets apply cleanly, no page errors.
++
++- [x] Rotated lot generation engine (`src/rotated.ts`, 26 fixtures): any-angle segments, kerb offsets, boundary/pavement/open-space validation with named skip reasons, true areas, home fit. Full `npm test` 792 pass.
++
++Workbench wiring of polygon lots is blocked on the Rect-typed parcel channel and the envelope ladder; the exact contract and next step are recorded in DECISIONS. This slice is uncommitted.
++
++## Interactive master-planning loop (2026-10-26) — evidence/masterplan-loop/REPORT.md
++- Browser (Playwright Chromium, not human Computer Use): entrance along edge (A1),
++  entrance to East edge (S2), Circulation Spine->Loop (B1), rapid frontage
++  last-wins (D1), remove-home vacancy across regeneration (S6), residual-land
++  panel reconciliation 3,240+3,560=6,800 m2 (S7), save/reload (S9): PASS.
++- Undo restored initial state exactly in A1/B1/S2. D1 trailing Undo NOT TESTED
++  (harness timeout). S3 direct road drag: NOT SUPPORTED by design (capability gap).
++- New: src/residual.ts + tests/residual.mjs; suites 808 PASS; web build clean.
++- Model gate still open (mock adapter, modelConfigured:false); M2/M3/human gates not claimed.
++
++
++## Planning continuation — 1 November 2026
++
++- [x] Manual/angled/rounded road residual assessment uses measured pavement,
++  holes, entrance aprons, actual edited lots and displayed site/space scope.
++  Classes reconcile to the evaluator; disagreement refuses rather than inventing
++  partial results. Positive shared-edge access excludes gaps and point contacts.
++- [x] Hole-aware clearance fixes Cedar's false reservation: 3,560 m² potentially
++  developable + 3,240 m² inaccessible = the unchanged 6,800 m² remainder.
++  “Whole region flagged” describes conservative open-space exclusions, not an
++  exact reserved-area measurement or development capacity.
++- [x] Draft, option, working and last-valid accepted figures identify their scope.
++  Existing brief rules explicitly state their session-only save/export limit.
++- [x] S5 automation: locked green shape/location and declared minimum, price,
++  ceiling, owner expectation, target and profile remain held through entrance,
++  circulation, width/frontage, search, Apply, Undo and reload. No model/human gate
++  is inferred from this browser evidence.
++- [x] Baseline 808 → 839 full root checks (47 residual checks); targeted residual/S5
++  browser 46; complete selected browser matrix 39/39; separate native 200% zoom 6.
++  Build/lint pass, targeted accessibility scan has no detected violations,
++  desktop/narrow/zoom screenshots inspected. All 19 continuation-preserved files
++  and all 999 files in the preceding review's preservation manifest are unchanged.
++  Report: `evidence/planner-continuation/REPORT.md`.
++- [ ] Rotated-lot editor integration: still requires a separately authorized
++  versioned polygon-parcel contract. Existing standalone engine is preserved.
++- [ ] Live-model round trip (routing unconfigured), physical touch, screen-reader,
++  human planner and professional acceptance remain open. No commit/push/deploy.
++
++## Merged road outlines and reviewed fillets — 1 November 2026
++
++- [x] Generated, legacy and advanced roads use a single unioned visible pavement
++  including entrance aprons and loop holes. Internal rectangle/apron seams are
++  removed; legacy accepted quantities and inputs stay exact.
++- [x] Circulation exposes Round road corners beside its metrics. A 4 m measured
++  draft shows actual geometry, affected lots and costs before Apply. Cancel,
++  Undo/Redo, Save/reload and portable record export retain exact states.
++- [x] Generated and previously saved manual loops round all four outer turns
++  after redundant junction stubs are normalized. Typed radius and the preset
++  share the same normalization. True entrance/dead-end mouths retain full width.
++- [x] Protected-green conflicts refuse Apply without moving the space or changing
++  held price, buyer ceiling, owner expectation, target or profile. Land quantities,
++  curved pavement and street works cost agree.
++- [x] Root suite: 846 checks, including 27 road-surface fixtures. Production
++  build/lint pass. Targeted browser: 32 checks; desktop/1024/375 screenshots
++  inspected, and targeted canvas/control accessibility scan has no detected
++  violations. All 41 browser suites pass, including native zoom; all 4,755 files outside
++  this correction remain unchanged. Details and preservation hashes are in
++  `evidence/merged-road-corners/REPORT.md`.
++- Vehicle swept paths, engineering compliance, physical-device/screen-reader and
++  human acceptance remain open. Saved envelopes are unchanged. No publication.
++
++## Half-width fillets and tangent road meetings — 1 November 2026
++
++- [x] The rounding action/preset uses half actual street width: 6/8/10/12 m roads
++  start with 3/4/5/6 m radii. Mixed widths explicitly use the narrowest road;
++  custom numeric radii remain available.
++- [x] Neighbouring fillets share full edge budgets and meet tangentially without
++  the former unused jog. Short constrained curves report their real reduced
++  radii; entrance/dead-end mouths retain their full declared widths.
++- [x] A lower-entrance, two-turn fixture matching the reported arrangement has
++  full 3 m fillets and smooth kerbs while 1,710 m² of locked green keeps its exact
++  outline/location. Generated routing leaves room beside the space; actual road
++  area 627 → 663 m² and homes 12 → 11 are reviewed before Apply. Exact input
++  Undo/Redo and Save/reload pass; price, ceiling, expectation, target, profile
++  and entered clearance remain held. Manual networks are not silently rerouted.
++- [x] Root suite: 856 checks, including 37 road-geometry fixtures; build/lint pass.
++  Targeted browser: 27 checks; 1024/375 px fit, inspected screenshots, no detected
++  targeted accessibility violations or uncaught errors. All 42 browser suites pass with the refreshed local service, including native
++  zoom. All 6,207 files outside this correction are unchanged. Report: `evidence/half-width-road-fillets/REPORT.md`.
++- [x] Local tool service refreshed without changing public configuration; live
++  candidates agree with the corrected engine on the 396 m² short-turn case.
++- Vehicle tracking, professional approval, physical-device/screen-reader and
++  human acceptance remain open. No saved-format extension or publication.
+diff --git a/docs/DECISIONS.md b/docs/DECISIONS.md
+index e72e231..26729c6 100644
+--- a/docs/DECISIONS.md
++++ b/docs/DECISIONS.md
+@@ -571,3 +571,160 @@ Use pinned `polygon-clipping` at the root for robust union/holes rather than a n
+ ## Consolidated PRD v0.19 — 31 October 2026
+ 
+ At the owner's request, issue `docs/PRD_v0.19.md` as the current consolidated product specification. Retain earlier versions and their detailed feature contracts. Record the implemented Features 1–12, angled/rounded street extension, four resolved tester findings, current compatibility and verification, and outstanding real-model/data/device/human/professional gates. This documentation revision authorizes no additional application behavior. The application checkpoint `31a21f5` is pushed to GitHub main; include this new PRD and context update in a subsequent documentation commit.
++
++## Separate geometry validity from modeled financial concerns — 31 October 2026
++
++The owner reported “spine 10 m” beside a 6 m street and a financially adverse scheme described as having no issues. The header's 10 m is the nominal lot-frontage setting, not street width. Label both, derive actual widths from the active network or shared generated width, list mixed widths and mark drafts. Do not alter correct measured areas to match the ambiguous wording.
++
++Issues must count and display owner shortfall, negative/below-target surplus and unavailable revenue separately from geometry/input validation. Use the evaluator's displayed finance object and label its accepted/draft/option/last-valid scope. Met modeled targets remain qualified by entered assumptions. Financial concerns do not disable valid geometry edits or become engineering/commercial approval. Replace “Plan valid” with “Geometry valid,” remove blanket no-open-issues/no-blockers wording and the Economics “scheme works” claim. Keep the longer results panel accessible to keyboard scrolling. The header indicator opens, scrolls to and focuses the review on narrow screens. Keep the indicator compact; expanding its displayed scope text can change header height and move the drawing projection mid-gesture. Put that scope in the review and indicator title instead. Preserve all existing prompts, earlier evidence and unrelated work; see `evidence/geometry-finance-review/README.md` for verification.
++
++## Planner insights slice — land budget, brief, access, yield presets
++
++The owner accepted four masterplanner-reported gaps and authorized implementing them. New pure modules only derive from measured geometry and declared inputs: `src/landbudget.ts` (gross density per total site hectare; net density per hectare of lots+roads+designed green; allocation shares; road area per home), `src/brief.ts` (owner-declared density band, minimum green share and maximum unallocated share, evaluated Pass/Fail with margins; unset or non-positive rules are not checked; wording never claims regulation), and `src/catchment.ts` (per-lot straight-line edge distance to open space, 150/300/400 m buckets, direct adjacency ≤2 m; approximations labelled, never walking routes). Quantities carries all three; yield starting points (Compact Spine 8 m, Standard Spine 10 m, Garden Loop 12 m) apply through the reviewed spec-change path as starting points, not optima. Brief rules are session-only in this slice; persistence would need an envelope decision.
++
++Rotated-lot generation along angled streets is deliberately deferred: it is a subdivision-engine change (generation, hold preservation, area reconciliation) rather than an insight, and stays outside scope until separately authorized. No persistence envelopes changed (project/record/snapshot unchanged), so downgrade guards are untouched. Live AI configuration and the external validation gates are unaffected.
++
++## Rotated lot generation — engine landed, parcel-channel wiring gated
++
++The owner authorized the deferred subdivision change. `src/rotated.ts` now generates whole lots along any straight street segment: oriented rectangles from the kerb line (half street width plus clearance), per-side or both sides, validated against the site boundary, unioned pavement and open spaces, with every skipped candidate carrying a named reason; 26 hand-derived fixtures (`tests/rotated-lots.mjs`) cover counts, true rotated areas, kerb offsets, boundary/pavement/space conflicts, the generation cap and home-template fit in both orientations. Cross-segment composition (lots from two segments overlapping each other) is the caller's responsibility per the single-segment input contract.
++
++Full workbench wiring is blocked by one concrete fact: parcels are `Rect`-typed end to end — `Layout.parcels`, quantity derivation, layout validation, housing assignment, `PlanCanvas` rendering and the rect-only manual lot-plan validation all consume rectangles, and planning fields reach persistence through the conditional envelope ladder (record v15 / snapshot v12 for shaped streets) with downgrade guards. Consuming `Pt[4]` lots therefore needs an envelope-versioned polygon-parcel channel: a new planning field plus capability (e.g. `rotated-lots`), quantities/rendering/validation support, and downgrade refusal in older readers. That is the exact next step and requires its own authorization; it was not smuggled into this change. No existing envelopes changed.
++
++## 2026-10-26 — Residual land classification (component-level, rules only)
++Remainder = connected components of site minus parcels/pavement/designed green
++(polygon-clipping difference). Classes: reserved-clearance (adjoins open-space
++buffer), too-small (< profile min lot area), developable (>= min lot area AND
++adjoins pavement), inaccessible. Components are never subdivided into
++hypothetical lots; totals reconcile to the Quantities remainder. Manual street
++networks show "Not yet evaluated" rather than a false classification.
++
++
++## Planning continuation — 1 November 2026
++
++Continue the ready residual-land and S5 verification work while preserving the
++uncommitted planning modules, earlier financial-status correction and all tester
++prompts. The original handoff is truncated; preserve it and use the owner's
++summary, code and prior report to establish scope. Rotated-lot workbench wiring
++still requires the separately authorized versioned polygon-parcel contract.
++
++Residual classification uses the displayed site/layout/parcel edits and actual
++unioned pavement with holes and entrance aprons. Keep holes in remaining regions,
++require a positive shared pavement edge for access, and reject a report whose
++area differs from the evaluator's remainder by more than 0.01 m². Do not infer
++access from proximity, point contact or containment. Preserve small fragments;
++classes describe connected regions, never newly generated lots. Open-space
++clearance remains a conservative bounding-box exclusion: flag the whole region
++only when actual remaining land intersects it, and name that limitation in the
++UI. A hole lying inside the exclusion must not create a false intersection.
++This supersedes the earlier manual-network “Not yet evaluated” limitation.
++
++Scope land budget, open-space references and residual assessment to the same
++working/draft/option/last-valid plan as the displayed quantities. Explain the
++existing session-only brief's save/export limitation without silently changing
++saved formats or the owner's rules. No housing, price, ceiling, expectation,
++profile, layout-generation or financial formula change is part of this slice.
++
++Automated S5 checks now preserve exact locked rectangular and polygon green
++geometry/location and held assumptions across editor/search/history/save flows.
++These do not establish human acceptance or M2/M3. Root 839 checks, targeted
++browser 46 checks, 39/39 browser suites and separate native 200% zoom 6 checks
++pass; build/lint pass. Evidence and open gates:
++`evidence/planner-continuation/REPORT.md`. Leave all work local/uncommitted.
++
++## Merged road outlines and reviewed fillets — 1 November 2026
++
++The owner requested continuous pavement and rounded turning corners instead of
++stacked road rectangles. Legacy roads were still drawn as separate SVG rectangles,
++while the advanced manual-road path already used measured unioned pavement.
++Draw every layout's road union and entrance apron as one outline with holes.
++This removes internal strokes while preserving legacy area, inputs and formats.
++Memoize the union independently of pan/zoom. Name the pavement with valid leaf
++image semantics inside the interactive canvas group; object selection remains
++available through the existing keyboard-accessible inspector.
++
++Expose Round road corners beside Circulation metrics. It opens the existing
++measured street draft at 4 m, with explicit Apply/Cancel, consequences and history.
++Generated and old manual loops can contain short centreline tails wholly within
++perpendicular junction pavement. During explicit rounding, normalize those
++orthogonal tails so they do not masquerade as dead-end caps and keep outside
++turns square. Keep real full-width entrance/dead-end caps. The direct action,
++radius entry and preset share this normalization; accepted networks are not
++mutated until Apply. Ordinary street editing retains its legacy conversion.
++
++Do not cosmetically round a drawing while continuing to measure rectangular
++pavement, automatically round old snapshots, move protected green or drop held
++lots. A conflicting fillet blocks Apply with a reason. Applying this draft uses
++the existing held manual-network contract and existing advanced-road envelopes;
++there is no new saved format or automatic regeneration policy. Vehicle tracking
++and engineering approval are outside this kerb-geometry correction. Evidence:
++`evidence/merged-road-corners/REPORT.md`. All work remains local/uncommitted.
++
++## Half-width kerb fillets — 1 November 2026
++
++The owner refined the requested fillets to half road width and smooth meetings
++without intermediate jagged steps. Replace the 4 m preset with a calculated half
++of the narrowest street width, retaining the existing explicit numeric radius
++and advanced-road envelopes. Custom values remain editable and are not silently
++linked to later width changes.
++
++Replace the per-corner 45% edge limit with shared tangent budgets: adjacent
++curves may consume a full edge proportionally, meeting without an unused jog;
++terminal caps consume no curve budget. Report radii limited by genuinely short
++geometry. Preserve the full-width entrance/dead-end caps and 5 mm chord bound.
++Round SVG stroke joins follow the actual measured pavement.
++
++An inside curve cannot occupy kept green. For an explicit half-width preview
++of generated Spine routing, try the existing router with extra corner room,
++retaining original space geometry, entered clearance and measured entrance
++apron. Accept that detour only if pavement conflicts clear; normal whole-layout
++and held-work guards still govern Apply. Keep manual street geometry held and
++retain unresolved blockers instead of fabricating successful rounding. Apply
++continues to create a held manual network and one plan-history step.
++
++Refresh the local calculation service after changing shared curve fitting;
++preserve its environment/configuration. Live short-turn candidates must match
++the current engine, not just the drawing. Evidence and all validation gates:
++`evidence/half-width-road-fillets/REPORT.md`. Keep this work uncommitted.
++
++## Residential SOP v2.0 implementation, 1 November 2026
++
++- The latest explicit owner task supersedes old rectangular/single-product and
++  house-template-first scope gates. Residential products are distinct from house
++  templates; a house footprint is not a prerequisite to generating a lot.
++- Use an additive versioned polygon scenario in `PersistedState.residential`.
++  Preserve legacy Rect plans and envelopes rather than converting them silently.
++- Existing polygon-clipping and kerb geometry support the new deterministic
++  engine. Full corridor strips remain the minimum footprint: returns may add
++  land, never silently trim the entered corridor width.
++- Generation uses actual merged kerb chains, clipped polygons and declared
++  frontage/depth/area/taper constraints. Residual fill tests actual remaining
++  polygons using permitted existing products. No street-length count substitutes
++  for the validated polygon count.
++- Unknown road/vehicle/off-site checks stay unknown. Accepting a study is not
++  approval. Search tests at most 64 real road/section configurations and reports
++  tested conflicts; it does not claim global optimality or impossibility.
++- Physical allocation includes all retained lot statuses for land reconciliation;
++  valid lot area, mix, yield and per-lot costs use only valid lot records.
++- See `evidence/residential-sop/REPORT.md` for verification and remaining limits.
++
++
++## Residential SOP continuation — 1 November 2026 client date
++
++The owner's follow-up authorizes continuing all 26 SOP steps, correcting the
++main-road-first start, given fixed feature outlines and arbitrary flexible
++polygons. Implemented version 2 site inputs, actual road-derived gate choices,
++source geometry/calibration and independent dimension check, protected originals
++and authorized revisions/crossings, free polygon drawing/editing, centreline
++curves/turning heads and bounded vehicle screening, group exceptions, manual lot
++outlines, cancelable background proposals/search, scoped quantities, broader
++spatial alternatives and new-identity combination/revisions. Session history
++survives editor closure; complete collection import/merge is reviewable and
++preserves existing alternatives. Project v16 / record v17 preserve new state;
++v1 residential calculations are frozen and upgrades are explicit previews.
++
++The authoritative latest gap matrix is `docs/SOP-CONTINUATION.md`; executed
++checks, screenshots, starting inputs, geometry/quantity changes, commands and
++remaining limits are in `evidence/sop-continuation/REPORT.md`. Detailed vehicle
++manoeuvres/approvals and exhaustive/global layout optimization are not claimed.
++Existing Rect/house/finance/AI data and unrelated dirty changes are preserved.
++No commit, push or deployment was requested or performed.
+diff --git a/docs/WORK-CONTEXT.md b/docs/WORK-CONTEXT.md
+index fd1c6e7..cb3a77e 100644
+--- a/docs/WORK-CONTEXT.md
++++ b/docs/WORK-CONTEXT.md
+@@ -1,9 +1,107 @@
+ # Unbuilt — current work context
+ 
+-Updated 31 October 2026. Workspace: `/home/spotty/projects/unbuilt`.
++Updated 1 November 2026. Workspace: `/home/spotty/projects/unbuilt`.
++
++## Boundary-to-external-road handoff correction
++
++The main boundary-only view now offers **Draw external road** before legacy
++layout generation, opens the residential name/width inputs with focus, and uses
++**Continue residential planning** after the road is saved. **External road setup**
++is available in the top bar for existing plans. The road section stays open after
++drawing. Canvas/footer/status point to the road step. Existing project lifecycle
++and accepted geometry remain preserved. Evidence:
++`evidence/external-road-next/REPORT.md` (targeted browser verification).
++
++## Latest owner workflow — 2 November 2026
++
++Residential planning now has an external-road-first **Prepare your layout**
++workflow: named road drawn along fixed site edges with an outward full-width
++corridor, dimensional home-product/unit-mix table, deterministic preparation of
++connected internal streets/loops and lots, and an explicit dead-end/cul-de-sac
++choice when needed. Gate and street mouse edits update shared nodes, corridors,
++lots and measured quantities as accepted/cancellable operations. Fixed source
++features and irregular flexible spaces remain supported. Old geometry/persistence
++contracts are retained; v1 is frozen. New optional v2 fields carry drawn boundary
++alignment, preparation metadata and an explicit angle policy.
++
++Implementation/gap matrix: `docs/PREPARE-LAYOUT.md`. Evidence and run commands:
++`evidence/prepare-layout/REPORT.md`. Keep local preview on 5173 and tool server on
++5174. Preparation is best found among bounded tests; project engineering inputs,
++vehicle-junction approval and statutory/house checks remain separate. Existing
++dirty work was preserved. No commit/push/deployment authorized or performed.
+ 
+ ## Current decision
+ 
++The owner refined road corners to use half-width fillets and smooth tangent
++meetings. The direct action/editor preset now starts at half the narrowest street
++width (6 m → 3 m; 8/10/12 m → 4/5/6 m). Shared edge budgets remove the old 45%
++limit's unused jogs; true short-edge limits remain visible. Explicit generated
++Spine rounding can detour around kept green without changing its geometry or
++entered clearance. Held manual networks retain their conflict guards.
++
++Evidence: `evidence/half-width-road-fillets/REPORT.md`. Root 856 checks, 37 road
++fixtures and 27 targeted UI checks pass; build/lint pass. Production asset
++`/assets/index-CWlgXymI.js` on 5173; refreshed tools on 5174 retain their original
++configuration and agree with current geometry. Final browser matrix: 42/42 suites pass, including native zoom. All 6,207 files
++outside this correction are unchanged; details are recorded in the report. All work remains local/uncommitted.
++
++### Previous road correction (4 m preset superseded)
++
++The owner subsequently requested merged roads with filleted turning corners.
++Legacy rectangular streets and entrance aprons now draw as one unioned pavement
++outline, including loop holes, so overlapping allocation seams are not kerbs.
++Select Circulation → Round road corners for an explicit 4 m measured preview;
++Apply streets saves it and Undo restores the original plan. Radius entry/preset
++also normalizes redundant corner stubs in old manual loops. Protected spaces,
++held lots and entrance widths remain validated. Existing saved geometry/finances
++are not silently rounded on load. See `evidence/merged-road-corners/REPORT.md`.
++This correction does not authorize commit, push or deployment.
++Verified production asset: `/assets/index-Dq5UMVlU.js`. Preview/tools remain on 5173/5174.
++Root checks: 846; targeted browser: 32; full matrix: 41/41 suites; build/lint
++pass. All 4,755 files outside this correction are unchanged. Details and
++preservation hashes are in the correction report.
++
++The owner requested continuing the local planning work from
++`docs/HANDOFF-NEXT-ADVISOR.md`, preserving the dirty tree and product branding.
++That saved handoff is truncated mid-table; cross-check it against the owner's
++handoff summary, the code, DECISIONS and `evidence/masterplan-loop/REPORT.md`.
++Current continuation evidence is `evidence/planner-continuation/REPORT.md`.
++There is no current authorization to commit, push or publish.
++
++Manual, angled and rounded street networks now have residual-land assessment
++using actual pavement, holes, entrance aprons and edited parcel outlines.
++Classification reconciles with the displayed unallocated remainder and states
++whether it describes a working plan, draft, option or last valid accepted plan.
++Road access requires a shared edge; the open-space exclusion flag conservatively
++marks a whole connected region. It is not an exclusion-area or lot-capacity
++measurement. The session-only brief now explicitly states that Save/export do
++not retain its rules. Planning insights are implemented locally; the historical
++roadmap statement below is superseded by this continuation and DECISIONS.
++
++Previous continuation verification: S5 locked-green-space automation is complete;
++exact geometry and held financial
++assumptions survive entrance/circulation/width/frontage changes, search, Apply,
++Undo and reload. Full root suite: 839 checks; browser matrix: 39/39 suites;
++targeted residual/S5: 46 checks; separate native 200% zoom: 6 checks. Build/lint
++pass. Production preview remains 5173, tools 5174, current asset
++`/assets/index-CDknUWnt.js`. Live model routing remains unconfigured.
++
++Rotated-lot engine fixtures remain preserved, but workbench wiring still needs
++a separately authorized versioned polygon-parcel contract and migration of all
++Rect consumers. Do not silently convert polygon parcels to rectangles or change
++saved envelopes. Actual devices, screen readers, human/professional acceptance
++and real-model round trips remain open. The original handoff and tester prompts
++remain unchanged.
++
++### Earlier checkpoints (historical authorization)
++
++The owner has now authorized the Cedar Market header/financial-status clarity
++review. Label lot-frontage settings separately from actual street width, and
++report modeled owner shortfall/surplus concerns independently from geometry
++validity. Evidence: `evidence/geometry-finance-review/README.md`. This follow-up
++does not authorize another roadmap feature or a new publication checkpoint.
++Preserve the unrelated untracked `docs/UNBUILT_HACKATHON_VIDEO_v1.md`.
++
+ The current consolidated product specification is [PRD v0.19](PRD_v0.19.md),
+ issued 31 October 2026 at the owner's request. It records the implemented scope,
+ angled/rounded roads, corrected tester findings, data compatibility and remaining
+@@ -41,14 +139,17 @@ label collisions. Corrections and fresh evidence are in
+ All original prompts and the independent tester's evidence remain unchanged.
+ The earlier Features 10–12 checkpoint is `38ce2f6870d9b83ab85e6ba2ed11dd46f6021048`. The owner subsequently authorized angled streets and rounded turning corners; see `docs/PRD_v0.18.md` and `evidence/angled-rounded-streets/README.md`. The owner has now requested committing and pushing this verified extension together with the four corrections, preserved tester prompts and evidence.
+ 
+-The owner's titles/numbering supersede the historical roadmap. Planning brief,
+-land budget and walkability remain unimplemented. Angled streets and corner fillets are now authorized. No other subsequent roadmap feature is authorized.
++The owner's titles/numbering supersede the historical roadmap. The later local
++planning-insights slice implements land budget, session-only planning brief and
++straight-line open-space proximity. Proximity is not walking-route analysis.
++Rotated-lot workbench integration remains gated as described above.
+ 
+ ## Working rules
+ 
+ - Preserve the extensive modified and untracked tree. It contains valuable work
+   from Features 1–12 and their reviews. Do not reset, clean, discard, stage, commit
+-  or push unless explicitly requested. The earlier authorization to commit/push the Features 10–12 checkpoint is complete. The owner has now explicitly requested committing and pushing the verified corrections and angled-road extension.
++  or push unless explicitly requested. Earlier publication authorizations are
++  completed historical checkpoints; this continuation stays local/uncommitted.
+ - Preserve project branding. Do not add model-provider branding, attribution,
+   trademarks, development signatures or names to product/source/docs/assets or
+   commit metadata. Do not claim unsupported development provenance.
+@@ -66,6 +167,10 @@ land budget and walkability remain unimplemented. Angled streets and corner fill
+ 
+ ## Read first
+ 
++- `docs/HANDOFF-NEXT-ADVISOR.md` (truncated; preserve the original),
++  `docs/DECISIONS.md` and `evidence/planner-continuation/REPORT.md` — latest local
++  planning work, completed checks and remaining gates.
++
+ - `docs/PRD_v0.19.md` — current consolidated product requirements and acceptance limits.
+ 
+ - `docs/PRD_v0.18.md` and `evidence/angled-rounded-streets/README.md` — current angled/rounded street extension. Install root dependencies (`npm ci`) as well as web dependencies before building or starting tools.
+@@ -513,3 +618,67 @@ remain unchanged. Evidence, reproduction and limits are in
+ including all prior corrections and preserved tester evidence. Consult git log
+ and the remote branch for the checkpoint identity; earlier uncommitted labels
+ in implementation evidence describe their original verification turn.
++
++## Current Cedar Market clarity correction — 31 October 2026
++
++Corrected the two owner-reported misleading states. The header's 10 m was the
++nominal lot-frontage setting; road width is 6 m and area 720 m². Header now labels
++frontage and actual widths separately, follows active parameter drafts and lists
++mixed manual widths. Use the shared generated road-width constant.
++
++Issues now separates geometry/input validation from financial review and counts
++owner-benchmark shortfall and negative/below-target surplus or absent revenue.
++The header says Geometry valid and has a compact Financial concerns indicator
++that opens, scrolls to and focuses the review. Finance uses the evaluator's
++actual displayed object, with working/draft/option/last-valid scope. Met targets
++remain qualified; incomplete inputs and empty layouts are unavailable. Geometry
++editing remains possible when modeled finance is adverse. Economics wording no
++longer claims the scheme works or that its allowance establishes land value.
++
++A regression run caught expanded financial-scope text reflowing the header and
++moving the drawing during point entry; scope stays in the review/title and the
++indicator remains compact. The Issues panel is a named focusable region for
++keyboard scrolling. Root calculations and saved data formats are unchanged.
++
++Verified production asset `/assets/index-D2MdHq77.js` on 5173; tool service stays
++on 5174. Full root: 736 checks. Final targeted UI: 36; complete browser matrix:
++38/38 runs; existing open-space drawing: 31 checks; three rapid drawings retain
++120 m² and a 57 px header. Build/lint pass; targeted axe has no detected
++violations. All 999 baseline files, including prompts/tester evidence and the
++unrelated video draft, remain unchanged. Report, raw results and reproduction:
++`evidence/geometry-finance-review/README.md`. No commit, push or deployment was
++performed for this follow-up.
++
++## Latest owner direction — Residential SOP v2.0, 1 November 2026
++
++The owner's SOP now authorizes the residential product/group/polygon work that
++older handoffs held out of scope. See `docs/RESIDENTIAL-SOP-GAPS.md` and
++`evidence/residential-sop/REPORT.md`. The additive Residential planning editor
++keeps legacy rectangular plans intact and saves its own canonical polygon
++scenarios in project v15 / decision record v16. Its quantities, protection,
++products, real allocation search and preview history are deterministic. This is
++a working increment, not completion of designed centreline curves, vehicle
++checks, multiple entrances or conditional crossings. Existing uncommitted work
++and publication restrictions remain preserved; no commit/push was performed.
++
++
++## Residential SOP continuation — 1 November 2026 client date
++
++The owner's follow-up authorizes continuing all 26 SOP steps, correcting the
++main-road-first start, given fixed feature outlines and arbitrary flexible
++polygons. Implemented version 2 site inputs, actual road-derived gate choices,
++source geometry/calibration and independent dimension check, protected originals
++and authorized revisions/crossings, free polygon drawing/editing, centreline
++curves/turning heads and bounded vehicle screening, group exceptions, manual lot
++outlines, cancelable background proposals/search, scoped quantities, broader
++spatial alternatives and new-identity combination/revisions. Session history
++survives editor closure; complete collection import/merge is reviewable and
++preserves existing alternatives. Project v16 / record v17 preserve new state;
++v1 residential calculations are frozen and upgrades are explicit previews.
++
++The authoritative latest gap matrix is `docs/SOP-CONTINUATION.md`; executed
++checks, screenshots, starting inputs, geometry/quantity changes, commands and
++remaining limits are in `evidence/sop-continuation/REPORT.md`. Detailed vehicle
++manoeuvres/approvals and exhaustive/global layout optimization are not claimed.
++Existing Rect/house/finance/AI data and unrelated dirty changes are preserved.
++No commit, push or deployment was requested or performed.
+diff --git a/package.json b/package.json
+index d41885e..5bfa0c6 100644
+--- a/package.json
++++ b/package.json
+@@ -4,11 +4,13 @@
+   "private": true,
+   "type": "module",
+   "scripts": {
+-    "test": "node --experimental-strip-types --no-warnings tests/run.mjs && node --experimental-strip-types --no-warnings tests/geometry.mjs && node --experimental-strip-types --no-warnings tests/search.mjs && node --experimental-strip-types --no-warnings tests/search-tester.mjs && node --experimental-strip-types --no-warnings tests/intent.mjs && node --experimental-strip-types --no-warnings tests/draft.mjs && node --experimental-strip-types --no-warnings tests/draft-tester.mjs && node --experimental-strip-types --no-warnings tests/site.mjs && node --experimental-strip-types --no-warnings tests/site-tester.mjs && node --experimental-strip-types --no-warnings tests/polygon.mjs && node --experimental-strip-types --no-warnings tests/boundary.mjs && node --experimental-strip-types --no-warnings tests/persist.mjs && node --experimental-strip-types --no-warnings tests/snapshot.mjs && node --experimental-strip-types --no-warnings tests/assistant.mjs && node --experimental-strip-types --no-warnings tests/server.mjs && node --experimental-strip-types --no-warnings tests/planning.mjs && node --experimental-strip-types --no-warnings tests/planner-feedback.mjs && node --experimental-strip-types --no-warnings tests/projects.mjs && node --experimental-strip-types --no-warnings tests/site-context.mjs && node --experimental-strip-types --no-warnings tests/streets.mjs && node --experimental-strip-types --no-warnings tests/parcels.mjs && node --experimental-strip-types --no-warnings tests/housing.mjs && node --experimental-strip-types --no-warnings tests/open-spaces.mjs && node --experimental-strip-types --no-warnings tests/feasibility.mjs && node --experimental-strip-types --no-warnings tests/saved-alternatives.mjs && node --experimental-strip-types --no-warnings tests/ai-assistant.mjs && node --experimental-strip-types --no-warnings tests/ai-server.mjs && node --experimental-strip-types --no-warnings tests/development.mjs && node --experimental-strip-types --no-warnings tests/road-surfaces.mjs",
++    "test": "node --experimental-strip-types --no-warnings tests/run.mjs && node --experimental-strip-types --no-warnings tests/geometry.mjs && node --experimental-strip-types --no-warnings tests/search.mjs && node --experimental-strip-types --no-warnings tests/search-tester.mjs && node --experimental-strip-types --no-warnings tests/intent.mjs && node --experimental-strip-types --no-warnings tests/draft.mjs && node --experimental-strip-types --no-warnings tests/draft-tester.mjs && node --experimental-strip-types --no-warnings tests/site.mjs && node --experimental-strip-types --no-warnings tests/site-tester.mjs && node --experimental-strip-types --no-warnings tests/polygon.mjs && node --experimental-strip-types --no-warnings tests/boundary.mjs && node --experimental-strip-types --no-warnings tests/persist.mjs && node --experimental-strip-types --no-warnings tests/snapshot.mjs && node --experimental-strip-types --no-warnings tests/assistant.mjs && node --experimental-strip-types --no-warnings tests/server.mjs && node --experimental-strip-types --no-warnings tests/planning.mjs && node --experimental-strip-types --no-warnings tests/planner-feedback.mjs && node --experimental-strip-types --no-warnings tests/projects.mjs && node --experimental-strip-types --no-warnings tests/site-context.mjs && node --experimental-strip-types --no-warnings tests/streets.mjs && node --experimental-strip-types --no-warnings tests/parcels.mjs && node --experimental-strip-types --no-warnings tests/housing.mjs && node --experimental-strip-types --no-warnings tests/open-spaces.mjs && node --experimental-strip-types --no-warnings tests/feasibility.mjs && node --experimental-strip-types --no-warnings tests/saved-alternatives.mjs && node --experimental-strip-types --no-warnings tests/ai-assistant.mjs && node --experimental-strip-types --no-warnings tests/ai-server.mjs && node --experimental-strip-types --no-warnings tests/development.mjs && node --experimental-strip-types --no-warnings tests/road-surfaces.mjs && node --experimental-strip-types --no-warnings tests/planning-insights.mjs && node --experimental-strip-types --no-warnings tests/rotated-lots.mjs && node --experimental-strip-types --no-warnings tests/residual.mjs && node --experimental-strip-types --no-warnings tests/residential.mjs && node --experimental-strip-types --no-warnings tests/residential-v2.mjs && npm run test:prepare",
+     "check": "node --experimental-strip-types --no-warnings tests/run.mjs",
+     "test:ai": "node --experimental-strip-types --no-warnings tests/ai-assistant.mjs && node --experimental-strip-types --no-warnings tests/ai-server.mjs",
+     "test:development": "node --experimental-strip-types --no-warnings tests/development.mjs",
+-    "test:streets": "node --experimental-strip-types --no-warnings tests/streets.mjs && node --experimental-strip-types --no-warnings tests/road-surfaces.mjs"
++    "test:streets": "node --experimental-strip-types --no-warnings tests/streets.mjs && node --experimental-strip-types --no-warnings tests/road-surfaces.mjs",
++    "test:residential": "node --experimental-strip-types --no-warnings tests/residential.mjs && node --experimental-strip-types --no-warnings tests/residential-v2.mjs",
++    "test:prepare": "node --experimental-strip-types --no-warnings tests/prepare-residential.mjs"
+   },
+   "dependencies": {
+     "polygon-clipping": "0.15.7"
+diff --git a/src/geometry.ts b/src/geometry.ts
+index e35dced..910667c 100644
+--- a/src/geometry.ts
++++ b/src/geometry.ts
+@@ -2,7 +2,7 @@ import {usesShapedStreets,streetSurface,surfaceArea,surfaceInside,surfaceOverlap
+ import type { DevelopmentInputs } from './development-inputs.ts';
+ import {siteOpenSpaces,spaceArea,spaceBounds,spaceSiteErrors,type OpenSpace} from './open-spaces.ts';
+ import {homeTemplate} from './housing.ts';
+-import { disconnectedStreets, nearestStreetPoint, onStreet, streetRect } from './streets.ts';
++import { disconnectedStreets, nearestStreetPoint, onStreet, streetRect, networkFromRoads, roundedStreetNetwork, halfRoadWidth } from './streets.ts';
+ // UNBUILT geometry core. Local-metre site polygons, rectangular allocations
+ // and measured manual-road surfaces; no rounding of numeric intermediates.
+ // Manually reshaped lots are simple polygons over generated rects (see
+@@ -328,15 +328,16 @@ function greenTotal(site:Site):number{return spaceArea(siteOpenSpaces(site));}
+ 
+ // A bounded orthogonal visibility graph routes six-metre corridors around
+ // conservative open-space extents. Whole lots are retained; sloping streets are unmodeled.
+-function generateResponsiveSpine(site: Site, frontage: number): Layout {
++function generateResponsiveSpine(site: Site, frontage: number, cornerClearance=0): Layout {
+   const error = siteFrameErrors(site)[0] ?? entranceErrors(site)[0];
+   if (error) return unavailableLayout("spine", error);
+   if(greenGeometryErrors(site).length)return unavailableLayout("spine",greenGeometryErrors(site)[0]);
+   if (site.entrance.width < ROAD_W) return unavailableLayout("spine", "The entrance must be at least 6 m wide for the modeled street.");
+   const p = site.planning!;
+-  const obstacles = openSpaceObstacles(site);
++  const reserved = openSpaceObstacles(site);
++  const obstacles = reserved.map(r=>({x:r.x-cornerClearance,y:r.y-cornerClearance,w:r.w+2*cornerClearance,h:r.h+2*cornerClearance}));
+   const west = site.entrance.edge === "west";
+-  const access = site.entrance.boundaryEdge === undefined ? null : accessConnector(site, obstacles);
++  const access = site.entrance.boundaryEdge === undefined ? null : accessConnector(site, reserved);
+   if (site.entrance.boundaryEdge !== undefined && !access) return unavailableLayout("spine", "No contained entrance apron fits this edge and position. Move the gate farther from the corner, choose another edge, or move the park.");
+   const entry = access?.entry ?? { x: west ? 0 : site.w, y: site.entrance.offset };
+   const ys = [...new Set([entry.y, ...obstacles.flatMap(o=>[o.y-3,o.y+o.h+3]), 3, site.h - 3, ...p.streets])].filter((y) => y >= 3 && y <= site.h - 3);
+@@ -399,6 +400,19 @@ function generateResponsiveSpine(site: Site, frontage: number): Layout {
+     unallocatedNote: "Park-aware orthogonal streets; only complete, accessible lots with fitting homes are modeled. Buffer strips and remaining land are unallocated. Turning geometry is unmodeled." };
+ }
+ 
++// Generated routes may hug a kept space too tightly for an inside fillet.
++// Propose a wider detour without changing that space or its declared clearance.
++export function halfWidthStreetDraft(site:Site,layout:Layout,frontage:number){
++  const source=site.planning?.streetNetwork??networkFromRoads(layout.roads);
++  const radius=halfRoadWidth(source),network=roundedStreetNetwork(source,radius);
++  const trial=(streetNetwork:typeof network)=>({...site,planning:{...site.planning!,streets:[],streetNetwork}});
++  if(!site.planning||site.planning.streetNetwork||layout.family!=='spine'||streetConflict(trial(network))?.kind!=='park')return {network,rerouted:false};
++  const detour=generateResponsiveSpine(site,frontage,radius);
++  if(detour.supportError)return {network,rerouted:false};
++  const candidate=roundedStreetNetwork(networkFromRoads(detour.roads),radius);
++  return streetConflict(trial(candidate))?{network,rerouted:false}:{network:candidate,rerouted:true};
++}
++
+ function parcelsAlongRoads(site: Site, roads: Rect[], frontage: number, access?: Pt[], horizontal?: boolean[], surface?:RoadSurface): Rect[] {
+   const p = site.planning!;
+   const obstacles = openSpaceObstacles(site);
+diff --git a/src/persist.ts b/src/persist.ts
+index a4fd509..1427ffd 100644
+--- a/src/persist.ts
++++ b/src/persist.ts
+@@ -1,3 +1,4 @@
++import {residentialWorkspaceErrors, type ResidentialWorkspace} from './residential.ts';
+ import {usesShapedStreets} from './road-surfaces.ts';
+ // UNBUILT durable project persistence (Coder-owned). Pure serialize/parse
+ // for localStorage autosave and file import. Photos are NEVER persisted
+@@ -14,6 +15,7 @@ export interface PersistedDecision {
+ }
+ 
+ export interface PersistedState {
++  residential?: ResidentialWorkspace;
+   spec: { family: string; frontage: number };
+   green: { x: number; y: number; w: number; h: number };
+   entrance: { edge: string; offset: number; width: number; boundaryEdge?: number };
+@@ -30,7 +32,7 @@ export interface PersistedState {
+ 
+ export interface PersistedProject {
+   format: "unbuilt-project";
+-  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
++  version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+   name?: string;
+   savedAt: string;
+   state: PersistedState;
+@@ -58,7 +60,7 @@ export function serializeProject(state: PersistedState, decisions: PersistedDeci
+   return {
+     format: "unbuilt-project",
+     ...(name ? { name } : {}),
+-    version: usesShapedStreets(state.baseSpec.planning?.streetNetwork)||alternatives?.some(a=>usesShapedStreets(a.state.baseSpec.planning?.streetNetwork))?14:state.baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?13:alternatives!==undefined?12:state.baseSpec.costAssumptions!==undefined?11:state.baseSpec.planning?.openSpaces!==undefined?10:state.baseSpec.planning?.housing ? 9 : state.baseSpec.planning?.lotPlan !== undefined ? 8 : state.baseSpec.planning?.streetNetwork !== undefined ? 7 : state.siteContext !== undefined ? 6 : state.baseSpec.contents !== undefined ? 5 : state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : state.baseSpec.planning ? 3 : state.baseSpec.boundary ? 2 : 1,
++    version: state.residential?.version===2||alternatives?.some(a=>a.state.residential?.version===2)?16:state.residential!==undefined||alternatives?.some(a=>a.state.residential!==undefined)?15:usesShapedStreets(state.baseSpec.planning?.streetNetwork)||alternatives?.some(a=>usesShapedStreets(a.state.baseSpec.planning?.streetNetwork))?14:state.baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?13:alternatives!==undefined?12:state.baseSpec.costAssumptions!==undefined?11:state.baseSpec.planning?.openSpaces!==undefined?10:state.baseSpec.planning?.housing ? 9 : state.baseSpec.planning?.lotPlan !== undefined ? 8 : state.baseSpec.planning?.streetNetwork !== undefined ? 7 : state.siteContext !== undefined ? 6 : state.baseSpec.contents !== undefined ? 5 : state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : state.baseSpec.planning ? 3 : state.baseSpec.boundary ? 2 : 1,
+     savedAt: new Date().toISOString(),
+     state: JSON.parse(JSON.stringify(state)) as PersistedState,
+     decisions: decisions.map((d) => ({ ...d })),
+@@ -100,11 +102,11 @@ function pts(v: unknown): v is { x: number; y: number }[] {
+ // wrong shapes) refuses with a reason instead of a partial restore.
+ export function parseProject(raw: unknown): { ok: true; project: PersistedProject } | Fail {
+   if (!isRecord(raw)) return fail("not a project object");
+-  if (raw.format === "UNBUILT decision record" || raw.exportVersion === 2 || raw.exportVersion === 3 || raw.exportVersion === 4 || raw.exportVersion === 5 || raw.exportVersion === 6 || raw.exportVersion === 7 || raw.exportVersion === 8 || raw.exportVersion === 9 || raw.exportVersion === 10 || raw.exportVersion === 11 || raw.exportVersion === 12 || raw.exportVersion === 13 || raw.exportVersion === 14 || raw.exportVersion === 15) {
++  if (raw.format === "UNBUILT decision record" || raw.exportVersion === 2 || raw.exportVersion === 3 || raw.exportVersion === 4 || raw.exportVersion === 5 || raw.exportVersion === 6 || raw.exportVersion === 7 || raw.exportVersion === 8 || raw.exportVersion === 9 || raw.exportVersion === 10 || raw.exportVersion === 11 || raw.exportVersion === 12 || raw.exportVersion === 13 || raw.exportVersion === 14 || raw.exportVersion === 15 || raw.exportVersion === 16 || raw.exportVersion === 17) {
+     return fromDecisionRecord(raw);
+   }
+   if (raw.format !== "unbuilt-project") return fail(`unknown format ${JSON.stringify(raw.format)}`);
+-  if (raw.version !== 1 && raw.version !== 2 && raw.version !== 3 && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14) return fail(`unsupported project version ${JSON.stringify(raw.version)}: created by a newer app`);
++  if (raw.version !== 1 && raw.version !== 2 && raw.version !== 3 && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail(`unsupported project version ${JSON.stringify(raw.version)}: created by a newer app`);
+   if (!isRecord(raw.state)) return fail("missing state");
+   const st = raw.state;
+   if (!isRecord(st.spec) || (st.spec.family !== "spine" && st.spec.family !== "loop") || !num(st.spec.frontage) || st.spec.frontage < 1 || st.spec.frontage > 500) {
+@@ -119,7 +121,7 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
+   ) {
+     return fail("state.entrance must be {edge west|east, numeric offset/width}");
+   }
+-  if (st.entrance.boundaryEdge !== undefined && ((raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14) || !(st.baseSpec as Record<string, unknown>)?.planning || !Number.isInteger(st.entrance.boundaryEdge) || (st.entrance.boundaryEdge as number) < 0 || (st.entrance.boundaryEdge as number) >= (Array.isArray((st.baseSpec as Record<string, unknown>)?.boundary) ? ((st.baseSpec as Record<string, unknown>).boundary as unknown[]).length : 4))) return fail("Entrance boundary edge must address a live-planning site edge.");
++  if (st.entrance.boundaryEdge !== undefined && ((raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) || !(st.baseSpec as Record<string, unknown>)?.planning || !Number.isInteger(st.entrance.boundaryEdge) || (st.entrance.boundaryEdge as number) < 0 || (st.entrance.boundaryEdge as number) >= (Array.isArray((st.baseSpec as Record<string, unknown>)?.boundary) ? ((st.baseSpec as Record<string, unknown>).boundary as unknown[]).length : 4))) return fail("Entrance boundary edge must address a live-planning site edge.");
+   if (!isRecord(st.lots)) return fail("state.lots must be an object");
+   for (const [k, v] of Object.entries(st.lots)) {
+     if (!pts(v)) return fail(`state.lots[${k}] must be 3-${MAX_LOT_VERTICES} finite corners`);
+@@ -133,25 +135,26 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
+   }
+   if (st.baseSpec.boundary !== undefined && (!Array.isArray(st.baseSpec.boundary) || !st.baseSpec.boundary.every((p) => isRecord(p) && num(p.x) && num(p.y)))) return fail("boundary must contain finite coordinate pairs");
+   if (st.baseSpec.boundary !== undefined && raw.version === 1) return fail("Polygon projects require project version 2 or later.");
+-  if (st.baseSpec.planning !== undefined && raw.version !== 3 && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14) return fail("Planning parameters require project version 3.");
+-  if ((st.baseSpec.planning as Record<string, unknown> | undefined)?.minGreenArea !== undefined && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14) return fail("Minimum open space requires project version 4.");
+-  if (st.baseSpec.contents !== undefined && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14) return fail("Plan contents require project version 5.");
++  if (st.baseSpec.planning !== undefined && raw.version !== 3 && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail("Planning parameters require project version 3.");
++  if ((st.baseSpec.planning as Record<string, unknown> | undefined)?.minGreenArea !== undefined && raw.version !== 4 && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail("Minimum open space requires project version 4.");
++  if (st.baseSpec.contents !== undefined && raw.version !== 5 && raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail("Plan contents require project version 5.");
+   if (raw.name !== undefined && (typeof raw.name !== "string" || !raw.name.trim() || raw.name.length > 100)) return fail("Project name must be 1–100 characters.");
+-  if (st.siteContext !== undefined) { if (raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14) return fail('Site context requires project version 6 or later.'); const issues = contextErrors(st.siteContext); if (issues.length) return fail(issues[0]); }
+-  if ((st.baseSpec.planning as Record<string, unknown> | undefined)?.streetNetwork !== undefined && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14) return fail('Editable streets require project version 7.');
+-  if ((st.baseSpec.planning as Record<string,unknown>|undefined)?.lotPlan!==undefined && raw.version!==8 && raw.version!==9 && raw.version!==10 && raw.version!==11 && raw.version!==12&&raw.version!==13 && raw.version !== 14) return fail('Manual lot plans require project version 8.');
+-  if ((st.baseSpec.planning as Record<string,unknown>|undefined)?.housing!==undefined && raw.version!==9 && raw.version!==10 && raw.version!==11 && raw.version!==12&&raw.version!==13 && raw.version !== 14) return fail('Housing mix requires project version 9.');
+-  if((st.baseSpec.planning as Record<string,unknown>|undefined)?.openSpaces!==undefined&&raw.version!==10&&raw.version!==11&&raw.version!==12&&raw.version!==13 && raw.version !== 14)return fail('Multiple open spaces require project version 10.');
+-  if(st.baseSpec.costAssumptions!==undefined&&raw.version!==11&&raw.version!==12&&raw.version!==13 && raw.version !== 14)return fail('Editable costs require project version 11.');
+-  if(st.baseSpec.development!==undefined&&raw.version!==13 && raw.version !== 14)return fail('Terrain, drainage and phasing require project version 13.');
+-  if(usesShapedStreets((st.baseSpec.planning as Record<string,unknown>|undefined)?.streetNetwork)&&raw.version!==14)return fail('Angled roads and corner fillets require project version 14.');
++  if (st.siteContext !== undefined) { if (raw.version !== 6 && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail('Site context requires project version 6 or later.'); const issues = contextErrors(st.siteContext); if (issues.length) return fail(issues[0]); }
++  if ((st.baseSpec.planning as Record<string, unknown> | undefined)?.streetNetwork !== undefined && raw.version !== 7 && raw.version !== 8 && raw.version !== 9 && raw.version !== 10 && raw.version !== 11 && raw.version !== 12 && raw.version !== 13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail('Editable streets require project version 7.');
++  if ((st.baseSpec.planning as Record<string,unknown>|undefined)?.lotPlan!==undefined && raw.version!==8 && raw.version!==9 && raw.version!==10 && raw.version!==11 && raw.version!==12&&raw.version!==13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail('Manual lot plans require project version 8.');
++  if ((st.baseSpec.planning as Record<string,unknown>|undefined)?.housing!==undefined && raw.version!==9 && raw.version!==10 && raw.version!==11 && raw.version!==12&&raw.version!==13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail('Housing mix requires project version 9.');
++  if((st.baseSpec.planning as Record<string,unknown>|undefined)?.openSpaces!==undefined&&raw.version!==10&&raw.version!==11&&raw.version!==12&&raw.version!==13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16)return fail('Multiple open spaces require project version 10.');
++  if(st.baseSpec.costAssumptions!==undefined&&raw.version!==11&&raw.version!==12&&raw.version!==13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16)return fail('Editable costs require project version 11.');
++  if(st.baseSpec.development!==undefined&&raw.version!==13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16)return fail('Terrain, drainage and phasing require project version 13.');
++  if(usesShapedStreets((st.baseSpec.planning as Record<string,unknown>|undefined)?.streetNetwork)&&raw.version!==14&&raw.version!==15&&raw.version!==16)return fail('Angled roads and corner fillets require project version 14.');
++  if(st.residential!==undefined){if((st.residential as ResidentialWorkspace)?.version===2&&raw.version!==16)return fail('Site-first residential scenarios require project version 16.');if(raw.version!==15&&raw.version!==16)return fail('Residential scenarios require project version 15.');const errors=residentialWorkspaceErrors(st.residential);if(errors.length)return fail(errors[0]);}
+   const shapeErrors = siteFrameErrors(st.baseSpec as unknown as SiteFrame);
+   if (shapeErrors.length) return fail(shapeErrors[0]);
+   if (!Array.isArray(raw.decisions) || !raw.decisions.every((d) => isRecord(d) && typeof d.t === "string" && typeof d.kind === "string" && typeof d.detail === "string")) {
+     return fail("decisions must be [{t, kind, detail} strings]");
+   }
+   if (raw.alternatives !== undefined) {
+-    if (raw.version !== 12 && raw.version !== 13 && raw.version !== 14) return fail('Saved alternatives require project version 12.');
++    if (raw.version !== 12 && raw.version !== 13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16) return fail('Saved alternatives require project version 12.');
+     if (!Array.isArray(raw.alternatives) || raw.alternatives.length > MAX_ALTERNATIVES) return fail(`Use at most ${MAX_ALTERNATIVES} saved schemes.`);
+     const seen = new Set<string>();
+     const items: SavedAlternative[] = [];
+@@ -161,7 +164,7 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
+       const nameError = alternativeNameError(a.name, items); if (nameError) return fail(nameError);
+       if (typeof a.note !== 'string' || a.note.length > 4000) return fail('Scheme notes must be text of at most 4,000 characters.');
+       if (typeof a.createdAt !== 'string' || !Number.isFinite(Date.parse(a.createdAt)) || typeof a.updatedAt !== 'string' || !Number.isFinite(Date.parse(a.updatedAt))) return fail('Saved schemes need valid creation and update dates.');
+-      if(raw.version!==13 && raw.version !== 14&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&a.state.baseSpec.development!==undefined)return fail('Saved development inputs require project version 13.');
++      if(raw.version!==13 && raw.version !== 14 && raw.version !== 15 && raw.version !== 16&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&a.state.baseSpec.development!==undefined)return fail('Saved development inputs require project version 13.');
+       if (!isRecord(a.state) || a.state.alternatives !== undefined || a.state.savedAlternatives !== undefined) return fail('Saved schemes must contain a plan, without nested schemes.');
+       if (Object.keys(a).some(k => !['id','name','note','createdAt','updatedAt','state'].includes(k))) return fail('Unknown saved scheme field.');
+       const plan = parseProject({format:'unbuilt-project',version:raw.version,state:a.state,decisions:[]});
+@@ -174,28 +177,31 @@ export function parseProject(raw: unknown): { ok: true; project: PersistedProjec
+ }
+ 
+ function fromDecisionRecord(raw: Record<string, unknown>): { ok: true; project: PersistedProject } | Fail {
+-  if (![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].includes(raw.exportVersion as number)) return fail('Unsupported decision record version.');
++  if (![2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].includes(raw.exportVersion as number)) return fail('Unsupported decision record version.');
+   const st = raw.state;
+   if (!isRecord(st)) return fail("decision record has no state snapshot");
+   const site = isRecord(st.site) ? st.site : {};
+-  if (site.contents !== undefined && raw.exportVersion !== 6 && raw.exportVersion !== 7 && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12 && raw.exportVersion !== 13 && raw.exportVersion !== 14 && raw.exportVersion !== 15) return fail('Plan contents require decision record version 6.');
+-  if (st.siteContext !== undefined && raw.exportVersion !== 7 && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12 && raw.exportVersion !== 13 && raw.exportVersion !== 14 && raw.exportVersion !== 15) return fail('Site context requires decision record version 7.');
+-  if ((site.planning as Record<string, unknown> | undefined)?.streetNetwork !== undefined && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12 && raw.exportVersion !== 13 && raw.exportVersion !== 14 && raw.exportVersion !== 15) return fail('Editable streets require decision record version 8.');
+-  if ((site.planning as Record<string,unknown>|undefined)?.lotPlan!==undefined && raw.exportVersion!==9 && raw.exportVersion!==10 && raw.exportVersion!==11 && raw.exportVersion!==12 && raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15) return fail('Manual lot plans require decision record version 9.');
+-  if ((site.planning as Record<string,unknown>|undefined)?.housing!==undefined && raw.exportVersion!==10 && raw.exportVersion!==11 && raw.exportVersion!==12 && raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15) return fail('Housing mix requires decision record version 10.');
+-  if((site.planning as Record<string,unknown>|undefined)?.openSpaces!==undefined&&raw.exportVersion!==11&&raw.exportVersion!==12&&raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15)return fail('Multiple open spaces require decision record version 11.');
+-  if(site.costAssumptions!==undefined&&raw.exportVersion!==12&&raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15)return fail('Editable costs require decision record version 12.');
+-  if(raw.alternatives!==undefined&&raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15)return fail('Saved alternatives require decision record version 13.');
+-  if(raw.exportVersion!==14 && raw.exportVersion !== 15&&Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&a.state.baseSpec.development!==undefined))return fail('Saved development inputs require decision record version 14.');
+-  if(site.development!==undefined&&raw.exportVersion!==14 && raw.exportVersion !== 15)return fail('Terrain, drainage and phasing require decision record version 14.');
+-  if((usesShapedStreets((site.planning as Record<string,unknown>|undefined)?.streetNetwork)||Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&isRecord(a.state.baseSpec.planning)&&usesShapedStreets(a.state.baseSpec.planning.streetNetwork)))&&raw.exportVersion!==15)return fail('Angled roads and corner fillets require decision record version 15.');
++  if (site.contents !== undefined && raw.exportVersion !== 6 && raw.exportVersion !== 7 && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12 && raw.exportVersion !== 13 && raw.exportVersion !== 14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17) return fail('Plan contents require decision record version 6.');
++  if (st.siteContext !== undefined && raw.exportVersion !== 7 && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12 && raw.exportVersion !== 13 && raw.exportVersion !== 14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17) return fail('Site context requires decision record version 7.');
++  if ((site.planning as Record<string, unknown> | undefined)?.streetNetwork !== undefined && raw.exportVersion !== 8 && raw.exportVersion !== 9 && raw.exportVersion !== 10 && raw.exportVersion !== 11 && raw.exportVersion !== 12 && raw.exportVersion !== 13 && raw.exportVersion !== 14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17) return fail('Editable streets require decision record version 8.');
++  if ((site.planning as Record<string,unknown>|undefined)?.lotPlan!==undefined && raw.exportVersion!==9 && raw.exportVersion!==10 && raw.exportVersion!==11 && raw.exportVersion!==12 && raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17) return fail('Manual lot plans require decision record version 9.');
++  if ((site.planning as Record<string,unknown>|undefined)?.housing!==undefined && raw.exportVersion!==10 && raw.exportVersion!==11 && raw.exportVersion!==12 && raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17) return fail('Housing mix requires decision record version 10.');
++  if((site.planning as Record<string,unknown>|undefined)?.openSpaces!==undefined&&raw.exportVersion!==11&&raw.exportVersion!==12&&raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17)return fail('Multiple open spaces require decision record version 11.');
++  if(site.costAssumptions!==undefined&&raw.exportVersion!==12&&raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17)return fail('Editable costs require decision record version 12.');
++  if(raw.alternatives!==undefined&&raw.exportVersion!==13&&raw.exportVersion!==14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17)return fail('Saved alternatives require decision record version 13.');
++  if(raw.exportVersion!==14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17&&Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&a.state.baseSpec.development!==undefined))return fail('Saved development inputs require decision record version 14.');
++  if(site.development!==undefined&&raw.exportVersion!==14 && raw.exportVersion !== 15 && raw.exportVersion !== 16 && raw.exportVersion !== 17)return fail('Terrain, drainage and phasing require decision record version 14.');
++  if((usesShapedStreets((site.planning as Record<string,unknown>|undefined)?.streetNetwork)||Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&isRecord(a.state.baseSpec.planning)&&usesShapedStreets(a.state.baseSpec.planning.streetNetwork)))&&raw.exportVersion!==15&&raw.exportVersion!==16&&raw.exportVersion!==17)return fail('Angled roads and corner fillets require decision record version 15.');
+   const plan = isRecord(st.plan) ? st.plan : {};
+   const openSpace = isRecord(st.openSpace) ? st.openSpace : {};
+   const assumptions = isRecord(st.assumptions) ? st.assumptions : {};
+   const w = site.w;
+   const h = site.h;
+   if (!num(w) || !num(h)) return fail("decision record site has no numeric boundary");
++  if(isRecord(st.residential)&&st.residential.version===2&&raw.exportVersion!==17)return fail('Site-first residential scenarios require decision record version 17.');
++  if(st.residential!==undefined&&raw.exportVersion!==16&&raw.exportVersion!==17)return fail('Residential scenarios require decision record version 16.');
+   const state: PersistedState = {
++    ...(st.residential!==undefined?{residential:st.residential as ResidentialWorkspace}:{}),
+     spec: {
+       family: (plan as Record<string, unknown>).family === "loop" ? "loop" : "spine",
+       frontage: num((plan as Record<string, unknown>).frontage) ? ((plan as Record<string, unknown>).frontage as number) : 10,
+@@ -235,7 +241,7 @@ function fromDecisionRecord(raw: Record<string, unknown>): { ok: true; project:
+   return parseProject({
+       format: "unbuilt-project",
+       ...(typeof raw.projectName === "string" ? { name: raw.projectName } : {}),
+-      version: usesShapedStreets(state.baseSpec.planning?.streetNetwork)||Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&isRecord(a.state.baseSpec.planning)&&usesShapedStreets(a.state.baseSpec.planning.streetNetwork))?14:site.development!==undefined||Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&a.state.baseSpec.development!==undefined)?13:raw.alternatives!==undefined?12:state.baseSpec.costAssumptions!==undefined?11:state.baseSpec.planning?.openSpaces!==undefined?10:state.baseSpec.planning?.housing ? 9 : state.baseSpec.planning?.lotPlan !== undefined ? 8 : state.baseSpec.planning?.streetNetwork !== undefined ? 7 : state.siteContext !== undefined ? 6 : state.baseSpec.contents !== undefined ? 5 : state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : site.planning !== undefined ? 3 : site.boundary !== undefined ? 2 : 1,
++      version: state.residential?.version===2||Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.residential)&&a.state.residential.version===2)?16:state.residential!==undefined||Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&a.state.residential!==undefined)?15:usesShapedStreets(state.baseSpec.planning?.streetNetwork)||Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&isRecord(a.state.baseSpec.planning)&&usesShapedStreets(a.state.baseSpec.planning.streetNetwork))?14:site.development!==undefined||Array.isArray(raw.alternatives)&&raw.alternatives.some(a=>isRecord(a)&&isRecord(a.state)&&isRecord(a.state.baseSpec)&&a.state.baseSpec.development!==undefined)?13:raw.alternatives!==undefined?12:state.baseSpec.costAssumptions!==undefined?11:state.baseSpec.planning?.openSpaces!==undefined?10:state.baseSpec.planning?.housing ? 9 : state.baseSpec.planning?.lotPlan !== undefined ? 8 : state.baseSpec.planning?.streetNetwork !== undefined ? 7 : state.siteContext !== undefined ? 6 : state.baseSpec.contents !== undefined ? 5 : state.entrance.boundaryEdge !== undefined || state.baseSpec.planning?.minGreenArea !== undefined ? 4 : site.planning !== undefined ? 3 : site.boundary !== undefined ? 2 : 1,
+       savedAt: new Date().toISOString(),
+       state,
+       ...(raw.alternatives!==undefined?{alternatives:raw.alternatives}:{}),
+diff --git a/src/road-surfaces.ts b/src/road-surfaces.ts
+index 8d5ca13..e4da6d3 100644
+--- a/src/road-surfaces.ts
++++ b/src/road-surfaces.ts
+@@ -9,6 +9,12 @@ export type RoadSurface = Pt[][][];
+ const coordinates=(surface:RoadSurface):MultiPolygon=>surface.map(p=>p.map(r=>r.map(q=>[q.x,q.y] as Pair)));
+ const points=(surface:MultiPolygon):RoadSurface=>surface.map(p=>p.map(r=>r.slice(0,-1).map(([x,y])=>({x,y}))));
+ export const surfaceArea=(surface:RoadSurface)=>surface.reduce((n,p)=>n+p.reduce((a,r,i)=>a+(i?-1:1)*polyArea(r),0),0);
++// Legacy rectangles and the disjoint entrance apron share one visible kerb.
++// Union changes the outline only; rounding remains an explicitly measured edit.
++export function mergedRoadSurface(roads:Rect[],pavement?:RoadSurface,apron?:Pt[]):RoadSurface {
++  const parts=[...(pavement??roads.map(r=>[rectCorners(r)])),...(apron?[ [apron] ]:[])];
++  return parts.length?points(clipping.union(coordinates([parts[0]]),...parts.slice(1).map(p=>coordinates([p])))):[];
++}
+ export function usesShapedStreets(raw:unknown):boolean {
+   if(!raw||typeof raw!=='object'||Array.isArray(raw))return false;
+   const n=raw as StreetNetwork;
+@@ -21,8 +27,8 @@ export function streetPolygon(s:StreetSegment):Pt[]{
+ }
+ 
+ // Circular kerb fillets, polygonised to at most 5 mm chord deviation.
+-// Short edges limit tangent distance to 45% at either end; report reduced radii.
+-export function streetSurface(network:StreetNetwork){
++// Adjacent tangent runs share each edge; curves can meet without leftover steps.
++export function streetSurface(network:StreetNetwork,options?:{junctionOnly:boolean}){
+   const strips=network.segments.map(streetPolygon).filter(p=>p.length);
+   if(!strips.length)return {surface:[] as RoadSurface,limited:0,minimumRadius:0};
+   // Butt-ended strips leave a notch outside a bend. Close that wedge with
+@@ -43,7 +49,14 @@ export function streetSurface(network:StreetNetwork){
+       strips.push(bounded?[node,first,miter,last]:[node,first,last]);
+     }
+   }
+-  const original=points(clipping.union(coordinates([[strips[0]]]),...strips.slice(1).map(p=>coordinates([[p]]))));
++  const merge=(polygons:Pt[][])=>points(clipping.union(coordinates([[polygons[0]]]),...polygons.slice(1).map(p=>coordinates([[p]]))));
++  let original:RoadSurface;
++  try{original=merge(strips);}catch(error){
++    if(!(error instanceof Error)||!/SweepLine|segment #|output ring/.test(error.message))throw error;
++    // Retry failing near-coincident arc kerbs on a micrometre grid; successful legacy results stay exact.
++    original=merge(strips.map(r=>r.map(p=>({x:Math.round(p.x*1e6)/1e6,y:Math.round(p.y*1e6)/1e6}))));
++  }
++  const junctions=options?.junctionOnly?streetNodes(network).filter(p=>network.segments.filter(s=>onStreet(p,s)).reduce((n,s)=>n+Number(!samePoint(s.a,p))+Number(!samePoint(s.b,p)),0)>=3):[];
+   const radius=network.cornerRadius??0;
+   if(!radius)return {surface:original,limited:0,minimumRadius:0};
+   // End caps and entrance mouths retain their full declared width.
+@@ -52,23 +65,31 @@ export function streetSurface(network:StreetNetwork){
+     return [{x:p.x+x,y:p.y+y},{x:p.x-x,y:p.y-y}];
+   }));
+   let limited=0,minimumRadius=radius;
+-  const rounded=original.map(p=>p.map(r=>r.flatMap((b,i)=>{
+-    if(caps.some(c=>samePoint(c,b)))return [b];
++  const rounded=original.map(p=>p.map(r=>{
++    const corners=r.map((b,i)=>{
++    if(caps.some(c=>samePoint(c,b))||options?.junctionOnly&&!junctions.some(p=>Math.hypot(p.x-b.x,p.y-b.y)<=Math.max(...network.segments.filter(s=>onStreet(p,s)).map(s=>s.width))+ .002))return null;
+     const a=r[(i+r.length-1)%r.length],c=r[(i+1)%r.length],la=Math.hypot(a.x-b.x,a.y-b.y),lc=Math.hypot(c.x-b.x,c.y-b.y);
+     const u={x:(a.x-b.x)/la,y:(a.y-b.y)/la},v={x:(c.x-b.x)/lc,y:(c.y-b.y)/lc};
+     const angle=Math.acos(Math.max(-1,Math.min(1,u.x*v.x+u.y*v.y))),tan=Math.tan(angle/2);
+-    if(!Number.isFinite(tan)||tan<1e-6||Math.PI-angle<1e-6)return [b];
+-    const distance=Math.min(radius/tan,la*.45,lc*.45),effective=distance*tan;
++    if(!Number.isFinite(tan)||tan<1e-6||Math.PI-angle<1e-6)return null;
++    return {u,v,angle,tan,la,lc,desired:radius/tan};
++    });
++    return r.flatMap((b,i)=>{
++    const corner=corners[i];if(!corner)return [b];
++    const {u,v,angle,tan,la,lc,desired}=corner;
++    const distance=desired*Math.min(1,la/(desired+(corners[(i+r.length-1)%r.length]?.desired??0)),lc/(desired+(corners[(i+1)%r.length]?.desired??0))),effective=distance*tan;
+     if(effective<radius-1e-6){limited++;minimumRadius=Math.min(minimumRadius,effective);}
+     const bisector=Math.hypot(u.x+v.x,u.y+v.y),offset=effective/Math.sin(angle/2);
+     const center={x:b.x+(u.x+v.x)/bisector*offset,y:b.y+(u.y+v.y)/bisector*offset};
+     const first={x:b.x+u.x*distance,y:b.y+u.y*distance},last={x:b.x+v.x*distance,y:b.y+v.y*distance};
+     const start=Math.atan2(first.y-center.y,first.x-center.x),end=Math.atan2(last.y-center.y,last.x-center.x);
++    const a=r[(i+r.length-1)%r.length],c=r[(i+1)%r.length];
+     const turn=(b.x-a.x)*(c.y-b.y)-(b.y-a.y)*(c.x-b.x);let sweep=end-start;
+     if(turn>0&&sweep<0)sweep+=2*Math.PI;if(turn<0&&sweep>0)sweep-=2*Math.PI;
+     const step=2*Math.acos(Math.max(-1,1-.005/effective)),count=Math.max(2,Math.ceil(Math.abs(sweep)/Math.max(.01,step)));
+     return Array.from({length:count+1},(_,j)=>j===0?first:j===count?last:{x:center.x+effective*Math.cos(start+sweep*j/count),y:center.y+effective*Math.sin(start+sweep*j/count)});
+-  })));
++    });
++  }));
+   return {surface:points(clipping.union(coordinates(rounded))),limited,minimumRadius};
+ }
+ export function surfaceInside(surface:RoadSurface,outline:Pt[]):boolean{return surface.every(p=>polyInsidePoly(p[0],outline));}
+diff --git a/src/streets.ts b/src/streets.ts
+index ef1d210..84a2cb8 100644
+--- a/src/streets.ts
++++ b/src/streets.ts
+@@ -2,6 +2,8 @@ import type { Pt } from './polygon.ts';
+ import type { Rect } from './schema.ts';
+ export interface StreetSegment { id: string; a: Pt; b: Pt; width: number }
+ export interface StreetNetwork { segments: StreetSegment[]; cornerRadius?: number }
++// One explicit radius is stored; mixed-width networks start conservatively.
++export const halfRoadWidth=(n:StreetNetwork)=>n.segments.length?Math.min(...n.segments.map(s=>s.width))/2:0;
+ export const MAX_STREETS = 64;
+ const near = (a: number, b: number) => Math.abs(a - b) < .001;
+ export const samePoint = (a: Pt, b: Pt) => near(a.x,b.x) && near(a.y,b.y);
+@@ -89,6 +91,24 @@ export function networkFromRoads(roads: Rect[]): StreetNetwork {
+     return {id:`street-${i+1}`,width:horizontal?r.h:r.w,a:horizontal?{x:r.x,y:r.y+r.h/2}:{x:r.x+r.w/2,y:r.y},b:horizontal?{x:r.x+r.w,y:r.y+r.h/2}:{x:r.x+r.w/2,y:r.y+r.h}};
+   })});
+ }
++// Rectangle junctions can leave short overlapping tails in saved manual
++// networks. During explicit rounding they are joins, not protected end caps.
++export function roundedStreetNetwork(network:StreetNetwork,cornerRadius:number):StreetNetwork {
++  const split=splitJunctions(network);
++  return {...split,cornerRadius,segments:split.segments.filter(s=>{
++    const horizontal=near(s.a.y,s.b.y),vertical=near(s.a.x,s.b.x);
++    if(!horizontal&&!vertical)return true;
++    return ![s.a,s.b].some((end,i)=>{
++      if(split.segments.filter(t=>onStreet(end,t)).length!==1)return false;
++      const junction=i?s.a:s.b;
++      const cross=split.segments.filter(t=>t.id!==s.id&&onStreet(junction,t)&&streetLength(s)<=t.width/2+.001&&(horizontal?near(t.a.x,t.b.x):near(t.a.y,t.b.y)));
++      const axis=horizontal?'y':'x',extent=cross.flatMap(t=>[t.a[axis],t.b[axis]]);
++      // The full tail strip must be covered on both sides of the junction;
++      // two genuinely short L legs must retain their real end caps.
++      return extent.length>0&&Math.min(...extent)<=junction[axis]-s.width/2+.001&&Math.max(...extent)>=junction[axis]+s.width/2-.001;
++    });
++  })};
++}
+ export function disconnectedStreets(n: StreetNetwork, entry: Pt): number[] {
+   const reached=new Set<number>(n.segments.flatMap((s,i)=>onStreet(entry,s)?[i]:[]));let changed=true;
+   const nodes=streetNodes(n);
+diff --git a/tests/dynamic-inspector-browser.cjs b/tests/dynamic-inspector-browser.cjs
+index 655fff6..5d26553 100644
+--- a/tests/dynamic-inspector-browser.cjs
++++ b/tests/dynamic-inspector-browser.cjs
+@@ -45,9 +45,9 @@ try{
+  await selectObject(p,'Open space A');check('selection reads actual park area and site share',/480 m²/.test(await p.locator('.metric-grid').innerText()) && /4.00%/.test(await p.locator('.metric-grid').innerText()));check('green lock disables dimensions',await p.getByRole('slider',{name:'Park width',exact:true}).isDisabled());
+  await p.getByRole('checkbox',{name:/^Open space A/}).uncheck();
+  // Move the park into the street and grow it; network reflows live, committed plan is unchanged until release.
+- const parkPoint=await point(p,90,72);const to=await point(p,52,42);await p.mouse.move(parkPoint.x,parkPoint.y);await p.mouse.down();await p.mouse.move(to.x,to.y,{steps:10});check('park drag reroutes connected roads before release',await p.locator('main .road').count()>1 && (await state(p)).green.x===78);await p.mouse.up();await settle(p);check('park release applies the last valid rerouted plan',(await state(p)).green.x===40 && (await state(p)).green.y===32);
++ const parkPoint=await point(p,90,72);const to=await point(p,52,42);await p.mouse.move(parkPoint.x,parkPoint.y);await p.mouse.down();await p.mouse.move(to.x,to.y,{steps:10});check('park drag reroutes connected roads before release',await p.locator('main path.road').count()===1 && (await p.locator('main path.road').getAttribute('d')).split('L').length>4 && (await state(p)).green.x===78);await p.mouse.up();await settle(p);check('park release applies the last valid rerouted plan',(await state(p)).green.x===40 && (await state(p)).green.y===32);
+  await range(p,'Park width',40);await range(p,'Park depth',40);check('park sliders update area and redistribution live',/1,600 m²/.test(await p.locator('.metric-grid').innerText()) && (await state(p)).green.w===24);await p.getByRole('button',{name:'Apply park',exact:true}).click();await p.screenshot({path:`${out}/park-reroute-1440.png`});check('park growth commits a 1600 m² region',(await state(p)).green.w===40 && (await state(p)).green.h===40);
+- await range(p,'Park width',120);check('invalid park leaves last valid canvas and disables Apply',await p.getByRole('button',{name:'Apply park',exact:true}).isDisabled() && await p.locator('main .road').count()>1 && (await state(p)).green.w===40);await p.getByRole('button',{name:'Cancel park',exact:true}).click();
++ await range(p,'Park width',120);check('invalid park leaves last valid canvas and disables Apply',await p.getByRole('button',{name:'Apply park',exact:true}).isDisabled() && await p.locator('main path.road').count()===1 && (await p.locator('main path.road').getAttribute('d')).split('L').length>4 && (await state(p)).green.w===40);await p.getByRole('button',{name:'Cancel park',exact:true}).click();
+  // Street creation and canvas control handle use the same pending parameter transaction.
+  await selectObject(p,'Circulation');await p.getByRole('button',{name:'Add cross street',exact:true}).click();const street=p.getByRole('slider',{name:'Street 1 canvas handle',exact:true});await street.waitFor();await drag(p,street.locator('circle').last(),await point(p,60,20));check('road handle drives the inspector position',await p.getByRole('slider',{name:'Street 1 position',exact:true}).inputValue()==='20');await p.getByRole('button',{name:'Apply parameters',exact:true}).click();check('street creation commits through shared state',(await state(p)).baseSpec.planning.streets[0]===20);await clickUndo(p);
+  // Restore initial accepted state through an imported project to exercise compatibility.
+diff --git a/tests/planner-feedback-browser.cjs b/tests/planner-feedback-browser.cjs
+index 077b5c2..6a07794 100644
+--- a/tests/planner-feedback-browser.cjs
++++ b/tests/planner-feedback-browser.cjs
+@@ -18,14 +18,14 @@ async function point(p,x,y){return p.locator('main svg.canvas').evaluate((el,q)=
+  check('boundary review lists accepted and proposed measured outcomes',/20 → Unavailable/.test(await p.locator('.boundary-review').innerText())&&/Land allowance/.test(await p.locator('.boundary-review').innerText()));
+  check('drawing leaves the accepted plan saved unchanged',JSON.stringify((await state(p)).baseSpec)===JSON.stringify(original.baseSpec));
+  await p.getByRole('combobox',{name:'Entrance boundary edge',exact:true}).selectOption('4');await settle(p);
+- check('choosing the sloping west edge enables a measured layout before Apply',!/Unavailable/.test(await p.locator('.boundary-review').innerText())&&await p.locator('main polygon.road').count()===1);
++ check('choosing the sloping west edge enables a measured layout before Apply',!/Unavailable/.test(await p.locator('.boundary-review').innerText())&&await p.locator('main path.road[aria-label="Street pavement including entrance apron"]').count()===1);
+  check('draft preview shows the reserved park footprint',await p.locator('main .greenfill').isVisible() && (await p.locator('main .greenfill').boundingBox()).width>0);
+  await p.screenshot({path:`${out}/sloping-access-review.png`});
+  await p.getByRole('button',{name:'Check mid-edge entrances',exact:true}).click();
+  check('candidate entrances show measured geometric checks and access assumptions',/geometric options, not confirmed public access/.test(await p.locator('.entrance-candidates').innerText())&&await p.locator('.entrance-candidates button').count()>0);
+  await p.getByRole('button',{name:'Apply boundary',exact:true}).click();await settle(p);const applied=await state(p);
+  check('apply keeps all five corners and selected boundary entrance',applied.baseSpec.boundary.length===5&&applied.entrance.boundaryEdge===4);
+- check('applied sloping site retains roads, homes and measured outcome',await p.locator('main polygon.road').count()===1&&/homes/.test(await p.locator('.docksummary').innerText())&&!/Layout unavailable/.test(await p.locator('.docksummary').innerText()));
++ check('applied sloping site retains roads, homes and measured outcome',await p.locator('main path.road[aria-label="Street pavement including entrance apron"]').count()===1&&/homes/.test(await p.locator('.docksummary').innerText())&&!/Layout unavailable/.test(await p.locator('.docksummary').innerText()));
+  await p.screenshot({path:`${out}/sloping-access-applied.png`});
+  await p.getByRole('button',{name:'Undo',exact:true}).click();await settle(p);check('one Undo restores entire accepted sample',!(await state(p)).baseSpec.boundary&&!(await state(p)).entrance.boundaryEdge);
+  await p.getByRole('button',{name:'Redo',exact:true}).click();await settle(p);check('Redo restores polygon and entrance together',isDeepStrictEqual((await state(p)).entrance,applied.entrance));
+diff --git a/tests/road-surfaces.mjs b/tests/road-surfaces.mjs
+index 4c9676d..b9a7b1e 100644
+--- a/tests/road-surfaces.mjs
++++ b/tests/road-surfaces.mjs
+@@ -1,8 +1,8 @@
+ import assert from 'node:assert/strict';
+-import {streetSurface,streetPolygon,surfaceArea,surfaceFrontage,surfaceInside,surfaceOverlapsRect,surfaceOverlapsPoly,usesShapedStreets} from '../src/road-surfaces.ts';
+-import {streetErrors,streetNodes,splitJunctions,appendStreetPath,moveStreetNode,nearestStreetPoint,disconnectedStreets,networkFromRoads} from '../src/streets.ts';
++import {mergedRoadSurface,streetSurface,streetPolygon,surfaceArea,surfaceFrontage,surfaceInside,surfaceOverlapsRect,surfaceOverlapsPoly,usesShapedStreets} from '../src/road-surfaces.ts';
++import {streetErrors,streetNodes,splitJunctions,appendStreetPath,moveStreetNode,nearestStreetPoint,disconnectedStreets,networkFromRoads,roundedStreetNetwork,halfRoadWidth} from '../src/streets.ts';
+ import {starterProject} from '../src/projects.ts';
+-import {generateSpine,deriveQuantities,validateLayout,streetConflict,validateLotPoly} from '../src/geometry.ts';
++import {generateSpine,generateLoop,unionArea,halfWidthStreetDraft,deriveQuantities,validateLayout,streetConflict,validateLotPoly} from '../src/geometry.ts';
+ import {polyArea,rectCorners,isSimple} from '../src/polygon.ts';
+ import {evaluateLayout} from '../src/economics.ts';
+ import {assessDrainage} from '../src/development.ts';
+@@ -91,4 +91,75 @@ check('search and measured AI cost experiments retain the exact reviewed road ou
+   const s=site(rounded),area=surfaceArea(valid(rounded).roadSurface),r=runSearch({site:s,profile:BASE_PROFILE,selectedPrice:850e6,locks:{green:s.green,priceCeiling:850e6,ownerExpectation:10e9,targetFraction:.15},ranges:{families:['spine','loop'],frontages:[10,11]},seed:7,budget:8});assert.ok(r.candidates.length);for(const c of r.candidates){near(c.quantities.roadArea,area);assert.equal(c.family,'spine');}
+   const answer=validateModelChoice('propose_experiment',{purpose:'cost_sensitivity',design:{},costs:{roadPerM2:700000}},snapshot,[]);const m=measureProposal(snapshot,answer.proposal);assert.equal(m.planHash,snapshotHash(snapshot,true));assert.ok(m.findings.some(f=>f.id==='streets'&&f.text.includes('change 0')));assert.ok(m.findings.some(f=>f.id==='costs'&&f.text.includes('→')));const changed=structuredClone(snapshot);changed.site.planning.streetNetwork.cornerRadius=5;assert.throws(()=>measureProposal(changed,answer.proposal),/older plan/);
+ });
++check('legacy generated bends merge into one unchanged pavement polygon without internal seams',()=>{
++  const s={...base,green:{x:40,y:32,w:40,h:30}},l=generateSpine(s),before=JSON.stringify(l);
++  assert.ok(l.roads.length>1);const merged=mergedRoadSurface(l.roads);assert.equal(merged.length,1);near(surfaceArea(merged),unionArea(l.roads));assert.equal(JSON.stringify(l),before);
++  assert.equal(l.roadSurface,undefined);assert.deepEqual(mergedRoadSurface([]),[]);
++});
++check('merged legacy loops retain inner holes and leave contained land outside pavement',()=>{
++  const l=generateLoop(base),s=mergedRoadSurface(l.roads);assert.equal(s.length,1);assert.equal(s[0].length,2);near(surfaceArea(s),2076);assert.equal(surfaceOverlapsRect(s,{x:30,y:30,w:10,h:10}),false);
++});
++check('entrance aprons join the displayed outline without duplicate shared-edge strokes or area',()=>{
++  const roads=[{x:10,y:47,w:50,h:6}],apron=[{x:0,y:46},{x:10,y:47},{x:10,y:53},{x:0,y:54}],s=mergedRoadSurface(roads,undefined,apron);
++  assert.equal(s.length,1);near(surfaceArea(s),370);assert.ok(!s[0][0].some((p,i,r)=>p.x===10&&r[(i+1)%r.length].x===10));
++  const shaped=streetSurface(rounded).surface,old=JSON.stringify(shaped);near(surfaceArea(mergedRoadSurface([],shaped)),surfaceArea(shaped));assert.equal(JSON.stringify(shaped),old);
++});
++check('explicitly rounding generated loops removes false dead-end caps and fillets all four outer corners',()=>{
++  const l=generateLoop(base),before=JSON.stringify(l.roads),n=roundedStreetNetwork(networkFromRoads(l.roads),4),trial=site(n),r=generateSpine(trial);
++  assert.deepEqual(streetErrors(n),[]);assert.deepEqual(validateLayout(trial,r),[]);assert.equal(n.segments.length,6);assert.equal(r.roadRounding.limited,0);
++  for(const [x,y]of[[10,10],[109.9,10],[10,89.9],[109.9,89.9]])assert.equal(surfaceOverlapsRect(r.roadSurface,{x,y,w:.05,h:.05}),false);
++  near(surfaceArea(r.roadSurface),2076+2*16*(1-Math.PI/4),.06);near(surfaceFrontage(r.roadSurface,[{x:0,y:47},{x:0,y:53},{x:-1,y:53},{x:-1,y:47}]),6);
++  assert.equal(JSON.stringify(l.roads),before);assert.equal(networkFromRoads(l.roads).cornerRadius,undefined);
++});
++check('zero-radius normalized generated loops preserve the exact original road union',()=>{
++  const l=generateLoop(base);near(surfaceArea(streetSurface(roundedStreetNetwork(networkFromRoads(l.roads),0)).surface),unionArea(l.roads));
++});
++check('generated-bend fillets are measured, preserve spaces and reconcile quantities and cost',()=>{
++  const s={...base,green:{x:40,y:32,w:40,h:30}},old=generateSpine(s),n=roundedStreetNetwork(networkFromRoads(old.roads),4),trial={...s,planning:{...s.planning,streetNetwork:n}},r=generateSpine(trial),e=evaluateLayout(trial,r,850e6);
++  assert.deepEqual(validateLayout(trial,r),[]);assert.deepEqual(r.green,s.green);assert.ok(r.roadSurface[0][0].length>20);near(e.quantities.roadArea,surfaceArea(r.roadSurface));near(e.roadCost,e.quantities.roadArea*800000);near(e.quantities.roadArea+e.quantities.greenArea+e.quantities.parcelArea+e.quantities.unallocatedArea,12000);
++});
++check('rounding saved manual loops normalizes redundant caps without mutating inputs or real dead ends',()=>{
++  const old=networkFromRoads(generateLoop(base).roads),before=JSON.stringify(old),n=roundedStreetNetwork(old,4);
++  assert.equal(n.segments.length,6);assert.equal(surfaceOverlapsRect(streetSurface(n).surface,{x:10,y:10,w:.05,h:.05}),false);assert.equal(JSON.stringify(old),before);
++  const short={segments:[line('short-a',30,30,32,30),line('short-b',32,30,32,32)]};assert.deepEqual(roundedStreetNetwork(short,4).segments,short.segments);
++  assert.deepEqual(roundedStreetNetwork(branch,4).segments,branch.segments);near(surfaceFrontage(streetSurface(roundedStreetNetwork(branch,4)).surface,[{x:37,y:90},{x:43,y:90},{x:43,y:91},{x:37,y:91}]),6);
++});
++check('half-width preset follows 6, 8, 10 and 12 metre street widths without changing inputs',()=>{
++  for(const width of[6,8,10,12]){const n={segments:[line('a',0,50,50,50,width)]},before=JSON.stringify(n);near(halfRoadWidth(n),width/2);assert.equal(JSON.stringify(n),before);}near(halfRoadWidth({segments:[]}),0);
++});
++check('mixed-width preset explicitly starts with the narrower road',()=>{
++  near(halfRoadWidth({segments:[line('a',0,50,50,50,12),line('b',50,50,50,80,8)]}),4);
++});
++const shortL={segments:[line('a',10,30,40,30),line('b',40,30,40,36)],cornerRadius:3};
++check('a short kerb beside a real end cap can use the full half-width tangent',()=>{
++  const r=streetSurface(shortL);near(r.minimumRadius,3);assert.equal(r.limited,0);near(surfaceArea(r.surface),216,.03);near(surfaceFrontage(r.surface,[{x:37,y:36},{x:43,y:36},{x:43,y:37},{x:37,y:37}]),6);
++});
++const shortStep={segments:[line('a',10,30,40,30),line('b',40,30,40,33),line('c',40,33,70,33)],cornerRadius:3};
++check('neighbouring fillets meet at the middle of a tight step with no unused straight jog',()=>{
++  const r=streetSurface(shortStep);assert.equal(r.limited,4);near(r.minimumRadius,1.5);near(surfaceArea(r.surface),378,.03);const pts=r.surface[0][0];
++  for(const p of[{x:43,y:28.5},{x:37,y:34.5}]){
++    assert.ok(pts.some((a,i)=>{const b=pts[(i+1)%pts.length];return Math.abs((b.x-a.x)*(p.y-a.y)-(b.y-a.y)*(p.x-a.x))<1e-8&&p.x>=Math.min(a.x,b.x)-1e-8&&p.x<=Math.max(a.x,b.x)+1e-8&&p.y>=Math.min(a.y,b.y)-1e-8&&p.y<=Math.max(a.y,b.y)+1e-8;}));
++    assert.ok(!pts.some((a,i)=>Math.abs(a.x-p.x)<1e-8&&Math.abs(pts[(i+1)%pts.length].x-p.x)<1e-8));
++  }
++});
++check('tight merged kerbs have no hard angular transitions outside full-width terminal caps',()=>{
++  const r=streetSurface(shortStep),caps=[{x:10,y:27},{x:10,y:33},{x:70,y:30},{x:70,y:36}];
++  for(const polygon of r.surface)for(const ring of polygon){assert.ok(isSimple(ring));for(let i=0;i<ring.length;i++){const b=ring[i];if(caps.some(c=>Math.hypot(c.x-b.x,c.y-b.y)<1e-8))continue;const a=ring[(i+ring.length-1)%ring.length],c=ring[(i+1)%ring.length],u={x:b.x-a.x,y:b.y-a.y},v={x:c.x-b.x,y:c.y-b.y};const angle=Math.acos(Math.max(-1,Math.min(1,(u.x*v.x+u.y*v.y)/(Math.hypot(u.x,u.y)*Math.hypot(v.x,v.y)))));assert.ok(angle<.2,`hard join at ${b.x},${b.y}: ${angle}`);}}
++});
++check('half-width stepped-road geometry is stable under reversed directions and segment order',()=>{
++  const reversed={...shortStep,segments:shortStep.segments.map(s=>({...s,a:s.b,b:s.a})).reverse()};near(surfaceArea(streetSurface(shortStep).surface),surfaceArea(streetSurface(reversed).surface));assert.equal(streetSurface(reversed).limited,4);
++});
++check('scaled half-width turns share their actual pavement with quantities and costs',()=>{
++  for(const width of[6,8,10,12]){const n={segments:[line('a',0,50,50,50,width),line('b',50,50,50,80,width)]},rounded=roundedStreetNetwork(n,halfRoadWidth(n)),s={...site(rounded),entrance:{...base.entrance,width:12}},l=generateSpine(s),e=evaluateLayout(s,l,850e6);assert.deepEqual(validateLayout(s,l),[]);near(l.roadRounding.minimumRadius,width/2);near(e.quantities.roadArea,80*width,.04);near(e.roadCost,e.quantities.roadArea*800000);near(e.quantities.roadArea+e.quantities.greenArea+e.quantities.parcelArea+e.quantities.unallocatedArea,12000);}
++});
++check('half-width generated draft leaves room around kept green without changing its geometry or clearance',()=>{
++  const s={...base,green:{x:12,y:44,w:40,h:30}},before=JSON.stringify(s),old=generateSpine(s),raw=roundedStreetNetwork(networkFromRoads(old.roads),3);assert.equal(streetConflict({...s,planning:{...s.planning,streetNetwork:raw}}).kind,'park');
++  const d=halfWidthStreetDraft(s,old,10),trial={...s,planning:{...s.planning,streetNetwork:d.network}},l=generateSpine(trial);assert.equal(d.rerouted,true);assert.deepEqual(validateLayout(trial,l),[]);assert.deepEqual(l.green,s.green);near(l.roadRounding.minimumRadius,3);assert.equal(l.roadRounding.limited,0);assert.equal(JSON.stringify(s),before);near(deriveQuantities(trial,l).roadArea,surfaceArea(l.roadSurface));
++});
++check('half-width draft never silently reroutes a held manual network around its protected-space conflict',()=>{
++  const s={...site(branch),green:{x:43,y:53,w:20,h:20}},before=JSON.stringify(s),d=halfWidthStreetDraft(s,generateSpine(s),10);assert.equal(d.rerouted,false);assert.deepEqual(d.network.segments,branch.segments);assert.equal(streetConflict({...s,planning:{...s.planning,streetNetwork:d.network}}).kind,'park');assert.equal(JSON.stringify(s),before);
++});
++check('half-width drafts retain the actual entrance apron on sloping boundaries',()=>{
++  const s={...base,boundary:[{x:10,y:0},{x:60,y:0},{x:120,y:10},{x:110,y:100},{x:0,y:90}],entrance:{edge:'west',boundaryEdge:4,offset:45,width:8}},old=generateSpine(s),d=halfWidthStreetDraft(s,old,10),trial={...s,planning:{...s.planning,streetNetwork:d.network}},l=generateSpine(trial);assert.deepEqual(validateLayout(trial,l),[]);assert.deepEqual(l.accessConnector,old.accessConnector);near(deriveQuantities(trial,l).roadArea,surfaceArea(l.roadSurface)+polyArea(l.accessConnector));
++});
+ console.log(`ALL ${checks.length} ANGLED / ROUNDED STREET CHECKS PASS`);
+diff --git a/tests/streets-browser.cjs b/tests/streets-browser.cjs
+index 38dbb68..11e4faf 100644
+--- a/tests/streets-browser.cjs
++++ b/tests/streets-browser.cjs
+@@ -46,7 +46,7 @@ await p.getByRole('combobox',{name:'Inspect object',exact:true}).selectOption('h
+ // Preserve the original sample to check an irregular boundary through actual drawing/apply.
+ await p.setViewportSize({width:1440,height:900});await reset(p,initial);await btn(p,'Draw site').first().click();for(const[x,y]of [[0,0],[120,0],[120,100],[50,100],[0,60]]){const q=await point(p,x,y);await p.mouse.click(q.x,q.y);}await p.getByRole('button',{name:/^Boundary vertex 1,/}).click();await btn(p,'Apply boundary').click();await edit(p);await draw(p,[[50,50],[50,90]]);check('manual streets on a five-sided 11000 m² site generate a valid contained plan',await btn(p,'Apply streets').isEnabled()&&/942 m²/.test(await p.locator('.street-review').innerText()));await btn(p,'Apply streets').click();await p.screenshot({path:`${out}/irregular-streets.png`});await p.reload();await p.getByText('Saved in this browser',{exact:true}).waitFor();check('irregular site reload retains true boundary and manual streets',(await state(p)).baseSpec.boundary.length===5&&(await network(p)).segments.length===3);
+ // Retain an explicit sloping entrance's measured apron when adopting manual streets.
+-await reset(p,initial);await btn(p,'Draw site').first().click();for(const[x,y]of [[10,0],[60,0],[120,10],[110,100],[0,90]]){const q=await point(p,x,y);await p.mouse.click(q.x,q.y);}await btn(p,'Close boundary').click();await p.getByRole('combobox',{name:'Entrance boundary edge',exact:true}).selectOption('4');await btn(p,'Apply boundary').click();const accessBefore=await p.locator('.docksummary').innerText();await edit(p);check('sloping gate network converts without losing its measured apron',await btn(p,'Apply streets').isEnabled()&&await p.locator('main polygon.road').count()===1);await btn(p,'Apply streets').click();check('accepted manual network retains apron, entrance and measured totals',(await state(p)).entrance.boundaryEdge===4&&await p.locator('main polygon.road').count()===1&&await p.locator('.docksummary').innerText()===accessBefore);await p.screenshot({path:`${out}/sloping-entrance-streets.png`});
++await reset(p,initial);await btn(p,'Draw site').first().click();for(const[x,y]of [[10,0],[60,0],[120,10],[110,100],[0,90]]){const q=await point(p,x,y);await p.mouse.click(q.x,q.y);}await btn(p,'Close boundary').click();await p.getByRole('combobox',{name:'Entrance boundary edge',exact:true}).selectOption('4');await btn(p,'Apply boundary').click();const accessBefore=await p.locator('.docksummary').innerText();await edit(p);check('sloping gate network converts without losing its measured apron',await btn(p,'Apply streets').isEnabled()&&await p.locator('main path.road[aria-label="Street pavement including entrance apron"]').count()===1);await btn(p,'Apply streets').click();check('accepted manual network retains apron, entrance and measured totals',(await state(p)).entrance.boundaryEdge===4&&await p.locator('main path.road[aria-label="Street pavement including entrance apron"]').count()===1&&await p.locator('.docksummary').innerText()===accessBefore);await p.screenshot({path:`${out}/sloping-entrance-streets.png`});
+ // Touch emulation: draft drag, then explicit acceptance.
+ const tc=await b.newContext({viewport:{width:375,height:812},isMobile:true,hasTouch:true});const t=await tc.newPage();await t.goto(origin);await btn(t,'Show controls').tap();await edit(t);const node=t.getByRole('button',{name:/^Street junction \d+, 120, 50 meters$/}).locator('circle').last();await node.scrollIntoViewIfNeeded();const nb=await node.boundingBox(),to=await point(t,110,50),cdp=await tc.newCDPSession(t);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:nb.x+nb.width/2,y:nb.y+nb.height/2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[to]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});check('emulated touch moves a street endpoint without saving it',await t.getByRole('button',{name:/^Street junction \d+, 110, 50 meters$/}).count()===1&&!await network(t));await t.screenshot({path:`${out}/touch-street.png`,fullPage:true});await tc.close();
+ check('no uncaught browser errors',errors.length===0);fs.writeFileSync(`${out}/browser-results.json`,JSON.stringify({asset,checks,errors,touch:'Chromium emulation; physical device not tested'},null,2));console.log(`ALL ${checks.length} STREET BROWSER CHECKS PASS`);
+diff --git a/web/src/App.tsx b/web/src/App.tsx
+index af31193..28ccbb7 100644
+--- a/web/src/App.tsx
++++ b/web/src/App.tsx
+@@ -1,3 +1,4 @@
++import type {ResidentialWorkspace} from '../../src/residential';
+ import {usesShapedStreets} from '../../src/road-surfaces';
+ import DevelopmentEditor from './unbuilt/DevelopmentEditor';
+ import { measureProposal, type AIProposal } from '../../src/ai-assistant';
+@@ -14,10 +15,10 @@ import type {LotOperation} from './unbuilt/LotPlanEditor';
+ import {lotBlocks,rectangleForLots} from '../../src/parcels';
+ import type {PlanContents} from '../../src/contents';
+ import StreetEditor from './unbuilt/StreetEditor';
+-import { nearestStreetPoint, appendStreetPath, moveStreetNode, networkFromRoads, onStreet, samePoint, splitJunctions, type StreetNetwork } from '../../src/streets';
+-import { streetEntrance, streetConflict } from '../../src/geometry';
+-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+-import { deriveQuantities, editsForLayout, entranceErrors, generateLoop, generateSpine, lotKey, lotRoadFrontage, placeFootprint, homeRestorationConflicts, validateLayout } from '../../src/geometry';
++import { nearestStreetPoint, appendStreetPath, moveStreetNode, networkFromRoads, halfRoadWidth, onStreet, samePoint, splitJunctions, type StreetNetwork } from '../../src/streets';
++import { streetEntrance, streetConflict, halfWidthStreetDraft } from '../../src/geometry';
++import { Fragment, lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
++import { ROAD_W, layoutOpenSpaces, deriveQuantities, editsForLayout, entranceErrors, generateLoop, generateSpine, lotKey, lotRoadFrontage, placeFootprint, homeRestorationConflicts, validateLayout } from '../../src/geometry';
+ import type { Entrance, LotEdits, Site } from '../../src/geometry';
+ import type { Pt } from '../../src/polygon';
+ import { hasBoundary, hasLayout, hasHome } from '../../src/contents';
+@@ -49,6 +50,10 @@ import Assistant from './unbuilt/Assistant';
+ import { LayersIcon, DrawSiteIcon, DownloadIcon, UndoIcon, RedoIcon, AssistantIcon, CirculationIcon, HomesIcon, OpenSpaceIcon, PanIcon, SelectIcon, SiteIcon } from './unbuilt/icons';
+ import { copyLotEdits, formatGap, formatM2, formatRp, indexLotsRecord, parcelKey, serverBase, siteWithEntrance, siteWithGreen } from './unbuilt/ui';
+ import { CAPABILITIES } from '../../src/snapshot';
++import { landBudget } from '../../src/landbudget';
++import { evaluateBrief, type BriefRules } from '../../src/brief';
++import { lotAccess } from '../../src/catchment';
++import { residualForLayout } from '../../src/residual';
+ import type { ScenarioSnapshot } from '../../src/snapshot';
+ import type { PlanFacts, TryContext } from '../../src/assistant';
+ import { serializeProject } from '../../src/persist';
+@@ -59,6 +64,7 @@ import type { WorkingSpec } from './unbuilt/ui';
+ import './App.css';
+ import './drafting.css';
+ 
++const ResidentialPlanner=lazy(()=>import('./unbuilt/ResidentialPlanner'));
+ const LotPlanEditor=lazy(()=>import('./unbuilt/LotPlanEditor'));
+ const M = 1_000_000;
+ const BN = 1_000_000_000;
+@@ -126,6 +132,10 @@ interface WorkbenchProps {
+ }
+ export default function Workbench({ initialProject, projectName, onSaveProject, onOpenProjects, onImportProject, saveStatus, initialStatus }: WorkbenchProps) {
+   const start = initialProject.state;
++  const [residential, setResidential] = useState<ResidentialWorkspace | undefined>(start.residential);
++  const [residentialHistory,setResidentialHistory]=useState<{past:ResidentialWorkspace[];future:ResidentialWorkspace[]}>({past:[],future:[]});
++  const [residentialOpen, setResidentialOpen] = useState(false);
++  const [residentialRoadStep, setResidentialRoadStep] = useState(false);
+   const [alternatives, setAlternatives] = useState<SavedAlternative[] | undefined>(initialProject.alternatives);
+   const [alternativesOpen, setAlternativesOpen] = useState(false);
+   const inspectorRef = useRef<HTMLElement>(null);
+@@ -229,6 +239,9 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+     lots: Record<number, Pt[]>; baseSpec: SiteFrame;
+   } | null>(null);
+   const [ordering, setOrdering] = useState<Ordering>('lowest-road');
++  // Owner-declared planning brief (session-only in this slice): evaluated
++  // against the measured land budget, never presented as regulation.
++  const [brief, setBrief] = useState<BriefRules>({});
+   const [previewId, setPreviewId] = useState<string | null>(null);
+   const [showPrev, setShowPrev] = useState(true);
+   const [dockTab, setDockTab] = useState<DockTab>('options');
+@@ -282,11 +295,12 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+     const payload = {
+       app: 'UNBUILT decision record',
+       projectName,
+-      exportVersion: usesShapedStreets(baseSpec.planning?.streetNetwork)||alternatives?.some(a=>usesShapedStreets(a.state.baseSpec.planning?.streetNetwork))?15:baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?14:alternatives!==undefined?13:baseSpec.costAssumptions!==undefined?12:baseSpec.planning?.openSpaces!==undefined?11:baseSpec.planning?.housing?10:baseSpec.planning?.lotPlan!==undefined?9:baseSpec.planning?.streetNetwork !== undefined ? 8 : siteContext !== undefined ? 7 : baseSpec.contents !== undefined ? 6 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
++      exportVersion: residential?.version===2||alternatives?.some(a=>a.state.residential?.version===2)?17:residential!==undefined||alternatives?.some(a=>a.state.residential!==undefined)?16:usesShapedStreets(baseSpec.planning?.streetNetwork)||alternatives?.some(a=>usesShapedStreets(a.state.baseSpec.planning?.streetNetwork))?15:baseSpec.development!==undefined||alternatives?.some(a=>a.state.baseSpec.development!==undefined)?14:alternatives!==undefined?13:baseSpec.costAssumptions!==undefined?12:baseSpec.planning?.openSpaces!==undefined?11:baseSpec.planning?.housing?10:baseSpec.planning?.lotPlan!==undefined?9:baseSpec.planning?.streetNetwork !== undefined ? 8 : siteContext !== undefined ? 7 : baseSpec.contents !== undefined ? 6 : entrance.boundaryEdge !== undefined || baseSpec.planning?.minGreenArea !== undefined ? 5 : baseSpec.planning ? 4 : baseSpec.boundary ? 3 : 2,
+       exportedAt: new Date().toISOString(),
+       units: 'Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.',
+       state: {
+         ...(siteContext ? { siteContext } : {}),
++        ...(residential?{residential}:{}),
+         site: {
+           ...(baseSpec.development!==undefined?{development:baseSpec.development}:{}),
+           ...(baseSpec.costAssumptions?{costAssumptions:baseSpec.costAssumptions}:{}),
+@@ -659,6 +673,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+   // import. Photos are never stored (session-only blobs); every restore says
+   // so. Storage denial surfaces as status, never a silent loss.
+   const projectState = (): PersistedState => ({
++    ...(residential ? {residential} : {}),
+     spec: { ...spec },
+     green: { ...green },
+     entrance: { ...entrance },
+@@ -688,7 +703,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+     onSaveProject(serializeProject(projectState(), decisions, projectName, alternatives));
+     // Accepted state only; drafts remain in this workspace until Apply.
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+-  }, [spec, green, entrance, lotEdits, profileId, greenLocked, priceS, ceilingS, ownerS, targetS, baseSpec, siteContext, decisions, alternatives, onSaveProject]);
++  }, [residential, spec, green, entrance, lotEdits, profileId, greenLocked, priceS, ceilingS, ownerS, targetS, baseSpec, siteContext, decisions, alternatives, onSaveProject]);
+ 
+   const onImportFile = (file: File) => {
+     if (regenBlock || draftDirty) { setStatus('Apply or Cancel the current edit before importing another project.'); return; }
+@@ -940,7 +955,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+       setSiteFit((t) => t + 1);
+       setRun(null); setRunSnap(null); setPreviewId(null); setIntent(null); setPropSnap(null); setAcceptedSummary(null); setLastDelta(null);
+       logDecision('boundary', `Applied ${next.boundary!.length}-vertex site, ${siteArea(next)} m². ${nextLayout.supportError ?? 'Contained layout regenerated; outside lots omitted.'}`);
+-      setStatus(nextLayout.empty ? `Boundary applied: ${formatM2(siteArea(next))}. Generate a layout when ready. Undo restores the previous boundary.` : nextLayout.supportError ? `Boundary saved (${formatM2(siteArea(next))}). Layout unavailable: ${nextLayout.supportError}` : `Boundary applied: ${formatM2(siteArea(next))}. Layout measured inside the boundary. Undo restores the previous plan.`);
++      setStatus(nextLayout.empty ? `Boundary applied: ${formatM2(siteArea(next))}. Next, draw and name the adjoining external road with its width. Undo restores the previous boundary.` : nextLayout.supportError ? `Boundary saved (${formatM2(siteArea(next))}). Layout unavailable: ${nextLayout.supportError}` : `Boundary applied: ${formatM2(siteArea(next))}. Layout measured inside the boundary. Undo restores the previous plan.`);
+     });
+   };
+ 
+@@ -1320,8 +1335,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+   const greenCost = econShown ? econShown.q.greenArea * R.greenWorksPerM2 : 0;
+   const revenue = econShown?.fin.revenue ?? 0;
+   const sellCost = revenue * R.sellFraction;
+-  // Issues and the summary derive from the same validation state: geometry,
+-  // economics inputs, ceiling, and search blockers together.
++  // Geometry/input validation and modeled financial concerns are separate checks.
+   const inputIssues: string[] = [];
+   if (!Number.isFinite(price) || price <= 0) inputIssues.push('Assumed selling price is missing or not positive.');
+   if (!Number.isFinite(ceiling) || ceiling <= 0) inputIssues.push('Buyer-price ceiling is missing or not positive.');
+@@ -1330,7 +1344,20 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+     inputIssues.push('Target surplus/revenue must be between 0 and 100.');
+   }
+   if (priceError) inputIssues.push(priceError);
+-  const issueCount = workingErrors.length + workingWarnings.length + inputIssues.length + (run?.blockers.length ?? 0);
++  const validationIssueCount = workingErrors.length + workingWarnings.length + inputIssues.length + (run?.blockers.length ?? 0);
++  const financeScope = preview ? 'Unapplied option' : metricsAreCommitted ? 'Accepted plan · last valid figures' : parameterDraft || draftDirty ? 'Unapplied draft' : 'Working plan';
++  const financialIssues: string[] = [];
++  if (econShown && inputsOk && !boundaryDraft) {
++    const f = econShown.fin;
++    if (f.ownerGap > .01) financialIssues.push(`Owner benchmark shortfall: ${formatRp(f.ownerGap)}. The entered owner expectation exceeds the modeled land allowance at the ${targetT}% target surplus.`);
++    if (f.margin === null) financialIssues.push('No home revenue: a surplus percentage and financial feasibility cannot be established.');
++    else if (f.surplus < -.01) financialIssues.push(`Negative surplus after owner payment: ${formatRp(f.surplus)} (${(f.margin * 100).toFixed(2)}% of revenue), below the ${targetT}% target. The scheme does not cover its modeled costs and owner payment under these assumptions.`);
++    else if (f.margin + 1e-10 < targetT / 100) financialIssues.push(`Surplus after owner payment: ${(f.margin * 100).toFixed(2)}% of revenue, below the ${targetT}% target under the entered assumptions.`);
++  }
++  const issueCount = validationIssueCount + financialIssues.length;
++  const headerWidths = [...new Set(planning.streetNetwork ? planning.streetNetwork.segments.map(s => s.width) : [ROAD_W])].sort((a,b) => a-b);
++  const widthLabel = headerWidths.length ? `street width${headerWidths.length > 1 ? 's' : ''} ${headerWidths.join(' / ')} m` : 'street width unavailable';
++  const layoutLabel = `${parameterDraft ? 'Draft · ' : ''}${planning.streetNetwork ? 'Manual streets' : (parameterDraft?.family ?? spec.family) === 'spine' ? 'Spine' : 'Loop'} · lot frontage setting ${parameterDraft?.frontage ?? spec.frontage} m · ${widthLabel}`;
+ 
+   // Assistant context: selection-bound measured facts, a bounded try
+   // scope, and the canonical snapshot the tool server validates. Figures
+@@ -1508,13 +1535,16 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+     setParameterDraft({ planning: { ...planning, streets: [], streetNetwork: next }, frontage: parameterDraft?.frontage ?? spec.frontage, family: 'spine' });
+     setPreviewId(null); setLastDelta(null);
+   };
+-  const startStreetEdit = () => {
++  const startStreetEdit = (roundCorners=false) => {
+     if (regenBlock || draftDirty || pendingOp || optimizing || preview) { setStatus('Apply or Cancel the current edit or alternative first.'); return; }
+-    const network = structuredClone(baseSpec.planning?.streetNetwork ?? networkFromRoads(committedLayout.roads));
++    const source = baseSpec.planning?.streetNetwork ?? networkFromRoads(committedLayout.roads);
++    const rounded=roundCorners?halfWidthStreetDraft(committedSite,committedLayout,spec.frontage):null;
++    const radius=halfRoadWidth(source);
++    const network = structuredClone(rounded?.network??source);
+     setParameterDraft({ planning: { ...(baseSpec.planning ?? DEFAULT_PLANNING), streets: [], streetNetwork: network }, frontage: spec.frontage, family: 'spine' });
+     setStreetEditing(true); setStreetConnectorIds([]); setStreetDrawing(null); setStreetSelected(network.segments[0]?.id ?? null); setStreetHistory({past:[],future:[]});
+     setContextOpen(false); setAskOpen(false); setControlsOpen(true); setDockOpen(false); setSelected('circulation'); setTool('select');
+-    setStatus('Street draft: select a segment, move junctions, or draw branches. Review quantities before Apply streets.');
++    setStatus(roundCorners?`Rounded-corner draft: ${radius} m fillets, half the narrowest road width.${rounded?.rerouted?' Generated routing adjusted to leave room beside kept green.':''} Review smooth joins, lots and measured costs before Apply streets. Applying holds this manual network during search.`:'Street draft: select a segment, move junctions, or draw branches. Review quantities before Apply streets.');
+   };
+   const undoStreet = (forward = false) => {
+     if (streetDrawing?.length && !forward) { setStreetDrawing(streetDrawing.slice(0,-1)); return; }
+@@ -1673,7 +1703,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+       }
+       setSiteFit(n => n + 1);
+       logDecision('delete', boundary ? 'Cleared layout; kept the boundary and project assumptions.' : 'Removed boundary and dependent layout. Reference photo hidden; project assumptions retained.');
+-      setStatus(boundary ? 'Layout cleared. Boundary retained. Generate a layout when ready; Undo restores the previous scheme.' : 'Blank plan. Draw a boundary to begin. Project name and assumptions are retained; Undo restores the plan.');
++      setStatus(boundary ? 'Layout cleared. Boundary retained. Open External road setup before preparing a residential layout; Undo restores the previous scheme.' : 'Blank plan. Draw a boundary to begin. Project name and assumptions are retained; Undo restores the plan.');
+     }
+     resetResults(deleteKind === 'homes'); setDeleteKind(null);
+   };
+@@ -1687,6 +1717,11 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+     setBaseSpec({ ...baseSpec, contents: { boundary: true, layout: true, removedHomes: [] } });
+     resetResults(); logDecision('restore', 'Restored removed homes in the current generated lots.'); setStatus('Removed homes restored. Undo available.');
+   };
++  const openResidential = (roadStep = false) => {
++    if (regenBlock || draftDirty || pendingOp || optimizing || preview) { setStatus('Apply or Cancel the current edit before opening Residential planning.'); return; }
++    setResidentialRoadStep(roadStep);
++    setResidentialOpen(true);
++  };
+   const generateLayout = () => {
+     if (!hasBoundary(baseSpec) || regenBlock || draftDirty) return;
+     const result = starterLayout(committedSite, spec.frontage);
+@@ -1766,6 +1801,22 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+   const boundaryEditing = boundaryDraft !== null;
+   useEffect(() => { inspectorRef.current?.scrollTo({ top: 0 }); }, [selected, selectedLot, boundaryEditing, streetEditing, parcelEditing,housingEditing]);
+ 
++  // Planner insights for the displayed plan: measured land budget,
++  // declared-brief evaluation, and open-space access. All deterministic.
++  const insightSite = preview ? previewSite : metricsAreCommitted ? committedSite : site;
++  const insightSpaces = layoutOpenSpaces(planShown);
++  const budgetShown = econShown ? landBudget(siteArea(insightSite), econShown.q) : null;
++  const briefResult = budgetShown ? evaluateBrief(budgetShown, brief) : null;
++  const accessShown = econShown ? lotAccess(planShown.parcels, insightSpaces.map(s => s.pts)) : null;
++  const hasInsightEconomics = econShown !== null;
++  const residualAssessment = useMemo(() => {
++    if (!hasInsightEconomics) return {report:null,error:null};
++    const edits = preview ? new Map(Object.entries(preview.lots).map(([i,pts]) => [Number(i),pts])) : editsForLayout(planShown.parcels,lotEdits);
++    try { return {report:residualForLayout(insightSite,planShown,edits,profile.lotAreaMin),error:null}; }
++    catch (error) { return {report:null,error:error instanceof Error ? error.message : 'Residual assessment unavailable.'}; }
++  }, [hasInsightEconomics, insightSite, planShown, preview, profile.lotAreaMin, lotEdits]);
++  const residualShown = residualAssessment.report;
++
+   const selectFromCanvas = (kind: Exclude<Sel, null>) => {
+     if (contextPending) { setStatus('Apply or Cancel the site context edit before inspecting plan objects.'); return; }
+     if (streetEditing || parcelEditing) { setStatus('Apply or Cancel the current plan edit first.'); return; }
+@@ -1809,6 +1860,8 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+           logDecision('reopen-scheme',`Reopened saved scheme “${item.name}”. Previous working plan retained for Undo; saved schemes unchanged.`);
+           setStatus(`Reopened “${item.name}”. Undo restores the previous working plan. Original reference photos are hidden; reattach source media if needed.`);
+         }} />}
++      {residentialOpen && <Suspense fallback={<p role="status">Opening residential planner…</p>}><ResidentialPlanner focusExternalRoad={residentialRoadStep} initialHistory={residentialHistory} onHistory={setResidentialHistory} initial={residential} projectName={projectName} site={committedSite} layout={committedLayout} context={siteContext} frontage={spec.frontage}
++        onClose={()=>setResidentialOpen(false)} onSave={next=>{const project=serializeProject({...projectState(),residential:next},decisions,projectName,alternatives);const saved=onSaveProject(project);setResidential(next);return saved;}} /></Suspense>}
+       {aiSettingsOpen && <AISettings onClose={()=>setAiSettingsOpen(false)}/>}
+       {developmentOpen&&<DevelopmentEditor site={committedSite} spec={spec} lots={lotEdits} price={price*M} owner={ownerL*BN} target={targetT/100}
+         onCancel={()=>{setDevelopmentOpen(false);setStatus('Development draft cancelled. Accepted inputs retained.');}}
+@@ -1853,9 +1906,12 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+         </div>
+       </header>
+       <div className="contextstrip" aria-live="polite">
+-        <span><b className="active-project-name">{projectName} · </b>{hasBoundary(baseSpec) ? <>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices{hasLayout(baseSpec) && <> · Entrance {entrance.boundaryEdge === undefined ? entrance.edge : `edge ${entrance.boundaryEdge + 1}`} · {spec.family} {spec.frontage} m</>}</> : 'Blank plan'}</span>
++        <button type="button" className="residential-entry" title="Establish the site boundary, adjoining main road and fixed features before choosing an entrance" onClick={()=>openResidential()}>Residential planning</button>
++        <button type="button" className="residential-entry" disabled={!hasBoundary(baseSpec)||!!regenBlock||draftDirty||!!pendingOp||optimizing||!!preview} onClick={()=>openResidential(true)}>External road setup</button>
++        <span><b className="active-project-name">{projectName} · </b>{hasBoundary(baseSpec) ? <>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices{hasLayout(baseSpec) && <> · Entrance {entrance.boundaryEdge === undefined ? entrance.edge : `edge ${entrance.boundaryEdge + 1}`} · {layoutLabel}</>}</> : 'Blank plan'}</span>
+         <span>Selected: {assistantFacts.label}</span>
+-        <span title={workingErrors[0]} className={workingErrors.length > 0 ? 'bad' : 'ok'}>{!hasBoundary(baseSpec) ? 'No boundary yet' : workingLayout.empty ? 'Boundary only' : workingLayout.supportError ? 'Layout unavailable' : workingErrors.length > 0 ? 'Invalid plan · see issues' : workingWarnings.length ? 'Profile / template warning' : 'Plan valid'}</span>
++        <span title={workingErrors[0] ?? 'Geometry checks only. Review financial outcomes separately under the entered assumptions.'} className={workingErrors.length > 0 ? 'bad' : 'ok'}>{!hasBoundary(baseSpec) ? 'No boundary yet' : workingLayout.empty ? 'Boundary only' : workingLayout.supportError ? 'Layout unavailable' : workingErrors.length > 0 ? 'Invalid plan · see issues' : workingWarnings.length ? 'Profile / template warning' : 'Geometry valid'}</span>
++        {financialIssues.length > 0 && <button type="button" className="financial-concerns" title={`Financial review · ${financeScope}`} aria-label={`Review financial concerns (${financialIssues.length})`} onClick={() => { setDockOpen(true); setDockTab('issues'); setCmpExpand(false); requestAnimationFrame(() => { dockPanelRef.current?.querySelector('.financial-review')?.scrollIntoView({block:'nearest'}); dockPanelRef.current?.focus({preventScroll:true}); }); }}>Financial concerns · {financialIssues.length}</button>}
+         <details className="save-summary"><summary>{saveStatus.startsWith('Project saved') ? 'Saved in this browser' : saveStatus}</summary><div><strong>Accepted plan · browser-local storage</strong><p>{saveStatus}</p><p>Boundary, entrance, open space, housing templates and lot assignments, constraints, assumptions, lot edits, named schemes with notes, and decisions are saved. Site context and survey calibration are saved. Drafts, undo history, searches, comparisons, photos and survey media are session-only; reattach original survey files after reopening.</p><button type="button" onClick={exportRecord}>Download accepted plan</button><p>Private browsing or clearing site data can remove local projects. Download a portable backup before leaving a private session.</p><p>Use Saved alternatives to name and keep the working plan or a search preview without replacing accepted work. Scheme notes and inputs are included in project downloads; a preview alone is session-only.</p></div></details>
+       </div>
+       <p role="status" aria-live="polite" className="note srstatus" title={status}>
+@@ -2137,18 +2193,18 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+                   <dt>Land allowance</dt><dd>{committedEcon ? formatRp(committedEcon.finance.landAllowance) : 'Unavailable'} → {draftEcon && !workingErrors.length ? formatRp(draftEcon.finance.landAllowance) : 'Unavailable'}</dd>
+                   <dt>Owner outcome</dt><dd>{committedEcon ? formatGap(committedEcon.finance.ownerGap) : 'Unavailable'} → {draftEcon && !workingErrors.length ? formatGap(draftEcon.finance.ownerGap) : 'Unavailable'}</dd>
+                 </dl>
+-                {workingErrors.length ? <p className="error" role="status">Layout unavailable: {workingErrors[0]} You may save the valid outline, but it will have no assessed layout until this is corrected.</p> : <p className="note">{workingLayout.empty ? 'Boundary only. Generate a layout after applying this outline.' : planning.streetNetwork ? 'Manual streets are retained and whole lots regenerated inside the outline. Review full-width containment; this is a bounded layout, not the site’s maximum capacity.' : 'Whole lots and connected orthogonal streets are regenerated inside the outline. Roads and park clearance may leave land unallocated; this is a bounded layout, not the site’s maximum capacity.'}</p>}
++                {workingErrors.length ? <p className="error" role="status">Layout unavailable: {workingErrors[0]} You may save the valid outline, but it will have no assessed layout until this is corrected.</p> : <p className="note">{workingLayout.empty ? 'Boundary only. After applying this outline, draw the named external road and enter its width.' : planning.streetNetwork ? 'Manual streets are retained and whole lots regenerated inside the outline. Review full-width containment; this is a bounded layout, not the site’s maximum capacity.' : 'Whole lots and connected orthogonal streets are regenerated inside the outline. Roads and park clearance may leave land unallocated; this is a bounded layout, not the site’s maximum capacity.'}</p>}
+               </section>
+               {baseSpec.planning && hasLayout(site) && <EntranceEditor site={site} onChange={(next) => changeBoundary({ ...boundaryDraft, entrance: next })} error={entranceErrors(site)[0]} />}
+-            </>} /> : !hasLayout(baseSpec) ? <section className="plan-setup" aria-label="Plan setup"><button type="button" onClick={openContext}>Site context & survey</button><h2>{hasBoundary(baseSpec) ? 'Your site is ready' : 'Start your site'}</h2><p>{hasBoundary(baseSpec) ? `${formatM2(siteArea(baseSpec))} · ${siteBoundary(baseSpec).length} corners. No layout has been generated. Any designed open spaces remain reserved.` : 'Draw a closed boundary on the canvas. Place corners with your pointer or enter their coordinates.'}</p><button type="button" onClick={() => startBoundary(!hasBoundary(baseSpec))}>{hasBoundary(baseSpec) ? 'Edit boundary' : 'Draw boundary'}</button>{hasBoundary(baseSpec) && <button type="button" onClick={startSpaces}>Design open spaces</button>}{hasBoundary(baseSpec) && <button type="button" onClick={generateLayout}>Generate layout</button>}<p className="note">Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.</p>{planActions}<details className="sitesrc"><summary>Site source · reference photo</summary>{referencePhotoControls}</details><button type="button" onClick={startHousingMix}>Manage housing templates</button><button type="button" onClick={openAlternatives}>Saved alternatives</button><button type="button" onClick={()=>{if(regenBlock){setStatus(regenBlock);return;}setDevelopmentOpen(true);}}>Terrain, drainage and phasing</button><button type="button" onClick={openProjects}>Open projects</button></section> : <>
+-          <DynamicInspector openSpaceControls={<section className="space-summary" aria-label="Neighborhood open spaces"><h3>Neighborhood open spaces</h3><ul>{spaces.map(s=><li key={s.id}><button type="button" aria-pressed={greenSelected&&s.id===selectedSpace} onClick={()=>{setSelected('grove');setSelectedSpace(s.id);}}>{s.name} · {s.kind} · {polyArea(s.pts).toFixed(1)} m² · {s.locked?'fixed':'editable'}</button></li>)}</ul><p>{spaceArea(spaces).toFixed(1)} m² combined · {spaces.length} spaces</p><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startSpaces}>Edit open spaces</button></section>} builtArea={planning.housing&&selected==='homes'?housingSummary(site,(selectedLots.length?selectedLots:selectedLot===null?planShown.parcels.map((_,i)=>i):[selectedLot]).map(i=>planShown.parcels[i]).filter((r):r is Rect=>!!r)).builtArea:undefined} housingControls={selected==='homes'?<section className="housing-summary" aria-label="Housing mix"><h3>Housing mix</h3>{selectedLot!==null&&workingLayout.parcels[selectedLot]?<p>Lot {selectedLot+1}: {homeTemplate(planning,workingLayout.parcels[selectedLot]).name} · {homeArea(planning,workingLayout.parcels[selectedLot])} m²{hasHome(site,workingLayout.parcels[selectedLot])?' home':' reserved template · vacant lot'} · {assignmentSource(planning.housing,workingLayout.parcels[selectedLot])==='explicit'?'Explicit assignment':'Follows default'}</p>:<p>{shownHousing.rows.map(r=>`${r.name}: ${r.count} homes`).join(' · ')} · {shownHousing.builtArea} m² built</p>}<button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startHousingMix}>Edit housing mix</button></section>:null} lotControls={selected==='homes'?<section className="lot-tools" aria-label="Blocks and lots"><h3>Blocks &amp; lots</h3><div className="draftrow"><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>startParcelEdit('split')}>Split lot</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('merge')}>Merge lots</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('block')}>Subdivide block</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>{const tools=document.querySelector<HTMLDetailsElement>('.object-tools');if(tools)tools.open=true;startLotReshape();}}>Edit lot outline</button></div>
++            </>} /> : !hasLayout(baseSpec) ? <section className="plan-setup" aria-label="Plan setup"><button type="button" onClick={openContext}>Site context & survey</button><h2>{hasBoundary(baseSpec) ? 'Your site is ready' : 'Start your site'}</h2><p>{hasBoundary(baseSpec) ? `${formatM2(siteArea(baseSpec))} · ${siteBoundary(baseSpec).length} corners. No layout has been generated. Any designed open spaces remain reserved.` : 'Draw a closed boundary on the canvas. Place corners with your pointer or enter their coordinates.'}</p>{hasBoundary(baseSpec) && <section className="road-next-step" aria-label="Next step: external road"><h3>{residential?.accepted.inputs.externalRoads.length ? 'Continue residential planning' : 'Next: external road'}</h3><p>{residential?.accepted.inputs.externalRoads.length ? 'Your residential study is saved. Continue with road inputs, home products and Prepare Layout.' : 'Name the adjoining road, enter its full width, then draw along the site edge. Its position determines where a residential entrance can connect.'}</p><button type="button" onClick={()=>openResidential(!residential?.accepted.inputs.externalRoads.length)}>{residential?.accepted.inputs.externalRoads.length ? 'Continue residential planning' : 'Draw external road'}</button><p className="note">Boundary → external road → home products → Prepare Layout</p></section>}<button type="button" onClick={() => startBoundary(!hasBoundary(baseSpec))}>{hasBoundary(baseSpec) ? 'Edit boundary' : 'Draw boundary'}</button>{hasBoundary(baseSpec) && <button type="button" onClick={startSpaces}>Design open spaces</button>}{hasBoundary(baseSpec) && <button type="button" onClick={generateLayout}>Generate layout</button>}<p className="note">Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.</p>{planActions}<details className="sitesrc"><summary>Site source · reference photo</summary>{referencePhotoControls}</details><button type="button" onClick={startHousingMix}>Manage housing templates</button><button type="button" onClick={openAlternatives}>Saved alternatives</button><button type="button" onClick={()=>{if(regenBlock){setStatus(regenBlock);return;}setDevelopmentOpen(true);}}>Terrain, drainage and phasing</button><button type="button" onClick={openProjects}>Open projects</button></section> : <>
++          <DynamicInspector openSpaceControls={<section className="space-summary" aria-label="Neighborhood open spaces"><h3>Neighborhood open spaces</h3><ul>{spaces.map(s=><li key={s.id}><button type="button" aria-pressed={greenSelected&&s.id===selectedSpace} onClick={()=>{setSelected('grove');setSelectedSpace(s.id);}}>{s.name} · {s.kind} · {polyArea(s.pts).toFixed(1)} m² · {s.locked?'fixed':'editable'}</button></li>)}</ul><p>{spaceArea(spaces).toFixed(1)} m² combined · {spaces.length} spaces</p><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startSpaces}>Edit open spaces</button></section>} onPreset={(family, frontage) => changeSpec({ family, frontage })} builtArea={planning.housing&&selected==='homes'?housingSummary(site,(selectedLots.length?selectedLots:selectedLot===null?planShown.parcels.map((_,i)=>i):[selectedLot]).map(i=>planShown.parcels[i]).filter((r):r is Rect=>!!r)).builtArea:undefined} housingControls={selected==='homes'?<section className="housing-summary" aria-label="Housing mix"><h3>Housing mix</h3>{selectedLot!==null&&workingLayout.parcels[selectedLot]?<p>Lot {selectedLot+1}: {homeTemplate(planning,workingLayout.parcels[selectedLot]).name} · {homeArea(planning,workingLayout.parcels[selectedLot])} m²{hasHome(site,workingLayout.parcels[selectedLot])?' home':' reserved template · vacant lot'} · {assignmentSource(planning.housing,workingLayout.parcels[selectedLot])==='explicit'?'Explicit assignment':'Follows default'}</p>:<p>{shownHousing.rows.map(r=>`${r.name}: ${r.count} homes`).join(' · ')} · {shownHousing.builtArea} m² built</p>}<button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={startHousingMix}>Edit housing mix</button></section>:null} lotControls={selected==='homes'?<section className="lot-tools" aria-label="Blocks and lots"><h3>Blocks &amp; lots</h3><div className="draftrow"><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>startParcelEdit('split')}>Split lot</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('merge')}>Merge lots</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={()=>startParcelEdit('block')}>Subdivide block</button><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing||selectedLot===null} onClick={()=>{const tools=document.querySelector<HTMLDetailsElement>('.object-tools');if(tools)tools.open=true;startLotReshape();}}>Edit lot outline</button></div>
+               {selectedLot!==null&&lotEdits[lotKey(committedLayout.parcels[selectedLot]??{x:0,y:0,w:0,h:0})]&&<button type="button" disabled={!!regenBlock||draftDirty||!!preview} onClick={restoreSelectedRectangle}>Restore rectangular outline</button>}
+               {planning.lotPlan!==undefined&&<><p className="note">Manual lot plan held. Frontage search cannot repartition these lots; use the direct tools or explicitly return to generated lots.</p><button type="button" disabled={!!regenBlock||draftDirty||!!preview||optimizing} onClick={previewGeneratedLots}>Preview generated lots</button></>}
+               <p className="note">Select lots on the plan; Shift adds to a selection. Rectangular blocks are connected groups of existing lots, not surveyed legal parcels.</p></section>:null} siteControls={selected === 'site' && baseSpec.planning ? <EntranceEditor site={site} disabled={!!parameterDraft || !!preview || optimizing || !!lotDraft || draftDirty} onChange={(next) => commitEntrance(next, entrance, `moved to ${entranceLabel(next)}`)} error={entranceErrors(site)[0] ?? workingLayout.supportError} /> : null} selection={selected} onSelect={(value) => { if (!optimizing) { setSelected(value); setSelectedLot(null); setSelectedLots([]); } }}
+             selectionNotice={selected==='homes'?(selectedReshaped?'Setbacks partly unverified: this outline keeps the placed home and a 2 m ring; deeper 3 m front/rear setbacks are not verified.':workingWarnings.length?workingWarnings.join(' '):undefined):undefined}
+             label={selected === 'grove'  ? greenLabel : selected === 'circulation' ? 'Circulation' : selected === 'homes' ? selectedLots.length > 1 ? `${selectedLots.length} home lots` : selectedLot === null ? 'All home lots' : `Lot ${selectedLot + 1}` : 'Site boundary'}
+             area={inspectorArea} siteArea={siteArea(boundaryPreview ?? baseSpec)} homes={selected === 'homes' && selectedLot !== null ? selectedHomeIndices.length : inspectorQuantities?.n ?? null}
+-            preview={!!preview} legacy={!baseSpec.planning && !parameterDraft} family={spec.family} planning={planning} onEditStreets={startStreetEdit} onGeneratedStreets={previewGeneratedStreets} frontage={preview?.frontage ?? parameterDraft?.frontage ?? spec.frontage} greenLocked={collection?(activeSpace?.locked??spaces.every(s=>s.locked)):greenLocked}
++            preview={!!preview} legacy={!baseSpec.planning && !parameterDraft} family={spec.family} planning={planning} onEditStreets={()=>startStreetEdit()} onRoundStreets={()=>startStreetEdit(true)} onGeneratedStreets={previewGeneratedStreets} frontage={preview?.frontage ?? parameterDraft?.frontage ?? spec.frontage} greenLocked={collection?(activeSpace?.locked??spaces.every(s=>s.locked)):greenLocked}
+             green={draft.draft} greenDirty={draftDirty}
+             onGreenChange={(g) => { if (!greenLocked && !parameterDraft && !lotDraft && !optimizing) touchDraft(strFields(g)); }}
+             onGreenApply={applyDraft} onGreenCancel={cancelDraft} greenError={workingErrors[0] ?? null}
+@@ -2668,7 +2724,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+               {lastDelta && <span className="note">{lastDelta}</span>}
+             </>
+           ) : (
+-            <span>{boundaryDraft ? 'Boundary draft · accepted plan unchanged · Apply or Cancel to finish' : !hasBoundary(baseSpec) ? 'Draw a site boundary to begin.' : workingLayout.empty ? 'Boundary only · generate a layout to see homes, streets and economics.' : workingLayout.supportError ? `Layout unavailable · ${workingLayout.supportError}` : 'Incomplete — fix the flagged geometry or economics inputs to see metrics.'}</span>
++            <span>{boundaryDraft ? 'Boundary draft · accepted plan unchanged · Apply or Cancel to finish' : !hasBoundary(baseSpec) ? 'Draw a site boundary to begin.' : workingLayout.empty ? 'Boundary only · next, draw the external road and enter its name and width.' : workingLayout.supportError ? `Layout unavailable · ${workingLayout.supportError}` : 'Incomplete — fix the flagged geometry or economics inputs to see metrics.'}</span>
+           )}
+         </div>
+         <div className="docktabs" role="tablist" aria-label="Result details" hidden={!dockOpen}>
+@@ -2692,7 +2748,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+             </button>
+           ))}
+         </div>
+-        <div className="dockpanel" ref={dockPanelRef} hidden={!dockOpen}>
++        <div className="dockpanel" ref={dockPanelRef} hidden={!dockOpen} role="region" aria-label="Result details content" tabIndex={0}>
+           {dockTab === 'quantities' && econShown && (
+             <dl className="kv">
+               <dt>Homes (valid footprints)</dt><dd>{econShown.q.n}</dd>
+@@ -2702,6 +2758,58 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+               <dt>Unallocated remainder (not designed open space)</dt><dd>{formatM2(econShown.q.unallocatedArea)}</dd>
+             </dl>
+           )}
++          {dockTab === 'quantities' && budgetShown && (
++            <>
++              <h3>Land budget</h3>
++              <dl className="kv">
++                <dt>Site (gross)</dt><dd>{formatM2(budgetShown.siteArea)} ({budgetShown.grossHa.toFixed(2)} ha)</dd>
++                <dt>Density — gross</dt><dd>{budgetShown.densityGross.toFixed(1)} homes/ha</dd>
++                <dt>Density — net (lots + roads + green)</dt><dd>{budgetShown.densityNet === null ? '—' : `${budgetShown.densityNet.toFixed(1)} homes/ha`}</dd>
++                <dt>Lots</dt><dd>{budgetShown.pctParcels.toFixed(1)}% of site</dd>
++                <dt>Streets</dt><dd>{budgetShown.pctRoad.toFixed(1)}% of site{budgetShown.roadPerHome === null ? '' : ` · ${budgetShown.roadPerHome.toFixed(1)} m² road / home`}</dd>
++                <dt>Designed green</dt><dd>{budgetShown.pctGreen.toFixed(1)}% of site</dd>
++                <dt>Unallocated remainder</dt><dd>{budgetShown.pctUnallocated.toFixed(1)}% of site</dd>
++              </dl>
++              <h3>Planning brief (owner-declared, session-only)</h3>
++              <p className="note">Brief rules are not saved with projects or exported schemes. Keep a separate record before closing this session.</p>
++              <div className="briefgrid">
++                <label>Min density (homes/ha)<input type="number" min="0" step="1" value={brief.densityMinHa ?? ''} onChange={(e) => setBrief((b) => ({ ...b, densityMinHa: e.target.value === '' ? undefined : Number(e.target.value) }))} /></label>
++                <label>Max density (homes/ha)<input type="number" min="0" step="1" value={brief.densityMaxHa ?? ''} onChange={(e) => setBrief((b) => ({ ...b, densityMaxHa: e.target.value === '' ? undefined : Number(e.target.value) }))} /></label>
++                <label>Min designed green (% of site)<input type="number" min="0" step="1" value={brief.greenMinPct ?? ''} onChange={(e) => setBrief((b) => ({ ...b, greenMinPct: e.target.value === '' ? undefined : Number(e.target.value) }))} /></label>
++                <label>Max unallocated (% of site)<input type="number" min="0" step="1" value={brief.unallocatedMaxPct ?? ''} onChange={(e) => setBrief((b) => ({ ...b, unallocatedMaxPct: e.target.value === '' ? undefined : Number(e.target.value) }))} /></label>
++              </div>
++              {briefResult && briefResult.checks.length === 0 && <p className="note">No rules set — add thresholds to evaluate this plan against your brief. Your brief is not a regulation.</p>}
++              {briefResult?.checks.map((c) => (
++                <p key={c.id} className={c.pass ? 'note briefrow' : 'note briefrow badrow'}>{c.pass ? 'Pass' : 'Fail'} — {c.label}: {c.actual.toFixed(1)} {c.unit} (rule {c.rule.toFixed(1)}; margin {c.margin >= 0 ? '+' : ''}{c.margin.toFixed(1)})</p>
++              ))}
++              {accessShown && (
++                <>
++                  <h3>Open-space access</h3>
++                  <dl className="kv">
++                    <dt>Lots adjoining open space (≤ 2 m)</dt><dd>{accessShown.adjacentCount} of {accessShown.perLot.length}</dd>
++                    {accessShown.buckets.map((bk) => (
++                      <Fragment key={bk.distance}><dt>Homes within {bk.distance} m</dt><dd>{bk.count} ({bk.share.toFixed(0)}%)</dd></Fragment>
++                    ))}
++                  </dl>
++                  <p className="note">Straight-line lot-edge to open-space-edge distances on the plan. Not walking routes; says nothing about amenity quality.</p>
++                </>
++              )}
++              <section className="residual-review" aria-label="Residual land assessment">
++                <h3>Residual land</h3>
++                <p className="note">{financeScope}</p>
++                {residualShown ? <>
++                  <dl className="kv">
++                    <dt>Potentially developable (size + shared road edge)</dt><dd>{residualShown.totals.developable.count} regions · {formatM2(residualShown.totals.developable.area)}</dd>
++                    <dt>Too small under current assumptions</dt><dd>{residualShown.totals['too-small'].count} regions · {formatM2(residualShown.totals['too-small'].area)}</dd>
++                    <dt>Inaccessible (no shared road edge)</dt><dd>{residualShown.totals.inaccessible.count} regions · {formatM2(residualShown.totals.inaccessible.area)}</dd>
++                    <dt>Touches open-space exclusion (whole region flagged)</dt><dd>{residualShown.totals['reserved-clearance'].count} regions · {formatM2(residualShown.totals['reserved-clearance'].area)}</dd>
++                    <dt>Total classified remainder</dt><dd>{formatM2(residualShown.remainderArea)}</dd>
++                  </dl>
++                  <p className="note">Connected regions, including holes, reconcile to the displayed unallocated remainder. Size uses the {profile.name} minimum ({profile.lotAreaMin} m²). Road access requires a shared pavement edge, including entrance aprons. A region touching a conservative open-space exclusion is flagged in full; this is not a measure of the exclusion area. These checks do not establish lot fit, capacity, legal access or approval.</p>
++                </> : <p className="note">Residual assessment unavailable: {residualAssessment.error}</p>}
++              </section>
++            </>
++          )}
+           {dockTab === 'economics' && econShown && (
+             <>
+             <dl className="kv">
+@@ -2716,8 +2824,8 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+               <dt>Owner outcome</dt><dd>{formatGap(econShown.fin.ownerGap)}</dd>
+             </dl>
+             <ol className="note">
+-              <li>Revenue {formatRp(econShown.fin.revenue)} minus selling costs, minus non-land costs above, minus the {targetT}% target surplus leaves the <strong>land allowance</strong>: what the land is worth to this scheme before paying the owner.</li>
+-              <li><strong>Surplus</strong> additionally subtracts the owner's asking price — positive allowance with negative surplus means the scheme works, but not at this asking price.</li>
++              <li>Revenue {formatRp(econShown.fin.revenue)} minus selling costs, minus non-land costs above, minus the {targetT}% target surplus leaves the <strong>land allowance</strong>: the modeled amount available for land at that target under the entered assumptions.</li>
++              <li><strong>Surplus</strong> subtracts selling costs, non-land costs and the owner's benchmark from revenue. A positive land allowance does not establish financial viability at the entered owner expectation.</li>
+               <li>Cost bases use the accepted project assumptions. Open Feasibility experiments to test construction, street and green rates, allowances, contingency and selling costs before Apply.</li>
+             </ol>
+             </>
+@@ -2969,7 +3077,14 @@ export default function Workbench({ initialProject, projectName, onSaveProject,
+           )}
+           {dockTab === 'issues' && (
+             <div>
+-              {issueCount === 0 && <p className="note">No open issues. Geometry valid, inputs complete, no blockers.</p>}
++              <h3>Geometry and input checks</h3>
++              {validationIssueCount === 0 && <p className="note">{workingLayout.empty ? 'No active layout to assess.' : 'No geometry, profile or input issues detected. Financial outcomes are assessed separately below.'}</p>}
++              <section className="financial-review" aria-label="Financial review">
++                <h3>Financial review</h3>
++                <p className="note">{boundaryDraft ? 'Boundary edit in progress · financial review unavailable until Apply or Cancel.' : financeScope}</p>
++                {financialIssues.length > 0 ? <ul>{financialIssues.map((message,i) => <li key={i}>{message}</li>)}</ul> : econShown && inputsOk && !boundaryDraft ? <p>No owner shortfall or target-surplus deficit under the entered assumptions. This does not establish financial viability.</p> : <p>Financial outcomes unavailable. Generate a layout and complete valid economics inputs to assess them.</p>}
++                <p className="note">Geometry validity does not establish financial feasibility. These modeled outcomes use the entered costs, selling price, owner benchmark and target; market evidence and professional review remain separate.</p>
++              </section>
+               {workingErrors.length > 0 && (
+                 <>
+                   <h3>Geometry / inputs</h3>
+diff --git a/web/src/drafting.css b/web/src/drafting.css
+index 677cea3..6babee3 100644
+--- a/web/src/drafting.css
++++ b/web/src/drafting.css
+@@ -490,3 +490,53 @@ button.tool.selected-object { color: #c2a9e4; background: #2e2a38; }
+ .phase-map-key { display:flex; flex-wrap:wrap; gap:8px 20px; margin:10px 0; padding:0; list-style:none; }
+ .phase-map-key li { display:flex; align-items:center; gap:7px; }
+ .phase-map-key span { display:inline-block; width:16px; height:16px; border:1px solid #adb8c6; flex:none; }
++
++.contextstrip .financial-concerns { padding: 2px 7px; color: #ffd79b; border: 1px solid #9b7848; background: #3a3024; font: inherit; white-space: normal; text-align: left; }
++.financial-review { border-left: 3px solid #b68d51; padding: 2px 12px; margin: 12px 0; }
++.financial-review li { margin-bottom: 8px; }
++
++/* Planner insights: brief inputs, check rows, yield presets. */
++.briefgrid {
++  display: grid;
++  grid-template-columns: 1fr 1fr;
++  gap: 8px 12px;
++  margin: 6px 0 10px;
++}
++
++.briefgrid label {
++  display: flex;
++  flex-direction: column;
++  gap: 3px;
++  font-size: 13px;
++  color: var(--mut, #aab0ba);
++}
++
++.briefgrid input {
++  min-height: 36px;
++  padding: 4px 8px;
++}
++
++.briefrow {
++  border-left: 3px solid #3f7d5c;
++  padding-left: 8px;
++}
++
++.briefrow.badrow {
++  border-left-color: #b05750;
++}
++
++.preset-row {
++  display: flex;
++  align-items: center;
++  gap: 6px;
++  flex-wrap: wrap;
++  margin-top: 8px;
++}
++
++.preset-row > span {
++  font-size: 13px;
++  color: var(--mut, #aab0ba);
++}
++
++/* Residential study stays reachable when compact workspace navigation is hidden. */
++.contextstrip .residential-entry { padding: 6px 9px; min-height: 32px; white-space: nowrap; color: #ecf3ff; background: #344556; border: 1px solid #647d96; }
+diff --git a/web/src/projects.css b/web/src/projects.css
+index 68132c9..fe3ac68 100644
+--- a/web/src/projects.css
++++ b/web/src/projects.css
+@@ -76,3 +76,9 @@
+ .project-save-scope > summary { cursor: pointer; min-height: 36px; padding-block: 6px; color: #e7d9ff; }
+ .project-save-scope > p { margin-top: 8px; }
+ @media (max-width: 700px) { .project-library > header { gap: 12px; } .project-header-actions { flex-basis: 100px; } }
++
++.road-next-step { color: #f3f5fa; border: 1px solid #647d96; background: #273b4c; padding: 14px; margin: 16px 0; }
++.road-next-step h3 { margin: 0 0 6px; }
++.inspector-col .road-next-step button:not(.seg):not(.tool) { width: 100%; min-height: 44px; padding: 10px; background: #216b96; color: #fff; border: 1px solid #90bdd8; border-radius: 4px; font: inherit; font-weight: 600; cursor: pointer; }
++
++.road-next-step .note { color: #d2e2ee; }
+diff --git a/web/src/unbuilt/DynamicInspector.tsx b/web/src/unbuilt/DynamicInspector.tsx
+index 2fd80fb..0698321 100644
+--- a/web/src/unbuilt/DynamicInspector.tsx
++++ b/web/src/unbuilt/DynamicInspector.tsx
+@@ -12,6 +12,7 @@ interface Props {
+   builtArea?:number;
+   housingControls?:ReactNode;
+   onEditStreets: () => void;
++  onRoundStreets: () => void;
+   onGeneratedStreets: () => void;
+   siteControls?: ReactNode;
+   openSpaceControls?:ReactNode;
+@@ -35,6 +36,9 @@ interface Props {
+   onGreenLock: () => void;
+   onLock: (key: 'siteLocked' | 'priceLocked') => void;
+   onChange: (planning: PlanningParameters, frontage: number) => void;
++  // Yield starting points: apply a family + frontage combo through the
++  // reviewed spec-change path. Starting points, never optima.
++  onPreset?: (family: 'spine' | 'loop', frontage: number) => void;
+   dirty: boolean;
+   error: string | null;
+   onApply: () => void;
+@@ -68,6 +72,7 @@ export default function DynamicInspector(p: Props) {
+       <div><dt>{p.builtArea!==undefined?"Home built area":"Built area / home"}</dt><dd>{(p.builtArea??homeArea(p.planning)).toFixed(1)} m²</dd></div>
+     </dl>
+     {p.selectionNotice&&<p className="selection-assumption" role="status">{p.selectionNotice}</p>}
++    {p.selection==='circulation' && <section className="road-corner-controls" aria-label="Road corner treatment"><button type="button" disabled={p.disabled||p.dirty} onClick={p.onRoundStreets}>Round road corners</button><p className="note">Preview smooth joined pavement with fillets set to half the road width (3 m for a 6 m street). Mixed widths start with the narrowest street. Generated Spine routing may move to fit curves beside kept green. Review lots and costs before Apply; protected spaces and held lots stay protected. Applying keeps a manual street network.</p></section>}
+     {p.siteControls}{p.openSpaceControls}
+     {p.lotControls}
+     {p.housingControls}
+@@ -80,6 +85,7 @@ export default function DynamicInspector(p: Props) {
+       {p.selection !== 'grove' && <>
+       {slider('Lot frontage', p.frontage, 8, 16, 1, (v) => p.onChange(p.planning, v))}
+       {slider('Lot depth', p.planning.lotDepth, 12, 40, 1, (v) => change('lotDepth', v))}
++      {p.onPreset && <div className="preset-row"><span>Yield starting points (not optima):</span><button type="button" disabled={p.disabled} onClick={() => p.onPreset!('spine', 8)}>Compact · Spine 8 m</button><button type="button" disabled={p.disabled} onClick={() => p.onPreset!('spine', 10)}>Standard · Spine 10 m</button><button type="button" disabled={p.disabled} onClick={() => p.onPreset!('loop', 12)}>Garden · Loop 12 m</button></div>}
+       </>}
+       {slider(p.planning.openSpaces!==undefined?'Open-space clearance':'Park clearance', p.planning.greenBuffer, 0, 4.5, 0.5, (v) => change('greenBuffer', v))}
+       {p.selection === 'grove' && <details className="subdivision-parameters"><summary>Subdivision parameters</summary>
+diff --git a/web/src/unbuilt/PlanCanvas.tsx b/web/src/unbuilt/PlanCanvas.tsx
+index bc9ac7a..cf2b2fe 100644
+--- a/web/src/unbuilt/PlanCanvas.tsx
++++ b/web/src/unbuilt/PlanCanvas.tsx
+@@ -3,9 +3,9 @@ import {spaceBounds,type OpenSpace} from '../../../src/open-spaces';
+ import HousingDrawingKey from './HousingDrawingKey';
+ import {housingColor} from './ui';
+ import {homeTemplate} from '../../../src/housing';
+-import { streetPolygon, streetSurface, surfacePath, usesShapedStreets } from '../../../src/road-surfaces';
++import { mergedRoadSurface, streetPolygon, streetSurface, surfacePath, usesShapedStreets } from '../../../src/road-surfaces';
+ import { nearestStreetPoint, streetLength, streetNodes, streetRect, type StreetNetwork } from '../../../src/streets';
+-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
++import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+ import type { PlanningParameters } from '../../../src/planning';
+ import type { Rect } from '../../../src/schema';
+ import type { Entrance, Layout, StreetConflict } from '../../../src/geometry';
+@@ -143,6 +143,7 @@ const H = 560;
+ type DragKind = 'none' | 'pan' | 'green-move' | 'green-resize' | 'entrance-move' | 'lot-vertex' | 'site-vertex' | 'street' | 'junction';
+ 
+ export default function PlanCanvas(props: Props) {
++  const pavement=useMemo(()=>mergedRoadSurface(props.layout.roads,props.layout.roadSurface,props.layout.accessConnector),[props.layout.roads,props.layout.roadSurface,props.layout.accessConnector]);
+   const instanceId = useId();
+   const hatchId = `green-hatch-${instanceId}`;
+   const gridId = `metre-grid-${instanceId}`;
+@@ -736,24 +737,8 @@ export default function PlanCanvas(props: Props) {
+               </g>
+             );
+           })}
+-        {props.layout.accessConnector && <polygon points={polyPoints(props.layout.accessConnector)} className={props.selectedKind === 'circulation' ? 'road selected' : 'road'} aria-label="Entrance apron" onPointerDown={e => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }} onClick={e => { e.stopPropagation(); props.onSelectKind('circulation'); }} />}
+-        {/* roads: gestures starting here never pan — click selects */}
+-        {props.layout.roadSurface ? <path d={surfacePath(props.layout.roadSurface, X, Ypt)} fillRule="evenodd" className={props.selectedKind === 'circulation' ? 'road selected' : 'road'} onPointerDown={e => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }} onClick={e => { e.stopPropagation(); if (pannedBetween.current) { pannedBetween.current = false; return; } props.onSelectKind('circulation'); }} /> : props.layout.roads.map((r, i) => (
+-          <rect
+-            key={`r${i}`}
+-            {...box(r)}
+-            className={props.selectedKind === 'circulation' ? 'road selected' : 'road'}
+-            onPointerDown={(e) => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }}
+-            onClick={(e) => {
+-              e.stopPropagation();
+-              if (pannedBetween.current) {
+-                pannedBetween.current = false;
+-                return;
+-              }
+-              props.onSelectKind('circulation');
+-            }}
+-          />
+-        ))}
++        {/* One unioned pavement outline removes internal rectangle/apron seams. */}
++        {pavement.length>0 && <path d={surfacePath(pavement, X, Ypt)} fillRule="evenodd" strokeLinejoin="round" className={props.selectedKind === 'circulation' ? 'road selected' : 'road'} role="img" aria-label={props.layout.accessConnector?'Street pavement including entrance apron':'Street pavement'} onPointerDown={e => { if (props.panTool) onBackgroundDown(e); else e.stopPropagation(); }} onClick={e => { e.stopPropagation(); if (pannedBetween.current) { pannedBetween.current = false; return; } props.onSelectKind('circulation'); }} />}
+         {layers.labels && (() => {
+           const road = props.layout.roads.filter((r) => r.w >= r.h).reduce<Rect | null>((best, r) => !best || r.w > best.w ? r : best, null);
+           return road && road.w * s / tscale > 230 ? <text pointerEvents="none" className="road-caption" x={X(road.x + road.w / 2)} y={Ypt(road.y + road.h / 2) + fs(4)} textAnchor="middle" fontSize={fs(13)}>{road.h.toFixed(1)} m STREET</text> : null;
+@@ -961,7 +946,7 @@ export default function PlanCanvas(props: Props) {
+           <defs><mask id={`${instanceId}-street-outside`} maskUnits="userSpaceOnUse" x={vb.x} y={vb.y} width={vb.w} height={vb.h}><rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="white"/><polygon points={polyPoints(outline)} fill="black"/></mask></defs>
+           <g pointerEvents="none" className="street-draft-corridors">
+             {props.streetAffectedLots?.map((lot,i)=><rect key={i} {...box(lot)} fill="#f9b34120" stroke="#b57116" strokeWidth={fs(2)} strokeDasharray={`${fs(5)} ${fs(3)}`}><title>Accepted lot affected by proposed entrance connection</title></rect>)}
+-            {shapedDraft ? <path d={surfacePath(shapedDraft,X,Ypt)} fillRule="evenodd" className={`street-corridor${props.streetConflict?' conflict':''}`} fill={props.streetConflict?'#db35454d':'#075cff12'} stroke={props.streetConflict?'#b42933':'#436389'} strokeWidth={fs(props.streetConflict?2:1)}><title>Draft pavement with measured angled legs and corner fillets</title></path> : props.editableStreets.segments.map(edge=>{
++            {shapedDraft ? <path d={surfacePath(shapedDraft,X,Ypt)} fillRule="evenodd" strokeLinejoin="round" className={`street-corridor${props.streetConflict?' conflict':''}`} fill={props.streetConflict?'#db35454d':'#075cff12'} stroke={props.streetConflict?'#b42933':'#436389'} strokeWidth={fs(props.streetConflict?2:1)}><title>Draft pavement with measured angled legs and corner fillets</title></path> : props.editableStreets.segments.map(edge=>{
+               const conflict=props.streetConflict?.segmentIds.includes(edge.id),connector=props.streetConnectorIds?.includes(edge.id);
+               return <rect key={edge.id} {...box(streetRect(edge))} className={`street-corridor${conflict?' conflict':''}${connector?' connector':''}`} fill={conflict?'#db35454d':connector?'#efae3659':'#075cff12'} stroke={conflict?'#b42933':connector?'#aa6410':'#436389'} strokeWidth={fs(conflict||connector?2:1)} strokeDasharray={conflict?`${fs(5)} ${fs(3)}`:undefined}><title>{conflict?'Conflicting':connector?'Proposed entrance connection:':'Draft'} street · {edge.width} m full width</title></rect>;
+             })}
+@@ -1021,7 +1006,7 @@ export default function PlanCanvas(props: Props) {
+         {props.spaceDrawing&&!props.panTool&&<rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="transparent" style={{cursor:'crosshair'}} onPointerDown={e=>{e.stopPropagation();const q=toMetersNow(e.clientX,e.clientY,svgRef.current!.getBoundingClientRect());props.onSpacePoint?.({x:Math.round(Math.max(0,Math.min(500,q.x))),y:Math.round(Math.max(0,Math.min(500,q.yUp)))});}}/>}
+         {(props.spaceDrafts??props.layout.openSpaces)&&<OpenSpaceLayer spaces={props.spaceDrafts??props.layout.openSpaces!} active={props.activeSpace??null} editing={!!props.spacesEditing} drawing={!!props.spaceDrawing} valid={props.spaceValid!==false} clearance={props.spaceClearance??0} X={X} Y={Ypt} scale={fs} pan={props.panTool} onSelect={id=>props.onSpaceSelect?.(id)} onPoint={q=>props.onSpacePoint?.(q)} onFinish={()=>props.onSpaceFinish?.()} onMove={(i,q,record)=>props.onSpaceMove?.(i,q,record)} onRemove={i=>props.onSpaceRemove?.(i)} onGesture={pts=>props.onSpaceGesture?.(pts)} onRevert={pts=>props.onSpaceRevert?.(pts)} pointer={(x,y)=>{const q=toMetersNow(x,y,svgRef.current!.getBoundingClientRect());return {x:q.x,y:q.yUp};}}/>}
+       </svg>
+-      {props.layout.empty && !bd && !props.showContext && !props.spacesEditing && !props.spaceDrafts?.length && !surveyAttached && <div className="plan-empty-message"><strong>{outline.length ? 'Boundary ready' : 'A new beginning'}</strong><p>{outline.length ? 'Generate a layout when you are ready to explore homes, streets and open space.' : 'Draw your site boundary to start planning.'}</p></div>}
++      {props.layout.empty && !bd && !props.showContext && !props.spacesEditing && !props.spaceDrafts?.length && !surveyAttached && <div className="plan-empty-message"><strong>{outline.length ? 'Boundary ready' : 'A new beginning'}</strong><p>{outline.length ? 'Next, draw the adjoining external road and enter its name and width.' : 'Draw your site boundary to start planning.'}</p></div>}
+       {!separateReadouts && <>{scaleReadout}{viewportReadout}</>}
+       </div>
+       {separateReadouts && <div className="comparison-readouts">{scaleReadout}{viewportReadout}</div>}
+diff --git a/web/src/unbuilt/StreetEditor.tsx b/web/src/unbuilt/StreetEditor.tsx
+index 918e96d..0f714f9 100644
+--- a/web/src/unbuilt/StreetEditor.tsx
++++ b/web/src/unbuilt/StreetEditor.tsx
+@@ -1,6 +1,6 @@
+ import { useState, type ReactNode } from 'react';
+ import type { Pt } from '../../../src/polygon';
+-import { MAX_STREETS, streetLength, streetNodes, type StreetNetwork } from '../../../src/streets';
++import { MAX_STREETS, halfRoadWidth, roundedStreetNetwork, streetLength, streetNodes, type StreetNetwork } from '../../../src/streets';
+ interface Props {
+   drawingMode:'free'|'orthogonal';onDrawingMode:(mode:'free'|'orthogonal')=>void;rounding?:{limited:number;minimumRadius:number};
+   network: StreetNetwork; selectedId: string | null; onSelect: (id: string) => void;
+@@ -37,8 +37,9 @@ export default function StreetEditor(p: Props) {
+     <p className="note">Widths of 6–12 m are design assumptions, not approved standards. Road costs use the unioned pavement outline, including fillets. Rectangular lots are generated along horizontal/vertical legs; land beside angled legs stays unallocated. Kerb curves are planning geometry; vehicle turning, road standards and external access remain unverified.</p>
+     <div className="draftrow"><button type="button" disabled={p.drawing!==null||p.network.segments.length>=MAX_STREETS} onClick={p.onDraw}>Draw street</button><button type="button" disabled={p.drawing!==null} onClick={p.onEntrance}>Start at entrance</button><button type="button" disabled={p.drawing!==null} onClick={p.onConnect}>Connect entrance</button><button type="button" className="street-view-canvas" onClick={p.onCanvas}>View drawing</button></div>
+     <label>Drawing alignment<select aria-label="Street drawing alignment" value={p.drawingMode} onChange={e=>p.onDrawingMode(e.target.value as Props['drawingMode'])}><option value="free">Any angle</option><option value="orthogonal">Right angles</option></select></label>
+-    <label>Corner fillet radius (m)<input type="number" aria-label="Corner fillet radius (m)" min={0} max={50} step="any" aria-invalid={coordinateText.radius!==undefined} value={coordinateText.radius??String(p.network.cornerRadius??0)} onChange={e=>{const radius=e.target.value.trim()===''?NaN:Number(e.target.value);if(Number.isFinite(radius)&&radius>=0&&radius<=50){p.onChange({...p.network,cornerRadius:radius});setCoordinateText({});}else setCoordinateText({...coordinateText,radius:e.target.value});}}/></label>
+-    <button type="button" onClick={()=>{p.onChange({...p.network,cornerRadius:4});setCoordinateText({});}}>Round corners · 4 m</button>
++    <label>Corner fillet radius (m)<input type="number" aria-label="Corner fillet radius (m)" min={0} max={50} step="any" aria-invalid={coordinateText.radius!==undefined} value={coordinateText.radius??String(p.network.cornerRadius??0)} onChange={e=>{const radius=e.target.value.trim()===''?NaN:Number(e.target.value);if(Number.isFinite(radius)&&radius>=0&&radius<=50){p.onChange(roundedStreetNetwork(p.network,radius));setCoordinateText({});}else setCoordinateText({...coordinateText,radius:e.target.value});}}/></label>
++    <button type="button" onClick={()=>{p.onChange(roundedStreetNetwork(p.network,halfRoadWidth(p.network)));setCoordinateText({});}}>Round corners · half road width</button>
++    <p className="note">Half road width = {halfRoadWidth(p.network)} m here. Mixed widths use the narrowest street as the starting radius; custom radii remain editable.</p>
+     <p className="note">0 keeps square corners. Fillets change the kerb outline and measured road area. Short edges cap each fillet’s tangent distance to 45% of the adjacent edges; curves are measured with a maximum 5 mm chord deviation.</p>
+     {!!p.rounding?.limited&&<p role="status">{p.rounding.limited} short corners use smaller radii, down to {p.rounding.minimumRadius.toFixed(2)} m. Review the drawing and quantities before Apply.</p>}
+     <label>New street width <output>{p.newWidth} m</output><input type="range" aria-label="New street width" min={6} max={12} step={1} value={p.newWidth} onChange={e=>p.onWidth(Number(e.target.value))}/></label>

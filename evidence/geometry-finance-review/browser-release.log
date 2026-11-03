@@ -1,0 +1,37 @@
+PASS Cedar header names lot frontage separately from actual street width
+PASS canvas and evaluator agree on 6 m by 120 m and 720 square metres
+PASS geometry status is explicitly separate from a visible financial concern
+PASS financial indicator opens the counted Issues tab
+PASS default financial review reports 6.44bn owner shortfall and negative 22.88 percent
+PASS geometry validation never provides a broad no-open-issues assurance
+PASS economics retains the measured figures and removes the scheme-works claim
+PASS financial concerns do not disable a geometry-valid street draft
+PASS header labels active 8 m draft while nominal lot frontage stays 10 m
+PASS full-width draft drawing and review remeasure 960 square metres without accepting it
+PASS financial concerns follow draft economics and identify unapplied scope
+PASS Cancel restores original width, quantity and financial concern
+PASS Apply preserves lot frontage, accepts width and recalculates road quantity
+PASS Undo restores generated 6 m street and financial outcome
+PASS Redo restores exact accepted manual network and financial outcome
+PASS Save and reload restore width, area and financial concerns consistently
+PASS exported network, frontage, area and road cost match visible values
+PASS exported financial figures reconcile independently with the 8 m street cost
+PASS portable restore retains independent financial warnings and width labels
+PASS mixed-width network header lists real 6 and 8 m widths separately from frontage
+PASS invalid entrance draft blocks Apply without hiding existing financial concerns
+PASS financial scope changes do not reflow the header during a street edit
+PASS invalid draft financial review explicitly identifies last valid accepted figures
+PASS positive surplus below target remains a financial concern
+PASS meeting modeled target clears concerns without claiming verified viability
+PASS missing owner input reports financial outcomes unavailable rather than success
+PASS search preview financial review identifies the unapplied option
+PASS 1024px financial indicator scrolls and focuses its review
+PASS 1024px financial review and header stay within viewport
+PASS 375px financial indicator scrolls and focuses its review
+PASS 375px financial review and header stay within viewport
+PASS boundary-only plan shows financial outcomes unavailable with no feasibility assurance
+PASS zero-home revenue is explicitly not financially established
+PASS financial Issues content can be reached and scrolled with the keyboard
+PASS new financial indicator and review have no detected accessibility violations
+PASS no uncaught browser errors
+ALL 36 GEOMETRY / FINANCIAL CLARITY CHECKS PASS

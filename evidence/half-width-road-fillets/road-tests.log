@@ -1,0 +1,38 @@
+PASS arbitrary bearings use normal-offset full-width pavement and true segment lengths
+PASS diagonal crossings join at grade, split into four legs and retain shared nodes
+PASS angled collinear repeats are rejected while joined legs and corner metadata survive helpers
+PASS projection onto an angled street retains the exact fractional joining point
+PASS two diagonal crossing areas subtract the square intersection once
+PASS legacy streets keep identical geometry and square area until explicitly rounded
+PASS T-junction circular fillets match independently derived added area within chord tolerance
+PASS L turns have tangent circular kerbs, deterministic winding and finite simple outlines
+PASS bend joins close butt-cap notches at offset kerb intersections
+PASS short adjacent kerbs cap radii without self-crossing or hiding the reduction
+PASS road loops preserve holes, excluding the inner land from area and conflicts
+PASS diagonal pavement avoids bounding-box false positives and catches true full-width conflicts
+PASS a fillet entering protected green or a held lot blocks acceptance
+PASS parcel generation removes fillet conflicts and reports only actual pavement frontage
+PASS costs and drainage use unioned curved pavement and the full land budget reconciles
+PASS sloping boundary entrances keep disjoint measured aprons when corners are rounded
+PASS project v14 restores precise road geometry, radius and saved alternatives, rejecting downgrades
+PASS snapshot v12 binds precise road radius and requires its capability across JSON transport
+PASS decision record v15 restores working roads and alternative-only roads, rejecting downgrades
+PASS search and measured AI cost experiments retain the exact reviewed road outlines
+PASS legacy generated bends merge into one unchanged pavement polygon without internal seams
+PASS merged legacy loops retain inner holes and leave contained land outside pavement
+PASS entrance aprons join the displayed outline without duplicate shared-edge strokes or area
+PASS explicitly rounding generated loops removes false dead-end caps and fillets all four outer corners
+PASS zero-radius normalized generated loops preserve the exact original road union
+PASS generated-bend fillets are measured, preserve spaces and reconcile quantities and cost
+PASS rounding saved manual loops normalizes redundant caps without mutating inputs or real dead ends
+PASS half-width preset follows 6, 8, 10 and 12 metre street widths without changing inputs
+PASS mixed-width preset explicitly starts with the narrower road
+PASS a short kerb beside a real end cap can use the full half-width tangent
+PASS neighbouring fillets meet at the middle of a tight step with no unused straight jog
+PASS tight merged kerbs have no hard angular transitions outside full-width terminal caps
+PASS half-width stepped-road geometry is stable under reversed directions and segment order
+PASS scaled half-width turns share their actual pavement with quantities and costs
+PASS half-width generated draft leaves room around kept green without changing its geometry or clearance
+PASS half-width draft never silently reroutes a held manual network around its protected-space conflict
+PASS half-width drafts retain the actual entrance apron on sloping boundaries
+ALL 37 ANGLED / ROUNDED STREET CHECKS PASS

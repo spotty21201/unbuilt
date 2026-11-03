@@ -1,0 +1,35 @@
+union operands 185 Error: overlay caller
+    at clipping.<computed> [as union] (file:///tmp/overlay-trace.mts:1:405)
+    at merge (file:///home/spotty/projects/unbuilt/src/road-surfaces.ts:52:50)
+    at streetSurface (file:///home/spotty/projects/unbuilt/src/road-surfaces.ts:54:16)
+    at calculateResidential (file:///home/spotty/projects/unbuilt/src/residential.ts:205:19)
+    at file:///tmp/overlay-trace.mts:1:667
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+union operands 185 Error: overlay caller
+    at clipping.<computed> [as union] (file:///tmp/overlay-trace.mts:1:405)
+    at merge (file:///home/spotty/projects/unbuilt/src/road-surfaces.ts:52:50)
+    at streetSurface (file:///home/spotty/projects/unbuilt/src/road-surfaces.ts:58:18)
+    at calculateResidential (file:///home/spotty/projects/unbuilt/src/residential.ts:205:19)
+    at file:///tmp/overlay-trace.mts:1:667
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1429
+  enclosingRing() {
+               ^
+
+RangeError: Maximum call stack size exceeded
+    at RingOut.enclosingRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1429:16)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1424:30)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+    at RingOut.isExteriorRing (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1425:53)
+
+Node.js v22.23.3

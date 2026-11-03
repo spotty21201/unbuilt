@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "baseline": 808,
+    "root": 839,
+    "residual": 47,
+    "browser": 46,
+    "nativeZoom": 6,
+    "browserSuites": 39
+  },
+  "browserFailures": [],
+  "preservedFiles": 19,
+  "changedPreservedFiles": [],
+  "asset": "/assets/index-CDknUWnt.js",
+  "build": "pass",
+  "lint": "pass",
+  "screenshotsInspected": [
+    "browser-final/angled-residual.png",
+    "browser-final/loop-hole-residual.png",
+    "browser-final/residual-375.png",
+    "native-zoom/manual-residual-200.png"
+  ],
+  "publication": "none",
+  "olderReviewPreservedFiles": 999,
+  "changedOlderReviewFiles": []
+}

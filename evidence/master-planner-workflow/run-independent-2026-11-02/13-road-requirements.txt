@@ -1,0 +1,348 @@
+UNBUILT · Master Planner Workflow Test
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Cancel preview to close
+Flat landed residential study · geometry checks do not establish house feasibility or statutory approval. Unaccepted preview — accepted project is preserved.
+Preview: Master Planner Workflow Test — fixed inputs
+12,000 m² gross · Unresolved / failing constraints
+Draw site boundary
+External road & width
+Draw supplied road centreline
+Draw supplied natural feature
+Draw river centreline
+Draw irregular open space
+Draw reservation
+Draw connected street
+Select
+Pan
+Fit site & context
++
+−
+Snap spaces/lots to road edges
+Snap (m)
+South Main Road · 12 m
+10 m · local coordinates
+Compact
+Family
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+0 valid lots
+0 unresolved / 0 invalid
+0 m² valid lots
+320 m² roads
+40 m road
+Undefined m / valid lot
+517.2 m² fixed protection
+268 m² flexible space
+10,894.8 m² residual
+Rp 0 priced · 2 missing scopes
+Before → proposed: 0 → 0 valid lots (0); road 320 → 320 m²; residential 0 → 0 m²; cost Rp 0 → 0.
+SOP procedure
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+
+Not qualified under all recorded inputs/checks. Rigid-body screening uses only the declared inputs. Detailed vehicle manoeuvres, house design and approvals require separate checks.
+
+UNKNOWN · entrance: Primary: permissible movements are not specified.
+
+UNKNOWN · external_1793661593844: External road ROW or carriageway dimensions are missing.
+
+UNKNOWN · entrance: Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved.
+
+FAIL · space_1793661701463: Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.
+
+UNKNOWN · boundary: Boundary scale/source is unverified.
+
+UNKNOWN · roads: Road dimensions are provisional project inputs.
+
+UNKNOWN · roads: Carriageway width is missing.
+
+UNKNOWN · roads: Project turning requirements have not been supplied.
+
+UNKNOWN · roads: Declare the design vehicle to screen its swept envelope and turning requirements.
+
+UNKNOWN · brief: Carriageway, design vehicle, curve/junction/turning/entrance-widening requirements; protection authority; survey and drainage; product variation/area/saleable limits; prices, rates and market evidence. Internal8 m corridor provisional.
+
+UNKNOWN · mix: Mandatory product composition is outside tolerance or undefined.
+
+Inputs & commitments
+Prepare your layout
+
+Boundary → external road → lot products → Prepare Layout
+
+Site boundary: 4 corners · locked
+
+1 · External road beside the site
+
+Enter the road name and full width, then draw along the site edge, including any corners it follows. Its corridor is placed outside the fixed boundary. Finish with Enter or Finish drawing.
+
+New external road name
+New external road width (m)
+Allow a residential entrance along this road
+Draw adjacent external road
+South Main Road
+External road name
+Full external road width (m)
+Entrance permitted on adjoining frontage
+Known carriageway width and restricted access sections can be refined in Entrance & adjoining roads.
+2 · Home lot products and unit mix
+
+Width is frontage along the street. Mix is the percentage of valid lot count.
+
+Product	Width m	Depth m	Mix %	
+
+				×
+
+				×
+Add product row
+
+Total mix: 100% · must equal 100%.
+
+Mix tolerance (percentage points)
+Require mix within this tolerance
+Advanced product tolerances, pricing and individual street groups remain available below.
+Internal street corridor (m)
+Full internal corridor; provisional until confirmed in Road structure & parameters. A wider gate remains a bounded entrance exception.
+Prepare Layout
+
+Generate connected internal roads and as many measured valid lots as found within the product mix. Review the result before accepting.
+
+Source geometry & reliable scale
+Scenario name
+Assignment and site
+Comparison objective
+Maximum valid lot yield
+Least internal road length
+Other declared objective (manual ranking)
+Objective / declared comparison basis
+Source information
+Fixed requirements
+Preferences
+Adjustable variables
+Unknown inputs
+Independent dimension check
+Scale status
+Unverified
+Source coordinates in metres
+Calibrated source reference
+
+Use Source geometry & scale above to import or trace a calibrated source. Changing this status alone does not calibrate geometry.
+
+Lock accepted boundary
+Boundary coordinates
+Metres: x, y on each line. Last corner closes to the first.
+Entrance & adjoining roads
+Entrance decisions and additional entrances
+Road structure & parameters
+Full internal corridor (m)
+Internal carriageway (m)
+Corner return radius (m)
+Required centreline radius (m)
+Preferred junction angle (degrees)
+Allow oblique junctions; treat the angle as a preference
+Turning requirements (separate vehicle check)
+Road dimensions confirmed as project inputs
+Junction angle tolerance (degrees)
+Junction exceptions: first road ID, second road ID, reason
+Declare screening vehicle
+Entrance street · main
+Internal street name
+Lock street
+Entrance street centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Entrance street start turning-head radius (m)
+Entrance street end turning-head radius (m)
+Move Entrance street north 2 mRemove street
+Add connected branch
+Lot products & development rates
+
+Frontage is the first dimension, along the serving kerb. Depth extends into the block. Rates are Rp per valid lot.
+
+Compact · product_1
+Product name
+Product colour
+Nominal frontage (m)
+Nominal depth (m)
+Minimum frontage (m)
+Maximum frontage (m)
+Minimum usable depth (m)
+Maximum depth (m)
+Minimum area (m²)
+Maximum area (m²)
+Maximum saleable area (m²)
+Minimum rear / front span ratio
+Permit declared irregular shapes
+Compact development rate (Rp / lot)
+Remove unused product
+Family · product_2
+Product name
+Product colour
+Nominal frontage (m)
+Nominal depth (m)
+Minimum frontage (m)
+Maximum frontage (m)
+Minimum usable depth (m)
+Maximum depth (m)
+Minimum area (m²)
+Maximum area (m²)
+Maximum saleable area (m²)
+Minimum rear / front span ratio
+Permit declared irregular shapes
+Family development rate (Rp / lot)
+Remove unused product
+Add lot product
+Product groups & target composition
+Protection, flexible space & reservations
+Fixed northeast woodland · protected
+
+Retain fictitious woodland; no development in outline or buffer.; original 359 m²
+
+Source of supplied geometry
+Feature / space name
+Lock space geometry
+Fixed northeast woodland coordinates
+Metres: x, y on each line. Last corner closes to the first.
+Record authorised source correction
+Fixed northeast woodland buffer (m)
+Buffer source / provisional assumption
+Fixed northeast woodland minimum area (m²)
+Intended function
+Requires measured road access
+Prohibited development
+All development
+Lots
+Roads
+Conditional crossing status
+No crossing
+Unresolved
+Approved crossing (record and envelope required)
+Functional overlay (physical land counted once)
+Remove uncommitted proposed space
+Fixed protection stays in place. Release a proposed space’s area, access and location commitments as a separate accepted operation before removing it.
+Flexible northwest recreation · flexible
+
+Neighborhood recreation;250 m² minimum; northwest location commitment. Pedestrian route/road access unverified.; original 268 m²
+
+Source of supplied geometry
+Feature / space name
+Lock space geometry
+Flexible northwest recreation coordinates
+Metres: x, y on each line. Last corner closes to the first.
+Flexible northwest recreation buffer (m)
+Buffer source / provisional assumption
+Flexible northwest recreation minimum area (m²)
+Intended function
+Requires measured road access
+Prohibited development
+All development
+Lots
+Roads
+Conditional crossing status
+No crossing
+Unresolved
+Approved crossing (record and envelope required)
+Location commitment
+Draw permitted location region
+Functional overlay (physical land counted once)
+Remove uncommitted proposed space
+Fixed protection stays in place. Release a proposed space’s area, access and location commitments as a separate accepted operation before removing it.
+Draw irregular open spaceDraw supplied natural featureDraw other reservation
+Separate common works costs
+Start or reset residential study
+Source/drawing geometry added to the preview. Review dimensions, constraints and quantities before accepting.
+
+Cannot accept: space_1793661701463: Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.
+
+Cancel preview
+Accept residential change
+Export residential scenarios
+Import residential collection
+Skip to plan
+UNBUILT
+Projects
+Master Planner Workflow Test
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+External road setup
+Master Planner Workflow Test · 12,000 m² · 4 vertices
+Selected: Site
+Boundary only
+Saved in this browser
+
+Boundary applied: 12,000 m². Next, draw and name the adjoining external road with its width. Undo restores the previous boundary.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Boundary ready
+
+Next, draw the adjoining external road and enter its name and width.
+
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context & survey
+Your site is ready
+
+12,000 m² · 4 corners. No layout has been generated. Any designed open spaces remain reserved.
+
+Continue residential planning
+
+Your residential study is saved. Continue with road inputs, home products and Prepare Layout.
+
+Continue residential planning
+
+Boundary → external road → home products → Prepare Layout
+
+Edit boundaryDesign open spacesGenerate layout
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Manage housing templatesSaved alternativesTerrain, drainage and phasingOpen projects
+EVALUATOR
+Details
+Boundary only · next, draw the external road and enter its name and width.

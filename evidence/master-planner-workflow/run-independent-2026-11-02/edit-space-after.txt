@@ -1,0 +1,193 @@
+UNBUILT · Evidence replay — space
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Cancel preview to close
+Flat landed residential study · geometry checks do not establish house feasibility or statutory approval. Unaccepted preview — accepted project is preserved.
+Preview: Master Planner Workflow Test — fixed inputs
+12,000 m² gross · Unresolved / failing constraints
+Draw site boundary
+External road & width
+Draw supplied road centreline
+Draw supplied natural feature
+Draw river centreline
+Draw irregular open space
+Draw reservation
+Draw connected street
+Select
+Pan
+Fit site & context
++
+−
+Snap spaces/lots to road edges
+Snap (m)
+South Main Road · 12 m
+10 m · local coordinates
+Compact
+Family
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+28 valid lots
+0 unresolved / 0 invalid
+2,576 m² valid lots
+1,457.5 m² roads
+190.2 m road
+6.8 m / valid lot
+517.2 m² fixed protection
+272 m² flexible space
+7,177.2 m² residual
+Rp 0 priced · 4 missing scopes
+Before → proposed: 28 → 28 valid lots (0); road 1,457.5 → 1,457.5 m²; residential 2,576 → 2,576 m²; cost Rp 0 → 0.
+SOP procedure
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+
+Select an object on the plan or edit inputs at right. Drag an adjustable entrance along its edge, a street or a flexible-space corner; review the regenerated lots and quantities before accepting.
+
+Inputs & commitments
+Prepare your layout
+
+Boundary → external road → lot products → Prepare Layout
+
+Site boundary: 4 corners · locked
+
+1 · External road beside the site
+
+Enter the road name and full width, then draw along the site edge, including any corners it follows. Its corridor is placed outside the fixed boundary. Finish with Enter or Finish drawing.
+
+New external road name
+New external road width (m)
+Allow a residential entrance along this road
+Draw adjacent external road
+South Main Road
+External road name
+Full external road width (m)
+Entrance permitted on adjoining frontage
+Known carriageway width and restricted access sections can be refined in Entrance & adjoining roads.
+2 · Home lot products and unit mix
+
+Width is frontage along the street. Mix is the percentage of valid lot count.
+
+Product	Width m	Depth m	Mix %	
+
+				×
+
+				×
+Add product row
+
+Total mix: 100% · must equal 100%.
+
+Mix tolerance (percentage points)
+Require mix within this tolerance
+Advanced product tolerances, pricing and individual street groups remain available below.
+Internal street corridor (m)
+Full internal corridor; provisional until confirmed in Road structure & parameters. A wider gate remains a bounded entrance exception.
+Prepare Layout
+
+Generate connected internal roads and as many measured valid lots as found within the product mix. Review the result before accepting.
+
+Source geometry & reliable scale
+Scenario name
+Assignment and site
+Entrance & adjoining roads
+Entrance decisions and additional entrances
+Road structure & parameters
+Lot products & development rates
+Product groups & target composition
+Protection, flexible space & reservations
+Separate common works costs
+Start or reset residential study
+Review inputs and quantities; accepted project geometry remains preserved.
+
+16 unresolved checks remain visible; acceptance records a study, not approval.
+
+Cancel preview
+Accept residential change
+Export residential scenarios
+Import residential collection
+Skip to plan
+UNBUILT
+Projects
+Evidence replay — space
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+External road setup
+Evidence replay — space · 12,000 m² · 4 vertices
+Selected: Site
+Boundary only
+Saved in this browser
+
+Imported project file “edit-space-input.project.json” as “Evidence replay — space”. Existing projects were kept. Accepted plan restored; drafts, undo history and photos are not included.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Boundary ready
+
+Next, draw the adjoining external road and enter its name and width.
+
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context & survey
+Your site is ready
+
+12,000 m² · 4 corners. No layout has been generated. Any designed open spaces remain reserved.
+
+Continue residential planning
+
+Your residential study is saved. Continue with road inputs, home products and Prepare Layout.
+
+Continue residential planning
+
+Boundary → external road → home products → Prepare Layout
+
+Edit boundaryDesign open spacesGenerate layout
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Manage housing templatesSaved alternativesTerrain, drainage and phasingOpen projects
+EVALUATOR
+Details
+Boundary only · next, draw the external road and enter its name and width.

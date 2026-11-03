@@ -1,0 +1,47 @@
+ M docs/ACCEPTANCE.md
+ M docs/DECISIONS.md
+ M docs/WORK-CONTEXT.md
+ M package.json
+ M src/geometry.ts
+ M src/persist.ts
+ M src/road-surfaces.ts
+ M src/streets.ts
+ M tests/dynamic-inspector-browser.cjs
+ M tests/planner-feedback-browser.cjs
+ M tests/road-surfaces.mjs
+ M tests/streets-browser.cjs
+ M web/src/App.tsx
+ M web/src/drafting.css
+ M web/src/unbuilt/DynamicInspector.tsx
+ M web/src/unbuilt/PlanCanvas.tsx
+ M web/src/unbuilt/StreetEditor.tsx
+?? docs/HANDOFF-NEXT-ADVISOR.md
+?? docs/RESIDENTIAL-SOP-GAPS.md
+?? docs/UNBUILT_HACKATHON_VIDEO_v1.md
+?? evidence/geometry-finance-review/
+?? evidence/half-width-road-fillets/
+?? evidence/masterplan-loop/
+?? evidence/merged-road-corners/
+?? evidence/planner-continuation/
+?? evidence/residential-sop/
+?? evidence/sop-continuation/
+?? src/brief.ts
+?? src/catchment.ts
+?? src/landbudget.ts
+?? src/residential-fixtures.ts
+?? src/residential-v1.ts
+?? src/residential.ts
+?? src/residual.ts
+?? src/rotated.ts
+?? tests/geometry-finance-browser.cjs
+?? tests/half-width-fillets-browser.cjs
+?? tests/merged-road-corners-browser.cjs
+?? tests/planning-insights.mjs
+?? tests/residential-browser.cjs
+?? tests/residential.mjs
+?? tests/residual-browser.cjs
+?? tests/residual-zoom.cjs
+?? tests/residual.mjs
+?? tests/rotated-lots.mjs
+?? web/src/unbuilt/ResidentialPlanner.tsx
+?? web/src/unbuilt/residential.css

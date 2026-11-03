@@ -1,0 +1,3688 @@
+{
+  "app": "UNBUILT decision record",
+  "projectName": "Cedar Market sample",
+  "exportVersion": 17,
+  "exportedAt": "2026-11-03T14:55:14.733Z",
+  "units": "Geometry in meters, local Cartesian, y-up from the south edge. Currency in Rp; calculations retain precision and displayed values may be rounded.",
+  "state": {
+    "residential": {
+      "format": "unbuilt-residential",
+      "version": 2,
+      "alternatives": [],
+      "selected": [],
+      "selectionReason": "",
+      "decisions": [
+        {
+          "at": "2026-11-02T23:19:57.928Z",
+          "action": "Accepted residential layout"
+        },
+        {
+          "at": "2026-11-02T23:20:13.812Z",
+          "action": "Accepted residential layout"
+        },
+        {
+          "at": "2026-11-02T23:20:37.818Z",
+          "action": "Accepted residential layout"
+        },
+        {
+          "at": "2026-11-02T23:21:36.584Z",
+          "action": "Accepted residential layout"
+        },
+        {
+          "at": "2026-11-02T23:29:12.006Z",
+          "action": "Accepted residential layout"
+        },
+        {
+          "at": "2026-11-03T14:55:02.068Z",
+          "action": "Accepted imported scenario collection"
+        }
+      ],
+      "accepted": {
+        "id": "residential",
+        "name": "Master Planner Workflow Test — fixed inputs",
+        "idea": "Working residential layout",
+        "advantage": "Measured valid yield and scoped quantities",
+        "compromise": "Residual and unresolved checks remain visible",
+        "inputs": {
+          "version": 2,
+          "phase": "layout",
+          "objective": "yield",
+          "objectiveNote": "Find the greatest practical number of valid, saleable lots within the fixed boundary, Compact/Family mix, permitted South Main Road access and protected features. Best found among tested options.",
+          "source": "Fictitious owner test brief. Rectangle coordinates supplied in metres; no survey, title or authority verification. South Main Road 12 m full width supplied, no carriageway or access approval.",
+          "fixedRequirements": "120 × 100 m boundary; 12,000 m² gross; protected feature and buffer fixed; products Compact 6 × 12 m, Family 8 × 16 m; valid-count target60/40 ±5pp mandatory. No boundary stretch or protection movement.",
+          "preferences": "Coherent street sections; same products facing across double-loaded roads; right-angle intersections preferred, oblique allowed where valid.",
+          "adjustable": "Permitted entrance location, unlocked internal road alignments and groups, flexible open-space vertices above commitments.",
+          "unknowns": "Carriageway, design vehicle, curve/junction/turning/entrance-widening requirements; protection authority; survey and drainage; product variation/area/saleable limits; prices, rates and market evidence. Internal8 m corridor provisional.",
+          "boundary": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ],
+          "boundaryLocked": true,
+          "calibration": "unverified",
+          "independentCheck": "",
+          "externalRoads": [
+            {
+              "id": "external_1793661593844",
+              "name": "South Main Road",
+              "a": {
+                "x": 0,
+                "y": -6
+              },
+              "b": {
+                "x": 120,
+                "y": -6
+              },
+              "path": [
+                {
+                  "x": 0,
+                  "y": -6
+                },
+                {
+                  "x": 120,
+                  "y": -6
+                }
+              ],
+              "rightOfWay": 12,
+              "carriageway": null,
+              "eligible": [
+                {
+                  "edge": 0,
+                  "from": 0,
+                  "to": 120
+                },
+                {
+                  "edge": 1,
+                  "from": 0,
+                  "to": 0.002
+                },
+                {
+                  "edge": 3,
+                  "from": 99.998,
+                  "to": 100
+                }
+              ],
+              "boundaryAlignment": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                }
+              ],
+              "source": "Fictitious test alignment. Entire south edge provisionally permitted for test access; no authority approval.",
+              "locked": true
+            }
+          ],
+          "entrance": {
+            "id": "primary",
+            "edge": 0,
+            "offset": 60,
+            "width": 8,
+            "transition": 12,
+            "roadId": "main",
+            "externalRoadId": "external_1793661593844",
+            "locked": false,
+            "role": "Primary",
+            "movements": ""
+          },
+          "roadRules": {
+            "corridor": 8,
+            "carriageway": null,
+            "cornerReturn": 0,
+            "centrelineRadius": null,
+            "junctionAngle": 90,
+            "anglePolicy": "preference",
+            "turning": "",
+            "confirmed": false
+          },
+          "roads": [
+            {
+              "id": "main",
+              "name": "Entrance street",
+              "path": [
+                {
+                  "x": 60,
+                  "y": 0
+                },
+                {
+                  "x": 60,
+                  "y": 20
+                },
+                {
+                  "x": 60,
+                  "y": 40
+                }
+              ],
+              "locked": false
+            },
+            {
+              "id": "street_1793661937915",
+              "name": "Street 2",
+              "path": [
+                {
+                  "x": 60,
+                  "y": 20
+                },
+                {
+                  "x": 12,
+                  "y": 20
+                },
+                {
+                  "x": 12,
+                  "y": 70
+                }
+              ],
+              "locked": false
+            },
+            {
+              "id": "street_1793662048496",
+              "name": "Street 3",
+              "path": [
+                {
+                  "x": 60,
+                  "y": 20
+                },
+                {
+                  "x": 112,
+                  "y": 20
+                }
+              ],
+              "locked": false
+            }
+          ],
+          "products": [
+            {
+              "id": "product_1",
+              "name": "Compact",
+              "color": "#d4a35c",
+              "frontage": 6,
+              "depth": 12,
+              "frontageMin": 5.4,
+              "frontageMax": 6.6000000000000005,
+              "depthMin": 10.8,
+              "depthMax": 13.200000000000001,
+              "areaMin": 57.60000000000001,
+              "areaMax": 86.39999999999999,
+              "maxSaleableArea": 86.39999999999999,
+              "irregular": true,
+              "minRearRatio": 0.7,
+              "rate": null
+            },
+            {
+              "id": "product_2",
+              "name": "Family",
+              "color": "#7ca8cc",
+              "frontage": 8,
+              "depth": 16,
+              "frontageMin": 7.2,
+              "frontageMax": 8.8,
+              "depthMin": 14.4,
+              "depthMax": 17.6,
+              "areaMin": 102.4,
+              "areaMax": 153.6,
+              "maxSaleableArea": 153.6,
+              "irregular": true,
+              "minRearRatio": 0.7,
+              "rate": null
+            }
+          ],
+          "groups": [
+            {
+              "id": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "from": 0,
+              "to": 1,
+              "productId": "product_1",
+              "locked": false
+            },
+            {
+              "id": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "from": 0,
+              "to": 1,
+              "productId": "product_2",
+              "locked": false
+            }
+          ],
+          "spaces": [
+            {
+              "id": "space_1793661638053",
+              "name": "Fixed northeast woodland",
+              "kind": "protected",
+              "points": [
+                {
+                  "x": 92,
+                  "y": 76
+                },
+                {
+                  "x": 109,
+                  "y": 75
+                },
+                {
+                  "x": 115,
+                  "y": 86
+                },
+                {
+                  "x": 107,
+                  "y": 96
+                },
+                {
+                  "x": 94,
+                  "y": 93
+                }
+              ],
+              "buffer": 2,
+              "bufferSource": "Tester-declared provisional2 m buffer; no statutory/ecological verification.",
+              "minArea": 0,
+              "locked": true,
+              "function": "Retain fictitious woodland; no development in outline or buffer.",
+              "requiresAccess": false,
+              "prohibition": "all",
+              "crossing": "none",
+              "source": "Fictitious test woodland outline; five supplied local-metre vertices, no environmental survey."
+            },
+            {
+              "id": "space_1793661701463",
+              "name": "Flexible northwest recreation",
+              "kind": "flexible",
+              "points": [
+                {
+                  "x": 5,
+                  "y": 70
+                },
+                {
+                  "x": 20,
+                  "y": 70
+                },
+                {
+                  "x": 24,
+                  "y": 80
+                },
+                {
+                  "x": 16,
+                  "y": 88
+                },
+                {
+                  "x": 5,
+                  "y": 84
+                }
+              ],
+              "buffer": 0,
+              "bufferSource": "No additional buffer declared",
+              "minArea": 250,
+              "locked": false,
+              "function": "Neighborhood recreation;250 m² minimum; northwest location commitment. Pedestrian route/road access unverified.",
+              "requiresAccess": true,
+              "prohibition": "all",
+              "crossing": "none",
+              "source": "Fictitious proposed neighborhood recreation space, drawn for this test.",
+              "locationNote": "Keep within northwest region x2–32 m,y65–95 m; access route not verified.",
+              "allowedRegion": [
+                {
+                  "x": 1.8,
+                  "y": 65
+                },
+                {
+                  "x": 31.900000000000002,
+                  "y": 65
+                },
+                {
+                  "x": 31.900000000000002,
+                  "y": 95.10000000000001
+                },
+                {
+                  "x": 1.8,
+                  "y": 95.10000000000001
+                }
+              ]
+            }
+          ],
+          "mix": {
+            "basis": "units",
+            "mode": "percent",
+            "tolerance": 5,
+            "mandatory": true,
+            "rounding": "largest-remainder",
+            "targets": {
+              "product_1": 60,
+              "product_2": 40
+            }
+          },
+          "commonRates": [],
+          "lockedLots": [],
+          "fill": false
+        },
+        "result": {
+          "phase": "layout",
+          "externalReservation": [],
+          "screening": [
+            {
+              "object": "street_1793661937915",
+              "state": "unknown",
+              "message": "Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+            },
+            {
+              "object": "main/street_1793661937915",
+              "state": "pass",
+              "message": "Junction angle 90.00°; preference 90° ± 10°."
+            },
+            {
+              "object": "main/street_1793661937915",
+              "state": "unknown",
+              "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+            },
+            {
+              "object": "main/street_1793661937915",
+              "state": "pass",
+              "message": "Junction angle 90.00°; preference 90° ± 10°."
+            },
+            {
+              "object": "main/street_1793661937915",
+              "state": "unknown",
+              "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+            },
+            {
+              "object": "main/street_1793662048496",
+              "state": "pass",
+              "message": "Junction angle 90.00°; preference 90° ± 10°."
+            },
+            {
+              "object": "main/street_1793662048496",
+              "state": "unknown",
+              "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+            },
+            {
+              "object": "main/street_1793662048496",
+              "state": "pass",
+              "message": "Junction angle 90.00°; preference 90° ± 10°."
+            },
+            {
+              "object": "main/street_1793662048496",
+              "state": "unknown",
+              "message": "Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+            }
+          ],
+          "resolvedRoads": [
+            {
+              "id": "main",
+              "points": [
+                {
+                  "x": 60,
+                  "y": 0
+                },
+                {
+                  "x": 60,
+                  "y": 20
+                },
+                {
+                  "x": 60,
+                  "y": 40
+                }
+              ]
+            },
+            {
+              "id": "street_1793661937915",
+              "points": [
+                {
+                  "x": 60,
+                  "y": 20
+                },
+                {
+                  "x": 12,
+                  "y": 20
+                },
+                {
+                  "x": 12,
+                  "y": 70
+                }
+              ]
+            },
+            {
+              "id": "street_1793662048496",
+              "points": [
+                {
+                  "x": 60,
+                  "y": 20
+                },
+                {
+                  "x": 112,
+                  "y": 20
+                }
+              ]
+            }
+          ],
+          "overlays": [],
+          "residualRegions": [
+            {
+              "id": "residual_1",
+              "points": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 4
+                },
+                {
+                  "x": 8,
+                  "y": 4
+                },
+                {
+                  "x": 8,
+                  "y": 70
+                },
+                {
+                  "x": 5,
+                  "y": 70
+                },
+                {
+                  "x": 5,
+                  "y": 84
+                },
+                {
+                  "x": 16,
+                  "y": 88
+                },
+                {
+                  "x": 24,
+                  "y": 80
+                },
+                {
+                  "x": 20,
+                  "y": 70
+                },
+                {
+                  "x": 16,
+                  "y": 70
+                },
+                {
+                  "x": 16,
+                  "y": 68
+                },
+                {
+                  "x": 28,
+                  "y": 68
+                },
+                {
+                  "x": 28,
+                  "y": 38
+                },
+                {
+                  "x": 16,
+                  "y": 38
+                },
+                {
+                  "x": 16,
+                  "y": 24
+                },
+                {
+                  "x": 20,
+                  "y": 24
+                },
+                {
+                  "x": 20,
+                  "y": 36
+                },
+                {
+                  "x": 56,
+                  "y": 36
+                },
+                {
+                  "x": 56,
+                  "y": 40
+                },
+                {
+                  "x": 112,
+                  "y": 40
+                },
+                {
+                  "x": 112,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                }
+              ],
+              "holes": [
+                [
+                  {
+                    "x": 90,
+                    "y": 75.911447
+                  },
+                  {
+                    "x": 90,
+                    "y": 76.088553
+                  },
+                  {
+                    "x": 90.015653,
+                    "y": 76.264967
+                  },
+                  {
+                    "x": 90.020698,
+                    "y": 76.293172
+                  },
+                  {
+                    "x": 92.010355,
+                    "y": 93.205261
+                  },
+                  {
+                    "x": 92.015653,
+                    "y": 93.264967
+                  },
+                  {
+                    "x": 92.046836,
+                    "y": 93.439307
+                  },
+                  {
+                    "x": 92.093305,
+                    "y": 93.610209
+                  },
+                  {
+                    "x": 92.154696,
+                    "y": 93.776335
+                  },
+                  {
+                    "x": 92.23053,
+                    "y": 93.936385
+                  },
+                  {
+                    "x": 92.320212,
+                    "y": 94.089107
+                  },
+                  {
+                    "x": 92.423041,
+                    "y": 94.233305
+                  },
+                  {
+                    "x": 92.538211,
+                    "y": 94.36785
+                  },
+                  {
+                    "x": 92.664822,
+                    "y": 94.491691
+                  },
+                  {
+                    "x": 92.801883,
+                    "y": 94.603857
+                  },
+                  {
+                    "x": 92.94832,
+                    "y": 94.70347
+                  },
+                  {
+                    "x": 93.102988,
+                    "y": 94.789752
+                  },
+                  {
+                    "x": 93.264677,
+                    "y": 94.862026
+                  },
+                  {
+                    "x": 93.432121,
+                    "y": 94.919728
+                  },
+                  {
+                    "x": 93.604009,
+                    "y": 94.962405
+                  },
+                  {
+                    "x": 93.620408,
+                    "y": 94.964965
+                  },
+                  {
+                    "x": 106.534111,
+                    "y": 97.94505
+                  },
+                  {
+                    "x": 106.604009,
+                    "y": 97.962405
+                  },
+                  {
+                    "x": 106.778996,
+                    "y": 97.989723
+                  },
+                  {
+                    "x": 106.955712,
+                    "y": 98.00147
+                  },
+                  {
+                    "x": 107.132776,
+                    "y": 97.997552
+                  },
+                  {
+                    "x": 107.3088,
+                    "y": 97.978
+                  },
+                  {
+                    "x": 107.482408,
+                    "y": 97.942968
+                  },
+                  {
+                    "x": 107.65224,
+                    "y": 97.89273
+                  },
+                  {
+                    "x": 107.816967,
+                    "y": 97.827678
+                  },
+                  {
+                    "x": 107.9753,
+                    "y": 97.748322
+                  },
+                  {
+                    "x": 108.126001,
+                    "y": 97.655284
+                  },
+                  {
+                    "x": 108.267889,
+                    "y": 97.54929
+                  },
+                  {
+                    "x": 108.399854,
+                    "y": 97.431171
+                  },
+                  {
+                    "x": 108.520863,
+                    "y": 97.301852
+                  },
+                  {
+                    "x": 108.568611,
+                    "y": 97.240799
+                  },
+                  {
+                    "x": 116.513317,
+                    "y": 87.309916
+                  },
+                  {
+                    "x": 116.520863,
+                    "y": 87.301852
+                  },
+                  {
+                    "x": 116.629969,
+                    "y": 87.162343
+                  },
+                  {
+                    "x": 116.726319,
+                    "y": 87.013738
+                  },
+                  {
+                    "x": 116.809158,
+                    "y": 86.857199
+                  },
+                  {
+                    "x": 116.877837,
+                    "y": 86.693951
+                  },
+                  {
+                    "x": 116.931821,
+                    "y": 86.525272
+                  },
+                  {
+                    "x": 116.970685,
+                    "y": 86.352482
+                  },
+                  {
+                    "x": 116.994125,
+                    "y": 86.176933
+                  },
+                  {
+                    "x": 117.001959,
+                    "y": 86
+                  },
+                  {
+                    "x": 116.994125,
+                    "y": 85.823067
+                  },
+                  {
+                    "x": 116.970685,
+                    "y": 85.647518
+                  },
+                  {
+                    "x": 116.931821,
+                    "y": 85.474728
+                  },
+                  {
+                    "x": 116.877837,
+                    "y": 85.306049
+                  },
+                  {
+                    "x": 116.809158,
+                    "y": 85.142801
+                  },
+                  {
+                    "x": 116.726319,
+                    "y": 84.986262
+                  },
+                  {
+                    "x": 116.719439,
+                    "y": 84.975651
+                  },
+                  {
+                    "x": 110.761851,
+                    "y": 74.053405
+                  },
+                  {
+                    "x": 110.726319,
+                    "y": 73.986262
+                  },
+                  {
+                    "x": 110.629969,
+                    "y": 73.837657
+                  },
+                  {
+                    "x": 110.520863,
+                    "y": 73.698148
+                  },
+                  {
+                    "x": 110.399854,
+                    "y": 73.568829
+                  },
+                  {
+                    "x": 110.267889,
+                    "y": 73.45071
+                  },
+                  {
+                    "x": 110.126001,
+                    "y": 73.344716
+                  },
+                  {
+                    "x": 109.9753,
+                    "y": 73.251678
+                  },
+                  {
+                    "x": 109.816967,
+                    "y": 73.172322
+                  },
+                  {
+                    "x": 109.65224,
+                    "y": 73.10727
+                  },
+                  {
+                    "x": 109.482408,
+                    "y": 73.057032
+                  },
+                  {
+                    "x": 109.3088,
+                    "y": 73.022
+                  },
+                  {
+                    "x": 109.132776,
+                    "y": 73.002448
+                  },
+                  {
+                    "x": 108.955712,
+                    "y": 72.99853
+                  },
+                  {
+                    "x": 108.87497,
+                    "y": 73.003897
+                  },
+                  {
+                    "x": 91.963343,
+                    "y": 73.998699
+                  },
+                  {
+                    "x": 91.955712,
+                    "y": 73.99853
+                  },
+                  {
+                    "x": 91.778996,
+                    "y": 74.010277
+                  },
+                  {
+                    "x": 91.604009,
+                    "y": 74.037595
+                  },
+                  {
+                    "x": 91.432121,
+                    "y": 74.080272
+                  },
+                  {
+                    "x": 91.264677,
+                    "y": 74.137974
+                  },
+                  {
+                    "x": 91.102988,
+                    "y": 74.210248
+                  },
+                  {
+                    "x": 90.94832,
+                    "y": 74.29653
+                  },
+                  {
+                    "x": 90.801883,
+                    "y": 74.396143
+                  },
+                  {
+                    "x": 90.664822,
+                    "y": 74.508309
+                  },
+                  {
+                    "x": 90.538211,
+                    "y": 74.63215
+                  },
+                  {
+                    "x": 90.423041,
+                    "y": 74.766695
+                  },
+                  {
+                    "x": 90.320212,
+                    "y": 74.910893
+                  },
+                  {
+                    "x": 90.23053,
+                    "y": 75.063615
+                  },
+                  {
+                    "x": 90.154696,
+                    "y": 75.223665
+                  },
+                  {
+                    "x": 90.093305,
+                    "y": 75.389791
+                  },
+                  {
+                    "x": 90.046836,
+                    "y": 75.560693
+                  },
+                  {
+                    "x": 90.015653,
+                    "y": 75.735033
+                  }
+                ]
+              ],
+              "area": 6854.776179544644,
+              "status": "accessible",
+              "reason": "Road edge exists; only tested frontage/depth/shape fits may become lots"
+            }
+          ],
+          "lots": [
+            {
+              "id": "lot_group_street_1793661937915_8000_16000_14000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 8,
+                  "y": 4
+                },
+                {
+                  "x": 14,
+                  "y": 4
+                },
+                {
+                  "x": 14,
+                  "y": 16
+                },
+                {
+                  "x": 8,
+                  "y": 16
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_14000_16000_20000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 14,
+                  "y": 4
+                },
+                {
+                  "x": 20,
+                  "y": 4
+                },
+                {
+                  "x": 20,
+                  "y": 16
+                },
+                {
+                  "x": 14,
+                  "y": 16
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_20000_16000_26000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 20,
+                  "y": 4
+                },
+                {
+                  "x": 26,
+                  "y": 4
+                },
+                {
+                  "x": 26,
+                  "y": 16
+                },
+                {
+                  "x": 20,
+                  "y": 16
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_26000_16000_32000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 26,
+                  "y": 4
+                },
+                {
+                  "x": 32,
+                  "y": 4
+                },
+                {
+                  "x": 32,
+                  "y": 16
+                },
+                {
+                  "x": 26,
+                  "y": 16
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_32000_16000_38000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 32,
+                  "y": 4
+                },
+                {
+                  "x": 38,
+                  "y": 4
+                },
+                {
+                  "x": 38,
+                  "y": 16
+                },
+                {
+                  "x": 32,
+                  "y": 16
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_38000_16000_44000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 38,
+                  "y": 4
+                },
+                {
+                  "x": 44,
+                  "y": 4
+                },
+                {
+                  "x": 44,
+                  "y": 16
+                },
+                {
+                  "x": 38,
+                  "y": 16
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_44000_16000_50000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 44,
+                  "y": 4
+                },
+                {
+                  "x": 50,
+                  "y": 4
+                },
+                {
+                  "x": 50,
+                  "y": 16
+                },
+                {
+                  "x": 44,
+                  "y": 16
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_50000_16000_56000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 50,
+                  "y": 4
+                },
+                {
+                  "x": 56,
+                  "y": 4
+                },
+                {
+                  "x": 56,
+                  "y": 16
+                },
+                {
+                  "x": 50,
+                  "y": 16
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_64000_16000_72000_16000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 64,
+                  "y": 0
+                },
+                {
+                  "x": 72,
+                  "y": 0
+                },
+                {
+                  "x": 72,
+                  "y": 16
+                },
+                {
+                  "x": 64,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_72000_16000_80000_16000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 72,
+                  "y": 0
+                },
+                {
+                  "x": 80,
+                  "y": 0
+                },
+                {
+                  "x": 80,
+                  "y": 16
+                },
+                {
+                  "x": 72,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_80000_16000_88000_16000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 80,
+                  "y": 0
+                },
+                {
+                  "x": 88,
+                  "y": 0
+                },
+                {
+                  "x": 88,
+                  "y": 16
+                },
+                {
+                  "x": 80,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_88000_16000_96000_16000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 88,
+                  "y": 0
+                },
+                {
+                  "x": 96,
+                  "y": 0
+                },
+                {
+                  "x": 96,
+                  "y": 16
+                },
+                {
+                  "x": 88,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_96000_16000_104000_16000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 96,
+                  "y": 0
+                },
+                {
+                  "x": 104,
+                  "y": 0
+                },
+                {
+                  "x": 104,
+                  "y": 16
+                },
+                {
+                  "x": 96,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_104000_16000_112000_16000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 104,
+                  "y": 0
+                },
+                {
+                  "x": 112,
+                  "y": 0
+                },
+                {
+                  "x": 112,
+                  "y": 16
+                },
+                {
+                  "x": 104,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_112000_24000_104000_24000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 104,
+                  "y": 24
+                },
+                {
+                  "x": 112,
+                  "y": 24
+                },
+                {
+                  "x": 112,
+                  "y": 40
+                },
+                {
+                  "x": 104,
+                  "y": 40
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_104000_24000_96000_24000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 96,
+                  "y": 24
+                },
+                {
+                  "x": 104,
+                  "y": 24
+                },
+                {
+                  "x": 104,
+                  "y": 40
+                },
+                {
+                  "x": 96,
+                  "y": 40
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_96000_24000_88000_24000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 88,
+                  "y": 24
+                },
+                {
+                  "x": 96,
+                  "y": 24
+                },
+                {
+                  "x": 96,
+                  "y": 40
+                },
+                {
+                  "x": 88,
+                  "y": 40
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_88000_24000_80000_24000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 80,
+                  "y": 24
+                },
+                {
+                  "x": 88,
+                  "y": 24
+                },
+                {
+                  "x": 88,
+                  "y": 40
+                },
+                {
+                  "x": 80,
+                  "y": 40
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_80000_24000_72000_24000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 72,
+                  "y": 24
+                },
+                {
+                  "x": 80,
+                  "y": 24
+                },
+                {
+                  "x": 80,
+                  "y": 40
+                },
+                {
+                  "x": 72,
+                  "y": 40
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793662048496_72000_24000_64000_24000",
+              "scenarioId": "residential",
+              "productId": "product_2",
+              "groupId": "group_street_1793662048496",
+              "roadId": "street_1793662048496",
+              "points": [
+                {
+                  "x": 64,
+                  "y": 24
+                },
+                {
+                  "x": 72,
+                  "y": 24
+                },
+                {
+                  "x": 72,
+                  "y": 40
+                },
+                {
+                  "x": 64,
+                  "y": 40
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_56000_24000_50000_24000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 50,
+                  "y": 24
+                },
+                {
+                  "x": 56,
+                  "y": 24
+                },
+                {
+                  "x": 56,
+                  "y": 36
+                },
+                {
+                  "x": 50,
+                  "y": 36
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_50000_24000_44000_24000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 44,
+                  "y": 24
+                },
+                {
+                  "x": 50,
+                  "y": 24
+                },
+                {
+                  "x": 50,
+                  "y": 36
+                },
+                {
+                  "x": 44,
+                  "y": 36
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_44000_24000_38000_24000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 38,
+                  "y": 24
+                },
+                {
+                  "x": 44,
+                  "y": 24
+                },
+                {
+                  "x": 44,
+                  "y": 36
+                },
+                {
+                  "x": 38,
+                  "y": 36
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_38000_24000_32000_24000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 32,
+                  "y": 24
+                },
+                {
+                  "x": 38,
+                  "y": 24
+                },
+                {
+                  "x": 38,
+                  "y": 36
+                },
+                {
+                  "x": 32,
+                  "y": 36
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_32000_24000_26000_24000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 26,
+                  "y": 24
+                },
+                {
+                  "x": 32,
+                  "y": 24
+                },
+                {
+                  "x": 32,
+                  "y": 36
+                },
+                {
+                  "x": 26,
+                  "y": 36
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_26000_24000_20000_24000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 20,
+                  "y": 24
+                },
+                {
+                  "x": 26,
+                  "y": 24
+                },
+                {
+                  "x": 26,
+                  "y": 36
+                },
+                {
+                  "x": 20,
+                  "y": 36
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_16000_38000_16000_44000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 16,
+                  "y": 38
+                },
+                {
+                  "x": 28,
+                  "y": 38
+                },
+                {
+                  "x": 28,
+                  "y": 44
+                },
+                {
+                  "x": 16,
+                  "y": 44
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_16000_44000_16000_50000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 16,
+                  "y": 44
+                },
+                {
+                  "x": 28,
+                  "y": 44
+                },
+                {
+                  "x": 28,
+                  "y": 50
+                },
+                {
+                  "x": 16,
+                  "y": 50
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_16000_50000_16000_56000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 16,
+                  "y": 50
+                },
+                {
+                  "x": 28,
+                  "y": 50
+                },
+                {
+                  "x": 28,
+                  "y": 56
+                },
+                {
+                  "x": 16,
+                  "y": 56
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_16000_56000_16000_62000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 16,
+                  "y": 56
+                },
+                {
+                  "x": 28,
+                  "y": 56
+                },
+                {
+                  "x": 28,
+                  "y": 62
+                },
+                {
+                  "x": 16,
+                  "y": 62
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_street_1793661937915_16000_62000_16000_68000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_street_1793661937915",
+              "roadId": "street_1793661937915",
+              "points": [
+                {
+                  "x": 16,
+                  "y": 62
+                },
+                {
+                  "x": 28,
+                  "y": 62
+                },
+                {
+                  "x": 28,
+                  "y": 68
+                },
+                {
+                  "x": 16,
+                  "y": 68
+                }
+              ],
+              "area": 72,
+              "frontage": 6,
+              "depth": 12,
+              "depthMax": 12,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            }
+          ],
+          "road": [
+            [
+              [
+                {
+                  "x": 8,
+                  "y": 16
+                },
+                {
+                  "x": 56,
+                  "y": 16
+                },
+                {
+                  "x": 56,
+                  "y": 0
+                },
+                {
+                  "x": 64,
+                  "y": 0
+                },
+                {
+                  "x": 64,
+                  "y": 16
+                },
+                {
+                  "x": 112,
+                  "y": 16
+                },
+                {
+                  "x": 112,
+                  "y": 24
+                },
+                {
+                  "x": 64,
+                  "y": 24
+                },
+                {
+                  "x": 64,
+                  "y": 40
+                },
+                {
+                  "x": 56,
+                  "y": 40
+                },
+                {
+                  "x": 56,
+                  "y": 24
+                },
+                {
+                  "x": 16,
+                  "y": 24
+                },
+                {
+                  "x": 16,
+                  "y": 70
+                },
+                {
+                  "x": 8,
+                  "y": 70
+                }
+              ]
+            ]
+          ],
+          "connection": [
+            [
+              [
+                {
+                  "x": 56,
+                  "y": 0
+                },
+                {
+                  "x": 64,
+                  "y": 0
+                },
+                {
+                  "x": 64,
+                  "y": 20
+                },
+                {
+                  "x": 56,
+                  "y": 20
+                }
+              ]
+            ]
+          ],
+          "offsiteConnection": [
+            [
+              [
+                {
+                  "x": 56,
+                  "y": -6
+                },
+                {
+                  "x": 64,
+                  "y": -6
+                },
+                {
+                  "x": 64,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 0
+                }
+              ]
+            ]
+          ],
+          "blocks": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 16
+                },
+                {
+                  "x": 8,
+                  "y": 16
+                },
+                {
+                  "x": 8,
+                  "y": 70
+                },
+                {
+                  "x": 5,
+                  "y": 70
+                },
+                {
+                  "x": 5,
+                  "y": 84
+                },
+                {
+                  "x": 16,
+                  "y": 88
+                },
+                {
+                  "x": 24,
+                  "y": 80
+                },
+                {
+                  "x": 20,
+                  "y": 70
+                },
+                {
+                  "x": 16,
+                  "y": 70
+                },
+                {
+                  "x": 16,
+                  "y": 24
+                },
+                {
+                  "x": 56,
+                  "y": 24
+                },
+                {
+                  "x": 56,
+                  "y": 40
+                },
+                {
+                  "x": 64,
+                  "y": 40
+                },
+                {
+                  "x": 64,
+                  "y": 24
+                },
+                {
+                  "x": 112,
+                  "y": 24
+                },
+                {
+                  "x": 112,
+                  "y": 16
+                },
+                {
+                  "x": 64,
+                  "y": 16
+                },
+                {
+                  "x": 64,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                }
+              ],
+              [
+                {
+                  "x": 90,
+                  "y": 75.911447
+                },
+                {
+                  "x": 90,
+                  "y": 76.088553
+                },
+                {
+                  "x": 90.015653,
+                  "y": 76.264967
+                },
+                {
+                  "x": 90.020698,
+                  "y": 76.293172
+                },
+                {
+                  "x": 92.010355,
+                  "y": 93.205261
+                },
+                {
+                  "x": 92.015653,
+                  "y": 93.264967
+                },
+                {
+                  "x": 92.046836,
+                  "y": 93.439307
+                },
+                {
+                  "x": 92.093305,
+                  "y": 93.610209
+                },
+                {
+                  "x": 92.154696,
+                  "y": 93.776335
+                },
+                {
+                  "x": 92.23053,
+                  "y": 93.936385
+                },
+                {
+                  "x": 92.320212,
+                  "y": 94.089107
+                },
+                {
+                  "x": 92.423041,
+                  "y": 94.233305
+                },
+                {
+                  "x": 92.538211,
+                  "y": 94.36785
+                },
+                {
+                  "x": 92.664822,
+                  "y": 94.491691
+                },
+                {
+                  "x": 92.801883,
+                  "y": 94.603857
+                },
+                {
+                  "x": 92.94832,
+                  "y": 94.70347
+                },
+                {
+                  "x": 93.102988,
+                  "y": 94.789752
+                },
+                {
+                  "x": 93.264677,
+                  "y": 94.862026
+                },
+                {
+                  "x": 93.432121,
+                  "y": 94.919728
+                },
+                {
+                  "x": 93.604009,
+                  "y": 94.962405
+                },
+                {
+                  "x": 93.620408,
+                  "y": 94.964965
+                },
+                {
+                  "x": 106.534111,
+                  "y": 97.94505
+                },
+                {
+                  "x": 106.604009,
+                  "y": 97.962405
+                },
+                {
+                  "x": 106.778996,
+                  "y": 97.989723
+                },
+                {
+                  "x": 106.955712,
+                  "y": 98.00147
+                },
+                {
+                  "x": 107.132776,
+                  "y": 97.997552
+                },
+                {
+                  "x": 107.3088,
+                  "y": 97.978
+                },
+                {
+                  "x": 107.482408,
+                  "y": 97.942968
+                },
+                {
+                  "x": 107.65224,
+                  "y": 97.89273
+                },
+                {
+                  "x": 107.816967,
+                  "y": 97.827678
+                },
+                {
+                  "x": 107.9753,
+                  "y": 97.748322
+                },
+                {
+                  "x": 108.126001,
+                  "y": 97.655284
+                },
+                {
+                  "x": 108.267889,
+                  "y": 97.54929
+                },
+                {
+                  "x": 108.399854,
+                  "y": 97.431171
+                },
+                {
+                  "x": 108.520863,
+                  "y": 97.301852
+                },
+                {
+                  "x": 108.568611,
+                  "y": 97.240799
+                },
+                {
+                  "x": 116.513317,
+                  "y": 87.309916
+                },
+                {
+                  "x": 116.520863,
+                  "y": 87.301852
+                },
+                {
+                  "x": 116.629969,
+                  "y": 87.162343
+                },
+                {
+                  "x": 116.726319,
+                  "y": 87.013738
+                },
+                {
+                  "x": 116.809158,
+                  "y": 86.857199
+                },
+                {
+                  "x": 116.877837,
+                  "y": 86.693951
+                },
+                {
+                  "x": 116.931821,
+                  "y": 86.525272
+                },
+                {
+                  "x": 116.970685,
+                  "y": 86.352482
+                },
+                {
+                  "x": 116.994125,
+                  "y": 86.176933
+                },
+                {
+                  "x": 117.001959,
+                  "y": 86
+                },
+                {
+                  "x": 116.994125,
+                  "y": 85.823067
+                },
+                {
+                  "x": 116.970685,
+                  "y": 85.647518
+                },
+                {
+                  "x": 116.931821,
+                  "y": 85.474728
+                },
+                {
+                  "x": 116.877837,
+                  "y": 85.306049
+                },
+                {
+                  "x": 116.809158,
+                  "y": 85.142801
+                },
+                {
+                  "x": 116.726319,
+                  "y": 84.986262
+                },
+                {
+                  "x": 116.719439,
+                  "y": 84.975651
+                },
+                {
+                  "x": 110.761851,
+                  "y": 74.053405
+                },
+                {
+                  "x": 110.726319,
+                  "y": 73.986262
+                },
+                {
+                  "x": 110.629969,
+                  "y": 73.837657
+                },
+                {
+                  "x": 110.520863,
+                  "y": 73.698148
+                },
+                {
+                  "x": 110.399854,
+                  "y": 73.568829
+                },
+                {
+                  "x": 110.267889,
+                  "y": 73.45071
+                },
+                {
+                  "x": 110.126001,
+                  "y": 73.344716
+                },
+                {
+                  "x": 109.9753,
+                  "y": 73.251678
+                },
+                {
+                  "x": 109.816967,
+                  "y": 73.172322
+                },
+                {
+                  "x": 109.65224,
+                  "y": 73.10727
+                },
+                {
+                  "x": 109.482408,
+                  "y": 73.057032
+                },
+                {
+                  "x": 109.3088,
+                  "y": 73.022
+                },
+                {
+                  "x": 109.132776,
+                  "y": 73.002448
+                },
+                {
+                  "x": 108.955712,
+                  "y": 72.99853
+                },
+                {
+                  "x": 108.87497,
+                  "y": 73.003897
+                },
+                {
+                  "x": 91.963343,
+                  "y": 73.998699
+                },
+                {
+                  "x": 91.955712,
+                  "y": 73.99853
+                },
+                {
+                  "x": 91.778996,
+                  "y": 74.010277
+                },
+                {
+                  "x": 91.604009,
+                  "y": 74.037595
+                },
+                {
+                  "x": 91.432121,
+                  "y": 74.080272
+                },
+                {
+                  "x": 91.264677,
+                  "y": 74.137974
+                },
+                {
+                  "x": 91.102988,
+                  "y": 74.210248
+                },
+                {
+                  "x": 90.94832,
+                  "y": 74.29653
+                },
+                {
+                  "x": 90.801883,
+                  "y": 74.396143
+                },
+                {
+                  "x": 90.664822,
+                  "y": 74.508309
+                },
+                {
+                  "x": 90.538211,
+                  "y": 74.63215
+                },
+                {
+                  "x": 90.423041,
+                  "y": 74.766695
+                },
+                {
+                  "x": 90.320212,
+                  "y": 74.910893
+                },
+                {
+                  "x": 90.23053,
+                  "y": 75.063615
+                },
+                {
+                  "x": 90.154696,
+                  "y": 75.223665
+                },
+                {
+                  "x": 90.093305,
+                  "y": 75.389791
+                },
+                {
+                  "x": 90.046836,
+                  "y": 75.560693
+                },
+                {
+                  "x": 90.015653,
+                  "y": 75.735033
+                }
+              ]
+            ]
+          ],
+          "residual": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 4
+                },
+                {
+                  "x": 8,
+                  "y": 4
+                },
+                {
+                  "x": 8,
+                  "y": 70
+                },
+                {
+                  "x": 5,
+                  "y": 70
+                },
+                {
+                  "x": 5,
+                  "y": 84
+                },
+                {
+                  "x": 16,
+                  "y": 88
+                },
+                {
+                  "x": 24,
+                  "y": 80
+                },
+                {
+                  "x": 20,
+                  "y": 70
+                },
+                {
+                  "x": 16,
+                  "y": 70
+                },
+                {
+                  "x": 16,
+                  "y": 68
+                },
+                {
+                  "x": 28,
+                  "y": 68
+                },
+                {
+                  "x": 28,
+                  "y": 38
+                },
+                {
+                  "x": 16,
+                  "y": 38
+                },
+                {
+                  "x": 16,
+                  "y": 24
+                },
+                {
+                  "x": 20,
+                  "y": 24
+                },
+                {
+                  "x": 20,
+                  "y": 36
+                },
+                {
+                  "x": 56,
+                  "y": 36
+                },
+                {
+                  "x": 56,
+                  "y": 40
+                },
+                {
+                  "x": 112,
+                  "y": 40
+                },
+                {
+                  "x": 112,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                }
+              ],
+              [
+                {
+                  "x": 90,
+                  "y": 75.911447
+                },
+                {
+                  "x": 90,
+                  "y": 76.088553
+                },
+                {
+                  "x": 90.015653,
+                  "y": 76.264967
+                },
+                {
+                  "x": 90.020698,
+                  "y": 76.293172
+                },
+                {
+                  "x": 92.010355,
+                  "y": 93.205261
+                },
+                {
+                  "x": 92.015653,
+                  "y": 93.264967
+                },
+                {
+                  "x": 92.046836,
+                  "y": 93.439307
+                },
+                {
+                  "x": 92.093305,
+                  "y": 93.610209
+                },
+                {
+                  "x": 92.154696,
+                  "y": 93.776335
+                },
+                {
+                  "x": 92.23053,
+                  "y": 93.936385
+                },
+                {
+                  "x": 92.320212,
+                  "y": 94.089107
+                },
+                {
+                  "x": 92.423041,
+                  "y": 94.233305
+                },
+                {
+                  "x": 92.538211,
+                  "y": 94.36785
+                },
+                {
+                  "x": 92.664822,
+                  "y": 94.491691
+                },
+                {
+                  "x": 92.801883,
+                  "y": 94.603857
+                },
+                {
+                  "x": 92.94832,
+                  "y": 94.70347
+                },
+                {
+                  "x": 93.102988,
+                  "y": 94.789752
+                },
+                {
+                  "x": 93.264677,
+                  "y": 94.862026
+                },
+                {
+                  "x": 93.432121,
+                  "y": 94.919728
+                },
+                {
+                  "x": 93.604009,
+                  "y": 94.962405
+                },
+                {
+                  "x": 93.620408,
+                  "y": 94.964965
+                },
+                {
+                  "x": 106.534111,
+                  "y": 97.94505
+                },
+                {
+                  "x": 106.604009,
+                  "y": 97.962405
+                },
+                {
+                  "x": 106.778996,
+                  "y": 97.989723
+                },
+                {
+                  "x": 106.955712,
+                  "y": 98.00147
+                },
+                {
+                  "x": 107.132776,
+                  "y": 97.997552
+                },
+                {
+                  "x": 107.3088,
+                  "y": 97.978
+                },
+                {
+                  "x": 107.482408,
+                  "y": 97.942968
+                },
+                {
+                  "x": 107.65224,
+                  "y": 97.89273
+                },
+                {
+                  "x": 107.816967,
+                  "y": 97.827678
+                },
+                {
+                  "x": 107.9753,
+                  "y": 97.748322
+                },
+                {
+                  "x": 108.126001,
+                  "y": 97.655284
+                },
+                {
+                  "x": 108.267889,
+                  "y": 97.54929
+                },
+                {
+                  "x": 108.399854,
+                  "y": 97.431171
+                },
+                {
+                  "x": 108.520863,
+                  "y": 97.301852
+                },
+                {
+                  "x": 108.568611,
+                  "y": 97.240799
+                },
+                {
+                  "x": 116.513317,
+                  "y": 87.309916
+                },
+                {
+                  "x": 116.520863,
+                  "y": 87.301852
+                },
+                {
+                  "x": 116.629969,
+                  "y": 87.162343
+                },
+                {
+                  "x": 116.726319,
+                  "y": 87.013738
+                },
+                {
+                  "x": 116.809158,
+                  "y": 86.857199
+                },
+                {
+                  "x": 116.877837,
+                  "y": 86.693951
+                },
+                {
+                  "x": 116.931821,
+                  "y": 86.525272
+                },
+                {
+                  "x": 116.970685,
+                  "y": 86.352482
+                },
+                {
+                  "x": 116.994125,
+                  "y": 86.176933
+                },
+                {
+                  "x": 117.001959,
+                  "y": 86
+                },
+                {
+                  "x": 116.994125,
+                  "y": 85.823067
+                },
+                {
+                  "x": 116.970685,
+                  "y": 85.647518
+                },
+                {
+                  "x": 116.931821,
+                  "y": 85.474728
+                },
+                {
+                  "x": 116.877837,
+                  "y": 85.306049
+                },
+                {
+                  "x": 116.809158,
+                  "y": 85.142801
+                },
+                {
+                  "x": 116.726319,
+                  "y": 84.986262
+                },
+                {
+                  "x": 116.719439,
+                  "y": 84.975651
+                },
+                {
+                  "x": 110.761851,
+                  "y": 74.053405
+                },
+                {
+                  "x": 110.726319,
+                  "y": 73.986262
+                },
+                {
+                  "x": 110.629969,
+                  "y": 73.837657
+                },
+                {
+                  "x": 110.520863,
+                  "y": 73.698148
+                },
+                {
+                  "x": 110.399854,
+                  "y": 73.568829
+                },
+                {
+                  "x": 110.267889,
+                  "y": 73.45071
+                },
+                {
+                  "x": 110.126001,
+                  "y": 73.344716
+                },
+                {
+                  "x": 109.9753,
+                  "y": 73.251678
+                },
+                {
+                  "x": 109.816967,
+                  "y": 73.172322
+                },
+                {
+                  "x": 109.65224,
+                  "y": 73.10727
+                },
+                {
+                  "x": 109.482408,
+                  "y": 73.057032
+                },
+                {
+                  "x": 109.3088,
+                  "y": 73.022
+                },
+                {
+                  "x": 109.132776,
+                  "y": 73.002448
+                },
+                {
+                  "x": 108.955712,
+                  "y": 72.99853
+                },
+                {
+                  "x": 108.87497,
+                  "y": 73.003897
+                },
+                {
+                  "x": 91.963343,
+                  "y": 73.998699
+                },
+                {
+                  "x": 91.955712,
+                  "y": 73.99853
+                },
+                {
+                  "x": 91.778996,
+                  "y": 74.010277
+                },
+                {
+                  "x": 91.604009,
+                  "y": 74.037595
+                },
+                {
+                  "x": 91.432121,
+                  "y": 74.080272
+                },
+                {
+                  "x": 91.264677,
+                  "y": 74.137974
+                },
+                {
+                  "x": 91.102988,
+                  "y": 74.210248
+                },
+                {
+                  "x": 90.94832,
+                  "y": 74.29653
+                },
+                {
+                  "x": 90.801883,
+                  "y": 74.396143
+                },
+                {
+                  "x": 90.664822,
+                  "y": 74.508309
+                },
+                {
+                  "x": 90.538211,
+                  "y": 74.63215
+                },
+                {
+                  "x": 90.423041,
+                  "y": 74.766695
+                },
+                {
+                  "x": 90.320212,
+                  "y": 74.910893
+                },
+                {
+                  "x": 90.23053,
+                  "y": 75.063615
+                },
+                {
+                  "x": 90.154696,
+                  "y": 75.223665
+                },
+                {
+                  "x": 90.093305,
+                  "y": 75.389791
+                },
+                {
+                  "x": 90.046836,
+                  "y": 75.560693
+                },
+                {
+                  "x": 90.015653,
+                  "y": 75.735033
+                }
+              ]
+            ]
+          ],
+          "exclusions": {
+            "space_1793661638053": [
+              [
+                [
+                  {
+                    "x": 90,
+                    "y": 75.911447
+                  },
+                  {
+                    "x": 90.015653,
+                    "y": 75.735033
+                  },
+                  {
+                    "x": 90.046836,
+                    "y": 75.560693
+                  },
+                  {
+                    "x": 90.093305,
+                    "y": 75.389791
+                  },
+                  {
+                    "x": 90.154696,
+                    "y": 75.223665
+                  },
+                  {
+                    "x": 90.23053,
+                    "y": 75.063615
+                  },
+                  {
+                    "x": 90.320212,
+                    "y": 74.910893
+                  },
+                  {
+                    "x": 90.423041,
+                    "y": 74.766695
+                  },
+                  {
+                    "x": 90.538211,
+                    "y": 74.63215
+                  },
+                  {
+                    "x": 90.664822,
+                    "y": 74.508309
+                  },
+                  {
+                    "x": 90.801883,
+                    "y": 74.396143
+                  },
+                  {
+                    "x": 90.94832,
+                    "y": 74.29653
+                  },
+                  {
+                    "x": 91.102988,
+                    "y": 74.210248
+                  },
+                  {
+                    "x": 91.264677,
+                    "y": 74.137974
+                  },
+                  {
+                    "x": 91.432121,
+                    "y": 74.080272
+                  },
+                  {
+                    "x": 91.604009,
+                    "y": 74.037595
+                  },
+                  {
+                    "x": 91.778996,
+                    "y": 74.010277
+                  },
+                  {
+                    "x": 91.955712,
+                    "y": 73.99853
+                  },
+                  {
+                    "x": 91.963343,
+                    "y": 73.998699
+                  },
+                  {
+                    "x": 108.87497,
+                    "y": 73.003897
+                  },
+                  {
+                    "x": 108.955712,
+                    "y": 72.99853
+                  },
+                  {
+                    "x": 109.132776,
+                    "y": 73.002448
+                  },
+                  {
+                    "x": 109.3088,
+                    "y": 73.022
+                  },
+                  {
+                    "x": 109.482408,
+                    "y": 73.057032
+                  },
+                  {
+                    "x": 109.65224,
+                    "y": 73.10727
+                  },
+                  {
+                    "x": 109.816967,
+                    "y": 73.172322
+                  },
+                  {
+                    "x": 109.9753,
+                    "y": 73.251678
+                  },
+                  {
+                    "x": 110.126001,
+                    "y": 73.344716
+                  },
+                  {
+                    "x": 110.267889,
+                    "y": 73.45071
+                  },
+                  {
+                    "x": 110.399854,
+                    "y": 73.568829
+                  },
+                  {
+                    "x": 110.520863,
+                    "y": 73.698148
+                  },
+                  {
+                    "x": 110.629969,
+                    "y": 73.837657
+                  },
+                  {
+                    "x": 110.726319,
+                    "y": 73.986262
+                  },
+                  {
+                    "x": 110.761851,
+                    "y": 74.053405
+                  },
+                  {
+                    "x": 116.719439,
+                    "y": 84.975651
+                  },
+                  {
+                    "x": 116.726319,
+                    "y": 84.986262
+                  },
+                  {
+                    "x": 116.809158,
+                    "y": 85.142801
+                  },
+                  {
+                    "x": 116.877837,
+                    "y": 85.306049
+                  },
+                  {
+                    "x": 116.931821,
+                    "y": 85.474728
+                  },
+                  {
+                    "x": 116.970685,
+                    "y": 85.647518
+                  },
+                  {
+                    "x": 116.994125,
+                    "y": 85.823067
+                  },
+                  {
+                    "x": 117.001959,
+                    "y": 86
+                  },
+                  {
+                    "x": 116.994125,
+                    "y": 86.176933
+                  },
+                  {
+                    "x": 116.970685,
+                    "y": 86.352482
+                  },
+                  {
+                    "x": 116.931821,
+                    "y": 86.525272
+                  },
+                  {
+                    "x": 116.877837,
+                    "y": 86.693951
+                  },
+                  {
+                    "x": 116.809158,
+                    "y": 86.857199
+                  },
+                  {
+                    "x": 116.726319,
+                    "y": 87.013738
+                  },
+                  {
+                    "x": 116.629969,
+                    "y": 87.162343
+                  },
+                  {
+                    "x": 116.520863,
+                    "y": 87.301852
+                  },
+                  {
+                    "x": 116.513317,
+                    "y": 87.309916
+                  },
+                  {
+                    "x": 108.568611,
+                    "y": 97.240799
+                  },
+                  {
+                    "x": 108.520863,
+                    "y": 97.301852
+                  },
+                  {
+                    "x": 108.399854,
+                    "y": 97.431171
+                  },
+                  {
+                    "x": 108.267889,
+                    "y": 97.54929
+                  },
+                  {
+                    "x": 108.126001,
+                    "y": 97.655284
+                  },
+                  {
+                    "x": 107.9753,
+                    "y": 97.748322
+                  },
+                  {
+                    "x": 107.816967,
+                    "y": 97.827678
+                  },
+                  {
+                    "x": 107.65224,
+                    "y": 97.89273
+                  },
+                  {
+                    "x": 107.482408,
+                    "y": 97.942968
+                  },
+                  {
+                    "x": 107.3088,
+                    "y": 97.978
+                  },
+                  {
+                    "x": 107.132776,
+                    "y": 97.997552
+                  },
+                  {
+                    "x": 106.955712,
+                    "y": 98.00147
+                  },
+                  {
+                    "x": 106.778996,
+                    "y": 97.989723
+                  },
+                  {
+                    "x": 106.604009,
+                    "y": 97.962405
+                  },
+                  {
+                    "x": 106.534111,
+                    "y": 97.94505
+                  },
+                  {
+                    "x": 93.620408,
+                    "y": 94.964965
+                  },
+                  {
+                    "x": 93.604009,
+                    "y": 94.962405
+                  },
+                  {
+                    "x": 93.432121,
+                    "y": 94.919728
+                  },
+                  {
+                    "x": 93.264677,
+                    "y": 94.862026
+                  },
+                  {
+                    "x": 93.102988,
+                    "y": 94.789752
+                  },
+                  {
+                    "x": 92.94832,
+                    "y": 94.70347
+                  },
+                  {
+                    "x": 92.801883,
+                    "y": 94.603857
+                  },
+                  {
+                    "x": 92.664822,
+                    "y": 94.491691
+                  },
+                  {
+                    "x": 92.538211,
+                    "y": 94.36785
+                  },
+                  {
+                    "x": 92.423041,
+                    "y": 94.233305
+                  },
+                  {
+                    "x": 92.320212,
+                    "y": 94.089107
+                  },
+                  {
+                    "x": 92.23053,
+                    "y": 93.936385
+                  },
+                  {
+                    "x": 92.154696,
+                    "y": 93.776335
+                  },
+                  {
+                    "x": 92.093305,
+                    "y": 93.610209
+                  },
+                  {
+                    "x": 92.046836,
+                    "y": 93.439307
+                  },
+                  {
+                    "x": 92.015653,
+                    "y": 93.264967
+                  },
+                  {
+                    "x": 92.010355,
+                    "y": 93.205261
+                  },
+                  {
+                    "x": 90.020698,
+                    "y": 76.293172
+                  },
+                  {
+                    "x": 90.015653,
+                    "y": 76.264967
+                  },
+                  {
+                    "x": 90,
+                    "y": 76.088553
+                  }
+                ]
+              ]
+            ],
+            "space_1793661701463": [
+              [
+                [
+                  {
+                    "x": 5,
+                    "y": 70
+                  },
+                  {
+                    "x": 20,
+                    "y": 70
+                  },
+                  {
+                    "x": 24,
+                    "y": 80
+                  },
+                  {
+                    "x": 16,
+                    "y": 88
+                  },
+                  {
+                    "x": 5,
+                    "y": 84
+                  }
+                ]
+              ]
+            ]
+          },
+          "issues": [
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: permissible movements are not specified."
+            },
+            {
+              "state": "unknown",
+              "object": "external_1793661593844",
+              "message": "External road ROW or carriageway dimensions are missing."
+            },
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "street_1793661937915: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "main/street_1793661937915: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "main/street_1793661937915: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "main/street_1793662048496: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "main/street_1793662048496: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+            },
+            {
+              "state": "unknown",
+              "object": "boundary",
+              "message": "Boundary scale/source is unverified."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Road dimensions are provisional project inputs."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Carriageway width is missing."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Project turning requirements have not been supplied."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+            },
+            {
+              "state": "unknown",
+              "object": "brief",
+              "message": "Carriageway, design vehicle, curve/junction/turning/entrance-widening requirements; protection authority; survey and drainage; product variation/area/saleable limits; prices, rates and market evidence. Internal8 m corridor provisional."
+            }
+          ],
+          "counts": {
+            "valid": 31,
+            "unresolved": 0,
+            "invalid": 0
+          },
+          "validLotArea": 2904,
+          "roadLength": 190,
+          "roadPerLot": 6.129032258064516,
+          "land": {
+            "gross": 12000,
+            "residential": 2904,
+            "roads": 1456,
+            "protected": 517.223820455356,
+            "flexible": 268,
+            "reservations": 0,
+            "residual": 6854.776179544644,
+            "overlap": 0,
+            "gap": 0,
+            "tolerance": 0.01
+          },
+          "schedule": [
+            {
+              "productId": "product_1",
+              "valid": 19,
+              "target": 60,
+              "roundedTarget": 19,
+              "actual": 61.29032258064516,
+              "deviation": 1.2903225806451601,
+              "mix": "pass",
+              "area": 1368,
+              "minArea": 72,
+              "meanArea": 72,
+              "maxArea": 72,
+              "cost": null
+            },
+            {
+              "productId": "product_2",
+              "valid": 12,
+              "target": 40,
+              "roundedTarget": 12,
+              "actual": 38.70967741935484,
+              "deviation": -1.2903225806451601,
+              "mix": "pass",
+              "area": 1536,
+              "minArea": 128,
+              "meanArea": 128,
+              "maxArea": 128,
+              "cost": null
+            }
+          ],
+          "groupSchedule": [
+            {
+              "groupId": "group_street_1793661937915",
+              "productId": "product_1",
+              "valid": 19,
+              "matching": true
+            },
+            {
+              "groupId": "group_street_1793662048496",
+              "productId": "product_2",
+              "valid": 12,
+              "matching": true
+            }
+          ],
+          "cost": 0,
+          "missingCosts": [
+            "Compact: per-lot development rate missing",
+            "Family: per-lot development rate missing",
+            "roads: common works unpriced",
+            "spaces: common works unpriced"
+          ],
+          "qualified": false,
+          "skipped": {
+            "overlap with road, reservation or another lot": 3,
+            "usable depth outside product variation": 9
+          }
+        }
+      }
+    },
+    "site": {
+      "w": 120,
+      "h": 100,
+      "planning": {
+        "lotDepth": 20,
+        "greenBuffer": 0,
+        "homeWidth": 10,
+        "homeDepth": 6,
+        "streets": [],
+        "siteLocked": false,
+        "priceLocked": true
+      },
+      "areaM2": 12000,
+      "provenance": "fictional Cedar Market sample"
+    },
+    "entrance": {
+      "edge": "west",
+      "offset": 50,
+      "width": 8
+    },
+    "openSpace": {
+      "geometry": {
+        "x": 78,
+        "y": 62,
+        "w": 24,
+        "h": 20
+      },
+      "locked": true,
+      "surface": "landscaped/shared green (assumed — other surface types unmodeled)",
+      "costBasisRpPerM2": 150000
+    },
+    "plan": {
+      "family": "spine",
+      "frontage": 10,
+      "profile": "family-200",
+      "roads": [
+        {
+          "x": 0,
+          "y": 47,
+          "w": 120,
+          "h": 6
+        }
+      ],
+      "parcels": [
+        {
+          "x": 0,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 0,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 10,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 20,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 30,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 40,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 50,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 60,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 70,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 80,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 90,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 100,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 27,
+          "w": 10,
+          "h": 20
+        },
+        {
+          "x": 110,
+          "y": 53,
+          "w": 10,
+          "h": 20
+        }
+      ],
+      "lotReshapes": {},
+      "draftPending": null
+    },
+    "quantities": {
+      "n": 20,
+      "roadArea": 720,
+      "greenArea": 480,
+      "parcelArea": 4000,
+      "unallocatedArea": 6800
+    },
+    "economics": {
+      "roadCost": 576000000,
+      "homeCost": 6000000000,
+      "greenCost": 72000000,
+      "costNonLand": 10380400000,
+      "finance": {
+        "revenue": 17000000000,
+        "surplus": -3890400000,
+        "margin": -0.2288470588235294,
+        "landAllowance": 3559600000,
+        "ownerGap": 6440400000,
+        "requiredPrice": 1242707317.073171
+      }
+    },
+    "assumptions": {
+      "assumedPriceRp": 850000000,
+      "ceilingRp": 850000000,
+      "ownerExpectationRp": 10000000000,
+      "targetFraction": 0.15,
+      "profileSource": "Fictional broker note BM-01: 180-300 m2 family lots at Rp780-920m (reported assumption, not verified sale)."
+    }
+  },
+  "events": [],
+  "history": {
+    "undoDepth": 0,
+    "redoDepth": 0,
+    "note": "Entries are append-only: Undo/Redo appear as events below, never as rewrites."
+  }
+}

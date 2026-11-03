@@ -1,0 +1,108 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: G — preferred curved west loop, east heads43 fixed nominal products and limits
++ actual - expected
+... Skipped lines
+
+  [
+    {
+      areaMax: 86.39999999999999,
+      areaMin: 57.60000000000001,
+      color: '#d4a35c',
+...
+      name: 'Compact',
+-     rate: null
+    },
+    {
+      areaMax: 153.6,
+      areaMin: 102.4,
+      color: '#7ca8cc',
+...
+      name: 'Family',
+-     rate: null
+    }
+  ]
+
+    at file:///home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/verify-artifacts.mjs:4:399
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [
+    {
+      id: 'product_1',
+      name: 'Compact',
+      color: '#d4a35c',
+      frontage: 6,
+      depth: 12,
+      frontageMin: 5.4,
+      frontageMax: 6.6000000000000005,
+      depthMin: 10.8,
+      depthMax: 13.200000000000001,
+      areaMin: 57.60000000000001,
+      areaMax: 86.39999999999999,
+      maxSaleableArea: 86.39999999999999,
+      irregular: true,
+      minRearRatio: 0.7
+    },
+    {
+      id: 'product_2',
+      name: 'Family',
+      color: '#7ca8cc',
+      frontage: 8,
+      depth: 16,
+      frontageMin: 7.2,
+      frontageMax: 8.8,
+      depthMin: 14.4,
+      depthMax: 17.6,
+      areaMin: 102.4,
+      areaMax: 153.6,
+      maxSaleableArea: 153.6,
+      irregular: true,
+      minRearRatio: 0.7
+    }
+  ],
+  expected: [
+    {
+      id: 'product_1',
+      name: 'Compact',
+      color: '#d4a35c',
+      frontage: 6,
+      depth: 12,
+      frontageMin: 5.4,
+      frontageMax: 6.6000000000000005,
+      depthMin: 10.8,
+      depthMax: 13.200000000000001,
+      areaMin: 57.60000000000001,
+      areaMax: 86.39999999999999,
+      maxSaleableArea: 86.39999999999999,
+      irregular: true,
+      minRearRatio: 0.7,
+      rate: null
+    },
+    {
+      id: 'product_2',
+      name: 'Family',
+      color: '#7ca8cc',
+      frontage: 8,
+      depth: 16,
+      frontageMin: 7.2,
+      frontageMax: 8.8,
+      depthMin: 14.4,
+      depthMax: 17.6,
+      areaMin: 102.4,
+      areaMax: 153.6,
+      maxSaleableArea: 153.6,
+      irregular: true,
+      minRearRatio: 0.7,
+      rate: null
+    }
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

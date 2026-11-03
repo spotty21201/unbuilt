@@ -1,0 +1,5 @@
+{
+  "checks": 59,
+  "status": "passed",
+  "sharedKernel": "Polygon overlay uses the application polygon-clipping kernel; separate arithmetic audit uses shoelace/line/containment calculations."
+}

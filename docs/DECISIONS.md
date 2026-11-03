@@ -571,3 +571,207 @@ Use pinned `polygon-clipping` at the root for robust union/holes rather than a n
 ## Consolidated PRD v0.19 — 31 October 2026
 
 At the owner's request, issue `docs/PRD_v0.19.md` as the current consolidated product specification. Retain earlier versions and their detailed feature contracts. Record the implemented Features 1–12, angled/rounded street extension, four resolved tester findings, current compatibility and verification, and outstanding real-model/data/device/human/professional gates. This documentation revision authorizes no additional application behavior. The application checkpoint `31a21f5` is pushed to GitHub main; include this new PRD and context update in a subsequent documentation commit.
+
+## Separate geometry validity from modeled financial concerns — 31 October 2026
+
+The owner reported “spine 10 m” beside a 6 m street and a financially adverse scheme described as having no issues. The header's 10 m is the nominal lot-frontage setting, not street width. Label both, derive actual widths from the active network or shared generated width, list mixed widths and mark drafts. Do not alter correct measured areas to match the ambiguous wording.
+
+Issues must count and display owner shortfall, negative/below-target surplus and unavailable revenue separately from geometry/input validation. Use the evaluator's displayed finance object and label its accepted/draft/option/last-valid scope. Met modeled targets remain qualified by entered assumptions. Financial concerns do not disable valid geometry edits or become engineering/commercial approval. Replace “Plan valid” with “Geometry valid,” remove blanket no-open-issues/no-blockers wording and the Economics “scheme works” claim. Keep the longer results panel accessible to keyboard scrolling. The header indicator opens, scrolls to and focuses the review on narrow screens. Keep the indicator compact; expanding its displayed scope text can change header height and move the drawing projection mid-gesture. Put that scope in the review and indicator title instead. Preserve all existing prompts, earlier evidence and unrelated work; see `evidence/geometry-finance-review/README.md` for verification.
+
+## Planner insights slice — land budget, brief, access, yield presets
+
+The owner accepted four masterplanner-reported gaps and authorized implementing them. New pure modules only derive from measured geometry and declared inputs: `src/landbudget.ts` (gross density per total site hectare; net density per hectare of lots+roads+designed green; allocation shares; road area per home), `src/brief.ts` (owner-declared density band, minimum green share and maximum unallocated share, evaluated Pass/Fail with margins; unset or non-positive rules are not checked; wording never claims regulation), and `src/catchment.ts` (per-lot straight-line edge distance to open space, 150/300/400 m buckets, direct adjacency ≤2 m; approximations labelled, never walking routes). Quantities carries all three; yield starting points (Compact Spine 8 m, Standard Spine 10 m, Garden Loop 12 m) apply through the reviewed spec-change path as starting points, not optima. Brief rules are session-only in this slice; persistence would need an envelope decision.
+
+Rotated-lot generation along angled streets is deliberately deferred: it is a subdivision-engine change (generation, hold preservation, area reconciliation) rather than an insight, and stays outside scope until separately authorized. No persistence envelopes changed (project/record/snapshot unchanged), so downgrade guards are untouched. Live AI configuration and the external validation gates are unaffected.
+
+## Rotated lot generation — engine landed, parcel-channel wiring gated
+
+The owner authorized the deferred subdivision change. `src/rotated.ts` now generates whole lots along any straight street segment: oriented rectangles from the kerb line (half street width plus clearance), per-side or both sides, validated against the site boundary, unioned pavement and open spaces, with every skipped candidate carrying a named reason; 26 hand-derived fixtures (`tests/rotated-lots.mjs`) cover counts, true rotated areas, kerb offsets, boundary/pavement/space conflicts, the generation cap and home-template fit in both orientations. Cross-segment composition (lots from two segments overlapping each other) is the caller's responsibility per the single-segment input contract.
+
+Full workbench wiring is blocked by one concrete fact: parcels are `Rect`-typed end to end — `Layout.parcels`, quantity derivation, layout validation, housing assignment, `PlanCanvas` rendering and the rect-only manual lot-plan validation all consume rectangles, and planning fields reach persistence through the conditional envelope ladder (record v15 / snapshot v12 for shaped streets) with downgrade guards. Consuming `Pt[4]` lots therefore needs an envelope-versioned polygon-parcel channel: a new planning field plus capability (e.g. `rotated-lots`), quantities/rendering/validation support, and downgrade refusal in older readers. That is the exact next step and requires its own authorization; it was not smuggled into this change. No existing envelopes changed.
+
+## 2026-10-26 — Residual land classification (component-level, rules only)
+Remainder = connected components of site minus parcels/pavement/designed green
+(polygon-clipping difference). Classes: reserved-clearance (adjoins open-space
+buffer), too-small (< profile min lot area), developable (>= min lot area AND
+adjoins pavement), inaccessible. Components are never subdivided into
+hypothetical lots; totals reconcile to the Quantities remainder. Manual street
+networks show "Not yet evaluated" rather than a false classification.
+
+
+## Planning continuation — 1 November 2026
+
+Continue the ready residual-land and S5 verification work while preserving the
+uncommitted planning modules, earlier financial-status correction and all tester
+prompts. The original handoff is truncated; preserve it and use the owner's
+summary, code and prior report to establish scope. Rotated-lot workbench wiring
+still requires the separately authorized versioned polygon-parcel contract.
+
+Residual classification uses the displayed site/layout/parcel edits and actual
+unioned pavement with holes and entrance aprons. Keep holes in remaining regions,
+require a positive shared pavement edge for access, and reject a report whose
+area differs from the evaluator's remainder by more than 0.01 m². Do not infer
+access from proximity, point contact or containment. Preserve small fragments;
+classes describe connected regions, never newly generated lots. Open-space
+clearance remains a conservative bounding-box exclusion: flag the whole region
+only when actual remaining land intersects it, and name that limitation in the
+UI. A hole lying inside the exclusion must not create a false intersection.
+This supersedes the earlier manual-network “Not yet evaluated” limitation.
+
+Scope land budget, open-space references and residual assessment to the same
+working/draft/option/last-valid plan as the displayed quantities. Explain the
+existing session-only brief's save/export limitation without silently changing
+saved formats or the owner's rules. No housing, price, ceiling, expectation,
+profile, layout-generation or financial formula change is part of this slice.
+
+Automated S5 checks now preserve exact locked rectangular and polygon green
+geometry/location and held assumptions across editor/search/history/save flows.
+These do not establish human acceptance or M2/M3. Root 839 checks, targeted
+browser 46 checks, 39/39 browser suites and separate native 200% zoom 6 checks
+pass; build/lint pass. Evidence and open gates:
+`evidence/planner-continuation/REPORT.md`. Leave all work local/uncommitted.
+
+## Merged road outlines and reviewed fillets — 1 November 2026
+
+The owner requested continuous pavement and rounded turning corners instead of
+stacked road rectangles. Legacy roads were still drawn as separate SVG rectangles,
+while the advanced manual-road path already used measured unioned pavement.
+Draw every layout's road union and entrance apron as one outline with holes.
+This removes internal strokes while preserving legacy area, inputs and formats.
+Memoize the union independently of pan/zoom. Name the pavement with valid leaf
+image semantics inside the interactive canvas group; object selection remains
+available through the existing keyboard-accessible inspector.
+
+Expose Round road corners beside Circulation metrics. It opens the existing
+measured street draft at 4 m, with explicit Apply/Cancel, consequences and history.
+Generated and old manual loops can contain short centreline tails wholly within
+perpendicular junction pavement. During explicit rounding, normalize those
+orthogonal tails so they do not masquerade as dead-end caps and keep outside
+turns square. Keep real full-width entrance/dead-end caps. The direct action,
+radius entry and preset share this normalization; accepted networks are not
+mutated until Apply. Ordinary street editing retains its legacy conversion.
+
+Do not cosmetically round a drawing while continuing to measure rectangular
+pavement, automatically round old snapshots, move protected green or drop held
+lots. A conflicting fillet blocks Apply with a reason. Applying this draft uses
+the existing held manual-network contract and existing advanced-road envelopes;
+there is no new saved format or automatic regeneration policy. Vehicle tracking
+and engineering approval are outside this kerb-geometry correction. Evidence:
+`evidence/merged-road-corners/REPORT.md`. All work remains local/uncommitted.
+
+## Half-width kerb fillets — 1 November 2026
+
+The owner refined the requested fillets to half road width and smooth meetings
+without intermediate jagged steps. Replace the 4 m preset with a calculated half
+of the narrowest street width, retaining the existing explicit numeric radius
+and advanced-road envelopes. Custom values remain editable and are not silently
+linked to later width changes.
+
+Replace the per-corner 45% edge limit with shared tangent budgets: adjacent
+curves may consume a full edge proportionally, meeting without an unused jog;
+terminal caps consume no curve budget. Report radii limited by genuinely short
+geometry. Preserve the full-width entrance/dead-end caps and 5 mm chord bound.
+Round SVG stroke joins follow the actual measured pavement.
+
+An inside curve cannot occupy kept green. For an explicit half-width preview
+of generated Spine routing, try the existing router with extra corner room,
+retaining original space geometry, entered clearance and measured entrance
+apron. Accept that detour only if pavement conflicts clear; normal whole-layout
+and held-work guards still govern Apply. Keep manual street geometry held and
+retain unresolved blockers instead of fabricating successful rounding. Apply
+continues to create a held manual network and one plan-history step.
+
+Refresh the local calculation service after changing shared curve fitting;
+preserve its environment/configuration. Live short-turn candidates must match
+the current engine, not just the drawing. Evidence and all validation gates:
+`evidence/half-width-road-fillets/REPORT.md`. Keep this work uncommitted.
+
+## Residential SOP v2.0 implementation, 1 November 2026
+
+- The latest explicit owner task supersedes old rectangular/single-product and
+  house-template-first scope gates. Residential products are distinct from house
+  templates; a house footprint is not a prerequisite to generating a lot.
+- Use an additive versioned polygon scenario in `PersistedState.residential`.
+  Preserve legacy Rect plans and envelopes rather than converting them silently.
+- Existing polygon-clipping and kerb geometry support the new deterministic
+  engine. Full corridor strips remain the minimum footprint: returns may add
+  land, never silently trim the entered corridor width.
+- Generation uses actual merged kerb chains, clipped polygons and declared
+  frontage/depth/area/taper constraints. Residual fill tests actual remaining
+  polygons using permitted existing products. No street-length count substitutes
+  for the validated polygon count.
+- Unknown road/vehicle/off-site checks stay unknown. Accepting a study is not
+  approval. Search tests at most 64 real road/section configurations and reports
+  tested conflicts; it does not claim global optimality or impossibility.
+- Physical allocation includes all retained lot statuses for land reconciliation;
+  valid lot area, mix, yield and per-lot costs use only valid lot records.
+- See `evidence/residential-sop/REPORT.md` for verification and remaining limits.
+
+
+## Residential SOP continuation — 1 November 2026 client date
+
+The owner's follow-up authorizes continuing all 26 SOP steps, correcting the
+main-road-first start, given fixed feature outlines and arbitrary flexible
+polygons. Implemented version 2 site inputs, actual road-derived gate choices,
+source geometry/calibration and independent dimension check, protected originals
+and authorized revisions/crossings, free polygon drawing/editing, centreline
+curves/turning heads and bounded vehicle screening, group exceptions, manual lot
+outlines, cancelable background proposals/search, scoped quantities, broader
+spatial alternatives and new-identity combination/revisions. Session history
+survives editor closure; complete collection import/merge is reviewable and
+preserves existing alternatives. Project v16 / record v17 preserve new state;
+v1 residential calculations are frozen and upgrades are explicit previews.
+
+The authoritative latest gap matrix is `docs/SOP-CONTINUATION.md`; executed
+checks, screenshots, starting inputs, geometry/quantity changes, commands and
+remaining limits are in `evidence/sop-continuation/REPORT.md`. Detailed vehicle
+manoeuvres/approvals and exhaustive/global layout optimization are not claimed.
+Existing Rect/house/finance/AI data and unrelated dirty changes are preserved.
+No commit, push or deployment was requested or performed.
+
+## Master-planner correction contracts — 2 November 2026 client workday
+
+- Add optional V2 `inputCommitments` without regenerating old accepted results or
+  changing the shared entrance-helper contract. It stores exact fixed inputs,
+  preferred gate and future park access as unresolved obligations. Groups/held
+  lots require the measured-layout stage; generation deliberately clears it.
+- Account for required recreation access in generic street-phase search. The
+  candidate routing allowance is separate from mandatory full physical corridor,
+  protection, mix and park checks. A bounded search rejection is not a proof of
+  infeasibility, and a partial accessible-lobe layout does not serve a narrow
+  disconnected lobe by implication.
+- Preserve successful road-overlay outputs. If normal and the existing1µm-grid
+  union both hit known near-coincident overlay failures, union all same-grid
+  strips pairwise; never replace with empty or partial geometry. Unexpected
+  errors preserve the accepted state and block acceptance.
+- Project summaries resolve the residential workspace separately from legacy
+  geometry/finance. Human lot labels resolve current names while IDs remain
+  stable and inspectable. Retained plan status is separate from rejected trial
+  reasons; zero denominators remain null with explanatory UI text.
+- Conditional geometry screening and priced subtotals retain missing inputs and
+  unpriced scopes. No ranking by fabricated full costs or unsupported optimum.
+
+Evidence, verification and limits:
+`evidence/master-planner-workflow/run-corrections-2026-11-02/REPORT.md`.
+No commit, push or deployment; prior uncommitted work and evidence preserved.
+
+## Muse Wonder residential tool contract — 3 November 2026
+
+Use the owner's chosen Muse Wonder model through the private server connection.
+Reuse the native tool-call adapter instead of adding a second SDK or provider
+routing mechanism. Hosted Meta requires auto tool choice; application validation
+still accepts exactly one supported call and refuses ungrounded plain prose.
+
+The model interprets intent and offers a short qualitative assessment. Numeric
+facts are selected from the current deterministic scenario. Supported geometric
+requests execute in a background worker, preserving fixed inputs, mix, products
+and locks. A proposed result first appears in the Muse card, then enters the
+existing preview/accept/cancel/history path. Search keeps entrance and spaces
+fixed by default; a flexible-space adjustment requires its own explicit tool.
+No model tool commits, unlocks, rewrites products or relaxes requirements.
+
+Keep conversation ephemeral and invalidate it when input/selection context
+changes. Keep operator credentials outside projects, frontend assets and
+reports. Show current connection state honestly. Reduce repeated explanatory
+copy and collapse completed setup; retain detailed checks on demand. See the
+new run report for live versus scripted validation and bounded-search limits.

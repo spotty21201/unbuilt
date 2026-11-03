@@ -1,0 +1,4 @@
+PASS more-lots 14 trials; 0 improving candidates; No improvement found among the supported trials with entrance and spaces held. This does not prove no better layout exists.
+PASS less-road 14 trials; 1 improving candidates; Best improvement found among tested layouts; review the trade-offs.
+PASS better-mix 2 trials; 0 improving candidates; No improvement found among the supported trials with entrance and spaces held. This does not prove no better layout exists.
+ALL 3 SEARCH ACTIONS PASS

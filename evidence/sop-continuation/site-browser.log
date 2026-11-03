@@ -1,0 +1,22 @@
+PASS new site input stage has zero invented roads, entrances or lots
+PASS main-road position alone does not invent access permission
+PASS southern main-road geometry stored before entrance choice
+PASS given natural feature preserves irregular source position, original outline and hole
+PASS entrance selected from southern road creates inward connection with no product invented
+PASS explicit product and street group generate measured lots
+PASS moving adjustable gate changes connection and lot polygons while preserving main road
+PASS save/reopen preserves source geometry and road relationships exactly
+PASS history after full browser reload is not falsely promised
+PASS one undo after closing/reopening restores geometry and schedules
+PASS redo after reopening restores complete operation
+PASS freehand five-corner flexible polygon is stored and recomputes land and lots
+PASS accepted supplied natural geometry cannot be reshaped as flexible park
+PASS drawing Undo shortcut removes a point without undoing an accepted scenario
+PASS drawing Redo restores the point without changing accepted quantities
+PASS unfinished-shape cancellation retains entire accepted scenario
+PASS second reopen preserves irregular polygons, holes, allocations and quantities
+PASS clear lot allocations preserves fixed site, main road and supplied protection while clearing yield
+PASS one undo restores complete pre-clear allocations and measured schedules
+PASS adding products after deleting an unused middle product preserves unique stable records
+PASS no uncaught browser errors
+ALL 21 SITE-FIRST BROWSER CHECKS PASS

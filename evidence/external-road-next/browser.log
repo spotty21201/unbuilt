@@ -1,0 +1,21 @@
+PASS blank project starts with boundary before external road
+PASS applying boundary exposes Draw external road as next action
+PASS external road action precedes legacy generation
+PASS accepting boundary does not invent internal roads or lots
+PASS next action focuses the road name and exposes width immediately
+PASS road drawing requires a width
+PASS sub-minimum road width is refused before drawing
+PASS out-of-range road width is refused before drawing
+PASS blank road name is refused before drawing
+PASS road section stays open after drawing
+PASS actual named 10 m road lies adjacent outside the fixed south edge
+PASS entrance candidates derive only from substantial adjoining frontage
+PASS boundary and zero-lot input stage are preserved
+PASS recorded road name and width remain editable and visible
+PASS cancelling width change restores the entire accepted road
+PASS saved road advances the main entry to continue planning
+PASS save/reopen preserves road geometry, name, width and boundary exactly
+PASS 1024px road inputs remain reachable without page overflow
+PASS 375px road inputs remain reachable without page overflow
+PASS no browser runtime errors
+ALL 20 EXTERNAL ROAD NEXT-STEP CHECKS PASS

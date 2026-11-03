@@ -1,0 +1,23 @@
+PASS explanations derive from actual current valid counts and mix
+PASS fact selection returns engine facts, not model arithmetic
+PASS untrusted apply_plan arguments are rejected
+PASS untrusted explain_plan arguments are rejected
+PASS untrusted shift_road arguments are rejected
+PASS untrusted shift_road arguments are rejected
+PASS untrusted test_alternatives arguments are rejected
+PASS untrusted reshape_space arguments are rejected
+PASS locked gate cannot be moved even with explicit model intent
+PASS locked roads cannot be shifted
+file:///home/spotty/projects/unbuilt/src/residential-muse.ts:35
+ else if(name==='move_entrance'){keys(['offset']);if(i.entrance.locked)throw Error('The entrance is locked. Unlock it deliberately in the entrance controls first.');if(!num(a.offset,200000)||a.offset<0)throw Error('Supply an entrance offset in metres.');action={kind:name,offset:a.offset};label=`Test entrance at ${fmt(a.offset)}m along its current boundary edge`;}
+                                                                             ^
+
+Error: The entrance is locked. Unlock it deliberately in the entrance controls first.
+    at validateMuseChoice (file:///home/spotty/projects/unbuilt/src/residential-muse.ts:35:78)
+    at executeMuseAction (file:///home/spotty/projects/unbuilt/src/residential-muse.ts:46:82)
+    at file:///home/spotty/projects/unbuilt/tests/residential-muse.mjs:8:13
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.23.3

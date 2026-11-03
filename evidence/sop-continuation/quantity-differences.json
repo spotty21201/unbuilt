@@ -1,0 +1,746 @@
+[
+  {
+    "action": "entrance-move",
+    "before": {
+      "counts": {
+        "valid": 27,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 2560.0000026542766,
+        "roads": 908,
+        "protected": 220.574794978762,
+        "flexible": 200,
+        "reservations": 0,
+        "residual": 8111.425203617826,
+        "overlap": 0.0000012508644431363791,
+        "gap": 0,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "after": {
+      "counts": {
+        "valid": 26,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 2431.105633982919,
+        "roads": 910.2720493083459,
+        "protected": 220.574794978762,
+        "flexible": 200,
+        "reservations": 0,
+        "residual": 8238.047527173405,
+        "overlap": 0.000005443431291496381,
+        "gap": 0,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "issues": [
+      {
+        "state": "unknown",
+        "object": "external",
+        "message": "External road source/alignment assurance is missing."
+      },
+      {
+        "state": "unknown",
+        "object": "entrance",
+        "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+      },
+      {
+        "state": "unknown",
+        "object": "feature",
+        "message": "Retained natural feature: buffer distance is provisional; supply its source."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 3 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Road dimensions are provisional project inputs."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Project turning requirements have not been supplied."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+      }
+    ]
+  },
+  {
+    "action": "road-move",
+    "before": {
+      "counts": {
+        "valid": 26,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 2431.105633982919,
+        "roads": 910.2720493083459,
+        "protected": 220.574794978762,
+        "flexible": 200,
+        "reservations": 0,
+        "residual": 8238.047527173405,
+        "overlap": 0.000005443431291496381,
+        "gap": 0,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "after": {
+      "counts": {
+        "valid": 26,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 2429.612091228926,
+        "roads": 913.6125076312269,
+        "protected": 220.574794978762,
+        "flexible": 200,
+        "reservations": 0,
+        "residual": 8236.200625977357,
+        "overlap": 0.000020164361558272503,
+        "gap": 3.4808914506356814e-7,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "issues": [
+      {
+        "state": "unknown",
+        "object": "external",
+        "message": "External road source/alignment assurance is missing."
+      },
+      {
+        "state": "unknown",
+        "object": "entrance",
+        "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+      },
+      {
+        "state": "unknown",
+        "object": "feature",
+        "message": "Retained natural feature: buffer distance is provisional; supply its source."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 3 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 4 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Road dimensions are provisional project inputs."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Project turning requirements have not been supplied."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+      }
+    ]
+  },
+  {
+    "action": "product-group",
+    "before": {
+      "counts": {
+        "valid": 26,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 2429.612091228926,
+        "roads": 913.6125076312269,
+        "protected": 220.574794978762,
+        "flexible": 200,
+        "reservations": 0,
+        "residual": 8236.200625977357,
+        "overlap": 0.000020164361558272503,
+        "gap": 3.4808914506356814e-7,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "after": {
+      "counts": {
+        "valid": 22,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 2814.091841909135,
+        "roads": 913.6125076312269,
+        "protected": 220.574794978762,
+        "flexible": 200,
+        "reservations": 0,
+        "residual": 7851.720870036022,
+        "overlap": 0.000015537800209131092,
+        "gap": 9.826543987401237e-7,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "issues": [
+      {
+        "state": "unknown",
+        "object": "external",
+        "message": "External road source/alignment assurance is missing."
+      },
+      {
+        "state": "unknown",
+        "object": "entrance",
+        "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+      },
+      {
+        "state": "unknown",
+        "object": "feature",
+        "message": "Retained natural feature: buffer distance is provisional; supply its source."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 3 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 4 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Road dimensions are provisional project inputs."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Project turning requirements have not been supplied."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+      }
+    ]
+  },
+  {
+    "action": "flexible-space",
+    "before": {
+      "counts": {
+        "valid": 22,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 2814.091841909135,
+        "roads": 913.6125076312269,
+        "protected": 220.574794978762,
+        "flexible": 200,
+        "reservations": 0,
+        "residual": 7851.720870036022,
+        "overlap": 0.000015537800209131092,
+        "gap": 9.826543987401237e-7,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "after": {
+      "counts": {
+        "valid": 21,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 2683.8677566110614,
+        "roads": 913.6125076312269,
+        "protected": 220.574794978762,
+        "flexible": 280,
+        "reservations": 0,
+        "residual": 7901.944955334095,
+        "overlap": 0.000015537800209131092,
+        "gap": 9.826543987401237e-7,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "issues": [
+      {
+        "state": "unknown",
+        "object": "external",
+        "message": "External road source/alignment assurance is missing."
+      },
+      {
+        "state": "unknown",
+        "object": "entrance",
+        "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+      },
+      {
+        "state": "unknown",
+        "object": "feature",
+        "message": "Retained natural feature: buffer distance is provisional; supply its source."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 3 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 4 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Road dimensions are provisional project inputs."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Project turning requirements have not been supplied."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+      }
+    ]
+  },
+  {
+    "action": "saved-reopened",
+    "before": {
+      "counts": {
+        "valid": 32,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 3196.130562026586,
+        "roads": 2319.573270845706,
+        "protected": 220.574794978762,
+        "flexible": 280,
+        "reservations": 0,
+        "residual": 5983.721407540228,
+        "overlap": 0.00003882720193360001,
+        "gap": 0.0000034359200071776286,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "after": {
+      "counts": {
+        "valid": 32,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "land": {
+        "gross": 12000,
+        "residential": 3196.130562026586,
+        "roads": 2319.573270845706,
+        "protected": 220.574794978762,
+        "flexible": 280,
+        "reservations": 0,
+        "residual": 5983.721407540228,
+        "overlap": 0.00003882720193360001,
+        "gap": 0.0000034359200071776286,
+        "tolerance": 0.01
+      },
+      "cost": 0
+    },
+    "issues": [
+      {
+        "state": "unknown",
+        "object": "external",
+        "message": "External road source/alignment assurance is missing."
+      },
+      {
+        "state": "unknown",
+        "object": "entrance",
+        "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+      },
+      {
+        "state": "unknown",
+        "object": "feature",
+        "message": "Retained natural feature: buffer distance is provisional; supply its source."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 3 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main: Bend at vertex 4 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "structure_main_left: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "structure_main_left: Bend at vertex 3 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main/structure_main_left: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main/structure_main_left: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "main/structure_main_left: Junction turning movements require a separate vehicle manoeuvre check; centreline screening does not establish all permitted movements."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Road dimensions are provisional project inputs."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Project turning requirements have not been supplied."
+      },
+      {
+        "state": "unknown",
+        "object": "roads",
+        "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+      }
+    ]
+  },
+  {
+    "action": "Southern gate offset 60 to 56 metres",
+    "before": {
+      "id": "residential",
+      "name": "Residential working plan",
+      "counts": {
+        "valid": 10,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "roadArea": 320,
+      "roadLength": 40,
+      "lotArea": 1280,
+      "flexible": 0,
+      "cost": 0,
+      "qualified": false,
+      "issues": [
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Primary: permissible movements are not specified."
+        },
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Road dimensions are provisional project inputs."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Carriageway width is missing."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Project turning requirements have not been supplied."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+        }
+      ]
+    },
+    "after": {
+      "id": "residential",
+      "name": "Residential working plan",
+      "counts": {
+        "valid": 8,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "roadArea": 323.0906483,
+      "roadLength": 40.38633120538857,
+      "lotArea": 1021.9236729583699,
+      "flexible": 0,
+      "cost": 0,
+      "qualified": false,
+      "issues": [
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Primary: permissible movements are not specified."
+        },
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Road dimensions are provisional project inputs."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Carriageway width is missing."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Project turning requirements have not been supplied."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+        }
+      ]
+    }
+  },
+  {
+    "action": "Draw irregular five-corner space along actual road edge",
+    "before": {
+      "id": "residential",
+      "name": "Residential working plan",
+      "counts": {
+        "valid": 8,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "roadArea": 326.93040170000006,
+      "roadLength": 40.86630058308851,
+      "lotArea": 1020.8584943782985,
+      "flexible": 0,
+      "cost": 0,
+      "qualified": false,
+      "issues": [
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Primary: permissible movements are not specified."
+        },
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Road dimensions are provisional project inputs."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Carriageway width is missing."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Project turning requirements have not been supplied."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+        }
+      ]
+    },
+    "after": {
+      "id": "residential",
+      "name": "Residential working plan",
+      "counts": {
+        "valid": 7,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "roadArea": 326.93040170000006,
+      "roadLength": 40.86630058308851,
+      "lotArea": 892.8584943782985,
+      "flexible": 165.64499999999998,
+      "cost": 0,
+      "qualified": false,
+      "issues": [
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Primary: permissible movements are not specified."
+        },
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Road dimensions are provisional project inputs."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Carriageway width is missing."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Project turning requirements have not been supplied."
+        },
+        {
+          "state": "unknown",
+          "object": "roads",
+          "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+        }
+      ]
+    }
+  },
+  {
+    "action": "Centreline radius 15 to 18 m",
+    "before": {
+      "id": "curve_a",
+      "name": "Curved plan A",
+      "counts": {
+        "valid": 24,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "roadArea": 990.4153011309644,
+      "roadLength": 113.56194490192331,
+      "lotArea": 2208.684919806802,
+      "flexible": 0,
+      "cost": 13204.153011309643,
+      "qualified": true,
+      "issues": []
+    },
+    "after": {
+      "id": "revision_1793633540918",
+      "name": "Curved plan A",
+      "counts": {
+        "valid": 24,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "roadArea": 980.1142047654929,
+      "roadLength": 112.2743338823082,
+      "lotArea": 2209.82582325878,
+      "flexible": 0,
+      "cost": 13101.142047654928,
+      "qualified": true,
+      "issues": []
+    }
+  },
+  {
+    "action": "Draw inward adjustment to selected lot",
+    "before": {
+      "id": "revision_1793633540918",
+      "name": "Curved plan A",
+      "counts": {
+        "valid": 24,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "roadArea": 980.1142047654929,
+      "roadLength": 112.2743338823082,
+      "lotArea": 2209.82582325878,
+      "flexible": 0,
+      "cost": 13101.142047654928,
+      "qualified": true,
+      "issues": []
+    },
+    "after": {
+      "id": "revision_1793633540918",
+      "name": "Curved plan A",
+      "counts": {
+        "valid": 24,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "roadArea": 980.1142047654929,
+      "roadLength": 112.2743338823082,
+      "lotArea": 2207.6791980003804,
+      "flexible": 0,
+      "cost": 13101.142047654928,
+      "qualified": true,
+      "issues": []
+    }
+  }
+]

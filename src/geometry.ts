@@ -2,7 +2,7 @@ import {usesShapedStreets,streetSurface,surfaceArea,surfaceInside,surfaceOverlap
 import type { DevelopmentInputs } from './development-inputs.ts';
 import {siteOpenSpaces,spaceArea,spaceBounds,spaceSiteErrors,type OpenSpace} from './open-spaces.ts';
 import {homeTemplate} from './housing.ts';
-import { disconnectedStreets, nearestStreetPoint, onStreet, streetRect } from './streets.ts';
+import { disconnectedStreets, nearestStreetPoint, onStreet, streetRect, networkFromRoads, roundedStreetNetwork, halfRoadWidth } from './streets.ts';
 // UNBUILT geometry core. Local-metre site polygons, rectangular allocations
 // and measured manual-road surfaces; no rounding of numeric intermediates.
 // Manually reshaped lots are simple polygons over generated rects (see
@@ -328,15 +328,16 @@ function greenTotal(site:Site):number{return spaceArea(siteOpenSpaces(site));}
 
 // A bounded orthogonal visibility graph routes six-metre corridors around
 // conservative open-space extents. Whole lots are retained; sloping streets are unmodeled.
-function generateResponsiveSpine(site: Site, frontage: number): Layout {
+function generateResponsiveSpine(site: Site, frontage: number, cornerClearance=0): Layout {
   const error = siteFrameErrors(site)[0] ?? entranceErrors(site)[0];
   if (error) return unavailableLayout("spine", error);
   if(greenGeometryErrors(site).length)return unavailableLayout("spine",greenGeometryErrors(site)[0]);
   if (site.entrance.width < ROAD_W) return unavailableLayout("spine", "The entrance must be at least 6 m wide for the modeled street.");
   const p = site.planning!;
-  const obstacles = openSpaceObstacles(site);
+  const reserved = openSpaceObstacles(site);
+  const obstacles = reserved.map(r=>({x:r.x-cornerClearance,y:r.y-cornerClearance,w:r.w+2*cornerClearance,h:r.h+2*cornerClearance}));
   const west = site.entrance.edge === "west";
-  const access = site.entrance.boundaryEdge === undefined ? null : accessConnector(site, obstacles);
+  const access = site.entrance.boundaryEdge === undefined ? null : accessConnector(site, reserved);
   if (site.entrance.boundaryEdge !== undefined && !access) return unavailableLayout("spine", "No contained entrance apron fits this edge and position. Move the gate farther from the corner, choose another edge, or move the park.");
   const entry = access?.entry ?? { x: west ? 0 : site.w, y: site.entrance.offset };
   const ys = [...new Set([entry.y, ...obstacles.flatMap(o=>[o.y-3,o.y+o.h+3]), 3, site.h - 3, ...p.streets])].filter((y) => y >= 3 && y <= site.h - 3);
@@ -397,6 +398,19 @@ function generateResponsiveSpine(site: Site, frontage: number): Layout {
   const parcels = parcelsAlongRoads(site, roads, frontage, access?.polygon);
   return { family: "spine", roads, parcels, green: { ...site.green }, ...(access ? { accessConnector: access.polygon } : {}),
     unallocatedNote: "Park-aware orthogonal streets; only complete, accessible lots with fitting homes are modeled. Buffer strips and remaining land are unallocated. Turning geometry is unmodeled." };
+}
+
+// Generated routes may hug a kept space too tightly for an inside fillet.
+// Propose a wider detour without changing that space or its declared clearance.
+export function halfWidthStreetDraft(site:Site,layout:Layout,frontage:number){
+  const source=site.planning?.streetNetwork??networkFromRoads(layout.roads);
+  const radius=halfRoadWidth(source),network=roundedStreetNetwork(source,radius);
+  const trial=(streetNetwork:typeof network)=>({...site,planning:{...site.planning!,streets:[],streetNetwork}});
+  if(!site.planning||site.planning.streetNetwork||layout.family!=='spine'||streetConflict(trial(network))?.kind!=='park')return {network,rerouted:false};
+  const detour=generateResponsiveSpine(site,frontage,radius);
+  if(detour.supportError)return {network,rerouted:false};
+  const candidate=roundedStreetNetwork(networkFromRoads(detour.roads),radius);
+  return streetConflict(trial(candidate))?{network,rerouted:false}:{network:candidate,rerouted:true};
 }
 
 function parcelsAlongRoads(site: Site, roads: Rect[], frontage: number, access?: Pt[], horizontal?: boolean[], surface?:RoadSurface): Rect[] {

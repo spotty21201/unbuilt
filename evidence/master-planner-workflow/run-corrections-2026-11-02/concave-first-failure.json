@@ -1,0 +1,13 @@
+{
+  "status": "failed",
+  "tested": 36,
+  "conflicts": [
+    "Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.",
+    "Define 1–32 roads with distinct points and deliberate locks.",
+    "A numerical trial failed and was discarded; accepted geometry was preserved.",
+    "Flexible northwest recreation: road encroaches outside any authorised crossing envelope. Crossing none."
+  ],
+  "message": "No tested full-corridor layout fits these inputs. Review the reported conflicts; this bounded search is not a proof of impossibility.",
+  "bestLoopYield": 0,
+  "bestOpenYield": 0
+}

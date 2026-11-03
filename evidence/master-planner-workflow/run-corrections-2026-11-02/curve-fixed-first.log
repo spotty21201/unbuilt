@@ -1,0 +1,29 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Got unwanted exception: Mixed8/4/4m radius loop must calculate or return a planning conflict, without a polygon-clipping exception
+Actual message: "Unable to find segment #13315 [29.082052971103156, 68.54969595899476] -> [32.24267302060592, 71.00132417360666] in SweepLine tree."
+    at file:///home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/reproduce-curve-failure.mjs:4:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: Error: Unable to find segment #13315 [29.082052971103156, 68.54969595899476] -> [32.24267302060592, 71.00132417360666] in SweepLine tree.
+      at SweepLine.process (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1553:22)
+      at Operation.run (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1750:35)
+      at Object.union (/home/spotty/projects/unbuilt/node_modules/polygon-clipping/dist/polygon-clipping.cjs.js:1776:20)
+      at streetSurface (file:///home/spotty/projects/unbuilt/src/road-surfaces.ts:63:126)
+      at calculateResidential (file:///home/spotty/projects/unbuilt/src/residential.ts:203:19)
+      at file:///home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/reproduce-curve-failure.mjs:4:25
+      at getActual (node:assert:609:5)
+      at Function.doesNotThrow (node:assert:777:32)
+      at file:///home/spotty/projects/unbuilt/evidence/master-planner-workflow/run-independent-2026-11-02/reproduce-curve-failure.mjs:4:8
+      at ModuleJob.run (node:internal/modules/esm/module_job:343:25),
+  expected: undefined,
+  operator: 'doesNotThrow',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

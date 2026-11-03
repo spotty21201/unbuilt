@@ -1,0 +1,27 @@
+PASS site setup begins before inventing main roads, gates or lots
+PASS real multi-product fixture accepts and preserves legacy project geometry
+PASS failed calculation labels retained accepted quantities and blocks acceptance
+PASS mandatory mix can rebalance inside an unaccepted preview
+PASS rebalance changes real allocations and meets mandatory composition
+PASS Undo restores inputs and quantities before rebalancing
+PASS entrance edit is a live proposal, not an accepted save
+PASS moving entrance changes actual road connection and lot geometry
+PASS one Undo restores entrance, geometry and schedules
+PASS Redo restores entire operation
+PASS preview cancel preserves exact accepted scenario
+PASS locked entrance refuses movement and explains why
+PASS failed edit retains accepted fixed entrance
+PASS street movement regenerates actual lot polygons and reconciled quantities
+PASS changing a product group changes geometry and current integer composition
+PASS flexible-space reshape updates land, lots and protection checks
+PASS schedule shows actual valid polygon counts and missing rates
+PASS bounded search saves distinct measured alternatives
+PASS alternatives use identical site frame and graphic convention
+PASS chosen alternative is recalculated and accepted with decision record
+PASS save/reopen exactly reproduces accepted inputs, polygons, schedules, alternatives and shortlist
+PASS full project export v17 roundtrip preserves new and existing plan
+PASS 1440px residential UI has no page/dialog horizontal overflow
+PASS 1024px residential UI has no page/dialog horizontal overflow
+PASS 375px residential UI has no page/dialog horizontal overflow
+PASS no uncaught browser errors
+ALL 26 RESIDENTIAL BROWSER CHECKS PASS

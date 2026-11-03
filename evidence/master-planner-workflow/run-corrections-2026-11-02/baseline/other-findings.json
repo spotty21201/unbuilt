@@ -1,0 +1,25 @@
+{
+  "D7": {
+    "score": "0 valid lots\n0 unresolved / 0 invalid\n0 m² valid lots\n0 m² roads\n0 m road\nUndefined m / valid lot\n0 m² fixed protection\n0 m² flexible space\n12,000 m² residual\nRp 0 priced · 0 missing scopes",
+    "schedule": "SOP procedure\nLot schedule\nLand & costs\nConstraints\nAlternatives\nCurrent proposed scenario · percent, unit count denominator · tolerance 5 percentage points\nProduct\tNominal F × D\tTarget %\tRounded target units\tValid\tActual %\tDeviation pp\tMix\tArea m²\tMin / mean / max m²\tCost Rp\nCompact\t6 × 12\t60\t19\t32\t100\t40\tfail\t2,304\t72 / 72 / 72\tUnpriced\nFamily\t8 × 16\t40\t13\t0\t0\t-40\tfail\t0\tUndefined / Undefined / Undefined\tUnpriced\n\nGroups: group_street_1793661937915: 18 valid, product product_1, facing match · group_street_1793662048496: 14 valid, product product_1, facing match. Depth = minimum of rear intersections at 10%, 50%, 90% of primary frontage chord; frontage = measured kerb shared by polygon.\n\nDownload measured lot schedule"
+  },
+  "D3": {
+    "footerTop": 909.609375,
+    "points": [
+      {
+        "x": 247.05479283385623,
+        "y": 921.0689147456009,
+        "hit": "footer"
+      },
+      {
+        "x": 842.9451882232983,
+        "y": 921.0689147456009,
+        "hit": "footer"
+      }
+    ]
+  },
+  "D4": "Tested 2 permitted whole-section allocations; no closer mix found. Mandatory product composition is outside tolerance or undefined. This is a bounded search, not a proof of impossibility.\nCancel preview\nAccept residential change\nExport residential scenarios\nImport residential collection",
+  "rateSource": "Preview cancelled; accepted geometry and quantities retained.\nCancel preview\nAccept residential change\nExport residential scenarios\nImport residential collection",
+  "D2commit": "Entrance and its perpendicular transition now follow the selected permitted main-road frontage. Dependent geometry is a preview.\n\nCannot accept: space_1793661701463: Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.\n\nCancel preview\nAccept residential change\nExport residential scenarios\nImport residential collection",
+  "D2search": "No tested full-corridor layout fits these inputs. Review the reported conflicts; this bounded search is not a proof of impossibility.\n\nFlexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.\n\nA numerical trial failed and was discarded; accepted geometry was preserved.\n\nRepeated or overlapping centrelines would duplicate road length; remove the repeated alignment.\n\nReview inputs"
+}

@@ -56,6 +56,7 @@ export default function Projects() {
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [imported, setImported] = useState<{ id: string; text: string } | null>(null);
   const [sessionRisk, setSessionRisk] = useState('');
+  const [residentialRequest,setResidentialRequest]=useState<{id:string;serial:number}|null>(null);
   const [leave, setLeave] = useState<{ run: () => void; notice: string } | null>(null);
   const active = library.projects.find(p => p.id === library.activeId);
   const guardLeaving = (run: () => void, notice = sessionRisk) => {
@@ -101,6 +102,7 @@ export default function Projects() {
     setOpen(false); return true;
   };
   const openProject = (id: string) => {
+    setResidentialRequest(null);
     if (!current.current.projects.some(p => p.id === id)) return;
     if (write({ ...current.current, activeId: id })) setOpen(false);
   };
@@ -138,9 +140,9 @@ export default function Projects() {
     } catch { setError('That project file could not be read. Nothing was imported.'); }
   };
   return <>
-    {active ? <Workbench key={active.id} initialStatus={imported?.id === active.id ? imported.text : undefined} initialProject={active.project} projectName={active.name} onSaveProject={saveProject} onOpenProjects={risk => { setSessionRisk(risk); setOpen(true); }} onImportProject={(file, risk) => { guardLeaving(() => { void importProject(file); }, risk); }} saveStatus={storageError ? storageError : savedAt ? `Project saved in this browser at ${new Date(savedAt).toLocaleTimeString()}.` : 'Saving project…'} /> : <div className="project-welcome"><header><strong>UNBUILT</strong><button type="button" onClick={() => setOpen(true)}>Projects</button></header><main><h1>Your planning workspace</h1><p>Create a named project, draw its boundary and develop a plan.</p><button type="button" onClick={() => setOpen(true)}>New project</button></main></div>}
+    {active ? <Workbench residentialRequest={residentialRequest?.id===active.id?residentialRequest.serial:undefined} key={active.id} initialStatus={imported?.id === active.id ? imported.text : undefined} initialProject={active.project} projectName={active.name} onSaveProject={saveProject} onOpenProjects={risk => { setSessionRisk(risk); setOpen(true); }} onImportProject={(file, risk) => { guardLeaving(() => { void importProject(file); }, risk); }} saveStatus={storageError ? storageError : savedAt ? `Project saved in this browser at ${new Date(savedAt).toLocaleTimeString()}.` : 'Saving project…'} /> : <div className="project-welcome"><header><strong>UNBUILT</strong><button type="button" onClick={() => setOpen(true)}>Projects</button></header><main><h1>Your planning workspace</h1><p>Create a named project, draw its boundary and develop a plan.</p><button type="button" onClick={() => setOpen(true)}>New project</button></main></div>}
     {storageError && <div className="library-error" role="alert">{storageError} {active && <button type="button" onClick={() => downloadJson(JSON.stringify(active.project, null, 2), `${active.name}.json`)}>Download current project</button>}{corrupt && <><button type="button" onClick={() => downloadJson(stored.current ?? '', 'unbuilt-library-backup.json')}>Download original library</button><button type="button" onClick={() => setReplace(true)}>Use a new library</button>{replace && <span>Replace the unreadable library? Keep the downloaded original for recovery. <button type="button" onClick={() => { locked.current = false; if (write(current.current)) { setCorrupt(false); setReplace(false); } }}>Confirm new library</button><button type="button" onClick={() => setReplace(false)}>Cancel replacement</button></span>}</>}</div>}
-    {open && <ProjectLibraryDialog library={library} sessionRisk={active ? sessionRisk : ''} onDownload={downloadProject} onClose={() => setOpen(false)} onOpen={id => { if (id === library.activeId) setOpen(false); else guardLeaving(() => openProject(id)); }} onCreate={(name, sample) => {
+    {open && <ProjectLibraryDialog library={library} sessionRisk={active ? sessionRisk : ''} onDownload={downloadProject} onClose={() => setOpen(false)} onOpenResidential={id=>{const resume=()=>{if(id!==current.current.activeId)openProject(id);else setOpen(false);if(current.current.activeId===id)setResidentialRequest({id,serial:Date.now()});};if(id===library.activeId)resume();else guardLeaving(resume);}} onOpen={id => { if (id === library.activeId) setOpen(false); else guardLeaving(() => openProject(id)); }} onCreate={(name, sample) => {
       const issue = projectNameError(name, current.current.projects);
       if (issue) { setError(issue); return false; }
       if (sessionRisk && active) { guardLeaving(() => { create(name, sample); }); return false; }

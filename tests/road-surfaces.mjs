@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
-import {streetSurface,streetPolygon,surfaceArea,surfaceFrontage,surfaceInside,surfaceOverlapsRect,surfaceOverlapsPoly,usesShapedStreets} from '../src/road-surfaces.ts';
-import {streetErrors,streetNodes,splitJunctions,appendStreetPath,moveStreetNode,nearestStreetPoint,disconnectedStreets,networkFromRoads} from '../src/streets.ts';
+import {mergedRoadSurface,streetSurface,streetPolygon,surfaceArea,surfaceFrontage,surfaceInside,surfaceOverlapsRect,surfaceOverlapsPoly,usesShapedStreets} from '../src/road-surfaces.ts';
+import {streetErrors,streetNodes,splitJunctions,appendStreetPath,moveStreetNode,nearestStreetPoint,disconnectedStreets,networkFromRoads,roundedStreetNetwork,halfRoadWidth} from '../src/streets.ts';
 import {starterProject} from '../src/projects.ts';
-import {generateSpine,deriveQuantities,validateLayout,streetConflict,validateLotPoly} from '../src/geometry.ts';
+import {generateSpine,generateLoop,unionArea,halfWidthStreetDraft,deriveQuantities,validateLayout,streetConflict,validateLotPoly} from '../src/geometry.ts';
 import {polyArea,rectCorners,isSimple} from '../src/polygon.ts';
 import {evaluateLayout} from '../src/economics.ts';
 import {assessDrainage} from '../src/development.ts';
@@ -90,5 +90,76 @@ check('decision record v15 restores working roads and alternative-only roads, re
 check('search and measured AI cost experiments retain the exact reviewed road outlines',()=>{
   const s=site(rounded),area=surfaceArea(valid(rounded).roadSurface),r=runSearch({site:s,profile:BASE_PROFILE,selectedPrice:850e6,locks:{green:s.green,priceCeiling:850e6,ownerExpectation:10e9,targetFraction:.15},ranges:{families:['spine','loop'],frontages:[10,11]},seed:7,budget:8});assert.ok(r.candidates.length);for(const c of r.candidates){near(c.quantities.roadArea,area);assert.equal(c.family,'spine');}
   const answer=validateModelChoice('propose_experiment',{purpose:'cost_sensitivity',design:{},costs:{roadPerM2:700000}},snapshot,[]);const m=measureProposal(snapshot,answer.proposal);assert.equal(m.planHash,snapshotHash(snapshot,true));assert.ok(m.findings.some(f=>f.id==='streets'&&f.text.includes('change 0')));assert.ok(m.findings.some(f=>f.id==='costs'&&f.text.includes('→')));const changed=structuredClone(snapshot);changed.site.planning.streetNetwork.cornerRadius=5;assert.throws(()=>measureProposal(changed,answer.proposal),/older plan/);
+});
+check('legacy generated bends merge into one unchanged pavement polygon without internal seams',()=>{
+  const s={...base,green:{x:40,y:32,w:40,h:30}},l=generateSpine(s),before=JSON.stringify(l);
+  assert.ok(l.roads.length>1);const merged=mergedRoadSurface(l.roads);assert.equal(merged.length,1);near(surfaceArea(merged),unionArea(l.roads));assert.equal(JSON.stringify(l),before);
+  assert.equal(l.roadSurface,undefined);assert.deepEqual(mergedRoadSurface([]),[]);
+});
+check('merged legacy loops retain inner holes and leave contained land outside pavement',()=>{
+  const l=generateLoop(base),s=mergedRoadSurface(l.roads);assert.equal(s.length,1);assert.equal(s[0].length,2);near(surfaceArea(s),2076);assert.equal(surfaceOverlapsRect(s,{x:30,y:30,w:10,h:10}),false);
+});
+check('entrance aprons join the displayed outline without duplicate shared-edge strokes or area',()=>{
+  const roads=[{x:10,y:47,w:50,h:6}],apron=[{x:0,y:46},{x:10,y:47},{x:10,y:53},{x:0,y:54}],s=mergedRoadSurface(roads,undefined,apron);
+  assert.equal(s.length,1);near(surfaceArea(s),370);assert.ok(!s[0][0].some((p,i,r)=>p.x===10&&r[(i+1)%r.length].x===10));
+  const shaped=streetSurface(rounded).surface,old=JSON.stringify(shaped);near(surfaceArea(mergedRoadSurface([],shaped)),surfaceArea(shaped));assert.equal(JSON.stringify(shaped),old);
+});
+check('explicitly rounding generated loops removes false dead-end caps and fillets all four outer corners',()=>{
+  const l=generateLoop(base),before=JSON.stringify(l.roads),n=roundedStreetNetwork(networkFromRoads(l.roads),4),trial=site(n),r=generateSpine(trial);
+  assert.deepEqual(streetErrors(n),[]);assert.deepEqual(validateLayout(trial,r),[]);assert.equal(n.segments.length,6);assert.equal(r.roadRounding.limited,0);
+  for(const [x,y]of[[10,10],[109.9,10],[10,89.9],[109.9,89.9]])assert.equal(surfaceOverlapsRect(r.roadSurface,{x,y,w:.05,h:.05}),false);
+  near(surfaceArea(r.roadSurface),2076+2*16*(1-Math.PI/4),.06);near(surfaceFrontage(r.roadSurface,[{x:0,y:47},{x:0,y:53},{x:-1,y:53},{x:-1,y:47}]),6);
+  assert.equal(JSON.stringify(l.roads),before);assert.equal(networkFromRoads(l.roads).cornerRadius,undefined);
+});
+check('zero-radius normalized generated loops preserve the exact original road union',()=>{
+  const l=generateLoop(base);near(surfaceArea(streetSurface(roundedStreetNetwork(networkFromRoads(l.roads),0)).surface),unionArea(l.roads));
+});
+check('generated-bend fillets are measured, preserve spaces and reconcile quantities and cost',()=>{
+  const s={...base,green:{x:40,y:32,w:40,h:30}},old=generateSpine(s),n=roundedStreetNetwork(networkFromRoads(old.roads),4),trial={...s,planning:{...s.planning,streetNetwork:n}},r=generateSpine(trial),e=evaluateLayout(trial,r,850e6);
+  assert.deepEqual(validateLayout(trial,r),[]);assert.deepEqual(r.green,s.green);assert.ok(r.roadSurface[0][0].length>20);near(e.quantities.roadArea,surfaceArea(r.roadSurface));near(e.roadCost,e.quantities.roadArea*800000);near(e.quantities.roadArea+e.quantities.greenArea+e.quantities.parcelArea+e.quantities.unallocatedArea,12000);
+});
+check('rounding saved manual loops normalizes redundant caps without mutating inputs or real dead ends',()=>{
+  const old=networkFromRoads(generateLoop(base).roads),before=JSON.stringify(old),n=roundedStreetNetwork(old,4);
+  assert.equal(n.segments.length,6);assert.equal(surfaceOverlapsRect(streetSurface(n).surface,{x:10,y:10,w:.05,h:.05}),false);assert.equal(JSON.stringify(old),before);
+  const short={segments:[line('short-a',30,30,32,30),line('short-b',32,30,32,32)]};assert.deepEqual(roundedStreetNetwork(short,4).segments,short.segments);
+  assert.deepEqual(roundedStreetNetwork(branch,4).segments,branch.segments);near(surfaceFrontage(streetSurface(roundedStreetNetwork(branch,4)).surface,[{x:37,y:90},{x:43,y:90},{x:43,y:91},{x:37,y:91}]),6);
+});
+check('half-width preset follows 6, 8, 10 and 12 metre street widths without changing inputs',()=>{
+  for(const width of[6,8,10,12]){const n={segments:[line('a',0,50,50,50,width)]},before=JSON.stringify(n);near(halfRoadWidth(n),width/2);assert.equal(JSON.stringify(n),before);}near(halfRoadWidth({segments:[]}),0);
+});
+check('mixed-width preset explicitly starts with the narrower road',()=>{
+  near(halfRoadWidth({segments:[line('a',0,50,50,50,12),line('b',50,50,50,80,8)]}),4);
+});
+const shortL={segments:[line('a',10,30,40,30),line('b',40,30,40,36)],cornerRadius:3};
+check('a short kerb beside a real end cap can use the full half-width tangent',()=>{
+  const r=streetSurface(shortL);near(r.minimumRadius,3);assert.equal(r.limited,0);near(surfaceArea(r.surface),216,.03);near(surfaceFrontage(r.surface,[{x:37,y:36},{x:43,y:36},{x:43,y:37},{x:37,y:37}]),6);
+});
+const shortStep={segments:[line('a',10,30,40,30),line('b',40,30,40,33),line('c',40,33,70,33)],cornerRadius:3};
+check('neighbouring fillets meet at the middle of a tight step with no unused straight jog',()=>{
+  const r=streetSurface(shortStep);assert.equal(r.limited,4);near(r.minimumRadius,1.5);near(surfaceArea(r.surface),378,.03);const pts=r.surface[0][0];
+  for(const p of[{x:43,y:28.5},{x:37,y:34.5}]){
+    assert.ok(pts.some((a,i)=>{const b=pts[(i+1)%pts.length];return Math.abs((b.x-a.x)*(p.y-a.y)-(b.y-a.y)*(p.x-a.x))<1e-8&&p.x>=Math.min(a.x,b.x)-1e-8&&p.x<=Math.max(a.x,b.x)+1e-8&&p.y>=Math.min(a.y,b.y)-1e-8&&p.y<=Math.max(a.y,b.y)+1e-8;}));
+    assert.ok(!pts.some((a,i)=>Math.abs(a.x-p.x)<1e-8&&Math.abs(pts[(i+1)%pts.length].x-p.x)<1e-8));
+  }
+});
+check('tight merged kerbs have no hard angular transitions outside full-width terminal caps',()=>{
+  const r=streetSurface(shortStep),caps=[{x:10,y:27},{x:10,y:33},{x:70,y:30},{x:70,y:36}];
+  for(const polygon of r.surface)for(const ring of polygon){assert.ok(isSimple(ring));for(let i=0;i<ring.length;i++){const b=ring[i];if(caps.some(c=>Math.hypot(c.x-b.x,c.y-b.y)<1e-8))continue;const a=ring[(i+ring.length-1)%ring.length],c=ring[(i+1)%ring.length],u={x:b.x-a.x,y:b.y-a.y},v={x:c.x-b.x,y:c.y-b.y};const angle=Math.acos(Math.max(-1,Math.min(1,(u.x*v.x+u.y*v.y)/(Math.hypot(u.x,u.y)*Math.hypot(v.x,v.y)))));assert.ok(angle<.2,`hard join at ${b.x},${b.y}: ${angle}`);}}
+});
+check('half-width stepped-road geometry is stable under reversed directions and segment order',()=>{
+  const reversed={...shortStep,segments:shortStep.segments.map(s=>({...s,a:s.b,b:s.a})).reverse()};near(surfaceArea(streetSurface(shortStep).surface),surfaceArea(streetSurface(reversed).surface));assert.equal(streetSurface(reversed).limited,4);
+});
+check('scaled half-width turns share their actual pavement with quantities and costs',()=>{
+  for(const width of[6,8,10,12]){const n={segments:[line('a',0,50,50,50,width),line('b',50,50,50,80,width)]},rounded=roundedStreetNetwork(n,halfRoadWidth(n)),s={...site(rounded),entrance:{...base.entrance,width:12}},l=generateSpine(s),e=evaluateLayout(s,l,850e6);assert.deepEqual(validateLayout(s,l),[]);near(l.roadRounding.minimumRadius,width/2);near(e.quantities.roadArea,80*width,.04);near(e.roadCost,e.quantities.roadArea*800000);near(e.quantities.roadArea+e.quantities.greenArea+e.quantities.parcelArea+e.quantities.unallocatedArea,12000);}
+});
+check('half-width generated draft leaves room around kept green without changing its geometry or clearance',()=>{
+  const s={...base,green:{x:12,y:44,w:40,h:30}},before=JSON.stringify(s),old=generateSpine(s),raw=roundedStreetNetwork(networkFromRoads(old.roads),3);assert.equal(streetConflict({...s,planning:{...s.planning,streetNetwork:raw}}).kind,'park');
+  const d=halfWidthStreetDraft(s,old,10),trial={...s,planning:{...s.planning,streetNetwork:d.network}},l=generateSpine(trial);assert.equal(d.rerouted,true);assert.deepEqual(validateLayout(trial,l),[]);assert.deepEqual(l.green,s.green);near(l.roadRounding.minimumRadius,3);assert.equal(l.roadRounding.limited,0);assert.equal(JSON.stringify(s),before);near(deriveQuantities(trial,l).roadArea,surfaceArea(l.roadSurface));
+});
+check('half-width draft never silently reroutes a held manual network around its protected-space conflict',()=>{
+  const s={...site(branch),green:{x:43,y:53,w:20,h:20}},before=JSON.stringify(s),d=halfWidthStreetDraft(s,generateSpine(s),10);assert.equal(d.rerouted,false);assert.deepEqual(d.network.segments,branch.segments);assert.equal(streetConflict({...s,planning:{...s.planning,streetNetwork:d.network}}).kind,'park');assert.equal(JSON.stringify(s),before);
+});
+check('half-width drafts retain the actual entrance apron on sloping boundaries',()=>{
+  const s={...base,boundary:[{x:10,y:0},{x:60,y:0},{x:120,y:10},{x:110,y:100},{x:0,y:90}],entrance:{edge:'west',boundaryEdge:4,offset:45,width:8}},old=generateSpine(s),d=halfWidthStreetDraft(s,old,10),trial={...s,planning:{...s.planning,streetNetwork:d.network}},l=generateSpine(trial);assert.deepEqual(validateLayout(trial,l),[]);assert.deepEqual(l.accessConnector,old.accessConnector);near(deriveQuantities(trial,l).roadArea,surfaceArea(l.roadSurface)+polyArea(l.accessConnector));
 });
 console.log(`ALL ${checks.length} ANGLED / ROUNDED STREET CHECKS PASS`);

@@ -1,0 +1,38 @@
+PASS site inputs persist honestly before a road, entrance, product or lot
+PASS main road determines actual adjoining edge; no default west gate
+PASS physical contact alone grants no legal entrance
+PASS permitted candidates lie only on actual main-road frontage
+PASS arbitrary boundary contact refuses entrance
+PASS chosen entrance creates real inward perpendicular connection before lots
+PASS site-first path creates counted valid polygon lots with correct scenario identity
+PASS external ROW inside fixed site is other reservation, never internal roads or lots
+PASS moving main road away invalidates its entrance instead of inventing connection
+PASS supplied irregular natural feature retains exact position, corners and hole
+PASS natural feature crossing boundary retains original but physical area clipped to site
+PASS fixed feature resists any source-shape layout movement
+PASS five-corner flexible park has actual polygon area and road access
+PASS flexible edit enforces committed location region
+PASS rectangle: v2 land and quantities reconcile with protected and flexible polygons
+PASS angled: v2 land and quantities reconcile with protected and flexible polygons
+PASS concave: v2 land and quantities reconcile with protected and flexible polygons
+PASS neck: v2 land and quantities reconcile with protected and flexible polygons
+PASS actual centreline radius generates tangent arc with analytic length
+PASS curve radius changes real footprint and adjoining quantities
+PASS centreline radius below declared minimum makes yield unresolved
+PASS turning head is physical land that changes roads and lot generation
+PASS declared vehicle runs real corridor sweep and terminal circular-envelope checks
+PASS vehicle too wide fails required geometry and removes headline valid yield
+PASS opposing product mismatch requires visible exception
+PASS explicit facing exception preserves assigned side geometry
+PASS independent dimension is calculated from actual source coordinates
+PASS wrong independent dimension fails instead of changing fixed site
+PASS source import converts selected units while preserving irregular given outline
+PASS combining creates new identity, parents and recomputed lot scenario links
+PASS v2 workspace reproduces every scenario deterministically
+PASS new project v16 preserves site-first records and legacy geometry without migration loss
+PASS unfinished site records are safely saveable and reproducible
+PASS malformed imported records produce errors without throwing
+PASS malformed imported records produce errors without throwing
+PASS malformed imported records produce errors without throwing
+PASS malformed imported records produce errors without throwing
+ALL 40 RESIDENTIAL V2 CHECKS PASS

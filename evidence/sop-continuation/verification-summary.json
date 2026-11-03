@@ -1,0 +1,20 @@
+{
+  "rootPassed": true,
+  "rootPrintedChecks": 1004,
+  "residentialV1": 95,
+  "residentialV2": 56,
+  "browser": {
+    "site": 21,
+    "coupled": 26,
+    "advanced": 11,
+    "scale": 7,
+    "lifecycle": 20,
+    "siteContext": 33
+  },
+  "browserTotal": 118,
+  "build": "pass (existing large-bundle advisory)",
+  "lint": "pass, no warnings",
+  "app": "http://localhost:5173",
+  "api": "healthy; AI unconfigured",
+  "knownLimits": "See REPORT.md and docs/SOP-CONTINUATION.md"
+}

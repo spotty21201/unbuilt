@@ -1,0 +1,23 @@
+ M docs/ACCEPTANCE.md
+ M docs/DECISIONS.md
+ M docs/WORK-CONTEXT.md
+ M package.json
+ M web/src/App.tsx
+ M web/src/drafting.css
+ M web/src/unbuilt/DynamicInspector.tsx
+?? docs/HANDOFF-NEXT-ADVISOR.md
+?? docs/UNBUILT_HACKATHON_VIDEO_v1.md
+?? evidence/geometry-finance-review/
+?? evidence/masterplan-loop/
+?? evidence/planner-continuation/
+?? src/brief.ts
+?? src/catchment.ts
+?? src/landbudget.ts
+?? src/residual.ts
+?? src/rotated.ts
+?? tests/geometry-finance-browser.cjs
+?? tests/planning-insights.mjs
+?? tests/residual-browser.cjs
+?? tests/residual-zoom.cjs
+?? tests/residual.mjs
+?? tests/rotated-lots.mjs

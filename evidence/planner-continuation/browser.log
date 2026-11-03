@@ -1,0 +1,44 @@
+PASS Generated Cedar classified total matches measured remainder
+PASS Generated Cedar uses actual geometry without unavailable/legacy placeholder
+PASS zero-clearance green hole does not reserve the whole surrounding region
+PASS Manual straight street classified total matches measured remainder
+PASS Manual straight street uses actual geometry without unavailable/legacy placeholder
+PASS manual conversion retains measured quantities and held green
+PASS Angled rounded draft classified total matches measured remainder
+PASS Angled rounded draft uses actual geometry without unavailable/legacy placeholder
+PASS residual identifies unapplied draft
+PASS Accepted angled rounded street classified total matches measured remainder
+PASS Accepted angled rounded street uses actual geometry without unavailable/legacy placeholder
+PASS Undo angled street classified total matches measured remainder
+PASS Undo angled street uses actual geometry without unavailable/legacy placeholder
+PASS Redo preserves exact accepted street state
+PASS reload restores exact accepted street state
+PASS Reload angled street classified total matches measured remainder
+PASS Reload angled street uses actual geometry without unavailable/legacy placeholder
+PASS invalid street cannot be applied
+PASS Invalid draft fallback classified total matches measured remainder
+PASS Invalid draft fallback uses actual geometry without unavailable/legacy placeholder
+PASS residual clearly labels last valid accepted figures
+PASS Manual pavement loop with a hole classified total matches measured remainder
+PASS Manual pavement loop with a hole uses actual geometry without unavailable/legacy placeholder
+PASS Manual road and separate sloping entrance apron classified total matches measured remainder
+PASS Manual road and separate sloping entrance apron uses actual geometry without unavailable/legacy placeholder
+PASS sloping entrance apron stays drawn
+PASS S5 entrance move regenerates and keeps locked geometry and all financial assumptions
+PASS S5 entrance Undo restores exact accepted plan
+PASS S5 circulation regeneration keeps exact locked green and assumptions
+PASS S5 applied manual road-width edit retains exact locked green and assumptions
+PASS S5 frontage regeneration holds locked green and assumptions
+PASS Locked polygon search preview classified total matches measured remainder
+PASS Locked polygon search preview uses actual geometry without unavailable/legacy placeholder
+PASS S5 preview is unapplied and retains locked polygon vertices
+PASS S5 applied candidate keeps exact locked polygon and financial assumptions
+PASS S5 locked polygon remains in the same drawn position
+PASS S5 reload preserves locked polygon and assumptions
+PASS Locked polygon restored classified total matches measured remainder
+PASS Locked polygon restored uses actual geometry without unavailable/legacy placeholder
+PASS 1024px residual review fits viewport
+PASS 375px residual review fits viewport
+PASS residual review has no detected accessibility violations
+PASS no uncaught browser errors
+ALL 43 RESIDUAL / LOCKED GREEN BROWSER CHECKS PASS

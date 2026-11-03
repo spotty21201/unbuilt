@@ -1,0 +1,49 @@
+
+> unbuilt@0.0.1 test:prepare
+> node --experimental-strip-types --no-warnings tests/prepare-residential.mjs
+
+PASS named road runs outside and touches the given boundary
+PASS outside placement works for both boundary windings
+PASS external road can follow adjacent edges with a real offset join
+PASS Prepare refuses restricted frontage
+PASS remote external road cannot drive a fabricated gate
+PASS table dimensions rescale actual dimensional and saleable limits while preserving identity
+rectangle: 35.041s
+PASS rectangle: auto preparation generates connected valid lots
+PASS rectangle: fixed site, given main road and products remain exact
+PASS rectangle: tested configuration count is recorded with the scenario
+PASS rectangle: gate is on permitted actual adjoining frontage
+PASS rectangle: percentages match actual integer counts within required tolerance
+PASS rectangle: real land reconciles and lot checks do not inflate yield
+angled: 27.872s
+PASS angled: auto preparation generates connected valid lots
+PASS angled: fixed site, given main road and products remain exact
+PASS angled: tested configuration count is recorded with the scenario
+PASS angled: gate is on permitted actual adjoining frontage
+PASS angled: percentages match actual integer counts within required tolerance
+PASS angled: real land reconciles and lot checks do not inflate yield
+concave: 32.642s
+PASS concave: auto preparation generates connected valid lots
+PASS concave: fixed site, given main road and products remain exact
+PASS concave: tested configuration count is recorded with the scenario
+PASS concave: gate is on permitted actual adjoining frontage
+PASS concave: percentages match actual integer counts within required tolerance
+PASS concave: real land reconciles and lot checks do not inflate yield
+neck: 1.670s
+PASS neck: auto preparation generates connected valid lots
+PASS neck: fixed site, given main road and products remain exact
+PASS neck: tested configuration count is recorded with the scenario
+PASS neck: gate is on permitted actual adjoining frontage
+PASS neck: percentages match actual integer counts within required tolerance
+PASS neck: real land reconciles and lot checks do not inflate yield
+PASS interactive entrance move reconnects shared transition and dependent streets
+PASS invalid entrance move leaves complete inputs unchanged
+PASS automatic search tests a valid fully looped configuration
+PASS non-looped ends require explicit user choice when no loop fits tested spacing
+PASS cul-de-sac choice generates physical heads within the boundary
+PASS fixed natural features stay exact through automatic preparation
+PASS prepared geometry and relationships reproduce in workspace validator
+PASS save/reopen retains external-road relationship, generated groups, mix and geometry
+PASS automatic replacement cannot silently remove manual locks
+PASS geometry quantity changes never resize site boundary
+ALL 42 PREPARE LAYOUT CHECKS PASS

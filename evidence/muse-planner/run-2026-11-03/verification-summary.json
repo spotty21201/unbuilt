@@ -1,0 +1,144 @@
+{
+  "date": "2026-11-03",
+  "model": "muse-wonder-1.0",
+  "health": {
+    "ok": true,
+    "adapter": "meta",
+    "model": "muse-wonder-1.0",
+    "modelConfigured": true,
+    "ai": {
+      "configured": true,
+      "connection": "Muse Wonder",
+      "revision": 1,
+      "status": "verified",
+      "adminEnabled": false
+    }
+  },
+  "suites": [
+    {
+      "name": "Existing root",
+      "assertions": 1044,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "root-tests.log",
+      "command": "UNBUILT_AI_CONFIG=/tmp/unbuilt-regression-no-model.json UNBUILT_EVIDENCE_DIR=evidence/muse-planner/run-2026-11-03/regression npm test"
+    },
+    {
+      "name": "Existing AI",
+      "assertions": 31,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "ai-regression-first.log",
+      "command": "npm run test:ai"
+    },
+    {
+      "name": "Muse domain",
+      "assertions": 20,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "domain-final.log",
+      "command": "node --experimental-strip-types --no-warnings tests/residential-muse.mjs"
+    },
+    {
+      "name": "Muse API",
+      "assertions": 17,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "server-final.log",
+      "command": "node --experimental-strip-types --no-warnings tests/residential-muse-server.mjs"
+    },
+    {
+      "name": "Search actions",
+      "assertions": 3,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "search-tools.log",
+      "command": "Recorded inline execution of executeMuseAction for more-lots, less-road, better-mix"
+    },
+    {
+      "name": "Live Wonder browser",
+      "assertions": 19,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "browser-first.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/muse-planner/run-2026-11-03/browser node tests/residential-muse-browser.cjs"
+    },
+    {
+      "name": "Final live Wonder review",
+      "assertions": 13,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "browser-complete.log",
+      "command": "node tests/residential-muse-review-browser.cjs"
+    },
+    {
+      "name": "Existing residential browser",
+      "assertions": 26,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "residential-browser.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/muse-planner/run-2026-11-03/residential-browser node tests/residential-browser.cjs"
+    },
+    {
+      "name": "Fresh26-action workflow",
+      "assertions": 25,
+      "result": "pass",
+      "exitCode": 0,
+      "log": "workflow-browser.log",
+      "command": "UNBUILT_EVIDENCE_DIR=evidence/muse-planner/run-2026-11-03/workflow node tests/master-planner-workflow-browser.cjs"
+    }
+  ],
+  "countsNote": "Root1044 includes existing AI31 and residential/prepare checks; do not sum repeated suite assertions as unique tests. Live model and scripted-provider cases are distinguished.",
+  "build": {
+    "result": "pass",
+    "log": "build-complete.log",
+    "warning": "Existing non-fatal large-bundle warning"
+  },
+  "lint": {
+    "result": "pass",
+    "log": "lint-complete.log"
+  },
+  "browser": "149.0.7827.55",
+  "viewports": [
+    [
+      1440,
+      1100
+    ],
+    [
+      900,
+      1100
+    ],
+    [
+      375,
+      1100
+    ]
+  ],
+  "servedAssets": {
+    "/assets/index-CfOSaAeD.js": "1d47b255bed33275156c00350fbebd488a8f36c3a7d08ee36cdc8aef94e6b363",
+    "/assets/index-CpdSNjde.css": "3a7cb75ae8f71c457bfd6314efa74b8968596111de2d0727ab010c5f6f089463",
+    "/assets/ResidentialPlanner-BF9TrnJi.js": "8a165bf0dcc0d7cae5ed00c974d1cdde180dc11f33f8dc87d2f43b2bd96af286",
+    "/assets/ResidentialPlanner-D-EwmOjA.css": "da53538443b994c06c0306236dbb288ea577da17caf3e8a28f6a65a04d7d8caa"
+  },
+  "sourceSha256": {
+    "src/residential-muse.ts": "e980512d213b2aed6387f058546595b6f9ccc2c6a171772a7ca4fdd696cb6232",
+    "server/ai-model.mjs": "de9ffc9192e2184e37a4cb9a7b725da9f930bc4c657d21f31fdb17281201a111",
+    "server/residential-muse.mjs": "fa79524c72fd6270c421beceb9527eabbe049987ed2a203a3ccd3ae792d64a85",
+    "web/src/unbuilt/ResidentialMuse.tsx": "d2703cf4307331b3b9877f5302df36beb4dc307f735c4986be4818ce2b7b9a87",
+    "docs/MUSE-MASTER-PLANNER.md": "bc9dfa794355080233ad4e3a228f469f24d9c93e0c0fe343ccce46a20bb3ecb0",
+    "server/ai-assistant.mjs": "ee35488ca0b71be1f6117934145363c74c7afd83e2efa907831c641968ae2260",
+    "server/intent.mjs": "5ad845d338693ea4ee208550a98da14c38912c50af8051156984fe7308b92ecb",
+    "web/src/unbuilt/ResidentialPlanner.tsx": "505588bc87ab25183c37033853b5f89f2565388ee2d268616c029177c9ce1fe5",
+    "web/src/unbuilt/ResidentialSetup.tsx": "7bdc3f264310b222364f3f61a5397160ed4df3500137a9349b31c006db7bb486",
+    "web/src/unbuilt/residential.worker.ts": "b8d7b7c4c7f7a07ccbfdce479e1288505ba0e6866f99fae5712a0e629fc1d6a0",
+    "web/src/unbuilt/residential.css": "cb5da57a0b98c0694918466cb66d2981b5ef97157c5841e8c22d44c6e671ed80"
+  },
+  "preservation": "preservation.json",
+  "providerKeyInEvidence": false,
+  "newDependencies": [],
+  "publication": "none",
+  "limits": [
+    "Bounded geometry tools and search; not unrestricted CAD or global optimization.",
+    "Real model exercised explanations, gate displacement, road search and protection refusal; not every phrasing of every tool.",
+    "Survey, engineering/vehicle, house feasibility and statutory approval remain separate."
+  ]
+}

@@ -1,0 +1,29 @@
+PASS D3 1440×1000 fitted south endpoints are immediately pointer-accessible
+PASS D3 1440×1000 actual clicks place both road points without zoom or scrolling
+PASS D3 1440×1000 saved road stays at exact metre geometry
+PASS D3 panning uses the complete gesture without accumulating previous offsets
+PASS D3 1440×1100 fitted south endpoints are immediately pointer-accessible
+PASS D3 1440×1100 actual clicks place both road points without zoom or scrolling
+PASS D3 1440×1100 saved road stays at exact metre geometry
+PASS D3 900×900 fitted south endpoints are immediately pointer-accessible
+PASS D3 900×900 actual clicks place both road points without zoom or scrolling
+PASS D3 900×900 saved road stays at exact metre geometry
+PASS D5 outer plan identifies 43 screened valid lots and unresolved study
+PASS D5 library distinguishes residential study, shortlist and legacy representation
+PASS D5 library continuation opens the saved study directly
+PASS D6 lot inspection shows Family, named street/section, actual measurements and lock state
+PASS D6 actual stable record reference is retained as secondary detail
+PASS D1 visible mixed-radius edit produces a measured preview without overlay error
+PASS D1 curve edit changes actual road footprint and lot polygons
+PASS D1 one undo restores whole pre-curve scenario
+PASS D1 redo restores measured curve scenario
+PASS D1 cancelling nearby curve preview preserves accepted result
+PASS D4 retained passing mix is stated correctly and failed trials are separate
+PASS D7 zero-count product has explanatory ranges and no Undefined quantities
+PASS D4 stale rebalance feedback clears when inputs change
+PASS rate-source 200 character limit is visible and enforced
+PASS unexpected worker failure retains accepted geometry and blocks acceptance
+PASS cancelling failed calculation retains the complete accepted operation
+PASS D7 site-only ratio explains missing valid-lot denominator
+PASS no uncaught browser errors
+ALL 28 CORRECTION BROWSER CHECKS PASS

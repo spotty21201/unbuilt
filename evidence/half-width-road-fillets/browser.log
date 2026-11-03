@@ -1,0 +1,28 @@
+PASS 6 m generated roads preview half-width 3 m fillets
+PASS kept-space detour produces an applicable smooth draft
+PASS rounding and rerouting leave accepted inputs unchanged before Apply
+PASS preview draws a single curved pavement instead of stepped rectangles
+PASS accepted curves use the full half-width radius at both turns
+PASS detoured road keeps exact green shape, position, clearance and all financial assumptions
+PASS rounded geometry passes boundary, frontage and protected-space validation
+PASS road quantities and costs use the actual rounded pavement
+PASS land quantities reconcile after the rounded detour
+PASS one Undo restores the exact original generated route and commitments
+PASS Redo restores exact smooth road inputs
+PASS Save and reopening retain half-width geometry and kept green
+PASS 8 m street defaults to a 4 m half-width fillet
+PASS 8 m street preset restores the calculated radius after a custom edit
+PASS 8 m curve keeps its declared radius after Apply
+PASS 10 m street defaults to a 5 m half-width fillet
+PASS 10 m street preset restores the calculated radius after a custom edit
+PASS 10 m curve keeps its declared radius after Apply
+PASS 12 m street defaults to a 6 m half-width fillet
+PASS 12 m street preset restores the calculated radius after a custom edit
+PASS 12 m curve keeps its declared radius after Apply
+PASS short shared kerbs explicitly report their physically limited radius
+PASS short-step curves use shared tangencies without dropping the connecting road
+PASS 1024px half-width controls fit the page
+PASS 375px half-width controls fit the page
+PASS smooth pavement and half-width controls have no detected accessibility violations
+PASS no uncaught browser errors
+ALL 27 HALF-WIDTH FILLET BROWSER CHECKS PASS

@@ -1,0 +1,125 @@
+
+> unbuilt@0.0.1 test:residential
+> node --experimental-strip-types --no-warnings tests/residential.mjs && node --experimental-strip-types --no-warnings tests/residential-v2.mjs
+
+PASS rectangle: valid generated polygons, no hidden road or land errors
+PASS rectangle: calculation never changes fixed inputs
+PASS rectangle: exact gross boundary area
+PASS rectangle: land partitions with no unexplained overlap/gap
+PASS rectangle: headline yield equals product valid sum
+PASS rectangle: residential area equals measured polygon sum
+PASS rectangle: integer counts reproduce percentages
+PASS rectangle: every lot is inside its site using polygon subtraction
+PASS rectangle: generated polygons respect dimensions and saleable cap
+PASS rectangle: protected envelopes have zero lot/road encroachment
+PASS rectangle: opposing sides use declared coherent street group
+PASS rectangle: residential-area denominator uses actual polygons
+PASS angled: valid generated polygons, no hidden road or land errors
+PASS angled: calculation never changes fixed inputs
+PASS angled: exact gross boundary area
+PASS angled: land partitions with no unexplained overlap/gap
+PASS angled: headline yield equals product valid sum
+PASS angled: residential area equals measured polygon sum
+PASS angled: integer counts reproduce percentages
+PASS angled: every lot is inside its site using polygon subtraction
+PASS angled: generated polygons respect dimensions and saleable cap
+PASS angled: protected envelopes have zero lot/road encroachment
+PASS angled: opposing sides use declared coherent street group
+PASS angled: residential-area denominator uses actual polygons
+PASS concave: valid generated polygons, no hidden road or land errors
+PASS concave: calculation never changes fixed inputs
+PASS concave: exact gross boundary area
+PASS concave: land partitions with no unexplained overlap/gap
+PASS concave: headline yield equals product valid sum
+PASS concave: residential area equals measured polygon sum
+PASS concave: integer counts reproduce percentages
+PASS concave: every lot is inside its site using polygon subtraction
+PASS concave: generated polygons respect dimensions and saleable cap
+PASS concave: protected envelopes have zero lot/road encroachment
+PASS concave: opposing sides use declared coherent street group
+PASS concave: residential-area denominator uses actual polygons
+PASS neck: valid generated polygons, no hidden road or land errors
+PASS neck: calculation never changes fixed inputs
+PASS neck: exact gross boundary area
+PASS neck: land partitions with no unexplained overlap/gap
+PASS neck: headline yield equals product valid sum
+PASS neck: residential area equals measured polygon sum
+PASS neck: integer counts reproduce percentages
+PASS neck: every lot is inside its site using polygon subtraction
+PASS neck: generated polygons respect dimensions and saleable cap
+PASS neck: protected envelopes have zero lot/road encroachment
+PASS neck: opposing sides use declared coherent street group
+PASS neck: residential-area denominator uses actual polygons
+PASS external connection is real off-site geometry, excluded from internal road quantity
+PASS external road ROW cannot overlap saleable site land silently
+PASS narrow neck: full 12m corridor fails a 10m neck although centreline fits
+PASS fixed entrance resists simultaneous unlock and movement
+PASS deliberate standalone unlock is permitted
+PASS adjustable entrance moves physical connection and dependent lots
+PASS entrance move preserves fixed boundary and protection
+PASS moving road recomputes corridor, blocks and lots
+PASS entrance widening is bounded, standard corridor unchanged
+PASS junction returns change actual footprint and adjacent lot generation
+PASS junction overlaps count once
+PASS curved frontage generates actual multi-vertex lots within declared limits
+PASS corner returns never silently narrow the full declared corridor
+PASS manual held lot retains exact geometry and valid measurements
+PASS fixed protection cannot be moved
+PASS flexible edge moves preserve minimum/access and update lots
+PASS flexible minimum violation refuses acceptance
+PASS group product change replaces geometry and both facing assignments
+PASS dimension changes regenerate actual lot areas and quantities
+PASS unpermitted boundary contact cannot inflate valid yield
+PASS zero valid lots gives undefined shares and per-lot metrics
+PASS residual fill only tests existing products with no invented yield
+PASS positive residual fill adds only dimensionally valid polygons from actual unallocated land
+PASS repeated road alignment cannot double count measured length
+PASS impossible saleable definition is rejected
+PASS oversized nominal polygons are rejected rather than counted as saleable lots
+PASS failed bounded searches report tested corridor conflicts without claiming impossibility
+PASS mandatory integer mix failure is explicit
+PASS cost is current valid product count times supplied rate
+PASS missing product/common rates are visibly unpriced
+PASS scope duplication is a blocker and is not added to cost
+PASS protection buffer is measured rounded Euclidean envelope
+PASS search produces three to five real tested alternatives where feasible
+PASS draft mandatory mix is solved through real section geometry rather than changed chart labels
+PASS search preserves fixed boundary and protection
+PASS unknown vehicle checks never claim qualification
+PASS ranking among equally unresolved tests follows valid yield
+PASS complete residential workspace validates reproducible geometry and schedules
+PASS version 15 project roundtrip preserves accepted scenario and alternatives
+PASS older projects remain readable and unmodified
+PASS new data in an old envelope is explicitly refused
+PASS fabricated saved counts cannot bypass deterministic recomputation
+PASS roundtrip accepts numerical noise within metre/area tolerances
+PASS roundtrip refuses geometry changes beyond the coordinate tolerance
+PASS malformed saved polygons fail without deleting old project
+PASS decision-record v16 restores residential geometry
+PASS project library validates new scenario without destructive migration
+ALL 95 RESIDENTIAL SOP CHECKS PASS
+PASS site inputs persist honestly before a road, entrance, product or lot
+PASS main road determines actual adjoining edge; no default west gate
+PASS physical contact alone grants no legal entrance
+PASS permitted candidates lie only on actual main-road frontage
+PASS arbitrary boundary contact refuses entrance
+PASS chosen entrance creates real inward perpendicular connection before lots
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: site-first path creates counted valid polygon lots with correct scenario identity
+    at check (file:///home/spotty/projects/unbuilt/tests/residential-v2.mjs:10:36)
+    at file:///home/spotty/projects/unbuilt/tests/residential-v2.mjs:21:53
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.3

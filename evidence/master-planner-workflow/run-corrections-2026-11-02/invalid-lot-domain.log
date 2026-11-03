@@ -1,0 +1,5 @@
+PASS equal-area held polygon has actual 72m² / 9m frontage / 8m depth
+PASS dimensional failures remain invalid despite permitted area
+PASS headline count and product costs exclude every invalid polygon
+PASS common works price current measured road footprint without double counting
+ALL 4 INVALID LOT/COST CHECKS PASS

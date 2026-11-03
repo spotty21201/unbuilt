@@ -1,0 +1,98 @@
+Skip to plan
+UNBUILT
+Projects
+Master Planner Workflow Test
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+External road setup
+Master Planner Workflow Test · Blank plan
+Selected: Site
+No boundary yet
+Saved in this browser
+
+Draw a boundary: place vertices, then close the outline. Escape cancels.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Invalid boundary · correct the highlighted outline
+Apply
+Cancel
+Open space A
++
++
++
++
+Edge 1
+Edge 2
+Edge 3
+Edge 4
+1
+2
+3
+4
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+Draw a site
+
+Pointer snap: 1 m
+Approximate placement. Pointer and arrow-key edits stop at the 0–500 m workspace edges; shaded paper is outside that range. For finer positions, type decimal coordinates in metres below. Local x east / y north; not surveyed or georeferenced.
+
+Apply boundary
+Cancel boundary
+
+Drag corners or use coordinates below. Midpoint + handles add a corner. Delete a focused corner to remove it.
+
+Invalid outline
+4 vertices · area awaits a valid closed boundary
+
+Boundary edges cross, overlap or repeat. Move or remove a vertex. Enter a number from 0 to 500 for each coordinate, or move/remove a numbered corner to correct the outline. The accepted plan is unchanged. Red edges 1–2, 3–4 need attention.
+
+Escape cancels. Undo/Redo steps through this draft; Apply creates one plan Undo step. Existing open space and manual lots are preserved when compatible; review the layout consequences before Apply.
+
+Vertex 1
+X (m)
+Y (m)
+Add after 1
+Remove 1
+Vertex 2
+X (m)
+Y (m)
+Add after 2
+Remove 2
+Vertex 3
+X (m)
+Y (m)
+Add after 3
+Remove 3
+Vertex 4
+X (m)
+Y (m)
+Add after 4
+Remove 4
+EVALUATOR
+Details
+Boundary draft · accepted plan unchanged · Apply or Cancel to finish

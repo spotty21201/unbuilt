@@ -1,0 +1,20 @@
+PASS Ask Muse appears with Wonder branding inside actual residential editor
+PASS live Wonder explanation selects current deterministic facts
+PASS asking does not commit or modify the accepted scenario
+PASS live Wonder chooses an explicit gate tool rather than inventing polygons
+PASS measured Muse trial shows before/after while accepted state is intact
+PASS Muse preview changes real connection and lots without auto-acceptance
+PASS cancel restores the accepted complete scenario
+PASS accept commits validated geometry and schedules as one operation
+PASS one undo restores complete pre-Muse scenario
+PASS redo restores complete Muse geometry and quantities
+PASS protected geometry request cannot become a valid edit
+PASS protected request preserves accepted source geometry
+PASS cancelled requests cannot display a late answer
+PASS save/reopen reproduces accepted Muse geometry and quantities
+PASS provider token never reaches browser storage or direct browser API calls
+PASS 1440px planner has no page overflow
+PASS 900px planner has no page overflow
+PASS 375px planner has no page overflow
+PASS no uncaught browser errors
+ALL 19 MUSE BROWSER CHECKS PASS (LIVE MUSE WONDER)

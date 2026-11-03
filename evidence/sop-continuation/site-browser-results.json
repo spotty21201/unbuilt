@@ -1,0 +1,4760 @@
+{
+  "checks": [
+    "new site input stage has zero invented roads, entrances or lots",
+    "main-road position alone does not invent access permission",
+    "southern main-road geometry stored before entrance choice",
+    "given natural feature preserves irregular source position, original outline and hole",
+    "entrance selected from southern road creates inward connection with no product invented",
+    "explicit product and street group generate measured lots",
+    "moving adjustable gate changes connection and lot polygons while preserving main road",
+    "save/reopen preserves source geometry and road relationships exactly",
+    "history after full browser reload is not falsely promised",
+    "one undo after closing/reopening restores geometry and schedules",
+    "redo after reopening restores complete operation",
+    "freehand five-corner flexible polygon is stored and recomputes land and lots",
+    "accepted supplied natural geometry cannot be reshaped as flexible park",
+    "drawing Undo shortcut removes a point without undoing an accepted scenario",
+    "drawing Redo restores the point without changing accepted quantities",
+    "unfinished-shape cancellation retains entire accepted scenario",
+    "second reopen preserves irregular polygons, holes, allocations and quantities",
+    "clear lot allocations preserves fixed site, main road and supplied protection while clearing yield",
+    "one undo restores complete pre-clear allocations and measured schedules",
+    "adding products after deleting an unused middle product preserves unique stable records",
+    "no uncaught browser errors"
+  ],
+  "errors": [],
+  "actions": [
+    {
+      "action": "Southern gate offset 60 to 56 metres",
+      "before": {
+        "id": "residential",
+        "name": "Residential working plan",
+        "idea": "Working residential layout",
+        "advantage": "Measured valid yield and scoped quantities",
+        "compromise": "Residual and unresolved checks remain visible",
+        "inputs": {
+          "version": 2,
+          "phase": "layout",
+          "objective": "yield",
+          "objectiveNote": "Maximum valid lot yield within the declared product mix and constraints",
+          "source": "Fictitious survey: 120 × 100 m; given main road and wetland",
+          "fixedRequirements": "",
+          "preferences": "Coherent facing street groups",
+          "adjustable": "Internal roads, product-group allocation and proposed open space",
+          "unknowns": "",
+          "boundary": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ],
+          "boundaryLocked": true,
+          "calibration": "source-metres",
+          "independentCheck": "",
+          "externalRoads": [
+            {
+              "id": "external_1793653442158",
+              "name": "Existing main road",
+              "a": {
+                "x": 0,
+                "y": -5
+              },
+              "b": {
+                "x": 119.9,
+                "y": -5
+              },
+              "path": [
+                {
+                  "x": 0,
+                  "y": -5
+                },
+                {
+                  "x": 119.9,
+                  "y": -5
+                }
+              ],
+              "rightOfWay": 10,
+              "carriageway": 6,
+              "eligible": [
+                {
+                  "edge": 0,
+                  "from": 0,
+                  "to": 119.90000000399999
+                },
+                {
+                  "edge": 3,
+                  "from": 99.998,
+                  "to": 100
+                }
+              ],
+              "locked": false,
+              "source": "Drawn supplied alignment; verify dimensions and access permissions"
+            }
+          ],
+          "entrance": {
+            "id": "primary",
+            "edge": 0,
+            "offset": 59.950000001999996,
+            "width": 8,
+            "transition": 12,
+            "roadId": "main",
+            "externalRoadId": "external_1793653442158",
+            "locked": false,
+            "role": "Primary",
+            "movements": ""
+          },
+          "roadRules": {
+            "corridor": 8,
+            "carriageway": null,
+            "cornerReturn": 0,
+            "centrelineRadius": null,
+            "junctionAngle": 90,
+            "anglePolicy": "preference",
+            "turning": "",
+            "confirmed": false
+          },
+          "roads": [
+            {
+              "id": "main",
+              "name": "Entrance street",
+              "path": [
+                {
+                  "x": 59.950000001999996,
+                  "y": 0
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 20
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 40
+                }
+              ],
+              "locked": false
+            }
+          ],
+          "products": [
+            {
+              "id": "product_1",
+              "name": "Product 1",
+              "color": "#bd97b7",
+              "frontage": 8,
+              "depth": 16,
+              "frontageMin": 7.2,
+              "frontageMax": 8.8,
+              "depthMin": 14.4,
+              "depthMax": 17.6,
+              "areaMin": 102.4,
+              "areaMax": 153.6,
+              "maxSaleableArea": 153.6,
+              "irregular": true,
+              "minRearRatio": 0.7,
+              "rate": null
+            }
+          ],
+          "groups": [
+            {
+              "id": "group_main",
+              "roadId": "main",
+              "from": 0,
+              "to": 1,
+              "productId": "product_1",
+              "locked": false
+            }
+          ],
+          "spaces": [
+            {
+              "id": "source_1793653442866_0",
+              "name": "Given wetland",
+              "kind": "protected",
+              "points": [
+                {
+                  "x": -5,
+                  "y": 72
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": -4,
+                  "y": 87
+                }
+              ],
+              "buffer": 0,
+              "bufferSource": "No additional buffer declared",
+              "minArea": 0,
+              "locked": true,
+              "function": "Retained natural feature",
+              "requiresAccess": false,
+              "prohibition": "all",
+              "crossing": "none",
+              "source": "Supplied given-wetland.geojson; coordinates m, converted to metres; source positions retained",
+              "holes": [
+                [
+                  {
+                    "x": 1,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 80
+                  },
+                  {
+                    "x": 1,
+                    "y": 80
+                  }
+                ]
+              ]
+            }
+          ],
+          "mix": {
+            "basis": "units",
+            "mode": "percent",
+            "tolerance": 5,
+            "mandatory": true,
+            "rounding": "largest-remainder",
+            "targets": {
+              "product_1": 100
+            }
+          },
+          "commonRates": [],
+          "lockedLots": [],
+          "fill": false
+        },
+        "result": {
+          "phase": "layout",
+          "externalReservation": [],
+          "screening": [],
+          "resolvedRoads": [
+            {
+              "id": "main",
+              "points": [
+                {
+                  "x": 59.950000001999996,
+                  "y": 0
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 20
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 40
+                }
+              ]
+            }
+          ],
+          "overlays": [],
+          "residualRegions": [
+            {
+              "id": "residual_1",
+              "points": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 39.95,
+                  "y": 0
+                },
+                {
+                  "x": 39.95,
+                  "y": 40
+                },
+                {
+                  "x": 79.95,
+                  "y": 40
+                },
+                {
+                  "x": 79.95,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ],
+              "holes": [],
+              "area": 10139.983334499999,
+              "status": "accessible",
+              "reason": "Road edge exists; only tested frontage/depth/shape fits may become lots"
+            },
+            {
+              "id": "residual_2",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ],
+              "holes": [],
+              "area": 9,
+              "status": "too-small",
+              "reason": "Below the smallest permitted product area"
+            }
+          ],
+          "lots": [
+            {
+              "id": "lot_group_main_63950_0_63950_8000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 63.95,
+                  "y": 0
+                },
+                {
+                  "x": 79.95,
+                  "y": 0
+                },
+                {
+                  "x": 79.95,
+                  "y": 8
+                },
+                {
+                  "x": 63.95,
+                  "y": 8
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_63950_8000_63950_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 63.95,
+                  "y": 8
+                },
+                {
+                  "x": 79.95,
+                  "y": 8
+                },
+                {
+                  "x": 79.95,
+                  "y": 16
+                },
+                {
+                  "x": 63.95,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_63950_16000_63950_24000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 63.95,
+                  "y": 16
+                },
+                {
+                  "x": 79.95,
+                  "y": 16
+                },
+                {
+                  "x": 79.95,
+                  "y": 24
+                },
+                {
+                  "x": 63.95,
+                  "y": 24
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_63950_24000_63950_32000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 63.95,
+                  "y": 24
+                },
+                {
+                  "x": 79.95,
+                  "y": 24
+                },
+                {
+                  "x": 79.95,
+                  "y": 32
+                },
+                {
+                  "x": 63.95,
+                  "y": 32
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_63950_32000_63950_40000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 63.95,
+                  "y": 32
+                },
+                {
+                  "x": 79.95,
+                  "y": 32
+                },
+                {
+                  "x": 79.95,
+                  "y": 40
+                },
+                {
+                  "x": 63.95,
+                  "y": 40
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_55950_40000_55950_32000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 39.95,
+                  "y": 32
+                },
+                {
+                  "x": 55.95,
+                  "y": 32
+                },
+                {
+                  "x": 55.95,
+                  "y": 40
+                },
+                {
+                  "x": 39.95,
+                  "y": 40
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_55950_32000_55950_24000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 39.95,
+                  "y": 24
+                },
+                {
+                  "x": 55.95,
+                  "y": 24
+                },
+                {
+                  "x": 55.95,
+                  "y": 32
+                },
+                {
+                  "x": 39.95,
+                  "y": 32
+                }
+              ],
+              "area": 127.99999999999989,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_55950_24000_55950_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 39.95,
+                  "y": 16
+                },
+                {
+                  "x": 55.95,
+                  "y": 16
+                },
+                {
+                  "x": 55.95,
+                  "y": 24
+                },
+                {
+                  "x": 39.95,
+                  "y": 24
+                }
+              ],
+              "area": 128.0000000000001,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_55950_16000_55950_8000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 39.95,
+                  "y": 8
+                },
+                {
+                  "x": 55.95,
+                  "y": 8
+                },
+                {
+                  "x": 55.95,
+                  "y": 16
+                },
+                {
+                  "x": 39.95,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_55950_8000_55950_0",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 39.95,
+                  "y": 0
+                },
+                {
+                  "x": 55.95,
+                  "y": 0
+                },
+                {
+                  "x": 55.95,
+                  "y": 8
+                },
+                {
+                  "x": 39.95,
+                  "y": 8
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            }
+          ],
+          "road": [
+            [
+              [
+                {
+                  "x": 55.95,
+                  "y": 0
+                },
+                {
+                  "x": 63.95,
+                  "y": 0
+                },
+                {
+                  "x": 63.95,
+                  "y": 40
+                },
+                {
+                  "x": 55.95,
+                  "y": 40
+                }
+              ]
+            ]
+          ],
+          "connection": [
+            [
+              [
+                {
+                  "x": 55.95,
+                  "y": 0
+                },
+                {
+                  "x": 63.95,
+                  "y": 0
+                },
+                {
+                  "x": 63.95,
+                  "y": 20
+                },
+                {
+                  "x": 55.95,
+                  "y": 20
+                }
+              ]
+            ]
+          ],
+          "offsiteConnection": [
+            [
+              [
+                {
+                  "x": 55.95,
+                  "y": -5
+                },
+                {
+                  "x": 63.95,
+                  "y": -5
+                },
+                {
+                  "x": 63.95,
+                  "y": 0
+                },
+                {
+                  "x": 55.95,
+                  "y": 0
+                }
+              ]
+            ]
+          ],
+          "blocks": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 55.95,
+                  "y": 0
+                },
+                {
+                  "x": 55.95,
+                  "y": 40
+                },
+                {
+                  "x": 63.95,
+                  "y": 40
+                },
+                {
+                  "x": 63.95,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ]
+            ]
+          ],
+          "residual": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 39.95,
+                  "y": 0
+                },
+                {
+                  "x": 39.95,
+                  "y": 40
+                },
+                {
+                  "x": 79.95,
+                  "y": 40
+                },
+                {
+                  "x": 79.95,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ]
+            ]
+          ],
+          "exclusions": {
+            "source_1793653442866_0": [
+              [
+                [
+                  {
+                    "x": -5,
+                    "y": 72
+                  },
+                  {
+                    "x": 7,
+                    "y": 70
+                  },
+                  {
+                    "x": 15,
+                    "y": 76
+                  },
+                  {
+                    "x": 9,
+                    "y": 82
+                  },
+                  {
+                    "x": 12,
+                    "y": 91
+                  },
+                  {
+                    "x": 1,
+                    "y": 96
+                  },
+                  {
+                    "x": -4,
+                    "y": 87
+                  }
+                ],
+                [
+                  {
+                    "x": 1,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 80
+                  },
+                  {
+                    "x": 1,
+                    "y": 80
+                  }
+                ]
+              ]
+            ]
+          },
+          "issues": [
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: permissible movements are not specified."
+            },
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Road dimensions are provisional project inputs."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Carriageway width is missing."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Project turning requirements have not been supplied."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+            }
+          ],
+          "counts": {
+            "valid": 10,
+            "unresolved": 0,
+            "invalid": 0
+          },
+          "validLotArea": 1280,
+          "roadLength": 40,
+          "roadPerLot": 4,
+          "land": {
+            "gross": 12000,
+            "residential": 1280,
+            "roads": 320,
+            "protected": 251.01666550000004,
+            "flexible": 0,
+            "reservations": 0,
+            "residual": 10148.983334499999,
+            "overlap": 0,
+            "gap": 0,
+            "tolerance": 0.01
+          },
+          "schedule": [
+            {
+              "productId": "product_1",
+              "valid": 10,
+              "target": 100,
+              "roundedTarget": 10,
+              "actual": 100,
+              "deviation": 0,
+              "mix": "pass",
+              "area": 1280,
+              "minArea": 127.99999999999989,
+              "meanArea": 128,
+              "maxArea": 128.0000000000001,
+              "cost": null
+            }
+          ],
+          "groupSchedule": [
+            {
+              "groupId": "group_main",
+              "productId": "product_1",
+              "valid": 10,
+              "matching": true
+            }
+          ],
+          "cost": 0,
+          "missingCosts": [
+            "Product 1: per-lot development rate missing",
+            "roads: common works unpriced",
+            "spaces: common works unpriced"
+          ],
+          "qualified": false,
+          "skipped": {}
+        }
+      },
+      "after": {
+        "id": "residential",
+        "name": "Residential working plan",
+        "idea": "Working residential layout",
+        "advantage": "Measured valid yield and scoped quantities",
+        "compromise": "Residual and unresolved checks remain visible",
+        "inputs": {
+          "version": 2,
+          "phase": "layout",
+          "objective": "yield",
+          "objectiveNote": "Maximum valid lot yield within the declared product mix and constraints",
+          "source": "Fictitious survey: 120 × 100 m; given main road and wetland",
+          "fixedRequirements": "",
+          "preferences": "Coherent facing street groups",
+          "adjustable": "Internal roads, product-group allocation and proposed open space",
+          "unknowns": "",
+          "boundary": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ],
+          "boundaryLocked": true,
+          "calibration": "source-metres",
+          "independentCheck": "",
+          "externalRoads": [
+            {
+              "id": "external_1793653442158",
+              "name": "Existing main road",
+              "a": {
+                "x": 0,
+                "y": -5
+              },
+              "b": {
+                "x": 119.9,
+                "y": -5
+              },
+              "path": [
+                {
+                  "x": 0,
+                  "y": -5
+                },
+                {
+                  "x": 119.9,
+                  "y": -5
+                }
+              ],
+              "rightOfWay": 10,
+              "carriageway": 6,
+              "eligible": [
+                {
+                  "edge": 0,
+                  "from": 0,
+                  "to": 119.90000000399999
+                },
+                {
+                  "edge": 3,
+                  "from": 99.998,
+                  "to": 100
+                }
+              ],
+              "locked": false,
+              "source": "Drawn supplied alignment; verify dimensions and access permissions"
+            }
+          ],
+          "entrance": {
+            "id": "primary",
+            "edge": 0,
+            "offset": 56,
+            "width": 8,
+            "transition": 12,
+            "roadId": "main",
+            "externalRoadId": "external_1793653442158",
+            "locked": false,
+            "role": "Primary",
+            "movements": ""
+          },
+          "roadRules": {
+            "corridor": 8,
+            "carriageway": null,
+            "cornerReturn": 0,
+            "centrelineRadius": null,
+            "junctionAngle": 90,
+            "anglePolicy": "preference",
+            "turning": "",
+            "confirmed": false
+          },
+          "roads": [
+            {
+              "id": "main",
+              "name": "Entrance street",
+              "path": [
+                {
+                  "x": 56,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 20
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 40
+                }
+              ],
+              "locked": false
+            }
+          ],
+          "products": [
+            {
+              "id": "product_1",
+              "name": "Product 1",
+              "color": "#bd97b7",
+              "frontage": 8,
+              "depth": 16,
+              "frontageMin": 7.2,
+              "frontageMax": 8.8,
+              "depthMin": 14.4,
+              "depthMax": 17.6,
+              "areaMin": 102.4,
+              "areaMax": 153.6,
+              "maxSaleableArea": 153.6,
+              "irregular": true,
+              "minRearRatio": 0.7,
+              "rate": null
+            }
+          ],
+          "groups": [
+            {
+              "id": "group_main",
+              "roadId": "main",
+              "from": 0,
+              "to": 1,
+              "productId": "product_1",
+              "locked": false
+            }
+          ],
+          "spaces": [
+            {
+              "id": "source_1793653442866_0",
+              "name": "Given wetland",
+              "kind": "protected",
+              "points": [
+                {
+                  "x": -5,
+                  "y": 72
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": -4,
+                  "y": 87
+                }
+              ],
+              "buffer": 0,
+              "bufferSource": "No additional buffer declared",
+              "minArea": 0,
+              "locked": true,
+              "function": "Retained natural feature",
+              "requiresAccess": false,
+              "prohibition": "all",
+              "crossing": "none",
+              "source": "Supplied given-wetland.geojson; coordinates m, converted to metres; source positions retained",
+              "holes": [
+                [
+                  {
+                    "x": 1,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 80
+                  },
+                  {
+                    "x": 1,
+                    "y": 80
+                  }
+                ]
+              ]
+            }
+          ],
+          "mix": {
+            "basis": "units",
+            "mode": "percent",
+            "tolerance": 5,
+            "mandatory": true,
+            "rounding": "largest-remainder",
+            "targets": {
+              "product_1": 100
+            }
+          },
+          "commonRates": [],
+          "lockedLots": [],
+          "fill": false
+        },
+        "result": {
+          "phase": "layout",
+          "externalReservation": [],
+          "screening": [
+            {
+              "object": "main",
+              "state": "unknown",
+              "message": "Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+            }
+          ],
+          "resolvedRoads": [
+            {
+              "id": "main",
+              "points": [
+                {
+                  "x": 56,
+                  "y": 0
+                },
+                {
+                  "x": 56,
+                  "y": 20
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 40
+                }
+              ]
+            }
+          ],
+          "overlays": [],
+          "residualRegions": [
+            {
+              "id": "residual_1",
+              "points": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 52,
+                  "y": 0
+                },
+                {
+                  "x": 52,
+                  "y": 1.168774
+                },
+                {
+                  "x": 36,
+                  "y": 1.168774
+                },
+                {
+                  "x": 36,
+                  "y": 17.168774
+                },
+                {
+                  "x": 52,
+                  "y": 17.168774
+                },
+                {
+                  "x": 36.108465,
+                  "y": 19.028643
+                },
+                {
+                  "x": 37.034151,
+                  "y": 26.938106
+                },
+                {
+                  "x": 52.925686,
+                  "y": 25.078237
+                },
+                {
+                  "x": 52.925686,
+                  "y": 25.078237
+                },
+                {
+                  "x": 37.228894,
+                  "y": 28.178353
+                },
+                {
+                  "x": 40.32901,
+                  "y": 43.875145
+                },
+                {
+                  "x": 56.025802,
+                  "y": 40.775029
+                },
+                {
+                  "x": 63.874198,
+                  "y": 39.224971
+                },
+                {
+                  "x": 62.400889,
+                  "y": 31.76518
+                },
+                {
+                  "x": 78.097681,
+                  "y": 28.665064
+                },
+                {
+                  "x": 76.547623,
+                  "y": 20.816668
+                },
+                {
+                  "x": 60.850831,
+                  "y": 23.916784
+                },
+                {
+                  "x": 60,
+                  "y": 19.608779
+                },
+                {
+                  "x": 60,
+                  "y": 16
+                },
+                {
+                  "x": 76,
+                  "y": 16
+                },
+                {
+                  "x": 76,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ],
+              "holes": [],
+              "area": 10394.96901936359,
+              "status": "accessible",
+              "reason": "Road edge exists; only tested frontage/depth/shape fits may become lots"
+            },
+            {
+              "id": "residual_2",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ],
+              "holes": [],
+              "area": 9,
+              "status": "too-small",
+              "reason": "Below the smallest permitted product area"
+            }
+          ],
+          "lots": [
+            {
+              "id": "lot_group_main_60000_0_60000_8000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 60,
+                  "y": 0
+                },
+                {
+                  "x": 76,
+                  "y": 0
+                },
+                {
+                  "x": 76,
+                  "y": 8
+                },
+                {
+                  "x": 60,
+                  "y": 8
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_60000_8000_60000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 60,
+                  "y": 8
+                },
+                {
+                  "x": 76,
+                  "y": 8
+                },
+                {
+                  "x": 76,
+                  "y": 16
+                },
+                {
+                  "x": 60,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_60851_23917_62401_31765",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 60.850831,
+                  "y": 23.916784
+                },
+                {
+                  "x": 76.547623,
+                  "y": 20.816668
+                },
+                {
+                  "x": 78.097681,
+                  "y": 28.665064
+                },
+                {
+                  "x": 62.400889,
+                  "y": 31.76518
+                }
+              ],
+              "area": 127.9999991523598,
+              "frontage": 7.999999814073248,
+              "depth": 15.999999728369891,
+              "depthMax": 15.999999942049374,
+              "rearRatio": 0.9999999966889058,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_56026_40775_54476_32927",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 38.778952,
+                  "y": 36.026749
+                },
+                {
+                  "x": 54.475744,
+                  "y": 32.926633
+                },
+                {
+                  "x": 56.025802,
+                  "y": 40.775029
+                },
+                {
+                  "x": 40.32901,
+                  "y": 43.875145
+                }
+              ],
+              "area": 127.99999915236003,
+              "frontage": 7.999999973511251,
+              "depth": 15.999999761604156,
+              "depthMax": 15.999999947022499,
+              "rearRatio": 0.9999999966889057,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_54476_32927_52926_25078",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 37.228894,
+                  "y": 28.178353
+                },
+                {
+                  "x": 52.925686,
+                  "y": 25.078237
+                },
+                {
+                  "x": 54.475744,
+                  "y": 32.926633
+                },
+                {
+                  "x": 38.778952,
+                  "y": 36.026749
+                }
+              ],
+              "area": 127.99999915236015,
+              "frontage": 7.999999947022503,
+              "depth": 15.999999555583763,
+              "depthMax": 15.999999741002107,
+              "rearRatio": 0.9999999966889066,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_52926_25078_52000_17169",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 36.108465,
+                  "y": 19.028643
+                },
+                {
+                  "x": 52,
+                  "y": 17.168774
+                },
+                {
+                  "x": 52,
+                  "y": 20.391221
+                },
+                {
+                  "x": 52.075802,
+                  "y": 20.775029
+                },
+                {
+                  "x": 52.925686,
+                  "y": 25.078237
+                },
+                {
+                  "x": 37.034151,
+                  "y": 26.938106
+                }
+              ],
+              "area": 125.92367550129,
+              "frontage": 7.999999999999983,
+              "depth": 15.686849432320622,
+              "depthMax": 15.999999912660266,
+              "rearRatio": 1.000000007546378,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_52000_17169_52000_9169",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 36,
+                  "y": 9.168774
+                },
+                {
+                  "x": 52,
+                  "y": 9.168774
+                },
+                {
+                  "x": 52,
+                  "y": 17.168774
+                },
+                {
+                  "x": 36,
+                  "y": 17.168774
+                }
+              ],
+              "area": 127.99999999999994,
+              "frontage": 7.999999960143057,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 0.9999999999999998,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_52000_9169_52000_1169",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 36,
+                  "y": 1.168774
+                },
+                {
+                  "x": 52,
+                  "y": 1.168774
+                },
+                {
+                  "x": 52,
+                  "y": 9.168774
+                },
+                {
+                  "x": 36,
+                  "y": 9.168774
+                }
+              ],
+              "area": 128.00000000000006,
+              "frontage": 7.999999960143058,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1.0000000000000002,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            }
+          ],
+          "road": [
+            [
+              [
+                {
+                  "x": 52,
+                  "y": 0
+                },
+                {
+                  "x": 60,
+                  "y": 0
+                },
+                {
+                  "x": 60,
+                  "y": 19.608779
+                },
+                {
+                  "x": 63.874198,
+                  "y": 39.224971
+                },
+                {
+                  "x": 56.025802,
+                  "y": 40.775029
+                },
+                {
+                  "x": 52.075802,
+                  "y": 20.775029
+                },
+                {
+                  "x": 52,
+                  "y": 20.391221
+                }
+              ]
+            ]
+          ],
+          "connection": [
+            [
+              [
+                {
+                  "x": 52,
+                  "y": 0
+                },
+                {
+                  "x": 60,
+                  "y": 0
+                },
+                {
+                  "x": 60,
+                  "y": 20
+                },
+                {
+                  "x": 52,
+                  "y": 20
+                }
+              ]
+            ]
+          ],
+          "offsiteConnection": [
+            [
+              [
+                {
+                  "x": 52,
+                  "y": -5
+                },
+                {
+                  "x": 60,
+                  "y": -5
+                },
+                {
+                  "x": 60,
+                  "y": 0
+                },
+                {
+                  "x": 52,
+                  "y": 0
+                }
+              ]
+            ]
+          ],
+          "blocks": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 52,
+                  "y": 0
+                },
+                {
+                  "x": 52,
+                  "y": 20.391221
+                },
+                {
+                  "x": 52.075802,
+                  "y": 20.775029
+                },
+                {
+                  "x": 56.025802,
+                  "y": 40.775029
+                },
+                {
+                  "x": 63.874198,
+                  "y": 39.224971
+                },
+                {
+                  "x": 60,
+                  "y": 19.608779
+                },
+                {
+                  "x": 60,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ]
+            ]
+          ],
+          "residual": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 52,
+                  "y": 0
+                },
+                {
+                  "x": 52,
+                  "y": 1.168774
+                },
+                {
+                  "x": 36,
+                  "y": 1.168774
+                },
+                {
+                  "x": 36,
+                  "y": 17.168774
+                },
+                {
+                  "x": 52,
+                  "y": 17.168774
+                },
+                {
+                  "x": 36.108465,
+                  "y": 19.028643
+                },
+                {
+                  "x": 37.034151,
+                  "y": 26.938106
+                },
+                {
+                  "x": 52.925686,
+                  "y": 25.078237
+                },
+                {
+                  "x": 52.925686,
+                  "y": 25.078237
+                },
+                {
+                  "x": 37.228894,
+                  "y": 28.178353
+                },
+                {
+                  "x": 40.32901,
+                  "y": 43.875145
+                },
+                {
+                  "x": 56.025802,
+                  "y": 40.775029
+                },
+                {
+                  "x": 63.874198,
+                  "y": 39.224971
+                },
+                {
+                  "x": 62.400889,
+                  "y": 31.76518
+                },
+                {
+                  "x": 78.097681,
+                  "y": 28.665064
+                },
+                {
+                  "x": 76.547623,
+                  "y": 20.816668
+                },
+                {
+                  "x": 60.850831,
+                  "y": 23.916784
+                },
+                {
+                  "x": 60,
+                  "y": 19.608779
+                },
+                {
+                  "x": 60,
+                  "y": 16
+                },
+                {
+                  "x": 76,
+                  "y": 16
+                },
+                {
+                  "x": 76,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ]
+            ]
+          ],
+          "exclusions": {
+            "source_1793653442866_0": [
+              [
+                [
+                  {
+                    "x": -5,
+                    "y": 72
+                  },
+                  {
+                    "x": 7,
+                    "y": 70
+                  },
+                  {
+                    "x": 15,
+                    "y": 76
+                  },
+                  {
+                    "x": 9,
+                    "y": 82
+                  },
+                  {
+                    "x": 12,
+                    "y": 91
+                  },
+                  {
+                    "x": 1,
+                    "y": 96
+                  },
+                  {
+                    "x": -4,
+                    "y": 87
+                  }
+                ],
+                [
+                  {
+                    "x": 1,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 80
+                  },
+                  {
+                    "x": 1,
+                    "y": 80
+                  }
+                ]
+              ]
+            ]
+          },
+          "issues": [
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: permissible movements are not specified."
+            },
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Road dimensions are provisional project inputs."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Carriageway width is missing."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Project turning requirements have not been supplied."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+            }
+          ],
+          "counts": {
+            "valid": 8,
+            "unresolved": 0,
+            "invalid": 0
+          },
+          "validLotArea": 1021.9236729583699,
+          "roadLength": 40.38633120538857,
+          "roadPerLot": 5.0482914006735715,
+          "land": {
+            "gross": 12000,
+            "residential": 1021.9236729583698,
+            "roads": 323.0906483,
+            "protected": 251.01666550000004,
+            "flexible": 0,
+            "reservations": 0,
+            "residual": 10403.96901936359,
+            "overlap": 0.000006121959813754074,
+            "gap": 0,
+            "tolerance": 0.01
+          },
+          "schedule": [
+            {
+              "productId": "product_1",
+              "valid": 8,
+              "target": 100,
+              "roundedTarget": 8,
+              "actual": 100,
+              "deviation": 0,
+              "mix": "pass",
+              "area": 1021.9236729583699,
+              "minArea": 125.92367550129,
+              "meanArea": 127.74045911979624,
+              "maxArea": 128.00000000000006,
+              "cost": null
+            }
+          ],
+          "groupSchedule": [
+            {
+              "groupId": "group_main",
+              "productId": "product_1",
+              "valid": 8,
+              "matching": true
+            }
+          ],
+          "cost": 0,
+          "missingCosts": [
+            "Product 1: per-lot development rate missing",
+            "roads: common works unpriced",
+            "spaces: common works unpriced"
+          ],
+          "qualified": false,
+          "skipped": {
+            "overlap with road, reservation or another lot": 1
+          }
+        }
+      }
+    },
+    {
+      "action": "Draw irregular five-corner space along actual road edge",
+      "before": {
+        "id": "residential",
+        "name": "Residential working plan",
+        "idea": "Working residential layout",
+        "advantage": "Measured valid yield and scoped quantities",
+        "compromise": "Residual and unresolved checks remain visible",
+        "inputs": {
+          "version": 2,
+          "phase": "layout",
+          "objective": "yield",
+          "objectiveNote": "Maximum valid lot yield within the declared product mix and constraints",
+          "source": "Fictitious survey: 120 × 100 m; given main road and wetland",
+          "fixedRequirements": "",
+          "preferences": "Coherent facing street groups",
+          "adjustable": "Internal roads, product-group allocation and proposed open space",
+          "unknowns": "",
+          "boundary": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ],
+          "boundaryLocked": true,
+          "calibration": "source-metres",
+          "independentCheck": "",
+          "externalRoads": [
+            {
+              "id": "external_1793653442158",
+              "name": "Existing main road",
+              "a": {
+                "x": 0,
+                "y": -5
+              },
+              "b": {
+                "x": 119.9,
+                "y": -5
+              },
+              "path": [
+                {
+                  "x": 0,
+                  "y": -5
+                },
+                {
+                  "x": 119.9,
+                  "y": -5
+                }
+              ],
+              "rightOfWay": 10,
+              "carriageway": 6,
+              "eligible": [
+                {
+                  "edge": 0,
+                  "from": 0,
+                  "to": 119.90000000399999
+                },
+                {
+                  "edge": 3,
+                  "from": 99.998,
+                  "to": 100
+                }
+              ],
+              "locked": false,
+              "source": "Drawn supplied alignment; verify dimensions and access permissions"
+            }
+          ],
+          "entrance": {
+            "id": "primary",
+            "edge": 0,
+            "offset": 54,
+            "width": 8,
+            "transition": 12,
+            "roadId": "main",
+            "externalRoadId": "external_1793653442158",
+            "locked": false,
+            "role": "Primary",
+            "movements": ""
+          },
+          "roadRules": {
+            "corridor": 8,
+            "carriageway": null,
+            "cornerReturn": 0,
+            "centrelineRadius": null,
+            "junctionAngle": 90,
+            "anglePolicy": "preference",
+            "turning": "",
+            "confirmed": false
+          },
+          "roads": [
+            {
+              "id": "main",
+              "name": "Entrance street",
+              "path": [
+                {
+                  "x": 54,
+                  "y": 0
+                },
+                {
+                  "x": 54,
+                  "y": 20
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 40
+                }
+              ],
+              "locked": false
+            }
+          ],
+          "products": [
+            {
+              "id": "product_1",
+              "name": "Product 1",
+              "color": "#bd97b7",
+              "frontage": 8,
+              "depth": 16,
+              "frontageMin": 7.2,
+              "frontageMax": 8.8,
+              "depthMin": 14.4,
+              "depthMax": 17.6,
+              "areaMin": 102.4,
+              "areaMax": 153.6,
+              "maxSaleableArea": 153.6,
+              "irregular": true,
+              "minRearRatio": 0.7,
+              "rate": null
+            }
+          ],
+          "groups": [
+            {
+              "id": "group_main",
+              "roadId": "main",
+              "from": 0,
+              "to": 1,
+              "productId": "product_1",
+              "locked": false
+            }
+          ],
+          "spaces": [
+            {
+              "id": "source_1793653442866_0",
+              "name": "Given wetland",
+              "kind": "protected",
+              "points": [
+                {
+                  "x": -5,
+                  "y": 72
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": -4,
+                  "y": 87
+                }
+              ],
+              "buffer": 0,
+              "bufferSource": "No additional buffer declared",
+              "minArea": 0,
+              "locked": true,
+              "function": "Retained natural feature",
+              "requiresAccess": false,
+              "prohibition": "all",
+              "crossing": "none",
+              "source": "Supplied given-wetland.geojson; coordinates m, converted to metres; source positions retained",
+              "holes": [
+                [
+                  {
+                    "x": 1,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 80
+                  },
+                  {
+                    "x": 1,
+                    "y": 80
+                  }
+                ]
+              ]
+            }
+          ],
+          "mix": {
+            "basis": "units",
+            "mode": "percent",
+            "tolerance": 5,
+            "mandatory": true,
+            "rounding": "largest-remainder",
+            "targets": {
+              "product_1": 100
+            }
+          },
+          "commonRates": [],
+          "lockedLots": [],
+          "fill": false
+        },
+        "result": {
+          "phase": "layout",
+          "externalReservation": [],
+          "screening": [
+            {
+              "object": "main",
+              "state": "unknown",
+              "message": "Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+            }
+          ],
+          "resolvedRoads": [
+            {
+              "id": "main",
+              "points": [
+                {
+                  "x": 54,
+                  "y": 0
+                },
+                {
+                  "x": 54,
+                  "y": 20
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 40
+                }
+              ]
+            }
+          ],
+          "overlays": [],
+          "residualRegions": [
+            {
+              "id": "residual_1",
+              "points": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 2.031074
+                },
+                {
+                  "x": 34,
+                  "y": 2.031074
+                },
+                {
+                  "x": 34,
+                  "y": 18.031074
+                },
+                {
+                  "x": 50,
+                  "y": 18.031074
+                },
+                {
+                  "x": 34.310294,
+                  "y": 21.166854
+                },
+                {
+                  "x": 35.86398,
+                  "y": 28.940642
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 36.217954,
+                  "y": 30.367243
+                },
+                {
+                  "x": 38.499145,
+                  "y": 38.035109
+                },
+                {
+                  "x": 40.780335,
+                  "y": 45.702975
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 63.783933,
+                  "y": 38.859405
+                },
+                {
+                  "x": 61.587852,
+                  "y": 31.47762
+                },
+                {
+                  "x": 76.923584,
+                  "y": 26.91524
+                },
+                {
+                  "x": 74.642394,
+                  "y": 19.247374
+                },
+                {
+                  "x": 59.306662,
+                  "y": 23.809754
+                },
+                {
+                  "x": 61.378072,
+                  "y": 30.772477
+                },
+                {
+                  "x": 61.543516,
+                  "y": 31.328591
+                },
+                {
+                  "x": 58,
+                  "y": 19.417613
+                },
+                {
+                  "x": 58,
+                  "y": 16
+                },
+                {
+                  "x": 74,
+                  "y": 16
+                },
+                {
+                  "x": 74,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ],
+              "holes": [],
+              "area": 10392.194440479181,
+              "status": "accessible",
+              "reason": "Road edge exists; only tested frontage/depth/shape fits may become lots"
+            },
+            {
+              "id": "residual_2",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ],
+              "holes": [],
+              "area": 9,
+              "status": "too-small",
+              "reason": "Below the smallest permitted product area"
+            }
+          ],
+          "lots": [
+            {
+              "id": "lot_group_main_58000_0_58000_8000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 74,
+                  "y": 0
+                },
+                {
+                  "x": 74,
+                  "y": 8
+                },
+                {
+                  "x": 58,
+                  "y": 8
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_58000_8000_58000_16000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 58,
+                  "y": 8
+                },
+                {
+                  "x": 74,
+                  "y": 8
+                },
+                {
+                  "x": 74,
+                  "y": 16
+                },
+                {
+                  "x": 58,
+                  "y": 16
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_59307_23810_61588_31478",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 59.306662,
+                  "y": 23.809754
+                },
+                {
+                  "x": 74.642394,
+                  "y": 19.247374
+                },
+                {
+                  "x": 76.923584,
+                  "y": 26.91524
+                },
+                {
+                  "x": 61.587852,
+                  "y": 31.47762
+                },
+                {
+                  "x": 61.378072,
+                  "y": 30.772477
+                }
+              ],
+              "area": 127.99999350476708,
+              "frontage": 7.999999530938914,
+              "depth": 15.999999572676046,
+              "depthMax": 15.999999677561348,
+              "rearRatio": 0.9999999750785632,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_56116_41141_53835_33473",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 38.499145,
+                  "y": 38.035109
+                },
+                {
+                  "x": 53.834877,
+                  "y": 33.472729
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 40.780335,
+                  "y": 45.702975
+                }
+              ],
+              "area": 127.99999362011192,
+              "frontage": 7.999999800628494,
+              "depth": 15.999999484801279,
+              "depthMax": 15.999999601256995,
+              "rearRatio": 0.9999999750785626,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_53835_33473_51554_25805",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 36.217954,
+                  "y": 30.367243
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 53.834877,
+                  "y": 33.472729
+                },
+                {
+                  "x": 38.499145,
+                  "y": 38.035109
+                }
+              ],
+              "area": 127.99999973523495,
+              "frontage": 7.999999601256995,
+              "depth": 15.99999955477055,
+              "depthMax": 16.00000030094978,
+              "rearRatio": 1.000000010722159,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_51554_25805_50000_18031",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 34.310294,
+                  "y": 21.166854
+                },
+                {
+                  "x": 50,
+                  "y": 18.031074
+                },
+                {
+                  "x": 50,
+                  "y": 20.582387
+                },
+                {
+                  "x": 50.166067,
+                  "y": 21.140595
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 35.86398,
+                  "y": 28.940642
+                }
+              ],
+              "area": 124.85850751818447,
+              "frontage": 7.999999999999996,
+              "depth": 15.634706760305711,
+              "depthMax": 16.000000195793223,
+              "rearRatio": 0.9999999496984412,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_50000_18031_50000_10031",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 34,
+                  "y": 10.031074
+                },
+                {
+                  "x": 50,
+                  "y": 10.031074
+                },
+                {
+                  "x": 50,
+                  "y": 18.031074
+                },
+                {
+                  "x": 34,
+                  "y": 18.031074
+                }
+              ],
+              "area": 128.00000000000006,
+              "frontage": 7.999999587485608,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_50000_10031_50000_2031",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 34,
+                  "y": 2.031074
+                },
+                {
+                  "x": 50,
+                  "y": 2.031074
+                },
+                {
+                  "x": 50,
+                  "y": 10.031074
+                },
+                {
+                  "x": 34,
+                  "y": 10.031074
+                }
+              ],
+              "area": 128,
+              "frontage": 7.999999587485608,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            }
+          ],
+          "road": [
+            [
+              [
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 58,
+                  "y": 19.417613
+                },
+                {
+                  "x": 63.783933,
+                  "y": 38.859405
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 50.166067,
+                  "y": 21.140595
+                },
+                {
+                  "x": 50,
+                  "y": 20.582387
+                }
+              ]
+            ]
+          ],
+          "connection": [
+            [
+              [
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 58,
+                  "y": 20
+                },
+                {
+                  "x": 50,
+                  "y": 20
+                }
+              ]
+            ]
+          ],
+          "offsiteConnection": [
+            [
+              [
+                {
+                  "x": 50,
+                  "y": -5
+                },
+                {
+                  "x": 58,
+                  "y": -5
+                },
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 0
+                }
+              ]
+            ]
+          ],
+          "blocks": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 20.582387
+                },
+                {
+                  "x": 50.166067,
+                  "y": 21.140595
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 63.783933,
+                  "y": 38.859405
+                },
+                {
+                  "x": 58,
+                  "y": 19.417613
+                },
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ]
+            ]
+          ],
+          "residual": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 2.031074
+                },
+                {
+                  "x": 34,
+                  "y": 2.031074
+                },
+                {
+                  "x": 34,
+                  "y": 18.031074
+                },
+                {
+                  "x": 50,
+                  "y": 18.031074
+                },
+                {
+                  "x": 34.310294,
+                  "y": 21.166854
+                },
+                {
+                  "x": 35.86398,
+                  "y": 28.940642
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 36.217954,
+                  "y": 30.367243
+                },
+                {
+                  "x": 38.499145,
+                  "y": 38.035109
+                },
+                {
+                  "x": 40.780335,
+                  "y": 45.702975
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 63.783933,
+                  "y": 38.859405
+                },
+                {
+                  "x": 61.587852,
+                  "y": 31.47762
+                },
+                {
+                  "x": 76.923584,
+                  "y": 26.91524
+                },
+                {
+                  "x": 74.642394,
+                  "y": 19.247374
+                },
+                {
+                  "x": 59.306662,
+                  "y": 23.809754
+                },
+                {
+                  "x": 61.378072,
+                  "y": 30.772477
+                },
+                {
+                  "x": 61.543516,
+                  "y": 31.328591
+                },
+                {
+                  "x": 58,
+                  "y": 19.417613
+                },
+                {
+                  "x": 58,
+                  "y": 16
+                },
+                {
+                  "x": 74,
+                  "y": 16
+                },
+                {
+                  "x": 74,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ]
+            ]
+          ],
+          "exclusions": {
+            "source_1793653442866_0": [
+              [
+                [
+                  {
+                    "x": -5,
+                    "y": 72
+                  },
+                  {
+                    "x": 7,
+                    "y": 70
+                  },
+                  {
+                    "x": 15,
+                    "y": 76
+                  },
+                  {
+                    "x": 9,
+                    "y": 82
+                  },
+                  {
+                    "x": 12,
+                    "y": 91
+                  },
+                  {
+                    "x": 1,
+                    "y": 96
+                  },
+                  {
+                    "x": -4,
+                    "y": 87
+                  }
+                ],
+                [
+                  {
+                    "x": 1,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 80
+                  },
+                  {
+                    "x": 1,
+                    "y": 80
+                  }
+                ]
+              ]
+            ]
+          },
+          "issues": [
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: permissible movements are not specified."
+            },
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Road dimensions are provisional project inputs."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Carriageway width is missing."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Project turning requirements have not been supplied."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+            }
+          ],
+          "counts": {
+            "valid": 8,
+            "unresolved": 0,
+            "invalid": 0
+          },
+          "validLotArea": 1020.8584943782985,
+          "roadLength": 40.86630058308851,
+          "roadPerLot": 5.108287572886064,
+          "land": {
+            "gross": 12000,
+            "residential": 1020.8584943782984,
+            "roads": 326.93040170000006,
+            "protected": 251.01666550000004,
+            "flexible": 0,
+            "reservations": 0,
+            "residual": 10401.194440479181,
+            "overlap": 0.000004195449946564622,
+            "gap": 0.0000021379719328251667,
+            "tolerance": 0.01
+          },
+          "schedule": [
+            {
+              "productId": "product_1",
+              "valid": 8,
+              "target": 100,
+              "roundedTarget": 8,
+              "actual": 100,
+              "deviation": 0,
+              "mix": "pass",
+              "area": 1020.8584943782985,
+              "minArea": 124.85850751818447,
+              "meanArea": 127.60731179728731,
+              "maxArea": 128.00000000000006,
+              "cost": null
+            }
+          ],
+          "groupSchedule": [
+            {
+              "groupId": "group_main",
+              "productId": "product_1",
+              "valid": 8,
+              "matching": true
+            }
+          ],
+          "cost": 0,
+          "missingCosts": [
+            "Product 1: per-lot development rate missing",
+            "roads: common works unpriced",
+            "spaces: common works unpriced"
+          ],
+          "qualified": false,
+          "skipped": {
+            "overlap with road, reservation or another lot": 1
+          }
+        }
+      },
+      "after": {
+        "id": "residential",
+        "name": "Residential working plan",
+        "idea": "Working residential layout",
+        "advantage": "Measured valid yield and scoped quantities",
+        "compromise": "Residual and unresolved checks remain visible",
+        "inputs": {
+          "version": 2,
+          "phase": "layout",
+          "objective": "yield",
+          "objectiveNote": "Maximum valid lot yield within the declared product mix and constraints",
+          "source": "Fictitious survey: 120 × 100 m; given main road and wetland",
+          "fixedRequirements": "",
+          "preferences": "Coherent facing street groups",
+          "adjustable": "Internal roads, product-group allocation and proposed open space",
+          "unknowns": "",
+          "boundary": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ],
+          "boundaryLocked": true,
+          "calibration": "source-metres",
+          "independentCheck": "",
+          "externalRoads": [
+            {
+              "id": "external_1793653442158",
+              "name": "Existing main road",
+              "a": {
+                "x": 0,
+                "y": -5
+              },
+              "b": {
+                "x": 119.9,
+                "y": -5
+              },
+              "path": [
+                {
+                  "x": 0,
+                  "y": -5
+                },
+                {
+                  "x": 119.9,
+                  "y": -5
+                }
+              ],
+              "rightOfWay": 10,
+              "carriageway": 6,
+              "eligible": [
+                {
+                  "edge": 0,
+                  "from": 0,
+                  "to": 119.90000000399999
+                },
+                {
+                  "edge": 3,
+                  "from": 99.998,
+                  "to": 100
+                }
+              ],
+              "locked": false,
+              "source": "Drawn supplied alignment; verify dimensions and access permissions"
+            }
+          ],
+          "entrance": {
+            "id": "primary",
+            "edge": 0,
+            "offset": 54,
+            "width": 8,
+            "transition": 12,
+            "roadId": "main",
+            "externalRoadId": "external_1793653442158",
+            "locked": false,
+            "role": "Primary",
+            "movements": ""
+          },
+          "roadRules": {
+            "corridor": 8,
+            "carriageway": null,
+            "cornerReturn": 0,
+            "centrelineRadius": null,
+            "junctionAngle": 90,
+            "anglePolicy": "preference",
+            "turning": "",
+            "confirmed": false
+          },
+          "roads": [
+            {
+              "id": "main",
+              "name": "Entrance street",
+              "path": [
+                {
+                  "x": 54,
+                  "y": 0
+                },
+                {
+                  "x": 54,
+                  "y": 20
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 40
+                }
+              ],
+              "locked": false
+            }
+          ],
+          "products": [
+            {
+              "id": "product_1",
+              "name": "Product 1",
+              "color": "#bd97b7",
+              "frontage": 8,
+              "depth": 16,
+              "frontageMin": 7.2,
+              "frontageMax": 8.8,
+              "depthMin": 14.4,
+              "depthMax": 17.6,
+              "areaMin": 102.4,
+              "areaMax": 153.6,
+              "maxSaleableArea": 153.6,
+              "irregular": true,
+              "minRearRatio": 0.7,
+              "rate": null
+            }
+          ],
+          "groups": [
+            {
+              "id": "group_main",
+              "roadId": "main",
+              "from": 0,
+              "to": 1,
+              "productId": "product_1",
+              "locked": false
+            }
+          ],
+          "spaces": [
+            {
+              "id": "source_1793653442866_0",
+              "name": "Given wetland",
+              "kind": "protected",
+              "points": [
+                {
+                  "x": -5,
+                  "y": 72
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": -4,
+                  "y": 87
+                }
+              ],
+              "buffer": 0,
+              "bufferSource": "No additional buffer declared",
+              "minArea": 0,
+              "locked": true,
+              "function": "Retained natural feature",
+              "requiresAccess": false,
+              "prohibition": "all",
+              "crossing": "none",
+              "source": "Supplied given-wetland.geojson; coordinates m, converted to metres; source positions retained",
+              "holes": [
+                [
+                  {
+                    "x": 1,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 80
+                  },
+                  {
+                    "x": 1,
+                    "y": 80
+                  }
+                ]
+              ]
+            },
+            {
+              "id": "space_1793653446776",
+              "name": "Proposed open space",
+              "kind": "flexible",
+              "points": [
+                {
+                  "x": 58,
+                  "y": 10.200000000000001
+                },
+                {
+                  "x": 74.8,
+                  "y": 10.200000000000001
+                },
+                {
+                  "x": 81.9,
+                  "y": 14
+                },
+                {
+                  "x": 74.8,
+                  "y": 18
+                },
+                {
+                  "x": 58,
+                  "y": 18
+                }
+              ],
+              "buffer": 0,
+              "bufferSource": "No additional buffer declared",
+              "minArea": 0,
+              "locked": false,
+              "function": "Proposed recreation",
+              "requiresAccess": true,
+              "prohibition": "all",
+              "crossing": "none",
+              "source": "Planner-supplied metre geometry"
+            }
+          ],
+          "mix": {
+            "basis": "units",
+            "mode": "percent",
+            "tolerance": 5,
+            "mandatory": true,
+            "rounding": "largest-remainder",
+            "targets": {
+              "product_1": 100
+            }
+          },
+          "commonRates": [],
+          "lockedLots": [],
+          "fill": false
+        },
+        "result": {
+          "phase": "layout",
+          "externalReservation": [],
+          "screening": [
+            {
+              "object": "main",
+              "state": "unknown",
+              "message": "Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+            }
+          ],
+          "resolvedRoads": [
+            {
+              "id": "main",
+              "points": [
+                {
+                  "x": 54,
+                  "y": 0
+                },
+                {
+                  "x": 54,
+                  "y": 20
+                },
+                {
+                  "x": 59.950000001999996,
+                  "y": 40
+                }
+              ]
+            }
+          ],
+          "overlays": [],
+          "residualRegions": [
+            {
+              "id": "residual_1",
+              "points": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 2.031074
+                },
+                {
+                  "x": 34,
+                  "y": 2.031074
+                },
+                {
+                  "x": 34,
+                  "y": 18.031074
+                },
+                {
+                  "x": 50,
+                  "y": 18.031074
+                },
+                {
+                  "x": 34.310294,
+                  "y": 21.166854
+                },
+                {
+                  "x": 35.86398,
+                  "y": 28.940642
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 36.217954,
+                  "y": 30.367243
+                },
+                {
+                  "x": 38.499145,
+                  "y": 38.035109
+                },
+                {
+                  "x": 40.780335,
+                  "y": 45.702975
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 63.783933,
+                  "y": 38.859405
+                },
+                {
+                  "x": 61.587852,
+                  "y": 31.47762
+                },
+                {
+                  "x": 76.923584,
+                  "y": 26.91524
+                },
+                {
+                  "x": 74.642394,
+                  "y": 19.247374
+                },
+                {
+                  "x": 59.306662,
+                  "y": 23.809754
+                },
+                {
+                  "x": 61.378072,
+                  "y": 30.772477
+                },
+                {
+                  "x": 61.543516,
+                  "y": 31.328591
+                },
+                {
+                  "x": 58,
+                  "y": 19.417613
+                },
+                {
+                  "x": 58,
+                  "y": 18
+                },
+                {
+                  "x": 74.8,
+                  "y": 18
+                },
+                {
+                  "x": 81.9,
+                  "y": 14
+                },
+                {
+                  "x": 74.8,
+                  "y": 10.2
+                },
+                {
+                  "x": 58,
+                  "y": 10.2
+                },
+                {
+                  "x": 58,
+                  "y": 8
+                },
+                {
+                  "x": 74,
+                  "y": 8
+                },
+                {
+                  "x": 74,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ],
+              "holes": [],
+              "area": 10361.464440479182,
+              "status": "accessible",
+              "reason": "Road edge exists; only tested frontage/depth/shape fits may become lots"
+            },
+            {
+              "id": "residual_2",
+              "points": [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ],
+              "holes": [],
+              "area": 9,
+              "status": "too-small",
+              "reason": "Below the smallest permitted product area"
+            }
+          ],
+          "lots": [
+            {
+              "id": "lot_group_main_58000_0_58000_8000",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 74,
+                  "y": 0
+                },
+                {
+                  "x": 74,
+                  "y": 8
+                },
+                {
+                  "x": 58,
+                  "y": 8
+                }
+              ],
+              "area": 128,
+              "frontage": 8,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_59307_23810_61588_31478",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 59.306662,
+                  "y": 23.809754
+                },
+                {
+                  "x": 74.642394,
+                  "y": 19.247374
+                },
+                {
+                  "x": 76.923584,
+                  "y": 26.91524
+                },
+                {
+                  "x": 61.587852,
+                  "y": 31.47762
+                },
+                {
+                  "x": 61.378072,
+                  "y": 30.772477
+                }
+              ],
+              "area": 127.99999350476708,
+              "frontage": 7.999999530938914,
+              "depth": 15.999999572676046,
+              "depthMax": 15.999999677561348,
+              "rearRatio": 0.9999999750785632,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_56116_41141_53835_33473",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 38.499145,
+                  "y": 38.035109
+                },
+                {
+                  "x": 53.834877,
+                  "y": 33.472729
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 40.780335,
+                  "y": 45.702975
+                }
+              ],
+              "area": 127.99999362011192,
+              "frontage": 7.999999800628494,
+              "depth": 15.999999484801279,
+              "depthMax": 15.999999601256995,
+              "rearRatio": 0.9999999750785626,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_53835_33473_51554_25805",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 36.217954,
+                  "y": 30.367243
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 53.834877,
+                  "y": 33.472729
+                },
+                {
+                  "x": 38.499145,
+                  "y": 38.035109
+                }
+              ],
+              "area": 127.99999973523495,
+              "frontage": 7.999999601256995,
+              "depth": 15.99999955477055,
+              "depthMax": 16.00000030094978,
+              "rearRatio": 1.000000010722159,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_51554_25805_50000_18031",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 34.310294,
+                  "y": 21.166854
+                },
+                {
+                  "x": 50,
+                  "y": 18.031074
+                },
+                {
+                  "x": 50,
+                  "y": 20.582387
+                },
+                {
+                  "x": 50.166067,
+                  "y": 21.140595
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 35.86398,
+                  "y": 28.940642
+                }
+              ],
+              "area": 124.85850751818447,
+              "frontage": 7.999999999999996,
+              "depth": 15.634706760305711,
+              "depthMax": 16.000000195793223,
+              "rearRatio": 0.9999999496984412,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_50000_18031_50000_10031",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 34,
+                  "y": 10.031074
+                },
+                {
+                  "x": 50,
+                  "y": 10.031074
+                },
+                {
+                  "x": 50,
+                  "y": 18.031074
+                },
+                {
+                  "x": 34,
+                  "y": 18.031074
+                }
+              ],
+              "area": 128.00000000000006,
+              "frontage": 7.999999587485608,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            },
+            {
+              "id": "lot_group_main_50000_10031_50000_2031",
+              "scenarioId": "residential",
+              "productId": "product_1",
+              "groupId": "group_main",
+              "roadId": "main",
+              "points": [
+                {
+                  "x": 34,
+                  "y": 2.031074
+                },
+                {
+                  "x": 50,
+                  "y": 2.031074
+                },
+                {
+                  "x": 50,
+                  "y": 10.031074
+                },
+                {
+                  "x": 34,
+                  "y": 10.031074
+                }
+              ],
+              "area": 128,
+              "frontage": 7.999999587485608,
+              "depth": 16,
+              "depthMax": 16,
+              "rearRatio": 1,
+              "status": "valid",
+              "exceptions": [],
+              "locked": false
+            }
+          ],
+          "road": [
+            [
+              [
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 58,
+                  "y": 19.417613
+                },
+                {
+                  "x": 63.783933,
+                  "y": 38.859405
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 50.166067,
+                  "y": 21.140595
+                },
+                {
+                  "x": 50,
+                  "y": 20.582387
+                }
+              ]
+            ]
+          ],
+          "connection": [
+            [
+              [
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 58,
+                  "y": 20
+                },
+                {
+                  "x": 50,
+                  "y": 20
+                }
+              ]
+            ]
+          ],
+          "offsiteConnection": [
+            [
+              [
+                {
+                  "x": 50,
+                  "y": -5
+                },
+                {
+                  "x": 58,
+                  "y": -5
+                },
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 0
+                }
+              ]
+            ]
+          ],
+          "blocks": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 20.582387
+                },
+                {
+                  "x": 50.166067,
+                  "y": 21.140595
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 63.783933,
+                  "y": 38.859405
+                },
+                {
+                  "x": 58,
+                  "y": 19.417613
+                },
+                {
+                  "x": 58,
+                  "y": 18
+                },
+                {
+                  "x": 74.8,
+                  "y": 18
+                },
+                {
+                  "x": 81.9,
+                  "y": 14
+                },
+                {
+                  "x": 74.8,
+                  "y": 10.2
+                },
+                {
+                  "x": 58,
+                  "y": 10.2
+                },
+                {
+                  "x": 58,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ]
+            ]
+          ],
+          "residual": [
+            [
+              [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 0
+                },
+                {
+                  "x": 50,
+                  "y": 2.031074
+                },
+                {
+                  "x": 34,
+                  "y": 2.031074
+                },
+                {
+                  "x": 34,
+                  "y": 18.031074
+                },
+                {
+                  "x": 50,
+                  "y": 18.031074
+                },
+                {
+                  "x": 34.310294,
+                  "y": 21.166854
+                },
+                {
+                  "x": 35.86398,
+                  "y": 28.940642
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 51.553687,
+                  "y": 25.804863
+                },
+                {
+                  "x": 36.217954,
+                  "y": 30.367243
+                },
+                {
+                  "x": 38.499145,
+                  "y": 38.035109
+                },
+                {
+                  "x": 40.780335,
+                  "y": 45.702975
+                },
+                {
+                  "x": 56.116067,
+                  "y": 41.140595
+                },
+                {
+                  "x": 63.783933,
+                  "y": 38.859405
+                },
+                {
+                  "x": 61.587852,
+                  "y": 31.47762
+                },
+                {
+                  "x": 76.923584,
+                  "y": 26.91524
+                },
+                {
+                  "x": 74.642394,
+                  "y": 19.247374
+                },
+                {
+                  "x": 59.306662,
+                  "y": 23.809754
+                },
+                {
+                  "x": 61.378072,
+                  "y": 30.772477
+                },
+                {
+                  "x": 61.543516,
+                  "y": 31.328591
+                },
+                {
+                  "x": 58,
+                  "y": 19.417613
+                },
+                {
+                  "x": 58,
+                  "y": 18
+                },
+                {
+                  "x": 74.8,
+                  "y": 18
+                },
+                {
+                  "x": 81.9,
+                  "y": 14
+                },
+                {
+                  "x": 74.8,
+                  "y": 10.2
+                },
+                {
+                  "x": 58,
+                  "y": 10.2
+                },
+                {
+                  "x": 58,
+                  "y": 8
+                },
+                {
+                  "x": 74,
+                  "y": 8
+                },
+                {
+                  "x": 74,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 0
+                },
+                {
+                  "x": 120,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 100
+                },
+                {
+                  "x": 0,
+                  "y": 94.2
+                },
+                {
+                  "x": 1,
+                  "y": 96
+                },
+                {
+                  "x": 12,
+                  "y": 91
+                },
+                {
+                  "x": 9,
+                  "y": 82
+                },
+                {
+                  "x": 15,
+                  "y": 76
+                },
+                {
+                  "x": 7,
+                  "y": 70
+                },
+                {
+                  "x": 0,
+                  "y": 71.166667
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "x": 1,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 77
+                },
+                {
+                  "x": 4,
+                  "y": 80
+                },
+                {
+                  "x": 1,
+                  "y": 80
+                }
+              ]
+            ]
+          ],
+          "exclusions": {
+            "source_1793653442866_0": [
+              [
+                [
+                  {
+                    "x": -5,
+                    "y": 72
+                  },
+                  {
+                    "x": 7,
+                    "y": 70
+                  },
+                  {
+                    "x": 15,
+                    "y": 76
+                  },
+                  {
+                    "x": 9,
+                    "y": 82
+                  },
+                  {
+                    "x": 12,
+                    "y": 91
+                  },
+                  {
+                    "x": 1,
+                    "y": 96
+                  },
+                  {
+                    "x": -4,
+                    "y": 87
+                  }
+                ],
+                [
+                  {
+                    "x": 1,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 77
+                  },
+                  {
+                    "x": 4,
+                    "y": 80
+                  },
+                  {
+                    "x": 1,
+                    "y": 80
+                  }
+                ]
+              ]
+            ],
+            "space_1793653446776": [
+              [
+                [
+                  {
+                    "x": 58,
+                    "y": 10.200000000000001
+                  },
+                  {
+                    "x": 74.8,
+                    "y": 10.200000000000001
+                  },
+                  {
+                    "x": 81.9,
+                    "y": 14
+                  },
+                  {
+                    "x": 74.8,
+                    "y": 18
+                  },
+                  {
+                    "x": 58,
+                    "y": 18
+                  }
+                ]
+              ]
+            ]
+          },
+          "issues": [
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: permissible movements are not specified."
+            },
+            {
+              "state": "unknown",
+              "object": "entrance",
+              "message": "Primary: off-site connection geometry is shown; its permission/engineering decision is unresolved."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "main: Bend at vertex 2 has no declared centreline curve. Enter its actual radius; a corner-return fill alone does not define the driving alignment."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Road dimensions are provisional project inputs."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Carriageway width is missing."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Project turning requirements have not been supplied."
+            },
+            {
+              "state": "unknown",
+              "object": "roads",
+              "message": "Declare the design vehicle to screen its swept envelope and turning requirements."
+            }
+          ],
+          "counts": {
+            "valid": 7,
+            "unresolved": 0,
+            "invalid": 0
+          },
+          "validLotArea": 892.8584943782985,
+          "roadLength": 40.86630058308851,
+          "roadPerLot": 5.838042940441215,
+          "land": {
+            "gross": 12000,
+            "residential": 892.8584943782984,
+            "roads": 326.93040170000006,
+            "protected": 251.01666550000004,
+            "flexible": 158.7299999999999,
+            "reservations": 0,
+            "residual": 10370.464440479182,
+            "overlap": 0.000004195451765554026,
+            "gap": 0.0000021379719328251667,
+            "tolerance": 0.01
+          },
+          "schedule": [
+            {
+              "productId": "product_1",
+              "valid": 7,
+              "target": 100,
+              "roundedTarget": 7,
+              "actual": 100,
+              "deviation": 0,
+              "mix": "pass",
+              "area": 892.8584943782985,
+              "minArea": 124.85850751818447,
+              "meanArea": 127.55121348261407,
+              "maxArea": 128.00000000000006,
+              "cost": null
+            }
+          ],
+          "groupSchedule": [
+            {
+              "groupId": "group_main",
+              "productId": "product_1",
+              "valid": 7,
+              "matching": true
+            }
+          ],
+          "cost": 0,
+          "missingCosts": [
+            "Product 1: per-lot development rate missing",
+            "roads: common works unpriced",
+            "spaces: common works unpriced"
+          ],
+          "qualified": false,
+          "skipped": {
+            "frontage outside product variation": 2
+          }
+        }
+      }
+    }
+  ]
+}

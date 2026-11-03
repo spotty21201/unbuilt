@@ -1,8 +1,106 @@
 # Unbuilt — current work context
 
-Updated 31 October 2026. Workspace: `/home/spotty/projects/unbuilt`.
+Updated 1 November 2026. Workspace: `/home/spotty/projects/unbuilt`.
+
+## Boundary-to-external-road handoff correction
+
+The main boundary-only view now offers **Draw external road** before legacy
+layout generation, opens the residential name/width inputs with focus, and uses
+**Continue residential planning** after the road is saved. **External road setup**
+is available in the top bar for existing plans. The road section stays open after
+drawing. Canvas/footer/status point to the road step. Existing project lifecycle
+and accepted geometry remain preserved. Evidence:
+`evidence/external-road-next/REPORT.md` (targeted browser verification).
+
+## Latest owner workflow — 2 November 2026
+
+Residential planning now has an external-road-first **Prepare your layout**
+workflow: named road drawn along fixed site edges with an outward full-width
+corridor, dimensional home-product/unit-mix table, deterministic preparation of
+connected internal streets/loops and lots, and an explicit dead-end/cul-de-sac
+choice when needed. Gate and street mouse edits update shared nodes, corridors,
+lots and measured quantities as accepted/cancellable operations. Fixed source
+features and irregular flexible spaces remain supported. Old geometry/persistence
+contracts are retained; v1 is frozen. New optional v2 fields carry drawn boundary
+alignment, preparation metadata and an explicit angle policy.
+
+Implementation/gap matrix: `docs/PREPARE-LAYOUT.md`. Evidence and run commands:
+`evidence/prepare-layout/REPORT.md`. Keep local preview on 5173 and tool server on
+5174. Preparation is best found among bounded tests; project engineering inputs,
+vehicle-junction approval and statutory/house checks remain separate. Existing
+dirty work was preserved. No commit/push/deployment authorized or performed.
 
 ## Current decision
+
+The owner refined road corners to use half-width fillets and smooth tangent
+meetings. The direct action/editor preset now starts at half the narrowest street
+width (6 m → 3 m; 8/10/12 m → 4/5/6 m). Shared edge budgets remove the old 45%
+limit's unused jogs; true short-edge limits remain visible. Explicit generated
+Spine rounding can detour around kept green without changing its geometry or
+entered clearance. Held manual networks retain their conflict guards.
+
+Evidence: `evidence/half-width-road-fillets/REPORT.md`. Root 856 checks, 37 road
+fixtures and 27 targeted UI checks pass; build/lint pass. Production asset
+`/assets/index-CWlgXymI.js` on 5173; refreshed tools on 5174 retain their original
+configuration and agree with current geometry. Final browser matrix: 42/42 suites pass, including native zoom. All 6,207 files
+outside this correction are unchanged; details are recorded in the report. All work remains local/uncommitted.
+
+### Previous road correction (4 m preset superseded)
+
+The owner subsequently requested merged roads with filleted turning corners.
+Legacy rectangular streets and entrance aprons now draw as one unioned pavement
+outline, including loop holes, so overlapping allocation seams are not kerbs.
+Select Circulation → Round road corners for an explicit 4 m measured preview;
+Apply streets saves it and Undo restores the original plan. Radius entry/preset
+also normalizes redundant corner stubs in old manual loops. Protected spaces,
+held lots and entrance widths remain validated. Existing saved geometry/finances
+are not silently rounded on load. See `evidence/merged-road-corners/REPORT.md`.
+This correction does not authorize commit, push or deployment.
+Verified production asset: `/assets/index-Dq5UMVlU.js`. Preview/tools remain on 5173/5174.
+Root checks: 846; targeted browser: 32; full matrix: 41/41 suites; build/lint
+pass. All 4,755 files outside this correction are unchanged. Details and
+preservation hashes are in the correction report.
+
+The owner requested continuing the local planning work from
+`docs/HANDOFF-NEXT-ADVISOR.md`, preserving the dirty tree and product branding.
+That saved handoff is truncated mid-table; cross-check it against the owner's
+handoff summary, the code, DECISIONS and `evidence/masterplan-loop/REPORT.md`.
+Current continuation evidence is `evidence/planner-continuation/REPORT.md`.
+There is no current authorization to commit, push or publish.
+
+Manual, angled and rounded street networks now have residual-land assessment
+using actual pavement, holes, entrance aprons and edited parcel outlines.
+Classification reconciles with the displayed unallocated remainder and states
+whether it describes a working plan, draft, option or last valid accepted plan.
+Road access requires a shared edge; the open-space exclusion flag conservatively
+marks a whole connected region. It is not an exclusion-area or lot-capacity
+measurement. The session-only brief now explicitly states that Save/export do
+not retain its rules. Planning insights are implemented locally; the historical
+roadmap statement below is superseded by this continuation and DECISIONS.
+
+Previous continuation verification: S5 locked-green-space automation is complete;
+exact geometry and held financial
+assumptions survive entrance/circulation/width/frontage changes, search, Apply,
+Undo and reload. Full root suite: 839 checks; browser matrix: 39/39 suites;
+targeted residual/S5: 46 checks; separate native 200% zoom: 6 checks. Build/lint
+pass. Production preview remains 5173, tools 5174, current asset
+`/assets/index-CDknUWnt.js`. Live model routing remains unconfigured.
+
+Rotated-lot engine fixtures remain preserved, but workbench wiring still needs
+a separately authorized versioned polygon-parcel contract and migration of all
+Rect consumers. Do not silently convert polygon parcels to rectangles or change
+saved envelopes. Actual devices, screen readers, human/professional acceptance
+and real-model round trips remain open. The original handoff and tester prompts
+remain unchanged.
+
+### Earlier checkpoints (historical authorization)
+
+The owner has now authorized the Cedar Market header/financial-status clarity
+review. Label lot-frontage settings separately from actual street width, and
+report modeled owner shortfall/surplus concerns independently from geometry
+validity. Evidence: `evidence/geometry-finance-review/README.md`. This follow-up
+does not authorize another roadmap feature or a new publication checkpoint.
+Preserve the unrelated untracked `docs/UNBUILT_HACKATHON_VIDEO_v1.md`.
 
 The current consolidated product specification is [PRD v0.19](PRD_v0.19.md),
 issued 31 October 2026 at the owner's request. It records the implemented scope,
@@ -41,14 +139,17 @@ label collisions. Corrections and fresh evidence are in
 All original prompts and the independent tester's evidence remain unchanged.
 The earlier Features 10–12 checkpoint is `38ce2f6870d9b83ab85e6ba2ed11dd46f6021048`. The owner subsequently authorized angled streets and rounded turning corners; see `docs/PRD_v0.18.md` and `evidence/angled-rounded-streets/README.md`. The owner has now requested committing and pushing this verified extension together with the four corrections, preserved tester prompts and evidence.
 
-The owner's titles/numbering supersede the historical roadmap. Planning brief,
-land budget and walkability remain unimplemented. Angled streets and corner fillets are now authorized. No other subsequent roadmap feature is authorized.
+The owner's titles/numbering supersede the historical roadmap. The later local
+planning-insights slice implements land budget, session-only planning brief and
+straight-line open-space proximity. Proximity is not walking-route analysis.
+Rotated-lot workbench integration remains gated as described above.
 
 ## Working rules
 
 - Preserve the extensive modified and untracked tree. It contains valuable work
   from Features 1–12 and their reviews. Do not reset, clean, discard, stage, commit
-  or push unless explicitly requested. The earlier authorization to commit/push the Features 10–12 checkpoint is complete. The owner has now explicitly requested committing and pushing the verified corrections and angled-road extension.
+  or push unless explicitly requested. Earlier publication authorizations are
+  completed historical checkpoints; this continuation stays local/uncommitted.
 - Preserve project branding. Do not add model-provider branding, attribution,
   trademarks, development signatures or names to product/source/docs/assets or
   commit metadata. Do not claim unsupported development provenance.
@@ -65,6 +166,10 @@ land budget and walkability remain unimplemented. Angled streets and corner fill
   inspect screenshots and distinguish measured results from planning assumptions.
 
 ## Read first
+
+- `docs/HANDOFF-NEXT-ADVISOR.md` (truncated; preserve the original),
+  `docs/DECISIONS.md` and `evidence/planner-continuation/REPORT.md` — latest local
+  planning work, completed checks and remaining gates.
 
 - `docs/PRD_v0.19.md` — current consolidated product requirements and acceptance limits.
 
@@ -513,3 +618,123 @@ remain unchanged. Evidence, reproduction and limits are in
 including all prior corrections and preserved tester evidence. Consult git log
 and the remote branch for the checkpoint identity; earlier uncommitted labels
 in implementation evidence describe their original verification turn.
+
+## Current Cedar Market clarity correction — 31 October 2026
+
+Corrected the two owner-reported misleading states. The header's 10 m was the
+nominal lot-frontage setting; road width is 6 m and area 720 m². Header now labels
+frontage and actual widths separately, follows active parameter drafts and lists
+mixed manual widths. Use the shared generated road-width constant.
+
+Issues now separates geometry/input validation from financial review and counts
+owner-benchmark shortfall and negative/below-target surplus or absent revenue.
+The header says Geometry valid and has a compact Financial concerns indicator
+that opens, scrolls to and focuses the review. Finance uses the evaluator's
+actual displayed object, with working/draft/option/last-valid scope. Met targets
+remain qualified; incomplete inputs and empty layouts are unavailable. Geometry
+editing remains possible when modeled finance is adverse. Economics wording no
+longer claims the scheme works or that its allowance establishes land value.
+
+A regression run caught expanded financial-scope text reflowing the header and
+moving the drawing during point entry; scope stays in the review/title and the
+indicator remains compact. The Issues panel is a named focusable region for
+keyboard scrolling. Root calculations and saved data formats are unchanged.
+
+Verified production asset `/assets/index-D2MdHq77.js` on 5173; tool service stays
+on 5174. Full root: 736 checks. Final targeted UI: 36; complete browser matrix:
+38/38 runs; existing open-space drawing: 31 checks; three rapid drawings retain
+120 m² and a 57 px header. Build/lint pass; targeted axe has no detected
+violations. All 999 baseline files, including prompts/tester evidence and the
+unrelated video draft, remain unchanged. Report, raw results and reproduction:
+`evidence/geometry-finance-review/README.md`. No commit, push or deployment was
+performed for this follow-up.
+
+## Latest owner direction — Residential SOP v2.0, 1 November 2026
+
+The owner's SOP now authorizes the residential product/group/polygon work that
+older handoffs held out of scope. See `docs/RESIDENTIAL-SOP-GAPS.md` and
+`evidence/residential-sop/REPORT.md`. The additive Residential planning editor
+keeps legacy rectangular plans intact and saves its own canonical polygon
+scenarios in project v15 / decision record v16. Its quantities, protection,
+products, real allocation search and preview history are deterministic. This is
+a working increment, not completion of designed centreline curves, vehicle
+checks, multiple entrances or conditional crossings. Existing uncommitted work
+and publication restrictions remain preserved; no commit/push was performed.
+
+
+## Residential SOP continuation — 1 November 2026 client date
+
+The owner's follow-up authorizes continuing all 26 SOP steps, correcting the
+main-road-first start, given fixed feature outlines and arbitrary flexible
+polygons. Implemented version 2 site inputs, actual road-derived gate choices,
+source geometry/calibration and independent dimension check, protected originals
+and authorized revisions/crossings, free polygon drawing/editing, centreline
+curves/turning heads and bounded vehicle screening, group exceptions, manual lot
+outlines, cancelable background proposals/search, scoped quantities, broader
+spatial alternatives and new-identity combination/revisions. Session history
+survives editor closure; complete collection import/merge is reviewable and
+preserves existing alternatives. Project v16 / record v17 preserve new state;
+v1 residential calculations are frozen and upgrades are explicit previews.
+
+The authoritative latest gap matrix is `docs/SOP-CONTINUATION.md`; executed
+checks, screenshots, starting inputs, geometry/quantity changes, commands and
+remaining limits are in `evidence/sop-continuation/REPORT.md`. Detailed vehicle
+manoeuvres/approvals and exhaustive/global layout optimization are not claimed.
+Existing Rect/house/finance/AI data and unrelated dirty changes are preserved.
+No commit, push or deployment was requested or performed.
+
+## Independent master-planner corrections — 2 November 2026 client workday
+
+Implemented the local D1–D7 correction prompt in
+`evidence/master-planner-workflow/ORCHESTRATOR-FIX-PROMPT.md` against the existing
+uncommitted tree. Current report and exact evidence:
+`evidence/master-planner-workflow/run-corrections-2026-11-02/REPORT.md` and
+`TEST-MATRIX.md`. Historical reports remain unchanged.
+
+New V2 input commitments can retain a preferred locked entrance and exact given
+park obligations before roads/lots exist; they are reservations with unresolved
+future access, not completed usable parks. Prepare Layout now derives additional
+street phases from access-required polygon edges, uses meaningful junction
+control clearance and produces constrained rectangle/angled/concave candidates.
+The narrow-neck case keeps the 8m road out of its 6m neck. Mixed8/4/4m curves
+use an additional balanced union only after the existing normal/1µm paths fail;
+no strips are dropped. Existing saved accepted plans and V1 remain intact.
+
+Canvas fits actual available drawing space, pointer projection stays stable,
+retained passing mix is distinct from rejected trials, saved-study summaries and
+continuation are accurate, lot names resolve with secondary stable IDs, absent
+ratios/ranges are explained, and rate sources expose the200-character limit.
+The isolated occupied-land park edit regenerates actual lot geometry.
+
+Full root1044 assertions and targeted domain/browser/quantity checks pass; see
+report for exact final totals, logs, portable project and independent-kernel
+limitation. The fresh preferred52-lot study remains conditional, with missing
+survey/access/vehicle/engineering/house/statutory inputs and unpriced space
+works. Seven spatial alternatives saved; original11-alternative study unchanged.
+No staging, commit, push, deployment or service configuration change. Preview
+continues on5173 with tool service5174. Revisit the report’s next priorities;
+passing implemented checks does not confer saleability or approval.
+
+## Ask Muse Wonder and quieter residential controls — 3 November 2026
+
+Owner authorized building the residential AI partner and reducing verbosity,
+then selected Muse Wonder. **Ask Muse** is now inside the residential editor,
+with current-plan context, brief qualitative assessment plus measured evidence,
+supported edit/search tools, worker-calculated before/after quantities and an
+explicit Preview→Accept/Cancel path. The geometry engine remains authoritative.
+
+Custom instruction: `docs/MUSE-MASTER-PLANNER.md`. Private model routing stays
+outside the repository and exports; do not copy credentials into evidence or
+frontend configuration. Model is `muse-wonder-1.0`; the hosted Meta protocol uses
+auto tool choice, with strict application-side validation. Generic/legacy AI
+paths retain their contracts. Tool service was restarted with its original
+command/environment/5174 port; static preview stays on5173. Current connection
+has been tested with real Wonder, separately from scripted fixtures.
+
+Repeated explanations are shortened. Completed-layout setup is collapsed under
+“Site, roads & products”; all editing controls and detailed checks remain
+available. Unknown engineering/approval inputs are not marked confirmed.
+Evidence and verification: `evidence/muse-planner/run-2026-11-03/REPORT.md`.
+Existing projects, prior implementation and historical evidence preserved; no
+commit, push or deployment. This does not add exhaustive optimization or vehicle
+manoeuvre approval. Supported AI operations are intentionally bounded.

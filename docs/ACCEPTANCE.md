@@ -387,3 +387,162 @@ These results are software verification by an automated agent, not human planner
 - [x] Project/record/snapshot 14/15/12 gates include advanced roads in saved alternatives; genuine stale proposals remain rejected.
 - [x] Full root suite: 736 checks. All 35 established browser runs pass; final advanced-road workflow: 27 checks; dedicated native 200% zoom: 5 checks. Production build/lint pass. Advanced editor/canvas scan has zero detected accessibility violations. Screenshots inspected; all 999 preserved prompt/tester-evidence files unchanged. See `evidence/angled-rounded-streets/README.md`.
 - Automatic lots remain rectangular along axis-aligned road legs; land beside angled roads remains unallocated. Rotated parcels, actual device/screen-reader/human validation, vehicle turning compliance and project-specific engineering remain open.
+
+## Cedar Market geometry / financial-status clarity — 31 October 2026
+
+- [x] Header explicitly names the nominal lot-frontage setting and actual street width. Generated width uses the shared engine constant; manual widths follow the active network, including mixed widths and marked drafts.
+- [x] Geometry success is labeled “Geometry valid.” Issues separately counts and reports owner shortfall, negative/below-target surplus and unavailable revenue; no blanket no-open-issues/no-blockers claim remains. Financial numbers use the same displayed finance object as the evaluator, with accepted/draft/option/last-valid scope. Meeting modeled targets remains qualified by entered assumptions.
+- [x] Default Cedar retains 720 m², Rp6.44bn shortfall and −22.88% surplus. An 8 m street correctly measures 960 m² and updates modeled outcomes to Rp6.64bn / −24.07%. Apply/Cancel, Undo/Redo, Save/reload and portable restore retain consistent labels, geometry and financial findings.
+- [x] Financial indicator navigates to the review on narrow screens; keyboard users can focus and scroll its longer content. Compact indicator text preserves drawing projection during changing financial scope.
+- [x] Final verification: 736 calculation/service checks; 36 targeted UI checks; 38/38 browser matrix runs; build/lint pass; targeted axe scan has zero detected violations. Existing open-space workflow passes 31 checks; three rapid 120 m² pointer drawings preserve a constant 57 px header. Screenshots inspected; all 999 preserved files unchanged. See `evidence/geometry-finance-review/README.md`.
+
+These clarify modeled outcomes under entered assumptions. They do not establish market value, commercial/engineering feasibility, real screen-reader or physical-device acceptance. Original tester evidence/prompts and the unrelated video draft remain preserved. This review remains local and uncommitted.
+
+## Planner insights slice — owner-authorized follow-up
+
+- [x] Quantities now includes a measured Land budget: gross/net density (definitions stated), allocation shares and road area per home, derived only from existing quantities. Cedar shows 16.7 homes/ha gross, 38.5 net, 56.7% unallocated.
+- [x] Owner-declared planning brief (session-only): density band, minimum designed green and maximum unallocated remainder evaluated as Pass/Fail with margins. Blank or non-positive rules are not checked; wording never claims regulation or compliance.
+- [x] Open-space access: per-lot straight-line edge distances, 150/300/400 m buckets and direct-adjacency counts; labelled as plan approximations, not walking routes or amenity quality.
+- [x] Yield starting points (Compact/Standard/Garden) in the inspector apply family + frontage through the reviewed spec-change path. Not optima.
+- [x] 30 new deterministic checks (`tests/planning-insights.mjs`); full `npm test` 766 pass; production build passes; Playwright verifies panels render real Cedar values, brief rows evaluate both ways, presets apply cleanly, no page errors.
+
+- [x] Rotated lot generation engine (`src/rotated.ts`, 26 fixtures): any-angle segments, kerb offsets, boundary/pavement/open-space validation with named skip reasons, true areas, home fit. Full `npm test` 792 pass.
+
+Workbench wiring of polygon lots is blocked on the Rect-typed parcel channel and the envelope ladder; the exact contract and next step are recorded in DECISIONS. This slice is uncommitted.
+
+## Interactive master-planning loop (2026-10-26) — evidence/masterplan-loop/REPORT.md
+- Browser (Playwright Chromium, not human Computer Use): entrance along edge (A1),
+  entrance to East edge (S2), Circulation Spine->Loop (B1), rapid frontage
+  last-wins (D1), remove-home vacancy across regeneration (S6), residual-land
+  panel reconciliation 3,240+3,560=6,800 m2 (S7), save/reload (S9): PASS.
+- Undo restored initial state exactly in A1/B1/S2. D1 trailing Undo NOT TESTED
+  (harness timeout). S3 direct road drag: NOT SUPPORTED by design (capability gap).
+- New: src/residual.ts + tests/residual.mjs; suites 808 PASS; web build clean.
+- Model gate still open (mock adapter, modelConfigured:false); M2/M3/human gates not claimed.
+
+
+## Planning continuation — 1 November 2026
+
+- [x] Manual/angled/rounded road residual assessment uses measured pavement,
+  holes, entrance aprons, actual edited lots and displayed site/space scope.
+  Classes reconcile to the evaluator; disagreement refuses rather than inventing
+  partial results. Positive shared-edge access excludes gaps and point contacts.
+- [x] Hole-aware clearance fixes Cedar's false reservation: 3,560 m² potentially
+  developable + 3,240 m² inaccessible = the unchanged 6,800 m² remainder.
+  “Whole region flagged” describes conservative open-space exclusions, not an
+  exact reserved-area measurement or development capacity.
+- [x] Draft, option, working and last-valid accepted figures identify their scope.
+  Existing brief rules explicitly state their session-only save/export limit.
+- [x] S5 automation: locked green shape/location and declared minimum, price,
+  ceiling, owner expectation, target and profile remain held through entrance,
+  circulation, width/frontage, search, Apply, Undo and reload. No model/human gate
+  is inferred from this browser evidence.
+- [x] Baseline 808 → 839 full root checks (47 residual checks); targeted residual/S5
+  browser 46; complete selected browser matrix 39/39; separate native 200% zoom 6.
+  Build/lint pass, targeted accessibility scan has no detected violations,
+  desktop/narrow/zoom screenshots inspected. All 19 continuation-preserved files
+  and all 999 files in the preceding review's preservation manifest are unchanged.
+  Report: `evidence/planner-continuation/REPORT.md`.
+- [ ] Rotated-lot editor integration: still requires a separately authorized
+  versioned polygon-parcel contract. Existing standalone engine is preserved.
+- [ ] Live-model round trip (routing unconfigured), physical touch, screen-reader,
+  human planner and professional acceptance remain open. No commit/push/deploy.
+
+## Merged road outlines and reviewed fillets — 1 November 2026
+
+- [x] Generated, legacy and advanced roads use a single unioned visible pavement
+  including entrance aprons and loop holes. Internal rectangle/apron seams are
+  removed; legacy accepted quantities and inputs stay exact.
+- [x] Circulation exposes Round road corners beside its metrics. A 4 m measured
+  draft shows actual geometry, affected lots and costs before Apply. Cancel,
+  Undo/Redo, Save/reload and portable record export retain exact states.
+- [x] Generated and previously saved manual loops round all four outer turns
+  after redundant junction stubs are normalized. Typed radius and the preset
+  share the same normalization. True entrance/dead-end mouths retain full width.
+- [x] Protected-green conflicts refuse Apply without moving the space or changing
+  held price, buyer ceiling, owner expectation, target or profile. Land quantities,
+  curved pavement and street works cost agree.
+- [x] Root suite: 846 checks, including 27 road-surface fixtures. Production
+  build/lint pass. Targeted browser: 32 checks; desktop/1024/375 screenshots
+  inspected, and targeted canvas/control accessibility scan has no detected
+  violations. All 41 browser suites pass, including native zoom; all 4,755 files outside
+  this correction remain unchanged. Details and preservation hashes are in
+  `evidence/merged-road-corners/REPORT.md`.
+- Vehicle swept paths, engineering compliance, physical-device/screen-reader and
+  human acceptance remain open. Saved envelopes are unchanged. No publication.
+
+## Half-width fillets and tangent road meetings — 1 November 2026
+
+- [x] The rounding action/preset uses half actual street width: 6/8/10/12 m roads
+  start with 3/4/5/6 m radii. Mixed widths explicitly use the narrowest road;
+  custom numeric radii remain available.
+- [x] Neighbouring fillets share full edge budgets and meet tangentially without
+  the former unused jog. Short constrained curves report their real reduced
+  radii; entrance/dead-end mouths retain their full declared widths.
+- [x] A lower-entrance, two-turn fixture matching the reported arrangement has
+  full 3 m fillets and smooth kerbs while 1,710 m² of locked green keeps its exact
+  outline/location. Generated routing leaves room beside the space; actual road
+  area 627 → 663 m² and homes 12 → 11 are reviewed before Apply. Exact input
+  Undo/Redo and Save/reload pass; price, ceiling, expectation, target, profile
+  and entered clearance remain held. Manual networks are not silently rerouted.
+- [x] Root suite: 856 checks, including 37 road-geometry fixtures; build/lint pass.
+  Targeted browser: 27 checks; 1024/375 px fit, inspected screenshots, no detected
+  targeted accessibility violations or uncaught errors. All 42 browser suites pass with the refreshed local service, including native
+  zoom. All 6,207 files outside this correction are unchanged. Report: `evidence/half-width-road-fillets/REPORT.md`.
+- [x] Local tool service refreshed without changing public configuration; live
+  candidates agree with the corrected engine on the 396 m² short-turn case.
+- Vehicle tracking, professional approval, physical-device/screen-reader and
+  human acceptance remain open. No saved-format extension or publication.
+
+## Master-planner D1–D7 corrections — 2 November 2026 client workday
+
+- [x] Reproduce original curve, commitment/preparation, obstructed drawing,
+  passing-mix feedback, saved-study labels, opaque lot IDs and absent-value
+  findings before changing them; retain baseline logs/screenshots.
+- [x] Exact8/4/4m curve fixture plus nearby cases calculate real retained-width
+  footprints/lots; unexpected failure, cancel, undo and redo preserve accepted
+  data. Old portable43-lot study and all11 alternatives load unchanged.
+- [x] Fresh visible boundary→named/width external road→locked gate and exact
+  features/irregular park commitments→products/mix→Prepare→explicit end
+  decision→review/accept→costs→comparison→conditional selection→save/reopen
+  and fresh-profile portable import. No fabricated internal-state injection.
+- [x] Required park access is unresolved before layout and measured afterwards;
+  rectangle/angled/concave prepare automatically without relaxed constraints.
+  8m corridor crossing a6m neck is refused; valid partial-lobe option preserved.
+- [x] Actual pointer drawing at1440×1000,1440×1100 and900×900; readable selected
+  lot names/relations/measurements; true failing mix blocked; missing quantities
+  explained and source200-character limit visible.
+- [x] Isolated space-only edit268→322m² reaches5.756596m² of an occupied lot;
+  dependent lot regenerates, exact protection/roads/minimum/access/region held.
+  Invalid72m²9×8 lot excluded from yield and per-valid-lot costs.
+- [x] Root1044 assertions; focused domain, quantity and browser suites; build and
+  lint pass. Full commands/totals, retained failed attempts, screenshots,
+  preservation hashes and portable project are in
+  `evidence/master-planner-workflow/run-corrections-2026-11-02/REPORT.md`.
+- [ ] Verified survey/legal access, approved engineering/vehicle manoeuvres,
+  detailed house feasibility, statutory approval, complete costs, exhaustive
+  optimization and physical-device/human planner acceptance remain external or
+  untested. Independent arithmetic shares the application's Boolean kernel.
+
+No staging, commit, push, deployment or service configuration change.
+
+## Muse Wonder residential partner — 3 November 2026
+
+- [x] Ask Muse is visible inside the residential planner, backed by the owner's
+  Muse Wonder connection and a reviewable custom instruction.
+- [x] Live Wonder explains actual counts/mix, interprets an explicit entrance
+  move, and produces a measured proposal; asking/testing never auto-accepts.
+- [x] Cancel, accept, complete undo/redo and save/reopen pass with actual geometry.
+  Protected movement is refused; cancelled late responses are discarded.
+- [x] Supported tools validate identifiers/parameters/locks. Facts and arithmetic
+  come from deterministic geometry, not free model output. Missing costs and
+  engineering inputs stay explicit. Older AI protocol regressions still pass.
+- [x] Setup/help copy is shorter; completed setup collapses while remaining
+  editable. Tested widths include1440,900 and375px.
+- [x] Provider key remains private server-side, outside source/evidence, browser
+  storage and exports. No automatic model switching or acceptance.
+- [ ] Exhaustive optimum, unrestricted natural-language CAD, actual vehicle
+  manoeuvre approval and professional/statutory sign-off are not implemented.
+
+Exact commands, counts, real-model exchanges, screenshots, failure attempts and
+preservation evidence: `evidence/muse-planner/run-2026-11-03/REPORT.md`.

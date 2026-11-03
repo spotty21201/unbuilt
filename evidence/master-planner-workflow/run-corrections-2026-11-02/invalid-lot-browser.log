@@ -1,0 +1,4 @@
+PASS 72m² polygon with 9m frontage and 8m depth is dimensionally invalid
+PASS invalid geometry is excluded and cannot replace the accepted plan
+PASS cancel preserves complete accepted geometry and costs
+ALL 3 INVALID LOT BROWSER CHECKS PASS

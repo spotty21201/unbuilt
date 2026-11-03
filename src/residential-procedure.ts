@@ -1,0 +1,32 @@
+import type {ResidentialInputs,ResidentialResult,ResidentialWorkspace,CheckState} from './residential.ts';
+export interface ProcedureCheck {step:number;title:string;state:CheckState;detail:string}
+export function residentialProcedure(i:ResidentialInputs,r:ResidentialResult|undefined,w?:ResidentialWorkspace):ProcedureCheck[]{
+  const checks:ProcedureCheck[]=[],add=(step:number,title:string,state:CheckState,detail:string)=>checks.push({step,title,state,detail}),test=(ok:boolean):CheckState=>ok?'pass':'unknown',issues=(objects:string[])=>r?.issues.filter(x=>objects.includes(x.object))??[],state=(objects:string[])=>issues(objects).some(x=>x.state==='fail')?'fail':issues(objects).some(x=>x.state==='unknown')?'unknown':'pass';
+  add(1,'Assignment and objective',test(!!i.objectiveNote.trim()&&!!i.source.trim()),'Objective, source, fixed requirements, preferences, variables and unknowns are saved separately.');
+  add(2,'Fixed boundary and reliable scale',i.scaleCheck&&r?.sourceCheck?.state==='fail'?'fail':test(i.boundary.length>=3&&i.boundaryLocked&&i.calibration!=='unverified'),i.scaleCheck?`Independent check: ${r?.sourceCheck?.state??'pending'}.`:'Independent source dimension is not supplied. Geometry is never stretched by generation.');
+  add(3,'Adjoining main roads',test(i.externalRoads.length>0&&i.externalRoads.every(e=>e.rightOfWay!==null&&e.carriageway!==null&&!!e.source?.trim())), 'Actual alignments, separate widths, source and eligible boundary intervals precede entrance selection.');
+  add(4,'Entrance strategy',i.phase==='site'?'unknown':state(['entrance']),i.phase==='site'?'Choose an explicitly permitted frontage adjoining a real main road.':'Primary/additional entrances and locks are explicit; candidate permissions do not add gates automatically.');
+  add(5,'Given protected features',state(i.spaces.filter(s=>s.kind==='protected').map(s=>s.id)),`${i.spaces.filter(s=>s.kind==='protected').length} supplied feature(s); originals, holes, protection envelopes and crossings are distinct.`);
+  add(6,'Lot products',test(i.products.length>0),`${i.products.length} product definitions; frontage, depth, area, taper, saleable size and rates are independent inputs.`);
+  add(7,'Mix and coherent street groups',state(['grouping','mix'])==='fail'?'fail':test(i.groups.length>0),'Composition uses valid units or actual valid residential polygon area. Side exceptions remain visible.');
+  add(8,'Road parameters',test(i.roadRules.confirmed&&i.roadRules.carriageway!==null&&i.roadRules.centrelineRadius!==null&&!!i.roadRules.turning.trim()),'Corridor, carriageway, centreline radius, returns, junction angle and turning requirements remain separate.');
+  add(9,'Physical entrance connection',i.phase==='site'?'unknown':state(['entrance']), 'The local main-road tangent guides the entrance; widening, transition and off-site dependency are measured.');
+  add(10,'Connected road structure',i.roads.length&&!i.inputCommitments?state(['roads']):'unknown','Full corridor containment and connection to an explicitly permitted entrance are tested.');
+  add(11,'Junctions, curves and turning',i.roads.length&&!i.inputCommitments?state(['roads']):'unknown', 'Actual tangent arcs, corner-return polygons and turning heads affect lots. Screening does not establish all vehicle manoeuvres.');
+  add(12,'Blocks and street sections',test(!!r&&r.blocks.length>0&&i.groups.length>0),'Blocks are polygon subtraction; groups are deliberate serving-street sections.');
+  add(13,'Generate nominal lot polygons',test(!!r&&r.lots.length>0),'Yield counts valid measured polygons only; street length divided by frontage is not the reported count.');
+  add(14,'Curved and corner lot dimensions',r?.lots.some(l=>l.status==='invalid')?'fail':test(!!r&&r.counts.valid>0),'Actual curb frontage, three depth rays, area and rear/front ratio are checked. Detailed house feasibility is separate.');
+  add(15,'Boundary lots and residual land',test(!!r?.residualRegions),'Residual components show measured area/access and binding failures from tested permitted products.');
+  add(16,'Rebalance actual composition',r?.schedule.some(s=>s.mix==='fail')?'fail':test(!!r?.schedule.length&&r.schedule.every(s=>s.mix==='pass')),'Rebalance tests whole-section allocations and regenerates geometry. It can report no closer tested allocation.');
+  add(17,'Iterate roads and lots together',test(!!r&&i.roads.length>0),'Every proposed edit regenerates dependencies; acceptance commits one complete undoable operation.');
+  add(18,'Recheck fixed protection',state(i.spaces.filter(s=>s.kind==='protected').map(s=>s.id)),'Fixed originals remain locked; prohibited road/lot encroachments fail. Crossing authorisation includes an envelope and named roads.');
+  add(19,'Shape useful flexible spaces',state(i.spaces.filter(s=>s.kind==='flexible').map(s=>s.id)),'Free polygon corners, minima, access, function and committed location region govern edits.');
+  add(20,'Reconcile all physical land',r?(r.land.overlap>r.land.tolerance||r.land.gap>r.land.tolerance?'fail':'pass'):'unknown','Lot allocations, unioned internal roads, fixed/flexible spaces, reservations and residual reconcile within 0.01 m². Overlays are reported separately.');
+  add(21,'Lot, product and group schedules',test(!!r&&r.counts.valid>0),'One scenario supplies lot identities, relationships, dimensions, status, integer shares, deviations and actual areas.');
+  add(22,'Scoped development costs',state(['cost'])==='fail'?'fail':test(!!r&&!r.missingCosts.length&&r.counts.valid>0),r?.missingCosts.join('; ')||'Only supplied scoped rates are priced; missing rates remain unpriced.');
+  add(23,'Scenario scorecard',test(!!r&&i.phase!=='site'),'Same definitions for gross area, valid/unresolved/invalid counts, roads, spaces, residual, cost and unresolved checks.');
+  add(24,'Meaningful alternatives',test((w?.alternatives.length??0)>1),'Bounded search tests permitted entrances, road changes/loops, coherent allocations and flexible edges; no global optimum claim.');
+  add(25,'Transparent comparison',test(!!w&&w.alternatives.some(s=>s.result.qualified)),'Fixed constraints precede mandatory mix and declared objective. Unresolved candidates are not described as qualifying.');
+  add(26,'Select, refine and issue',test(!!w?.selected.length&&!!w.selectionReason.trim()),'One/two shortlisted alternatives, reasons and assumptions are saved. A combination gets new identity and recalculation.');
+  return checks;
+}

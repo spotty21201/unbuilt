@@ -1,0 +1,337 @@
+[
+  {
+    depth: 16,
+    phase: 0,
+    style: 'open',
+    gate: 60,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0.35,
+    style: 'open',
+    gate: 60,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0.15,
+    style: 'open',
+    gate: 60,
+    error: 'Error: Define 1–32 roads with distinct points and deliberate locks.',
+    fail: undefined
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0,
+    style: 'loop',
+    gate: 60,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0,
+    style: 'open',
+    gate: 60,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0.35,
+    style: 'open',
+    gate: 60,
+    error: 'Error: Define 1–32 roads with distinct points and deliberate locks.',
+    fail: undefined
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0.37499999999999983,
+    style: 'open',
+    gate: 60,
+    error: 'Error: Define 1–32 roads with distinct points and deliberate locks.',
+    fail: undefined
+  },
+  {
+    depth: 12,
+    phase: 0,
+    style: 'loop',
+    gate: 60,
+    error: 'Error: Unable to find segment #1468955 [103.235462, 20.619054] -> [106.822953, 18.849899] in SweepLine tree.',
+    fail: undefined
+  },
+  {
+    depth: 12,
+    phase: 0,
+    style: 'open',
+    gate: 60,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 12,
+    phase: 0.5625,
+    style: 'open',
+    gate: 60,
+    error: 'Error: Define 1–32 roads with distinct points and deliberate locks.',
+    fail: undefined
+  },
+  {
+    depth: 16,
+    phase: 0,
+    style: 'loop',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0,
+    style: 'open',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0.35,
+    style: 'loop',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0.35,
+    style: 'open',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0.15,
+    style: 'loop',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0.15,
+    style: 'open',
+    gate: 32,
+    error: 'Error: Define 1–32 roads with distinct points and deliberate locks.',
+    fail: undefined
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0,
+    style: 'loop',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0,
+    style: 'open',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0.35,
+    style: 'loop',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0.35,
+    style: 'open',
+    gate: 32,
+    error: 'Error: Define 1–32 roads with distinct points and deliberate locks.',
+    fail: undefined
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0.37499999999999983,
+    style: 'loop',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0.37499999999999983,
+    style: 'open',
+    gate: 32,
+    error: 'Error: Define 1–32 roads with distinct points and deliberate locks.',
+    fail: undefined
+  },
+  {
+    depth: 12,
+    phase: 0,
+    style: 'loop',
+    gate: 32,
+    error: 'Error: Unable to find segment #3496780 [103.235462, 20.619054] -> [106.822953, 18.849899] in SweepLine tree.',
+    fail: undefined
+  },
+  {
+    depth: 12,
+    phase: 0,
+    style: 'open',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 12,
+    phase: 0.5625,
+    style: 'loop',
+    gate: 32,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 12,
+    phase: 0.5625,
+    style: 'open',
+    gate: 32,
+    error: 'Error: Define 1–32 roads with distinct points and deliberate locks.',
+    fail: undefined
+  },
+  {
+    depth: 16,
+    phase: 0,
+    style: 'open',
+    gate: 88,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0.35,
+    style: 'open',
+    gate: 88,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 16,
+    phase: 0.15,
+    style: 'open',
+    gate: 88,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: road encroaches outside any authorised crossing envelope. Crossing none.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0,
+    style: 'loop',
+    gate: 88,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0,
+    style: 'open',
+    gate: 88,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0.35,
+    style: 'open',
+    gate: 88,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 13.600000000000001,
+    phase: 0.37499999999999983,
+    style: 'open',
+    gate: 88,
+    error: 'Error: Unable to find segment #5857152 [19.76063, 84.23937] -> [24, 80] in SweepLine tree.',
+    fail: undefined
+  },
+  {
+    depth: 12,
+    phase: 0,
+    style: 'loop',
+    gate: 88,
+    error: 'Error: Unable to find segment #5870455 [103.235462, 20.619054] -> [106.822953, 18.849899] in SweepLine tree.',
+    fail: undefined
+  },
+  {
+    depth: 12,
+    phase: 0,
+    style: 'open',
+    gate: 88,
+    error: undefined,
+    fail: [
+      'Flexible northwest recreation: no measured road-edge access; it cannot be counted as a usable park.'
+    ]
+  },
+  {
+    depth: 12,
+    phase: 0.5625,
+    style: 'open',
+    gate: 88,
+    error: 'Error: Unable to find segment #6135148 [19.76063, 84.23937] -> [24, 80] in SweepLine tree.',
+    fail: undefined
+  }
+]
+failed

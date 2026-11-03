@@ -1,0 +1,8 @@
+PASS attaching reference makes no false scale confirmation
+PASS known-distance calibration records real source pixel points and fixed-vector boundary
+PASS independent dimension actually measures coordinates and compares entered tolerance
+PASS failed dimension does not stretch boundary or commit proposed inputs
+PASS reopen preserves calibration and check but does not invent retained image media
+PASS reattached matching source uses saved calibration
+PASS no uncaught browser errors
+ALL 7 SCALE BROWSER CHECKS PASS

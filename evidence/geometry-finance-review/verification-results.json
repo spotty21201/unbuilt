@@ -1,0 +1,246 @@
+{
+  "asset": "/assets/index-D2MdHq77.js",
+  "rootChecks": 736,
+  "rootExit": 0,
+  "targetedBrowserChecks": 36,
+  "browserErrors": [],
+  "browserMatrix": [
+    {
+      "suite": "ai-browser",
+      "exit": 0,
+      "seconds": 11.7,
+      "log": "evidence/geometry-finance-review/regressions-release/ai-browser/ai-browser.log"
+    },
+    {
+      "suite": "angled-roads-browser",
+      "exit": 0,
+      "seconds": 8.6,
+      "log": "evidence/geometry-finance-review/regressions-release/angled-roads-browser/angled-roads-browser.log"
+    },
+    {
+      "suite": "angled-roads-zoom",
+      "exit": 0,
+      "seconds": 4.3,
+      "log": "evidence/geometry-finance-review/regressions-release/angled-roads-zoom/angled-roads-zoom.log"
+    },
+    {
+      "suite": "boundary-browser",
+      "exit": 0,
+      "seconds": 10.7,
+      "log": "evidence/geometry-finance-review/regressions-release/boundary-browser/boundary-browser.log"
+    },
+    {
+      "suite": "boundary-pointer-range-browser",
+      "exit": 0,
+      "seconds": 6.6,
+      "log": "evidence/geometry-finance-review/regressions-release/boundary-pointer-range-browser/boundary-pointer-range-browser.log"
+    },
+    {
+      "suite": "browser-zoom",
+      "exit": 0,
+      "seconds": 3.6,
+      "log": "evidence/geometry-finance-review/regressions-release/browser-zoom/browser-zoom.log"
+    },
+    {
+      "suite": "development-browser",
+      "exit": 0,
+      "seconds": 7.5,
+      "log": "evidence/geometry-finance-review/regressions-release/development-browser/development-browser.log"
+    },
+    {
+      "suite": "dynamic-inspector-browser",
+      "exit": 0,
+      "seconds": 17.2,
+      "log": "evidence/geometry-finance-review/regressions-release/dynamic-inspector-browser/dynamic-inspector-browser.log"
+    },
+    {
+      "suite": "feasibility-browser",
+      "exit": 0,
+      "seconds": 7.0,
+      "log": "evidence/geometry-finance-review/regressions-release/feasibility-browser/feasibility-browser.log"
+    },
+    {
+      "suite": "feasibility-zoom",
+      "exit": 0,
+      "seconds": 2.8,
+      "log": "evidence/geometry-finance-review/regressions-release/feasibility-zoom/feasibility-zoom.log"
+    },
+    {
+      "suite": "geometry-finance-browser",
+      "exit": 0,
+      "seconds": 8.1,
+      "log": "evidence/geometry-finance-review/regressions-release/geometry-finance-browser/geometry-finance-browser.log"
+    },
+    {
+      "suite": "housing-browser",
+      "exit": 0,
+      "seconds": 10.9,
+      "log": "evidence/geometry-finance-review/regressions-release/housing-browser/housing-browser.log"
+    },
+    {
+      "suite": "housing-review-browser",
+      "exit": 0,
+      "seconds": 9.3,
+      "log": "evidence/geometry-finance-review/regressions-release/housing-review-browser/housing-review-browser.log"
+    },
+    {
+      "suite": "housing-zoom",
+      "exit": 0,
+      "seconds": 3.1,
+      "log": "evidence/geometry-finance-review/regressions-release/housing-zoom/housing-zoom.log"
+    },
+    {
+      "suite": "lot-review-followup-browser",
+      "exit": 0,
+      "seconds": 4.3,
+      "log": "evidence/geometry-finance-review/regressions-release/lot-review-followup-browser/lot-review-followup-browser.log"
+    },
+    {
+      "suite": "open-spaces-browser",
+      "exit": 0,
+      "seconds": 7.1,
+      "log": "evidence/geometry-finance-review/regressions-release/open-spaces-browser/open-spaces-browser.log"
+    },
+    {
+      "suite": "open-spaces-zoom",
+      "exit": 0,
+      "seconds": 2.9,
+      "log": "evidence/geometry-finance-review/regressions-release/open-spaces-zoom/open-spaces-zoom.log"
+    },
+    {
+      "suite": "parcels-browser",
+      "exit": 0,
+      "seconds": 12.0,
+      "log": "evidence/geometry-finance-review/regressions-release/parcels-browser/parcels-browser.log"
+    },
+    {
+      "suite": "parcels-zoom",
+      "exit": 0,
+      "seconds": 3.3,
+      "log": "evidence/geometry-finance-review/regressions-release/parcels-zoom/parcels-zoom.log"
+    },
+    {
+      "suite": "planner-feedback-browser",
+      "exit": 0,
+      "seconds": 8.2,
+      "log": "evidence/geometry-finance-review/regressions-release/planner-feedback-browser/planner-feedback-browser.log"
+    },
+    {
+      "suite": "planner-feedback-fixes-browser",
+      "exit": 0,
+      "seconds": 18.4,
+      "log": "evidence/geometry-finance-review/regressions-release/planner-feedback-fixes-browser/planner-feedback-fixes-browser.log"
+    },
+    {
+      "suite": "planner-feedback-fixes-storage",
+      "exit": 0,
+      "seconds": 1.9,
+      "log": "evidence/geometry-finance-review/regressions-release/planner-feedback-fixes-storage/planner-feedback-fixes-storage.log"
+    },
+    {
+      "suite": "planner-feedback-fixes-zoom",
+      "exit": 0,
+      "seconds": 6.9,
+      "log": "evidence/geometry-finance-review/regressions-release/planner-feedback-fixes-zoom/planner-feedback-fixes-zoom.log"
+    },
+    {
+      "suite": "planner-review-followup-browser",
+      "exit": 0,
+      "seconds": 4.5,
+      "log": "evidence/geometry-finance-review/regressions-release/planner-review-followup-browser/planner-review-followup-browser.log"
+    },
+    {
+      "suite": "project-lifecycle-browser",
+      "exit": 0,
+      "seconds": 5.7,
+      "log": "evidence/geometry-finance-review/regressions-release/project-lifecycle-browser/project-lifecycle-browser.log"
+    },
+    {
+      "suite": "projects-browser",
+      "exit": 0,
+      "seconds": 10.2,
+      "log": "evidence/geometry-finance-review/regressions-release/projects-browser/projects-browser.log"
+    },
+    {
+      "suite": "saved-alternatives-browser",
+      "exit": 0,
+      "seconds": 9.4,
+      "log": "evidence/geometry-finance-review/regressions-release/saved-alternatives-browser/saved-alternatives-browser.log"
+    },
+    {
+      "suite": "saved-alternatives-zoom",
+      "exit": 0,
+      "seconds": 4.1,
+      "log": "evidence/geometry-finance-review/regressions-release/saved-alternatives-zoom/saved-alternatives-zoom.log"
+    },
+    {
+      "suite": "site-context-browser",
+      "exit": 0,
+      "seconds": 8.9,
+      "log": "evidence/geometry-finance-review/regressions-release/site-context-browser/site-context-browser.log"
+    },
+    {
+      "suite": "site-context-recovery-browser",
+      "exit": 0,
+      "seconds": 10.2,
+      "log": "evidence/geometry-finance-review/regressions-release/site-context-recovery-browser/site-context-recovery-browser.log"
+    },
+    {
+      "suite": "site-context-zoom",
+      "exit": 0,
+      "seconds": 4.7,
+      "log": "evidence/geometry-finance-review/regressions-release/site-context-zoom/site-context-zoom.log"
+    },
+    {
+      "suite": "stitch-viewport-browser",
+      "exit": 0,
+      "seconds": 5.4,
+      "log": "evidence/geometry-finance-review/regressions-release/stitch-viewport-browser/stitch-viewport-browser.log"
+    },
+    {
+      "suite": "street-review-browser",
+      "exit": 0,
+      "seconds": 11.4,
+      "log": "evidence/geometry-finance-review/regressions-release/street-review-browser/street-review-browser.log"
+    },
+    {
+      "suite": "streets-browser",
+      "exit": 0,
+      "seconds": 16.1,
+      "log": "evidence/geometry-finance-review/regressions-release/streets-browser/streets-browser.log"
+    },
+    {
+      "suite": "streets-zoom",
+      "exit": 0,
+      "seconds": 3.7,
+      "log": "evidence/geometry-finance-review/regressions-release/streets-zoom/streets-zoom.log"
+    },
+    {
+      "suite": "open-spaces-integration",
+      "exit": 0,
+      "seconds": 4.9,
+      "log": "evidence/geometry-finance-review/regressions-release/open-spaces-browser/open-spaces-integration.log"
+    },
+    {
+      "suite": "ai-zoom",
+      "exit": 0,
+      "seconds": 10.2,
+      "log": "evidence/geometry-finance-review/regressions-release/ai-zoom/ai-zoom.log"
+    },
+    {
+      "suite": "development-zoom",
+      "exit": 0,
+      "seconds": 7.5,
+      "log": "evidence/geometry-finance-review/regressions-release/development-zoom/development-zoom.log"
+    }
+  ],
+  "build": "passed",
+  "lint": "passed",
+  "axeViolations": 0,
+  "rapidDrawingRuns": 3,
+  "preservation": {
+    "checked": 999,
+    "changed": []
+  },
+  "publication": "Local changes only; no commit, push or deployment for this follow-up."
+}

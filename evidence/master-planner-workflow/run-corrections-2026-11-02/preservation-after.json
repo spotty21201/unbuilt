@@ -1,0 +1,62 @@
+{
+  "baselineFiles": 7605,
+  "unchangedFiles": 7587,
+  "intentionalChangedFiles": [
+    "docs/ACCEPTANCE.md",
+    "docs/WORK-CONTEXT.md",
+    "docs/DECISIONS.md",
+    "tests/prepare-residential.mjs",
+    "src/road-surfaces.ts",
+    "src/residential-site.ts",
+    "src/residential.ts",
+    "src/residential-procedure.ts",
+    "src/prepare-residential.ts",
+    "web/src/Projects.tsx",
+    "web/src/App.tsx",
+    "web/src/unbuilt/ResidentialCanvas.tsx",
+    "web/src/unbuilt/PlanCanvas.tsx",
+    "web/src/unbuilt/ProjectLibrary.tsx",
+    "web/src/unbuilt/residential.worker.ts",
+    "web/src/unbuilt/ResidentialPlanner.tsx",
+    "web/src/unbuilt/residential.css",
+    "web/src/unbuilt/ResidentialSetup.tsx"
+  ],
+  "unexpectedChangedFiles": [],
+  "missingFiles": [],
+  "historicalEvidenceFilesChecked": 7371,
+  "historicalEvidenceUnchanged": true,
+  "startingHead": "b6c660f8c13402e853968ad47d0f75428d7ca50c",
+  "currentHead": "b6c660f8c13402e853968ad47d0f75428d7ca50c",
+  "headUnchanged": true,
+  "correctionFilesSha256": {
+    "docs/ACCEPTANCE.md": "16bf2a981de7c70445cb4510abeb86990bf92e807d915b8d2ace2a3b61a6781f",
+    "docs/DECISIONS.md": "afc5cb937692ecee3574cbeb081bd6ed0bfdb7b124a63830a4399af96427cf98",
+    "docs/WORK-CONTEXT.md": "5f427d91e4aa9b23f14d8715717024236dbda4e340c618614c0031caa85d6c2c",
+    "src/geometry-errors.ts": "c84d71fc3cbaf566e8368af9433668d2fd8ee401b8af583c9057c046c9b4abc3",
+    "src/prepare-residential.ts": "0bc81d84b0ac71a894976981837a50b18930741aee7e9877fd87c1e7766dd8c1",
+    "src/residential-labels.ts": "f64bb00e3abb4a645bb5ee5ea1f6a3b2b8b631ff2b4cb41d1855c2001bc919c0",
+    "src/residential-procedure.ts": "fa633c24e8529b5ccb11d84e32ddebdfbddc0a9fe589c9a4ac866fc5a182dfb2",
+    "src/residential-site.ts": "6eb878ffda0c615a2e95c7e82854b857aa8f679b3d2d50673d72fa06627f5727",
+    "src/residential.ts": "cac073d0ac82c578a163423336805c14a6a3f36b2561b99db6d4cf20d9863cff",
+    "src/road-surfaces.ts": "92ba68738b1b49ec639262b3fcca1a26e260ea069992687f62ba3d65f13647a1",
+    "tests/prepare-residential.mjs": "21b14434e42a64289f261252a2bc709b2d4735adfad7281c51e28bcd56920adc",
+    "web/src/App.tsx": "86ea2272d4b17452de9ffcfdaa244307facd6fc78641e11ab318d83f37c1c7d6",
+    "web/src/Projects.tsx": "d538f9cf6a2782f8a2cb6c589ec7c2595f444d43f91e302b59a58d18c2885e01",
+    "web/src/unbuilt/PlanCanvas.tsx": "20ea1776c6204ac48c415a931b6b1ea0061c1748bc5674504fd4b0487a21a18b",
+    "web/src/unbuilt/ProjectLibrary.tsx": "5dcfcc1dea86e93e9af848f39f26639833489df380830065a4c1f5b11be384f8",
+    "web/src/unbuilt/ResidentialCanvas.tsx": "2cd3e92380bc2e579de1a0826a2a2240cb4b19821863db207a6b7d8b55c8ebe2",
+    "web/src/unbuilt/ResidentialPlanner.tsx": "f1d0789cdfa7e5af6f20ed22c7240bb5f07071888e1d0d327b2e7be5c894386a",
+    "web/src/unbuilt/ResidentialSetup.tsx": "664ce3a6ec216c5b50f2c52f2d45153c12cd6dc22af7985dd7bb5ad85e256f60",
+    "web/src/unbuilt/residential.css": "9bf5613399ea08743aaa1541986be57beae0ee89417df970452d54e08883c11f",
+    "web/src/unbuilt/residential.worker.ts": "43b2080fd5de215b450c7856ba4bf03032bce2491f232bb59c9cbe5225ba487a"
+  },
+  "servicesPreserved": {
+    "previewPid": 673841,
+    "toolServicePid": 673842,
+    "ports": [
+      5173,
+      5174
+    ]
+  },
+  "actions": "No stage/commit/push/deploy/reset/clean; existing modified and untracked files retained. Only deliberate source/test changes and appended current docs differ from baseline."
+}

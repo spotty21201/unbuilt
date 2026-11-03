@@ -1,0 +1,436 @@
+UNBUILT · Master Planner Workflow Test
+Residential master planning
+Undo residential
+Redo residential
+Save accepted
+Cancel preview to close
+Flat landed residential study · geometry checks do not establish house feasibility or statutory approval. Unaccepted preview — accepted project is preserved.
+Pending preview: A — central entrance, compact west and family east · 6
+12,000 m² gross · Unresolved / failing constraints
+Draw site boundary
+External road & width
+Draw supplied road centreline
+Draw supplied natural feature
+Draw river centreline
+Draw irregular open space
+Draw reservation
+Draw connected street
+Select
+Pan
+Fit site & context
++
+−
+Snap spaces/lots to road edges
+Snap (m)
+South Main Road · 12 m
+10 m · local coordinates
+
+Preview quantities unavailable. Accepted quantities retained; proposed inputs remain visible.
+
+Recalculating proposed geometry and quantities… Accepted values remain displayed until calculation finishes.
+
+Compact
+Family
+▨ Fixed protection
+◆ Flexible space
+▧ Residual land
+50 valid lots
+0 unresolved / 0 invalid
+4,664 m² valid lots
+2,240 m² roads
+292 m road
+5.8 m / valid lot
+517.2 m² fixed protection
+268 m² flexible space
+4,310.8 m² residual
+Rp 283,500,000 priced · 1 missing scopes
+SOP procedure
+Lot schedule
+Land & costs
+Constraints
+Alternatives
+
+Fixed/access/road/lot constraints, then mandatory mix, then declared objective. Recommendation means best found among tested candidates. Unknown checks prevent qualification.
+
+Save named alternativeTest meaningful alternatives
+
+Best found among saved tests · 50 valid lots · Unresolved constraints · 292 m road · Rp 283,500,000 priced
+
+Working residential layout. Measured valid yield and scoped quantities. Residual and unresolved checks remain visible.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+31 valid lots · Unresolved constraints · 190 m road · Rp 182,600,000 priced
+
+Working residential layout. Measured valid yield and scoped quantities. Residual and unresolved checks remain visible.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+29 valid lots · Unresolved constraints · 186.6 m road · Rp 177,852,299 priced
+
+Working residential layout. Measured valid yield and scoped quantities. Residual and unresolved checks remain visible.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+28 valid lots · Unresolved constraints · 190.2 m road · Rp 178,754,995 priced
+
+Working residential layout. Measured valid yield and scoped quantities. Residual and unresolved checks remain visible.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+28 valid lots · Unresolved constraints · 190.2 m road · Rp 178,754,995 priced
+
+Reshape flexible open-space edge. +0 valid lots versus accepted. 7136.4 m² residual; 16 unresolved checks.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+28 valid lots · Unresolved constraints · 200.2 m road · Rp 186,714,250 priced
+
+Shift unlocked road alignment. +0 valid lots versus accepted. 7097.6 m² residual; 16 unresolved checks.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+28 valid lots · Unresolved constraints · 210.1 m road · Rp 194,690,697 priced
+
+Shift unlocked road alignment. +0 valid lots versus accepted. 7017.9 m² residual; 16 unresolved checks.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+
+24 valid lots · Unresolved constraints · 290.5 m road · Rp 229,079,527 priced
+
+Parallel double-loaded return loop. -4 valid lots versus accepted. 6923.1 m² residual; 26 unresolved checks.
+
+Compare at same scaleReview this alternative
+Client shortlist (up to two)
+Remove alternative
+Selection reasons and changed assumptions
+Inputs & commitments
+Prepare your layout
+
+Boundary → external road → lot products → Prepare Layout
+
+Site boundary: 4 corners · locked
+
+1 · External road beside the site
+
+Enter the road name and full width, then draw along the site edge, including any corners it follows. Its corridor is placed outside the fixed boundary. Finish with Enter or Finish drawing.
+
+New external road name
+New external road width (m)
+Allow a residential entrance along this road
+Draw adjacent external road
+South Main Road
+External road name
+Full external road width (m)
+Entrance permitted on adjoining frontage
+Known carriageway width and restricted access sections can be refined in Entrance & adjoining roads.
+2 · Home lot products and unit mix
+
+Width is frontage along the street. Mix is the percentage of valid lot count.
+
+Product	Width m	Depth m	Mix %	
+
+				×
+
+				×
+Add product row
+
+Total mix: 100% · must equal 100%.
+
+Mix tolerance (percentage points)
+Require mix within this tolerance
+Advanced product tolerances, pricing and individual street groups remain available below.
+Internal street corridor (m)
+Full internal corridor; provisional until confirmed in Road structure & parameters. A wider gate remains a bounded entrance exception.
+Prepare Layout
+
+Generate connected internal roads and as many measured valid lots as found within the product mix. Review the result before accepting.
+
+Source geometry & reliable scale
+Scenario name
+Assignment and site
+Entrance & adjoining roads
+
+Place/import the main road first, enter its real widths and mark permitted adjoining frontage. Entrances below are derived from that physical relationship.
+
+South Main Road
+Main road name
+Lock supplied main-road alignment
+Road source
+External road alignment
+Metres: x, y on each line. Consecutive points define the open alignment.
+External right of way (m)
+External carriageway (m)
+Eligible access frontage (edge number, from m, to m)
+Edges are numbered from 1. All other frontage is restricted. No extra entrance is assumed.
+Permit access on adjoining frontage
+
+1 adjoining frontage intervals can fit the current gate width.
+
+Edge 1, 60 m along edge
+Use this entrance
+Permit this candidate in alternative search
+Add explicitly permitted entrance
+Edge 1, 32 m along edge
+Use this entrance
+Permit this candidate in alternative search
+Add explicitly permitted entrance
+Edge 1, 88 m along edge
+Use this entrance
+Permit this candidate in alternative search
+Add explicitly permitted entrance
+Lock entrance location and strategy
+Entrance boundary edge
+Entrance offset along edge (m)
+Entrance width (m)
+Entrance transition length (m)
+Serving external road
+external_1793661593844
+Entrance role
+Permitted movements
+Entrance decisions and additional entrances
+Road structure & parameters
+Full internal corridor (m)
+Internal carriageway (m)
+Corner return radius (m)
+Required centreline radius (m)
+Preferred junction angle (degrees)
+Allow oblique junctions; treat the angle as a preference
+Turning requirements (separate vehicle check)
+Road dimensions confirmed as project inputs
+Junction angle tolerance (degrees)
+Junction exceptions: first road ID, second road ID, reason
+Declare screening vehicle
+Entrance street · main
+Internal street name
+Lock street
+Entrance street centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Entrance street start turning-head radius (m)
+Entrance street end turning-head radius (m)
+Move Entrance street north 2 mRemove street
+Street 2 · street_1793661937915
+Internal street name
+Lock street
+Street 2 centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Street 2 start turning-head radius (m)
+Street 2 end turning-head radius (m)
+Move Street 2 north 2 mRemove street
+Street 3 · street_1793662048496
+Internal street name
+Lock street
+Street 3 centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Street 3 start turning-head radius (m)
+Street 3 end turning-head radius (m)
+Move Street 3 north 2 mRemove street
+Street 4 · street_1793662919959
+Internal street name
+Lock street
+Street 4 centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Street 4 start turning-head radius (m)
+Street 4 end turning-head radius (m)
+Move Street 4 north 2 mRemove street
+Street 5 · street_1793662946508
+Internal street name
+Lock street
+Street 5 centreline coordinates
+Metres: x, y on each line. Consecutive points define the open alignment.
+Centreline curves: interior vertex number, radius m
+Vertices are numbered from 1. Radii generate tangent arcs; a radius that cannot fit is refused.
+Street 5 start turning-head radius (m)
+Street 5 end turning-head radius (m)
+Move Street 5 north 2 mRemove street
+Add connected branch
+Lot products & development rates
+Product groups & target composition
+Assign a product group to Entrance street
+
+Street sections normally assign one product to both facing sides. Side-specific sections require a recorded exception when facing products differ.
+
+group_street_1793661937915 · street_1793661937915
+Compact
+Family
+group_street_1793661937915 section start (%)
+group_street_1793661937915 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+group_street_1793662048496 · street_1793662048496
+Compact
+Family
+group_street_1793662048496 section start (%)
+group_street_1793662048496 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+group_street_1793662919959 · street_1793662919959
+Compact
+Family
+group_street_1793662919959 section start (%)
+group_street_1793662919959 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+section_4 · street_1793662919959
+Compact
+Family
+section_4 section start (%)
+section_4 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+group_street_1793662946508 · street_1793662946508
+Compact
+Family
+group_street_1793662946508 section start (%)
+group_street_1793662946508 section end (%)
+Street side
+Both facing sides
+Left of alignment
+Right of alignment
+Facing-product exception and reason
+Lock group and product definition
+Split street section
+Target basis
+Percentage of valid units
+Percentage of valid residential lot area
+Target integer counts
+Compact target
+Family target
+Mix tolerance (percentage points or units)
+Mandatory product composition
+
+Integer allocation uses largest remainder; actual percentages always use measured integer valid counts or actual lot area.
+
+Rebalance draft mix
+Protection, flexible space & reservations
+Separate common works costs
+Start or reset residential study
+Source/drawing geometry added to the preview. Review dimensions, constraints and quantities before accepting.
+Cancel preview
+Accept residential change
+Export residential scenarios
+Import residential collection
+Skip to plan
+UNBUILT
+Projects
+Master Planner Workflow Test
+Working plan
+Plan
+Alternatives
+Parcels
+Save
+Undo
+Redo
+Export JSON
+Local tools · server online · AI not configured
+AI settings
+Residential planning
+External road setup
+Master Planner Workflow Test · 12,000 m² · 4 vertices
+Selected: Site
+Boundary only
+Saved in this browser
+
+Opened Master Planner Workflow Test. Accepted plan restored; drafts, undo history and photos are not restored. Plan Undo/Redo starts fresh.
+
+Select
+Pan
+Draw site
+Context
+Site
+Streets
+Homes
+Green
+Ask
+Select
+Pan
+Fit site
++
+−
+Open space A
+120.0 m
+100.0 m
+120.0 m
+100.0 m
+Boundary ready
+
+Next, draw the adjoining external road and enter its name and width.
+
+Y ↑
+0
+5
+10 m
+LOCAL METRES
+ZOOM 100%
+LOCAL PLAN
+SNAP 1 m
+Site context & survey
+Your site is ready
+
+12,000 m² · 4 corners. No layout has been generated. Any designed open spaces remain reserved.
+
+Continue residential planning
+
+Your residential study is saved. Continue with road inputs, home products and Prepare Layout.
+
+Continue residential planning
+
+Boundary → external road → home products → Prepare Layout
+
+Edit boundaryDesign open spacesGenerate layout
+
+Starter layout generation uses assumed park and entrance positions. Review them before relying on the results. Sample financial assumptions remain illustrative.
+
+Plan actions
+Clear layout
+Delete boundary and layout
+
+Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.
+
+Site source · reference photo
+Manage housing templatesSaved alternativesTerrain, drainage and phasingOpen projects
+EVALUATOR
+Details
+Boundary only · next, draw the external road and enter its name and width.

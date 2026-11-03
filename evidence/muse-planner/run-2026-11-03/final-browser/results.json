@@ -1,0 +1,75 @@
+{
+  "checks": [
+    "completed layout keeps setup controls collapsed but available",
+    "live Muse Wonder provides a concise qualitative planning assessment",
+    "Muse response refreshes the global connection indicator",
+    "numeric evidence still comes from current deterministic facts",
+    "Muse chooses the shorter-road search tool",
+    "road search measures a real proposal while accepted geometry is held",
+    "rejected trials do not label the retained valid proposal as failing",
+    "valid tested search proposal can be accepted",
+    "search proposal is a whole-plan review, not an automatic acceptance",
+    "cancel preserves original source geometry and schedules",
+    "actual running connection is verified Muse Wonder",
+    "project exports contain no provider token",
+    "normal browser storage contains no provider token"
+  ],
+  "exchanges": [
+    {
+      "request": "As a master planner, what is the most useful next improvement to investigate in this plan? Give a brief qualitative assessment with the measured evidence. Do not propose a geometry edit yet.",
+      "status": 200,
+      "data": {
+        "requestId": "0eb189a7-7542-40ea-8988-8e3f67702bf6",
+        "answer": {
+          "kind": "explanation",
+          "insight": "Investigate the extensive residual land next: test whether coherent facing sections using the existing products can convert unused area into valid lots while holding the protected feature, recreation commitment and required mix.",
+          "facts": [
+            {
+              "id": "yield",
+              "text": "31 screened valid lots; 0 unresolved; 0 invalid."
+            },
+            {
+              "id": "land",
+              "text": "12,000m² fixed gross; 2,904m² valid lots; 517.2m² protection; 268m² flexible space; 6,854.8m² residual. Gap 0m²; overlap 0m²."
+            },
+            {
+              "id": "residual",
+              "text": "Residual trials not yet run. 3 rejected positions: overlap with road, reservation or another lot; 9 rejected positions: usable depth outside product variation Road edge exists; only tested frontage/depth/shape fits may become lots Bounded tests do not prove global impossibility."
+            }
+          ]
+        },
+        "source": "ai-tool-call"
+      }
+    },
+    {
+      "request": "Please test layouts with shorter internal road length. Keep the current entrance and all open-space geometry unchanged, and respect the required product mix.",
+      "status": 200,
+      "data": {
+        "requestId": "9d631041-a625-40d3-b77d-a296be6b3737",
+        "answer": {
+          "kind": "proposal",
+          "action": {
+            "kind": "test_alternatives",
+            "goal": "less-road"
+          },
+          "label": "Test shorter road layouts"
+        },
+        "source": "ai-tool-call"
+      }
+    }
+  ],
+  "health": {
+    "ok": true,
+    "adapter": "meta",
+    "model": "muse-wonder-1.0",
+    "modelConfigured": true,
+    "ai": {
+      "configured": true,
+      "connection": "Muse Wonder",
+      "revision": 1,
+      "status": "verified",
+      "adminEnabled": false
+    }
+  },
+  "browser": "149.0.7827.55"
+}

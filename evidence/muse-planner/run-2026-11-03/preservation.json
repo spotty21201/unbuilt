@@ -1,0 +1,36 @@
+{
+  "baselineFiles": 7893,
+  "changedIntentionally": [
+    "server/intent.mjs",
+    "server/ai-assistant.mjs",
+    "web/src/unbuilt/residential.worker.ts",
+    "web/src/unbuilt/ResidentialPlanner.tsx",
+    "web/src/unbuilt/residential.css",
+    "web/src/unbuilt/ResidentialSetup.tsx",
+    "tests/master-planner-workflow-browser.cjs",
+    "docs/AI-ADMIN.md",
+    "docs/ACCEPTANCE.md",
+    "docs/WORK-CONTEXT.md",
+    "docs/DECISIONS.md"
+  ],
+  "missing": [],
+  "unexpectedChanges": [],
+  "historicalEvidenceFilesChecked": 7669,
+  "historicalEvidenceUnchanged": true,
+  "head": "b6c660f8c13402e853968ad47d0f75428d7ca50c",
+  "headUnchanged": true,
+  "stagedFiles": [],
+  "tokenScan": {
+    "repositoryAndPublicArtifacts": "no matches",
+    "secretsPrinted": false,
+    "privateConfigurationMode": "0o600"
+  },
+  "newCoreFiles": [
+    "docs/MUSE-MASTER-PLANNER.md",
+    "src/residential-muse.ts",
+    "server/ai-model.mjs",
+    "server/residential-muse.mjs",
+    "web/src/unbuilt/ResidentialMuse.tsx"
+  ],
+  "note": "Existing preview process/configuration unchanged; tool service restarted with original command/environment/port to load local authorized configuration. No commit/push/deployment."
+}

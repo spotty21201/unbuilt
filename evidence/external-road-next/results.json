@@ -1,0 +1,253 @@
+{
+  "checks": [
+    "blank project starts with boundary before external road",
+    "applying boundary exposes Draw external road as next action",
+    "external road action precedes legacy generation",
+    "accepting boundary does not invent internal roads or lots",
+    "next action focuses the road name and exposes width immediately",
+    "road drawing requires a width",
+    "sub-minimum road width is refused before drawing",
+    "out-of-range road width is refused before drawing",
+    "blank road name is refused before drawing",
+    "road section stays open after drawing",
+    "actual named 10 m road lies adjacent outside the fixed south edge",
+    "entrance candidates derive only from substantial adjoining frontage",
+    "boundary and zero-lot input stage are preserved",
+    "recorded road name and width remain editable and visible",
+    "cancelling width change restores the entire accepted road",
+    "saved road advances the main entry to continue planning",
+    "save/reopen preserves road geometry, name, width and boundary exactly",
+    "1024px road inputs remain reachable without page overflow",
+    "375px road inputs remain reachable without page overflow",
+    "no browser runtime errors"
+  ],
+  "errors": [],
+  "accepted": {
+    "id": "residential",
+    "name": "Residential working plan",
+    "idea": "Working residential layout",
+    "advantage": "Measured valid yield and scoped quantities",
+    "compromise": "Residual and unresolved checks remain visible",
+    "inputs": {
+      "version": 2,
+      "phase": "site",
+      "objective": "yield",
+      "objectiveNote": "Maximum valid lot yield within the declared product mix and constraints",
+      "source": "Accepted project boundary; verify its source and scale",
+      "fixedRequirements": "",
+      "preferences": "Coherent facing street groups",
+      "adjustable": "Internal roads, product-group allocation and proposed open space",
+      "unknowns": "",
+      "boundary": [
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 0
+        },
+        {
+          "x": 120,
+          "y": 100
+        },
+        {
+          "x": 0,
+          "y": 100
+        }
+      ],
+      "boundaryLocked": true,
+      "calibration": "unverified",
+      "independentCheck": "",
+      "externalRoads": [
+        {
+          "id": "external_1793654666793",
+          "name": "Fictitious South Road",
+          "a": {
+            "x": 0,
+            "y": -5
+          },
+          "b": {
+            "x": 120,
+            "y": -5
+          },
+          "path": [
+            {
+              "x": 0,
+              "y": -5
+            },
+            {
+              "x": 120,
+              "y": -5
+            }
+          ],
+          "rightOfWay": 10,
+          "carriageway": null,
+          "eligible": [
+            {
+              "edge": 0,
+              "from": 0,
+              "to": 120
+            },
+            {
+              "edge": 1,
+              "from": 0,
+              "to": 0.002
+            },
+            {
+              "edge": 3,
+              "from": 99.998,
+              "to": 100
+            }
+          ],
+          "boundaryAlignment": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            }
+          ],
+          "source": "Planner-drawn adjoining road; survey and access assurance remain project inputs",
+          "locked": false
+        }
+      ],
+      "entrance": {
+        "id": "primary",
+        "edge": 0,
+        "offset": 0,
+        "width": 8,
+        "transition": 12,
+        "roadId": "main",
+        "externalRoadId": "",
+        "locked": false,
+        "role": "Primary",
+        "movements": ""
+      },
+      "roadRules": {
+        "corridor": 8,
+        "carriageway": null,
+        "cornerReturn": 0,
+        "centrelineRadius": null,
+        "junctionAngle": 90,
+        "anglePolicy": "preference",
+        "turning": "",
+        "confirmed": false
+      },
+      "roads": [],
+      "products": [],
+      "groups": [],
+      "spaces": [],
+      "mix": {
+        "basis": "units",
+        "mode": "percent",
+        "tolerance": 5,
+        "mandatory": true,
+        "rounding": "largest-remainder",
+        "targets": {}
+      },
+      "commonRates": [],
+      "lockedLots": [],
+      "fill": false
+    },
+    "result": {
+      "phase": "site",
+      "externalReservation": [],
+      "resolvedRoads": [],
+      "lots": [],
+      "road": [],
+      "connection": [],
+      "offsiteConnection": [],
+      "blocks": [
+        [
+          [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ]
+        ]
+      ],
+      "residual": [
+        [
+          [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 0
+            },
+            {
+              "x": 120,
+              "y": 100
+            },
+            {
+              "x": 0,
+              "y": 100
+            }
+          ]
+        ]
+      ],
+      "exclusions": {},
+      "issues": [
+        {
+          "state": "unknown",
+          "object": "products",
+          "message": "Define residential products before generating lots."
+        },
+        {
+          "state": "unknown",
+          "object": "entrance",
+          "message": "Site inputs only: an entrance has not been selected from adjoining-road frontage."
+        },
+        {
+          "state": "unknown",
+          "object": "boundary",
+          "message": "Site scale is unverified."
+        }
+      ],
+      "counts": {
+        "valid": 0,
+        "unresolved": 0,
+        "invalid": 0
+      },
+      "validLotArea": 0,
+      "roadLength": 0,
+      "roadPerLot": null,
+      "land": {
+        "gross": 12000,
+        "residential": 0,
+        "roads": 0,
+        "protected": 0,
+        "flexible": 0,
+        "reservations": 0,
+        "residual": 12000,
+        "overlap": 0,
+        "gap": 0,
+        "tolerance": 0.01
+      },
+      "schedule": [],
+      "groupSchedule": [],
+      "cost": 0,
+      "missingCosts": [],
+      "qualified": false,
+      "skipped": {}
+    }
+  }
+}
