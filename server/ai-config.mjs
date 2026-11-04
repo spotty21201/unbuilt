@@ -14,8 +14,8 @@ try {
   if (e.code !== 'ENOENT') configError = true;
   config = { revision: 0, active: 'primary', routes: { primary: emptyRoute('Primary'), alternate: emptyRoute('Alternate') } };
   // Existing server environment remains a supported deployment configuration.
-  if (!configError && process.env.UNBUILT_MODEL_KEY) config.routes.primary = {
-    label: 'Primary', endpoint: process.env.UNBUILT_MODEL_URL ?? '', model: process.env.UNBUILT_MODEL ?? '', key: process.env.UNBUILT_MODEL_KEY,
+  if (!configError) config.routes.primary = {
+    label: 'Primary', endpoint: process.env.UNBUILT_MODEL_URL || 'https://api.meta.ai/v1/chat/completions', model: process.env.UNBUILT_MODEL || 'muse-wonder-1.0', key: process.env.UNBUILT_MODEL_KEY ?? '',
   };
 }
 let verification = { revision: -1, status: 'untested' };
@@ -38,7 +38,7 @@ export function adminAuthorized(header) {
 export function publicAIStatus() {
   const r = config.routes[config.active];
   const configured = !!(r.endpoint && r.model && r.key) && !configError;
-  return { configured, connection: r.label, revision: config.revision, status: configError ? 'settings-error' : !configured ? 'unconfigured' : verification.revision === config.revision ? verification.status : 'untested', adminEnabled: (process.env.UNBUILT_ADMIN_TOKEN ?? '').length >= 24 };
+  return { configured, missing: ['endpoint','model','key'].filter(field => !r[field]), connection: r.label, revision: config.revision, status: configError ? 'settings-error' : !configured ? 'unconfigured' : verification.revision === config.revision ? verification.status : 'untested', adminEnabled: (process.env.UNBUILT_ADMIN_TOKEN ?? '').length >= 24 };
 }
 export function routingSettings() {
   return { revision: config.revision, active: config.active, routes: Object.fromEntries(Object.entries(config.routes).map(([id,r]) => [id, { label:r.label, endpoint:r.endpoint, model:r.model, hasKey:!!r.key }])) };

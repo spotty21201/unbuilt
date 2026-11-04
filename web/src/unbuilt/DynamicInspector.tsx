@@ -61,8 +61,8 @@ export default function DynamicInspector(p: Props) {
   </label>;
   return <section className="dynamic-inspector" aria-label="Spatial inspector">
     <header><h2><InspectIcon size={16} />Spatial inspector</h2><span className="modebadge">{p.preview ? 'Option preview' : p.dirty || p.greenDirty ? 'Live draft' : p.legacy ? 'Legacy plan' : 'Working plan'}</span></header>
-    <div className="selection-heading"><label className="object-picker"><span className="object-swatch" /><select aria-label="Inspect object" value={p.selection ?? 'site'} onChange={(e) => p.onSelect(e.target.value as Selection)}>
-      <option value="site">Site boundary</option><option value="grove">{p.planning.openSpaces!==undefined?p.label==='Site boundary'?'Open spaces':p.selection==='grove'?p.label:'Open spaces':'Open space A'}</option><option value="circulation">Circulation</option><option value="homes">{p.selection === 'homes' ? p.label : 'All home lots'}</option>
+    <div className="selection-heading"><label className="object-picker"><span className="object-swatch" /><select aria-label="Inspect object" value={p.selection ?? ''} onChange={(e) => p.onSelect(e.target.value ? e.target.value as Selection : null)}>
+      <option value="">Choose an object…</option><option value="site">Site boundary</option><option value="grove">{p.planning.openSpaces!==undefined?p.label==='Site boundary'?'Open spaces':p.selection==='grove'?p.label:'Open spaces':'Open space A'}</option><option value="circulation">Circulation</option><option value="homes">{p.selection === 'homes' ? p.label : 'All home lots'}</option>
     </select></label><span className="modebadge">{p.selection === 'grove' ? p.greenLocked ? 'Locked' : 'Editable' : p.selection === 'site' && p.planning.siteLocked ? 'Locked' : 'Measured'}</span></div>
     {p.preview && <p className="note">Reviewing an alternative. Apply or Cancel on the plan before editing.</p>}
     <dl className="metric-grid" aria-live="polite">
@@ -71,13 +71,15 @@ export default function DynamicInspector(p: Props) {
       <div><dt>Modeled homes</dt><dd>{p.homes ?? '—'}</dd></div>
       <div><dt>{p.builtArea!==undefined?"Home built area":"Built area / home"}</dt><dd>{(p.builtArea??homeArea(p.planning)).toFixed(1)} m²</dd></div>
     </dl>
+    {!p.selection&&<p className="inspect-prompt">Select a lot, street or open space on the plan to see its details.</p>}
+    <div hidden={!p.selection}>
     {p.selectionNotice&&<p className="selection-assumption" role="status">{p.selectionNotice}</p>}
     {p.selection==='circulation' && <section className="road-corner-controls" aria-label="Road corner treatment"><button type="button" disabled={p.disabled||p.dirty} onClick={p.onRoundStreets}>Round road corners</button><p className="note">Preview smooth joined pavement with fillets set to half the road width (3 m for a 6 m street). Mixed widths start with the narrowest street. Generated Spine routing may move to fit curves beside kept green. Review lots and costs before Apply; protected spaces and held lots stay protected. Applying keeps a manual street network.</p></section>}
     {p.siteControls}{p.openSpaceControls}
     {p.lotControls}
     {p.housingControls}
     {p.legacy && <div className="parameter-draft"><p>This saved plan keeps its original generator. Enable live planning to preview park-aware Spine routing and shared templates before applying.</p><button type="button" disabled={p.disabled} onClick={() => p.onChange(p.planning, p.frontage)}>Enable live planning</button></div>}
-    <section className="parameter-section"><h3>Geometric parameters <span>Live preview</span></h3>
+    <details className="parameter-section" open={p.dirty||p.greenDirty}><summary>Adjust geometry</summary>
       {p.selection === 'grove' && p.planning.openSpaces===undefined && <div className="park-parameters">
       {(['w', 'h'] as const).map((key) => <label className="parameter" key={key}><span>{key === 'w' ? 'Park width' : 'Park depth'}<output>{p.green[key]} m</output></span><input type="range" aria-label={key === 'w' ? 'Park width' : 'Park depth'} min={4} max={120} value={p.green[key]} disabled={p.greenDisabled} onChange={(e) => p.onGreenChange({ ...p.green, [key]: Number(e.target.value) })} /></label>)}
       {p.greenDirty && <div className="parameter-draft"><p role="status">{p.greenError ?? 'Park preview updates streets, lots and costs.'}</p><div className="draftrow"><button type="button" disabled={!!p.greenError} onClick={p.onGreenApply}>Apply park</button><button type="button" onClick={p.onGreenCancel}>Cancel park</button></div></div>}
@@ -119,14 +121,15 @@ export default function DynamicInspector(p: Props) {
         <p className="note">Spine routes connected orthogonal streets around the park. Loop uses its fixed ring. Road turning and traffic capacity are unmodeled.</p></>}
       </div>}
       {p.dirty && <div className="parameter-draft"><p role="status">{p.error ?? 'Preview updates geometry and costs. Apply keeps this change as one undo step.'}</p><div className="draftrow"><button type="button" disabled={!!p.error || p.disabled} onClick={p.onApply}>Apply parameters</button><button type="button" onClick={p.onCancel}>Cancel parameters</button></div></div>}
-    </section>
-    <section className="invariant-section"><h3>Planning commitments</h3>
+    </details>
+    <details className="invariant-section"><summary>Planning commitments <small>{p.planning.siteLocked?'Boundary locked':'Boundary editable'} · {p.greenLocked?'Open space locked':'Open space editable'}</small></summary>
       <label><input type="checkbox" aria-label="Site boundary" checked={p.planning.siteLocked} disabled={p.disabled || p.dirty} onChange={() => p.onLock('siteLocked')} />Fix site boundary <LockIcon size={14} /><span>{p.planning.siteLocked ? 'Locked' : 'Editable'}</span></label>
       {p.planning.openSpaces===undefined&&<label><input type="checkbox" aria-label="Open space A" checked={p.greenLocked} disabled={p.disabled || p.dirty} onChange={p.onGreenLock} />Fix Open space A shape + location <LockIcon size={14} /><span>{p.greenLocked ? 'Locked' : 'Editable'}</span></label>}
       <label><input type="checkbox" aria-label="Maintain minimum open space" checked={(p.planning.minGreenArea ?? 0) > 0} disabled={p.disabled || p.dirty || p.planning.openSpaces?.length===0} onChange={() => p.onChange({ ...p.planning, minGreenArea: p.planning.minGreenArea ? 0 : (p.planning.openSpaces?.reduce((sum,s)=>sum+polyArea(s.pts),0)??p.green.w*p.green.h) }, p.frontage)} />Maintain minimum open space</label>
       {(p.planning.minGreenArea ?? 0) > 0 && <label className="minimum-green">Minimum area (m²)<input type="number" aria-label="Minimum open space area" min={1} max={250000} value={p.planning.minGreenArea} disabled={p.disabled} onChange={event => { const value = Number(event.target.value); if (Number.isFinite(value) && value > 0) p.onChange({ ...p.planning, minGreenArea: value }, p.frontage); }} /></label>}
       <label><input type="checkbox" checked={p.planning.priceLocked} disabled={p.disabled || p.dirty} onChange={() => p.onLock('priceLocked')} />Price ceiling ≤ Rp{p.ceiling}m <LockIcon size={14} /><span>{p.planning.priceLocked ? 'Held' : 'Off'}</span></label>
       <details className="constraint-help"><summary>How locks work</summary><p className="note">Fixing a space preserves its exact shape and location; a minimum area alone permits direct moves or reshapes above that area. Search holds every open-space outline and the boundary in every option, even when direct edits are unlocked. Use Edit open spaces for individual commitments. The price ceiling is a hard maximum when held, not a target selling price. The actual selling-price assumption stays unchanged during search. Routing clearance reserves unallocated land around the conservative open-space extents; whole lots and home setbacks must fit.</p></details>
-    </section>
+    </details>
+    </div>
   </section>;
 }

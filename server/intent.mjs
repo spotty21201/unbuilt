@@ -7,7 +7,7 @@ import {housingSummary} from '../src/housing.ts';
 // Run:  node --experimental-strip-types --no-warnings server/intent.mjs [--port 5174]
 // Env:  UNBUILT_MODEL_KEY (secret, never logged), UNBUILT_MODEL_URL
 //       (default https://api.meta.ai/v1/chat/completions),
-//       UNBUILT_MODEL (default muse-spark-1.3).
+//       UNBUILT_MODEL (default muse-wonder-1.0).
 //       UNBUILT_APP_ORIGIN (comma-separated trusted app origins for the
 //       browser CORS policy; defaults cover the Tailscale + local dev app).
 // Browser access is same-policy gated: requests carrying a non-listed
@@ -28,6 +28,7 @@ import {housingSummary} from '../src/housing.ts';
 // Without UNBUILT_MODEL_KEY the meta adapter answers 503 model_not_configured
 // (honest, testable); model failure answers 502 with a local fallback hint.
 import http from "node:http";
+import { pathToFileURL } from "node:url";
 import { hasHome, hasLayout } from "../src/contents.ts";
 import { siteFrameErrors } from "../src/boundary.ts";
 import { parseIntent } from "../src/intent.ts";
@@ -38,7 +39,7 @@ import { evaluateLayout } from "../src/economics.ts";
 
 const PORT = Number(process.argv.includes("--port") ? process.argv[process.argv.indexOf("--port") + 1] : 5174);
 const MODEL_URL = process.env.UNBUILT_MODEL_URL ?? "https://api.meta.ai/v1/chat/completions";
-const MODEL = process.env.UNBUILT_MODEL ?? "muse-spark-1.3";
+const MODEL = process.env.UNBUILT_MODEL ?? "muse-wonder-1.0";
 const MODEL_KEY = process.env.UNBUILT_MODEL_KEY ?? "";
 const BODY_LIMIT = 1_000_000;
 const SEARCH_BUDGET_MAX = 250;
@@ -57,6 +58,11 @@ function send(res, status, body) {
 }
 
 function readBody(req) {
+  // Vercel may parse JSON before invoking the Node handler.
+  if (req.body !== undefined) {
+    const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
+    return Buffer.byteLength(body) > BODY_LIMIT ? Promise.reject(new Error('body too large')) : Promise.resolve(body);
+  }
   return new Promise((resolve, reject) => {
     let size = 0;
     const chunks = [];
@@ -215,13 +221,14 @@ async function metaIntent(text, ctx) {
   }
 }
 
-const server = http.createServer(async (req, res) => {
+export async function handleRequest(req, res) {
   try {
     // Restricted CORS: only listed app origins reach the API from a
     // browser. Preflight is answered explicitly; anything else carrying a
     // non-listed Origin is refused before routing.
     const origin = req.headers.origin ?? null;
-    const trusted = origin !== null && ALLOWED_ORIGINS.includes(origin);
+    const sameDeployment = process.env.VERCEL === '1' && origin === `https://${req.headers.host}`;
+    const trusted = origin !== null && (ALLOWED_ORIGINS.includes(origin) || sameDeployment);
     if (req.method === "OPTIONS") {
       if (!trusted) {
         send(res, 403, { error: "origin_not_allowed" });
@@ -454,8 +461,10 @@ const server = http.createServer(async (req, res) => {
       // already closed
     }
   }
-});
+}
 
-server.listen(PORT, () => {
-  console.log(`unbuilt-server listening on ${PORT}`);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  http.createServer(handleRequest).listen(PORT, () => {
+    console.log(`unbuilt-server listening on ${PORT}`);
+  });
+}

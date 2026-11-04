@@ -4,7 +4,7 @@
 
 **Created by an architect and master planner**, Unbuilt is a browser-based workspace for early residential master planning. It brings site constraints, streets, housing lots, open space and measured development trade-offs into one place, with planning assistance from **Muse AI by Meta**.
 
-**[Open the demo](https://unbuilt-muse-demo.vercel.app)**
+**[Open the demo](https://unbuilt-blond.vercel.app)**
 
 ![Unbuilt residential planning workspace showing streets, housing products, protected spaces and measured land quantities](docs/images/unbuilt-planner.png)
 
@@ -53,7 +53,7 @@ The planning engine validates the proposed action and calculates its geometry an
 
 This gives natural-language assistance a concrete connection to the drawing and its measurements, while keeping the architect or planner in control of the accepted design.
 
-**Demo availability:** the public demo currently runs the deterministic planning workflow. Live Muse responses require production Meta Model API credentials, which are awaiting configuration. Direct planning and calculations remain available independently of the AI connection.
+**Demo availability:** the public demo connects to Meta Muse Wonder 1.0 through the server-side Meta Model API integration. Direct planning and calculations remain available independently of the AI connection.
 
 ## Try the workflow
 

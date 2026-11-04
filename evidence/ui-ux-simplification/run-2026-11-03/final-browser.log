@@ -1,0 +1,39 @@
+PASS project starts without an arbitrary selected object
+PASS destructive actions, geometry sliders and local search are disclosed
+PASS project files/settings have one entry
+PASS keyboard selection exposes the actual selected object
+PASS geometry adjustment is a reviewable draft
+PASS cancel retains legacy geometry
+PASS project export still contains accepted state
+PASS site setup exposes current inputs while optional controls remain closed
+PASS input stage shows site commitments instead of a zero-yield layout
+PASS all drawing tools remain behind one discoverable entry
+PASS drawing records named measured road without inventing lots
+PASS end treatment is still an explicit choice
+PASS Prepare Layout produces measured review before acceptance
+PASS accepted generated layout meets required mix and geometry checks
+PASS completed layout has no idle accept/cancel buttons
+PASS completed inspector keeps optional settings, Muse and reports closed
+PASS selection shows dimensions and lock with coordinates disclosed
+PASS lot lock is previewed before saving
+PASS Undo restores accepted plan and lot locks
+PASS Redo restores the complete held plan
+PASS new disclosure and selection preserve pending Muse request
+PASS controlled explanation stays attached to the same accepted plan
+PASS failed edit remains visible and acceptance stays blocked
+PASS unresolved-check entry opens full findings without hiding unknowns
+PASS schedule keeps keyboard-accessible horizontal scroll
+PASS alternative save retains an independent complete scenario
+PASS comparison still shares the same camera
+PASS save/reopen preserves scenario, schedules, locks and alternatives
+PASS 1440px has no page/dialog horizontal overflow
+PASS 1440px drawing disclosure works by keyboard
+PASS 1440px files remain reachable
+PASS 1024px has no page/dialog horizontal overflow
+PASS 1024px drawing disclosure works by keyboard
+PASS 1024px files remain reachable
+PASS 375px has no page/dialog horizontal overflow
+PASS 375px drawing disclosure works by keyboard
+PASS 375px files remain reachable
+PASS no uncaught browser errors
+ALL 38 SIMPLIFICATION CHECKS PASS

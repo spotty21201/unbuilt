@@ -1,0 +1,22 @@
+{
+  "before": {
+    "width": 1440,
+    "outerWidth": 1440,
+    "dpr": 1
+  },
+  "after": {
+    "width": 720,
+    "outerWidth": 1440,
+    "dpr": 2
+  },
+  "zoom": 2,
+  "checks": [
+    "actual browser zoom is 200% with half CSS width and same outer window",
+    "200% setup retains readable editable values",
+    "200% setup action can receive keyboard focus",
+    "200% schedule scrolls within its labelled region",
+    "200% planner has no page-level horizontal overflow",
+    "200% preview keeps accept/cancel accessible",
+    "200% project library remains keyboard accessible"
+  ]
+}

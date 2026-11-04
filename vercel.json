@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm ci && npm --prefix web ci",
+  "buildCommand": "VITE_API_SAME_ORIGIN=true npm --prefix web run build",
+  "outputDirectory": "web/dist",
+  "functions": {
+    "api/index.mjs": {
+      "maxDuration": 120,
+      "includeFiles": "{src/**,node_modules/polygon-clipping/**,node_modules/robust-predicates/**,node_modules/splaytree/**,docs/MUSE-MASTER-PLANNER.md}"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index?unbuiltPath=:path*"
+    }
+  ]
+}

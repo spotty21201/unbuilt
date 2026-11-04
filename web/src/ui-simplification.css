@@ -1,0 +1,23 @@
+/* Optional controls open in the existing layout, keeping the plan in view. */
+.project-tools>summary,.project-context>summary,.legacy-more-tools>summary { cursor:pointer; padding:10px 12px; font-size:14px; }
+.project-tools>div { display:flex; flex-wrap:wrap; gap:8px; max-width:440px; padding:12px; }
+.topactions .project-tools { align-self:flex-start; border:1px solid var(--line); }
+.project-context>div { padding:10px; }
+.contextstrip { align-items:center; }
+.contextstrip>.residential-entry:first-child { background:#216b96; color:#fff; border-color:#687582; }
+.legacy-more-tools { margin-top:20px; border-top:1px solid var(--line); }
+.legacy-more-tools>summary { font-weight:600; padding:16px 0; }
+.legacy-more-tools>div { padding-top:8px; }
+.dynamic-inspector .parameter-section>summary,.dynamic-inspector .invariant-section>summary { cursor:pointer; padding:14px 0; font-size:15px; font-weight:600; }
+.dynamic-inspector .invariant-section>summary small { display:block; font-size:12px; font-weight:400; color:var(--muted); margin-top:4px; }
+.dynamic-inspector .inspect-prompt { font-size:16px; line-height:1.6; padding:16px 0; color:var(--muted); }
+.dynamic-inspector:has(.inspect-prompt) .metric-grid { display:none; }
+.dynamic-inspector:has(.inspect-prompt) .selection-heading>.modebadge { display:none; }
+.dynamic-inspector [hidden],.topbar [hidden] { display:none !important; }
+@media(max-width:700px) {
+  .topbar { flex-wrap:wrap; }
+  .topactions .project-tools { margin-left:auto; }
+  .project-tools>div { max-width:100%; }
+}
+
+.reset-plan>summary { cursor:pointer; padding:12px 0; font-size:14px; }
