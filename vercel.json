@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm ci && npm --prefix web ci",
+  "buildCommand": "VITE_API_SAME_ORIGIN=true npm --prefix web run build",
+  "outputDirectory": "web/dist",
+  "functions": {
+    "api/[...path].mjs": { "maxDuration": 120 }
+  }
+}

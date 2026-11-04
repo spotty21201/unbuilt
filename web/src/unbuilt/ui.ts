@@ -52,11 +52,11 @@ export function formatM2(v: number): string {
   return `${Math.round(v).toLocaleString('en-US')} m²`;
 }
 
-// The deterministic tool server runs beside the static app (same host,
-// port 5174 in this increment). Absolute base because no dev proxy exists;
-// measured tools can compute locally; AI failures remain explicit.
+// Vercel serves the API on the app origin; local previews use the tool server.
 export function serverBase(): string {
-  return `${window.location.protocol}//${window.location.hostname}:5174`;
+  return import.meta.env.VITE_API_SAME_ORIGIN === 'true'
+    ? ''
+    : `${window.location.protocol}//${window.location.hostname}:5174`;
 }
 
 export function formatGap(v: number): string {
