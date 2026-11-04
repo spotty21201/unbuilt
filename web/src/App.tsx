@@ -64,6 +64,7 @@ import type { History } from '../../src/draft';
 import type { WorkingSpec } from './unbuilt/ui';
 import './App.css';
 import './drafting.css';
+import './ui-simplification.css';
 
 const ResidentialPlanner=lazy(()=>import('./unbuilt/ResidentialPlanner'));
 const LotPlanEditor=lazy(()=>import('./unbuilt/LotPlanEditor'));
@@ -225,7 +226,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
   const [ownerS, setOwnerS] = useState(start.ownerS);
   const [targetS, setTargetS] = useState(start.targetS);
   const [spec, setSpec] = useState<WorkingSpec>({ family: start.spec.family === 'loop' ? 'loop' : 'spine', frontage: start.spec.frontage });
-  const [selected, setSelected] = useState<Sel>(hasLayout(start.baseSpec) ? 'grove' : 'site');
+  const [selected, setSelected] = useState<Sel>(hasLayout(start.baseSpec) ? null : 'site');
   const [greenLocked, setGreenLocked] = useState(start.greenLocked);
   const [request, setRequest] = useState('Keep this green space. Do not increase the home selling price. What else can change?');
   const [intent, setIntent] = useState<IntentResult | null>(null);
@@ -1793,12 +1794,12 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           )}
   </>;
   const restoreHomesBlocked = regenBlock ?? (draftDirty ? 'Apply park or Cancel park before restoring homes.' : preview ? 'Apply or Cancel the alternative preview before restoring homes.' : null);
-  const planActions = <section className="plan-actions" aria-label="Remove and restart"><h3>Plan actions</h3>
+  const planActions = <section className="plan-actions" aria-label="Remove and restart">
     {selected === 'homes' && hasLayout(baseSpec) && <button type="button" disabled={!selectedHomeIndices.length || !!regenBlock || draftDirty || !!preview} onClick={() => requestDelete('homes')}>Remove {selectedHomeIndices.length} selected home{selectedHomeIndices.length === 1 ? '' : 's'}</button>}
     {!!baseSpec.contents?.removedHomes.length && <><p className="note">Removed homes keep their original lot regions vacant during layout changes.</p><button type="button" disabled={!!restoreHomesBlocked} aria-describedby={restoreHomesBlocked?'restore-homes-reason':restorationConflicts.length?'home-restoration-review':undefined} onClick={restoreHomes}>Restore removed homes</button>{restoreHomesBlocked && <p className="note" id="restore-homes-reason" role="status">{restoreHomesBlocked} This action is waiting for the current edit to finish; it does not mean a home cannot fit. Fit is checked when you restore.</p>}{!restoreHomesBlocked&&restorationConflicts.length>0&&<section className="home-restoration-review" id="home-restoration-review" aria-label="Home restoration conflicts" role="status"><h4>These homes cannot be restored yet</h4>{restorationConflicts.map(issue=><div key={issue.index}><p>{issue.message}</p><button type="button" onClick={()=>openHousingMix([issue.index])}>Reassign home for Lot {issue.index+1}</button><button type="button" onClick={()=>{const tools=document.querySelector<HTMLDetailsElement>('.object-tools');if(tools)tools.open=true;beginLotReshape(issue.index);}}>Edit Lot {issue.index+1} outline</button></div>)}<p>Choose a fitting design or adjust the lot, Apply that edit, then try Restore removed homes again. Accepted homes and vacant lots are unchanged.</p></section>}</>}
-    <button type="button" disabled={!hasLayout(baseSpec) || !!regenBlock || !!preview || draftDirty} onClick={() => requestDelete('layout')}>Clear layout</button>
+    <details className="reset-plan"><summary>Reset / clear plan</summary>    <button type="button" disabled={!hasLayout(baseSpec) || !!regenBlock || !!preview || draftDirty} onClick={() => requestDelete('layout')}>Clear layout</button>
     <button type="button" disabled={!hasBoundary(baseSpec) || planning.siteLocked || !!regenBlock || !!preview || draftDirty} onClick={() => requestDelete('boundary')}>Delete boundary and layout</button>
-    <p className="note">Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.</p>
+    <p className="note">Clear layout keeps the boundary. Delete boundary and layout restarts with a blank drawing. Both keep the project name and economic assumptions.</p></details>
   </section>;
 
   const boundaryEditing = boundaryDraft !== null;
@@ -1889,7 +1890,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           <strong>UNBUILT</strong><button type="button" className="projects-button" onClick={openProjects}>Projects</button>
           <button type="button" className="project-name" onClick={openProjects} title={projectName}>{projectName}</button>
         </div>
-        <div className="workstate" aria-live="polite">
+        <div className="workstate" hidden={!cmpExpand&&!preview} aria-live="polite">
           {cmpExpand ? 'Comparing plans' : preview ? `Previewing ${dispName(preview)}` : 'Working plan'}
         </div>
         <nav className="workspace-tabs" aria-label="Workspace"><button type="button" className={!dockOpen ? 'current' : ''} onClick={() => { setDockOpen(false); setCmpExpand(false); }}>Plan</button><button type="button" onClick={openAlternatives}>Alternatives</button><button type="button" disabled={!hasLayout(baseSpec)} onClick={() => { selectFromCanvas('homes'); if (!contextPending) setSelectedLot(null); }}>Parcels</button></nav>
@@ -1897,7 +1898,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
           <button type="button" className="save-project" title="Save accepted edits in this browser only. Apply pending edits first. Download a backup from Projects." onClick={() => { if (onSaveProject(serializeProject(projectState(), decisions, projectName, alternatives))) setStatus('Project saved. Pending edits are kept only when you Apply them.'); }}>Save</button>
           <button type="button" onClick={() => boundaryDraft ? undoBoundary() : spacesEditing ? undoSpace() : streetEditing ? undoStreet() : lotDraft?undoLotDraft():doUndo()} disabled={boundaryDraft ? boundaryHistory.past.length === 0 : spacesEditing?spaceHistory.past.length===0:streetEditing ? streetHistory.past.length === 0 : lotDraft?lotHistory.past.length===0:hist.past.length===0} aria-label="Undo" title="Undo (Ctrl+Z)"><UndoIcon size={18} /><span className="sr-only">Undo</span></button>
           <button type="button" onClick={() => boundaryDraft ? undoBoundary(true) : spacesEditing ? undoSpace(true) : streetEditing ? undoStreet(true) : lotDraft?undoLotDraft(true):doRedo()} disabled={boundaryDraft ? boundaryHistory.future.length === 0 : spacesEditing?spaceHistory.future.length===0:streetEditing ? streetHistory.future.length === 0 : lotDraft?lotHistory.future.length===0:hist.future.length===0} aria-label="Redo" title="Redo (Ctrl+Shift+Z)"><RedoIcon size={18} /><span className="sr-only">Redo</span></button>
-          <button type="button" className="export-action" title="Export the accepted plan and decision record as JSON" onClick={exportRecord}><DownloadIcon size={16} /><span>Export JSON</span></button>
+          <details className="project-tools"><summary>Project tools</summary><div>          <button type="button" className="export-action" title="Export the accepted plan and decision record as JSON" onClick={exportRecord}><DownloadIcon size={16} /><span>Export JSON</span></button>
           <span className="badge modeloff" title="AI interprets intentions into reviewable experiments. The planning engine owns measurements; Apply is explicit. Local measured tools remain available.">
             {serverOk === null
               ? 'Local tools · checking server…'
@@ -1905,15 +1906,15 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
                 ? `Local tools · server online · ${aiStatus}`
                 : 'Local tools · server offline · AI unavailable'}
           </span>
-          <button type="button" className="ai-settings-button" onClick={()=>setAiSettingsOpen(true)}>AI settings</button>
+          <button type="button" className="ai-settings-button" onClick={()=>setAiSettingsOpen(true)}>AI settings</button></div></details>
         </div>
       </header>
       <div className="contextstrip" aria-live="polite">
         <button type="button" className="residential-entry" title="Establish the site boundary, adjoining main road and fixed features before choosing an entrance" onClick={()=>openResidential()}>Residential planning</button>
         <button type="button" className="residential-entry" disabled={!hasBoundary(baseSpec)||!!regenBlock||draftDirty||!!pendingOp||optimizing||!!preview} onClick={()=>openResidential(true)}>External road setup</button>
-        <span><b className="active-project-name">{projectName} · </b>{hasBoundary(baseSpec) ? <>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices{hasLayout(baseSpec) && <> · Entrance {entrance.boundaryEdge === undefined ? entrance.edge : `edge ${entrance.boundaryEdge + 1}`} · {layoutLabel}</>}</> : 'Blank plan'}</span>
+        <details className="project-context"><summary>{hasBoundary(baseSpec)?formatM2(siteArea(baseSpec)):'Blank plan'} · site details</summary><div>        <span><b className="active-project-name">{projectName} · </b>{hasBoundary(baseSpec) ? <>{formatM2(siteArea(baseSpec))} · {siteBoundary(baseSpec).length} vertices{hasLayout(baseSpec) && <> · Entrance {entrance.boundaryEdge === undefined ? entrance.edge : `edge ${entrance.boundaryEdge + 1}`} · {layoutLabel}</>}</> : 'Blank plan'}</span></div></details>
         {residential&&<span className="saved-residential-summary">{residentialStudySummary(residential)}</span>}
-        <span>Selected: {assistantFacts.label}</span>
+
         <span title={workingErrors[0] ?? 'Geometry checks only. Review financial outcomes separately under the entered assumptions.'} className={workingErrors.length > 0 ? 'bad' : 'ok'}>{!hasBoundary(baseSpec) ? 'No boundary yet' : workingLayout.empty ? residential?'Saved residential study · legacy boundary only':'Boundary only' : workingLayout.supportError ? 'Layout unavailable' : workingErrors.length > 0 ? 'Invalid plan · see issues' : workingWarnings.length ? 'Profile / template warning' : 'Geometry valid'}</span>
         {financialIssues.length > 0 && <button type="button" className="financial-concerns" title={`Financial review · ${financeScope}`} aria-label={`Review financial concerns (${financialIssues.length})`} onClick={() => { setDockOpen(true); setDockTab('issues'); setCmpExpand(false); requestAnimationFrame(() => { dockPanelRef.current?.querySelector('.financial-review')?.scrollIntoView({block:'nearest'}); dockPanelRef.current?.focus({preventScroll:true}); }); }}>Financial concerns · {financialIssues.length}</button>}
         <details className="save-summary"><summary>{saveStatus.startsWith('Project saved') ? 'Saved in this browser' : saveStatus}</summary><div><strong>Accepted plan · browser-local storage</strong><p>{saveStatus}</p><p>Boundary, entrance, open space, housing templates and lot assignments, constraints, assumptions, lot edits, named schemes with notes, and decisions are saved. Site context and survey calibration are saved. Drafts, undo history, searches, comparisons, photos and survey media are session-only; reattach original survey files after reopening.</p><button type="button" onClick={exportRecord}>Download accepted plan</button><p>Private browsing or clearing site data can remove local projects. Download a portable backup before leaving a private session.</p><p>Use Saved alternatives to name and keep the working plan or a search preview without replacing accepted work. Scheme notes and inputs are included in project downloads; a preview alone is session-only.</p></div></details>
@@ -2239,7 +2240,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
             </div>
           )}
 
-          <div className="askrow">
+          <details className="legacy-more-tools" open={askOpen||!!intent||!!acceptedSummary||optimizing||!!lotDraft||!!parameterDraft}><summary>More tools & assumptions</summary><div>          <div className="askrow">
             <button type="button" onClick={() => setAskOpen((v) => !v)} aria-expanded={askOpen}>
               {askOpen ? 'Close assistant' : `Ask about ${assistantFacts.label}`}
             </button>
@@ -2703,7 +2704,7 @@ export default function Workbench({ initialProject, projectName, onSaveProject, 
                 Economics inputs incomplete — enter a positive selling price and ceiling, and valid owner/target numbers.
               </p>
             )}
-          </details>
+          </details></div></details>
           </>}
         </aside>
       </div>

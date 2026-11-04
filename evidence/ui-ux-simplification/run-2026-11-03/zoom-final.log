@@ -1,0 +1,7 @@
+PASS actual browser zoom is 200% with half CSS width and same outer window
+PASS 200% setup retains readable editable values
+PASS 200% setup action can receive keyboard focus
+PASS 200% schedule scrolls within its labelled region
+PASS 200% planner has no page-level horizontal overflow
+PASS 200% preview keeps accept/cancel accessible
+PASS 200% project library remains keyboard accessible
