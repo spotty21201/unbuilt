@@ -16,8 +16,11 @@ npm --prefix web run dev
 
 Configure AI credentials in Vercel's server environment variables:
 `UNBUILT_MODEL_KEY`, `UNBUILT_MODEL_URL`, and `UNBUILT_MODEL`. Never prefix
-credentials with `VITE_`. Without these, the deterministic planner still works
-and the API reports that AI is unconfigured.
+credentials with `VITE_`. The API key is required; the endpoint and model default to the Meta Chat
+Completions endpoint and `muse-wonder-1.0`. Explicit values override these
+defaults. Without a key, the deterministic planner still works and the API
+reports that AI is unconfigured. `/api/health` lists missing connection field
+names without returning their values.
 
 Leave `UNBUILT_ADMIN_TOKEN` unset on Vercel. The existing administrator settings
 editor persists to a local file, which is unsuitable for durable serverless
