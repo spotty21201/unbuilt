@@ -17,6 +17,9 @@ try {
   const health = await fetch(`${base}/api/health`, { headers: { origin: `https://${host}` } });
   assert.equal(health.status, 200);
   assert.equal((await health.json()).ok, true);
+  const routed = await fetch(`${base}/api/health?path=health`);
+  assert.equal(routed.status, 200);
+  assert.equal((await routed.json()).ok, true);
   const foreign = await fetch(`${base}/api/health`, { headers: { origin: 'https://foreign.example' } });
   assert.equal(foreign.status, 403);
   const parsed = await fetch(`${base}/api/intent`, { method: 'POST' });
