@@ -7,13 +7,7 @@
   "functions": {
     "api/[...path].mjs": {
       "maxDuration": 120,
-      "includeFiles": [
-        "src/**",
-        "node_modules/polygon-clipping/**",
-        "node_modules/robust-predicates/**",
-        "node_modules/splaytree/**",
-        "docs/MUSE-MASTER-PLANNER.md"
-      ]
+      "includeFiles": "{src/**,node_modules/polygon-clipping/**,node_modules/robust-predicates/**,node_modules/splaytree/**,docs/MUSE-MASTER-PLANNER.md}"
     }
   }
 }
