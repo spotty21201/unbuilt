@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import http from 'node:http';
-import handler from '../api/[...path].mjs';
+import handler from '../api/index.mjs';
 
 // Importing the deployment entry must not open the local server port.
 process.env.VERCEL = '1';
@@ -20,6 +20,10 @@ try {
   const routed = await fetch(`${base}/api/health?path=health`);
   assert.equal(routed.status, 200);
   assert.equal((await routed.json()).ok, true);
+  const rewrite = await fetch(`${base}/api?unbuiltPath=health`);
+  assert.equal(rewrite.status, 200);
+  const nested = await fetch(`${base}/api?unbuiltPath=ai/settings`);
+  assert.equal(nested.status, 401, 'nested endpoint reaches its authorization check');
   const foreign = await fetch(`${base}/api/health`, { headers: { origin: 'https://foreign.example' } });
   assert.equal(foreign.status, 403);
   const parsed = await fetch(`${base}/api/intent`, { method: 'POST' });

@@ -2,7 +2,8 @@
 
 Deploy the repository root, including `src/`, `server/` and `web/`. The root
 `vercel.json` installs both package lockfiles, builds `web/dist`, and serves
-`api/[...path].mjs` as one Node function. Node 24 is required by the deployment.
+`api/index.mjs` as one Node function. A rewrite routes every `/api/` path, including nested
+assistant endpoints, to that entry point. Node 24 is required by the deployment.
 The function explicitly includes shared TypeScript sources and geometry package
 files, which the JavaScript entry point does not trace automatically.
 

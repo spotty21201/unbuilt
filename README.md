@@ -4,7 +4,7 @@
 
 **Created by an architect and master planner**, Unbuilt is a browser-based workspace for early residential master planning. It brings site constraints, streets, housing lots, open space and measured development trade-offs into one place, with planning assistance from **Muse AI by Meta**.
 
-**[Open the demo](https://unbuilt-muse-demo.vercel.app)**
+**[Open the demo](https://unbuilt-blond.vercel.app)**
 
 ![Unbuilt residential planning workspace showing streets, housing products, protected spaces and measured land quantities](docs/images/unbuilt-planner.png)
 
