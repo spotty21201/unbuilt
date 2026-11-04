@@ -53,7 +53,7 @@ The planning engine validates the proposed action and calculates its geometry an
 
 This gives natural-language assistance a concrete connection to the drawing and its measurements, while keeping the architect or planner in control of the accepted design.
 
-**Demo availability:** the public demo currently runs the deterministic planning workflow. Live Muse responses require production Meta Model API credentials, which are awaiting configuration. Direct planning and calculations remain available independently of the AI connection.
+**Demo availability:** the public demo connects to Meta Muse Wonder 1.0 through the server-side Meta Model API integration. Direct planning and calculations remain available independently of the AI connection.
 
 ## Try the workflow
 
