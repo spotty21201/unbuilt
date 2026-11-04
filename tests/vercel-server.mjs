@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import http from 'node:http';
+import { existsSync, readFileSync } from 'node:fs';
 import handler from '../api/index.mjs';
+
+const manifest = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url)));
+const target = manifest.rewrites[0].destination.split('?')[0];
+assert.ok(existsSync(new URL(`..${target}.mjs`, import.meta.url)), 'rewrite targets an explicit function file');
 
 // Importing the deployment entry must not open the local server port.
 process.env.VERCEL = '1';
