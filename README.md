@@ -6,9 +6,9 @@
 
 **[Open the demo](https://unbuilt-blond.vercel.app)**
 
-![Unbuilt residential planning workspace showing streets, housing products, protected spaces and measured land quantities](docs/images/unbuilt-planner.png)
+![Unbuilt residential layout preview showing a curved loop road and three housing products](docs/images/unbuilt-planner.png)
 
-*An illustrative planning study. Quantities, unresolved checks and missing cost inputs remain visible alongside the plan.*
+*A residential layout preview with product mix controls, unresolved checks and an explicit review before acceptance.*
 
 ## The difficult problem Unbuilt tackles
 
