@@ -3,6 +3,8 @@
 Deploy the repository root, including `src/`, `server/` and `web/`. The root
 `vercel.json` installs both package lockfiles, builds `web/dist`, and serves
 `api/[...path].mjs` as one Node function. Node 24 is required by the deployment.
+The function explicitly includes shared TypeScript sources and geometry package
+files, which the JavaScript entry point does not trace automatically.
 
 The build sets `VITE_API_SAME_ORIGIN=true`, so browser requests use `/api/`
 instead of local port 5174. Local development retains the separate tool server:
